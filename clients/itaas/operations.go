@@ -1,6 +1,10 @@
 package itaas
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *ItaasClient) GetIPSegmentsList(req *GetIPSegmentsListArgs) (resp *GetIPSegmentsListResponse, err error) {
 	resp = &GetIPSegmentsListResponse{}
@@ -28,7 +32,7 @@ type GetIPSegmentsListResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	Data      GetIPSegmentsListIpsegmentInfoList
 	ErrorList GetIPSegmentsListErrorMessageList
 }
@@ -82,7 +86,7 @@ type RemoveIPSegmentResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList RemoveIPSegmentErrorMessageList
 }
 
@@ -121,7 +125,7 @@ type AddIPSegmentResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList AddIPSegmentErrorMessageList
 }
 
@@ -159,7 +163,7 @@ type RemoveBoxCodeResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList RemoveBoxCodeErrorMessageList
 }
 
@@ -198,7 +202,7 @@ type UpdateRoomNameResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList UpdateRoomNameErrorMessageList
 }
 
@@ -236,7 +240,7 @@ type RemoveRegisterBoxResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList RemoveRegisterBoxErrorMessageList
 }
 
@@ -274,7 +278,7 @@ type GetWelcomePageURIResponse struct {
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList GetWelcomePageURIErrorMessageList
 }
 
@@ -323,7 +327,7 @@ type GetRegisterHistoryListResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	Data      GetRegisterHistoryListRegisterHistoryInfoList
 	ErrorList GetRegisterHistoryListErrorMessageList
 }
@@ -395,7 +399,7 @@ type GetRegisterBoxListResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList GetRegisterBoxListErrorMessageList
 	Data      GetRegisterBoxListData
 }
@@ -449,7 +453,7 @@ type SetWelcomePageURIResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList SetWelcomePageURIErrorMessageList
 }
 
@@ -494,7 +498,7 @@ type CreateBoxCodeResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList CreateBoxCodeErrorMessageList
 	Data      CreateBoxCodeData
 }
@@ -551,7 +555,7 @@ type GetRegisterBoxNumberResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList GetRegisterBoxNumberErrorMessageList
 	Data      GetRegisterBoxNumberData
 }
@@ -600,13 +604,13 @@ type CreateEnterpriseArgs struct {
 	Operator    string
 	Clientappid string
 	BoxNumber   int
-	ServiceFlag bool
+	ServiceFlag core.Bool
 }
 type CreateEnterpriseResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList CreateEnterpriseErrorMessageList
 }
 
@@ -636,12 +640,12 @@ type GetEnterpriseConfigErrorMessage struct {
 }
 
 type GetEnterpriseConfigData struct {
-	AuthorizationNeedAccessToken bool
+	AuthorizationNeedAccessToken core.Bool
 	DrMeetingQrUrl               string
 	DrWelcomeUrl                 string
 	ShareMboxNubmer              int
-	ShareNeedInternet            bool
-	ShareServiceFlag             bool
+	ShareNeedInternet            core.Bool
+	ShareServiceFlag             core.Bool
 }
 type GetEnterpriseConfigArgs struct {
 	Sysfrom     string
@@ -652,7 +656,7 @@ type GetEnterpriseConfigResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList GetEnterpriseConfigErrorMessageList
 	Data      GetEnterpriseConfigData
 }
@@ -693,7 +697,7 @@ type UpdateIPSegmentResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList UpdateIPSegmentErrorMessageList
 }
 
@@ -742,7 +746,7 @@ type GetBoxCodeListResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	Data      GetBoxCodeListBoxCodeInfoList
 	ErrorList GetBoxCodeListErrorMessageList
 }
@@ -798,7 +802,7 @@ type UpdateEnterpriseConfigResponse struct {
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string
-	Success   bool
+	Success   core.Bool
 	ErrorList UpdateEnterpriseConfigErrorMessageList
 }
 

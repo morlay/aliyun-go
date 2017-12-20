@@ -1,6 +1,10 @@
 package ons
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *OnsClient) OnsRegionList(req *OnsRegionListArgs) (resp *OnsRegionListResponse, err error) {
 	resp = &OnsRegionListResponse{}
@@ -101,7 +105,7 @@ type OnsTopicCreateArgs struct {
 	Topic        string
 	Remark       string
 	Appkey       string
-	Order        bool
+	Order        core.Bool
 	Status       int
 }
 type OnsTopicCreateResponse struct {
@@ -288,7 +292,7 @@ type OnsBuyOrdersProduceArgs struct {
 	Data         string
 }
 type OnsBuyOrdersProduceResponse struct {
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Code      string
 	Message   string
@@ -422,7 +426,7 @@ func (c *OnsClient) OnsSubscriptionUpdate(req *OnsSubscriptionUpdateArgs) (resp 
 type OnsSubscriptionUpdateArgs struct {
 	PreventCache int64
 	OnsRegionId  string
-	ReadEnable   bool
+	ReadEnable   core.Bool
 	OnsPlatform  string
 	ConsumerId   string
 }
@@ -920,7 +924,7 @@ type OnsMqttBuyRefundArgs struct {
 	Data         string
 }
 type OnsMqttBuyRefundResponse struct {
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Code      string
 	Message   string
@@ -1159,7 +1163,7 @@ func (c *OnsClient) OnsMqttQueryClientByClientId(req *OnsMqttQueryClientByClient
 }
 
 type OnsMqttQueryClientByClientIdMqttClientInfoDo struct {
-	Online          bool
+	Online          core.Bool
 	ClientId        string
 	SocketChannel   string
 	LastTouch       int64
@@ -1391,7 +1395,7 @@ type OnsMqttBuyProduceArgs struct {
 	Data         string
 }
 type OnsMqttBuyProduceResponse struct {
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Code      string
 	Message   string
@@ -1475,7 +1479,7 @@ func (c *OnsClient) OnsConsumerAccumulate(req *OnsConsumerAccumulateArgs) (resp 
 }
 
 type OnsConsumerAccumulateData struct {
-	Online            bool
+	Online            core.Bool
 	TotalDiff         int64
 	ConsumeTps        float32
 	LastTimestamp     int64
@@ -1494,7 +1498,7 @@ type OnsConsumerAccumulateArgs struct {
 	OnsRegionId  string
 	OnsPlatform  string
 	ConsumerId   string
-	Detail       bool
+	Detail       core.Bool
 }
 type OnsConsumerAccumulateResponse struct {
 	RequestId string
@@ -1530,7 +1534,7 @@ type OnsMqttBuyCheckArgs struct {
 	Data         string
 }
 type OnsMqttBuyCheckResponse struct {
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Code      string
 	Message   string
@@ -1640,14 +1644,14 @@ func (c *OnsClient) OnsConsumerStatus(req *OnsConsumerStatusArgs) (resp *OnsCons
 }
 
 type OnsConsumerStatusData struct {
-	Online                     bool
+	Online                     core.Bool
 	TotalDiff                  int64
 	ConsumeTps                 float32
 	LastTimestamp              int64
 	DelayTime                  int64
 	ConsumeModel               string
-	SubscriptionSame           bool
-	RebalanceOK                bool
+	SubscriptionSame           core.Bool
+	RebalanceOK                core.Bool
 	ConnectionSet              OnsConsumerStatusConnectionDoList
 	DetailInTopicList          OnsConsumerStatusDetailInTopicDoList
 	ConsumerConnectionInfoList OnsConsumerStatusConsumerConnectionInfoDoList
@@ -1706,9 +1710,9 @@ type OnsConsumerStatusArgs struct {
 	PreventCache int64
 	OnsRegionId  string
 	OnsPlatform  string
-	NeedJstack   bool
+	NeedJstack   core.Bool
 	ConsumerId   string
-	Detail       bool
+	Detail       core.Bool
 }
 type OnsConsumerStatusResponse struct {
 	RequestId string

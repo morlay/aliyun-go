@@ -1,6 +1,8 @@
 package mts
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewMtsClient(key string, secret string, regionId string) *MtsClient {
 	return &MtsClient{

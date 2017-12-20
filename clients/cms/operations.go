@@ -1,6 +1,10 @@
 package cms
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CmsClient) ListAlarm(req *ListAlarmArgs) (resp *ListAlarmResponse, err error) {
 	resp = &ListAlarmResponse{}
@@ -23,13 +27,13 @@ type ListAlarmAlarm struct {
 	EndTime            int
 	SilenceTime        int
 	NotifyType         int
-	Enable             bool
+	Enable             core.Bool
 	State              string
 	ContactGroups      string
 	Webhook            string
 }
 type ListAlarmArgs struct {
-	IsEnable         bool
+	IsEnable         core.Bool
 	Callby_cms_owner string
 	Name             string
 	Namespace        string
@@ -40,7 +44,7 @@ type ListAlarmArgs struct {
 	PageNumber       int
 }
 type ListAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	NextToken int
@@ -95,7 +99,7 @@ type ListContactGroupArgs struct {
 	PageNumber       int
 }
 type ListContactGroupResponse struct {
-	Success       bool
+	Success       core.Bool
 	Code          string
 	Message       string
 	NextToken     int
@@ -157,7 +161,7 @@ type UpdateAlarmArgs struct {
 	Statistics         string
 }
 type UpdateAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	RequestId string
@@ -179,7 +183,7 @@ type NodeProcessCreateArgs struct {
 type NodeProcessCreateResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 }
 
@@ -190,13 +194,13 @@ func (c *CmsClient) ProfileSet(req *ProfileSetArgs) (resp *ProfileSetResponse, e
 }
 
 type ProfileSetArgs struct {
-	AutoInstall bool
+	AutoInstall core.Bool
 	UserId      int64
 }
 type ProfileSetResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 }
 
@@ -217,7 +221,7 @@ type NodeListNode struct {
 	TianjimonVersion string
 	EipAddress       string
 	EipId            string
-	AliyunHost       bool
+	AliyunHost       core.Bool
 	NatIp            string
 	NetworkType      string
 }
@@ -234,7 +238,7 @@ type NodeListArgs struct {
 type NodeListResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 	PageNumber   int
 	PageSize     int
@@ -272,7 +276,7 @@ type NodeProcessDeleteArgs struct {
 type NodeProcessDeleteResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 }
 
@@ -310,7 +314,7 @@ type NodeUninstallArgs struct {
 type NodeUninstallResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 }
 
@@ -343,7 +347,7 @@ type ListAlarmHistoryArgs struct {
 	StartTime        string
 }
 type ListAlarmHistoryResponse struct {
-	Success          bool
+	Success          core.Bool
 	Code             string
 	Message          string
 	Cursor           string
@@ -391,7 +395,7 @@ type CreateAlarmArgs struct {
 	Statistics         string
 }
 type CreateAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	RequestId string
@@ -421,7 +425,7 @@ type QueryMetricLastArgs struct {
 type QueryMetricLastResponse struct {
 	Code       string
 	Message    string
-	Success    bool
+	Success    core.Bool
 	RequestId  string
 	Cursor     string
 	Datapoints string
@@ -465,8 +469,8 @@ type DescribeAlarmHistoryArgs struct {
 	EndTime    string
 	RuleName   string
 	StartTime  string
-	Ascending  bool
-	OnlyCount  bool
+	Ascending  core.Bool
+	OnlyCount  core.Bool
 	Namespace  string
 	PageSize   int
 	State      string
@@ -475,7 +479,7 @@ type DescribeAlarmHistoryArgs struct {
 	Status     string
 }
 type DescribeAlarmHistoryResponse struct {
-	Success          bool
+	Success          core.Bool
 	Code             string
 	Message          string
 	Total            string
@@ -585,7 +589,7 @@ type AccessKeyGetArgs struct {
 type AccessKeyGetResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 	UserId       int64
 	AccessKey    string
@@ -618,7 +622,7 @@ type DeleteAlarmArgs struct {
 	Id               string
 }
 type DeleteAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	RequestId string
@@ -632,13 +636,13 @@ func (c *CmsClient) NodeInstall(req *NodeInstallArgs) (resp *NodeInstallResponse
 
 type NodeInstallArgs struct {
 	InstanceId string
-	Force      bool
+	Force      core.Bool
 	UserId     string
 }
 type NodeInstallResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 }
 
@@ -656,7 +660,7 @@ type PutMetricDataResponse struct {
 	Code      string
 	Message   string
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *CmsClient) NodeStatus(req *NodeStatusArgs) (resp *NodeStatusResponse, err error) {
@@ -671,10 +675,10 @@ type NodeStatusArgs struct {
 type NodeStatusResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 	InstanceId   string
-	AutoInstall  bool
+	AutoInstall  core.Bool
 	Status       string
 }
 
@@ -690,10 +694,10 @@ type ProfileGetArgs struct {
 type ProfileGetResponse struct {
 	ErrorCode    int
 	ErrorMessage string
-	Success      bool
+	Success      core.Bool
 	RequestId    string
 	UserId       int64
-	AutoInstall  bool
+	AutoInstall  core.Bool
 }
 
 func (c *CmsClient) PutSystemEvent(req *PutSystemEventArgs) (resp *PutSystemEventResponse, err error) {
@@ -722,7 +726,7 @@ type DisableAlarmArgs struct {
 	Id               string
 }
 type DisableAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	RequestId string
@@ -736,7 +740,7 @@ func (c *CmsClient) NodeStatusList(req *NodeStatusListArgs) (resp *NodeStatusLis
 
 type NodeStatusListNodeStatus struct {
 	InstanceId  string
-	AutoInstall bool
+	AutoInstall core.Bool
 	Status      string
 }
 type NodeStatusListArgs struct {
@@ -745,7 +749,7 @@ type NodeStatusListArgs struct {
 type NodeStatusListResponse struct {
 	ErrorCode      int
 	ErrorMessage   string
-	Success        bool
+	Success        core.Bool
 	RequestId      string
 	NodeStatusList NodeStatusListNodeStatusList
 }
@@ -788,7 +792,7 @@ type QueryMetricListArgs struct {
 type QueryMetricListResponse struct {
 	Code       string
 	Message    string
-	Success    bool
+	Success    core.Bool
 	RequestId  string
 	Cursor     string
 	Datapoints string
@@ -806,7 +810,7 @@ type EnableAlarmArgs struct {
 	Id               string
 }
 type EnableAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	RequestId string
@@ -832,7 +836,7 @@ type NodeProcessesArgs struct {
 type NodeProcessesResponse struct {
 	ErrorCode     int
 	ErrorMessage  string
-	Success       bool
+	Success       core.Bool
 	RequestId     string
 	NodeProcesses NodeProcessesNodeProcessList
 }

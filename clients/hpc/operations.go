@@ -1,6 +1,8 @@
 package hpc
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *HpcClient) AuthorizeSecurityGroup(req *AuthorizeSecurityGroupArgs) (resp *AuthorizeSecurityGroupResponse, err error) {
 	resp = &AuthorizeSecurityGroupResponse{}

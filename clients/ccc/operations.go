@@ -1,6 +1,10 @@
 package ccc
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CccClient) RequestLoginInfo(req *RequestLoginInfoArgs) (resp *RequestLoginInfoResponse, err error) {
 	resp = &RequestLoginInfoResponse{}
@@ -24,7 +28,7 @@ type RequestLoginInfoArgs struct {
 }
 type RequestLoginInfoResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -42,9 +46,9 @@ type AddPhoneNumberPhoneNumber struct {
 	InstanceId             string
 	Number                 string
 	PhoneNumberDescription string
-	TestOnly               bool
+	TestOnly               core.Bool
 	RemainingTime          int
-	AllowOutbound          bool
+	AllowOutbound          core.Bool
 	Usage                  string
 	Trunks                 int
 	ContactFlow            AddPhoneNumberContactFlow
@@ -65,7 +69,7 @@ type AddPhoneNumberArgs struct {
 }
 type AddPhoneNumberResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -83,9 +87,9 @@ type ListPhoneNumbersPhoneNumber struct {
 	InstanceId             string
 	Number                 string
 	PhoneNumberDescription string
-	TestOnly               bool
+	TestOnly               core.Bool
 	RemainingTime          int
-	AllowOutbound          bool
+	AllowOutbound          core.Bool
 	Usage                  string
 	Trunks                 int
 	ContactFlow            ListPhoneNumbersContactFlow
@@ -99,12 +103,12 @@ type ListPhoneNumbersContactFlow struct {
 	Type                   string
 }
 type ListPhoneNumbersArgs struct {
-	OutboundOnly bool
+	OutboundOnly core.Bool
 	InstanceId   string
 }
 type ListPhoneNumbersResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -142,7 +146,7 @@ type CreateSkillGroupArgs struct {
 }
 type CreateSkillGroupResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -212,7 +216,7 @@ type CreateUserArgs struct {
 }
 type CreateUserResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -281,7 +285,7 @@ type ListUsersUser struct {
 	UserId      string
 	RamId       string
 	InstanceId  string
-	Primary     bool
+	Primary     core.Bool
 	Roles       ListUsersRoleList
 	SkillLevels ListUsersSkillLevelList
 	Detail      ListUsersDetail
@@ -321,7 +325,7 @@ type ListUsersArgs struct {
 }
 type ListUsersResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -390,7 +394,7 @@ type ListRolesArgs struct {
 }
 type ListRolesResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -423,9 +427,9 @@ type ModifyPhoneNumberPhoneNumber struct {
 	InstanceId             string
 	Number                 string
 	PhoneNumberDescription string
-	TestOnly               bool
+	TestOnly               core.Bool
 	RemainingTime          int
-	AllowOutbound          bool
+	AllowOutbound          core.Bool
 	Usage                  string
 	Trunks                 int
 	ContactFlow            ModifyPhoneNumberContactFlow
@@ -446,7 +450,7 @@ type ModifyPhoneNumberArgs struct {
 }
 type ModifyPhoneNumberResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -485,9 +489,9 @@ type ListContactFlowsPhoneNumber struct {
 	InstanceId             string
 	Number                 string
 	PhoneNumberDescription string
-	TestOnly               bool
+	TestOnly               core.Bool
 	RemainingTime          int
-	AllowOutbound          bool
+	AllowOutbound          core.Bool
 	Usage                  string
 	Trunks                 int
 }
@@ -496,7 +500,7 @@ type ListContactFlowsArgs struct {
 }
 type ListContactFlowsResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -596,7 +600,7 @@ type GetUserArgs struct {
 }
 type GetUserResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -650,7 +654,7 @@ type ModifySkillGroupArgs struct {
 }
 type ModifySkillGroupResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -717,7 +721,7 @@ type GetServiceExtensionsArgs struct {
 }
 type GetServiceExtensionsResponse struct {
 	RequestId         string
-	Success           bool
+	Success           core.Bool
 	Code              string
 	Message           string
 	HttpStatusCode    int
@@ -751,7 +755,7 @@ type DeleteSkillGroupArgs struct {
 }
 type DeleteSkillGroupResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -775,7 +779,7 @@ type GetConfigArgs struct {
 }
 type GetConfigResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -804,9 +808,9 @@ type ListSkillGroupsPhoneNumber struct {
 	InstanceId             string
 	Number                 string
 	PhoneNumberDescription string
-	TestOnly               bool
+	TestOnly               core.Bool
 	RemainingTime          int
-	AllowOutbound          bool
+	AllowOutbound          core.Bool
 	Usage                  string
 	Trunks                 int
 }
@@ -815,7 +819,7 @@ type ListSkillGroupsArgs struct {
 }
 type ListSkillGroupsResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -877,9 +881,9 @@ type ListSkillGroupsOfUserPhoneNumber struct {
 	InstanceId             string
 	Number                 string
 	PhoneNumberDescription string
-	TestOnly               bool
+	TestOnly               core.Bool
 	RemainingTime          int
-	AllowOutbound          bool
+	AllowOutbound          core.Bool
 	Usage                  string
 	Trunks                 int
 }
@@ -889,7 +893,7 @@ type ListSkillGroupsOfUserArgs struct {
 }
 type ListSkillGroupsOfUserResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -944,7 +948,7 @@ type ModifyUserArgs struct {
 }
 type ModifyUserResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -1010,7 +1014,7 @@ type RefreshTokenArgs struct {
 }
 type RefreshTokenResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -1029,7 +1033,7 @@ type RemovePhoneNumberArgs struct {
 }
 type RemovePhoneNumberResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -1050,7 +1054,7 @@ type AssignUsersArgs struct {
 }
 type AssignUsersResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -1128,7 +1132,7 @@ type RemoveUsersArgs struct {
 }
 type RemoveUsersResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int
@@ -1214,7 +1218,7 @@ type ListUsersOfSkillGroupArgs struct {
 }
 type ListUsersOfSkillGroupResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	Code           string
 	Message        string
 	HttpStatusCode int

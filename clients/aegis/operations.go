@@ -1,6 +1,10 @@
 package aegis
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *AegisClient) RenewInstance(req *RenewInstanceArgs) (resp *RenewInstanceResponse, err error) {
 	resp = &RenewInstanceResponse{}
@@ -41,7 +45,7 @@ type GetEntityListEntity struct {
 	Os           string
 	Flag         string
 	BuyVersion   string
-	AegisOnline  bool
+	AegisOnline  core.Bool
 	AegisVersion string
 }
 
@@ -62,7 +66,7 @@ type GetEntityListArgs struct {
 type GetEntityListResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      GetEntityListData
 }
@@ -99,7 +103,7 @@ type GetAccountStatisticsArgs struct {
 type GetAccountStatisticsResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      GetAccountStatisticsData
 }
@@ -116,7 +120,7 @@ type GetStatisticsByUuidEntity struct {
 	Health  int
 	Patch   int
 	Trojan  int
-	Online  bool
+	Online  core.Bool
 }
 type GetStatisticsByUuidArgs struct {
 	Uuid string
@@ -124,7 +128,7 @@ type GetStatisticsByUuidArgs struct {
 type GetStatisticsByUuidResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      GetStatisticsByUuidEntityList
 }
@@ -189,7 +193,7 @@ type QueryLoginEventArgs struct {
 type QueryLoginEventResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      QueryLoginEventData
 }
@@ -217,7 +221,7 @@ func (c *AegisClient) CreateInstance(req *CreateInstanceArgs) (resp *CreateInsta
 
 type CreateInstanceArgs struct {
 	Duration          int
-	IsAutoRenew       bool
+	IsAutoRenew       core.Bool
 	ClientToken       string
 	VmNumber          int
 	OwnerId           int64
@@ -278,7 +282,7 @@ type QueryCrackEventArgs struct {
 type QueryCrackEventResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      QueryCrackEventData
 }
@@ -317,7 +321,7 @@ type GetStatisticsArgs struct {
 type GetStatisticsResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      GetStatisticsData
 }
@@ -370,7 +374,7 @@ type GetCrackStatisticsArgs struct {
 type GetCrackStatisticsResponse struct {
 	RequestId string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      GetCrackStatisticsData
 }

@@ -1,6 +1,8 @@
 package teslamaxcompute
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *TeslamaxcomputeClient) GetProjectInfo(req *GetProjectInfoArgs) (resp *GetProjectInfoResponse, err error) {
 	resp = &GetProjectInfoResponse{}

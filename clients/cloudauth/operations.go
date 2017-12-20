@@ -1,6 +1,10 @@
 package cloudauth
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CloudauthClient) CompareFaces(req *CompareFacesArgs) (resp *CompareFacesResponse, err error) {
 	resp = &CompareFacesResponse{}
@@ -21,7 +25,7 @@ type CompareFacesArgs struct {
 }
 type CompareFacesResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      CompareFacesData
@@ -61,7 +65,7 @@ type GetVerifyTokenArgs struct {
 }
 type GetVerifyTokenResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      GetVerifyTokenData
@@ -91,7 +95,7 @@ type GetMaterialsArgs struct {
 }
 type GetMaterialsResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      GetMaterialsData
@@ -124,7 +128,7 @@ type SubmitMaterialsArgs struct {
 }
 type SubmitMaterialsResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      SubmitMaterialsData
@@ -164,7 +168,7 @@ type GetStatusArgs struct {
 }
 type GetStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      GetStatusData

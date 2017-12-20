@@ -1,6 +1,8 @@
 package live
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewLiveClient(key string, secret string, regionId string) *LiveClient {
 	return &LiveClient{

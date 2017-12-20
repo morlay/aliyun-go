@@ -1,6 +1,8 @@
 package cms
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCmsClient(key string, secret string, regionId string) *CmsClient {
 	return &CmsClient{

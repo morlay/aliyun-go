@@ -1,6 +1,10 @@
 package ubsms
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *UbsmsClient) NotifyUserBusinessCommand(req *NotifyUserBusinessCommandArgs) (resp *NotifyUserBusinessCommandResponse, err error) {
 	resp = &NotifyUserBusinessCommandResponse{}
@@ -19,7 +23,7 @@ type NotifyUserBusinessCommandArgs struct {
 }
 type NotifyUserBusinessCommandResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *UbsmsClient) SetUserBusinessStatuses(req *SetUserBusinessStatusesArgs) (resp *SetUserBusinessStatusesResponse, err error) {
@@ -55,7 +59,7 @@ type SetUserBusinessStatusesArgs struct {
 }
 type SetUserBusinessStatusesResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *UbsmsClient) DescribeBusinessStatus(req *DescribeBusinessStatusArgs) (resp *DescribeBusinessStatusResponse, err error) {
@@ -80,7 +84,7 @@ type DescribeBusinessStatusArgs struct {
 }
 type DescribeBusinessStatusResponse struct {
 	RequestId              string
-	Success                bool
+	Success                core.Bool
 	UserBusinessStatusList DescribeBusinessStatusUserBusinessStatusList
 }
 

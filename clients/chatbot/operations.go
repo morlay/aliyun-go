@@ -1,6 +1,8 @@
 package chatbot
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *ChatbotClient) Chat(req *ChatArgs) (resp *ChatResponse, err error) {
 	resp = &ChatResponse{}

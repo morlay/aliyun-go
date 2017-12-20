@@ -1,6 +1,10 @@
 package market
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *MarketClient) DescribeProduct(req *DescribeProductArgs) (resp *DescribeProductResponse, err error) {
 	resp = &DescribeProductResponse{}
@@ -209,7 +213,7 @@ type BindImagePackageArgs struct {
 }
 type BindImagePackageResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *MarketClient) DescribeInstance(req *DescribeInstanceArgs) (resp *DescribeInstanceResponse, err error) {
@@ -261,7 +265,7 @@ type QueryMarketImagesImageProduct struct {
 	StoreUrl         string
 	Score            float32
 	UserCount        int64
-	SupportIO        bool
+	SupportIO        core.Bool
 	CreatedOn        int64
 	Images           QueryMarketImagesImageList
 	SkuCodes         QueryMarketImagesSkuCodeList
@@ -274,8 +278,8 @@ type QueryMarketImagesImage struct {
 	ImageId            string
 	ImageSize          int
 	Region             string
-	IsDefault          bool
-	SupportIO          bool
+	IsDefault          core.Bool
+	SupportIO          core.Bool
 	DiskDeviceMappings QueryMarketImagesDiskDeviceMappingList
 }
 
@@ -596,7 +600,7 @@ type ActivateLicenseArgs struct {
 }
 type ActivateLicenseResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *MarketClient) SubscribeImage(req *SubscribeImageArgs) (resp *SubscribeImageResponse, err error) {
@@ -610,7 +614,7 @@ type SubscribeImageArgs struct {
 }
 type SubscribeImageResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *MarketClient) CreateOrder(req *CreateOrderArgs) (resp *CreateOrderResponse, err error) {

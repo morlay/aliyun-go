@@ -1,6 +1,10 @@
 package vod
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *VodClient) RefreshUploadVideo(req *RefreshUploadVideoArgs) (resp *RefreshUploadVideoResponse, err error) {
 	resp = &RefreshUploadVideoResponse{}
@@ -768,7 +772,7 @@ type OpenVodServiceArgs struct {
 }
 type OpenVodServiceResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 }
@@ -1920,7 +1924,7 @@ type CreateOrderArgs struct {
 }
 type CreateOrderResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 }

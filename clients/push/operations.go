@@ -1,6 +1,10 @@
 package push
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *PushClient) PushNoticeToAndroid(req *PushNoticeToAndroidArgs) (resp *PushNoticeToAndroidResponse, err error) {
 	resp = &PushNoticeToAndroidResponse{}
@@ -32,7 +36,7 @@ type UnbindAliasArgs struct {
 	AliasName string
 	AppKey    int64
 	DeviceId  string
-	UnbindAll bool
+	UnbindAll core.Bool
 }
 type UnbindAliasResponse struct {
 	RequestId string
@@ -71,7 +75,7 @@ type QueryDeviceInfoDeviceInfo struct {
 	Tags           string
 	Alias          string
 	LastOnlineTime string
-	Online         bool
+	Online         core.Bool
 }
 type QueryDeviceInfoArgs struct {
 	AppKey   int64
@@ -94,7 +98,7 @@ type CheckDeviceArgs struct {
 }
 type CheckDeviceResponse struct {
 	RequestId string
-	Available bool
+	Available core.Bool
 }
 
 func (c *PushClient) QueryPushDetail(req *QueryPushDetailArgs) (resp *QueryPushDetailResponse, err error) {
@@ -120,17 +124,17 @@ type QueryPushDetailResponse struct {
 	ExpireTime                     string
 	AntiHarassStartTime            int
 	AntiHarassDuration             int
-	StoreOffline                   bool
+	StoreOffline                   core.Bool
 	BatchNumber                    string
 	ProvinceId                     string
 	IOSApnsEnv                     string
-	IOSRemind                      bool
+	IOSRemind                      core.Bool
 	IOSRemindBody                  string
 	IOSBadge                       int
 	IOSMusic                       string
 	IOSSubtitle                    string
 	IOSNotificationCategory        string
-	IOSMutableContent              bool
+	IOSMutableContent              core.Bool
 	IOSExtParameters               string
 	AndroidNotifyType              string
 	AndroidOpenType                string
@@ -164,7 +168,7 @@ type PushArgs struct {
 	SmsSendPolicy                  int
 	AndroidExtParameters           string
 	IOSBadge                       int
-	IOSBadgeAutoIncrement          bool
+	IOSBadgeAutoIncrement          core.Bool
 	AndroidOpenType                string
 	Title                          string
 	Body                           string
@@ -180,24 +184,24 @@ type PushArgs struct {
 	AndroidPopupTitle              string
 	IOSMusic                       string
 	IOSApnsEnv                     string
-	IOSMutableContent              bool
+	IOSMutableContent              core.Bool
 	AndroidNotificationBarPriority int
 	ExpireTime                     string
 	SmsTemplateName                string
 	AndroidPopupBody               string
 	IOSNotificationCategory        string
-	StoreOffline                   bool
-	IOSSilentNotification          bool
+	StoreOffline                   core.Bool
+	IOSSilentNotification          core.Bool
 	SmsParams                      string
 	JobKey                         string
 	Target                         string
 	AndroidOpenUrl                 string
-	AndroidRemind                  bool
+	AndroidRemind                  core.Bool
 	AndroidActivity                string
 	AndroidXiaoMiNotifyBody        string
 	IOSSubtitle                    string
 	SmsSignName                    string
-	IOSRemind                      bool
+	IOSRemind                      core.Bool
 	AppKey                         int64
 	TargetValue                    string
 	AndroidMusic                   string
@@ -687,7 +691,7 @@ func (c *PushClient) CheckDevices(req *CheckDevicesArgs) (resp *CheckDevicesResp
 
 type CheckDevicesDeviceCheckInfo struct {
 	DeviceId  string
-	Available bool
+	Available core.Bool
 }
 type CheckDevicesArgs struct {
 	DeviceIds string

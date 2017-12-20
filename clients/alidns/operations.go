@@ -1,6 +1,10 @@
 package alidns
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *AlidnsClient) RetrievalDomainName(req *RetrievalDomainNameArgs) (resp *RetrievalDomainNameResponse, err error) {
 	resp = &RetrievalDomainNameResponse{}
@@ -153,7 +157,7 @@ type DescribeSubDomainRecordsRecord struct {
 	Priority   int64
 	Line       string
 	Status     string
-	Locked     bool
+	Locked     core.Bool
 	Weight     int
 }
 type DescribeSubDomainRecordsArgs struct {
@@ -203,7 +207,7 @@ type DescribeDomainInfoResponse struct {
 	DomainId        string
 	DomainName      string
 	PunyCode        string
-	AliDomain       bool
+	AliDomain       core.Bool
 	RegistrantEmail string
 	GroupId         string
 	GroupName       string
@@ -409,7 +413,7 @@ type DescribeDomainRecordsRecord struct {
 	Priority   int64
 	Line       string
 	Status     string
-	Locked     bool
+	Locked     core.Bool
 	Weight     int
 }
 type DescribeDomainRecordsArgs struct {
@@ -511,7 +515,7 @@ type DescribeDomainsDomain struct {
 	DomainId        string
 	DomainName      string
 	PunyCode        string
-	AliDomain       bool
+	AliDomain       core.Bool
 	RegistrantEmail string
 	GroupId         string
 	GroupName       string
@@ -611,8 +615,8 @@ type DescribeDomainNsArgs struct {
 }
 type DescribeDomainNsResponse struct {
 	RequestId     string
-	AllAliDns     bool
-	IncludeAliDns bool
+	AllAliDns     core.Bool
+	IncludeAliDns core.Bool
 	DnsServers    DescribeDomainNsDnsServerList
 }
 
@@ -812,7 +816,7 @@ type CheckDomainRecordArgs struct {
 }
 type CheckDomainRecordResponse struct {
 	RequestId string
-	IsExist   bool
+	IsExist   core.Bool
 }
 
 func (c *AlidnsClient) DeleteDomainGroup(req *DeleteDomainGroupArgs) (resp *DeleteDomainGroupResponse, err error) {
@@ -962,7 +966,7 @@ type DescribeDomainRecordInfoResponse struct {
 	Priority   int64
 	Line       string
 	Status     string
-	Locked     bool
+	Locked     core.Bool
 }
 
 func (c *AlidnsClient) DescribeDNSSLBSubDomains(req *DescribeDNSSLBSubDomainsArgs) (resp *DescribeDNSSLBSubDomainsResponse, err error) {
@@ -974,7 +978,7 @@ func (c *AlidnsClient) DescribeDNSSLBSubDomains(req *DescribeDNSSLBSubDomainsArg
 type DescribeDNSSLBSubDomainsSlbSubDomain struct {
 	SubDomain   string
 	RecordCount int64
-	Open        bool
+	Open        core.Bool
 }
 type DescribeDNSSLBSubDomainsArgs struct {
 	Lang         string
@@ -1146,10 +1150,10 @@ type SetDNSSLBStatusArgs struct {
 	Lang         string
 	UserClientIp string
 	SubDomain    string
-	Open         bool
+	Open         core.Bool
 }
 type SetDNSSLBStatusResponse struct {
 	RequestId   string
 	RecordCount int64
-	Open        bool
+	Open        core.Bool
 }

@@ -1,6 +1,8 @@
 package push
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewPushClient(key string, secret string, regionId string) *PushClient {
 	return &PushClient{

@@ -1,5 +1,9 @@
 package sas_api
 
+import (
+	"github.com/morlay/aliyun-go/core"
+)
+
 func (c *SasApiClient) GetPhoneProfile(req *GetPhoneProfileArgs) (resp *GetPhoneProfileResponse, err error) {
 	resp = &GetPhoneProfileResponse{}
 	err = c.Request("GetPhoneProfile", req, resp)
@@ -19,7 +23,7 @@ type GetPhoneProfileArgs struct {
 type GetPhoneProfileResponse struct {
 	Code      int
 	Message   string
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Data      GetPhoneProfileData
 }
@@ -53,7 +57,7 @@ type GetAccountProfileArgs struct {
 type GetAccountProfileResponse struct {
 	Code      int
 	Message   string
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Data      GetAccountProfileData
 }
@@ -83,7 +87,7 @@ type GetIpProfileArgs struct {
 type GetIpProfileResponse struct {
 	Code      int
 	Message   string
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Data      GetIpProfileData
 }
@@ -100,7 +104,7 @@ type GetInstanceCountArgs struct {
 type GetInstanceCountResponse struct {
 	Code      string
 	Message   string
-	Success   bool
+	Success   core.Bool
 	RequestId string
 	Data      int
 }

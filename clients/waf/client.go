@@ -1,6 +1,8 @@
 package waf
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewWafClient(key string, secret string, regionId string) *WafClient {
 	return &WafClient{

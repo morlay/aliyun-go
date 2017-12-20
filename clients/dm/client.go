@@ -1,6 +1,8 @@
 package dm
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewDmClient(key string, secret string, regionId string) *DmClient {
 	return &DmClient{

@@ -1,6 +1,10 @@
 package cloudwf
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CloudwfClient) ListApStaStatus(req *ListApStaStatusArgs) (resp *ListApStaStatusResponse, err error) {
 	resp = &ListApStaStatusResponse{}
@@ -22,7 +26,7 @@ type ListApStaStatusArgs struct {
 }
 type ListApStaStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -40,7 +44,7 @@ type ListApPositionArgs struct {
 }
 type ListApPositionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -58,7 +62,7 @@ type RepairGroupApArgs struct {
 }
 type RepairGroupApResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -75,7 +79,7 @@ type GetSubAccountStatusArgs struct {
 }
 type GetSubAccountStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -105,7 +109,7 @@ type ListStaStatusArgs struct {
 }
 type ListStaStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -130,7 +134,7 @@ type ListStaOnoffLogArgs struct {
 }
 type ListStaOnoffLogResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -150,7 +154,7 @@ type AreaUpdateArgs struct {
 	Sid  int64
 }
 type AreaUpdateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -166,7 +170,7 @@ type ProfileTradeArgs struct {
 	Gsid int64
 }
 type ProfileTradeResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -183,7 +187,7 @@ type DeviceBatchCreateArgs struct {
 	DeviceType int
 }
 type DeviceBatchCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -201,7 +205,7 @@ type SaveStaStatusArgs struct {
 }
 type SaveStaStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -218,7 +222,7 @@ type PutOssFileArgs struct {
 }
 type PutOssFileResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -261,7 +265,7 @@ type SaveApRadioSsidConfigArgs struct {
 }
 type SaveApRadioSsidConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -283,7 +287,7 @@ type BusinessUpdateArgs struct {
 	BusinessProvince string
 }
 type BusinessUpdateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -299,7 +303,7 @@ type UserAnalyseArgs struct {
 	Gsid int64
 }
 type UserAnalyseResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -316,7 +320,7 @@ type BatchChangeGroupApNameArgs struct {
 }
 type BatchChangeGroupApNameResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -339,7 +343,7 @@ type GetOnlineStaTimeSerArgs struct {
 }
 type GetOnlineStaTimeSerResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -357,7 +361,7 @@ type ShopSetfiltermacArgs struct {
 	Sid int64
 }
 type ShopSetfiltermacResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -373,7 +377,7 @@ type GetBindAp4UmengArgs struct {
 }
 type GetBindAp4UmengResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -390,7 +394,7 @@ type ProfileMediaArgs struct {
 	Gsid int64
 }
 type ProfileMediaResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -407,7 +411,7 @@ type GetStaDetailedStatusArgs struct {
 }
 type GetStaDetailedStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -426,7 +430,7 @@ type ReportHourArgs struct {
 	Agsid     int64
 }
 type ReportHourResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -442,7 +446,7 @@ type ReportRealtimeArgs struct {
 	Agsid int64
 }
 type ReportRealtimeResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -458,7 +462,7 @@ type ShopCameraArgs struct {
 	Gsid int64
 }
 type ShopCameraResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -477,7 +481,7 @@ type AddApgroupConfigArgs struct {
 }
 type AddApgroupConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -494,7 +498,7 @@ type ShopActionReturningArgs struct {
 	Gsid int64
 }
 type ShopActionReturningResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -511,7 +515,7 @@ type DeleteApgroupConfigArgs struct {
 }
 type DeleteApgroupConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -527,7 +531,7 @@ type GroupIntimeArgs struct {
 	Gsid int64
 }
 type GroupIntimeResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -551,7 +555,7 @@ type ListApPositionMapArgs struct {
 }
 type ListApPositionMapResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -575,7 +579,7 @@ type ShopShowListArgs struct {
 	ShopStatus int
 }
 type ShopShowListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -593,7 +597,7 @@ type OnoffGroupApRadioArgs struct {
 }
 type OnoffGroupApRadioResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -618,7 +622,7 @@ type SaveProbeDataSubscriberArgs struct {
 }
 type SaveProbeDataSubscriberResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -651,7 +655,7 @@ type GetStaRunHistoryTimeSerArgs struct {
 }
 type GetStaRunHistoryTimeSerResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -668,7 +672,7 @@ type ShopGroupInfoArgs struct {
 	Gid int64
 }
 type ShopGroupInfoResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -686,7 +690,7 @@ type SaveApgroupScanConfigArgs struct {
 }
 type SaveApgroupScanConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -703,7 +707,7 @@ type GetProbeDataSubscriberConfigArgs struct {
 }
 type GetProbeDataSubscriberConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -721,7 +725,7 @@ type GetApgroupSsidConfigProgressArgs struct {
 }
 type GetApgroupSsidConfigProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -739,7 +743,7 @@ type InnerCheckOrderArgs struct {
 }
 type InnerCheckOrderResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Code      string
 	Data      string
@@ -757,7 +761,7 @@ type ReportZoneHourArgs struct {
 	Agsid     int64
 }
 type ReportZoneHourResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -774,7 +778,7 @@ type GetGroupApRadioOnoffProgressArgs struct {
 }
 type GetGroupApRadioOnoffProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -792,7 +796,7 @@ type GetAccountConfigArgs struct {
 }
 type GetAccountConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -809,7 +813,7 @@ type GetGroupApChangeNameTemplateArgs struct {
 }
 type GetGroupApChangeNameTemplateResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -827,7 +831,7 @@ type GetScanModeArgs struct {
 }
 type GetScanModeResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -860,7 +864,7 @@ type FindApArgs struct {
 }
 type FindApResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -877,7 +881,7 @@ type HeadquartersTrendArgs struct {
 	Bid int64
 }
 type HeadquartersTrendResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -904,7 +908,7 @@ type SaveApConfigArgs struct {
 }
 type SaveApConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -921,7 +925,7 @@ type GetGroupApRadioConfigTemplateArgs struct {
 }
 type GetGroupApRadioConfigTemplateResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -938,7 +942,7 @@ type CheckUmengDataAnalysisPermissionArgs struct {
 }
 type CheckUmengDataAnalysisPermissionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -957,7 +961,7 @@ type ReportDayArgs struct {
 	Agsid     int64
 }
 type ReportDayResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -975,7 +979,7 @@ type AreaShowListArgs struct {
 	Sid  int64
 }
 type AreaShowListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -994,7 +998,7 @@ type ProfileHistoryArgs struct {
 	Agsid      int64
 }
 type ProfileHistoryResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1011,7 +1015,7 @@ type GetApgroupScanConfigSaveProgressArgs struct {
 }
 type GetApgroupScanConfigSaveProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1029,7 +1033,7 @@ type ResetApConfigArgs struct {
 }
 type ResetApConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1046,7 +1050,7 @@ type ProfileBaseArgs struct {
 	Gsid int64
 }
 type ProfileBaseResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1063,7 +1067,7 @@ type GetGroupApRepairProgressArgs struct {
 }
 type GetGroupApRepairProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1081,7 +1085,7 @@ type InnerProduceCloudWFArgs struct {
 }
 type InnerProduceCloudWFResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 }
@@ -1101,7 +1105,7 @@ type UpLoadMapArgs struct {
 }
 type UpLoadMapResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1120,7 +1124,7 @@ type DeleteApRadioSsidConfigArgs struct {
 }
 type DeleteApRadioSsidConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1137,7 +1141,7 @@ type ShopInfoArgs struct {
 	Sid int64
 }
 type ShopInfoResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1153,7 +1157,7 @@ type ProfileDistrictArgs struct {
 	Gsid int64
 }
 type ProfileDistrictResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1175,7 +1179,7 @@ type ListApgroupConfigArgs struct {
 }
 type ListApgroupConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1192,7 +1196,7 @@ type ShopGetredressArgs struct {
 	Sid int64
 }
 type ShopGetredressResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1209,7 +1213,7 @@ type InnerRefundArgs struct {
 }
 type InnerRefundResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 }
@@ -1232,7 +1236,7 @@ type ListGroupApBriefConfigArgs struct {
 }
 type ListGroupApBriefConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1250,7 +1254,7 @@ type ListApPositionStatusArgs struct {
 }
 type ListApPositionStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1267,7 +1271,7 @@ type GetOssServerSignArgs struct {
 }
 type GetOssServerSignResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1286,7 +1290,7 @@ type DelApPositionArgs struct {
 }
 type DelApPositionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1303,7 +1307,7 @@ type ShopActionCustomeArgs struct {
 	Gsid int64
 }
 type ShopActionCustomeResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1320,7 +1324,7 @@ type ResetApArgs struct {
 }
 type ResetApResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1348,7 +1352,7 @@ type BusinessCreateArgs struct {
 	BusinessSubtype  int
 }
 type BusinessCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1373,7 +1377,7 @@ type SaveApgroupConfigArgs struct {
 }
 type SaveApgroupConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1391,7 +1395,7 @@ type GetLatestStaStatisticArgs struct {
 }
 type GetLatestStaStatisticResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1409,7 +1413,7 @@ type SaveGroupApRadioConfigArgs struct {
 }
 type SaveGroupApRadioConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -1426,7 +1430,7 @@ type ExcelToJsonArgs struct {
 }
 type ExcelToJsonResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1447,7 +1451,7 @@ type ShopDataAlarmArgs struct {
 	Sid       int64
 }
 type ShopDataAlarmResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1465,7 +1469,7 @@ type AreaCreateArgs struct {
 	Sid  int64
 }
 type AreaCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1482,7 +1486,7 @@ type GetApgroupPortalConfigProgressArgs struct {
 }
 type GetApgroupPortalConfigProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1499,7 +1503,7 @@ type HeadquartersToolsContrastArgs struct {
 	Bid int64
 }
 type HeadquartersToolsContrastResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1521,7 +1525,7 @@ type GetCrowdListArgs struct {
 	Per       int
 }
 type GetCrowdListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1536,7 +1540,7 @@ func (c *CloudwfClient) SaveApPortalConfig(req *SaveApPortalConfigArgs) (resp *S
 type SaveApPortalConfigArgs struct {
 	AuthKey      string
 	PortalUrl    string
-	PortalStatus bool
+	PortalStatus core.Bool
 	Whitelist    string
 	CheckUrl     string
 	ApConfigId   int64
@@ -1546,7 +1550,7 @@ type SaveApPortalConfigArgs struct {
 }
 type SaveApPortalConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -1563,7 +1567,7 @@ type SavePortalConfigArgs struct {
 }
 type SavePortalConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -1590,7 +1594,7 @@ type ShopSetredressArgs struct {
 	Maxstoptime int
 }
 type ShopSetredressResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1607,7 +1611,7 @@ type AreaDeleteArgs struct {
 	Sid int64
 }
 type AreaDeleteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1629,7 +1633,7 @@ type ListApAssetCanBeAddedArgs struct {
 }
 type ListApAssetCanBeAddedResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1645,7 +1649,7 @@ func (c *CloudwfClient) GetBid(req *GetBidArgs) (resp *GetBidResponse, err error
 type GetBidArgs struct {
 }
 type GetBidResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1661,7 +1665,7 @@ type GroupOverviewArgs struct {
 	Gsid int64
 }
 type GroupOverviewResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1677,7 +1681,7 @@ type ProfileConsumeArgs struct {
 	Gsid int64
 }
 type ProfileConsumeResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1711,7 +1715,7 @@ type ShopUpdateArgs struct {
 	ShopBusinessHours string
 }
 type ShopUpdateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1727,7 +1731,7 @@ type HeadquartersRankingArgs struct {
 	Bid int64
 }
 type HeadquartersRankingResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1746,7 +1750,7 @@ type ShopMarketingListArgs struct {
 	Sid  int64
 }
 type ShopMarketingListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1763,7 +1767,7 @@ type UserDataDeleteArgs struct {
 	Bid int64
 }
 type UserDataDeleteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1782,7 +1786,7 @@ type GetApRunHistoryTimeSerArgs struct {
 }
 type GetApRunHistoryTimeSerResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1800,7 +1804,7 @@ type DeletePositionMapArgs struct {
 }
 type DeletePositionMapResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1818,7 +1822,7 @@ type BusinessShowListArgs struct {
 	Per  int
 }
 type BusinessShowListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1835,7 +1839,7 @@ type DeviceDeleteArgs struct {
 	Mac string
 }
 type DeviceDeleteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1851,7 +1855,7 @@ type GetBatchSaveApAssetProgressArgs struct {
 }
 type GetBatchSaveApAssetProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1871,7 +1875,7 @@ type ListBriefConfigByActionArgs struct {
 }
 type ListBriefConfigByActionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1891,7 +1895,7 @@ type AliyunRegisterApAssetArgs struct {
 }
 type AliyunRegisterApAssetResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1911,7 +1915,7 @@ type UserDataCreateArgs struct {
 	Type       string
 }
 type UserDataCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1928,7 +1932,7 @@ type ShopDeletemarketingArgs struct {
 	Sid int64
 }
 type ShopDeletemarketingResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -1950,7 +1954,7 @@ type GetOnlineApTimeSerArgs struct {
 }
 type GetOnlineApTimeSerResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1968,7 +1972,7 @@ type GetApgroupConfigProgressArgs struct {
 }
 type GetApgroupConfigProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -1986,7 +1990,7 @@ type BatchSaveApPositionArgs struct {
 }
 type BatchSaveApPositionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2003,7 +2007,7 @@ type FrequencyAnalyseArgs struct {
 	Gsid int64
 }
 type FrequencyAnalyseResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2023,7 +2027,7 @@ type DeviceShowListArgs struct {
 	Sid        int64
 }
 type DeviceShowListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2043,7 +2047,7 @@ type DeviceCreateArgs struct {
 	Sid            int64
 }
 type DeviceCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2072,7 +2076,7 @@ type ListApStatusArgs struct {
 }
 type ListApStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2090,7 +2094,7 @@ type KickStaArgs struct {
 }
 type KickStaResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -2107,7 +2111,7 @@ type ApgroupBatchDeleteApArgs struct {
 }
 type ApgroupBatchDeleteApResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2125,7 +2129,7 @@ type RepairApArgs struct {
 }
 type RepairApResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2161,7 +2165,7 @@ type SaveApRadioConfigArgs struct {
 }
 type SaveApRadioConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -2178,7 +2182,7 @@ type GetRadioRunHistoryTimeSerArgs struct {
 }
 type GetRadioRunHistoryTimeSerResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2197,7 +2201,7 @@ type DeleteApgroupSsidConfigArgs struct {
 }
 type DeleteApgroupSsidConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2215,7 +2219,7 @@ type GetLatestApStatisticArgs struct {
 }
 type GetLatestApStatisticResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2233,7 +2237,7 @@ type GetApDetailedStatusArgs struct {
 }
 type GetApDetailedStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2250,7 +2254,7 @@ type ShopGetfiltermacArgs struct {
 	Sid int64
 }
 type ShopGetfiltermacResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2269,7 +2273,7 @@ type ShopGroupUpdateArgs struct {
 	Description string
 }
 type ShopGroupUpdateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2287,7 +2291,7 @@ type ReportZoneDayArgs struct {
 	Agsid     int64
 }
 type ReportZoneDayResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2305,7 +2309,7 @@ type ReportZoneMinuteArgs struct {
 	Agsid     int64
 }
 type ReportZoneMinuteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2323,7 +2327,7 @@ type ApgroupBatchAddApArgs struct {
 }
 type ApgroupBatchAddApResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2341,7 +2345,7 @@ type GetApgroupDetailedConfigArgs struct {
 }
 type GetApgroupDetailedConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2366,7 +2370,7 @@ type ListBriefApConfigArgs struct {
 }
 type ListBriefApConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2383,7 +2387,7 @@ type HeadquartersOverviewArgs struct {
 	Bid int64
 }
 type HeadquartersOverviewResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2399,7 +2403,7 @@ type GroupDetailsArgs struct {
 	Gsid int64
 }
 type GroupDetailsResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2415,7 +2419,7 @@ type HeadquartersToolsCoincideArgs struct {
 	Bid int64
 }
 type HeadquartersToolsCoincideResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2432,7 +2436,7 @@ type GetApDetailedConfigArgs struct {
 }
 type GetApDetailedConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2453,7 +2457,7 @@ type UserDataShowListArgs struct {
 	Per  int
 }
 type UserDataShowListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2470,7 +2474,7 @@ type SaveAccountConfigArgs struct {
 }
 type SaveAccountConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2488,7 +2492,7 @@ type BatchRegisterApAssetArgs struct {
 }
 type BatchRegisterApAssetResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2505,7 +2509,7 @@ type ReportZoneRealtimeArgs struct {
 	Agsid int64
 }
 type ReportZoneRealtimeResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2521,7 +2525,7 @@ type ShopGroupDeleteArgs struct {
 	Gid int64
 }
 type ShopGroupDeleteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2540,7 +2544,7 @@ type ProfileHistoryListArgs struct {
 	Agsid  int64
 }
 type ProfileHistoryListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2556,7 +2560,7 @@ type GroupTrendArgs struct {
 	Gsid int64
 }
 type GroupTrendResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2573,7 +2577,7 @@ type SaveApMapInfoArgs struct {
 }
 type SaveApMapInfoResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2593,7 +2597,7 @@ type ListConfigByActionArgs struct {
 }
 type ListConfigByActionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2612,7 +2616,7 @@ type SaveApScanConfigArgs struct {
 }
 type SaveApScanConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -2628,7 +2632,7 @@ type PeripheryAnalyseArgs struct {
 	Gsid int64
 }
 type PeripheryAnalyseResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2647,7 +2651,7 @@ type ShopGroupCreateArgs struct {
 	Bid         int64
 }
 type ShopGroupCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2664,7 +2668,7 @@ type GetGroupApRadioConfigProgressArgs struct {
 }
 type GetGroupApRadioConfigProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2682,7 +2686,7 @@ type AreaInfoArgs struct {
 	Sid int64
 }
 type AreaInfoResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2699,7 +2703,7 @@ type KickAndClearPMKcacheArgs struct {
 }
 type KickAndClearPMKcacheResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	ErrorCode int
 	ErrorMsg  string
@@ -2715,7 +2719,7 @@ type HeadquartersToolsO2OArgs struct {
 	Bid int64
 }
 type HeadquartersToolsO2OResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2732,7 +2736,7 @@ type ListApDetailInfoArgs struct {
 }
 type ListApDetailInfoResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2757,7 +2761,7 @@ type ListApAssetArgs struct {
 }
 type ListApAssetResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2780,7 +2784,7 @@ type ProfileTagArgs struct {
 	AreaNumber int
 }
 type ProfileTagResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2797,7 +2801,7 @@ type GetAddApsProgressArgs struct {
 }
 type GetAddApsProgressResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2832,7 +2836,7 @@ type ShopCreateArgs struct {
 	ShopBusinessHours string
 }
 type ShopCreateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2850,7 +2854,7 @@ type ShopGroupShowListArgs struct {
 	Per  int
 }
 type ShopGroupShowListResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2876,7 +2880,7 @@ type ListApRadioStatusArgs struct {
 }
 type ListApRadioStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2893,7 +2897,7 @@ type BusinessInfoArgs struct {
 	Bid int64
 }
 type BusinessInfoResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2910,7 +2914,7 @@ type GetMapUrlArgs struct {
 }
 type GetMapUrlResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2929,7 +2933,7 @@ type DeviceUpdateArgs struct {
 	Did            int64
 }
 type DeviceUpdateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2948,7 +2952,7 @@ type ShopCreatemarketingArgs struct {
 	Sid   int64
 }
 type ShopCreatemarketingResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -2965,7 +2969,7 @@ type SaveApgroupSsidConfigArgs struct {
 }
 type SaveApgroupSsidConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -2987,7 +2991,7 @@ type ListAccountConfigArgs struct {
 }
 type ListAccountConfigResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -3004,7 +3008,7 @@ type ShopOverviewArgs struct {
 	Gsid int64
 }
 type ShopOverviewResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -3022,7 +3026,7 @@ type SetScanModeArgs struct {
 }
 type SetScanModeResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Message   string
 	Data      string
 	ErrorCode int
@@ -3056,7 +3060,7 @@ type ReportMinuteArgs struct {
 	Agsid     int64
 }
 type ReportMinuteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -3076,7 +3080,7 @@ type UserDataUpdateArgs struct {
 	Type       string
 }
 type UserDataUpdateResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string
@@ -3092,7 +3096,7 @@ type ShopDeleteArgs struct {
 	Sid int64
 }
 type ShopDeleteResponse struct {
-	Success   bool
+	Success   core.Bool
 	Data      string
 	ErrorCode int
 	ErrorMsg  string

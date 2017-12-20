@@ -1,6 +1,10 @@
 package arms4finance
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *Arms4financeClient) WhereInDimQuery(req *WhereInDimQueryArgs) (resp *WhereInDimQueryResponse, err error) {
 	resp = &WhereInDimQueryResponse{}
@@ -17,7 +21,7 @@ type WhereInDimQueryArgs struct {
 	Measuress      WhereInDimQueryMeasuresList
 	IntervalInSec  int
 	DateStr        string
-	IsDrillDown    bool
+	IsDrillDown    core.Bool
 	MinTime        int64
 	DatasetId      int64
 	WhereInValuess WhereInDimQueryWhereInValuesList
@@ -87,7 +91,7 @@ type ARMSQueryDataSetArgs struct {
 	Measuress     ARMSQueryDataSetMeasuresList
 	IntervalInSec int
 	DateStr       string
-	IsDrillDown   bool
+	IsDrillDown   core.Bool
 	MinTime       int64
 	DatasetId     int64
 	MaxTime       int64

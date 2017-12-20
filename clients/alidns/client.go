@@ -1,6 +1,8 @@
 package alidns
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewAlidnsClient(key string, secret string, regionId string) *AlidnsClient {
 	return &AlidnsClient{

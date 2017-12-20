@@ -1,6 +1,8 @@
 package bss
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewBssClient(key string, secret string, regionId string) *BssClient {
 	return &BssClient{

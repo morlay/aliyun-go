@@ -1,6 +1,10 @@
 package ess
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *EssClient) DescribeLimitation(req *DescribeLimitationArgs) (resp *DescribeLimitationResponse, err error) {
 	resp = &DescribeLimitationResponse{}
@@ -149,7 +153,7 @@ func (c *EssClient) DeleteScalingGroup(req *DeleteScalingGroupArgs) (resp *Delet
 type DeleteScalingGroupArgs struct {
 	ResourceOwnerAccount string
 	ScalingGroupId       string
-	ForceDelete          bool
+	ForceDelete          core.Bool
 	OwnerAccount         string
 	OwnerId              int64
 }
@@ -222,7 +226,7 @@ type DescribeScheduledTasksScheduledTask struct {
 	RecurrenceType       string
 	RecurrenceValue      string
 	LaunchExpirationTime int
-	TaskEnabled          bool
+	TaskEnabled          core.Bool
 }
 type DescribeScheduledTasksArgs struct {
 	ResourceOwnerId      int64
@@ -391,7 +395,7 @@ type ModifyScheduledTaskArgs struct {
 	LaunchExpirationTime int
 	RecurrenceEndTime    string
 	ScheduledTaskName    string
-	TaskEnabled          bool
+	TaskEnabled          core.Bool
 	ScheduledTaskId      string
 	RecurrenceType       string
 }
@@ -1070,8 +1074,8 @@ func (c *EssClient) DescribeRegions(req *DescribeRegionsArgs) (resp *DescribeReg
 
 type DescribeRegionsRegion struct {
 	RegionId           string
-	ClassicUnavailable bool
-	VpcUnavailable     bool
+	ClassicUnavailable core.Bool
+	VpcUnavailable     core.Bool
 }
 type DescribeRegionsArgs struct {
 	ResourceOwnerId      int64
@@ -1271,7 +1275,7 @@ type CreateScheduledTaskArgs struct {
 	LaunchExpirationTime int
 	RecurrenceEndTime    string
 	ScheduledTaskName    string
-	TaskEnabled          bool
+	TaskEnabled          core.Bool
 	RecurrenceType       string
 }
 type CreateScheduledTaskResponse struct {

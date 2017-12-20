@@ -1,6 +1,10 @@
 package vpc
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *VpcClient) DeletePhysicalConnection(req *DeletePhysicalConnectionArgs) (resp *DeletePhysicalConnectionResponse, err error) {
 	resp = &DeletePhysicalConnectionResponse{}
@@ -180,7 +184,7 @@ type DescribeNqasArgs struct {
 	OwnerAccount         string
 	PageSize             int
 	NqaId                string
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 	PageNumber           int
 }
@@ -519,7 +523,7 @@ type DescribeBgpGroupsArgs struct {
 	OwnerAccount         string
 	PageSize             int
 	BgpGroupId           string
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 	PageNumber           int
 }
@@ -620,7 +624,7 @@ type DescribeVpnConnectionsVpnConnection struct {
 	LocalSubnet       string
 	RemoteSubnet      string
 	CreateTime        int64
-	EffectImmediately bool
+	EffectImmediately core.Bool
 	Status            string
 	IkeConfig         DescribeVpnConnectionsIkeConfig
 	IpsecConfig       DescribeVpnConnectionsIpsecConfig
@@ -1413,7 +1417,7 @@ type DeleteNatGatewayArgs struct {
 	ResourceOwnerId      int64
 	ResourceOwnerAccount string
 	OwnerAccount         string
-	Force                bool
+	Force                core.Bool
 	NatGatewayId         string
 	OwnerId              int64
 }
@@ -1530,7 +1534,7 @@ type CreateBgpGroupArgs struct {
 	Description          string
 	OwnerId              int64
 	PeerAsn              int64
-	IsFakeAsn            bool
+	IsFakeAsn            core.Bool
 	RouterId             string
 	Name                 string
 }
@@ -1653,7 +1657,7 @@ type DescribeRouterInterfacesForGlobalResponse struct {
 	Code               string
 	Message            string
 	Desc               string
-	Success            bool
+	Success            core.Bool
 	PageSize           int
 	PageNumber         int
 	TotalCount         int
@@ -1795,7 +1799,7 @@ type DescribeVpcAttributeArgs struct {
 	ResourceOwnerAccount string
 	VpcId                string
 	OwnerAccount         string
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 }
 type DescribeVpcAttributeResponse struct {
@@ -1808,8 +1812,8 @@ type DescribeVpcAttributeResponse struct {
 	CidrBlock          string
 	VRouterId          string
 	Description        string
-	IsDefault          bool
-	ClassicLinkEnabled bool
+	IsDefault          core.Bool
+	ClassicLinkEnabled core.Bool
 	CloudResources     DescribeVpcAttributeCloudResourceSetTypeList
 	VSwitchIds         DescribeVpcAttributeVSwitchIdList
 	UserCidrs          DescribeVpcAttributeUserCidrList
@@ -2185,7 +2189,7 @@ type DescribeBandwidthPackagesPublicIpAddresse struct {
 	AllocationId    string
 	IpAddress       string
 	UsingStatus     string
-	ApAccessEnabled bool
+	ApAccessEnabled core.Bool
 }
 type DescribeBandwidthPackagesArgs struct {
 	ResourceOwnerId      int64
@@ -2303,7 +2307,7 @@ type DeleteBandwidthPackageArgs struct {
 	BandwidthPackageId   string
 	ResourceOwnerAccount string
 	OwnerAccount         string
-	Force                bool
+	Force                core.Bool
 	OwnerId              int64
 }
 type DeleteBandwidthPackageResponse struct {
@@ -2333,7 +2337,7 @@ type ModifyRouteTableAttributesResponse struct {
 	RequestId string
 	Code      string
 	Message   string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *VpcClient) AllocateEipAddress(req *AllocateEipAddressArgs) (resp *AllocateEipAddressResponse, err error) {
@@ -2345,7 +2349,7 @@ func (c *VpcClient) AllocateEipAddress(req *AllocateEipAddressArgs) (resp *Alloc
 type AllocateEipAddressArgs struct {
 	ResourceOwnerId      int64
 	Period               int
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	Bandwidth            string
 	ClientToken          string
@@ -2404,7 +2408,7 @@ type DescribeVpnConnectionResponse struct {
 	LocalSubnet       string
 	RemoteSubnet      string
 	CreateTime        int64
-	EffectImmediately bool
+	EffectImmediately core.Bool
 	Status            string
 	IkeConfig         DescribeVpnConnectionIkeConfig
 	IpsecConfig       DescribeVpnConnectionIpsecConfig
@@ -2465,7 +2469,7 @@ type ModifyBgpGroupAttributeArgs struct {
 	Description          string
 	OwnerId              int64
 	PeerAsn              int64
-	IsFakeAsn            bool
+	IsFakeAsn            core.Bool
 	Name                 string
 }
 type ModifyBgpGroupAttributeResponse struct {
@@ -2784,7 +2788,7 @@ type DescribeVpcsVpc struct {
 	CidrBlock      string
 	VRouterId      string
 	Description    string
-	IsDefault      bool
+	IsDefault      core.Bool
 	VSwitchIds     DescribeVpcsVSwitchIdList
 	UserCidrs      DescribeVpcsUserCidrList
 	NatGatewayIds  DescribeVpcsNatGatewayIdList
@@ -2797,7 +2801,7 @@ type DescribeVpcsArgs struct {
 	OwnerAccount         string
 	Name                 string
 	PageSize             int
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 	PageNumber           int
 }
@@ -3205,7 +3209,7 @@ type CreateVpnConnectionArgs struct {
 	IkeConfig            string
 	ResourceOwnerId      int64
 	RemoteSubnet         string
-	EffectImmediately    bool
+	EffectImmediately    core.Bool
 	ResourceOwnerAccount string
 	ClientToken          string
 	OwnerAccount         string
@@ -3250,7 +3254,7 @@ type DescribeNatGatewaysIpList struct {
 	AllocationId    string
 	IpAddress       string
 	UsingStatus     string
-	ApAccessEnabled bool
+	ApAccessEnabled core.Bool
 }
 type DescribeNatGatewaysArgs struct {
 	ResourceOwnerId      int64
@@ -3721,7 +3725,7 @@ type DescribeVSwitchAttributesResponse struct {
 	Description             string
 	VSwitchName             string
 	CreationTime            string
-	IsDefault               bool
+	IsDefault               core.Bool
 	CloudResources          DescribeVSwitchAttributesCloudResourceSetTypeList
 }
 
@@ -3857,7 +3861,7 @@ type DescribeBgpPeersArgs struct {
 	PageSize             int
 	BgpGroupId           string
 	BgpPeerId            string
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 	PageNumber           int
 }
@@ -4273,7 +4277,7 @@ type DescribeVSwitchesVSwitch struct {
 	Description             string
 	VSwitchName             string
 	CreationTime            string
-	IsDefault               bool
+	IsDefault               core.Bool
 }
 type DescribeVSwitchesArgs struct {
 	ResourceOwnerId      int64
@@ -4286,7 +4290,7 @@ type DescribeVSwitchesArgs struct {
 	Name                 string
 	PageSize             int
 	ZoneId               string
-	IsDefault            bool
+	IsDefault            core.Bool
 }
 type DescribeVSwitchesResponse struct {
 	RequestId  string
@@ -4339,7 +4343,7 @@ type ModifyVpnConnectionAttributeArgs struct {
 	IkeConfig            string
 	ResourceOwnerId      int64
 	RemoteSubnet         string
-	EffectImmediately    bool
+	EffectImmediately    core.Bool
 	ResourceOwnerAccount string
 	ClientToken          string
 	OwnerAccount         string
@@ -4359,7 +4363,7 @@ type ModifyVpnConnectionAttributeResponse struct {
 	LocalSubnet       string
 	RemoteSubnet      string
 	CreateTime        int64
-	EffectImmediately bool
+	EffectImmediately core.Bool
 	IkeConfig         ModifyVpnConnectionAttributeIkeConfig
 	IpsecConfig       ModifyVpnConnectionAttributeIpsecConfig
 }
@@ -4458,7 +4462,7 @@ type DescribeRouteTableListResponse struct {
 	RequestId       string
 	Code            string
 	Message         string
-	Success         bool
+	Success         core.Bool
 	PageSize        int
 	PageNumber      int
 	TotalCount      int
@@ -4543,7 +4547,7 @@ func (c *VpcClient) ModifyCommonBandwidthPackagePayType(req *ModifyCommonBandwid
 type ModifyCommonBandwidthPackagePayTypeArgs struct {
 	ResourceOwnerId      int64
 	BandwidthPackageId   string
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	Bandwidth            string
 	OwnerAccount         string

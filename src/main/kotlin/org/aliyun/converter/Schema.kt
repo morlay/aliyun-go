@@ -250,10 +250,10 @@ class Schema(val type: String) {
                 return "int"
             }
             "boolean" -> {
-                return "bool"
+                return "core.Bool"
             }
             "Boolean" -> {
-                return "bool"
+                return "core.Bool"
             }
             else -> {
                 return prefix + this.type

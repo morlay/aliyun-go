@@ -1,6 +1,10 @@
 package domain
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *DomainClient) QueryBatchTaskList(req *QueryBatchTaskListArgs) (resp *QueryBatchTaskListResponse, err error) {
 	resp = &QueryBatchTaskListResponse{}
@@ -30,8 +34,8 @@ type QueryBatchTaskListResponse struct {
 	CurrentPageNum int
 	TotalPageNum   int
 	PageSize       int
-	PrePage        bool
-	NextPage       bool
+	PrePage        core.Bool
+	NextPage       core.Bool
 	Data           QueryBatchTaskListTaskInfoList
 }
 
@@ -95,7 +99,7 @@ func (c *DomainClient) SaveContactTemplate(req *SaveContactTemplateArgs) (resp *
 
 type SaveContactTemplateArgs struct {
 	CCompany          string
-	DefaultTemplate   bool
+	DefaultTemplate   core.Bool
 	TelArea           string
 	ECompany          string
 	TelMain           string
@@ -118,7 +122,7 @@ type SaveContactTemplateArgs struct {
 }
 type SaveContactTemplateResponse struct {
 	RequestId         string
-	Success           bool
+	Success           core.Bool
 	ContactTemplateId int64
 }
 
@@ -137,7 +141,7 @@ type SaveTaskForSubmittingDomainNameCredentialByTemplateIdArgs struct {
 }
 type SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	TaskNo    string
 }
 
@@ -208,7 +212,7 @@ type SaveTaskForModifyingDomainDnsArgs struct {
 	UserClientIp string
 	DomainName   string
 	Lang         string
-	AliyunDns    bool
+	AliyunDns    core.Bool
 	DnsLists     SaveTaskForModifyingDomainDnsDnsListList
 }
 type SaveTaskForModifyingDomainDnsResponse struct {
@@ -242,13 +246,13 @@ type SaveTaskForUpdatingContactByTemplateIdArgs struct {
 	ContactType       string
 	UserClientIp      string
 	DomainName        string
-	AddTransferLock   bool
+	AddTransferLock   core.Bool
 	Lang              string
 	ContactTemplateId int64
 }
 type SaveTaskForUpdatingContactByTemplateIdResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	TaskNo    string
 }
 
@@ -273,7 +277,7 @@ type QueryDomainListDomain struct {
 	DeadDateLong      int64
 	RegDateLong       int64
 	Remark            string
-	Premium           bool
+	Premium           core.Bool
 }
 type QueryDomainListArgs struct {
 	ProductDomainType string
@@ -300,8 +304,8 @@ type QueryDomainListResponse struct {
 	CurrentPageNum int
 	TotalPageNum   int
 	PageSize       int
-	PrePage        bool
-	NextPage       bool
+	PrePage        core.Bool
+	NextPage       core.Bool
 	Data           QueryDomainListDomainList
 }
 
@@ -425,7 +429,7 @@ type QueryContactTemplateContactTemplate struct {
 	UpdateTime        string
 	UserId            string
 	RegType           string
-	DefaultTemplate   bool
+	DefaultTemplate   core.Bool
 	AuditStatus       string
 	CName             string
 	EName             string
@@ -447,7 +451,7 @@ type QueryContactTemplateContactTemplate struct {
 type QueryContactTemplateArgs struct {
 	CCompany          string
 	AuditStatus       string
-	DefaultTemplate   bool
+	DefaultTemplate   core.Bool
 	ECompany          string
 	UserClientIp      string
 	PageSize          int
@@ -462,8 +466,8 @@ type QueryContactTemplateResponse struct {
 	CurrentPageNum   int
 	TotalPageNum     int
 	PageSize         int
-	PrePage          bool
-	NextPage         bool
+	PrePage          core.Bool
+	NextPage         core.Bool
 	ContactTemplates QueryContactTemplateContactTemplateList
 }
 
@@ -508,8 +512,8 @@ type QueryDomainBySaleIdResponse struct {
 	TransferOutStatus    string
 	SafetyLock           string
 	TransferLock         string
-	WhoisProtected       bool
-	Premium              bool
+	WhoisProtected       core.Bool
+	Premium              core.Bool
 	Remark               string
 	DnsList              QueryDomainBySaleIdDnsListList
 }
@@ -560,8 +564,8 @@ type QueryBatchTaskDetailListResponse struct {
 	CurrentPageNum int
 	TotalPageNum   int
 	PageSize       int
-	PrePage        bool
-	NextPage       bool
+	PrePage        core.Bool
+	NextPage       core.Bool
 	Data           QueryBatchTaskDetailListTaskDetailList
 }
 
@@ -593,7 +597,7 @@ type DeleteContactTemplateArgs struct {
 }
 type DeleteContactTemplateResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DomainClient) SaveTaskForSubmittingDomainNameCredential(req *SaveTaskForSubmittingDomainNameCredentialArgs) (resp *SaveTaskForSubmittingDomainNameCredentialResponse, err error) {
@@ -639,7 +643,7 @@ func (c *DomainClient) WhoisProtection(req *WhoisProtectionArgs) (resp *WhoisPro
 }
 
 type WhoisProtectionArgs struct {
-	WhoisProtect bool
+	WhoisProtect core.Bool
 	DataSource   int
 	UserClientIp string
 	DataContent  string
@@ -669,12 +673,12 @@ type QueryOrderSubOrderResult struct {
 	PeriodNum    int
 	Amount       int
 	OrderDate    string
-	CheckFlag    bool
+	CheckFlag    core.Bool
 	CheckDate    string
 	BizStatus    int
 	UpdateDate   string
 	DeadDate     string
-	ValidFlag    bool
+	ValidFlag    core.Bool
 	Money        string
 	ParentSaleID string
 }
@@ -687,10 +691,10 @@ type QueryOrderResponse struct {
 	UserID        string
 	Money         string
 	OrderDate     string
-	CheckFlag     bool
+	CheckFlag     core.Bool
 	CheckDate     string
-	ValidFlag     bool
-	CheckType     bool
+	ValidFlag     core.Bool
+	CheckType     core.Bool
 	OrderProducts QueryOrderSubOrderResultList
 }
 

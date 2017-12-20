@@ -1,5 +1,9 @@
 package dm
 
+import (
+	"github.com/morlay/aliyun-go/core"
+)
+
 func (c *DmClient) CreateMailAddress(req *CreateMailAddressArgs) (resp *CreateMailAddressResponse, err error) {
 	resp = &CreateMailAddressResponse{}
 	err = c.Request("CreateMailAddress", req, resp)
@@ -31,7 +35,7 @@ type SingleSendMailArgs struct {
 	AccountName          string
 	AddressType          int
 	TagName              string
-	ReplyToAddress       bool
+	ReplyToAddress       core.Bool
 	ToAddress            string
 	Subject              string
 	HtmlBody             string

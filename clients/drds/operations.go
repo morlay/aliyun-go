@@ -1,6 +1,10 @@
 package drds
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *DrdsClient) DeleteDrdsDB(req *DeleteDrdsDBArgs) (resp *DeleteDrdsDBResponse, err error) {
 	resp = &DeleteDrdsDBResponse{}
@@ -14,7 +18,7 @@ type DeleteDrdsDBArgs struct {
 }
 type DeleteDrdsDBResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeDrdsInstances(req *DescribeDrdsInstancesArgs) (resp *DescribeDrdsInstancesResponse, err error) {
@@ -46,7 +50,7 @@ type DescribeDrdsInstancesArgs struct {
 }
 type DescribeDrdsInstancesResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeDrdsInstancesInstanceList
 }
 
@@ -92,7 +96,7 @@ type DeleteFailedDrdsDBArgs struct {
 }
 type DeleteFailedDrdsDBResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) RemoveDrdsInstance(req *RemoveDrdsInstanceArgs) (resp *RemoveDrdsInstanceResponse, err error) {
@@ -106,7 +110,7 @@ type RemoveDrdsInstanceArgs struct {
 }
 type RemoveDrdsInstanceResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeDrdsInstance(req *DescribeDrdsInstanceArgs) (resp *DescribeDrdsInstanceResponse, err error) {
@@ -141,7 +145,7 @@ type DescribeDrdsInstanceArgs struct {
 }
 type DescribeDrdsInstanceResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeDrdsInstanceData
 }
 
@@ -172,7 +176,7 @@ type ModifyDrdsInstanceDescriptionArgs struct {
 }
 type ModifyDrdsInstanceDescriptionResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeDrdsInstanceNetInfoForInner(req *DescribeDrdsInstanceNetInfoForInnerArgs) (resp *DescribeDrdsInstanceNetInfoForInnerResponse, err error) {
@@ -185,14 +189,14 @@ type DescribeDrdsInstanceNetInfoForInnerNetInfo struct {
 	IP       string
 	Port     string
 	Type     string
-	IsForVpc bool
+	IsForVpc core.Bool
 }
 type DescribeDrdsInstanceNetInfoForInnerArgs struct {
 	DrdsInstanceId string
 }
 type DescribeDrdsInstanceNetInfoForInnerResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	DrdsInstanceId string
 	NetworkType    string
 	NetInfos       DescribeDrdsInstanceNetInfoForInnerNetInfoList
@@ -231,7 +235,7 @@ type DescribeDrdsDBsArgs struct {
 }
 type DescribeDrdsDBsResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeDrdsDBsDbList
 }
 
@@ -263,7 +267,7 @@ type ModifyDrdsDBPasswdArgs struct {
 }
 type ModifyDrdsDBPasswdResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeCreateDrdsInstanceStatus(req *DescribeCreateDrdsInstanceStatusArgs) (resp *DescribeCreateDrdsInstanceStatusResponse, err error) {
@@ -280,7 +284,7 @@ type DescribeCreateDrdsInstanceStatusArgs struct {
 }
 type DescribeCreateDrdsInstanceStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeCreateDrdsInstanceStatusData
 }
 
@@ -316,7 +320,7 @@ type DescribeRdsListArgs struct {
 }
 type DescribeRdsListResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeRdsListRdsInstanceList
 }
 
@@ -373,7 +377,7 @@ type CreateDrdsInstanceArgs struct {
 }
 type CreateDrdsInstanceResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      CreateDrdsInstanceData
 }
 
@@ -399,7 +403,7 @@ func (c *DrdsClient) ModifyDrdsIpWhiteList(req *ModifyDrdsIpWhiteListArgs) (resp
 }
 
 type ModifyDrdsIpWhiteListArgs struct {
-	Mode           bool
+	Mode           core.Bool
 	DbName         string
 	GroupAttribute string
 	IpWhiteList    string
@@ -408,7 +412,7 @@ type ModifyDrdsIpWhiteListArgs struct {
 }
 type ModifyDrdsIpWhiteListResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeDrdsDBIpWhiteList(req *DescribeDrdsDBIpWhiteListArgs) (resp *DescribeDrdsDBIpWhiteListResponse, err error) {
@@ -427,7 +431,7 @@ type DescribeDrdsDBIpWhiteListArgs struct {
 }
 type DescribeDrdsDBIpWhiteListResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeDrdsDBIpWhiteListData
 }
 
@@ -464,7 +468,7 @@ type CreateReadOnlyAccountArgs struct {
 }
 type CreateReadOnlyAccountResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      CreateReadOnlyAccountData
 }
 
@@ -483,7 +487,7 @@ type CreateDrdsDBArgs struct {
 }
 type CreateDrdsDBResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeShardDbConnectionInfo(req *DescribeShardDbConnectionInfoArgs) (resp *DescribeShardDbConnectionInfoResponse, err error) {
@@ -513,7 +517,7 @@ type DescribeShardDbConnectionInfoArgs struct {
 }
 type DescribeShardDbConnectionInfoResponse struct {
 	RequestId      string
-	Success        bool
+	Success        core.Bool
 	ConnectionInfo DescribeShardDbConnectionInfoConnectionInfo
 }
 
@@ -527,11 +531,11 @@ type ModifyFullTableScanArgs struct {
 	DbName         string
 	TableNames     string
 	DrdsInstanceId string
-	FullTableScan  bool
+	FullTableScan  core.Bool
 }
 type ModifyFullTableScanResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) DescribeShardDBs(req *DescribeShardDBsArgs) (resp *DescribeShardDBsResponse, err error) {
@@ -550,7 +554,7 @@ type DescribeShardDBsArgs struct {
 }
 type DescribeShardDBsResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeShardDBsDbIntancePairList
 }
 
@@ -586,7 +590,7 @@ type DescribeReadOnlyAccountArgs struct {
 }
 type DescribeReadOnlyAccountResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeReadOnlyAccountData
 }
 
@@ -612,7 +616,7 @@ type DescribeRegionsArgs struct {
 }
 type DescribeRegionsResponse struct {
 	RequestId   string
-	Success     bool
+	Success     core.Bool
 	DrdsRegions DescribeRegionsDrdsRegionList
 }
 
@@ -680,7 +684,7 @@ type DescribeDrdsDBArgs struct {
 }
 type DescribeDrdsDBResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Data      DescribeDrdsDBData
 }
 
@@ -697,7 +701,7 @@ type RemoveReadOnlyAccountArgs struct {
 }
 type RemoveReadOnlyAccountResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) ModifyReadOnlyAccountPassword(req *ModifyReadOnlyAccountPasswordArgs) (resp *ModifyReadOnlyAccountPasswordResponse, err error) {
@@ -715,7 +719,7 @@ type ModifyReadOnlyAccountPasswordArgs struct {
 }
 type ModifyReadOnlyAccountPasswordResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *DrdsClient) ModifyRdsReadWeight(req *ModifyRdsReadWeightArgs) (resp *ModifyRdsReadWeightResponse, err error) {
@@ -732,5 +736,5 @@ type ModifyRdsReadWeightArgs struct {
 }
 type ModifyRdsReadWeightResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 }

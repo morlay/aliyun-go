@@ -1,6 +1,8 @@
 package cdn
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCdnClient(key string, secret string, regionId string) *CdnClient {
 	return &CdnClient{

@@ -1,6 +1,8 @@
 package ots
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewOtsClient(key string, secret string, regionId string) *OtsClient {
 	return &OtsClient{

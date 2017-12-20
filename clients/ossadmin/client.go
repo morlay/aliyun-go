@@ -1,6 +1,8 @@
 package ossadmin
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewOssadminClient(key string, secret string, regionId string) *OssadminClient {
 	return &OssadminClient{

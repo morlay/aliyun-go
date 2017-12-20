@@ -1,6 +1,10 @@
 package cloudphoto
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CloudphotoClient) EditPhotos(req *EditPhotosArgs) (resp *EditPhotosResponse, err error) {
 	resp = &EditPhotosResponse{}
@@ -79,7 +83,7 @@ type ListTimeLinesPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Remark          string
 	Width           int64
 	Height          int64
@@ -236,7 +240,7 @@ type ListAlbumsCover struct {
 	FileId  string
 	State   string
 	Md5     string
-	IsVideo bool
+	IsVideo core.Bool
 	Remark  string
 	Width   int64
 	Height  int64
@@ -342,7 +346,7 @@ type SearchPhotosPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Width           int64
 	Height          int64
 	Ctime           int64
@@ -488,7 +492,7 @@ type CreatePhotoPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Remark          string
 	Width           int64
 	Height          int64
@@ -789,7 +793,7 @@ type CreateAlbumCover struct {
 	FileId  string
 	State   string
 	Md5     string
-	IsVideo bool
+	IsVideo core.Bool
 	Width   int64
 	Height  int64
 	Ctime   int64
@@ -830,7 +834,7 @@ type GetLibraryQuota struct {
 }
 
 type GetLibraryAutoCleanConfig struct {
-	AutoCleanEnabled bool
+	AutoCleanEnabled core.Bool
 	AutoCleanDays    int
 }
 type GetLibraryArgs struct {
@@ -927,7 +931,7 @@ type ListPhotoStoresPhotoStore struct {
 	Id               int64
 	Name             string
 	Remark           string
-	AutoCleanEnabled bool
+	AutoCleanEnabled core.Bool
 	AutoCleanDays    int
 	DefaultQuota     int64
 	Ctime            int64
@@ -1045,7 +1049,7 @@ func (c *CloudphotoClient) ListTags(req *ListTagsArgs) (resp *ListTagsResponse, 
 type ListTagsTag struct {
 	Id        int64
 	Name      string
-	IsSubTag  bool
+	IsSubTag  core.Bool
 	ParentTag string
 	Cover     ListTagsCover
 }
@@ -1056,7 +1060,7 @@ type ListTagsCover struct {
 	FileId  string
 	State   string
 	Md5     string
-	IsVideo bool
+	IsVideo core.Bool
 	Remark  string
 	Width   int64
 	Height  int64
@@ -1349,7 +1353,7 @@ type ListTimeLinePhotosPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Remark          string
 	Width           int64
 	Height          int64
@@ -1406,7 +1410,7 @@ type ListPhotosPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Remark          string
 	Width           int64
 	Height          int64
@@ -1556,7 +1560,7 @@ type GetPhotosPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Remark          string
 	Width           int64
 	Height          int64
@@ -1620,7 +1624,7 @@ type GetPhotoStorePhotoStore struct {
 	Id               int64
 	Name             string
 	Remark           string
-	AutoCleanEnabled bool
+	AutoCleanEnabled core.Bool
 	AutoCleanDays    int
 	DefaultQuota     int64
 	Ctime            int64
@@ -1772,7 +1776,7 @@ type ListFacesFace struct {
 	Name        string
 	PhotosCount int
 	State       string
-	IsMe        bool
+	IsMe        core.Bool
 	Ctime       int64
 	Mtime       int64
 	Axis        ListFacesAxiList
@@ -1785,7 +1789,7 @@ type ListFacesCover struct {
 	FileId  string
 	State   string
 	Md5     string
-	IsVideo bool
+	IsVideo core.Bool
 	Width   int64
 	Height  int64
 	Ctime   int64
@@ -2324,7 +2328,7 @@ func (c *CloudphotoClient) ListPhotoTags(req *ListPhotoTagsArgs) (resp *ListPhot
 
 type ListPhotoTagsTag struct {
 	Id        int64
-	IsSubTag  bool
+	IsSubTag  core.Bool
 	Name      string
 	ParentTag string
 }
@@ -2442,7 +2446,7 @@ type GetPhotosByMd5sPhoto struct {
 	FileId          string
 	State           string
 	Md5             string
-	IsVideo         bool
+	IsVideo         core.Bool
 	Remark          string
 	Width           int64
 	Height          int64

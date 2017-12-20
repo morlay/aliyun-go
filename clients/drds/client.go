@@ -1,6 +1,8 @@
 package drds
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewDrdsClient(key string, secret string, regionId string) *DrdsClient {
 	return &DrdsClient{

@@ -1,6 +1,10 @@
 package crm
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CrmClient) FindCustomerInfo(req *FindCustomerInfoArgs) (resp *FindCustomerInfoResponse, err error) {
 	resp = &FindCustomerInfoResponse{}
@@ -16,7 +20,7 @@ type FindCustomerInfoArgs struct {
 	KpId int64
 }
 type FindCustomerInfoResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          FindCustomerInfoData
@@ -36,7 +40,7 @@ type QueryEnumConfigByTypeArgs struct {
 	Type string
 }
 type QueryEnumConfigByTypeResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          QueryEnumConfigByTypeBizCategoryList
@@ -76,7 +80,7 @@ type FindContacterArgs struct {
 	ContacterId int64
 }
 type FindContacterResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          FindContacterData
@@ -96,7 +100,7 @@ type ModifyContacterArgs struct {
 	ContacterPosition string
 }
 type ModifyContacterResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 }
@@ -111,7 +115,7 @@ type DeleteContacterArgs struct {
 	ContacterId int64
 }
 type DeleteContacterResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 }
@@ -128,7 +132,7 @@ type ModifyCustomerInfoArgs struct {
 	Biz     string
 }
 type ModifyCustomerInfoResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 }
@@ -152,7 +156,7 @@ type FindAllContacterArgs struct {
 	KpId int64
 }
 type FindAllContacterResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          FindAllContacterContacterInfoList
@@ -190,7 +194,7 @@ type CreateContacterArgs struct {
 	ContacterPosition string
 }
 type CreateContacterResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          CreateContacterData
@@ -205,8 +209,8 @@ func (c *CrmClient) FindBizCategoryConfig(req *FindBizCategoryConfigArgs) (resp 
 type FindBizCategoryConfigBizCategory struct {
 	Name       string
 	Code       string
-	IsCheck    bool
-	MainBiz    bool
+	IsCheck    core.Bool
+	MainBiz    core.Bool
 	Other      string
 	SubConfigs FindBizCategoryConfigBizSubCategoryList
 }
@@ -214,15 +218,15 @@ type FindBizCategoryConfigBizCategory struct {
 type FindBizCategoryConfigBizSubCategory struct {
 	Name    string
 	Code    string
-	IsCheck bool
-	MainBiz bool
+	IsCheck core.Bool
+	MainBiz core.Bool
 	Other   string
 }
 type FindBizCategoryConfigArgs struct {
 	KpId int64
 }
 type FindBizCategoryConfigResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          FindBizCategoryConfigBizCategoryList
@@ -277,7 +281,7 @@ type FindContacterTestArgs struct {
 	ContacterId int64
 }
 type FindContacterTestResponse struct {
-	Success       bool
+	Success       core.Bool
 	ResultCode    string
 	ResultMessage string
 	Data          FindContacterTestData

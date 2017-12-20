@@ -1,6 +1,10 @@
 package cloudapi
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CloudapiClient) ModifySignature(req *ModifySignatureArgs) (resp *ModifySignatureResponse, err error) {
 	resp = &ModifySignatureResponse{}
@@ -2090,7 +2094,7 @@ type DescribeApiServiceConfig struct {
 	ServiceTimeout    int
 	Mock              string
 	MockResult        string
-	ServiceVpcEnable  bool
+	ServiceVpcEnable  core.Bool
 	VpcConfig         DescribeApiVpcConfig
 }
 

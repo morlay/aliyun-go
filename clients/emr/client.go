@@ -1,6 +1,8 @@
 package emr
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewEmrClient(key string, secret string, regionId string) *EmrClient {
 	return &EmrClient{

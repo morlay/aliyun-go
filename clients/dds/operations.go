@@ -1,6 +1,10 @@
 package dds
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *DdsClient) DescribeShardingNetworkAddress(req *DescribeShardingNetworkAddressArgs) (resp *DescribeShardingNetworkAddressResponse, err error) {
 	resp = &DescribeShardingNetworkAddressResponse{}
@@ -188,7 +192,7 @@ func (c *DdsClient) ModifyDBInstanceSpec(req *ModifyDBInstanceSpecArgs) (resp *M
 type ModifyDBInstanceSpecArgs struct {
 	ResourceOwnerId      int64
 	DBInstanceStorage    string
-	AutoPay              bool
+	AutoPay              core.Bool
 	FromApp              string
 	ResourceOwnerAccount string
 	OwnerAccount         string
@@ -234,7 +238,7 @@ func (c *DdsClient) RenewDBInstance(req *RenewDBInstanceArgs) (resp *RenewDBInst
 type RenewDBInstanceArgs struct {
 	ResourceOwnerId      int64
 	Period               int
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	ClientToken          string
 	OwnerAccount         string
@@ -1234,7 +1238,7 @@ type DescribeRegionsDdsRegion struct {
 
 type DescribeRegionsZone struct {
 	ZoneId     string
-	VpcEnabled bool
+	VpcEnabled core.Bool
 }
 type DescribeRegionsArgs struct {
 	ResourceOwnerId      int64

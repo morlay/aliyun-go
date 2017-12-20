@@ -1,6 +1,8 @@
 package cloudwf
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCloudwfClient(key string, secret string, regionId string) *CloudwfClient {
 	return &CloudwfClient{

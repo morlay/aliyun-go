@@ -1,6 +1,10 @@
 package mts
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *MtsClient) QueryAnalysisJobList(req *QueryAnalysisJobListArgs) (resp *QueryAnalysisJobListResponse, err error) {
 	resp = &QueryAnalysisJobListResponse{}
@@ -691,12 +695,12 @@ type QueryMediaListByURLFormat struct {
 type QueryMediaListByURLArgs struct {
 	ResourceOwnerId      int64
 	ResourceOwnerAccount string
-	IncludeSnapshotList  bool
+	IncludeSnapshotList  core.Bool
 	FileURLs             string
 	OwnerAccount         string
 	OwnerId              int64
-	IncludePlayList      bool
-	IncludeMediaInfo     bool
+	IncludePlayList      core.Bool
+	IncludeMediaInfo     core.Bool
 }
 type QueryMediaListByURLResponse struct {
 	RequestId        string
@@ -1179,7 +1183,7 @@ func (c *MtsClient) SubmitJobs(req *SubmitJobsArgs) (resp *SubmitJobsResponse, e
 }
 
 type SubmitJobsJobResult struct {
-	Success bool
+	Success core.Bool
 	Code    string
 	Message string
 	Job     SubmitJobsJob
@@ -1271,7 +1275,7 @@ type SubmitJobsTailSlate struct {
 	BlendDuration string
 	Width         string
 	Height        string
-	IsMergeAudio  bool
+	IsMergeAudio  core.Bool
 	BgColor       string
 }
 
@@ -1299,8 +1303,8 @@ type SubmitJobsM3U8NonStandardSupport struct {
 }
 
 type SubmitJobsTS struct {
-	Md5Support  bool
-	SizeSupport bool
+	Md5Support  core.Bool
+	SizeSupport core.Bool
 }
 
 type SubmitJobsProperties struct {
@@ -2810,8 +2814,8 @@ type QueryEditingJobListM3U8NonStandardSupport struct {
 }
 
 type QueryEditingJobListTS struct {
-	Md5Support  bool
-	SizeSupport bool
+	Md5Support  core.Bool
+	SizeSupport core.Bool
 }
 
 type QueryEditingJobListProperties struct {
@@ -4611,7 +4615,7 @@ func (c *MtsClient) UpdateMediaPublishState(req *UpdateMediaPublishStateArgs) (r
 type UpdateMediaPublishStateArgs struct {
 	ResourceOwnerId      int64
 	ResourceOwnerAccount string
-	Publish              bool
+	Publish              core.Bool
 	OwnerAccount         string
 	OwnerId              int64
 	MediaId              string
@@ -4785,7 +4789,7 @@ type ListJobMerge2 struct {
 	BlendDuration string
 	Width         string
 	Height        string
-	IsMergeAudio  bool
+	IsMergeAudio  core.Bool
 	BgColor       string
 }
 
@@ -4801,8 +4805,8 @@ type ListJobM3U8NonStandardSupport struct {
 }
 
 type ListJobTS struct {
-	Md5Support  bool
-	SizeSupport bool
+	Md5Support  core.Bool
+	SizeSupport core.Bool
 }
 
 type ListJobProperties struct {
@@ -5989,7 +5993,7 @@ func (c *MtsClient) SubmitEditingJobs(req *SubmitEditingJobsArgs) (resp *SubmitE
 }
 
 type SubmitEditingJobsJobResult struct {
-	Success bool
+	Success core.Bool
 	Code    string
 	Message string
 	Job     SubmitEditingJobsJob
@@ -6102,8 +6106,8 @@ type SubmitEditingJobsM3U8NonStandardSupport struct {
 }
 
 type SubmitEditingJobsTS struct {
-	Md5Support  bool
-	SizeSupport bool
+	Md5Support  core.Bool
+	SizeSupport core.Bool
 }
 
 type SubmitEditingJobsProperties struct {
@@ -7287,12 +7291,12 @@ type QueryMediaListFormat struct {
 type QueryMediaListArgs struct {
 	ResourceOwnerId      int64
 	ResourceOwnerAccount string
-	IncludeSnapshotList  bool
+	IncludeSnapshotList  core.Bool
 	OwnerAccount         string
 	MediaIds             string
 	OwnerId              int64
-	IncludePlayList      bool
-	IncludeMediaInfo     bool
+	IncludePlayList      core.Bool
+	IncludeMediaInfo     core.Bool
 }
 type QueryMediaListResponse struct {
 	RequestId        string
@@ -8237,7 +8241,7 @@ type QueryJobListTailSlate struct {
 	BlendDuration string
 	Width         string
 	Height        string
-	IsMergeAudio  bool
+	IsMergeAudio  core.Bool
 	BgColor       string
 }
 
@@ -8253,8 +8257,8 @@ type QueryJobListM3U8NonStandardSupport struct {
 }
 
 type QueryJobListTS struct {
-	Md5Support  bool
-	SizeSupport bool
+	Md5Support  core.Bool
+	SizeSupport core.Bool
 }
 
 type QueryJobListProperties struct {

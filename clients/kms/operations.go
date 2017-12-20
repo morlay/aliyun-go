@@ -1,6 +1,8 @@
 package kms
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *KmsClient) CreateKey(req *CreateKeyArgs) (resp *CreateKeyResponse, err error) {
 	resp = &CreateKeyResponse{}

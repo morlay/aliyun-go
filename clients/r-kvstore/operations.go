@@ -1,6 +1,10 @@
 package r_kvstore
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *RKvstoreClient) ModifyInstanceSpec(req *ModifyInstanceSpecArgs) (resp *ModifyInstanceSpecResponse, err error) {
 	resp = &ModifyInstanceSpecResponse{}
@@ -18,7 +22,7 @@ type ModifyInstanceSpecArgs struct {
 	InstanceClass        string
 	InstanceId           string
 	SecurityToken        string
-	ForceUpgrade         bool
+	ForceUpgrade         core.Bool
 	BusinessInfo         string
 }
 type ModifyInstanceSpecResponse struct {
@@ -224,7 +228,7 @@ type DescribeInstanceAttributeDBInstanceAttribute struct {
 	CreateTime          string
 	EndTime             string
 	HasRenewChangeOrder string
-	IsRds               bool
+	IsRds               core.Bool
 	Engine              string
 	EngineVersion       string
 	MaintainStartTime   string
@@ -293,7 +297,7 @@ func (c *RKvstoreClient) RenewInstance(req *RenewInstanceArgs) (resp *RenewInsta
 type RenewInstanceArgs struct {
 	ResourceOwnerId      int64
 	Period               int64
-	AutoPay              bool
+	AutoPay              core.Bool
 	FromApp              string
 	ResourceOwnerAccount string
 	OwnerAccount         string
@@ -303,7 +307,7 @@ type RenewInstanceArgs struct {
 	Capacity             string
 	InstanceId           string
 	SecurityToken        string
-	ForceUpgrade         bool
+	ForceUpgrade         core.Bool
 	BusinessInfo         string
 }
 type RenewInstanceResponse struct {
@@ -385,7 +389,7 @@ type DescribeCertificationArgs struct {
 }
 type DescribeCertificationResponse struct {
 	RequestId       string
-	NoCertification bool
+	NoCertification core.Bool
 }
 
 func (c *RKvstoreClient) DescribeBackups(req *DescribeBackupsArgs) (resp *DescribeBackupsResponse, err error) {
@@ -628,7 +632,7 @@ type DescribeInstancesKVStoreInstance struct {
 	CreateTime          string
 	EndTime             string
 	HasRenewChangeOrder string
-	IsRds               bool
+	IsRds               core.Bool
 	InstanceType        string
 	ArchitectureType    string
 	NodeType            string
@@ -829,7 +833,7 @@ type TransformToPrePaidArgs struct {
 	ResourceOwnerId      int64
 	Period               int64
 	InstanceId           string
-	AutoPay              bool
+	AutoPay              core.Bool
 	FromApp              string
 	SecurityToken        string
 	ResourceOwnerAccount string
@@ -1245,7 +1249,7 @@ type ModifyCertificationArgs struct {
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	OwnerId              int64
-	NoCertification      bool
+	NoCertification      core.Bool
 }
 type ModifyCertificationResponse struct {
 	RequestId string
@@ -1328,7 +1332,7 @@ type ModifyInstanceSpecPreCheckArgs struct {
 }
 type ModifyInstanceSpecPreCheckResponse struct {
 	RequestId       string
-	IsAllowModify   bool
+	IsAllowModify   core.Bool
 	DisableCommands string
 }
 
@@ -1416,7 +1420,7 @@ func (c *RKvstoreClient) RenewMultiInstance(req *RenewMultiInstanceArgs) (resp *
 type RenewMultiInstanceArgs struct {
 	ResourceOwnerId      int64
 	Period               int64
-	AutoPay              bool
+	AutoPay              core.Bool
 	FromApp              string
 	ResourceOwnerAccount string
 	OwnerAccount         string

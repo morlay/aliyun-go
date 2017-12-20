@@ -1,6 +1,8 @@
 package ocs
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *OcsClient) ModifyInstanceAttribute(req *ModifyInstanceAttributeArgs) (resp *ModifyInstanceAttributeResponse, err error) {
 	resp = &ModifyInstanceAttributeResponse{}

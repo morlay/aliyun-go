@@ -1,6 +1,8 @@
 package sts
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewStsClient(key string, secret string, regionId string) *StsClient {
 	return &StsClient{

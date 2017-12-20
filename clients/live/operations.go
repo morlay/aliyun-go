@@ -1,6 +1,10 @@
 package live
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *LiveClient) StartMultipleStreamMixService(req *StartMultipleStreamMixServiceArgs) (resp *StartMultipleStreamMixServiceResponse, err error) {
 	resp = &StartMultipleStreamMixServiceResponse{}
@@ -402,7 +406,7 @@ type UpdateLiveRecordNotifyConfigArgs struct {
 	DomainName       string
 	NotifyUrl        string
 	OwnerId          int64
-	NeedStatusNotify bool
+	NeedStatusNotify core.Bool
 }
 type UpdateLiveRecordNotifyConfigResponse struct {
 	RequestId string
@@ -821,7 +825,7 @@ func (c *LiveClient) DescribeLiveRecordNotifyConfig(req *DescribeLiveRecordNotif
 type DescribeLiveRecordNotifyConfigLiveRecordNotifyConfig struct {
 	DomainName       string
 	NotifyUrl        string
-	NeedStatusNotify bool
+	NeedStatusNotify core.Bool
 }
 type DescribeLiveRecordNotifyConfigArgs struct {
 	SecurityToken string
@@ -2059,7 +2063,7 @@ type AddLiveRecordNotifyConfigArgs struct {
 	DomainName       string
 	NotifyUrl        string
 	OwnerId          int64
-	NeedStatusNotify bool
+	NeedStatusNotify core.Bool
 }
 type AddLiveRecordNotifyConfigResponse struct {
 	RequestId string

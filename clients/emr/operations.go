@@ -1,6 +1,10 @@
 package emr
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *EmrClient) SuspendExecutionPlanScheduler(req *SuspendExecutionPlanSchedulerArgs) (resp *SuspendExecutionPlanSchedulerResponse, err error) {
 	resp = &SuspendExecutionPlanSchedulerResponse{}
@@ -25,7 +29,7 @@ func (c *EmrClient) RenewCluster(req *RenewClusterArgs) (resp *RenewClusterRespo
 type RenewClusterArgs struct {
 	ResourceOwnerId int64
 	Id              string
-	ECSIds          bool
+	ECSIds          core.Bool
 	Period          string
 }
 type RenewClusterResponse struct {
@@ -68,9 +72,9 @@ type ListAvailableConfigInstanceType struct {
 	Type                   string
 	CpuCore                int
 	MemSize                int
-	HasCloudDisk           bool
-	HasEfficiencyCloudDisk bool
-	HasSSDCloudDisk        bool
+	HasCloudDisk           core.Bool
+	HasEfficiencyCloudDisk core.Bool
+	HasSSDCloudDisk        core.Bool
 }
 
 type ListAvailableConfigEmrVerType struct {
@@ -87,7 +91,7 @@ type ListAvailableConfigSubModule struct {
 type ListAvailableConfigRequired struct {
 	DisplayName string
 	Name        string
-	OnlyDisplay bool
+	OnlyDisplay core.Bool
 	StartTpe    int
 	Version     string
 }
@@ -95,7 +99,7 @@ type ListAvailableConfigRequired struct {
 type ListAvailableConfigOptional struct {
 	DisplayName string
 	Name        string
-	OnlyDisplay bool
+	OnlyDisplay core.Bool
 	StartTpe    int
 	Version     string
 }
@@ -109,7 +113,7 @@ type ListAvailableConfigZoneType struct {
 }
 
 type ListAvailableConfigAvailableResource struct {
-	IoOptimized            bool
+	IoOptimized            core.Bool
 	SystemDiskCategories   ListAvailableConfigSystemDiskCategoryList
 	DataDiskCategories     ListAvailableConfigDataDiskCategoryList
 	NetworkTypes           ListAvailableConfigNetworkTypeList
@@ -460,16 +464,16 @@ type DescribeExecutionPlanJobInfo struct {
 type DescribeExecutionPlanClusterInfo struct {
 	Name                   string
 	ZoneId                 string
-	LogEnable              bool
+	LogEnable              core.Bool
 	LogPath                string
 	SecurityGroupId        string
 	EmrVer                 string
 	ClusterType            string
-	HighAvailabilityEnable bool
+	HighAvailabilityEnable core.Bool
 	VpcId                  string
 	VSwitchId              string
 	NetType                string
-	IoOptimized            bool
+	IoOptimized            core.Bool
 	InstanceGeneration     string
 	Configurations         string
 	EcsOrders              DescribeExecutionPlanEcsOrderInfoList
@@ -502,10 +506,10 @@ type DescribeExecutionPlanSoftwareInfo struct {
 type DescribeExecutionPlanSoftware struct {
 	DisplayName string
 	Name        string
-	OnlyDisplay bool
+	OnlyDisplay core.Bool
 	StartTpe    int
 	Version     string
-	Optional    bool
+	Optional    core.Bool
 }
 type DescribeExecutionPlanArgs struct {
 	ResourceOwnerId int64
@@ -519,7 +523,7 @@ type DescribeExecutionPlanResponse struct {
 	TimeInterval          int
 	StartTime             int64
 	TimeUnit              string
-	CreateClusterOnDemand bool
+	CreateClusterOnDemand core.Bool
 	ClusterId             string
 	ExecutionPlanVersion  int64
 	JobInfoList           DescribeExecutionPlanJobInfoList
@@ -602,7 +606,7 @@ type ListClustersClusterInfo struct {
 	ChargeType          string
 	ExpiredTime         int64
 	Period              int
-	HasUncompletedOrder bool
+	HasUncompletedOrder core.Bool
 	OrderList           string
 	FailReason          ListClustersFailReason
 }
@@ -615,10 +619,10 @@ type ListClustersFailReason struct {
 type ListClustersArgs struct {
 	ResourceOwnerId  int64
 	CreateType       string
-	IsDesc           bool
+	IsDesc           core.Bool
 	PageNumber       int
 	PageSize         int
-	DefaultStatus    bool
+	DefaultStatus    core.Bool
 	ClusterTypeLists ListClustersClusterTypeListList
 	StatusLists      ListClustersStatusListList
 }
@@ -726,13 +730,13 @@ type ListExecutionPlanInstancesExecutionPlanInstance struct {
 	ClusterName       string
 	ClusterType       string
 	Status            string
-	LogEnable         bool
+	LogEnable         core.Bool
 	LogPath           string
 }
 type ListExecutionPlanInstancesArgs struct {
 	ResourceOwnerId      int64
-	OnlyLastInstance     bool
-	IsDesc               bool
+	OnlyLastInstance     core.Bool
+	IsDesc               core.Bool
 	PageNumber           int
 	PageSize             int
 	ExecutionPlanIdLists ListExecutionPlanInstancesExecutionPlanIdListList
@@ -820,20 +824,20 @@ type CreateExecutionPlanArgs struct {
 	StartTime              int64
 	TimeUnit               string
 	ClusterId              string
-	CreateClusterOnDemand  bool
+	CreateClusterOnDemand  core.Bool
 	ClusterName            string
 	ZoneId                 string
-	LogEnable              bool
+	LogEnable              core.Bool
 	LogPath                string
 	SecurityGroupId        string
-	IsOpenPublicIp         bool
+	IsOpenPublicIp         core.Bool
 	EmrVer                 string
 	ClusterType            string
-	HighAvailabilityEnable bool
+	HighAvailabilityEnable core.Bool
 	VpcId                  string
 	VSwitchId              string
 	NetType                string
-	IoOptimized            bool
+	IoOptimized            core.Bool
 	InstanceGeneration     string
 	Configurations         string
 	JobIdLists             CreateExecutionPlanJobIdListList
@@ -921,7 +925,7 @@ type ListJobsJobInfo struct {
 }
 type ListJobsArgs struct {
 	ResourceOwnerId int64
-	IsDesc          bool
+	IsDesc          core.Bool
 	PageNumber      int
 	PageSize        int
 }
@@ -972,7 +976,7 @@ func (c *EmrClient) ReleaseCluster(req *ReleaseClusterArgs) (resp *ReleaseCluste
 type ReleaseClusterArgs struct {
 	ResourceOwnerId int64
 	Id              string
-	ForceRelease    bool
+	ForceRelease    core.Bool
 }
 type ReleaseClusterResponse struct {
 	RequestId string
@@ -992,10 +996,10 @@ type DescribeClusterClusterInfo struct {
 	CreateType             string
 	StartTime              int64
 	StopTime               int64
-	LogEnable              bool
+	LogEnable              core.Bool
 	LogPath                string
 	Status                 string
-	HighAvailabilityEnable bool
+	HighAvailabilityEnable core.Bool
 	ChargeType             string
 	ExpiredTime            int64
 	Period                 int
@@ -1009,12 +1013,12 @@ type DescribeClusterClusterInfo struct {
 	VpcId                  string
 	VSwitchId              string
 	NetType                string
-	IoOptimized            bool
+	IoOptimized            core.Bool
 	InstanceGeneration     string
 	ImageId                string
 	SecurityGroupId        string
 	SecurityGroupName      string
-	BootstrapFailed        bool
+	BootstrapFailed        core.Bool
 	Configurations         string
 	EcsOrderInfoList       DescribeClusterEcsOrderInfoList
 	BootstrapActionList    DescribeClusterBootstrapActionList
@@ -1079,7 +1083,7 @@ type DescribeClusterSoftwareInfo struct {
 type DescribeClusterSoftware struct {
 	DisplayName string
 	Name        string
-	OnlyDisplay bool
+	OnlyDisplay core.Bool
 	StartTpe    int
 	Version     string
 }
@@ -1356,7 +1360,7 @@ type ListJobExecutionInstancesJobInstance struct {
 type ListJobExecutionInstancesArgs struct {
 	ResourceOwnerId         int64
 	ExecutionPlanInstanceId string
-	IsDesc                  bool
+	IsDesc                  core.Bool
 	PageNumber              int
 	PageSize                int
 }
@@ -1469,7 +1473,7 @@ type QueryPriceArgs struct {
 	CoreDiskQuantity       int
 	TaskDiskQuantity       int
 	Duration               int
-	IoOptimized            bool
+	IoOptimized            core.Bool
 	ChargeType             string
 	NetType                string
 	Period                 int
@@ -1522,18 +1526,18 @@ type ModifyExecutionPlanArgs struct {
 	ClusterName            string
 	ClusterId              string
 	ZoneId                 string
-	LogEnable              bool
+	LogEnable              core.Bool
 	LogPath                string
 	SecurityGroupId        string
-	IsOpenPublicIp         bool
-	CreateClusterOnDemand  bool
+	IsOpenPublicIp         core.Bool
+	CreateClusterOnDemand  core.Bool
 	EmrVer                 string
 	ClusterType            string
-	HighAvailabilityEnable bool
+	HighAvailabilityEnable core.Bool
 	VpcId                  string
 	VSwitchId              string
 	NetType                string
-	IoOptimized            bool
+	IoOptimized            core.Bool
 	InstanceGeneration     string
 	Configurations         string
 	Id                     string
@@ -1651,24 +1655,24 @@ type CreateClusterArgs struct {
 	ResourceOwnerId        int64
 	Name                   string
 	ZoneId                 string
-	LogEnable              bool
+	LogEnable              core.Bool
 	LogPath                string
 	SecurityGroupId        string
-	IsOpenPublicIp         bool
+	IsOpenPublicIp         core.Bool
 	SecurityGroupName      string
 	ChargeType             string
 	Period                 int
-	AutoRenew              bool
+	AutoRenew              core.Bool
 	AutoRenewPeriod        int
 	VpcId                  string
 	VSwitchId              string
 	NetType                string
 	EmrVer                 string
 	ClusterType            string
-	HighAvailabilityEnable bool
-	IoOptimized            bool
+	HighAvailabilityEnable core.Bool
+	IoOptimized            core.Bool
 	InstanceGeneration     string
-	MasterPwdEnable        bool
+	MasterPwdEnable        core.Bool
 	MasterPwd              string
 	Configurations         string
 	OptionSoftWareLists    CreateClusterOptionSoftWareListList
@@ -1737,7 +1741,7 @@ func (c *EmrClient) ListExecutionPlans(req *ListExecutionPlansArgs) (resp *ListE
 type ListExecutionPlansExecutionPlanInfo struct {
 	Id                    string
 	Name                  string
-	CreateClusterOnDemand bool
+	CreateClusterOnDemand core.Bool
 	Stragety              string
 	Status                string
 	TimeInterval          int
@@ -1749,7 +1753,7 @@ type ListExecutionPlansArgs struct {
 	ClusterId       string
 	JobId           string
 	Strategy        string
-	IsDesc          bool
+	IsDesc          core.Bool
 	PageNumber      int
 	PageSize        int
 	StatusLists     ListExecutionPlansStatusListList

@@ -1,6 +1,10 @@
 package ram
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *RamClient) ChangePassword(req *ChangePasswordArgs) (resp *ChangePasswordResponse, err error) {
 	resp = &ChangePasswordResponse{}
@@ -116,7 +120,7 @@ func (c *RamClient) ListPolicyVersions(req *ListPolicyVersionsArgs) (resp *ListP
 
 type ListPolicyVersionsPolicyVersion struct {
 	VersionId        string
-	IsDefaultVersion bool
+	IsDefaultVersion core.Bool
 	PolicyDocument   string
 	CreateDate       string
 }
@@ -224,11 +228,11 @@ func (c *RamClient) GetPasswordPolicy(req *GetPasswordPolicyArgs) (resp *GetPass
 
 type GetPasswordPolicyPasswordPolicy struct {
 	MinimumPasswordLength      int
-	RequireLowercaseCharacters bool
-	RequireUppercaseCharacters bool
-	RequireNumbers             bool
-	RequireSymbols             bool
-	HardExpiry                 bool
+	RequireLowercaseCharacters core.Bool
+	RequireUppercaseCharacters core.Bool
+	RequireNumbers             core.Bool
+	RequireSymbols             core.Bool
+	HardExpiry                 core.Bool
 	MaxPasswordAge             int
 	PasswordReusePrevention    int
 	MaxLoginAttemps            int
@@ -289,14 +293,14 @@ func (c *RamClient) CreateLoginProfile(req *CreateLoginProfileArgs) (resp *Creat
 
 type CreateLoginProfileLoginProfile struct {
 	UserName              string
-	PasswordResetRequired bool
-	MFABindRequired       bool
+	PasswordResetRequired core.Bool
+	MFABindRequired       core.Bool
 	CreateDate            string
 }
 type CreateLoginProfileArgs struct {
 	Password              string
-	PasswordResetRequired bool
-	MFABindRequired       bool
+	PasswordResetRequired core.Bool
+	MFABindRequired       core.Bool
 	UserName              string
 }
 type CreateLoginProfileResponse struct {
@@ -581,20 +585,20 @@ type GetSecurityPreferenceSecurityPreference struct {
 }
 
 type GetSecurityPreferenceLoginProfilePreference struct {
-	EnableSaveMFATicket       bool
-	AllowUserToChangePassword bool
+	EnableSaveMFATicket       core.Bool
+	AllowUserToChangePassword core.Bool
 }
 
 type GetSecurityPreferenceAccessKeyPreference struct {
-	AllowUserToManageAccessKeys bool
+	AllowUserToManageAccessKeys core.Bool
 }
 
 type GetSecurityPreferencePublicKeyPreference struct {
-	AllowUserToManagePublicKeys bool
+	AllowUserToManagePublicKeys core.Bool
 }
 
 type GetSecurityPreferenceMFAPreference struct {
-	AllowUserToManageMFADevices bool
+	AllowUserToManageMFADevices core.Bool
 }
 type GetSecurityPreferenceArgs struct {
 }
@@ -624,12 +628,12 @@ func (c *RamClient) CreatePolicyVersion(req *CreatePolicyVersionArgs) (resp *Cre
 
 type CreatePolicyVersionPolicyVersion struct {
 	VersionId        string
-	IsDefaultVersion bool
+	IsDefaultVersion core.Bool
 	PolicyDocument   string
 	CreateDate       string
 }
 type CreatePolicyVersionArgs struct {
-	SetAsDefault   bool
+	SetAsDefault   core.Bool
 	PolicyName     string
 	PolicyDocument string
 }
@@ -646,8 +650,8 @@ func (c *RamClient) UpdateLoginProfile(req *UpdateLoginProfileArgs) (resp *Updat
 
 type UpdateLoginProfileArgs struct {
 	Password              string
-	PasswordResetRequired bool
-	MFABindRequired       bool
+	PasswordResetRequired core.Bool
+	MFABindRequired       core.Bool
 	UserName              string
 }
 type UpdateLoginProfileResponse struct {
@@ -703,7 +707,7 @@ type ListUsersArgs struct {
 }
 type ListUsersResponse struct {
 	RequestId   string
-	IsTruncated bool
+	IsTruncated core.Bool
 	Marker      string
 	Users       ListUsersUserList
 }
@@ -768,7 +772,7 @@ type ListRolesArgs struct {
 }
 type ListRolesResponse struct {
 	RequestId   string
-	IsTruncated bool
+	IsTruncated core.Bool
 	Marker      string
 	Roles       ListRolesRoleList
 }
@@ -972,7 +976,7 @@ type ListGroupsArgs struct {
 }
 type ListGroupsResponse struct {
 	RequestId   string
-	IsTruncated bool
+	IsTruncated core.Bool
 	Marker      string
 	Groups      ListGroupsGroupList
 }
@@ -1175,7 +1179,7 @@ type ListPoliciesArgs struct {
 }
 type ListPoliciesResponse struct {
 	RequestId   string
-	IsTruncated bool
+	IsTruncated core.Bool
 	Marker      string
 	Policies    ListPoliciesPolicyList
 }
@@ -1286,25 +1290,25 @@ func (c *RamClient) SetPasswordPolicy(req *SetPasswordPolicyArgs) (resp *SetPass
 
 type SetPasswordPolicyPasswordPolicy struct {
 	MinimumPasswordLength      int
-	RequireLowercaseCharacters bool
-	RequireUppercaseCharacters bool
-	RequireNumbers             bool
-	RequireSymbols             bool
-	HardExpiry                 bool
+	RequireLowercaseCharacters core.Bool
+	RequireUppercaseCharacters core.Bool
+	RequireNumbers             core.Bool
+	RequireSymbols             core.Bool
+	HardExpiry                 core.Bool
 	MaxPasswordAge             int
 	PasswordReusePrevention    int
 	MaxLoginAttemps            int
 }
 type SetPasswordPolicyArgs struct {
-	RequireNumbers             bool
+	RequireNumbers             core.Bool
 	PasswordReusePrevention    int
-	RequireUppercaseCharacters bool
+	RequireUppercaseCharacters core.Bool
 	MaxPasswordAge             int
 	MaxLoginAttemps            int
-	HardExpiry                 bool
+	HardExpiry                 core.Bool
 	MinimumPasswordLength      int
-	RequireLowercaseCharacters bool
-	RequireSymbols             bool
+	RequireLowercaseCharacters core.Bool
+	RequireSymbols             core.Bool
 }
 type SetPasswordPolicyResponse struct {
 	RequestId      string
@@ -1366,7 +1370,7 @@ func (c *RamClient) GetPolicyVersion(req *GetPolicyVersionArgs) (resp *GetPolicy
 
 type GetPolicyVersionPolicyVersion struct {
 	VersionId        string
-	IsDefaultVersion bool
+	IsDefaultVersion core.Bool
 	PolicyDocument   string
 	CreateDate       string
 }
@@ -1421,27 +1425,27 @@ type SetSecurityPreferenceSecurityPreference struct {
 }
 
 type SetSecurityPreferenceLoginProfilePreference struct {
-	EnableSaveMFATicket       bool
-	AllowUserToChangePassword bool
+	EnableSaveMFATicket       core.Bool
+	AllowUserToChangePassword core.Bool
 }
 
 type SetSecurityPreferenceAccessKeyPreference struct {
-	AllowUserToManageAccessKeys bool
+	AllowUserToManageAccessKeys core.Bool
 }
 
 type SetSecurityPreferencePublicKeyPreference struct {
-	AllowUserToManagePublicKeys bool
+	AllowUserToManagePublicKeys core.Bool
 }
 
 type SetSecurityPreferenceMFAPreference struct {
-	AllowUserToManageMFADevices bool
+	AllowUserToManageMFADevices core.Bool
 }
 type SetSecurityPreferenceArgs struct {
-	AllowUserToManageAccessKeys bool
-	AllowUserToManageMFADevices bool
-	AllowUserToManagePublicKeys bool
-	EnableSaveMFATicket         bool
-	AllowUserToChangePassword   bool
+	AllowUserToManageAccessKeys core.Bool
+	AllowUserToManageMFADevices core.Bool
+	AllowUserToManagePublicKeys core.Bool
+	EnableSaveMFATicket         core.Bool
+	AllowUserToChangePassword   core.Bool
 }
 type SetSecurityPreferenceResponse struct {
 	RequestId          string
@@ -1456,8 +1460,8 @@ func (c *RamClient) GetLoginProfile(req *GetLoginProfileArgs) (resp *GetLoginPro
 
 type GetLoginProfileLoginProfile struct {
 	UserName              string
-	PasswordResetRequired bool
-	MFABindRequired       bool
+	PasswordResetRequired core.Bool
+	MFABindRequired       core.Bool
 	CreateDate            string
 }
 type GetLoginProfileArgs struct {

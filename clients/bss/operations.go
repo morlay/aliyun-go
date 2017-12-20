@@ -1,6 +1,8 @@
 package bss
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *BssClient) DescribeCashDetail(req *DescribeCashDetailArgs) (resp *DescribeCashDetailResponse, err error) {
 	resp = &DescribeCashDetailResponse{}

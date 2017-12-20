@@ -1,6 +1,8 @@
 package ons
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewOnsClient(key string, secret string, regionId string) *OnsClient {
 	return &OnsClient{

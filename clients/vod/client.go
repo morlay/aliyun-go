@@ -1,6 +1,8 @@
 package vod
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewVodClient(key string, secret string, regionId string) *VodClient {
 	return &VodClient{

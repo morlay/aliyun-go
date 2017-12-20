@@ -1,6 +1,8 @@
 package kms
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewKmsClient(key string, secret string, regionId string) *KmsClient {
 	return &KmsClient{

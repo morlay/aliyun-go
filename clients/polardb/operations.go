@@ -1,6 +1,10 @@
 package polardb
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *PolardbClient) DescribeBackupPolicy(req *DescribeBackupPolicyArgs) (resp *DescribeBackupPolicyResponse, err error) {
 	resp = &DescribeBackupPolicyResponse{}
@@ -239,7 +243,7 @@ type ModifyParameterArgs struct {
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	DBInstanceId         string
-	Forcerestart         bool
+	Forcerestart         core.Bool
 	OwnerId              int64
 	Parameters           string
 }
@@ -905,7 +909,7 @@ type DescribeRegionsRegion struct {
 
 type DescribeRegionsZone struct {
 	ZoneId     string
-	VpcEnabled bool
+	VpcEnabled core.Bool
 }
 type DescribeRegionsArgs struct {
 	ResourceOwnerId      int64

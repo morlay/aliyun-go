@@ -1,6 +1,8 @@
 package chatbot
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewChatbotClient(key string, secret string, regionId string) *ChatbotClient {
 	return &ChatbotClient{

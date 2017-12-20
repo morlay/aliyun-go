@@ -1,5 +1,9 @@
 package cf
 
+import (
+	"github.com/morlay/aliyun-go/core"
+)
+
 func (c *CfClient) Authenticate(req *AuthenticateArgs) (resp *AuthenticateResponse, err error) {
 	resp = &AuthenticateResponse{}
 	err = c.Request("Authenticate", req, resp)
@@ -22,7 +26,7 @@ type AuthenticateArgs struct {
 }
 type AuthenticateResponse struct {
 	RequestId             string
-	Success               bool
+	Success               core.Bool
 	Msg                   string
 	Code                  int
 	SigAuthenticateResult AuthenticateSigAuthenticateResult

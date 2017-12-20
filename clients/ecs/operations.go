@@ -1,6 +1,10 @@
 package ecs
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *EcsClient) DeletePhysicalConnection(req *DeletePhysicalConnectionArgs) (resp *DeletePhysicalConnectionResponse, err error) {
 	resp = &DeletePhysicalConnectionResponse{}
@@ -106,14 +110,14 @@ type ModifyInstanceSpecArgs struct {
 	ResourceOwnerId                  int64
 	ResourceOwnerAccount             string
 	ClientToken                      string
-	AllowMigrateAcrossZone           bool
+	AllowMigrateAcrossZone           core.Bool
 	OwnerAccount                     string
 	InternetMaxBandwidthOut          int
 	OwnerId                          int64
 	TemporaryInternetMaxBandwidthOut int
 	SystemDiskCategory               string
 	TemporaryStartTime               string
-	Async                            bool
+	Async                            core.Bool
 	InstanceId                       string
 	InstanceType                     string
 	TemporaryEndTime                 string
@@ -314,7 +318,7 @@ type ModifyInstanceAttributeArgs struct {
 	InstanceId           string
 	InstanceName         string
 	ResourceOwnerAccount string
-	Recyclable           bool
+	Recyclable           core.Bool
 	OwnerAccount         string
 	Description          string
 	OwnerId              int64
@@ -1089,7 +1093,7 @@ type CopyImageArgs struct {
 	Tag5Value              string
 	Tag1Key                string
 	Tag1Value              string
-	Encrypted              bool
+	Encrypted              core.Bool
 	Tag2Value              string
 	Tag4Key                string
 	DestinationDescription string
@@ -1706,7 +1710,7 @@ type DeleteSnapshotArgs struct {
 	SnapshotId           string
 	ResourceOwnerAccount string
 	OwnerAccount         string
-	Force                bool
+	Force                core.Bool
 	OwnerId              int64
 }
 type DeleteSnapshotResponse struct {
@@ -1873,7 +1877,7 @@ type RunInstancesDataDisk struct {
 	Encrypted          string
 	DiskName           string
 	Description        string
-	DeleteWithInstance bool
+	DeleteWithInstance core.Bool
 }
 type RunInstancesArgs struct {
 	ResourceOwnerId             int64
@@ -2101,18 +2105,18 @@ func (c *EcsClient) CheckAutoSnapshotPolicy(req *CheckAutoSnapshotPolicyArgs) (r
 }
 
 type CheckAutoSnapshotPolicyArgs struct {
-	DataDiskPolicyEnabled             bool
+	DataDiskPolicyEnabled             core.Bool
 	ResourceOwnerId                   int64
 	DataDiskPolicyRetentionDays       int
 	ResourceOwnerAccount              string
-	SystemDiskPolicyRetentionLastWeek bool
+	SystemDiskPolicyRetentionLastWeek core.Bool
 	OwnerAccount                      string
 	SystemDiskPolicyTimePeriod        int
 	OwnerId                           int64
-	DataDiskPolicyRetentionLastWeek   bool
+	DataDiskPolicyRetentionLastWeek   core.Bool
 	SystemDiskPolicyRetentionDays     int
 	DataDiskPolicyTimePeriod          int
-	SystemDiskPolicyEnabled           bool
+	SystemDiskPolicyEnabled           core.Bool
 }
 type CheckAutoSnapshotPolicyResponse struct {
 	RequestId              string
@@ -2340,7 +2344,7 @@ type AttachDiskArgs struct {
 	DiskId               string
 	OwnerId              int64
 	Device               string
-	DeleteWithInstance   bool
+	DeleteWithInstance   core.Bool
 }
 type AttachDiskResponse struct {
 	RequestId string
@@ -2378,8 +2382,8 @@ type DescribeInstancesInstance struct {
 	SaleCycle               string
 	ExpiredTime             string
 	AutoReleaseTime         string
-	IoOptimized             bool
-	DeviceAvailable         bool
+	IoOptimized             core.Bool
+	DeviceAvailable         core.Bool
 	InstanceTypeFamily      string
 	LocalStorageCapacity    int64
 	LocalStorageAmount      int
@@ -2389,7 +2393,7 @@ type DescribeInstancesInstance struct {
 	SpotPriceLimit          float32
 	ResourceGroupId         string
 	KeyPairName             string
-	Recyclable              bool
+	Recyclable              core.Bool
 	HpcClusterId            string
 	StoppedMode             string
 	NetworkInterfaces       DescribeInstancesNetworkInterfaceList
@@ -2431,7 +2435,7 @@ type DescribeInstancesEipAddress struct {
 	IpAddress            string
 	Bandwidth            int
 	InternetChargeType   string
-	IsSupportUnassociate bool
+	IsSupportUnassociate core.Bool
 }
 type DescribeInstancesArgs struct {
 	Tag4Value            string
@@ -2447,7 +2451,7 @@ type DescribeInstancesArgs struct {
 	ResourceGroupId      string
 	LockReason           string
 	Filter1Key           string
-	DeviceAvailable      bool
+	DeviceAvailable      core.Bool
 	Filter3Value         string
 	Tag5Key              string
 	Filter1Value         string
@@ -2462,7 +2466,7 @@ type DescribeInstancesArgs struct {
 	Status               string
 	ImageId              string
 	Filter4Value         string
-	IoOptimized          bool
+	IoOptimized          core.Bool
 	SecurityGroupId      string
 	Filter4Key           string
 	PageNumber           int
@@ -2651,7 +2655,7 @@ func (c *EcsClient) DescribeInstanceAutoRenewAttribute(req *DescribeInstanceAuto
 
 type DescribeInstanceAutoRenewAttributeInstanceRenewAttribute struct {
 	InstanceId       string
-	AutoRenewEnabled bool
+	AutoRenewEnabled core.Bool
 	Duration         int
 	PeriodUnit       string
 	RenewalStatus    string
@@ -2693,7 +2697,7 @@ type InvokeCommandArgs struct {
 	ResourceOwnerId      int64
 	CommandId            string
 	Frequency            string
-	Timed                bool
+	Timed                core.Bool
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	OwnerId              int64
@@ -2909,7 +2913,7 @@ func (c *EcsClient) ModifyPrepayInstanceSpec(req *ModifyPrepayInstanceSpecArgs) 
 type ModifyPrepayInstanceSpecArgs struct {
 	ResourceOwnerId      int64
 	InstanceId           string
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	ClientToken          string
 	OwnerAccount         string
@@ -3085,7 +3089,7 @@ func (c *EcsClient) ModifyDiskChargeType(req *ModifyDiskChargeTypeArgs) (resp *M
 type ModifyDiskChargeTypeArgs struct {
 	ResourceOwnerId      int64
 	InstanceId           string
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	ClientToken          string
 	OwnerAccount         string
@@ -3319,7 +3323,7 @@ type RebootInstanceArgs struct {
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	OwnerId              int64
-	ForceStop            bool
+	ForceStop            core.Bool
 }
 type RebootInstanceResponse struct {
 	RequestId string
@@ -3500,7 +3504,7 @@ type ModifyInstanceAutoRenewAttributeArgs struct {
 	Duration             int
 	ResourceOwnerId      int64
 	InstanceId           string
-	AutoRenew            bool
+	AutoRenew            core.Bool
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	RenewalStatus        string
@@ -3529,21 +3533,21 @@ type DescribeDisksDisk struct {
 	SourceSnapshotId              string
 	AutoSnapshotPolicyId          string
 	ProductCode                   string
-	Portable                      bool
+	Portable                      core.Bool
 	Status                        string
 	InstanceId                    string
 	Device                        string
-	DeleteWithInstance            bool
-	DeleteAutoSnapshot            bool
-	EnableAutoSnapshot            bool
-	EnableAutomatedSnapshotPolicy bool
+	DeleteWithInstance            core.Bool
+	DeleteAutoSnapshot            core.Bool
+	EnableAutoSnapshot            core.Bool
+	EnableAutomatedSnapshotPolicy core.Bool
 	CreationTime                  string
 	AttachedTime                  string
 	DetachedTime                  string
 	DiskChargeType                string
 	ExpiredTime                   string
 	ResourceGroupId               string
-	Encrypted                     bool
+	Encrypted                     core.Bool
 	IOPS                          int
 	IOPSRead                      int
 	IOPSWrite                     int
@@ -3570,31 +3574,31 @@ type DescribeDisksArgs struct {
 	PageNumber                    int
 	DiskName                      string
 	Tag1Value                     string
-	DeleteAutoSnapshot            bool
+	DeleteAutoSnapshot            core.Bool
 	ResourceGroupId               string
 	DiskChargeType                string
 	LockReason                    string
 	Filter1Key                    string
 	PageSize                      int
 	DiskIds                       string
-	DeleteWithInstance            bool
+	DeleteWithInstance            core.Bool
 	Tag3Value                     string
-	EnableAutoSnapshot            bool
+	EnableAutoSnapshot            core.Bool
 	Tag5Key                       string
 	ResourceOwnerAccount          string
 	OwnerAccount                  string
 	Filter1Value                  string
-	Portable                      bool
-	EnableAutomatedSnapshotPolicy bool
+	Portable                      core.Bool
+	EnableAutomatedSnapshotPolicy core.Bool
 	Filter2Key                    string
 	OwnerId                       int64
 	DiskType                      string
 	Tag5Value                     string
 	Tag1Key                       string
 	AdditionalAttributess         DescribeDisksAdditionalAttributesList
-	EnableShared                  bool
+	EnableShared                  core.Bool
 	InstanceId                    string
-	Encrypted                     bool
+	Encrypted                     core.Bool
 	Tag2Value                     string
 	ZoneId                        string
 	Tag4Key                       string
@@ -3680,7 +3684,7 @@ type DeleteImageArgs struct {
 	ImageId              string
 	ResourceOwnerAccount string
 	OwnerAccount         string
-	Force                bool
+	Force                core.Bool
 	OwnerId              int64
 }
 type DeleteImageResponse struct {
@@ -3748,7 +3752,7 @@ func (c *EcsClient) StartInstance(req *StartInstanceArgs) (resp *StartInstanceRe
 }
 
 type StartInstanceArgs struct {
-	InitLocalDisk        bool
+	InitLocalDisk        core.Bool
 	ResourceOwnerId      int64
 	InstanceId           string
 	ResourceOwnerAccount string
@@ -4169,7 +4173,7 @@ type DescribeNetworkInterfacesNetworkInterfaceSet struct {
 
 type DescribeNetworkInterfacesPrivateIpSet struct {
 	PrivateIpAddress    string
-	Primary             bool
+	Primary             core.Bool
 	AssociatedPublicIp1 DescribeNetworkInterfacesAssociatedPublicIp1
 }
 
@@ -4311,7 +4315,7 @@ type DescribeInvocationsInvocationItem struct {
 	CommandId    string
 	CommandType  string
 	CommandName  string
-	Timed        bool
+	Timed        core.Bool
 	InvokeStatus string
 	InvokeItem   DescribeInvocationsInvokeItemItemList
 }
@@ -4327,7 +4331,7 @@ type DescribeInvocationsArgs struct {
 	PageNumber           int64
 	PageSize             int64
 	InvokeId             string
-	Timed                bool
+	Timed                core.Bool
 	CommandName          string
 	ResourceOwnerAccount string
 	OwnerAccount         string
@@ -4494,8 +4498,8 @@ type CreateInstanceDataDisk struct {
 	DiskName           string
 	Description        string
 	Device             string
-	DeleteWithInstance bool
-	Encrypted          bool
+	DeleteWithInstance core.Bool
+	Encrypted          core.Bool
 }
 type CreateInstanceArgs struct {
 	Tag4Value                   string
@@ -4520,12 +4524,12 @@ type CreateInstanceArgs struct {
 	SpotStrategy                string
 	PeriodUnit                  string
 	InstanceName                string
-	AutoRenew                   bool
+	AutoRenew                   core.Bool
 	InternetChargeType          string
 	ZoneId                      string
 	Tag4Key                     string
 	InternetMaxBandwidthIn      int
-	UseAdditionalService        bool
+	UseAdditionalService        core.Bool
 	ImageId                     string
 	ClientToken                 string
 	VlanId                      string
@@ -4994,7 +4998,7 @@ type DescribeVpcsVpc struct {
 	CidrBlock    string
 	VRouterId    string
 	Description  string
-	IsDefault    bool
+	IsDefault    core.Bool
 	VSwitchIds   DescribeVpcsVSwitchIdList
 	UserCidrs    DescribeVpcsUserCidrList
 }
@@ -5004,7 +5008,7 @@ type DescribeVpcsArgs struct {
 	VpcId                string
 	OwnerAccount         string
 	PageSize             int
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 	PageNumber           int
 }
@@ -5185,7 +5189,7 @@ func (c *EcsClient) ModifyInstanceNetworkSpec(req *ModifyInstanceNetworkSpecArgs
 
 type ModifyInstanceNetworkSpecArgs struct {
 	ResourceOwnerId         int64
-	AutoPay                 bool
+	AutoPay                 core.Bool
 	ResourceOwnerAccount    string
 	ClientToken             string
 	OwnerAccount            string
@@ -5196,7 +5200,7 @@ type ModifyInstanceNetworkSpecArgs struct {
 	InstanceId              string
 	NetworkChargeType       string
 	InternetMaxBandwidthIn  int
-	AllocatePublicIp        bool
+	AllocatePublicIp        core.Bool
 }
 type ModifyInstanceNetworkSpecResponse struct {
 	RequestId string
@@ -5284,7 +5288,7 @@ type CreateDiskArgs struct {
 	Tag5Value            string
 	Tag1Key              string
 	Size                 int
-	Encrypted            bool
+	Encrypted            core.Bool
 	Tag2Value            string
 	ZoneId               string
 	Tag4Key              string
@@ -5459,8 +5463,8 @@ type DeleteInstanceArgs struct {
 	InstanceId            string
 	ResourceOwnerAccount  string
 	OwnerAccount          string
-	TerminateSubscription bool
-	Force                 bool
+	TerminateSubscription core.Bool
+	Force                 core.Bool
 	OwnerId               int64
 }
 type DeleteInstanceResponse struct {
@@ -5491,7 +5495,7 @@ func (c *EcsClient) AttachInstanceRamRole(req *AttachInstanceRamRoleArgs) (resp 
 
 type AttachInstanceRamRoleAttachInstanceRamRoleResult struct {
 	InstanceId string
-	Success    bool
+	Success    core.Bool
 	Code       string
 	Message    string
 }
@@ -5802,7 +5806,7 @@ type ReInitDiskArgs struct {
 	ResourceOwnerId             int64
 	Password                    string
 	ResourceOwnerAccount        string
-	AutoStartInstance           bool
+	AutoStartInstance           core.Bool
 	OwnerAccount                string
 	DiskId                      string
 	SecurityEnhancementStrategy string
@@ -6034,9 +6038,9 @@ func (c *EcsClient) ModifyInstanceChargeType(req *ModifyInstanceChargeTypeArgs) 
 type ModifyInstanceChargeTypeArgs struct {
 	ResourceOwnerId      int64
 	Period               int
-	DryRun               bool
-	AutoPay              bool
-	IncludeDataDisks     bool
+	DryRun               core.Bool
+	AutoPay              core.Bool
+	IncludeDataDisks     core.Bool
 	ResourceOwnerAccount string
 	ClientToken          string
 	OwnerAccount         string
@@ -6135,7 +6139,7 @@ type DescribeZonesZone struct {
 }
 
 type DescribeZonesResourcesInfo struct {
-	IoOptimized          bool
+	IoOptimized          core.Bool
 	SystemDiskCategories DescribeZonesSystemDiskCategoryList
 	DataDiskCategories   DescribeZonesDataDiskCategoryList
 	NetworkTypes         DescribeZonesNetworkTypeList
@@ -6150,7 +6154,7 @@ type DescribeZonesArgs struct {
 	OwnerAccount         string
 	OwnerId              int64
 	InstanceChargeType   string
-	Verbose              bool
+	Verbose              core.Bool
 }
 type DescribeZonesResponse struct {
 	RequestId string
@@ -6447,11 +6451,11 @@ type StopInstanceArgs struct {
 	ResourceOwnerId      int64
 	InstanceId           string
 	ResourceOwnerAccount string
-	ConfirmStop          bool
+	ConfirmStop          core.Bool
 	OwnerAccount         string
 	StoppedMode          string
 	OwnerId              int64
-	ForceStop            bool
+	ForceStop            core.Bool
 }
 type StopInstanceResponse struct {
 	RequestId string
@@ -6671,18 +6675,18 @@ func (c *EcsClient) ModifyAutoSnapshotPolicy(req *ModifyAutoSnapshotPolicyArgs) 
 }
 
 type ModifyAutoSnapshotPolicyArgs struct {
-	DataDiskPolicyEnabled             bool
+	DataDiskPolicyEnabled             core.Bool
 	ResourceOwnerId                   int64
 	DataDiskPolicyRetentionDays       int
 	ResourceOwnerAccount              string
-	SystemDiskPolicyRetentionLastWeek bool
+	SystemDiskPolicyRetentionLastWeek core.Bool
 	OwnerAccount                      string
 	SystemDiskPolicyTimePeriod        int
 	OwnerId                           int64
-	DataDiskPolicyRetentionLastWeek   bool
+	DataDiskPolicyRetentionLastWeek   core.Bool
 	SystemDiskPolicyRetentionDays     int
 	DataDiskPolicyTimePeriod          int
-	SystemDiskPolicyEnabled           bool
+	SystemDiskPolicyEnabled           core.Bool
 }
 type ModifyAutoSnapshotPolicyResponse struct {
 	RequestId string
@@ -6803,7 +6807,7 @@ type DescribeSnapshotsSnapshot struct {
 	SourceDiskId      string
 	SourceDiskType    string
 	RetentionDays     int
-	Encrypted         bool
+	Encrypted         core.Bool
 	SourceDiskSize    string
 	Description       string
 	CreationTime      string
@@ -6843,7 +6847,7 @@ type DescribeSnapshotsArgs struct {
 	Tag5Value            string
 	Tag1Key              string
 	InstanceId           string
-	Encrypted            bool
+	Encrypted            core.Bool
 	SnapshotType         string
 	Tag2Value            string
 	Tag4Key              string
@@ -7017,19 +7021,19 @@ type DescribeImagesImage struct {
 	Description          string
 	Size                 int
 	ImageOwnerAlias      string
-	IsSupportIoOptimized bool
-	IsSupportCloudinit   bool
+	IsSupportIoOptimized core.Bool
+	IsSupportCloudinit   core.Bool
 	OSName               string
 	Architecture         string
 	Status               string
 	ProductCode          string
-	IsSubscribed         bool
+	IsSubscribed         core.Bool
 	CreationTime         string
 	IsSelfShared         string
 	OSType               string
 	Platform             string
 	Usage                string
-	IsCopied             bool
+	IsCopied             core.Bool
 	DiskDeviceMappings   DescribeImagesDiskDeviceMappingList
 	Tags                 DescribeImagesTagList
 }
@@ -7060,10 +7064,10 @@ type DescribeImagesArgs struct {
 	PageNumber           int
 	ImageOwnerAlias      string
 	Tag1Value            string
-	IsSupportIoOptimized bool
+	IsSupportIoOptimized core.Bool
 	Filter1Key           string
 	ImageName            string
-	IsSupportCloudinit   bool
+	IsSupportCloudinit   core.Bool
 	PageSize             int
 	InstanceType         string
 	Tag3Value            string
@@ -7071,7 +7075,7 @@ type DescribeImagesArgs struct {
 	Tag5Key              string
 	ResourceOwnerAccount string
 	OwnerAccount         string
-	ShowExpired          bool
+	ShowExpired          core.Bool
 	Filter1Value         string
 	OSType               string
 	Filter2Key           string
@@ -7292,7 +7296,7 @@ type EipFillParamsResponse struct {
 	RequestId string
 	Data      string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 }
 
@@ -7538,7 +7542,7 @@ type DescribeVSwitchesVSwitch struct {
 	Description             string
 	VSwitchName             string
 	CreationTime            string
-	IsDefault               bool
+	IsDefault               core.Bool
 }
 type DescribeVSwitchesArgs struct {
 	VSwitchId            string
@@ -7548,7 +7552,7 @@ type DescribeVSwitchesArgs struct {
 	OwnerAccount         string
 	PageSize             int
 	ZoneId               string
-	IsDefault            bool
+	IsDefault            core.Bool
 	OwnerId              int64
 	PageNumber           int
 }
@@ -7690,7 +7694,7 @@ type EipFillProductResponse struct {
 	RequestId string
 	Data      string
 	Code      string
-	Success   bool
+	Success   core.Bool
 	Message   string
 }
 
@@ -7712,7 +7716,7 @@ type ReplaceSystemDiskArgs struct {
 	Password                    string
 	InstanceId                  string
 	SystemDiskSize              int
-	UseAdditionalService        bool
+	UseAdditionalService        core.Bool
 }
 type ReplaceSystemDiskResponse struct {
 	RequestId string
@@ -7758,7 +7762,7 @@ func (c *EcsClient) DetachInstanceRamRole(req *DetachInstanceRamRoleArgs) (resp 
 
 type DetachInstanceRamRoleDetachInstanceRamRoleResult struct {
 	InstanceId          string
-	Success             bool
+	Success             core.Bool
 	Code                string
 	Message             string
 	InstanceRamRoleSets DetachInstanceRamRoleInstanceRamRoleSetList
@@ -8154,15 +8158,15 @@ func (c *EcsClient) ModifyDiskAttribute(req *ModifyDiskAttributeArgs) (resp *Mod
 
 type ModifyDiskAttributeArgs struct {
 	DiskName             string
-	DeleteAutoSnapshot   bool
+	DeleteAutoSnapshot   core.Bool
 	ResourceOwnerId      int64
-	EnableAutoSnapshot   bool
+	EnableAutoSnapshot   core.Bool
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	Description          string
 	DiskId               string
 	OwnerId              int64
-	DeleteWithInstance   bool
+	DeleteWithInstance   core.Bool
 }
 type ModifyDiskAttributeResponse struct {
 	RequestId string
@@ -8210,10 +8214,10 @@ type DescribeSecurityGroupsArgs struct {
 	Tag4Value            string
 	ResourceOwnerId      int64
 	Tag2Key              string
-	FuzzyQuery           bool
+	FuzzyQuery           core.Bool
 	SecurityGroupId      string
 	Tag3Key              string
-	IsQueryEcsCount      bool
+	IsQueryEcsCount      core.Bool
 	NetworkType          string
 	SecurityGroupName    string
 	PageNumber           int
@@ -8290,7 +8294,7 @@ type EipNotifyPaidResponse struct {
 	Data      string
 	Code      string
 	Message   string
-	Success   bool
+	Success   core.Bool
 }
 
 func (c *EcsClient) ImportImage(req *ImportImageArgs) (resp *ImportImageResponse, err error) {

@@ -1,5 +1,9 @@
 package commondriver
 
+import (
+	"github.com/morlay/aliyun-go/core"
+)
+
 func (c *CommondriverClient) GetOrderIdByCheckBeforePay(req *GetOrderIdByCheckBeforePayArgs) (resp *GetOrderIdByCheckBeforePayResponse, err error) {
 	resp = &GetOrderIdByCheckBeforePayResponse{}
 	err = c.Request("GetOrderIdByCheckBeforePay", req, resp)
@@ -11,8 +15,8 @@ type GetOrderIdByCheckBeforePayArgs struct {
 }
 type GetOrderIdByCheckBeforePayResponse struct {
 	RequestId string
-	Success   bool
-	Data      bool
+	Success   core.Bool
+	Data      core.Bool
 }
 
 func (c *CommondriverClient) GetOrderIdByQueryPurchase(req *GetOrderIdByQueryPurchaseArgs) (resp *GetOrderIdByQueryPurchaseResponse, err error) {
@@ -26,6 +30,6 @@ type GetOrderIdByQueryPurchaseArgs struct {
 }
 type GetOrderIdByQueryPurchaseResponse struct {
 	RequestId string
-	Success   bool
-	Data      bool
+	Success   core.Bool
+	Data      core.Bool
 }

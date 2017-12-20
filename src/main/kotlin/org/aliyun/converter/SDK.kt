@@ -37,7 +37,10 @@ class SDK(val name: String, val version: String, val baseDir: String) {
         return """
 package ${this.name.replace("-", "_")}
 
-import "encoding/json"
+import (
+    "encoding/json"
+    "github.com/morlay/aliyun-go/core"
+)
 
 ${code}
             """
@@ -48,8 +51,6 @@ ${code}
         val endpoint = "https://${this.name}.aliyuncs.com"
 
         return this.withPkg("""
-import "github.com/morlay/aliyun-go/core"
-
 func New${name}Client(key string, secret string, regionId string) *${name}Client {
     return &${name}Client{
         Client: core.Client{

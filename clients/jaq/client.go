@@ -1,6 +1,8 @@
 package jaq
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewJaqClient(key string, secret string, regionId string) *JaqClient {
 	return &JaqClient{

@@ -1,5 +1,9 @@
 package waf
 
+import (
+	"github.com/morlay/aliyun-go/core"
+)
+
 func (c *WafClient) RenewInstance(req *RenewInstanceArgs) (resp *RenewInstanceResponse, err error) {
 	resp = &RenewInstanceResponse{}
 	err = c.Request("RenewInstance", req, resp)
@@ -32,7 +36,7 @@ type CreateInstanceArgs struct {
 	PackageCode       string
 	ExtDomainPackage  int
 	ExtBandwidth      int
-	IsAutoRenew       bool
+	IsAutoRenew       core.Bool
 	AutoRenewDuration int
 }
 type CreateInstanceResponse struct {

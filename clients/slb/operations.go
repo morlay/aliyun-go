@@ -1,6 +1,10 @@
 package slb
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *SlbClient) SetLoadBalancerUDPListenerAttribute(req *SetLoadBalancerUDPListenerAttributeArgs) (resp *SetLoadBalancerUDPListenerAttributeResponse, err error) {
 	resp = &SetLoadBalancerUDPListenerAttributeResponse{}
@@ -111,7 +115,7 @@ type DescribeTagsArgs struct {
 	ResourceOwnerId      int64
 	ResourceOwnerAccount string
 	OwnerAccount         string
-	DistinctKey          bool
+	DistinctKey          core.Bool
 	OwnerId              int64
 	PageNumber           int
 	Tags                 string
@@ -1432,7 +1436,7 @@ type CreateLoadBalancerArgs struct {
 	AddressType          string
 	SlaveZoneId          string
 	LoadBalancerSpec     string
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	Bandwidth            int
 	OwnerAccount         string
@@ -1575,7 +1579,7 @@ type ModifyLoadBalancerInstanceSpecArgs struct {
 	LoadBalancerSpec     string
 	ResourceOwnerId      int64
 	LoadBalancerId       string
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	OwnerId              int64
@@ -1916,7 +1920,7 @@ func (c *SlbClient) ModifyLoadBalancerInternetSpec(req *ModifyLoadBalancerIntern
 type ModifyLoadBalancerInternetSpecArgs struct {
 	Access_key_id        string
 	ResourceOwnerId      int64
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	Bandwidth            int
 	OwnerAccount         string
@@ -1987,7 +1991,7 @@ type DescribeLoadBalancersRelatedEcsArgs struct {
 }
 type DescribeLoadBalancersRelatedEcsResponse struct {
 	Message       string
-	Success       bool
+	Success       core.Bool
 	RequestId     string
 	LoadBalancers DescribeLoadBalancersRelatedEcsLoadBalancerList
 }
@@ -2581,7 +2585,7 @@ func (c *SlbClient) ModifyLoadBalancerPayType(req *ModifyLoadBalancerPayTypeArgs
 type ModifyLoadBalancerPayTypeArgs struct {
 	Access_key_id        string
 	ResourceOwnerId      int64
-	AutoPay              bool
+	AutoPay              core.Bool
 	ResourceOwnerAccount string
 	OwnerAccount         string
 	OwnerId              int64

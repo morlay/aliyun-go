@@ -1,5 +1,9 @@
 package jaq
 
+import (
+	"github.com/morlay/aliyun-go/core"
+)
+
 func (c *JaqClient) ActivityPrevention(req *ActivityPreventionArgs) (resp *ActivityPreventionResponse, err error) {
 	resp = &ActivityPreventionResponse{}
 	err = c.Request("ActivityPrevention", req, resp)
@@ -302,5 +306,5 @@ type AfsCheckArgs struct {
 type AfsCheckResponse struct {
 	ErrorCode int
 	ErrorMsg  string
-	Data      bool
+	Data      core.Bool
 }

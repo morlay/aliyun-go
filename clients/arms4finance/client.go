@@ -1,6 +1,8 @@
 package arms4finance
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewArms4financeClient(key string, secret string, regionId string) *Arms4financeClient {
 	return &Arms4financeClient{

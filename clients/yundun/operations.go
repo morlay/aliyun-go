@@ -1,6 +1,10 @@
 package yundun
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *YundunClient) DetectVulById(req *DetectVulByIdArgs) (resp *DetectVulByIdResponse, err error) {
 	resp = &DetectVulByIdResponse{}
@@ -126,7 +130,7 @@ type QueryDdosConfigResponse struct {
 	Qps              int64
 	Sipconn          int64
 	Sipnew           int64
-	Layer7Config     bool
+	Layer7Config     core.Bool
 	FlowPosition     int
 	QpsPosition      int
 	StrategyPosition int
@@ -350,8 +354,8 @@ type ServiceStatusArgs struct {
 }
 type ServiceStatusResponse struct {
 	RequestId string
-	PortScan  bool
-	VulScan   bool
+	PortScan  core.Bool
+	VulScan   core.Bool
 }
 
 func (c *YundunClient) SetDdosQps(req *SetDdosQpsArgs) (resp *SetDdosQpsResponse, err error) {
@@ -753,7 +757,7 @@ type ListInstanceInfosInstanceInfo struct {
 	SecureCheck  int
 	AegisStatus  int
 	Waf          int
-	IsLock       bool
+	IsLock       core.Bool
 	LockType     string
 	UnLockTimes  int
 	TriggerTime  string
@@ -814,9 +818,9 @@ type WafLogArgs struct {
 type WafLogResponse struct {
 	RequestId   string
 	WebAttack   int
-	NewWafUser  bool
-	WafOpened   bool
-	InWhiteList bool
+	NewWafUser  core.Bool
+	WafOpened   core.Bool
+	InWhiteList core.Bool
 	DomainCount int
 	StartTime   string
 	EndTime     string

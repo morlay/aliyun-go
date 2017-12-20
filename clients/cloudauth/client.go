@@ -1,6 +1,8 @@
 package cloudauth
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCloudauthClient(key string, secret string, regionId string) *CloudauthClient {
 	return &CloudauthClient{

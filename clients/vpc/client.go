@@ -1,6 +1,8 @@
 package vpc
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewVpcClient(key string, secret string, regionId string) *VpcClient {
 	return &VpcClient{

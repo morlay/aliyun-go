@@ -1,6 +1,10 @@
 package cdn
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *CdnClient) SetPageCompressConfig(req *SetPageCompressConfigArgs) (resp *SetPageCompressConfigResponse, err error) {
 	resp = &SetPageCompressConfigResponse{}
@@ -1310,7 +1314,7 @@ type DescribeUserCustomerLabelsArgs struct {
 }
 type DescribeUserCustomerLabelsResponse struct {
 	RequestId   string
-	IsInnerUser bool
+	IsInnerUser core.Bool
 }
 
 func (c *CdnClient) MigrateDomainToHttpsDelivery(req *MigrateDomainToHttpsDeliveryArgs) (resp *MigrateDomainToHttpsDeliveryResponse, err error) {
@@ -1518,7 +1522,7 @@ type DescribeUserDomainsArgs struct {
 	PageNumber       int
 	DomainStatus     string
 	DomainSearchType string
-	CheckDomainShow  bool
+	CheckDomainShow  core.Bool
 	ResourceGroupId  string
 	SecurityToken    string
 	CdnType          string

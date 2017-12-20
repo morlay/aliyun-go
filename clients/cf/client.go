@@ -1,6 +1,8 @@
 package cf
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCfClient(key string, secret string, regionId string) *CfClient {
 	return &CfClient{

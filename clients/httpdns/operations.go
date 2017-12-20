@@ -1,6 +1,10 @@
 package httpdns
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *HttpdnsClient) GetAccountInfo(req *GetAccountInfoArgs) (resp *GetAccountInfoResponse, err error) {
 	resp = &GetAccountInfoResponse{}
@@ -16,7 +20,7 @@ type GetAccountInfoAccountInfo struct {
 	PackageCount           int
 	UserStatus             int
 	SignSecret             string
-	UnsignedEnabled        bool
+	UnsignedEnabled        core.Bool
 	SignedCount            int64
 	UnsignedCount          int64
 }

@@ -1,6 +1,8 @@
 package nas
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *NasClient) CreateFileSystem(req *CreateFileSystemArgs) (resp *CreateFileSystemResponse, err error) {
 	resp = &CreateFileSystemResponse{}

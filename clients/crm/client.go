@@ -1,6 +1,8 @@
 package crm
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCrmClient(key string, secret string, regionId string) *CrmClient {
 	return &CrmClient{

@@ -1,6 +1,8 @@
 package oms
 
-import "encoding/json"
+import (
+	"encoding/json"
+)
 
 func (c *OmsClient) GetProductDefine(req *GetProductDefineArgs) (resp *GetProductDefineResponse, err error) {
 	resp = &GetProductDefineResponse{}

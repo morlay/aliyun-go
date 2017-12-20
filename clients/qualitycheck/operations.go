@@ -1,6 +1,10 @@
 package qualitycheck
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *QualitycheckClient) UploadDataWithRules(req *UploadDataWithRulesArgs) (resp *UploadDataWithRulesResponse, err error) {
 	resp = &UploadDataWithRulesResponse{}
@@ -13,7 +17,7 @@ type UploadDataWithRulesArgs struct {
 }
 type UploadDataWithRulesResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -30,7 +34,7 @@ type UploadAudioDataWithRules4PreArgs struct {
 }
 type UploadAudioDataWithRules4PreResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -47,7 +51,7 @@ type UploadRuleArgs struct {
 }
 type UploadRuleResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      UploadRuleDatumList
@@ -79,10 +83,10 @@ type InvalidRuleArgs struct {
 }
 type InvalidRuleResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
-	Data      bool
+	Data      core.Bool
 }
 
 func (c *QualitycheckClient) UploadAudioData(req *UploadAudioDataArgs) (resp *UploadAudioDataResponse, err error) {
@@ -96,7 +100,7 @@ type UploadAudioDataArgs struct {
 }
 type UploadAudioDataResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -113,7 +117,7 @@ type UploadAudioDataWithRulesArgs struct {
 }
 type UploadAudioDataWithRulesResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -130,7 +134,7 @@ type RegisterNoticeArgs struct {
 }
 type RegisterNoticeResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 }
@@ -146,7 +150,7 @@ type GetResultCountArgs struct {
 }
 type GetResultCountResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      int
@@ -164,7 +168,7 @@ type UpdateOnPurchaseSuccessArgs struct {
 type UpdateOnPurchaseSuccessResponse struct {
 	RequestId string
 	Data      string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 }
@@ -192,7 +196,7 @@ type GetScoreInfoArgs struct {
 }
 type GetScoreInfoResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      GetScoreInfoScorePoList
@@ -264,7 +268,7 @@ type GetRuleArgs struct {
 }
 type GetRuleResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      GetRuleData
@@ -296,7 +300,7 @@ type UploadAudioData4PreArgs struct {
 }
 type UploadAudioData4PreResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -323,7 +327,7 @@ type GetDataSetListArgs struct {
 }
 type GetDataSetListResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Count     int
@@ -375,10 +379,10 @@ type GetRuleDetailParam struct {
 	Phrase        string
 	Interval      int
 	Threshold     float32
-	InSentence    bool
+	InSentence    core.Bool
 	Target        int
-	FromEnd       bool
-	DifferentRole bool
+	FromEnd       core.Bool
+	DifferentRole core.Bool
 	TargetRole    string
 	OperKeyWords  GetRuleDetailOperKeyWordList
 	References    GetRuleDetailReferenceList
@@ -411,7 +415,7 @@ type GetRuleDetailArgs struct {
 }
 type GetRuleDetailResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      GetRuleDetailData
@@ -518,7 +522,7 @@ type SaveReviewResultArgs struct {
 }
 type SaveReviewResultResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -561,7 +565,7 @@ type GetAudioDataStatusArgs struct {
 }
 type GetAudioDataStatusResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Count     int
@@ -609,7 +613,7 @@ type UploadDataArgs struct {
 }
 type UploadDataResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Data      string
@@ -680,10 +684,10 @@ type GetResultParam struct {
 	Phrase        string
 	Interval      int
 	Threshold     float32
-	InSentence    bool
+	InSentence    core.Bool
 	Target        int
-	FromEnd       bool
-	DifferentRole bool
+	FromEnd       core.Bool
+	DifferentRole core.Bool
 	TargetRole    string
 	OperKeyWords  GetResultOperKeyWordList
 	References    GetResultReferenceList
@@ -710,7 +714,7 @@ type GetResultArgs struct {
 }
 type GetResultResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Count     int
@@ -898,7 +902,7 @@ type GetAccAsrResultArgs struct {
 }
 type GetAccAsrResultResponse struct {
 	RequestId string
-	Success   bool
+	Success   core.Bool
 	Code      string
 	Message   string
 	Count     int

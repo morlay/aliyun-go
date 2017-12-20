@@ -1,6 +1,8 @@
 package oms
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewOmsClient(key string, secret string, regionId string) *OmsClient {
 	return &OmsClient{

@@ -1,6 +1,8 @@
 package commondriver
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewCommondriverClient(key string, secret string, regionId string) *CommondriverClient {
 	return &CommondriverClient{

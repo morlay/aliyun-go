@@ -1,6 +1,8 @@
 package dds
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewDdsClient(key string, secret string, regionId string) *DdsClient {
 	return &DdsClient{

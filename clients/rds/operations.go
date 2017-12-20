@@ -1,6 +1,10 @@
 package rds
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *RdsClient) ModifyDBInstanceHAConfig(req *ModifyDBInstanceHAConfigArgs) (resp *ModifyDBInstanceHAConfigResponse, err error) {
 	resp = &ModifyDBInstanceHAConfigResponse{}
@@ -813,7 +817,7 @@ type ModifyParameterArgs struct {
 	ClientToken          string
 	OwnerAccount         string
 	DBInstanceId         string
-	Forcerestart         bool
+	Forcerestart         core.Bool
 	OwnerId              int64
 	Parameters           string
 }
@@ -1464,7 +1468,7 @@ type DescribeDBInstancesDBInstance struct {
 	InstanceNetworkType   string
 	LockReason            string
 	ZoneId                string
-	MutriORsignle         bool
+	MutriORsignle         core.Bool
 	CreateTime            string
 	EngineVersion         string
 	GuardDBInstanceId     string
@@ -3029,7 +3033,7 @@ type DescribeDBInstancesByExpireTimeArgs struct {
 	OwnerId              int64
 	PageNumber           int
 	Tags                 string
-	Expired              bool
+	Expired              core.Bool
 	PageSize             int
 	ExpirePeriod         int
 	ProxyId              string

@@ -1,6 +1,8 @@
 package polardb
 
-import "github.com/morlay/aliyun-go/core"
+import (
+	"github.com/morlay/aliyun-go/core"
+)
 
 func NewPolardbClient(key string, secret string, regionId string) *PolardbClient {
 	return &PolardbClient{

@@ -1,6 +1,10 @@
 package iot
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/morlay/aliyun-go/core"
+)
 
 func (c *IotClient) RRpc(req *RRpcArgs) (resp *RRpcResponse, err error) {
 	resp = &RRpcResponse{}
@@ -16,7 +20,7 @@ type RRpcArgs struct {
 }
 type RRpcResponse struct {
 	RequestId         string
-	Success           bool
+	Success           core.Bool
 	ErrorMessage      string
 	RrpcCode          string
 	PayloadBase64Byte string
@@ -37,7 +41,7 @@ type PubArgs struct {
 }
 type PubResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	MessageId    string
 }
@@ -60,7 +64,7 @@ type QueryPageByApplyIdArgs struct {
 }
 type QueryPageByApplyIdResponse struct {
 	RequestId       string
-	Success         bool
+	Success         core.Bool
 	ErrorMessage    string
 	PageSize        int
 	Page            int
@@ -96,7 +100,7 @@ type QueryDevicePropArgs struct {
 }
 type QueryDevicePropResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	Props        string
 }
@@ -128,7 +132,7 @@ type CreateProductArgs struct {
 }
 type CreateProductResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	ProductInfo  CreateProductProductInfo
 }
@@ -155,7 +159,7 @@ type QueryDeviceByNameArgs struct {
 }
 type QueryDeviceByNameResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	DeviceInfo   QueryDeviceByNameDeviceInfo
 }
@@ -173,7 +177,7 @@ type GetDeviceShadowArgs struct {
 }
 type GetDeviceShadowResponse struct {
 	RequestId     string
-	Success       bool
+	Success       core.Bool
 	ErrorMessage  string
 	ShadowMessage string
 }
@@ -191,7 +195,7 @@ type DeleteDevicePropArgs struct {
 }
 type DeleteDevicePropResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 }
 
@@ -207,7 +211,7 @@ type ApplyDeviceWithNamesArgs struct {
 }
 type ApplyDeviceWithNamesResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	ApplyId      int64
 }
@@ -240,7 +244,7 @@ type SaveDevicePropArgs struct {
 }
 type SaveDevicePropResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 }
 
@@ -256,7 +260,7 @@ type RegistDeviceArgs struct {
 }
 type RegistDeviceResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	DeviceId     string
 	DeviceSecret string
@@ -287,7 +291,7 @@ type QueryDeviceArgs struct {
 }
 type QueryDeviceResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 	Total        int
 	PageSize     int
@@ -324,7 +328,7 @@ type UpdateDeviceShadowArgs struct {
 }
 type UpdateDeviceShadowResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 }
 
@@ -341,7 +345,7 @@ type PubBroadcastArgs struct {
 }
 type PubBroadcastResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 }
 
@@ -360,7 +364,7 @@ type UpdateProductArgs struct {
 }
 type UpdateProductResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
 }
 
@@ -383,7 +387,7 @@ type BatchGetDeviceStateArgs struct {
 }
 type BatchGetDeviceStateResponse struct {
 	RequestId        string
-	Success          bool
+	Success          core.Bool
 	ErrorMessage     string
 	DeviceStatusList BatchGetDeviceStateDeviceStatusList
 }
@@ -429,7 +433,7 @@ type QueryApplyStatusArgs struct {
 }
 type QueryApplyStatusResponse struct {
 	RequestId    string
-	Success      bool
+	Success      core.Bool
 	ErrorMessage string
-	Finish       bool
+	Finish       core.Bool
 }
