@@ -14,7 +14,7 @@ import (
 )
 
 func main() { 
-    // 创建ecsClient实例
+    // 创建通用 Client 实例
     client, err := sdk.NewClientWithAccessKey(
         "<your-region-id>", 			// 您的可用区ID
         "<your-access-key-id>", 		// 您的 Access Key ID
