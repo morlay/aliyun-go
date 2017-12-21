@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceRamRoleRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	InstanceIds          string `position:"Query" name:"InstanceIds"`
@@ -18,29 +19,15 @@ type DescribeInstanceRamRoleRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeInstanceRamRoleRequest) Invoke(client *sdk.Client) (response *DescribeInstanceRamRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceRamRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceRamRoleRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceRamRoleResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceRamRole", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceRamRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceRamRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceRamRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceRamRoleResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	RegionId            string
 	TotalCount          int

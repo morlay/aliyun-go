@@ -7,32 +7,19 @@ import (
 )
 
 type GetUserRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r GetUserRequest) Invoke(client *sdk.Client) (response *GetUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetUserRequest) Invoke(client *sdk.Client) (resp *GetUserResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetUser", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserResponse struct {
+	responses.BaseResponse
 	RequestId string
 	User      GetUserUser
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type DecryptKeyRequest struct {
+	requests.RpcRequest
 	Rand                 string `position:"Query" name:"Rand"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,29 +16,15 @@ type DecryptKeyRequest struct {
 	CiphertextBlob       string `position:"Query" name:"CiphertextBlob"`
 }
 
-func (r DecryptKeyRequest) Invoke(client *sdk.Client) (response *DecryptKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DecryptKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DecryptKeyRequest) Invoke(client *sdk.Client) (resp *DecryptKeyResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DecryptKey", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DecryptKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DecryptKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DecryptKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DecryptKeyResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Plaintext string
 	Rand      string

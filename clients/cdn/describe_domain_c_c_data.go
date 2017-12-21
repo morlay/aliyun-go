@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainCCDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainCCDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainCCDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainCCDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainCCDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainCCDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainCCDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainCCData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainCCDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainCCDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainCCDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainCCDataResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DomainName   string
 	DataInterval string

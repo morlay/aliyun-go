@@ -7,6 +7,7 @@ import (
 )
 
 type GrantAccountPrivilegeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AccountName          string `position:"Query" name:"AccountName"`
 	DBName               string `position:"Query" name:"DBName"`
@@ -17,28 +18,14 @@ type GrantAccountPrivilegeRequest struct {
 	AccountPrivilege     string `position:"Query" name:"AccountPrivilege"`
 }
 
-func (r GrantAccountPrivilegeRequest) Invoke(client *sdk.Client) (response *GrantAccountPrivilegeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GrantAccountPrivilegeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GrantAccountPrivilegeRequest) Invoke(client *sdk.Client) (resp *GrantAccountPrivilegeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "GrantAccountPrivilege", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GrantAccountPrivilegeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GrantAccountPrivilegeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GrantAccountPrivilegeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GrantAccountPrivilegeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

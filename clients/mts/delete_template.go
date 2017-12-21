@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteTemplateRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DeleteTemplateRequest struct {
 	TemplateId           string `position:"Query" name:"TemplateId"`
 }
 
-func (r DeleteTemplateRequest) Invoke(client *sdk.Client) (response *DeleteTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteTemplateRequest) Invoke(client *sdk.Client) (resp *DeleteTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteTemplateResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TemplateId string
 }

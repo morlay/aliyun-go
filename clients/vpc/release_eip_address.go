@@ -7,6 +7,7 @@ import (
 )
 
 type ReleaseEipAddressRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type ReleaseEipAddressRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReleaseEipAddressRequest) Invoke(client *sdk.Client) (response *ReleaseEipAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseEipAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseEipAddressRequest) Invoke(client *sdk.Client) (resp *ReleaseEipAddressResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ReleaseEipAddress", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseEipAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseEipAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseEipAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseEipAddressResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

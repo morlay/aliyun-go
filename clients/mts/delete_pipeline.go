@@ -7,6 +7,7 @@ import (
 )
 
 type DeletePipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DeletePipelineRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r DeletePipelineRequest) Invoke(client *sdk.Client) (response *DeletePipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeletePipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeletePipelineRequest) Invoke(client *sdk.Client) (resp *DeletePipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeletePipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeletePipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeletePipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeletePipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeletePipelineResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PipelineId string
 }

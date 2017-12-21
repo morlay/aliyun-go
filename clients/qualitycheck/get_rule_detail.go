@@ -9,32 +9,19 @@ import (
 )
 
 type GetRuleDetailRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r GetRuleDetailRequest) Invoke(client *sdk.Client) (response *GetRuleDetailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetRuleDetailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetRuleDetailRequest) Invoke(client *sdk.Client) (resp *GetRuleDetailResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "GetRuleDetail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetRuleDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRuleDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRuleDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRuleDetailResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

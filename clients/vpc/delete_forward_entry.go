@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteForwardEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ForwardEntryId       string `position:"Query" name:"ForwardEntryId"`
@@ -15,28 +16,14 @@ type DeleteForwardEntryRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteForwardEntryRequest) Invoke(client *sdk.Client) (response *DeleteForwardEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteForwardEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteForwardEntryRequest) Invoke(client *sdk.Client) (resp *DeleteForwardEntryResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteForwardEntry", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteForwardEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteForwardEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteForwardEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteForwardEntryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

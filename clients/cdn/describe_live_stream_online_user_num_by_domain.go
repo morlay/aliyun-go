@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamOnlineUserNumByDomainRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	HlsSwitch     string `position:"Query" name:"HlsSwitch"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamOnlineUserNumByDomainRequest struct {
 	PageNumber    int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeLiveStreamOnlineUserNumByDomainRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamOnlineUserNumByDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamOnlineUserNumByDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamOnlineUserNumByDomainRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamOnlineUserNumByDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamOnlineUserNumByDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamOnlineUserNumByDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamOnlineUserNumByDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamOnlineUserNumByDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamOnlineUserNumByDomainResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	TotalUserNumber int64
 	Count           int64

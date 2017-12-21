@@ -7,33 +7,20 @@ import (
 )
 
 type UpdateAccessKeyRequest struct {
+	requests.RpcRequest
 	UserAccessKeyId string `position:"Query" name:"UserAccessKeyId"`
 	UserName        string `position:"Query" name:"UserName"`
 	Status          string `position:"Query" name:"Status"`
 }
 
-func (r UpdateAccessKeyRequest) Invoke(client *sdk.Client) (response *UpdateAccessKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateAccessKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateAccessKeyRequest) Invoke(client *sdk.Client) (resp *UpdateAccessKeyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "UpdateAccessKey", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateAccessKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateAccessKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateAccessKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateAccessKeyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type GetInstanceRequest struct {
+	requests.RpcRequest
 	Accept      string `position:"Header" name:"Accept"`
 	VersionName string `position:"Header" name:"VersionName"`
 }
 
-func (r GetInstanceRequest) Invoke(client *sdk.Client) (response *GetInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetInstanceRequest) Invoke(client *sdk.Client) (resp *GetInstanceResponse, err error) {
 	req.InitWithApiInfo("Ots", "2013-09-12", "GetInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

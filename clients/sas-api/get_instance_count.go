@@ -1,44 +1,28 @@
-
-package sas-api
+package sas_api
 
 import (
-    "github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
-	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
 )
 
-
 type GetInstanceCountRequest struct {
-OwnerId int64 `position:"Query" name:"OwnerId"`
+	requests.RpcRequest
+	OwnerId int64 `position:"Query" name:"OwnerId"`
 }
 
-func (r GetInstanceCountRequest) Invoke(client *sdk.Client) (response *GetInstanceCountResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetInstanceCountRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetInstanceCountRequest) Invoke(client *sdk.Client) (resp *GetInstanceCountResponse, err error) {
 	req.InitWithApiInfo("Sas-api", "2017-07-05", "GetInstanceCount", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetInstanceCountResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-    response = &resp.GetInstanceCountResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetInstanceCountResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetInstanceCountResponse struct {
-Code string
-Message string
-Success bool
-RequestId string
-Data int
+	responses.BaseResponse
+	Code      string
+	Message   string
+	Success   bool
+	RequestId string
+	Data      int
 }
-

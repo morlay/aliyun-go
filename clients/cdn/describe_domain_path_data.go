@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainPathDataRequest struct {
+	requests.RpcRequest
 	StartTime     string `position:"Query" name:"StartTime"`
 	PageNumber    int    `position:"Query" name:"PageNumber"`
 	Path          string `position:"Query" name:"Path"`
@@ -20,29 +21,15 @@ type DescribeDomainPathDataRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DescribeDomainPathDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainPathDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainPathDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainPathDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainPathDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainPathData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainPathDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainPathDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainPathDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainPathDataResponse struct {
+	responses.BaseResponse
 	DomainName          string
 	StartTime           string
 	EndTime             string

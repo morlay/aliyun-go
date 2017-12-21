@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeOptimizeAdviceOnMissIndexRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeOptimizeAdviceOnMissIndexRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeOptimizeAdviceOnMissIndexRequest) Invoke(client *sdk.Client) (response *DescribeOptimizeAdviceOnMissIndexResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOptimizeAdviceOnMissIndexRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOptimizeAdviceOnMissIndexRequest) Invoke(client *sdk.Client) (resp *DescribeOptimizeAdviceOnMissIndexResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeOptimizeAdviceOnMissIndex", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOptimizeAdviceOnMissIndexResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOptimizeAdviceOnMissIndexResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOptimizeAdviceOnMissIndexResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOptimizeAdviceOnMissIndexResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	DBInstanceId      string
 	TotalRecordsCount int

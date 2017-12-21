@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeDrdsDBsRequest struct {
+	requests.RpcRequest
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r DescribeDrdsDBsRequest) Invoke(client *sdk.Client) (response *DescribeDrdsDBsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDrdsDBsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDrdsDBsRequest) Invoke(client *sdk.Client) (resp *DescribeDrdsDBsResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeDrdsDBs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDrdsDBsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDrdsDBsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDrdsDBsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDrdsDBsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      DescribeDrdsDBsDbList

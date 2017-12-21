@@ -7,32 +7,19 @@ import (
 )
 
 type KickAndClearPMKcacheRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r KickAndClearPMKcacheRequest) Invoke(client *sdk.Client) (response *KickAndClearPMKcacheResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		KickAndClearPMKcacheRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *KickAndClearPMKcacheRequest) Invoke(client *sdk.Client) (resp *KickAndClearPMKcacheResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "KickAndClearPMKcache", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		KickAndClearPMKcacheResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.KickAndClearPMKcacheResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &KickAndClearPMKcacheResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type KickAndClearPMKcacheResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

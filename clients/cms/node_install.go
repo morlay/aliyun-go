@@ -7,34 +7,21 @@ import (
 )
 
 type NodeInstallRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	Force      string `position:"Query" name:"Force"`
 	UserId     string `position:"Query" name:"UserId"`
 }
 
-func (r NodeInstallRequest) Invoke(client *sdk.Client) (response *NodeInstallResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		NodeInstallRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *NodeInstallRequest) Invoke(client *sdk.Client) (resp *NodeInstallResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "NodeInstall", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		NodeInstallResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.NodeInstallResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &NodeInstallResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type NodeInstallResponse struct {
+	responses.BaseResponse
 	ErrorCode    int
 	ErrorMessage string
 	Success      bool

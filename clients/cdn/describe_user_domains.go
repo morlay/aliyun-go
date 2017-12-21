@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeUserDomainsRequest struct {
+	requests.RpcRequest
 	FuncFilter       string `position:"Query" name:"FuncFilter"`
 	Sources          string `position:"Query" name:"Sources"`
 	DomainName       string `position:"Query" name:"DomainName"`
@@ -24,29 +25,15 @@ type DescribeUserDomainsRequest struct {
 	PageSize         int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeUserDomainsRequest) Invoke(client *sdk.Client) (response *DescribeUserDomainsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeUserDomainsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeUserDomainsRequest) Invoke(client *sdk.Client) (resp *DescribeUserDomainsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeUserDomains", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeUserDomainsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeUserDomainsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeUserDomainsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeUserDomainsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PageNumber int64
 	PageSize   int64

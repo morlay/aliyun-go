@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRouteTableListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            string `position:"Query" name:"Bandwidth"`
@@ -26,29 +27,15 @@ type DescribeRouteTableListRequest struct {
 	RouteTableId         string `position:"Query" name:"RouteTableId"`
 }
 
-func (r DescribeRouteTableListRequest) Invoke(client *sdk.Client) (response *DescribeRouteTableListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRouteTableListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRouteTableListRequest) Invoke(client *sdk.Client) (resp *DescribeRouteTableListResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeRouteTableList", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRouteTableListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRouteTableListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRouteTableListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRouteTableListResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	Code            string
 	Message         string

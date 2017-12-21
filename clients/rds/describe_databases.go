@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDatabasesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBName               string `position:"Query" name:"DBName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeDatabasesRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDatabasesRequest) Invoke(client *sdk.Client) (response *DescribeDatabasesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDatabasesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDatabasesRequest) Invoke(client *sdk.Client) (resp *DescribeDatabasesResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDatabases", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDatabasesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDatabasesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDatabasesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDatabasesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Databases DescribeDatabasesDatabaseList
 }

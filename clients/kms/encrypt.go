@@ -7,35 +7,22 @@ import (
 )
 
 type EncryptRequest struct {
+	requests.RpcRequest
 	KeyId             string `position:"Query" name:"KeyId"`
 	Plaintext         string `position:"Query" name:"Plaintext"`
 	STSToken          string `position:"Query" name:"STSToken"`
 	EncryptionContext string `position:"Query" name:"EncryptionContext"`
 }
 
-func (r EncryptRequest) Invoke(client *sdk.Client) (response *EncryptResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EncryptRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EncryptRequest) Invoke(client *sdk.Client) (resp *EncryptResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "Encrypt", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EncryptResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EncryptResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EncryptResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EncryptResponse struct {
+	responses.BaseResponse
 	CiphertextBlob string
 	KeyId          string
 	RequestId      string

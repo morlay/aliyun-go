@@ -7,32 +7,19 @@ import (
 )
 
 type GroupIntimeRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r GroupIntimeRequest) Invoke(client *sdk.Client) (response *GroupIntimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GroupIntimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GroupIntimeRequest) Invoke(client *sdk.Client) (resp *GroupIntimeResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GroupIntime", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GroupIntimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GroupIntimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GroupIntimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GroupIntimeResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

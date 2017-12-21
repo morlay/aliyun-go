@@ -7,34 +7,21 @@ import (
 )
 
 type ReportZoneDayRequest struct {
+	requests.RpcRequest
 	BeginDate string `position:"Query" name:"BeginDate"`
 	EndDate   string `position:"Query" name:"EndDate"`
 	Agsid     int64  `position:"Query" name:"Agsid"`
 }
 
-func (r ReportZoneDayRequest) Invoke(client *sdk.Client) (response *ReportZoneDayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReportZoneDayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReportZoneDayRequest) Invoke(client *sdk.Client) (resp *ReportZoneDayResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ReportZoneDay", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReportZoneDayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReportZoneDayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReportZoneDayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReportZoneDayResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

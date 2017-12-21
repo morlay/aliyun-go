@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeAccessRulesRequest struct {
+	requests.RpcRequest
 	PageSize        int    `position:"Query" name:"PageSize"`
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 	AccessRuleId    string `position:"Query" name:"AccessRuleId"`
 	PageNumber      int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeAccessRulesRequest) Invoke(client *sdk.Client) (response *DescribeAccessRulesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAccessRulesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAccessRulesRequest) Invoke(client *sdk.Client) (resp *DescribeAccessRulesResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DescribeAccessRules", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAccessRulesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAccessRulesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAccessRulesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAccessRulesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	PageSize    int

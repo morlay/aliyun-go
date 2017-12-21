@@ -9,6 +9,7 @@ import (
 )
 
 type MoveFacePhotosRequest struct {
+	requests.RpcRequest
 	LibraryId    string                     `position:"Query" name:"LibraryId"`
 	TargetFaceId int64                      `position:"Query" name:"TargetFaceId"`
 	PhotoIds     *MoveFacePhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
@@ -16,29 +17,15 @@ type MoveFacePhotosRequest struct {
 	SourceFaceId int64                      `position:"Query" name:"SourceFaceId"`
 }
 
-func (r MoveFacePhotosRequest) Invoke(client *sdk.Client) (response *MoveFacePhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		MoveFacePhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *MoveFacePhotosRequest) Invoke(client *sdk.Client) (resp *MoveFacePhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "MoveFacePhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		MoveFacePhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.MoveFacePhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &MoveFacePhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type MoveFacePhotosResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

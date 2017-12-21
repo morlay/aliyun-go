@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeTaskInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeTaskInfoRequest struct {
 	TaskId               string `position:"Query" name:"TaskId"`
 }
 
-func (r DescribeTaskInfoRequest) Invoke(client *sdk.Client) (response *DescribeTaskInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeTaskInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeTaskInfoRequest) Invoke(client *sdk.Client) (resp *DescribeTaskInfoResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeTaskInfo", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTaskInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTaskInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTaskInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTaskInfoResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	TaskId             string
 	BeginTime          string

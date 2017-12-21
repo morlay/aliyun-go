@@ -7,33 +7,20 @@ import (
 )
 
 type SaveApScanConfigRequest struct {
+	requests.RpcRequest
 	JsonData   string `position:"Query" name:"JsonData"`
 	ApConfigId int64  `position:"Query" name:"ApConfigId"`
 }
 
-func (r SaveApScanConfigRequest) Invoke(client *sdk.Client) (response *SaveApScanConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApScanConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApScanConfigRequest) Invoke(client *sdk.Client) (resp *SaveApScanConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApScanConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApScanConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApScanConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApScanConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApScanConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

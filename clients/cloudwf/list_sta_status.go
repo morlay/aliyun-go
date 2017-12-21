@@ -7,6 +7,7 @@ import (
 )
 
 type ListStaStatusRequest struct {
+	requests.RpcRequest
 	OrderCol          string `position:"Query" name:"OrderCol"`
 	SearchGroupName   string `position:"Query" name:"SearchGroupName"`
 	SearchStatus      int    `position:"Query" name:"SearchStatus"`
@@ -22,29 +23,15 @@ type ListStaStatusRequest struct {
 	SearchDescription string `position:"Query" name:"SearchDescription"`
 }
 
-func (r ListStaStatusRequest) Invoke(client *sdk.Client) (response *ListStaStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListStaStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListStaStatusRequest) Invoke(client *sdk.Client) (resp *ListStaStatusResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListStaStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListStaStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListStaStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListStaStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListStaStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

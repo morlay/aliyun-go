@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteDatabaseRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBName               string `position:"Query" name:"DBName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type DeleteDatabaseRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteDatabaseRequest) Invoke(client *sdk.Client) (response *DeleteDatabaseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDatabaseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDatabaseRequest) Invoke(client *sdk.Client) (resp *DeleteDatabaseResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DeleteDatabase", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDatabaseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDatabaseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDatabaseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDatabaseResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

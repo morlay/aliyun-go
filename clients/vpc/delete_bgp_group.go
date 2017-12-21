@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteBgpGroupRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type DeleteBgpGroupRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteBgpGroupRequest) Invoke(client *sdk.Client) (response *DeleteBgpGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteBgpGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteBgpGroupRequest) Invoke(client *sdk.Client) (resp *DeleteBgpGroupResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteBgpGroup", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteBgpGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteBgpGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteBgpGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteBgpGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

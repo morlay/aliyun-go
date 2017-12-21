@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVpcZoneNosRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -18,29 +19,15 @@ type DescribeVpcZoneNosRequest struct {
 	Region               string `position:"Query" name:"Region"`
 }
 
-func (r DescribeVpcZoneNosRequest) Invoke(client *sdk.Client) (response *DescribeVpcZoneNosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVpcZoneNosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVpcZoneNosRequest) Invoke(client *sdk.Client) (resp *DescribeVpcZoneNosResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeVpcZoneNos", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVpcZoneNosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVpcZoneNosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVpcZoneNosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVpcZoneNosResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeVpcZoneNosVpcZoneIdList
 }

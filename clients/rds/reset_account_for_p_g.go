@@ -7,6 +7,7 @@ import (
 )
 
 type ResetAccountForPGRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AccountPassword      string `position:"Query" name:"AccountPassword"`
 	AccountName          string `position:"Query" name:"AccountName"`
@@ -16,28 +17,14 @@ type ResetAccountForPGRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ResetAccountForPGRequest) Invoke(client *sdk.Client) (response *ResetAccountForPGResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResetAccountForPGRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResetAccountForPGRequest) Invoke(client *sdk.Client) (resp *ResetAccountForPGResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ResetAccountForPG", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResetAccountForPGResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResetAccountForPGResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResetAccountForPGResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResetAccountForPGResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

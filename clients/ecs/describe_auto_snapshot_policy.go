@@ -7,35 +7,22 @@ import (
 )
 
 type DescribeAutoSnapshotPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (response *DescribeAutoSnapshotPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAutoSnapshotPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *DescribeAutoSnapshotPolicyResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeAutoSnapshotPolicy", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAutoSnapshotPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAutoSnapshotPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAutoSnapshotPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAutoSnapshotPolicyResponse struct {
+	responses.BaseResponse
 	RequestId                  string
 	AutoSnapshotOccupation     int
 	AutoSnapshotPolicy         DescribeAutoSnapshotPolicyAutoSnapshotPolicy

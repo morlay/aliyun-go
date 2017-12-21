@@ -7,32 +7,19 @@ import (
 )
 
 type CheckDomainRequest struct {
+	requests.RpcRequest
 	DomainName string `position:"Query" name:"DomainName"`
 }
 
-func (r CheckDomainRequest) Invoke(client *sdk.Client) (response *CheckDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckDomainRequest) Invoke(client *sdk.Client) (resp *CheckDomainResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "CheckDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckDomainResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	Name        string
 	Avail       int

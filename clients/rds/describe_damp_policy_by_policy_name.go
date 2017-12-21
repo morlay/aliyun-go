@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeDampPolicyByPolicyNameRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeDampPolicyByPolicyNameRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDampPolicyByPolicyNameRequest) Invoke(client *sdk.Client) (response *DescribeDampPolicyByPolicyNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDampPolicyByPolicyNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDampPolicyByPolicyNameRequest) Invoke(client *sdk.Client) (resp *DescribeDampPolicyByPolicyNameResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDampPolicyByPolicyName", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDampPolicyByPolicyNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDampPolicyByPolicyNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDampPolicyByPolicyNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDampPolicyByPolicyNameResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	Policy      string
 	TimeRules   string

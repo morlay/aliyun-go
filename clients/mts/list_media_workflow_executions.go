@@ -9,6 +9,7 @@ import (
 )
 
 type ListMediaWorkflowExecutionsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	InputFileURL         string `position:"Query" name:"InputFileURL"`
@@ -20,29 +21,15 @@ type ListMediaWorkflowExecutionsRequest struct {
 	MediaWorkflowName    string `position:"Query" name:"MediaWorkflowName"`
 }
 
-func (r ListMediaWorkflowExecutionsRequest) Invoke(client *sdk.Client) (response *ListMediaWorkflowExecutionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListMediaWorkflowExecutionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListMediaWorkflowExecutionsRequest) Invoke(client *sdk.Client) (resp *ListMediaWorkflowExecutionsResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListMediaWorkflowExecutions", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListMediaWorkflowExecutionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListMediaWorkflowExecutionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListMediaWorkflowExecutionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListMediaWorkflowExecutionsResponse struct {
+	responses.BaseResponse
 	RequestId                  string
 	NextPageToken              string
 	MediaWorkflowExecutionList ListMediaWorkflowExecutionsMediaWorkflowExecutionList

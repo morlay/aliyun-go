@@ -7,6 +7,7 @@ import (
 )
 
 type CreateProductRequest struct {
+	requests.RpcRequest
 	CatId          int64  `position:"Query" name:"CatId"`
 	Name           string `position:"Query" name:"Name"`
 	ExtProps       string `position:"Query" name:"ExtProps"`
@@ -14,29 +15,15 @@ type CreateProductRequest struct {
 	Desc           string `position:"Query" name:"Desc"`
 }
 
-func (r CreateProductRequest) Invoke(client *sdk.Client) (response *CreateProductResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateProductRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateProductRequest) Invoke(client *sdk.Client) (resp *CreateProductResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "CreateProduct", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateProductResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateProductResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateProductResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateProductResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

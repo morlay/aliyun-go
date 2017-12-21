@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyUserBusinessBehaviorRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	StatusValue          string `position:"Query" name:"StatusValue"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyUserBusinessBehaviorRequest struct {
 	StatusKey            string `position:"Query" name:"StatusKey"`
 }
 
-func (r ModifyUserBusinessBehaviorRequest) Invoke(client *sdk.Client) (response *ModifyUserBusinessBehaviorResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyUserBusinessBehaviorRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyUserBusinessBehaviorRequest) Invoke(client *sdk.Client) (resp *ModifyUserBusinessBehaviorResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyUserBusinessBehavior", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyUserBusinessBehaviorResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyUserBusinessBehaviorResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyUserBusinessBehaviorResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyUserBusinessBehaviorResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

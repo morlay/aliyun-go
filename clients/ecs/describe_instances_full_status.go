@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstancesFullStatusRequest struct {
+	requests.RpcRequest
 	EventIds              *DescribeInstancesFullStatusEventIdList    `position:"Query" type:"Repeated" name:"EventId"`
 	ResourceOwnerId       int64                                      `position:"Query" name:"ResourceOwnerId"`
 	PageNumber            int                                        `position:"Query" name:"PageNumber"`
@@ -26,29 +27,15 @@ type DescribeInstancesFullStatusRequest struct {
 	Status                string                                     `position:"Query" name:"Status"`
 }
 
-func (r DescribeInstancesFullStatusRequest) Invoke(client *sdk.Client) (response *DescribeInstancesFullStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstancesFullStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstancesFullStatusRequest) Invoke(client *sdk.Client) (resp *DescribeInstancesFullStatusResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstancesFullStatus", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstancesFullStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstancesFullStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstancesFullStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstancesFullStatusResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	TotalCount            int
 	PageNumber            int

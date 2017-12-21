@@ -9,31 +9,18 @@ import (
 )
 
 type GetDdosConfigOptionsRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetDdosConfigOptionsRequest) Invoke(client *sdk.Client) (response *GetDdosConfigOptionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetDdosConfigOptionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetDdosConfigOptionsRequest) Invoke(client *sdk.Client) (resp *GetDdosConfigOptionsResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "GetDdosConfigOptions", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetDdosConfigOptionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetDdosConfigOptionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetDdosConfigOptionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetDdosConfigOptionsResponse struct {
+	responses.BaseResponse
 	RequestId                  string
 	RequestThresholdOptions1   GetDdosConfigOptionsRequestThresholdOptionList
 	RequestThresholdOptions2   GetDdosConfigOptionsRequestThresholdOptionList

@@ -7,34 +7,21 @@ import (
 )
 
 type DeviceUpdateRequest struct {
+	requests.RpcRequest
 	DevicePosition string `position:"Query" name:"DevicePosition"`
 	DeviceName     string `position:"Query" name:"DeviceName"`
 	Did            int64  `position:"Query" name:"Did"`
 }
 
-func (r DeviceUpdateRequest) Invoke(client *sdk.Client) (response *DeviceUpdateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeviceUpdateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeviceUpdateRequest) Invoke(client *sdk.Client) (resp *DeviceUpdateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeviceUpdate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeviceUpdateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeviceUpdateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeviceUpdateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeviceUpdateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

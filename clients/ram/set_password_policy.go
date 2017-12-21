@@ -7,6 +7,7 @@ import (
 )
 
 type SetPasswordPolicyRequest struct {
+	requests.RpcRequest
 	RequireNumbers             string `position:"Query" name:"RequireNumbers"`
 	PasswordReusePrevention    int    `position:"Query" name:"PasswordReusePrevention"`
 	RequireUppercaseCharacters string `position:"Query" name:"RequireUppercaseCharacters"`
@@ -18,29 +19,15 @@ type SetPasswordPolicyRequest struct {
 	RequireSymbols             string `position:"Query" name:"RequireSymbols"`
 }
 
-func (r SetPasswordPolicyRequest) Invoke(client *sdk.Client) (response *SetPasswordPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetPasswordPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetPasswordPolicyRequest) Invoke(client *sdk.Client) (resp *SetPasswordPolicyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "SetPasswordPolicy", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetPasswordPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetPasswordPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetPasswordPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetPasswordPolicyResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	PasswordPolicy SetPasswordPolicyPasswordPolicy
 }

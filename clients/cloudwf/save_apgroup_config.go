@@ -7,6 +7,7 @@ import (
 )
 
 type SaveApgroupConfigRequest struct {
+	requests.RpcRequest
 	Country     string `position:"Query" name:"Country"`
 	LogLevel    int    `position:"Query" name:"LogLevel"`
 	Name        string `position:"Query" name:"Name"`
@@ -18,29 +19,15 @@ type SaveApgroupConfigRequest struct {
 	LogIp       string `position:"Query" name:"LogIp"`
 }
 
-func (r SaveApgroupConfigRequest) Invoke(client *sdk.Client) (response *SaveApgroupConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApgroupConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApgroupConfigRequest) Invoke(client *sdk.Client) (resp *SaveApgroupConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApgroupConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApgroupConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApgroupConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApgroupConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApgroupConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

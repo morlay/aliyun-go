@@ -7,6 +7,7 @@ import (
 )
 
 type FlushInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -14,28 +15,14 @@ type FlushInstanceRequest struct {
 	OcsInstanceId        string `position:"Query" name:"OcsInstanceId"`
 }
 
-func (r FlushInstanceRequest) Invoke(client *sdk.Client) (response *FlushInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FlushInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FlushInstanceRequest) Invoke(client *sdk.Client) (resp *FlushInstanceResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "FlushInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FlushInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FlushInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FlushInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FlushInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

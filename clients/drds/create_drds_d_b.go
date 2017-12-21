@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDrdsDBRequest struct {
+	requests.RpcRequest
 	Encode         string `position:"Query" name:"Encode"`
 	Password       string `position:"Query" name:"Password"`
 	DbName         string `position:"Query" name:"DbName"`
@@ -14,29 +15,15 @@ type CreateDrdsDBRequest struct {
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r CreateDrdsDBRequest) Invoke(client *sdk.Client) (response *CreateDrdsDBResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDrdsDBRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDrdsDBRequest) Invoke(client *sdk.Client) (resp *CreateDrdsDBResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "CreateDrdsDB", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDrdsDBResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDrdsDBResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDrdsDBResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDrdsDBResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

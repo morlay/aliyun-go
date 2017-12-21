@@ -9,6 +9,7 @@ import (
 )
 
 type OnsMessageTraceRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsMessageTraceRequest struct {
 	MsgId        string `position:"Query" name:"MsgId"`
 }
 
-func (r OnsMessageTraceRequest) Invoke(client *sdk.Client) (response *OnsMessageTraceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMessageTraceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMessageTraceRequest) Invoke(client *sdk.Client) (resp *OnsMessageTraceResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMessageTrace", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMessageTraceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMessageTraceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMessageTraceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMessageTraceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsMessageTraceMessageTrackList

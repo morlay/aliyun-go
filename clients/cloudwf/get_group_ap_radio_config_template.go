@@ -7,31 +7,18 @@ import (
 )
 
 type GetGroupApRadioConfigTemplateRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetGroupApRadioConfigTemplateRequest) Invoke(client *sdk.Client) (response *GetGroupApRadioConfigTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetGroupApRadioConfigTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetGroupApRadioConfigTemplateRequest) Invoke(client *sdk.Client) (resp *GetGroupApRadioConfigTemplateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetGroupApRadioConfigTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetGroupApRadioConfigTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetGroupApRadioConfigTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetGroupApRadioConfigTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetGroupApRadioConfigTemplateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

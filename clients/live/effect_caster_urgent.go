@@ -7,6 +7,7 @@ import (
 )
 
 type EffectCasterUrgentRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	SceneId       string `position:"Query" name:"SceneId"`
@@ -14,28 +15,14 @@ type EffectCasterUrgentRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r EffectCasterUrgentRequest) Invoke(client *sdk.Client) (response *EffectCasterUrgentResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EffectCasterUrgentRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EffectCasterUrgentRequest) Invoke(client *sdk.Client) (resp *EffectCasterUrgentResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "EffectCasterUrgent", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EffectCasterUrgentResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EffectCasterUrgentResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EffectCasterUrgentResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EffectCasterUrgentResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

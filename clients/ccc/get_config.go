@@ -7,35 +7,22 @@ import (
 )
 
 type GetConfigRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	Name       string `position:"Query" name:"Name"`
 	ObjectType string `position:"Query" name:"ObjectType"`
 	ObjectId   string `position:"Query" name:"ObjectId"`
 }
 
-func (r GetConfigRequest) Invoke(client *sdk.Client) (response *GetConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetConfigRequest) Invoke(client *sdk.Client) (resp *GetConfigResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "GetConfig", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetConfigResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

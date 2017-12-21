@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeDomainRequest struct {
+	requests.RpcRequest
 	GroupId    string `position:"Query" name:"GroupId"`
 	DomainName string `position:"Query" name:"DomainName"`
 }
 
-func (r DescribeDomainRequest) Invoke(client *sdk.Client) (response *DescribeDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainRequest) Invoke(client *sdk.Client) (resp *DescribeDomainResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeDomain", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	GroupId               string
 	DomainName            string

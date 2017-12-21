@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamsControlHistoryRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -17,29 +18,15 @@ type DescribeLiveStreamsControlHistoryRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamsControlHistoryRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamsControlHistoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamsControlHistoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamsControlHistoryRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamsControlHistoryResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamsControlHistory", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamsControlHistoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamsControlHistoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamsControlHistoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamsControlHistoryResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	ControlInfo DescribeLiveStreamsControlHistoryLiveStreamControlInfoList
 }

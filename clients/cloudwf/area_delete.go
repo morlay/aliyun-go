@@ -7,33 +7,20 @@ import (
 )
 
 type AreaDeleteRequest struct {
+	requests.RpcRequest
 	Aid int64 `position:"Query" name:"Aid"`
 	Sid int64 `position:"Query" name:"Sid"`
 }
 
-func (r AreaDeleteRequest) Invoke(client *sdk.Client) (response *AreaDeleteResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AreaDeleteRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AreaDeleteRequest) Invoke(client *sdk.Client) (resp *AreaDeleteResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "AreaDelete", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AreaDeleteResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AreaDeleteResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AreaDeleteResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AreaDeleteResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

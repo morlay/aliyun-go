@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyBgpGroupAttributeRequest struct {
+	requests.RpcRequest
 	AuthKey              string `position:"Query" name:"AuthKey"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -20,28 +21,14 @@ type ModifyBgpGroupAttributeRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r ModifyBgpGroupAttributeRequest) Invoke(client *sdk.Client) (response *ModifyBgpGroupAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyBgpGroupAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyBgpGroupAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyBgpGroupAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyBgpGroupAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyBgpGroupAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyBgpGroupAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyBgpGroupAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyBgpGroupAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

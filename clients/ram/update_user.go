@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateUserRequest struct {
+	requests.RpcRequest
 	NewUserName    string `position:"Query" name:"NewUserName"`
 	NewDisplayName string `position:"Query" name:"NewDisplayName"`
 	NewMobilePhone string `position:"Query" name:"NewMobilePhone"`
@@ -15,29 +16,15 @@ type UpdateUserRequest struct {
 	UserName       string `position:"Query" name:"UserName"`
 }
 
-func (r UpdateUserRequest) Invoke(client *sdk.Client) (response *UpdateUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateUserRequest) Invoke(client *sdk.Client) (resp *UpdateUserResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "UpdateUser", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateUserResponse struct {
+	responses.BaseResponse
 	RequestId string
 	User      UpdateUserUser
 }

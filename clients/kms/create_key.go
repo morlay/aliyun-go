@@ -7,34 +7,21 @@ import (
 )
 
 type CreateKeyRequest struct {
+	requests.RpcRequest
 	Description string `position:"Query" name:"Description"`
 	KeyUsage    string `position:"Query" name:"KeyUsage"`
 	STSToken    string `position:"Query" name:"STSToken"`
 }
 
-func (r CreateKeyRequest) Invoke(client *sdk.Client) (response *CreateKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateKeyRequest) Invoke(client *sdk.Client) (resp *CreateKeyResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "CreateKey", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateKeyResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	KeyMetadata CreateKeyKeyMetadata
 }

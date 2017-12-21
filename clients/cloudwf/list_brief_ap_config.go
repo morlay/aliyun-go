@@ -7,6 +7,7 @@ import (
 )
 
 type ListBriefApConfigRequest struct {
+	requests.RpcRequest
 	SearchScan  int    `position:"Query" name:"SearchScan"`
 	OrderCol    string `position:"Query" name:"OrderCol"`
 	SearchName  string `position:"Query" name:"SearchName"`
@@ -17,29 +18,15 @@ type ListBriefApConfigRequest struct {
 	SearchModel string `position:"Query" name:"SearchModel"`
 }
 
-func (r ListBriefApConfigRequest) Invoke(client *sdk.Client) (response *ListBriefApConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListBriefApConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListBriefApConfigRequest) Invoke(client *sdk.Client) (resp *ListBriefApConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListBriefApConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListBriefApConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListBriefApConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListBriefApConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListBriefApConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

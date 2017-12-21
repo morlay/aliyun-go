@@ -9,6 +9,7 @@ import (
 )
 
 type ChatRequest struct {
+	requests.RpcRequest
 	KnowledgeId string `position:"Query" name:"KnowledgeId"`
 	SenderId    string `position:"Query" name:"SenderId"`
 	InstanceId  string `position:"Query" name:"InstanceId"`
@@ -18,29 +19,15 @@ type ChatRequest struct {
 	Utterance   string `position:"Query" name:"Utterance"`
 }
 
-func (r ChatRequest) Invoke(client *sdk.Client) (response *ChatResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ChatRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ChatRequest) Invoke(client *sdk.Client) (resp *ChatResponse, err error) {
 	req.InitWithApiInfo("Chatbot", "2017-10-11", "Chat", "beebot", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ChatResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ChatResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ChatResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ChatResponse struct {
+	responses.BaseResponse
 	RequestId string
 	SessionId string
 	MessageId string

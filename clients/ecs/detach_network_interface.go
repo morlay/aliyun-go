@@ -7,6 +7,7 @@ import (
 )
 
 type DetachNetworkInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type DetachNetworkInterfaceRequest struct {
 	NetworkInterfaceId   string `position:"Query" name:"NetworkInterfaceId"`
 }
 
-func (r DetachNetworkInterfaceRequest) Invoke(client *sdk.Client) (response *DetachNetworkInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DetachNetworkInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DetachNetworkInterfaceRequest) Invoke(client *sdk.Client) (resp *DetachNetworkInterfaceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DetachNetworkInterface", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DetachNetworkInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DetachNetworkInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DetachNetworkInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DetachNetworkInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

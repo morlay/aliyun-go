@@ -7,6 +7,7 @@ import (
 )
 
 type CreateContacterRequest struct {
+	requests.RpcRequest
 	KpId              int64  `position:"Query" name:"KpId"`
 	ContacterName     string `position:"Query" name:"ContacterName"`
 	ContacterEmail    string `position:"Query" name:"ContacterEmail"`
@@ -14,29 +15,15 @@ type CreateContacterRequest struct {
 	ContacterPosition string `position:"Query" name:"ContacterPosition"`
 }
 
-func (r CreateContacterRequest) Invoke(client *sdk.Client) (response *CreateContacterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateContacterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateContacterRequest) Invoke(client *sdk.Client) (resp *CreateContacterResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "CreateContacter", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateContacterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateContacterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateContacterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateContacterResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

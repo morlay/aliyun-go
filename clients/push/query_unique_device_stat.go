@@ -9,35 +9,22 @@ import (
 )
 
 type QueryUniqueDeviceStatRequest struct {
+	requests.RpcRequest
 	Granularity string `position:"Query" name:"Granularity"`
 	EndTime     string `position:"Query" name:"EndTime"`
 	AppKey      int64  `position:"Query" name:"AppKey"`
 	StartTime   string `position:"Query" name:"StartTime"`
 }
 
-func (r QueryUniqueDeviceStatRequest) Invoke(client *sdk.Client) (response *QueryUniqueDeviceStatResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryUniqueDeviceStatRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryUniqueDeviceStatRequest) Invoke(client *sdk.Client) (resp *QueryUniqueDeviceStatResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryUniqueDeviceStat", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryUniqueDeviceStatResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryUniqueDeviceStatResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryUniqueDeviceStatResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryUniqueDeviceStatResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	AppDeviceStats QueryUniqueDeviceStatAppDeviceStatList
 }

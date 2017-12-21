@@ -7,31 +7,19 @@ import (
 )
 
 type CreateClusterTokenRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 }
 
-func (r CreateClusterTokenRequest) Invoke(client *sdk.Client) (response *CreateClusterTokenResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		CreateClusterTokenRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *CreateClusterTokenRequest) Invoke(client *sdk.Client) (resp *CreateClusterTokenResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "CreateClusterToken", "/clusters/[ClusterId]/token", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		CreateClusterTokenResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateClusterTokenResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateClusterTokenResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateClusterTokenResponse struct {
+	responses.BaseResponse
 }

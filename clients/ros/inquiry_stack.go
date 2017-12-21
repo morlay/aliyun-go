@@ -7,30 +7,18 @@ import (
 )
 
 type InquiryStackRequest struct {
+	requests.RoaRequest
 }
 
-func (r InquiryStackRequest) Invoke(client *sdk.Client) (response *InquiryStackResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		InquiryStackRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *InquiryStackRequest) Invoke(client *sdk.Client) (resp *InquiryStackResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "InquiryStack", "/stacks/inquiry", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		InquiryStackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.InquiryStackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &InquiryStackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type InquiryStackResponse struct {
+	responses.BaseResponse
 }

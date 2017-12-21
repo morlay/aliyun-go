@@ -7,31 +7,18 @@ import (
 )
 
 type SetAccountAliasRequest struct {
+	requests.RpcRequest
 	AccountAlias string `position:"Query" name:"AccountAlias"`
 }
 
-func (r SetAccountAliasRequest) Invoke(client *sdk.Client) (response *SetAccountAliasResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetAccountAliasRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetAccountAliasRequest) Invoke(client *sdk.Client) (resp *SetAccountAliasResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "SetAccountAlias", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetAccountAliasResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetAccountAliasResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetAccountAliasResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetAccountAliasResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

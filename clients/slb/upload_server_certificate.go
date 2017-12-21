@@ -7,6 +7,7 @@ import (
 )
 
 type UploadServerCertificateRequest struct {
+	requests.RpcRequest
 	Access_key_id           string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ServerCertificate       string `position:"Query" name:"ServerCertificate"`
@@ -21,29 +22,15 @@ type UploadServerCertificateRequest struct {
 	ServerCertificateName   string `position:"Query" name:"ServerCertificateName"`
 }
 
-func (r UploadServerCertificateRequest) Invoke(client *sdk.Client) (response *UploadServerCertificateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UploadServerCertificateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UploadServerCertificateRequest) Invoke(client *sdk.Client) (resp *UploadServerCertificateResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "UploadServerCertificate", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UploadServerCertificateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UploadServerCertificateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UploadServerCertificateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UploadServerCertificateResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	ServerCertificateId     string
 	Fingerprint             string

@@ -7,6 +7,7 @@ import (
 )
 
 type AddListenerWhiteListItemRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -18,28 +19,14 @@ type AddListenerWhiteListItemRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r AddListenerWhiteListItemRequest) Invoke(client *sdk.Client) (response *AddListenerWhiteListItemResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddListenerWhiteListItemRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddListenerWhiteListItemRequest) Invoke(client *sdk.Client) (resp *AddListenerWhiteListItemResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "AddListenerWhiteListItem", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddListenerWhiteListItemResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddListenerWhiteListItemResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddListenerWhiteListItemResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddListenerWhiteListItemResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

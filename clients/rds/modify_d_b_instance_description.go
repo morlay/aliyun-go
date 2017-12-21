@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceDescriptionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount  string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken           string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type ModifyDBInstanceDescriptionRequest struct {
 	OwnerId               int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDBInstanceDescriptionRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceDescriptionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceDescriptionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceDescriptionRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceDescriptionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceDescription", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceDescriptionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceDescriptionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceDescriptionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceDescriptionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

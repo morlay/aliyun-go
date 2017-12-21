@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAbnormalDBInstancesRequest struct {
+	requests.RpcRequest
 	Tag4value            string `position:"Query" name:"Tag.4.value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Tag2key              string `position:"Query" name:"Tag.2.key"`
@@ -31,29 +32,15 @@ type DescribeAbnormalDBInstancesRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r DescribeAbnormalDBInstancesRequest) Invoke(client *sdk.Client) (response *DescribeAbnormalDBInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAbnormalDBInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAbnormalDBInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeAbnormalDBInstancesResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeAbnormalDBInstances", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAbnormalDBInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAbnormalDBInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAbnormalDBInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAbnormalDBInstancesResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount int
 	PageNumber       int

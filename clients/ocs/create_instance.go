@@ -7,6 +7,7 @@ import (
 )
 
 type CreateInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -22,29 +23,15 @@ type CreateInstanceRequest struct {
 	PrivateIp            string `position:"Query" name:"PrivateIp"`
 }
 
-func (r CreateInstanceRequest) Invoke(client *sdk.Client) (response *CreateInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateInstanceRequest) Invoke(client *sdk.Client) (resp *CreateInstanceResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "CreateInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateInstanceResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	OcsInstance CreateInstanceOcsInstance
 }

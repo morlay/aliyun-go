@@ -7,34 +7,21 @@ import (
 )
 
 type CreateSignatureRequest struct {
+	requests.RpcRequest
 	SignatureName   string `position:"Query" name:"SignatureName"`
 	SignatureKey    string `position:"Query" name:"SignatureKey"`
 	SignatureSecret string `position:"Query" name:"SignatureSecret"`
 }
 
-func (r CreateSignatureRequest) Invoke(client *sdk.Client) (response *CreateSignatureResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateSignatureRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateSignatureRequest) Invoke(client *sdk.Client) (resp *CreateSignatureResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "CreateSignature", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateSignatureResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateSignatureResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateSignatureResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateSignatureResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	SignatureId   string
 	SignatureName string

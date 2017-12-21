@@ -9,31 +9,18 @@ import (
 )
 
 type DescribeRegionsRequest struct {
+	requests.RpcRequest
 }
 
-func (r DescribeRegionsRequest) Invoke(client *sdk.Client) (response *DescribeRegionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRegionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRegionsRequest) Invoke(client *sdk.Client) (resp *DescribeRegionsResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeRegions", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRegionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRegionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRegionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRegionsResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	Success     bool
 	DrdsRegions DescribeRegionsDrdsRegionList

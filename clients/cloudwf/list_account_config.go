@@ -7,6 +7,7 @@ import (
 )
 
 type ListAccountConfigRequest struct {
+	requests.RpcRequest
 	OrderCol    string `position:"Query" name:"OrderCol"`
 	Length      int    `position:"Query" name:"Length"`
 	SearchEmail string `position:"Query" name:"SearchEmail"`
@@ -14,29 +15,15 @@ type ListAccountConfigRequest struct {
 	OrderDir    string `position:"Query" name:"OrderDir"`
 }
 
-func (r ListAccountConfigRequest) Invoke(client *sdk.Client) (response *ListAccountConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAccountConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAccountConfigRequest) Invoke(client *sdk.Client) (resp *ListAccountConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListAccountConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAccountConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAccountConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAccountConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAccountConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

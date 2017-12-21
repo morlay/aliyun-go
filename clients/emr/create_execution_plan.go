@@ -9,6 +9,7 @@ import (
 )
 
 type CreateExecutionPlanRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64                                      `position:"Query" name:"ResourceOwnerId"`
 	Name                   string                                     `position:"Query" name:"Name"`
 	Strategy               string                                     `position:"Query" name:"Strategy"`
@@ -38,25 +39,10 @@ type CreateExecutionPlanRequest struct {
 	BootstrapActions       *CreateExecutionPlanBootstrapActionList    `position:"Query" type:"Repeated" name:"BootstrapAction"`
 }
 
-func (r CreateExecutionPlanRequest) Invoke(client *sdk.Client) (response *CreateExecutionPlanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateExecutionPlanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateExecutionPlanRequest) Invoke(client *sdk.Client) (resp *CreateExecutionPlanResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "CreateExecutionPlan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateExecutionPlanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateExecutionPlanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateExecutionPlanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -77,6 +63,7 @@ type CreateExecutionPlanBootstrapAction struct {
 }
 
 type CreateExecutionPlanResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Id        string
 }

@@ -7,35 +7,22 @@ import (
 )
 
 type DeleteCustomMetricRequest struct {
+	requests.RpcRequest
 	GroupId    string `position:"Query" name:"GroupId"`
 	MetricName string `position:"Query" name:"MetricName"`
 	UUID       string `position:"Query" name:"UUID"`
 	Md5        string `position:"Query" name:"Md.5"`
 }
 
-func (r DeleteCustomMetricRequest) Invoke(client *sdk.Client) (response *DeleteCustomMetricResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCustomMetricRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCustomMetricRequest) Invoke(client *sdk.Client) (resp *DeleteCustomMetricResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteCustomMetric", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCustomMetricResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCustomMetricResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCustomMetricResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCustomMetricResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,6 +7,7 @@ import (
 )
 
 type CheckAccountNameAvailableRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AccountName          string `position:"Query" name:"AccountName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type CheckAccountNameAvailableRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CheckAccountNameAvailableRequest) Invoke(client *sdk.Client) (response *CheckAccountNameAvailableResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckAccountNameAvailableRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckAccountNameAvailableRequest) Invoke(client *sdk.Client) (resp *CheckAccountNameAvailableResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CheckAccountNameAvailable", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckAccountNameAvailableResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckAccountNameAvailableResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckAccountNameAvailableResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckAccountNameAvailableResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

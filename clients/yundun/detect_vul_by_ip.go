@@ -7,32 +7,19 @@ import (
 )
 
 type DetectVulByIpRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	VulIp      string `position:"Query" name:"VulIp"`
 }
 
-func (r DetectVulByIpRequest) Invoke(client *sdk.Client) (response *DetectVulByIpResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DetectVulByIpRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DetectVulByIpRequest) Invoke(client *sdk.Client) (resp *DetectVulByIpResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "DetectVulByIp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DetectVulByIpResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DetectVulByIpResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DetectVulByIpResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DetectVulByIpResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

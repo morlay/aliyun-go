@@ -7,32 +7,19 @@ import (
 )
 
 type GetStaRunHistoryTimeSerRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetStaRunHistoryTimeSerRequest) Invoke(client *sdk.Client) (response *GetStaRunHistoryTimeSerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetStaRunHistoryTimeSerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetStaRunHistoryTimeSerRequest) Invoke(client *sdk.Client) (resp *GetStaRunHistoryTimeSerResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetStaRunHistoryTimeSer", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetStaRunHistoryTimeSerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetStaRunHistoryTimeSerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetStaRunHistoryTimeSerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetStaRunHistoryTimeSerResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

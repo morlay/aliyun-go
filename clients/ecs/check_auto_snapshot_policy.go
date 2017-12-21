@@ -7,6 +7,7 @@ import (
 )
 
 type CheckAutoSnapshotPolicyRequest struct {
+	requests.RpcRequest
 	DataDiskPolicyEnabled             string `position:"Query" name:"DataDiskPolicyEnabled"`
 	ResourceOwnerId                   int64  `position:"Query" name:"ResourceOwnerId"`
 	DataDiskPolicyRetentionDays       int    `position:"Query" name:"DataDiskPolicyRetentionDays"`
@@ -21,29 +22,15 @@ type CheckAutoSnapshotPolicyRequest struct {
 	SystemDiskPolicyEnabled           string `position:"Query" name:"SystemDiskPolicyEnabled"`
 }
 
-func (r CheckAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (response *CheckAutoSnapshotPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckAutoSnapshotPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *CheckAutoSnapshotPolicyResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CheckAutoSnapshotPolicy", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckAutoSnapshotPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckAutoSnapshotPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckAutoSnapshotPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckAutoSnapshotPolicyResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	AutoSnapshotOccupation int
 	IsPermittedModify      string

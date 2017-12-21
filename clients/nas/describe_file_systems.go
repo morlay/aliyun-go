@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeFileSystemsRequest struct {
+	requests.RpcRequest
 	PageSize     int    `position:"Query" name:"PageSize"`
 	PageNumber   int    `position:"Query" name:"PageNumber"`
 	FileSystemId string `position:"Query" name:"FileSystemId"`
 }
 
-func (r DescribeFileSystemsRequest) Invoke(client *sdk.Client) (response *DescribeFileSystemsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeFileSystemsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeFileSystemsRequest) Invoke(client *sdk.Client) (resp *DescribeFileSystemsResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DescribeFileSystems", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeFileSystemsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeFileSystemsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeFileSystemsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeFileSystemsResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	PageSize    int

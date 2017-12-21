@@ -7,6 +7,7 @@ import (
 )
 
 type SwitchDBInstanceChargeTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type SwitchDBInstanceChargeTypeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SwitchDBInstanceChargeTypeRequest) Invoke(client *sdk.Client) (response *SwitchDBInstanceChargeTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SwitchDBInstanceChargeTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SwitchDBInstanceChargeTypeRequest) Invoke(client *sdk.Client) (resp *SwitchDBInstanceChargeTypeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "SwitchDBInstanceChargeType", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SwitchDBInstanceChargeTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SwitchDBInstanceChargeTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SwitchDBInstanceChargeTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SwitchDBInstanceChargeTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

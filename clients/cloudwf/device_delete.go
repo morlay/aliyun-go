@@ -7,33 +7,20 @@ import (
 )
 
 type DeviceDeleteRequest struct {
+	requests.RpcRequest
 	Did int64  `position:"Query" name:"Did"`
 	Mac string `position:"Query" name:"Mac"`
 }
 
-func (r DeviceDeleteRequest) Invoke(client *sdk.Client) (response *DeviceDeleteResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeviceDeleteRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeviceDeleteRequest) Invoke(client *sdk.Client) (resp *DeviceDeleteResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeviceDelete", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeviceDeleteResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeviceDeleteResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeviceDeleteResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeviceDeleteResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

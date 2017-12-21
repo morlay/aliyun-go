@@ -7,6 +7,7 @@ import (
 )
 
 type CheckDBNameAvailableRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBName               string `position:"Query" name:"DBName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type CheckDBNameAvailableRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CheckDBNameAvailableRequest) Invoke(client *sdk.Client) (response *CheckDBNameAvailableResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckDBNameAvailableRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckDBNameAvailableRequest) Invoke(client *sdk.Client) (resp *CheckDBNameAvailableResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CheckDBNameAvailable", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckDBNameAvailableResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckDBNameAvailableResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckDBNameAvailableResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckDBNameAvailableResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeOptimizeAdviceOnStorageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeOptimizeAdviceOnStorageRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeOptimizeAdviceOnStorageRequest) Invoke(client *sdk.Client) (response *DescribeOptimizeAdviceOnStorageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOptimizeAdviceOnStorageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOptimizeAdviceOnStorageRequest) Invoke(client *sdk.Client) (resp *DescribeOptimizeAdviceOnStorageResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeOptimizeAdviceOnStorage", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOptimizeAdviceOnStorageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOptimizeAdviceOnStorageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOptimizeAdviceOnStorageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOptimizeAdviceOnStorageResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	DBInstanceId      string
 	TotalRecordsCount int

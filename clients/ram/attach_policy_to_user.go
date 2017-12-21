@@ -7,33 +7,20 @@ import (
 )
 
 type AttachPolicyToUserRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 	UserName   string `position:"Query" name:"UserName"`
 }
 
-func (r AttachPolicyToUserRequest) Invoke(client *sdk.Client) (response *AttachPolicyToUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachPolicyToUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachPolicyToUserRequest) Invoke(client *sdk.Client) (resp *AttachPolicyToUserResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "AttachPolicyToUser", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachPolicyToUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachPolicyToUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachPolicyToUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachPolicyToUserResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

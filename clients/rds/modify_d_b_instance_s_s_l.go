@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceSSLRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ConnectionString     string `position:"Query" name:"ConnectionString"`
@@ -15,28 +16,14 @@ type ModifyDBInstanceSSLRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDBInstanceSSLRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceSSLResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceSSLRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceSSLRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceSSLResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceSSL", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceSSLResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceSSLResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceSSLResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceSSLResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

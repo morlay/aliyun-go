@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainAverageResponseTimeRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	TimeMerge     string `position:"Query" name:"TimeMerge"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeDomainAverageResponseTimeRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainAverageResponseTimeRequest) Invoke(client *sdk.Client) (response *DescribeDomainAverageResponseTimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainAverageResponseTimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainAverageResponseTimeRequest) Invoke(client *sdk.Client) (resp *DescribeDomainAverageResponseTimeResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainAverageResponseTime", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainAverageResponseTimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainAverageResponseTimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainAverageResponseTimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainAverageResponseTimeResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DomainName       string
 	DataInterval     string

@@ -7,33 +7,21 @@ import (
 )
 
 type DeleteBuildRequest struct {
+	requests.RoaRequest
 	BuildNumber int    `position:"Path" name:"BuildNumber"`
 	JobName     string `position:"Path" name:"JobName"`
 }
 
-func (r DeleteBuildRequest) Invoke(client *sdk.Client) (response *DeleteBuildResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DeleteBuildRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DeleteBuildRequest) Invoke(client *sdk.Client) (resp *DeleteBuildResponse, err error) {
 	req.InitWithApiInfo("Cds", "2017-09-25", "DeleteBuild", "/v1/job/[JobName]/build/[BuildNumber]", "", "")
 	req.Method = "DELETE"
 
-	resp := struct {
-		*responses.BaseResponse
-		DeleteBuildResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteBuildResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteBuildResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteBuildResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeBatchResultRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	TraceId      string `position:"Query" name:"TraceId"`
 }
 
-func (r DescribeBatchResultRequest) Invoke(client *sdk.Client) (response *DescribeBatchResultResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBatchResultRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBatchResultRequest) Invoke(client *sdk.Client) (resp *DescribeBatchResultResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeBatchResult", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBatchResultResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBatchResultResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBatchResultResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBatchResultResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	TraceId       string
 	Status        int64

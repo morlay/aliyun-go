@@ -7,6 +7,7 @@ import (
 )
 
 type SetMessageCallbackRequest struct {
+	requests.RpcRequest
 	CallbackType         string `position:"Query" name:"CallbackType"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	CallbackSwitch       string `position:"Query" name:"CallbackSwitch"`
@@ -17,28 +18,14 @@ type SetMessageCallbackRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r SetMessageCallbackRequest) Invoke(client *sdk.Client) (response *SetMessageCallbackResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetMessageCallbackRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetMessageCallbackRequest) Invoke(client *sdk.Client) (resp *SetMessageCallbackResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SetMessageCallback", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetMessageCallbackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetMessageCallbackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetMessageCallbackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetMessageCallbackResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

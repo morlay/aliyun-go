@@ -7,34 +7,21 @@ import (
 )
 
 type CreateReadOnlyAccountRequest struct {
+	requests.RpcRequest
 	Password       string `position:"Query" name:"Password"`
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r CreateReadOnlyAccountRequest) Invoke(client *sdk.Client) (response *CreateReadOnlyAccountResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateReadOnlyAccountRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateReadOnlyAccountRequest) Invoke(client *sdk.Client) (resp *CreateReadOnlyAccountResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "CreateReadOnlyAccount", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateReadOnlyAccountResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateReadOnlyAccountResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateReadOnlyAccountResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateReadOnlyAccountResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      CreateReadOnlyAccountData

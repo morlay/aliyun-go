@@ -9,6 +9,7 @@ import (
 )
 
 type CreateImageRequest struct {
+	requests.RpcRequest
 	DiskDeviceMappings   *CreateImageDiskDeviceMappingList `position:"Query" type:"Repeated" name:"DiskDeviceMapping"`
 	Tag4Value            string                            `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId      int64                             `position:"Query" name:"ResourceOwnerId"`
@@ -34,25 +35,10 @@ type CreateImageRequest struct {
 	Tag4Key              string                            `position:"Query" name:"Tag.4.Key"`
 }
 
-func (r CreateImageRequest) Invoke(client *sdk.Client) (response *CreateImageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateImageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateImageRequest) Invoke(client *sdk.Client) (resp *CreateImageResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateImage", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateImageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateImageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateImageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -64,6 +50,7 @@ type CreateImageDiskDeviceMapping struct {
 }
 
 type CreateImageResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ImageId   string
 }

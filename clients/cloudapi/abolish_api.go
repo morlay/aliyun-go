@@ -7,33 +7,20 @@ import (
 )
 
 type AbolishApiRequest struct {
+	requests.RpcRequest
 	GroupId   string `position:"Query" name:"GroupId"`
 	ApiId     string `position:"Query" name:"ApiId"`
 	StageName string `position:"Query" name:"StageName"`
 }
 
-func (r AbolishApiRequest) Invoke(client *sdk.Client) (response *AbolishApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AbolishApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AbolishApiRequest) Invoke(client *sdk.Client) (resp *AbolishApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "AbolishApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AbolishApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AbolishApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AbolishApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AbolishApiResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

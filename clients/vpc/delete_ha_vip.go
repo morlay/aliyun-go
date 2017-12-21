@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteHaVipRequest struct {
+	requests.RpcRequest
 	HaVipId              string `position:"Query" name:"HaVipId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type DeleteHaVipRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteHaVipRequest) Invoke(client *sdk.Client) (response *DeleteHaVipResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteHaVipRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteHaVipRequest) Invoke(client *sdk.Client) (resp *DeleteHaVipResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteHaVip", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteHaVipResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteHaVipResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteHaVipResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteHaVipResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

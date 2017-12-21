@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteDeploymentSetRequest struct {
+	requests.RpcRequest
 	DeploymentSetId      string `position:"Query" name:"DeploymentSetId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteDeploymentSetRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteDeploymentSetRequest) Invoke(client *sdk.Client) (response *DeleteDeploymentSetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDeploymentSetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDeploymentSetRequest) Invoke(client *sdk.Client) (resp *DeleteDeploymentSetResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteDeploymentSet", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDeploymentSetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDeploymentSetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDeploymentSetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDeploymentSetResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

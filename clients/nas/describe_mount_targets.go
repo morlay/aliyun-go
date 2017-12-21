@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeMountTargetsRequest struct {
+	requests.RpcRequest
 	MountTargetDomain string `position:"Query" name:"MountTargetDomain"`
 	PageSize          int    `position:"Query" name:"PageSize"`
 	PageNumber        int    `position:"Query" name:"PageNumber"`
 	FileSystemId      string `position:"Query" name:"FileSystemId"`
 }
 
-func (r DescribeMountTargetsRequest) Invoke(client *sdk.Client) (response *DescribeMountTargetsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeMountTargetsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeMountTargetsRequest) Invoke(client *sdk.Client) (resp *DescribeMountTargetsResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DescribeMountTargets", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeMountTargetsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeMountTargetsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeMountTargetsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeMountTargetsResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int
 	PageSize     int

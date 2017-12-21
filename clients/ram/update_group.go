@@ -7,34 +7,21 @@ import (
 )
 
 type UpdateGroupRequest struct {
+	requests.RpcRequest
 	NewGroupName string `position:"Query" name:"NewGroupName"`
 	NewComments  string `position:"Query" name:"NewComments"`
 	GroupName    string `position:"Query" name:"GroupName"`
 }
 
-func (r UpdateGroupRequest) Invoke(client *sdk.Client) (response *UpdateGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateGroupRequest) Invoke(client *sdk.Client) (resp *UpdateGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "UpdateGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Group     UpdateGroupGroup
 }

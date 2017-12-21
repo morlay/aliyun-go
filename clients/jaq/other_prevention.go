@@ -7,6 +7,7 @@ import (
 )
 
 type OtherPreventionRequest struct {
+	requests.RpcRequest
 	CallerName      string `position:"Query" name:"CallerName"`
 	Ip              string `position:"Query" name:"Ip"`
 	ProtocolVersion string `position:"Query" name:"ProtocolVersion"`
@@ -36,29 +37,15 @@ type OtherPreventionRequest struct {
 	SDKToken        string `position:"Query" name:"SDKToken"`
 }
 
-func (r OtherPreventionRequest) Invoke(client *sdk.Client) (response *OtherPreventionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OtherPreventionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OtherPreventionRequest) Invoke(client *sdk.Client) (resp *OtherPreventionResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "OtherPrevention", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OtherPreventionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OtherPreventionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OtherPreventionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OtherPreventionResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      OtherPreventionData

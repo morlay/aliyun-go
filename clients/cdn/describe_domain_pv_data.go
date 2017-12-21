@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainPvDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainPvDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainPvDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainPvDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainPvDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainPvDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainPvDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainPvData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainPvDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainPvDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainPvDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainPvDataResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	DomainName     string
 	DataInterval   string

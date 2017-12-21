@@ -9,6 +9,7 @@ import (
 )
 
 type QueryFacerecogJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type QueryFacerecogJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryFacerecogJobListRequest) Invoke(client *sdk.Client) (response *QueryFacerecogJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryFacerecogJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryFacerecogJobListRequest) Invoke(client *sdk.Client) (resp *QueryFacerecogJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryFacerecogJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryFacerecogJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryFacerecogJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryFacerecogJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryFacerecogJobListResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	FacerecogJobList QueryFacerecogJobListFacerecogJobList
 	NonExistIds      QueryFacerecogJobListNonExistIdList

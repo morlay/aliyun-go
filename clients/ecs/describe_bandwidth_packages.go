@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBandwidthPackagesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeBandwidthPackagesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeBandwidthPackagesRequest) Invoke(client *sdk.Client) (response *DescribeBandwidthPackagesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBandwidthPackagesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBandwidthPackagesRequest) Invoke(client *sdk.Client) (resp *DescribeBandwidthPackagesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeBandwidthPackages", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBandwidthPackagesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBandwidthPackagesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBandwidthPackagesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBandwidthPackagesResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalCount        int
 	PageNumber        int

@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeListenerAccessControlAttributeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -17,29 +18,15 @@ type DescribeListenerAccessControlAttributeRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeListenerAccessControlAttributeRequest) Invoke(client *sdk.Client) (response *DescribeListenerAccessControlAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeListenerAccessControlAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeListenerAccessControlAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeListenerAccessControlAttributeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeListenerAccessControlAttribute", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeListenerAccessControlAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeListenerAccessControlAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeListenerAccessControlAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeListenerAccessControlAttributeResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	AccessControlStatus string
 	SourceItems         string

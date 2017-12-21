@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyVpnGatewayAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,29 +18,15 @@ type ModifyVpnGatewayAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyVpnGatewayAttributeRequest) Invoke(client *sdk.Client) (response *ModifyVpnGatewayAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyVpnGatewayAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyVpnGatewayAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyVpnGatewayAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyVpnGatewayAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyVpnGatewayAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyVpnGatewayAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyVpnGatewayAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyVpnGatewayAttributeResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	VpnGatewayId   string
 	VpcId          string

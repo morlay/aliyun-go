@@ -9,33 +9,20 @@ import (
 )
 
 type QueryPushStatByMsgRequest struct {
+	requests.RpcRequest
 	MessageId string `position:"Query" name:"MessageId"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 }
 
-func (r QueryPushStatByMsgRequest) Invoke(client *sdk.Client) (response *QueryPushStatByMsgResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPushStatByMsgRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPushStatByMsgRequest) Invoke(client *sdk.Client) (resp *QueryPushStatByMsgResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryPushStatByMsg", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPushStatByMsgResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPushStatByMsgResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPushStatByMsgResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPushStatByMsgResponse struct {
+	responses.BaseResponse
 	RequestId string
 	PushStats QueryPushStatByMsgPushStatList
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type GetEntityListRequest struct {
+	requests.RpcRequest
 	GroupId     int64  `position:"Query" name:"GroupId"`
 	PageSize    int    `position:"Query" name:"PageSize"`
 	Remark      string `position:"Query" name:"Remark"`
@@ -17,29 +18,15 @@ type GetEntityListRequest struct {
 	RegionNo    string `position:"Query" name:"RegionNo"`
 }
 
-func (r GetEntityListRequest) Invoke(client *sdk.Client) (response *GetEntityListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetEntityListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetEntityListRequest) Invoke(client *sdk.Client) (resp *GetEntityListResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "GetEntityList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetEntityListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetEntityListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetEntityListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetEntityListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Success   bool

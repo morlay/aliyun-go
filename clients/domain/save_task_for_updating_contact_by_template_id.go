@@ -7,6 +7,7 @@ import (
 )
 
 type SaveTaskForUpdatingContactByTemplateIdRequest struct {
+	requests.RpcRequest
 	SaleId            string `position:"Query" name:"SaleId"`
 	ContactType       string `position:"Query" name:"ContactType"`
 	UserClientIp      string `position:"Query" name:"UserClientIp"`
@@ -16,29 +17,15 @@ type SaveTaskForUpdatingContactByTemplateIdRequest struct {
 	ContactTemplateId int64  `position:"Query" name:"ContactTemplateId"`
 }
 
-func (r SaveTaskForUpdatingContactByTemplateIdRequest) Invoke(client *sdk.Client) (response *SaveTaskForUpdatingContactByTemplateIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveTaskForUpdatingContactByTemplateIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveTaskForUpdatingContactByTemplateIdRequest) Invoke(client *sdk.Client) (resp *SaveTaskForUpdatingContactByTemplateIdResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "SaveTaskForUpdatingContactByTemplateId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveTaskForUpdatingContactByTemplateIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveTaskForUpdatingContactByTemplateIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveTaskForUpdatingContactByTemplateIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveTaskForUpdatingContactByTemplateIdResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	TaskNo    string

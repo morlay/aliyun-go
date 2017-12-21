@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyAlertConfigRequest struct {
+	requests.RpcRequest
 	SuccessConfig        int    `position:"Query" name:"SuccessConfig"`
 	RejectConfig         int    `position:"Query" name:"RejectConfig"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyAlertConfigRequest struct {
 	FailConfig           int    `position:"Query" name:"FailConfig"`
 }
 
-func (r ModifyAlertConfigRequest) Invoke(client *sdk.Client) (response *ModifyAlertConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyAlertConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyAlertConfigRequest) Invoke(client *sdk.Client) (resp *ModifyAlertConfigResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "ModifyAlertConfig", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyAlertConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyAlertConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyAlertConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyAlertConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

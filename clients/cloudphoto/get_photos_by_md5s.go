@@ -9,35 +9,22 @@ import (
 )
 
 type GetPhotosByMd5sRequest struct {
+	requests.RpcRequest
 	LibraryId string                  `position:"Query" name:"LibraryId"`
 	StoreName string                  `position:"Query" name:"StoreName"`
 	State     string                  `position:"Query" name:"State"`
 	Md5s      *GetPhotosByMd5sMd5List `position:"Query" type:"Repeated" name:"Md.5"`
 }
 
-func (r GetPhotosByMd5sRequest) Invoke(client *sdk.Client) (response *GetPhotosByMd5sResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetPhotosByMd5sRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetPhotosByMd5sRequest) Invoke(client *sdk.Client) (resp *GetPhotosByMd5sResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetPhotosByMd5s", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetPhotosByMd5sResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetPhotosByMd5sResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetPhotosByMd5sResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetPhotosByMd5sResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeL2VipsByDomainRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeL2VipsByDomainRequest) Invoke(client *sdk.Client) (response *DescribeL2VipsByDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeL2VipsByDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeL2VipsByDomainRequest) Invoke(client *sdk.Client) (resp *DescribeL2VipsByDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeL2VipsByDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeL2VipsByDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeL2VipsByDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeL2VipsByDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeL2VipsByDomainResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	DomainName string
 	Vips       DescribeL2VipsByDomainVipList

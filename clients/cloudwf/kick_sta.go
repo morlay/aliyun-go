@@ -7,32 +7,19 @@ import (
 )
 
 type KickStaRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r KickStaRequest) Invoke(client *sdk.Client) (response *KickStaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		KickStaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *KickStaRequest) Invoke(client *sdk.Client) (resp *KickStaResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "KickSta", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		KickStaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.KickStaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &KickStaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type KickStaResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

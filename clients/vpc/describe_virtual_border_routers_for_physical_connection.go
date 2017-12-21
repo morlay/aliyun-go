@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVirtualBorderRoutersForPhysicalConnectionRequest struct {
+	requests.RpcRequest
 	Filters              *DescribeVirtualBorderRoutersForPhysicalConnectionFilterList `position:"Query" type:"Repeated" name:"Filter"`
 	ResourceOwnerId      int64                                                        `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                                                       `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,25 +19,10 @@ type DescribeVirtualBorderRoutersForPhysicalConnectionRequest struct {
 	PageNumber           int                                                          `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeVirtualBorderRoutersForPhysicalConnectionRequest) Invoke(client *sdk.Client) (response *DescribeVirtualBorderRoutersForPhysicalConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVirtualBorderRoutersForPhysicalConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVirtualBorderRoutersForPhysicalConnectionRequest) Invoke(client *sdk.Client) (resp *DescribeVirtualBorderRoutersForPhysicalConnectionResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeVirtualBorderRoutersForPhysicalConnection", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVirtualBorderRoutersForPhysicalConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVirtualBorderRoutersForPhysicalConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVirtualBorderRoutersForPhysicalConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -46,6 +32,7 @@ type DescribeVirtualBorderRoutersForPhysicalConnectionFilter struct {
 }
 
 type DescribeVirtualBorderRoutersForPhysicalConnectionResponse struct {
+	responses.BaseResponse
 	RequestId                                   string
 	PageNumber                                  int
 	PageSize                                    int

@@ -7,6 +7,7 @@ import (
 )
 
 type ReleaseClusterPublicConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount    string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId             string `position:"Query" name:"DBClusterId"`
@@ -15,28 +16,14 @@ type ReleaseClusterPublicConnectionRequest struct {
 	CurrentConnectionString string `position:"Query" name:"CurrentConnectionString"`
 }
 
-func (r ReleaseClusterPublicConnectionRequest) Invoke(client *sdk.Client) (response *ReleaseClusterPublicConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseClusterPublicConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseClusterPublicConnectionRequest) Invoke(client *sdk.Client) (resp *ReleaseClusterPublicConnectionResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ReleaseClusterPublicConnection", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseClusterPublicConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseClusterPublicConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseClusterPublicConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseClusterPublicConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

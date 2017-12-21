@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainUpstreamOfCenterRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainUpstreamOfCenterRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainUpstreamOfCenterRequest) Invoke(client *sdk.Client) (response *DescribeDomainUpstreamOfCenterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainUpstreamOfCenterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainUpstreamOfCenterRequest) Invoke(client *sdk.Client) (resp *DescribeDomainUpstreamOfCenterResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainUpstreamOfCenter", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainUpstreamOfCenterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainUpstreamOfCenterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainUpstreamOfCenterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainUpstreamOfCenterResponse struct {
+	responses.BaseResponse
 	RequestId string
 	BpsDatas  DescribeDomainUpstreamOfCenterDomainBpsModelList
 }

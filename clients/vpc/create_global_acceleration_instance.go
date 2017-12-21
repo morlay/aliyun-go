@@ -7,6 +7,7 @@ import (
 )
 
 type CreateGlobalAccelerationInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ServiceLocation      string `position:"Query" name:"ServiceLocation"`
@@ -19,29 +20,15 @@ type CreateGlobalAccelerationInstanceRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreateGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (response *CreateGlobalAccelerationInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateGlobalAccelerationInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (resp *CreateGlobalAccelerationInstanceResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateGlobalAccelerationInstance", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateGlobalAccelerationInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateGlobalAccelerationInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateGlobalAccelerationInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateGlobalAccelerationInstanceResponse struct {
+	responses.BaseResponse
 	RequestId                    string
 	GlobalAccelerationInstanceId string
 	IpAddress                    string

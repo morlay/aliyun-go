@@ -7,31 +7,18 @@ import (
 )
 
 type GetBidRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetBidRequest) Invoke(client *sdk.Client) (response *GetBidResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetBidRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetBidRequest) Invoke(client *sdk.Client) (resp *GetBidResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetBid", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetBidResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetBidResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetBidResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetBidResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

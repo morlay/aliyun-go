@@ -7,33 +7,20 @@ import (
 )
 
 type ModifyDrdsInstanceDescriptionRequest struct {
+	requests.RpcRequest
 	Description    string `position:"Query" name:"Description"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r ModifyDrdsInstanceDescriptionRequest) Invoke(client *sdk.Client) (response *ModifyDrdsInstanceDescriptionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDrdsInstanceDescriptionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDrdsInstanceDescriptionRequest) Invoke(client *sdk.Client) (resp *ModifyDrdsInstanceDescriptionResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "ModifyDrdsInstanceDescription", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDrdsInstanceDescriptionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDrdsInstanceDescriptionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDrdsInstanceDescriptionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDrdsInstanceDescriptionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

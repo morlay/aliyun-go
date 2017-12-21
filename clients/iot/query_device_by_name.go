@@ -7,33 +7,20 @@ import (
 )
 
 type QueryDeviceByNameRequest struct {
+	requests.RpcRequest
 	DeviceName string `position:"Query" name:"DeviceName"`
 	ProductKey string `position:"Query" name:"ProductKey"`
 }
 
-func (r QueryDeviceByNameRequest) Invoke(client *sdk.Client) (response *QueryDeviceByNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDeviceByNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDeviceByNameRequest) Invoke(client *sdk.Client) (resp *QueryDeviceByNameResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "QueryDeviceByName", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDeviceByNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDeviceByNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDeviceByNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDeviceByNameResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

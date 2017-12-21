@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeCdnTypesRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerAccount  string `position:"Query" name:"OwnerAccount"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeCdnTypesRequest) Invoke(client *sdk.Client) (response *DescribeCdnTypesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCdnTypesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCdnTypesRequest) Invoke(client *sdk.Client) (resp *DescribeCdnTypesResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeCdnTypes", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCdnTypesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCdnTypesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCdnTypesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCdnTypesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CdnTypes  DescribeCdnTypesCdnTypeList
 }

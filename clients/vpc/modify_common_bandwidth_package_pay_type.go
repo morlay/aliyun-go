@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyCommonBandwidthPackagePayTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	AutoPay              string `position:"Query" name:"AutoPay"`
@@ -22,29 +23,15 @@ type ModifyCommonBandwidthPackagePayTypeRequest struct {
 	PricingCycle         string `position:"Query" name:"PricingCycle"`
 }
 
-func (r ModifyCommonBandwidthPackagePayTypeRequest) Invoke(client *sdk.Client) (response *ModifyCommonBandwidthPackagePayTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCommonBandwidthPackagePayTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCommonBandwidthPackagePayTypeRequest) Invoke(client *sdk.Client) (resp *ModifyCommonBandwidthPackagePayTypeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyCommonBandwidthPackagePayType", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCommonBandwidthPackagePayTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCommonBandwidthPackagePayTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCommonBandwidthPackagePayTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyCommonBandwidthPackagePayTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   int64
 	Code      string

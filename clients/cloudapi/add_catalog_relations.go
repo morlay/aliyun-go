@@ -9,34 +9,21 @@ import (
 )
 
 type AddCatalogRelationsRequest struct {
+	requests.RpcRequest
 	CatalogId string                          `position:"Query" name:"CatalogId"`
 	ApiIds    string                          `position:"Query" name:"ApiIds"`
 	ApiList   *AddCatalogRelationsApiListList `type:"Repeated" name:"ApiList"`
 }
 
-func (r AddCatalogRelationsRequest) Invoke(client *sdk.Client) (response *AddCatalogRelationsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCatalogRelationsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCatalogRelationsRequest) Invoke(client *sdk.Client) (resp *AddCatalogRelationsResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "AddCatalogRelations", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCatalogRelationsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCatalogRelationsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCatalogRelationsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddCatalogRelationsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

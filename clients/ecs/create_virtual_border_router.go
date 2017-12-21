@@ -7,6 +7,7 @@ import (
 )
 
 type CreateVirtualBorderRouterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	CircuitCode          string `position:"Query" name:"CircuitCode"`
 	VlanId               int    `position:"Query" name:"VlanId"`
@@ -24,29 +25,15 @@ type CreateVirtualBorderRouterRequest struct {
 	VbrOwnerId           int64  `position:"Query" name:"VbrOwnerId"`
 }
 
-func (r CreateVirtualBorderRouterRequest) Invoke(client *sdk.Client) (response *CreateVirtualBorderRouterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateVirtualBorderRouterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateVirtualBorderRouterRequest) Invoke(client *sdk.Client) (resp *CreateVirtualBorderRouterResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateVirtualBorderRouter", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateVirtualBorderRouterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateVirtualBorderRouterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateVirtualBorderRouterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateVirtualBorderRouterResponse struct {
+	responses.BaseResponse
 	RequestId string
 	VbrId     string
 }

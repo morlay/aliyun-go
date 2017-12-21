@@ -7,6 +7,7 @@ import (
 )
 
 type UnassociatePhysicalConnectionFromVirtualBorderRouterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,28 +18,14 @@ type UnassociatePhysicalConnectionFromVirtualBorderRouterRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r UnassociatePhysicalConnectionFromVirtualBorderRouterRequest) Invoke(client *sdk.Client) (response *UnassociatePhysicalConnectionFromVirtualBorderRouterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnassociatePhysicalConnectionFromVirtualBorderRouterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnassociatePhysicalConnectionFromVirtualBorderRouterRequest) Invoke(client *sdk.Client) (resp *UnassociatePhysicalConnectionFromVirtualBorderRouterResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "UnassociatePhysicalConnectionFromVirtualBorderRouter", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnassociatePhysicalConnectionFromVirtualBorderRouterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnassociatePhysicalConnectionFromVirtualBorderRouterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnassociatePhysicalConnectionFromVirtualBorderRouterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnassociatePhysicalConnectionFromVirtualBorderRouterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

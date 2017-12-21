@@ -7,35 +7,22 @@ import (
 )
 
 type OnsMqttBuyCheckRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 	Data         string `position:"Query" name:"Data"`
 }
 
-func (r OnsMqttBuyCheckRequest) Invoke(client *sdk.Client) (response *OnsMqttBuyCheckResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttBuyCheckRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttBuyCheckRequest) Invoke(client *sdk.Client) (resp *OnsMqttBuyCheckResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttBuyCheck", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttBuyCheckResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttBuyCheckResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttBuyCheckResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttBuyCheckResponse struct {
+	responses.BaseResponse
 	Success   bool
 	RequestId string
 	Code      string

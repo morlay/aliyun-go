@@ -7,6 +7,7 @@ import (
 )
 
 type UnassociateEipAddressRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type UnassociateEipAddressRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r UnassociateEipAddressRequest) Invoke(client *sdk.Client) (response *UnassociateEipAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnassociateEipAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnassociateEipAddressRequest) Invoke(client *sdk.Client) (resp *UnassociateEipAddressResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "UnassociateEipAddress", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnassociateEipAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnassociateEipAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnassociateEipAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnassociateEipAddressResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

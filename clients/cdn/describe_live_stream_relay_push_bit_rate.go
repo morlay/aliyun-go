@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamRelayPushBitRateRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -16,29 +17,15 @@ type DescribeLiveStreamRelayPushBitRateRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamRelayPushBitRateRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamRelayPushBitRateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamRelayPushBitRateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamRelayPushBitRateRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamRelayPushBitRateResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamRelayPushBitRate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamRelayPushBitRateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamRelayPushBitRateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamRelayPushBitRateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamRelayPushBitRateResponse struct {
+	responses.BaseResponse
 	RequestId                 string
 	RelayPushBitRateModelList DescribeLiveStreamRelayPushBitRateRelayPushBitRateModelList
 }

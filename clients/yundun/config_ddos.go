@@ -7,6 +7,7 @@ import (
 )
 
 type ConfigDdosRequest struct {
+	requests.RpcRequest
 	InstanceId       string `position:"Query" name:"InstanceId"`
 	InstanceType     string `position:"Query" name:"InstanceType"`
 	FlowPosition     int    `position:"Query" name:"FlowPosition"`
@@ -14,28 +15,14 @@ type ConfigDdosRequest struct {
 	Level            int    `position:"Query" name:"Level"`
 }
 
-func (r ConfigDdosRequest) Invoke(client *sdk.Client) (response *ConfigDdosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ConfigDdosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ConfigDdosRequest) Invoke(client *sdk.Client) (resp *ConfigDdosResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "ConfigDdos", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ConfigDdosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ConfigDdosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ConfigDdosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ConfigDdosResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

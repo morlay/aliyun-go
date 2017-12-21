@@ -7,6 +7,7 @@ import (
 )
 
 type AllocatePublicIpAddressRequest struct {
+	requests.RpcRequest
 	IpAddress            string `position:"Query" name:"IpAddress"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
@@ -16,29 +17,15 @@ type AllocatePublicIpAddressRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AllocatePublicIpAddressRequest) Invoke(client *sdk.Client) (response *AllocatePublicIpAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AllocatePublicIpAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AllocatePublicIpAddressRequest) Invoke(client *sdk.Client) (resp *AllocatePublicIpAddressResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AllocatePublicIpAddress", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AllocatePublicIpAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AllocatePublicIpAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AllocatePublicIpAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AllocatePublicIpAddressResponse struct {
+	responses.BaseResponse
 	RequestId string
 	IpAddress string
 }

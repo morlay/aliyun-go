@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeSignaturesByApiRequest struct {
+	requests.RpcRequest
 	GroupId   string `position:"Query" name:"GroupId"`
 	ApiId     string `position:"Query" name:"ApiId"`
 	StageName string `position:"Query" name:"StageName"`
 }
 
-func (r DescribeSignaturesByApiRequest) Invoke(client *sdk.Client) (response *DescribeSignaturesByApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSignaturesByApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSignaturesByApiRequest) Invoke(client *sdk.Client) (resp *DescribeSignaturesByApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeSignaturesByApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSignaturesByApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSignaturesByApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSignaturesByApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSignaturesByApiResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	Signatures DescribeSignaturesByApiSignatureItemList
 }

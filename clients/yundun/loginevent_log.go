@@ -9,6 +9,7 @@ import (
 )
 
 type LogineventLogRequest struct {
+	requests.RpcRequest
 	JstOwnerId int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
@@ -16,29 +17,15 @@ type LogineventLogRequest struct {
 	RecordType int    `position:"Query" name:"RecordType"`
 }
 
-func (r LogineventLogRequest) Invoke(client *sdk.Client) (response *LogineventLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		LogineventLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *LogineventLogRequest) Invoke(client *sdk.Client) (resp *LogineventLogResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "LogineventLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		LogineventLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.LogineventLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &LogineventLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type LogineventLogResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	StartTime  string
 	EndTime    string

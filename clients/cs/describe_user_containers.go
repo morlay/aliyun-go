@@ -7,31 +7,19 @@ import (
 )
 
 type DescribeUserContainersRequest struct {
+	requests.RoaRequest
 	ServiceId string `position:"Query" name:"ServiceId"`
 }
 
-func (r DescribeUserContainersRequest) Invoke(client *sdk.Client) (response *DescribeUserContainersResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DescribeUserContainersRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DescribeUserContainersRequest) Invoke(client *sdk.Client) (resp *DescribeUserContainersResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "DescribeUserContainers", "/region/[RegionId]/containers", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		DescribeUserContainersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeUserContainersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeUserContainersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeUserContainersResponse struct {
+	responses.BaseResponse
 }

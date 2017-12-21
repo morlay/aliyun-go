@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDisksRequest struct {
+	requests.RpcRequest
 	Tag4Value                     string                                 `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId               int64                                  `position:"Query" name:"ResourceOwnerId"`
 	SnapshotId                    string                                 `position:"Query" name:"SnapshotId"`
@@ -51,29 +52,15 @@ type DescribeDisksRequest struct {
 	Status                        string                                 `position:"Query" name:"Status"`
 }
 
-func (r DescribeDisksRequest) Invoke(client *sdk.Client) (response *DescribeDisksResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDisksRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDisksRequest) Invoke(client *sdk.Client) (resp *DescribeDisksResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeDisks", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDisksResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDisksResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDisksResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDisksResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

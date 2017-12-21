@@ -7,32 +7,19 @@ import (
 )
 
 type ProfileGetRequest struct {
+	requests.RpcRequest
 	UserId int64 `position:"Query" name:"UserId"`
 }
 
-func (r ProfileGetRequest) Invoke(client *sdk.Client) (response *ProfileGetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ProfileGetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ProfileGetRequest) Invoke(client *sdk.Client) (resp *ProfileGetResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "ProfileGet", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ProfileGetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ProfileGetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ProfileGetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ProfileGetResponse struct {
+	responses.BaseResponse
 	ErrorCode    int
 	ErrorMessage string
 	Success      bool

@@ -7,32 +7,19 @@ import (
 )
 
 type GetOrderIdByCheckBeforePayRequest struct {
+	requests.RpcRequest
 	OrderId string `position:"Query" name:"OrderId"`
 }
 
-func (r GetOrderIdByCheckBeforePayRequest) Invoke(client *sdk.Client) (response *GetOrderIdByCheckBeforePayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetOrderIdByCheckBeforePayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetOrderIdByCheckBeforePayRequest) Invoke(client *sdk.Client) (resp *GetOrderIdByCheckBeforePayResponse, err error) {
 	req.InitWithApiInfo("Commondriver", "2015-12-29", "GetOrderIdByCheckBeforePay", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetOrderIdByCheckBeforePayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetOrderIdByCheckBeforePayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetOrderIdByCheckBeforePayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetOrderIdByCheckBeforePayResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      bool

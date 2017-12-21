@@ -9,32 +9,19 @@ import (
 )
 
 type QueryEnumConfigByTypeRequest struct {
+	requests.RpcRequest
 	Type string `position:"Query" name:"Type"`
 }
 
-func (r QueryEnumConfigByTypeRequest) Invoke(client *sdk.Client) (response *QueryEnumConfigByTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryEnumConfigByTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryEnumConfigByTypeRequest) Invoke(client *sdk.Client) (resp *QueryEnumConfigByTypeResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "QueryEnumConfigByType", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryEnumConfigByTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryEnumConfigByTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryEnumConfigByTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryEnumConfigByTypeResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

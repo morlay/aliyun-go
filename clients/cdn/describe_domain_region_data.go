@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainRegionDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainRegionDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainRegionDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainRegionDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainRegionDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainRegionDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainRegionDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainRegionData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainRegionDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainRegionDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainRegionDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainRegionDataResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DomainName   string
 	DataInterval string

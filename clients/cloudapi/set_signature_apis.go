@@ -7,34 +7,21 @@ import (
 )
 
 type SetSignatureApisRequest struct {
+	requests.RpcRequest
 	SignatureId string `position:"Query" name:"SignatureId"`
 	GroupId     string `position:"Query" name:"GroupId"`
 	ApiIds      string `position:"Query" name:"ApiIds"`
 	StageName   string `position:"Query" name:"StageName"`
 }
 
-func (r SetSignatureApisRequest) Invoke(client *sdk.Client) (response *SetSignatureApisResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetSignatureApisRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetSignatureApisRequest) Invoke(client *sdk.Client) (resp *SetSignatureApisResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "SetSignatureApis", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetSignatureApisResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetSignatureApisResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetSignatureApisResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetSignatureApisResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

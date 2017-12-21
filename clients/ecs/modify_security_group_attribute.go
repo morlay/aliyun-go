@@ -7,6 +7,7 @@ import (
 )
 
 type ModifySecurityGroupAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,28 +17,14 @@ type ModifySecurityGroupAttributeRequest struct {
 	SecurityGroupName    string `position:"Query" name:"SecurityGroupName"`
 }
 
-func (r ModifySecurityGroupAttributeRequest) Invoke(client *sdk.Client) (response *ModifySecurityGroupAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySecurityGroupAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySecurityGroupAttributeRequest) Invoke(client *sdk.Client) (resp *ModifySecurityGroupAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifySecurityGroupAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySecurityGroupAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySecurityGroupAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySecurityGroupAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySecurityGroupAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

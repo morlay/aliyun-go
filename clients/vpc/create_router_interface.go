@@ -7,6 +7,7 @@ import (
 )
 
 type CreateRouterInterfaceRequest struct {
+	requests.RpcRequest
 	AccessPointId            string `position:"Query" name:"AccessPointId"`
 	OppositeRouterId         string `position:"Query" name:"OppositeRouterId"`
 	OppositeAccessPointId    string `position:"Query" name:"OppositeAccessPointId"`
@@ -30,29 +31,15 @@ type CreateRouterInterfaceRequest struct {
 	OppositeInterfaceId      string `position:"Query" name:"OppositeInterfaceId"`
 }
 
-func (r CreateRouterInterfaceRequest) Invoke(client *sdk.Client) (response *CreateRouterInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateRouterInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateRouterInterfaceRequest) Invoke(client *sdk.Client) (resp *CreateRouterInterfaceResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateRouterInterface", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateRouterInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateRouterInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateRouterInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateRouterInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	RouterInterfaceId string
 }

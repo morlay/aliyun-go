@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeOptimizeAdviceOnExcessIndexRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeOptimizeAdviceOnExcessIndexRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeOptimizeAdviceOnExcessIndexRequest) Invoke(client *sdk.Client) (response *DescribeOptimizeAdviceOnExcessIndexResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOptimizeAdviceOnExcessIndexRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOptimizeAdviceOnExcessIndexRequest) Invoke(client *sdk.Client) (resp *DescribeOptimizeAdviceOnExcessIndexResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeOptimizeAdviceOnExcessIndex", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOptimizeAdviceOnExcessIndexResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOptimizeAdviceOnExcessIndexResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOptimizeAdviceOnExcessIndexResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOptimizeAdviceOnExcessIndexResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalRecordsCount int
 	PageNumber        int

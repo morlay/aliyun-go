@@ -9,33 +9,20 @@ import (
 )
 
 type ListRegisteredTagsRequest struct {
+	requests.RpcRequest
 	StoreName string                      `position:"Query" name:"StoreName"`
 	Langs     *ListRegisteredTagsLangList `position:"Query" type:"Repeated" name:"Lang"`
 }
 
-func (r ListRegisteredTagsRequest) Invoke(client *sdk.Client) (response *ListRegisteredTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListRegisteredTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListRegisteredTagsRequest) Invoke(client *sdk.Client) (resp *ListRegisteredTagsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ListRegisteredTags", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListRegisteredTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListRegisteredTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListRegisteredTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListRegisteredTagsResponse struct {
+	responses.BaseResponse
 	Code           string
 	Message        string
 	RequestId      string

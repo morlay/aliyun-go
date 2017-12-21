@@ -9,6 +9,7 @@ import (
 )
 
 type StartMixStreamsServiceRequest struct {
+	requests.RpcRequest
 	MixType        string `position:"Query" name:"MixType"`
 	SecurityToken  string `position:"Query" name:"SecurityToken"`
 	MainDomainName string `position:"Query" name:"MainDomainName"`
@@ -21,29 +22,15 @@ type StartMixStreamsServiceRequest struct {
 	MainStreamName string `position:"Query" name:"MainStreamName"`
 }
 
-func (r StartMixStreamsServiceRequest) Invoke(client *sdk.Client) (response *StartMixStreamsServiceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StartMixStreamsServiceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StartMixStreamsServiceRequest) Invoke(client *sdk.Client) (resp *StartMixStreamsServiceResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "StartMixStreamsService", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StartMixStreamsServiceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StartMixStreamsServiceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StartMixStreamsServiceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StartMixStreamsServiceResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	MixStreamsInfoList StartMixStreamsServiceMixStreamsInfoList
 }

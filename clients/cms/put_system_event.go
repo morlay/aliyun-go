@@ -7,32 +7,19 @@ import (
 )
 
 type PutSystemEventRequest struct {
+	requests.RpcRequest
 	EventInfo string `position:"Query" name:"EventInfo"`
 }
 
-func (r PutSystemEventRequest) Invoke(client *sdk.Client) (response *PutSystemEventResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PutSystemEventRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PutSystemEventRequest) Invoke(client *sdk.Client) (resp *PutSystemEventResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "PutSystemEvent", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PutSystemEventResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PutSystemEventResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PutSystemEventResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PutSystemEventResponse struct {
+	responses.BaseResponse
 	Code    string
 	Message string
 	Data    string

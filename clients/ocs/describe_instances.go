@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstancesRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -23,29 +24,15 @@ type DescribeInstancesRequest struct {
 	PrivateIps           string `position:"Query" name:"PrivateIps"`
 }
 
-func (r DescribeInstancesRequest) Invoke(client *sdk.Client) (response *DescribeInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeInstancesResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "DescribeInstances", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstancesResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	GetOcsInstancesResponse DescribeInstancesGetOcsInstancesResponse
 }

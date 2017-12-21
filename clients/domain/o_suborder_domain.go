@@ -9,6 +9,7 @@ import (
 )
 
 type OSuborderDomainRequest struct {
+	requests.RpcRequest
 	EndDate   string `position:"Query" name:"EndDate"`
 	PageSize  int    `position:"Query" name:"PageSize"`
 	Type      string `position:"Query" name:"Type"`
@@ -16,29 +17,15 @@ type OSuborderDomainRequest struct {
 	PageNum   int    `position:"Query" name:"PageNum"`
 }
 
-func (r OSuborderDomainRequest) Invoke(client *sdk.Client) (response *OSuborderDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OSuborderDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OSuborderDomainRequest) Invoke(client *sdk.Client) (resp *OSuborderDomainResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "OSuborderDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OSuborderDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OSuborderDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OSuborderDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OSuborderDomainResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	TotalItemNum   int
 	CurrentPageNum int

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeNewProjectEipMonitorDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeNewProjectEipMonitorDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeNewProjectEipMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeNewProjectEipMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeNewProjectEipMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeNewProjectEipMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeNewProjectEipMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeNewProjectEipMonitorData", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeNewProjectEipMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeNewProjectEipMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeNewProjectEipMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeNewProjectEipMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	EipMonitorDatas DescribeNewProjectEipMonitorDataEipMonitorDataList
 }

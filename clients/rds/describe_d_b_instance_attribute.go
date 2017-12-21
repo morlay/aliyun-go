@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceAttributeRequest struct {
+	requests.RpcRequest
 	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeDBInstanceAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceAttributeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceAttribute", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeDBInstanceAttributeDBInstanceAttributeList
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type OnsConsumerTimeSpanRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -14,29 +15,15 @@ type OnsConsumerTimeSpanRequest struct {
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsConsumerTimeSpanRequest) Invoke(client *sdk.Client) (response *OnsConsumerTimeSpanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsConsumerTimeSpanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsConsumerTimeSpanRequest) Invoke(client *sdk.Client) (resp *OnsConsumerTimeSpanResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsConsumerTimeSpan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsConsumerTimeSpanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsConsumerTimeSpanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsConsumerTimeSpanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsConsumerTimeSpanResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsConsumerTimeSpanData

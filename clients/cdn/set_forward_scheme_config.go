@@ -7,6 +7,7 @@ import (
 )
 
 type SetForwardSchemeConfigRequest struct {
+	requests.RpcRequest
 	SchemeOrigin     string `position:"Query" name:"SchemeOrigin"`
 	SchemeOriginPort string `position:"Query" name:"SchemeOriginPort"`
 	SecurityToken    string `position:"Query" name:"SecurityToken"`
@@ -15,28 +16,14 @@ type SetForwardSchemeConfigRequest struct {
 	OwnerId          int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetForwardSchemeConfigRequest) Invoke(client *sdk.Client) (response *SetForwardSchemeConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetForwardSchemeConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetForwardSchemeConfigRequest) Invoke(client *sdk.Client) (resp *SetForwardSchemeConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetForwardSchemeConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetForwardSchemeConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetForwardSchemeConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetForwardSchemeConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetForwardSchemeConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

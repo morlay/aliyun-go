@@ -7,35 +7,22 @@ import (
 )
 
 type ModifyRdsReadWeightRequest struct {
+	requests.RpcRequest
 	InstanceNames  string `position:"Query" name:"InstanceNames"`
 	DbName         string `position:"Query" name:"DbName"`
 	Weights        string `position:"Query" name:"Weights"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r ModifyRdsReadWeightRequest) Invoke(client *sdk.Client) (response *ModifyRdsReadWeightResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyRdsReadWeightRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyRdsReadWeightRequest) Invoke(client *sdk.Client) (resp *ModifyRdsReadWeightResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "ModifyRdsReadWeight", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyRdsReadWeightResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyRdsReadWeightResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyRdsReadWeightResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyRdsReadWeightResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

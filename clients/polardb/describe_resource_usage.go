@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeResourceUsageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeResourceUsageRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeResourceUsageRequest) Invoke(client *sdk.Client) (response *DescribeResourceUsageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeResourceUsageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeResourceUsageRequest) Invoke(client *sdk.Client) (resp *DescribeResourceUsageResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeResourceUsage", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeResourceUsageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeResourceUsageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeResourceUsageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeResourceUsageResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DBInstanceId string
 	Engine       string

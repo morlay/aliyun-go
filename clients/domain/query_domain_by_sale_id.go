@@ -9,34 +9,21 @@ import (
 )
 
 type QueryDomainBySaleIdRequest struct {
+	requests.RpcRequest
 	SaleId       string `position:"Query" name:"SaleId"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	Lang         string `position:"Query" name:"Lang"`
 }
 
-func (r QueryDomainBySaleIdRequest) Invoke(client *sdk.Client) (response *QueryDomainBySaleIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDomainBySaleIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDomainBySaleIdRequest) Invoke(client *sdk.Client) (resp *QueryDomainBySaleIdResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryDomainBySaleId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDomainBySaleIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDomainBySaleIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDomainBySaleIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDomainBySaleIdResponse struct {
+	responses.BaseResponse
 	UserId               string
 	DomainName           string
 	SaleId               string

@@ -9,6 +9,7 @@ import (
 )
 
 type CreateMasterSlaveServerGroupRequest struct {
+	requests.RpcRequest
 	Access_key_id              string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId            int64  `position:"Query" name:"ResourceOwnerId"`
 	MasterSlaveBackendServers  string `position:"Query" name:"MasterSlaveBackendServers"`
@@ -20,29 +21,15 @@ type CreateMasterSlaveServerGroupRequest struct {
 	Tags                       string `position:"Query" name:"Tags"`
 }
 
-func (r CreateMasterSlaveServerGroupRequest) Invoke(client *sdk.Client) (response *CreateMasterSlaveServerGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateMasterSlaveServerGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateMasterSlaveServerGroupRequest) Invoke(client *sdk.Client) (resp *CreateMasterSlaveServerGroupResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateMasterSlaveServerGroup", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateMasterSlaveServerGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateMasterSlaveServerGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateMasterSlaveServerGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateMasterSlaveServerGroupResponse struct {
+	responses.BaseResponse
 	RequestId                 string
 	MasterSlaveServerGroupId  string
 	MasterSlaveBackendServers CreateMasterSlaveServerGroupMasterSlaveBackendServerList

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamOnlineBpsRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamOnlineBpsRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamOnlineBpsRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamOnlineBpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamOnlineBpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamOnlineBpsRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamOnlineBpsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamOnlineBps", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamOnlineBpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamOnlineBpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamOnlineBpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamOnlineBpsResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	TotalUserNumber          int64
 	FlvBps                   float32

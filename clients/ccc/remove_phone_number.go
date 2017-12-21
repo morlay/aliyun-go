@@ -7,33 +7,20 @@ import (
 )
 
 type RemovePhoneNumberRequest struct {
+	requests.RpcRequest
 	InstanceId    string `position:"Query" name:"InstanceId"`
 	PhoneNumberId string `position:"Query" name:"PhoneNumberId"`
 }
 
-func (r RemovePhoneNumberRequest) Invoke(client *sdk.Client) (response *RemovePhoneNumberResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemovePhoneNumberRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemovePhoneNumberRequest) Invoke(client *sdk.Client) (resp *RemovePhoneNumberResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "RemovePhoneNumber", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemovePhoneNumberResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemovePhoneNumberResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemovePhoneNumberResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemovePhoneNumberResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

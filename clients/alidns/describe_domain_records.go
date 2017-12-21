@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainRecordsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
@@ -19,29 +20,15 @@ type DescribeDomainRecordsRequest struct {
 	ValueKeyWord string `position:"Query" name:"ValueKeyWord"`
 }
 
-func (r DescribeDomainRecordsRequest) Invoke(client *sdk.Client) (response *DescribeDomainRecordsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainRecordsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainRecordsRequest) Invoke(client *sdk.Client) (resp *DescribeDomainRecordsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDomainRecords", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainRecordsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainRecordsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainRecordsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainRecordsResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	TotalCount    int64
 	PageNumber    int64

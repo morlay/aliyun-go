@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceConnectionModeRequest struct {
+	requests.RpcRequest
 	ConnectionMode       string `position:"Query" name:"ConnectionMode"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyDBInstanceConnectionModeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDBInstanceConnectionModeRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceConnectionModeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceConnectionModeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceConnectionModeRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceConnectionModeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceConnectionMode", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceConnectionModeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceConnectionModeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceConnectionModeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceConnectionModeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

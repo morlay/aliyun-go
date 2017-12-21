@@ -7,6 +7,7 @@ import (
 )
 
 type AddLiveStreamTranscodeRequest struct {
+	requests.RpcRequest
 	Template      string `position:"Query" name:"Template"`
 	App           string `position:"Query" name:"App"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -17,28 +18,14 @@ type AddLiveStreamTranscodeRequest struct {
 	Snapshot      string `position:"Query" name:"Snapshot"`
 }
 
-func (r AddLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (response *AddLiveStreamTranscodeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddLiveStreamTranscodeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (resp *AddLiveStreamTranscodeResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "AddLiveStreamTranscode", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddLiveStreamTranscodeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddLiveStreamTranscodeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddLiveStreamTranscodeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddLiveStreamTranscodeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

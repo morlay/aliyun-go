@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitAIVideoCoverJobRequest struct {
+	requests.RpcRequest
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type SubmitAIVideoCoverJobRequest struct {
 	AIVideoCoverConfig   string `position:"Query" name:"AIVideoCoverConfig"`
 }
 
-func (r SubmitAIVideoCoverJobRequest) Invoke(client *sdk.Client) (response *SubmitAIVideoCoverJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAIVideoCoverJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAIVideoCoverJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIVideoCoverJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIVideoCoverJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAIVideoCoverJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAIVideoCoverJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAIVideoCoverJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAIVideoCoverJobResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	AIVideoCoverJob SubmitAIVideoCoverJobAIVideoCoverJob
 }

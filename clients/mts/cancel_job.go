@@ -7,6 +7,7 @@ import (
 )
 
 type CancelJobRequest struct {
+	requests.RpcRequest
 	JobId                string `position:"Query" name:"JobId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,29 +15,15 @@ type CancelJobRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CancelJobRequest) Invoke(client *sdk.Client) (response *CancelJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CancelJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CancelJobRequest) Invoke(client *sdk.Client) (resp *CancelJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "CancelJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CancelJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CancelJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CancelJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CancelJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

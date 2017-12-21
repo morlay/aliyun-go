@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeTopDomainsByFlowRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	Limit         int64  `position:"Query" name:"Limit"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeTopDomainsByFlowRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeTopDomainsByFlowRequest) Invoke(client *sdk.Client) (response *DescribeTopDomainsByFlowResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeTopDomainsByFlowRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeTopDomainsByFlowRequest) Invoke(client *sdk.Client) (resp *DescribeTopDomainsByFlowResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeTopDomainsByFlow", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTopDomainsByFlowResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTopDomainsByFlowResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTopDomainsByFlowResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTopDomainsByFlowResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	StartTime         string
 	EndTime           string

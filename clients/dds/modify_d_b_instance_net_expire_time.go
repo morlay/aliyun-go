@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceNetExpireTimeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId          int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken            string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount     string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,28 +18,14 @@ type ModifyDBInstanceNetExpireTimeRequest struct {
 	ClassicExpendExpiredDays int    `position:"Query" name:"ClassicExpendExpiredDays"`
 }
 
-func (r ModifyDBInstanceNetExpireTimeRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceNetExpireTimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceNetExpireTimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceNetExpireTimeRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceNetExpireTimeResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "ModifyDBInstanceNetExpireTime", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceNetExpireTimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceNetExpireTimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceNetExpireTimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceNetExpireTimeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

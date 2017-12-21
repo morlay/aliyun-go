@@ -9,6 +9,7 @@ import (
 )
 
 type AddCasterLayoutRequest struct {
+	requests.RpcRequest
 	BlendLists    *AddCasterLayoutBlendListList  `position:"Query" type:"Repeated" name:"BlendList"`
 	AudioLayers   *AddCasterLayoutAudioLayerList `position:"Query" type:"Repeated" name:"AudioLayer"`
 	SecurityToken string                         `position:"Query" name:"SecurityToken"`
@@ -19,25 +20,10 @@ type AddCasterLayoutRequest struct {
 	Version       string                         `position:"Query" name:"Version"`
 }
 
-func (r AddCasterLayoutRequest) Invoke(client *sdk.Client) (response *AddCasterLayoutResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCasterLayoutRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCasterLayoutRequest) Invoke(client *sdk.Client) (resp *AddCasterLayoutResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "AddCasterLayout", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCasterLayoutResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCasterLayoutResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCasterLayoutResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -54,6 +40,7 @@ type AddCasterLayoutVideoLayer struct {
 }
 
 type AddCasterLayoutResponse struct {
+	responses.BaseResponse
 	RequestId string
 	LayoutId  string
 }

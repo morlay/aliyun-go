@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeEipAddressesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
 	Filter2Value           string `position:"Query" name:"Filter.2.Value"`
@@ -28,29 +29,15 @@ type DescribeEipAddressesRequest struct {
 	Status                 string `position:"Query" name:"Status"`
 }
 
-func (r DescribeEipAddressesRequest) Invoke(client *sdk.Client) (response *DescribeEipAddressesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeEipAddressesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeEipAddressesRequest) Invoke(client *sdk.Client) (resp *DescribeEipAddressesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeEipAddresses", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeEipAddressesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeEipAddressesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeEipAddressesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeEipAddressesResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int
 	PageNumber   int

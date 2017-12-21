@@ -9,6 +9,7 @@ import (
 )
 
 type QueryWaterMarkTemplateListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type QueryWaterMarkTemplateListRequest struct {
 	WaterMarkTemplateIds string `position:"Query" name:"WaterMarkTemplateIds"`
 }
 
-func (r QueryWaterMarkTemplateListRequest) Invoke(client *sdk.Client) (response *QueryWaterMarkTemplateListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryWaterMarkTemplateListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryWaterMarkTemplateListRequest) Invoke(client *sdk.Client) (resp *QueryWaterMarkTemplateListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryWaterMarkTemplateList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryWaterMarkTemplateListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryWaterMarkTemplateListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryWaterMarkTemplateListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryWaterMarkTemplateListResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	WaterMarkTemplateList QueryWaterMarkTemplateListWaterMarkTemplateList
 	NonExistWids          QueryWaterMarkTemplateListNonExistWidList

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDampPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type ModifyDampPolicyRequest struct {
 	SourceRules          string `position:"Query" name:"SourceRules"`
 }
 
-func (r ModifyDampPolicyRequest) Invoke(client *sdk.Client) (response *ModifyDampPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDampPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDampPolicyRequest) Invoke(client *sdk.Client) (resp *ModifyDampPolicyResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDampPolicy", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDampPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDampPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDampPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDampPolicyResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PolicyId   string
 	PolicyName string

@@ -7,32 +7,19 @@ import (
 )
 
 type DeleteMountTargetRequest struct {
+	requests.RpcRequest
 	MountTargetDomain string `position:"Query" name:"MountTargetDomain"`
 	FileSystemId      string `position:"Query" name:"FileSystemId"`
 }
 
-func (r DeleteMountTargetRequest) Invoke(client *sdk.Client) (response *DeleteMountTargetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteMountTargetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteMountTargetRequest) Invoke(client *sdk.Client) (resp *DeleteMountTargetResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DeleteMountTarget", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteMountTargetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteMountTargetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteMountTargetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteMountTargetResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

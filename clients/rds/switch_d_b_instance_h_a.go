@@ -7,6 +7,7 @@ import (
 )
 
 type SwitchDBInstanceHARequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -17,28 +18,14 @@ type SwitchDBInstanceHARequest struct {
 	Operation            string `position:"Query" name:"Operation"`
 }
 
-func (r SwitchDBInstanceHARequest) Invoke(client *sdk.Client) (response *SwitchDBInstanceHAResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SwitchDBInstanceHARequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SwitchDBInstanceHARequest) Invoke(client *sdk.Client) (resp *SwitchDBInstanceHAResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "SwitchDBInstanceHA", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SwitchDBInstanceHAResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SwitchDBInstanceHAResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SwitchDBInstanceHAResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SwitchDBInstanceHAResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

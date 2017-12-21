@@ -9,6 +9,7 @@ import (
 )
 
 type GetPublicAccessUrlsRequest struct {
+	requests.RpcRequest
 	DomainType string                          `position:"Query" name:"DomainType"`
 	LibraryId  string                          `position:"Query" name:"LibraryId"`
 	PhotoIds   *GetPublicAccessUrlsPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
@@ -16,29 +17,15 @@ type GetPublicAccessUrlsRequest struct {
 	ZoomType   string                          `position:"Query" name:"ZoomType"`
 }
 
-func (r GetPublicAccessUrlsRequest) Invoke(client *sdk.Client) (response *GetPublicAccessUrlsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetPublicAccessUrlsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetPublicAccessUrlsRequest) Invoke(client *sdk.Client) (resp *GetPublicAccessUrlsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetPublicAccessUrls", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetPublicAccessUrlsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetPublicAccessUrlsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetPublicAccessUrlsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetPublicAccessUrlsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

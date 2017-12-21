@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeModifyParameterLogRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeModifyParameterLogRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeModifyParameterLogRequest) Invoke(client *sdk.Client) (response *DescribeModifyParameterLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeModifyParameterLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeModifyParameterLogRequest) Invoke(client *sdk.Client) (resp *DescribeModifyParameterLogResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeModifyParameterLog", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeModifyParameterLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeModifyParameterLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeModifyParameterLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeModifyParameterLogResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Engine           string
 	DBInstanceId     string

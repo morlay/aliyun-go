@@ -9,6 +9,7 @@ import (
 )
 
 type CreateDrdsInstanceRequest struct {
+	requests.RpcRequest
 	VswitchId      string `position:"Query" name:"VswitchId"`
 	Quantity       int    `position:"Query" name:"Quantity"`
 	InstanceSeries string `position:"Query" name:"InstanceSeries"`
@@ -20,29 +21,15 @@ type CreateDrdsInstanceRequest struct {
 	PayType        string `position:"Query" name:"PayType"`
 }
 
-func (r CreateDrdsInstanceRequest) Invoke(client *sdk.Client) (response *CreateDrdsInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDrdsInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDrdsInstanceRequest) Invoke(client *sdk.Client) (resp *CreateDrdsInstanceResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "CreateDrdsInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDrdsInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDrdsInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDrdsInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDrdsInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      CreateDrdsInstanceData

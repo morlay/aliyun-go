@@ -9,6 +9,7 @@ import (
 )
 
 type SaveTaskForModifyingDomainDnsRequest struct {
+	requests.RpcRequest
 	SaleId       string                                    `position:"Query" name:"SaleId"`
 	UserClientIp string                                    `position:"Query" name:"UserClientIp"`
 	DomainName   string                                    `position:"Query" name:"DomainName"`
@@ -17,29 +18,15 @@ type SaveTaskForModifyingDomainDnsRequest struct {
 	DnsLists     *SaveTaskForModifyingDomainDnsDnsListList `position:"Query" type:"Repeated" name:"DnsList"`
 }
 
-func (r SaveTaskForModifyingDomainDnsRequest) Invoke(client *sdk.Client) (response *SaveTaskForModifyingDomainDnsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveTaskForModifyingDomainDnsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveTaskForModifyingDomainDnsRequest) Invoke(client *sdk.Client) (resp *SaveTaskForModifyingDomainDnsResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "SaveTaskForModifyingDomainDns", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveTaskForModifyingDomainDnsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveTaskForModifyingDomainDnsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveTaskForModifyingDomainDnsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveTaskForModifyingDomainDnsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TaskNo    string
 }

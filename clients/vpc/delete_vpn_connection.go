@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteVpnConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type DeleteVpnConnectionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteVpnConnectionRequest) Invoke(client *sdk.Client) (response *DeleteVpnConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteVpnConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteVpnConnectionRequest) Invoke(client *sdk.Client) (resp *DeleteVpnConnectionResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteVpnConnection", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteVpnConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteVpnConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteVpnConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteVpnConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

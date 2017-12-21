@@ -7,31 +7,19 @@ import (
 )
 
 type DescribeClusterDetailRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 }
 
-func (r DescribeClusterDetailRequest) Invoke(client *sdk.Client) (response *DescribeClusterDetailResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DescribeClusterDetailRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DescribeClusterDetailRequest) Invoke(client *sdk.Client) (resp *DescribeClusterDetailResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "DescribeClusterDetail", "/clusters/[ClusterId]", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		DescribeClusterDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeClusterDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeClusterDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeClusterDetailResponse struct {
+	responses.BaseResponse
 }

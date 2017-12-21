@@ -7,33 +7,20 @@ import (
 )
 
 type ModifyCatalogRequest struct {
+	requests.RpcRequest
 	CatalogId   string `position:"Query" name:"CatalogId"`
 	CatalogName string `position:"Query" name:"CatalogName"`
 	Description string `position:"Query" name:"Description"`
 }
 
-func (r ModifyCatalogRequest) Invoke(client *sdk.Client) (response *ModifyCatalogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCatalogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCatalogRequest) Invoke(client *sdk.Client) (resp *ModifyCatalogResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ModifyCatalog", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCatalogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCatalogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCatalogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyCatalogResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

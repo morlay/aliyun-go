@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeLiveStreamTranscodeInfoRequest struct {
+	requests.RpcRequest
 	SecurityToken       string `position:"Query" name:"SecurityToken"`
 	OwnerId             int64  `position:"Query" name:"OwnerId"`
 	DomainTranscodeName string `position:"Query" name:"DomainTranscodeName"`
 }
 
-func (r DescribeLiveStreamTranscodeInfoRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamTranscodeInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamTranscodeInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamTranscodeInfoRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamTranscodeInfoResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamTranscodeInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamTranscodeInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamTranscodeInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamTranscodeInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamTranscodeInfoResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	DomainTranscodeList DescribeLiveStreamTranscodeInfoDomainTranscodeInfoList
 }

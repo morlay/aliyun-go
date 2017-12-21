@@ -7,6 +7,7 @@ import (
 )
 
 type CreateLoadBalancerUDPListenerRequest struct {
+	requests.RpcRequest
 	Access_key_id             string `position:"Query" name:"Access_key_id"`
 	HealthCheckConnectTimeout int    `position:"Query" name:"HealthCheckConnectTimeout"`
 	ResourceOwnerId           int64  `position:"Query" name:"ResourceOwnerId"`
@@ -31,28 +32,14 @@ type CreateLoadBalancerUDPListenerRequest struct {
 	HealthCheckConnectPort    int    `position:"Query" name:"HealthCheckConnectPort"`
 }
 
-func (r CreateLoadBalancerUDPListenerRequest) Invoke(client *sdk.Client) (response *CreateLoadBalancerUDPListenerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateLoadBalancerUDPListenerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateLoadBalancerUDPListenerRequest) Invoke(client *sdk.Client) (resp *CreateLoadBalancerUDPListenerResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateLoadBalancerUDPListener", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateLoadBalancerUDPListenerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateLoadBalancerUDPListenerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateLoadBalancerUDPListenerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateLoadBalancerUDPListenerResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

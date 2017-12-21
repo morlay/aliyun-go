@@ -7,6 +7,7 @@ import (
 )
 
 type CreatePolicyWithSpecifiedPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	PolicyId             string `position:"Query" name:"PolicyId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
@@ -16,28 +17,14 @@ type CreatePolicyWithSpecifiedPolicyRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreatePolicyWithSpecifiedPolicyRequest) Invoke(client *sdk.Client) (response *CreatePolicyWithSpecifiedPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreatePolicyWithSpecifiedPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreatePolicyWithSpecifiedPolicyRequest) Invoke(client *sdk.Client) (resp *CreatePolicyWithSpecifiedPolicyResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreatePolicyWithSpecifiedPolicy", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreatePolicyWithSpecifiedPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreatePolicyWithSpecifiedPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreatePolicyWithSpecifiedPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreatePolicyWithSpecifiedPolicyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

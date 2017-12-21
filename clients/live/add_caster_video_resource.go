@@ -7,6 +7,7 @@ import (
 )
 
 type AddCasterVideoResourceRequest struct {
+	requests.RpcRequest
 	LiveStreamUrl string `position:"Query" name:"LiveStreamUrl"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	LocationId    string `position:"Query" name:"LocationId"`
@@ -18,29 +19,15 @@ type AddCasterVideoResourceRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r AddCasterVideoResourceRequest) Invoke(client *sdk.Client) (response *AddCasterVideoResourceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCasterVideoResourceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *AddCasterVideoResourceResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "AddCasterVideoResource", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCasterVideoResourceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCasterVideoResourceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCasterVideoResourceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddCasterVideoResourceResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	ResourceId string
 }

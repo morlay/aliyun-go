@@ -9,28 +9,14 @@ import (
 )
 
 type CreateOrderRequest struct {
+	requests.RpcRequest
 	SubOrderParams *CreateOrderSubOrderParamList `position:"Query" type:"Repeated" name:"SubOrderParam"`
 }
 
-func (r CreateOrderRequest) Invoke(client *sdk.Client) (response *CreateOrderResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateOrderRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateOrderRequest) Invoke(client *sdk.Client) (resp *CreateOrderResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "CreateOrder", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateOrderResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateOrderResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateOrderResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -43,6 +29,7 @@ type CreateOrderSubOrderParam struct {
 }
 
 type CreateOrderResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderID   string
 }

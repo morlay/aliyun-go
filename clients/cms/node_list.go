@@ -9,6 +9,7 @@ import (
 )
 
 type NodeListRequest struct {
+	requests.RpcRequest
 	HostName      string `position:"Query" name:"HostName"`
 	InstanceIds   string `position:"Query" name:"InstanceIds"`
 	PageSize      int    `position:"Query" name:"PageSize"`
@@ -19,29 +20,15 @@ type NodeListRequest struct {
 	Status        string `position:"Query" name:"Status"`
 }
 
-func (r NodeListRequest) Invoke(client *sdk.Client) (response *NodeListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		NodeListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *NodeListRequest) Invoke(client *sdk.Client) (resp *NodeListResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "NodeList", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		NodeListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.NodeListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &NodeListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type NodeListResponse struct {
+	responses.BaseResponse
 	ErrorCode    int
 	ErrorMessage string
 	Success      bool

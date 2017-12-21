@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteGroupRequest struct {
+	requests.RpcRequest
 	GroupName string `position:"Query" name:"GroupName"`
 }
 
-func (r DeleteGroupRequest) Invoke(client *sdk.Client) (response *DeleteGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteGroupRequest) Invoke(client *sdk.Client) (resp *DeleteGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "DeleteGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

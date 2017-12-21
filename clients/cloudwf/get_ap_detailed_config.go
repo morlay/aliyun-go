@@ -7,32 +7,19 @@ import (
 )
 
 type GetApDetailedConfigRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetApDetailedConfigRequest) Invoke(client *sdk.Client) (response *GetApDetailedConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetApDetailedConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetApDetailedConfigRequest) Invoke(client *sdk.Client) (resp *GetApDetailedConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetApDetailedConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetApDetailedConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetApDetailedConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetApDetailedConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetApDetailedConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

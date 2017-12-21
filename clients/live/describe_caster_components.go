@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCasterComponentsRequest struct {
+	requests.RpcRequest
 	ComponentId   string `position:"Query" name:"ComponentId"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
@@ -16,29 +17,15 @@ type DescribeCasterComponentsRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DescribeCasterComponentsRequest) Invoke(client *sdk.Client) (response *DescribeCasterComponentsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCasterComponentsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCasterComponentsRequest) Invoke(client *sdk.Client) (resp *DescribeCasterComponentsResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterComponents", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCasterComponentsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCasterComponentsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCasterComponentsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCasterComponentsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	Total      int
 	Components DescribeCasterComponentsComponentList

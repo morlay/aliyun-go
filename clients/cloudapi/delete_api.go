@@ -7,32 +7,19 @@ import (
 )
 
 type DeleteApiRequest struct {
+	requests.RpcRequest
 	GroupId string `position:"Query" name:"GroupId"`
 	ApiId   string `position:"Query" name:"ApiId"`
 }
 
-func (r DeleteApiRequest) Invoke(client *sdk.Client) (response *DeleteApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteApiRequest) Invoke(client *sdk.Client) (resp *DeleteApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DeleteApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteApiResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

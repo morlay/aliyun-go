@@ -7,30 +7,18 @@ import (
 )
 
 type GetUserInfoRequest struct {
+	requests.RoaRequest
 }
 
-func (r GetUserInfoRequest) Invoke(client *sdk.Client) (response *GetUserInfoResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetUserInfoRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetUserInfoRequest) Invoke(client *sdk.Client) (resp *GetUserInfoResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetUserInfo", "/users", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetUserInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserInfoResponse struct {
+	responses.BaseResponse
 }

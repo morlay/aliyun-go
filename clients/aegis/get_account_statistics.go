@@ -7,33 +7,20 @@ import (
 )
 
 type GetAccountStatisticsRequest struct {
+	requests.RpcRequest
 	EndTime   string `position:"Query" name:"EndTime"`
 	StartTime string `position:"Query" name:"StartTime"`
 }
 
-func (r GetAccountStatisticsRequest) Invoke(client *sdk.Client) (response *GetAccountStatisticsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetAccountStatisticsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetAccountStatisticsRequest) Invoke(client *sdk.Client) (resp *GetAccountStatisticsResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "GetAccountStatistics", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetAccountStatisticsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetAccountStatisticsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetAccountStatisticsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetAccountStatisticsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Success   bool

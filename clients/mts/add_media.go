@@ -9,6 +9,7 @@ import (
 )
 
 type AddMediaRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount  string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount          string `position:"Query" name:"OwnerAccount"`
@@ -23,29 +24,15 @@ type AddMediaRequest struct {
 	MediaWorkflowUserData string `position:"Query" name:"MediaWorkflowUserData"`
 }
 
-func (r AddMediaRequest) Invoke(client *sdk.Client) (response *AddMediaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddMediaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddMediaRequest) Invoke(client *sdk.Client) (resp *AddMediaResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddMedia", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddMediaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddMediaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddMediaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddMediaResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Media     AddMediaMedia
 }

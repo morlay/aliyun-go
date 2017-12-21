@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceNetworkSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	AutoPay                 string `position:"Query" name:"AutoPay"`
 	ResourceOwnerAccount    string `position:"Query" name:"ResourceOwnerAccount"`
@@ -22,29 +23,15 @@ type ModifyInstanceNetworkSpecRequest struct {
 	AllocatePublicIp        string `position:"Query" name:"AllocatePublicIp"`
 }
 
-func (r ModifyInstanceNetworkSpecRequest) Invoke(client *sdk.Client) (response *ModifyInstanceNetworkSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceNetworkSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceNetworkSpecRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceNetworkSpecResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceNetworkSpec", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceNetworkSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceNetworkSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceNetworkSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceNetworkSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type EditPhotoStoreRequest struct {
+	requests.RpcRequest
 	AutoCleanEnabled string `position:"Query" name:"AutoCleanEnabled"`
 	StoreName        string `position:"Query" name:"StoreName"`
 	Remark           string `position:"Query" name:"Remark"`
@@ -14,29 +15,15 @@ type EditPhotoStoreRequest struct {
 	AutoCleanDays    int    `position:"Query" name:"AutoCleanDays"`
 }
 
-func (r EditPhotoStoreRequest) Invoke(client *sdk.Client) (response *EditPhotoStoreResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EditPhotoStoreRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EditPhotoStoreRequest) Invoke(client *sdk.Client) (resp *EditPhotoStoreResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "EditPhotoStore", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EditPhotoStoreResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EditPhotoStoreResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EditPhotoStoreResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EditPhotoStoreResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

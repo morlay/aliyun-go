@@ -7,34 +7,21 @@ import (
 )
 
 type DeactivateScalingConfigurationRequest struct {
+	requests.RpcRequest
 	ScalingConfigurationId string `position:"Query" name:"ScalingConfigurationId"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount           string `position:"Query" name:"OwnerAccount"`
 	OwnerId                int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeactivateScalingConfigurationRequest) Invoke(client *sdk.Client) (response *DeactivateScalingConfigurationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeactivateScalingConfigurationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeactivateScalingConfigurationRequest) Invoke(client *sdk.Client) (resp *DeactivateScalingConfigurationResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DeactivateScalingConfiguration", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeactivateScalingConfigurationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeactivateScalingConfigurationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeactivateScalingConfigurationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeactivateScalingConfigurationResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type GetStaDetailedStatusRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetStaDetailedStatusRequest) Invoke(client *sdk.Client) (response *GetStaDetailedStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetStaDetailedStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetStaDetailedStatusRequest) Invoke(client *sdk.Client) (resp *GetStaDetailedStatusResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetStaDetailedStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetStaDetailedStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetStaDetailedStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetStaDetailedStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetStaDetailedStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

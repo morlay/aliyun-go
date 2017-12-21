@@ -7,32 +7,19 @@ import (
 )
 
 type SuspendExecutionPlanSchedulerRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 }
 
-func (r SuspendExecutionPlanSchedulerRequest) Invoke(client *sdk.Client) (response *SuspendExecutionPlanSchedulerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SuspendExecutionPlanSchedulerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SuspendExecutionPlanSchedulerRequest) Invoke(client *sdk.Client) (resp *SuspendExecutionPlanSchedulerResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "SuspendExecutionPlanScheduler", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SuspendExecutionPlanSchedulerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SuspendExecutionPlanSchedulerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SuspendExecutionPlanSchedulerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SuspendExecutionPlanSchedulerResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

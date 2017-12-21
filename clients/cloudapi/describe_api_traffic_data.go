@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeApiTrafficDataRequest struct {
+	requests.RpcRequest
 	ApiId     string `position:"Query" name:"ApiId"`
 	GroupId   string `position:"Query" name:"GroupId"`
 	StartTime string `position:"Query" name:"StartTime"`
 	EndTime   string `position:"Query" name:"EndTime"`
 }
 
-func (r DescribeApiTrafficDataRequest) Invoke(client *sdk.Client) (response *DescribeApiTrafficDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeApiTrafficDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeApiTrafficDataRequest) Invoke(client *sdk.Client) (resp *DescribeApiTrafficDataResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApiTrafficData", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiTrafficDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiTrafficDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiTrafficDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiTrafficDataResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	CallUploads   DescribeApiTrafficDataMonitorItemList
 	CallDownloads DescribeApiTrafficDataMonitorItemList

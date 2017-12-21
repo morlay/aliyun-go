@@ -7,33 +7,20 @@ import (
 )
 
 type SaveStaStatusRequest struct {
+	requests.RpcRequest
 	Description string `position:"Query" name:"Description"`
 	Id          int64  `position:"Query" name:"Id"`
 }
 
-func (r SaveStaStatusRequest) Invoke(client *sdk.Client) (response *SaveStaStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveStaStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveStaStatusRequest) Invoke(client *sdk.Client) (resp *SaveStaStatusResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveStaStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveStaStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveStaStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveStaStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveStaStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDeploymentSetRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -20,29 +21,15 @@ type CreateDeploymentSetRequest struct {
 	Strategy             string `position:"Query" name:"Strategy"`
 }
 
-func (r CreateDeploymentSetRequest) Invoke(client *sdk.Client) (response *CreateDeploymentSetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDeploymentSetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDeploymentSetRequest) Invoke(client *sdk.Client) (resp *CreateDeploymentSetResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateDeploymentSet", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDeploymentSetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDeploymentSetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDeploymentSetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDeploymentSetResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	DeploymentSetId string
 }

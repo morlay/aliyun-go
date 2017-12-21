@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeDomainsBySourceRequest struct {
+	requests.RpcRequest
 	Sources       string `position:"Query" name:"Sources"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainsBySourceRequest) Invoke(client *sdk.Client) (response *DescribeDomainsBySourceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainsBySourceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainsBySourceRequest) Invoke(client *sdk.Client) (resp *DescribeDomainsBySourceResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainsBySource", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainsBySourceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainsBySourceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainsBySourceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainsBySourceResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	Sources     string
 	DomainsList DescribeDomainsBySourceDomainsDataList

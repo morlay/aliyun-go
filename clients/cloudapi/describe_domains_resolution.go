@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeDomainsResolutionRequest struct {
+	requests.RpcRequest
 	GroupId     string `position:"Query" name:"GroupId"`
 	DomainNames string `position:"Query" name:"DomainNames"`
 }
 
-func (r DescribeDomainsResolutionRequest) Invoke(client *sdk.Client) (response *DescribeDomainsResolutionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainsResolutionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainsResolutionRequest) Invoke(client *sdk.Client) (resp *DescribeDomainsResolutionResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeDomainsResolution", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainsResolutionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainsResolutionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainsResolutionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainsResolutionResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	GroupId           string
 	DomainResolutions DescribeDomainsResolutionDomainResolutionList

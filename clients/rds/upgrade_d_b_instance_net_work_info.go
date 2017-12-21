@@ -7,6 +7,7 @@ import (
 )
 
 type UpgradeDBInstanceNetWorkInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ConnectionString     string `position:"Query" name:"ConnectionString"`
@@ -14,28 +15,14 @@ type UpgradeDBInstanceNetWorkInfoRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r UpgradeDBInstanceNetWorkInfoRequest) Invoke(client *sdk.Client) (response *UpgradeDBInstanceNetWorkInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpgradeDBInstanceNetWorkInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpgradeDBInstanceNetWorkInfoRequest) Invoke(client *sdk.Client) (resp *UpgradeDBInstanceNetWorkInfoResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "UpgradeDBInstanceNetWorkInfo", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpgradeDBInstanceNetWorkInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpgradeDBInstanceNetWorkInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpgradeDBInstanceNetWorkInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpgradeDBInstanceNetWorkInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

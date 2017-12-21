@@ -9,6 +9,7 @@ import (
 )
 
 type ModifyCasterLayoutRequest struct {
+	requests.RpcRequest
 	BlendLists    *ModifyCasterLayoutBlendListList  `position:"Query" type:"Repeated" name:"BlendList"`
 	AudioLayers   *ModifyCasterLayoutAudioLayerList `position:"Query" type:"Repeated" name:"AudioLayer"`
 	SecurityToken string                            `position:"Query" name:"SecurityToken"`
@@ -20,25 +21,10 @@ type ModifyCasterLayoutRequest struct {
 	LayoutId      string                            `position:"Query" name:"LayoutId"`
 }
 
-func (r ModifyCasterLayoutRequest) Invoke(client *sdk.Client) (response *ModifyCasterLayoutResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCasterLayoutRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCasterLayoutRequest) Invoke(client *sdk.Client) (resp *ModifyCasterLayoutResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "ModifyCasterLayout", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCasterLayoutResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCasterLayoutResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCasterLayoutResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -55,6 +41,7 @@ type ModifyCasterLayoutVideoLayer struct {
 }
 
 type ModifyCasterLayoutResponse struct {
+	responses.BaseResponse
 	RequestId string
 	LayoutId  string
 }

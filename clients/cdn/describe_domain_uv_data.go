@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainUvDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainUvDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainUvDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainUvDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainUvDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainUvDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainUvDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainUvData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainUvDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainUvDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainUvDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainUvDataResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	DomainName     string
 	DataInterval   string

@@ -7,6 +7,7 @@ import (
 )
 
 type ReleaseReadWriteSplittingConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type ReleaseReadWriteSplittingConnectionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReleaseReadWriteSplittingConnectionRequest) Invoke(client *sdk.Client) (response *ReleaseReadWriteSplittingConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseReadWriteSplittingConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseReadWriteSplittingConnectionRequest) Invoke(client *sdk.Client) (resp *ReleaseReadWriteSplittingConnectionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ReleaseReadWriteSplittingConnection", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseReadWriteSplittingConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseReadWriteSplittingConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseReadWriteSplittingConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseReadWriteSplittingConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

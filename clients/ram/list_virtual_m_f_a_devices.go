@@ -9,31 +9,18 @@ import (
 )
 
 type ListVirtualMFADevicesRequest struct {
+	requests.RpcRequest
 }
 
-func (r ListVirtualMFADevicesRequest) Invoke(client *sdk.Client) (response *ListVirtualMFADevicesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListVirtualMFADevicesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListVirtualMFADevicesRequest) Invoke(client *sdk.Client) (resp *ListVirtualMFADevicesResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListVirtualMFADevices", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListVirtualMFADevicesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListVirtualMFADevicesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListVirtualMFADevicesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListVirtualMFADevicesResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	VirtualMFADevices ListVirtualMFADevicesVirtualMFADeviceList
 }

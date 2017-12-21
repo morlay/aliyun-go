@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeMasterSlaveVServerGroupsRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -18,29 +19,15 @@ type DescribeMasterSlaveVServerGroupsRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeMasterSlaveVServerGroupsRequest) Invoke(client *sdk.Client) (response *DescribeMasterSlaveVServerGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeMasterSlaveVServerGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeMasterSlaveVServerGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeMasterSlaveVServerGroupsResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeMasterSlaveVServerGroups", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeMasterSlaveVServerGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeMasterSlaveVServerGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeMasterSlaveVServerGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeMasterSlaveVServerGroupsResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	MasterSlaveVServerGroups DescribeMasterSlaveVServerGroupsMasterSlaveVServerGroupList
 }

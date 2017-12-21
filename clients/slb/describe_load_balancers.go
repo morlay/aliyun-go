@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLoadBalancersRequest struct {
+	requests.RpcRequest
 	Access_key_id         string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	NetworkType           string `position:"Query" name:"NetworkType"`
@@ -33,29 +34,15 @@ type DescribeLoadBalancersRequest struct {
 	PayType               string `position:"Query" name:"PayType"`
 }
 
-func (r DescribeLoadBalancersRequest) Invoke(client *sdk.Client) (response *DescribeLoadBalancersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLoadBalancersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLoadBalancersRequest) Invoke(client *sdk.Client) (resp *DescribeLoadBalancersResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeLoadBalancers", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLoadBalancersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLoadBalancersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLoadBalancersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLoadBalancersResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	PageNumber    int
 	PageSize      int

@@ -7,6 +7,7 @@ import (
 )
 
 type SetPathForceTtlCodeConfigRequest struct {
+	requests.RpcRequest
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Version       string `position:"Query" name:"Version"`
@@ -15,28 +16,14 @@ type SetPathForceTtlCodeConfigRequest struct {
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 }
 
-func (r SetPathForceTtlCodeConfigRequest) Invoke(client *sdk.Client) (response *SetPathForceTtlCodeConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetPathForceTtlCodeConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetPathForceTtlCodeConfigRequest) Invoke(client *sdk.Client) (resp *SetPathForceTtlCodeConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetPathForceTtlCodeConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetPathForceTtlCodeConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetPathForceTtlCodeConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetPathForceTtlCodeConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetPathForceTtlCodeConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

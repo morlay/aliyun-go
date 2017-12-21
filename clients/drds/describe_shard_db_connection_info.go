@@ -7,34 +7,21 @@ import (
 )
 
 type DescribeShardDbConnectionInfoRequest struct {
+	requests.RpcRequest
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 	SubDbName      string `position:"Query" name:"SubDbName"`
 }
 
-func (r DescribeShardDbConnectionInfoRequest) Invoke(client *sdk.Client) (response *DescribeShardDbConnectionInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeShardDbConnectionInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeShardDbConnectionInfoRequest) Invoke(client *sdk.Client) (resp *DescribeShardDbConnectionInfoResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeShardDbConnectionInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeShardDbConnectionInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeShardDbConnectionInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeShardDbConnectionInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeShardDbConnectionInfoResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	ConnectionInfo DescribeShardDbConnectionInfoConnectionInfo

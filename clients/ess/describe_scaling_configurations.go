@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeScalingConfigurationsRequest struct {
+	requests.RpcRequest
 	ScalingConfigurationId6    string `position:"Query" name:"ScalingConfigurationId.6"`
 	ScalingConfigurationId7    string `position:"Query" name:"ScalingConfigurationId.7"`
 	ResourceOwnerId            int64  `position:"Query" name:"ResourceOwnerId"`
@@ -38,29 +39,15 @@ type DescribeScalingConfigurationsRequest struct {
 	ScalingConfigurationName10 string `position:"Query" name:"ScalingConfigurationName.10"`
 }
 
-func (r DescribeScalingConfigurationsRequest) Invoke(client *sdk.Client) (response *DescribeScalingConfigurationsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeScalingConfigurationsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeScalingConfigurationsRequest) Invoke(client *sdk.Client) (resp *DescribeScalingConfigurationsResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeScalingConfigurations", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeScalingConfigurationsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeScalingConfigurationsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeScalingConfigurationsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeScalingConfigurationsResponse struct {
+	responses.BaseResponse
 	TotalCount            int
 	PageNumber            int
 	PageSize              int

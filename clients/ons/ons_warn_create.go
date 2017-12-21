@@ -7,6 +7,7 @@ import (
 )
 
 type OnsWarnCreateRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -20,29 +21,15 @@ type OnsWarnCreateRequest struct {
 	Contacts     string `position:"Query" name:"Contacts"`
 }
 
-func (r OnsWarnCreateRequest) Invoke(client *sdk.Client) (response *OnsWarnCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsWarnCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsWarnCreateRequest) Invoke(client *sdk.Client) (resp *OnsWarnCreateResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsWarnCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsWarnCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsWarnCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsWarnCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsWarnCreateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

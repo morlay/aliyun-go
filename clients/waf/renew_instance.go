@@ -7,6 +7,7 @@ import (
 )
 
 type RenewInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId      int64  `position:"Query" name:"OwnerId"`
 	ClientToken  string `position:"Query" name:"ClientToken"`
 	InstanceId   string `position:"Query" name:"InstanceId"`
@@ -14,29 +15,15 @@ type RenewInstanceRequest struct {
 	PricingCycle string `position:"Query" name:"PricingCycle"`
 }
 
-func (r RenewInstanceRequest) Invoke(client *sdk.Client) (response *RenewInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RenewInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RenewInstanceRequest) Invoke(client *sdk.Client) (resp *RenewInstanceResponse, err error) {
 	req.InitWithApiInfo("waf-openapi", "2016-11-11", "RenewInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RenewInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RenewInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RenewInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RenewInstanceResponse struct {
+	responses.BaseResponse
 	OrderId   string
 	RequestId string
 }

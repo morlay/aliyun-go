@@ -9,35 +9,22 @@ import (
 )
 
 type OnsTraceGetResultRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 	QueryId      string `position:"Query" name:"QueryId"`
 }
 
-func (r OnsTraceGetResultRequest) Invoke(client *sdk.Client) (response *OnsTraceGetResultResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsTraceGetResultRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsTraceGetResultRequest) Invoke(client *sdk.Client) (resp *OnsTraceGetResultResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsTraceGetResult", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsTraceGetResultResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsTraceGetResultResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsTraceGetResultResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsTraceGetResultResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	TraceData OnsTraceGetResultTraceData

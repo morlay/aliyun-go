@@ -7,30 +7,18 @@ import (
 )
 
 type GetRegionListRequest struct {
+	requests.RoaRequest
 }
 
-func (r GetRegionListRequest) Invoke(client *sdk.Client) (response *GetRegionListResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetRegionListRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetRegionListRequest) Invoke(client *sdk.Client) (resp *GetRegionListResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetRegionList", "/regions", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetRegionListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRegionListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRegionListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRegionListResponse struct {
+	responses.BaseResponse
 }

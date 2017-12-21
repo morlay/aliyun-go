@@ -7,6 +7,7 @@ import (
 )
 
 type SaveApConfigRequest struct {
+	requests.RpcRequest
 	Country     string `position:"Query" name:"Country"`
 	ApAssetId   int64  `position:"Query" name:"ApAssetId"`
 	LogLevel    int    `position:"Query" name:"LogLevel"`
@@ -20,29 +21,15 @@ type SaveApConfigRequest struct {
 	Mac         string `position:"Query" name:"Mac"`
 }
 
-func (r SaveApConfigRequest) Invoke(client *sdk.Client) (response *SaveApConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApConfigRequest) Invoke(client *sdk.Client) (resp *SaveApConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

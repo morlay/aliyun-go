@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRouterInterfacesRequest struct {
+	requests.RpcRequest
 	Filters              *DescribeRouterInterfacesFilterList `position:"Query" type:"Repeated" name:"Filter"`
 	ResourceOwnerId      int64                               `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                              `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,25 +18,10 @@ type DescribeRouterInterfacesRequest struct {
 	PageNumber           int                                 `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeRouterInterfacesRequest) Invoke(client *sdk.Client) (response *DescribeRouterInterfacesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRouterInterfacesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRouterInterfacesRequest) Invoke(client *sdk.Client) (resp *DescribeRouterInterfacesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeRouterInterfaces", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRouterInterfacesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRouterInterfacesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRouterInterfacesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -45,6 +31,7 @@ type DescribeRouterInterfacesFilter struct {
 }
 
 type DescribeRouterInterfacesResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	PageNumber         int
 	PageSize           int

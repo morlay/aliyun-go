@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteSubDomainRecordsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
@@ -14,29 +15,15 @@ type DeleteSubDomainRecordsRequest struct {
 	Type         string `position:"Query" name:"Type"`
 }
 
-func (r DeleteSubDomainRecordsRequest) Invoke(client *sdk.Client) (response *DeleteSubDomainRecordsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteSubDomainRecordsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteSubDomainRecordsRequest) Invoke(client *sdk.Client) (resp *DeleteSubDomainRecordsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DeleteSubDomainRecords", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteSubDomainRecordsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteSubDomainRecordsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteSubDomainRecordsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteSubDomainRecordsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	RR         string
 	TotalCount string

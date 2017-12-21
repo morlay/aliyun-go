@@ -9,6 +9,7 @@ import (
 )
 
 type CreateClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64                                `position:"Query" name:"ResourceOwnerId"`
 	Name                   string                               `position:"Query" name:"Name"`
 	ZoneId                 string                               `position:"Query" name:"ZoneId"`
@@ -37,25 +38,10 @@ type CreateClusterRequest struct {
 	BootstrapActions       *CreateClusterBootstrapActionList    `position:"Query" type:"Repeated" name:"BootstrapAction"`
 }
 
-func (r CreateClusterRequest) Invoke(client *sdk.Client) (response *CreateClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateClusterRequest) Invoke(client *sdk.Client) (resp *CreateClusterResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "CreateCluster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -76,6 +62,7 @@ type CreateClusterBootstrapAction struct {
 }
 
 type CreateClusterResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	ClusterId     string
 	EmrOrderId    string

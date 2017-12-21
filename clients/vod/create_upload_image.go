@@ -7,6 +7,7 @@ import (
 )
 
 type CreateUploadImageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageType            string `position:"Query" name:"ImageType"`
 	OriginalFileName     string `position:"Query" name:"OriginalFileName"`
@@ -17,29 +18,15 @@ type CreateUploadImageRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r CreateUploadImageRequest) Invoke(client *sdk.Client) (response *CreateUploadImageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateUploadImageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateUploadImageRequest) Invoke(client *sdk.Client) (resp *CreateUploadImageResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "CreateUploadImage", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateUploadImageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateUploadImageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateUploadImageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateUploadImageResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	ImageId       string
 	ImageURL      string

@@ -7,33 +7,20 @@ import (
 )
 
 type DeleteLiveRecordNotifyConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteLiveRecordNotifyConfigRequest) Invoke(client *sdk.Client) (response *DeleteLiveRecordNotifyConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLiveRecordNotifyConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLiveRecordNotifyConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveRecordNotifyConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveRecordNotifyConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLiveRecordNotifyConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLiveRecordNotifyConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLiveRecordNotifyConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLiveRecordNotifyConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

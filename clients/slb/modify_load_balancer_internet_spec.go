@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyLoadBalancerInternetSpecRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AutoPay              string `position:"Query" name:"AutoPay"`
@@ -19,29 +20,15 @@ type ModifyLoadBalancerInternetSpecRequest struct {
 	InternetChargeType   string `position:"Query" name:"InternetChargeType"`
 }
 
-func (r ModifyLoadBalancerInternetSpecRequest) Invoke(client *sdk.Client) (response *ModifyLoadBalancerInternetSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyLoadBalancerInternetSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyLoadBalancerInternetSpecRequest) Invoke(client *sdk.Client) (resp *ModifyLoadBalancerInternetSpecResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "ModifyLoadBalancerInternetSpec", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyLoadBalancerInternetSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyLoadBalancerInternetSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyLoadBalancerInternetSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyLoadBalancerInternetSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   int64
 }

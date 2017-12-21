@@ -9,6 +9,7 @@ import (
 )
 
 type CreateSkillGroupRequest struct {
+	requests.RpcRequest
 	SkillLevels            *CreateSkillGroupSkillLevelList            `position:"Query" type:"Repeated" name:"SkillLevel"`
 	InstanceId             string                                     `position:"Query" name:"InstanceId"`
 	OutboundPhoneNumberIds *CreateSkillGroupOutboundPhoneNumberIdList `position:"Query" type:"Repeated" name:"OutboundPhoneNumberId"`
@@ -17,29 +18,15 @@ type CreateSkillGroupRequest struct {
 	UserIds                *CreateSkillGroupUserIdList                `position:"Query" type:"Repeated" name:"UserId"`
 }
 
-func (r CreateSkillGroupRequest) Invoke(client *sdk.Client) (response *CreateSkillGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateSkillGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateSkillGroupRequest) Invoke(client *sdk.Client) (resp *CreateSkillGroupResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "CreateSkillGroup", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateSkillGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateSkillGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateSkillGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateSkillGroupResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

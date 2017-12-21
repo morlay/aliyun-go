@@ -7,32 +7,20 @@ import (
 )
 
 type DeleteJobRequest struct {
+	requests.RoaRequest
 	JobName string `position:"Path" name:"JobName"`
 }
 
-func (r DeleteJobRequest) Invoke(client *sdk.Client) (response *DeleteJobResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DeleteJobRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DeleteJobRequest) Invoke(client *sdk.Client) (resp *DeleteJobResponse, err error) {
 	req.InitWithApiInfo("Cds", "2017-09-25", "DeleteJob", "/v1/job/[JobName]", "", "")
 	req.Method = "DELETE"
 
-	resp := struct {
-		*responses.BaseResponse
-		DeleteJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

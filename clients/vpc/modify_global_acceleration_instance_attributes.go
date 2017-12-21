@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyGlobalAccelerationInstanceAttributesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId              int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount         string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount                 string `position:"Query" name:"OwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyGlobalAccelerationInstanceAttributesRequest struct {
 	GlobalAccelerationInstanceId string `position:"Query" name:"GlobalAccelerationInstanceId"`
 }
 
-func (r ModifyGlobalAccelerationInstanceAttributesRequest) Invoke(client *sdk.Client) (response *ModifyGlobalAccelerationInstanceAttributesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyGlobalAccelerationInstanceAttributesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyGlobalAccelerationInstanceAttributesRequest) Invoke(client *sdk.Client) (resp *ModifyGlobalAccelerationInstanceAttributesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyGlobalAccelerationInstanceAttributes", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyGlobalAccelerationInstanceAttributesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyGlobalAccelerationInstanceAttributesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyGlobalAccelerationInstanceAttributesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyGlobalAccelerationInstanceAttributesResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

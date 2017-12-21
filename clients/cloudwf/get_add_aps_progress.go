@@ -7,32 +7,19 @@ import (
 )
 
 type GetAddApsProgressRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetAddApsProgressRequest) Invoke(client *sdk.Client) (response *GetAddApsProgressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetAddApsProgressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetAddApsProgressRequest) Invoke(client *sdk.Client) (resp *GetAddApsProgressResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetAddApsProgress", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetAddApsProgressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetAddApsProgressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetAddApsProgressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetAddApsProgressResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -7,34 +7,21 @@ import (
 )
 
 type PubBroadcastRequest struct {
+	requests.RpcRequest
 	TopicFullName  string `position:"Query" name:"TopicFullName"`
 	MessageContent string `position:"Query" name:"MessageContent"`
 	ProductKey     string `position:"Query" name:"ProductKey"`
 }
 
-func (r PubBroadcastRequest) Invoke(client *sdk.Client) (response *PubBroadcastResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PubBroadcastRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PubBroadcastRequest) Invoke(client *sdk.Client) (resp *PubBroadcastResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "PubBroadcast", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PubBroadcastResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PubBroadcastResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PubBroadcastResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PubBroadcastResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

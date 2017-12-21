@@ -9,6 +9,7 @@ import (
 )
 
 type DescibeImportsFromDatabaseRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -23,29 +24,15 @@ type DescibeImportsFromDatabaseRequest struct {
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r DescibeImportsFromDatabaseRequest) Invoke(client *sdk.Client) (response *DescibeImportsFromDatabaseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescibeImportsFromDatabaseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescibeImportsFromDatabaseRequest) Invoke(client *sdk.Client) (resp *DescibeImportsFromDatabaseResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescibeImportsFromDatabase", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescibeImportsFromDatabaseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescibeImportsFromDatabaseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescibeImportsFromDatabaseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescibeImportsFromDatabaseResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount int
 	PageNumber       int

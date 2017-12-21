@@ -7,32 +7,19 @@ import (
 )
 
 type OpenCCProtectRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r OpenCCProtectRequest) Invoke(client *sdk.Client) (response *OpenCCProtectResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OpenCCProtectRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OpenCCProtectRequest) Invoke(client *sdk.Client) (resp *OpenCCProtectResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "OpenCCProtect", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OpenCCProtectResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OpenCCProtectResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OpenCCProtectResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OpenCCProtectResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

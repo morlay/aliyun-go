@@ -7,33 +7,20 @@ import (
 )
 
 type OnoffGroupApRadioRequest struct {
+	requests.RpcRequest
 	ApgroupId int64 `position:"Query" name:"ApgroupId"`
 	Disabled  int   `position:"Query" name:"Disabled"`
 }
 
-func (r OnoffGroupApRadioRequest) Invoke(client *sdk.Client) (response *OnoffGroupApRadioResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnoffGroupApRadioRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnoffGroupApRadioRequest) Invoke(client *sdk.Client) (resp *OnoffGroupApRadioResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "OnoffGroupApRadio", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnoffGroupApRadioResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnoffGroupApRadioResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnoffGroupApRadioResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnoffGroupApRadioResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

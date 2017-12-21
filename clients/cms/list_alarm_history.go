@@ -9,6 +9,7 @@ import (
 )
 
 type ListAlarmHistoryRequest struct {
+	requests.RpcRequest
 	Cursor           string `position:"Query" name:"Cursor"`
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	Size             int    `position:"Query" name:"Size"`
@@ -17,29 +18,15 @@ type ListAlarmHistoryRequest struct {
 	StartTime        string `position:"Query" name:"StartTime"`
 }
 
-func (r ListAlarmHistoryRequest) Invoke(client *sdk.Client) (response *ListAlarmHistoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAlarmHistoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAlarmHistoryRequest) Invoke(client *sdk.Client) (resp *ListAlarmHistoryResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "ListAlarmHistory", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAlarmHistoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAlarmHistoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAlarmHistoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAlarmHistoryResponse struct {
+	responses.BaseResponse
 	Success          bool
 	Code             string
 	Message          string

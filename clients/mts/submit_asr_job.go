@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitAsrJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitAsrJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitAsrJobRequest) Invoke(client *sdk.Client) (response *SubmitAsrJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAsrJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAsrJobRequest) Invoke(client *sdk.Client) (resp *SubmitAsrJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitAsrJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAsrJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAsrJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAsrJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAsrJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeDBInstanceNetworkRequest struct {
+	requests.RpcRequest
 	EndTime      string `position:"Query" name:"EndTime"`
 	DBInstanceId string `position:"Query" name:"DBInstanceId"`
 	StartTime    string `position:"Query" name:"StartTime"`
 }
 
-func (r DescribeDBInstanceNetworkRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceNetworkResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceNetworkRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceNetworkRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceNetworkResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceNetwork", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceNetworkResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceNetworkResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceNetworkResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceNetworkResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DBInstanceId string
 	StartTime    string

@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateTemplateRequest struct {
+	requests.RpcRequest
 	Container            string `position:"Query" name:"Container"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -20,29 +21,15 @@ type UpdateTemplateRequest struct {
 	Audio                string `position:"Query" name:"Audio"`
 }
 
-func (r UpdateTemplateRequest) Invoke(client *sdk.Client) (response *UpdateTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateTemplateRequest) Invoke(client *sdk.Client) (resp *UpdateTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateTemplateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Template  UpdateTemplateTemplate
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type InnerCheckOrderRequest struct {
+	requests.RpcRequest
 	Data string `position:"Query" name:"Data"`
 }
 
-func (r InnerCheckOrderRequest) Invoke(client *sdk.Client) (response *InnerCheckOrderResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		InnerCheckOrderRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *InnerCheckOrderRequest) Invoke(client *sdk.Client) (resp *InnerCheckOrderResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "InnerCheckOrder", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		InnerCheckOrderResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.InnerCheckOrderResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &InnerCheckOrderResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type InnerCheckOrderResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

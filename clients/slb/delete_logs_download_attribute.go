@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteLogsDownloadAttributeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type DeleteLogsDownloadAttributeRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DeleteLogsDownloadAttributeRequest) Invoke(client *sdk.Client) (response *DeleteLogsDownloadAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLogsDownloadAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLogsDownloadAttributeRequest) Invoke(client *sdk.Client) (resp *DeleteLogsDownloadAttributeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DeleteLogsDownloadAttribute", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLogsDownloadAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLogsDownloadAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLogsDownloadAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLogsDownloadAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,35 +7,22 @@ import (
 )
 
 type UpdateDNSSLBWeightRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	RecordId     string `position:"Query" name:"RecordId"`
 	Weight       int    `position:"Query" name:"Weight"`
 }
 
-func (r UpdateDNSSLBWeightRequest) Invoke(client *sdk.Client) (response *UpdateDNSSLBWeightResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateDNSSLBWeightRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateDNSSLBWeightRequest) Invoke(client *sdk.Client) (resp *UpdateDNSSLBWeightResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "UpdateDNSSLBWeight", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateDNSSLBWeightResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateDNSSLBWeightResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateDNSSLBWeightResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateDNSSLBWeightResponse struct {
+	responses.BaseResponse
 	RequestId string
 	RecordId  string
 	Weight    int

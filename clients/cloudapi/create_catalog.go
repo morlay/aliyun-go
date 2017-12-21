@@ -7,34 +7,21 @@ import (
 )
 
 type CreateCatalogRequest struct {
+	requests.RpcRequest
 	CatalogName string `position:"Query" name:"CatalogName"`
 	Description string `position:"Query" name:"Description"`
 	ParentId    string `position:"Query" name:"ParentId"`
 }
 
-func (r CreateCatalogRequest) Invoke(client *sdk.Client) (response *CreateCatalogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateCatalogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateCatalogRequest) Invoke(client *sdk.Client) (resp *CreateCatalogResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "CreateCatalog", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateCatalogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateCatalogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateCatalogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateCatalogResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CatalogId string
 }

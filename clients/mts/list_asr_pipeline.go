@@ -9,6 +9,7 @@ import (
 )
 
 type ListAsrPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type ListAsrPipelineRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r ListAsrPipelineRequest) Invoke(client *sdk.Client) (response *ListAsrPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAsrPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAsrPipelineRequest) Invoke(client *sdk.Client) (resp *ListAsrPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListAsrPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAsrPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAsrPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAsrPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAsrPipelineResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

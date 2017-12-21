@@ -9,6 +9,7 @@ import (
 )
 
 type BatchDescribeDomainBpsDataRequest struct {
+	requests.RpcRequest
 	StartTime     string `position:"Query" name:"StartTime"`
 	PageNumber    int    `position:"Query" name:"PageNumber"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -19,29 +20,15 @@ type BatchDescribeDomainBpsDataRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r BatchDescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (response *BatchDescribeDomainBpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BatchDescribeDomainBpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BatchDescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (resp *BatchDescribeDomainBpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "BatchDescribeDomainBpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BatchDescribeDomainBpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BatchDescribeDomainBpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BatchDescribeDomainBpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BatchDescribeDomainBpsDataResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PageNumber int
 	PageSize   int

@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeBackupPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,29 +16,15 @@ type DescribeBackupPolicyRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeBackupPolicyRequest) Invoke(client *sdk.Client) (response *DescribeBackupPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBackupPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBackupPolicyRequest) Invoke(client *sdk.Client) (resp *DescribeBackupPolicyResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeBackupPolicy", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBackupPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBackupPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBackupPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBackupPolicyResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	BackupRetentionPeriod string
 	PreferredBackupTime   string

@@ -7,6 +7,7 @@ import (
 )
 
 type SetRefererConfigRequest struct {
+	requests.RpcRequest
 	ReferList     string `position:"Query" name:"ReferList"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -16,28 +17,14 @@ type SetRefererConfigRequest struct {
 	AllowEmpty    string `position:"Query" name:"AllowEmpty"`
 }
 
-func (r SetRefererConfigRequest) Invoke(client *sdk.Client) (response *SetRefererConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetRefererConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetRefererConfigRequest) Invoke(client *sdk.Client) (resp *SetRefererConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetRefererConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetRefererConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetRefererConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetRefererConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetRefererConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeLivePullStreamConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLivePullStreamConfigRequest) Invoke(client *sdk.Client) (response *DescribeLivePullStreamConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLivePullStreamConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLivePullStreamConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLivePullStreamConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeLivePullStreamConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLivePullStreamConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLivePullStreamConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLivePullStreamConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLivePullStreamConfigResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	LiveAppRecordList DescribeLivePullStreamConfigLiveAppRecordList
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type OnsPublishGetRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsPublishGetRequest struct {
 	ProducerId   string `position:"Query" name:"ProducerId"`
 }
 
-func (r OnsPublishGetRequest) Invoke(client *sdk.Client) (response *OnsPublishGetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsPublishGetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsPublishGetRequest) Invoke(client *sdk.Client) (resp *OnsPublishGetResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsPublishGet", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsPublishGetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsPublishGetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsPublishGetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsPublishGetResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsPublishGetPublishInfoDoList

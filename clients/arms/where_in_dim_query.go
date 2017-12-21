@@ -9,6 +9,7 @@ import (
 )
 
 type WhereInDimQueryRequest struct {
+	requests.RpcRequest
 	DateStr        string                            `position:"Query" name:"DateStr"`
 	MinTime        int64                             `position:"Query" name:"MinTime"`
 	ReduceTail     string                            `position:"Query" name:"ReduceTail"`
@@ -24,25 +25,10 @@ type WhereInDimQueryRequest struct {
 	Dimensionss    *WhereInDimQueryDimensionsList    `position:"Query" type:"Repeated" name:"Dimensions"`
 }
 
-func (r WhereInDimQueryRequest) Invoke(client *sdk.Client) (response *WhereInDimQueryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		WhereInDimQueryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *WhereInDimQueryRequest) Invoke(client *sdk.Client) (resp *WhereInDimQueryResponse, err error) {
 	req.InitWithApiInfo("ARMS", "2016-11-25", "WhereInDimQuery", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		WhereInDimQueryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.WhereInDimQueryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &WhereInDimQueryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -53,6 +39,7 @@ type WhereInDimQueryDimensions struct {
 }
 
 type WhereInDimQueryResponse struct {
+	responses.BaseResponse
 	Data string
 }
 

@@ -7,32 +7,19 @@ import (
 )
 
 type DeletePhotoStoreRequest struct {
+	requests.RpcRequest
 	StoreName string `position:"Query" name:"StoreName"`
 }
 
-func (r DeletePhotoStoreRequest) Invoke(client *sdk.Client) (response *DeletePhotoStoreResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeletePhotoStoreRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeletePhotoStoreRequest) Invoke(client *sdk.Client) (resp *DeletePhotoStoreResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "DeletePhotoStore", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeletePhotoStoreResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeletePhotoStoreResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeletePhotoStoreResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeletePhotoStoreResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

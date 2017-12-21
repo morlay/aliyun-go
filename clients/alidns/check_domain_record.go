@@ -7,6 +7,7 @@ import (
 )
 
 type CheckDomainRecordRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
@@ -15,29 +16,15 @@ type CheckDomainRecordRequest struct {
 	Value        string `position:"Query" name:"Value"`
 }
 
-func (r CheckDomainRecordRequest) Invoke(client *sdk.Client) (response *CheckDomainRecordResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckDomainRecordRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckDomainRecordRequest) Invoke(client *sdk.Client) (resp *CheckDomainRecordResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "CheckDomainRecord", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckDomainRecordResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckDomainRecordResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckDomainRecordResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckDomainRecordResponse struct {
+	responses.BaseResponse
 	RequestId string
 	IsExist   bool
 }

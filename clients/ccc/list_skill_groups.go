@@ -9,32 +9,19 @@ import (
 )
 
 type ListSkillGroupsRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r ListSkillGroupsRequest) Invoke(client *sdk.Client) (response *ListSkillGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListSkillGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListSkillGroupsRequest) Invoke(client *sdk.Client) (resp *ListSkillGroupsResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ListSkillGroups", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListSkillGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListSkillGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListSkillGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListSkillGroupsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

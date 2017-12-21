@@ -9,34 +9,21 @@ import (
 )
 
 type DeleteFacesRequest struct {
+	requests.RpcRequest
 	LibraryId string                 `position:"Query" name:"LibraryId"`
 	StoreName string                 `position:"Query" name:"StoreName"`
 	FaceIds   *DeleteFacesFaceIdList `position:"Query" type:"Repeated" name:"FaceId"`
 }
 
-func (r DeleteFacesRequest) Invoke(client *sdk.Client) (response *DeleteFacesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteFacesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteFacesRequest) Invoke(client *sdk.Client) (resp *DeleteFacesResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "DeleteFaces", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteFacesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteFacesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteFacesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteFacesResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

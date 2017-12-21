@@ -7,6 +7,7 @@ import (
 )
 
 type ReplaceSystemDiskRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId             int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId                     string `position:"Query" name:"ImageId"`
 	ResourceOwnerAccount        string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type ReplaceSystemDiskRequest struct {
 	UseAdditionalService        string `position:"Query" name:"UseAdditionalService"`
 }
 
-func (r ReplaceSystemDiskRequest) Invoke(client *sdk.Client) (response *ReplaceSystemDiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReplaceSystemDiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReplaceSystemDiskRequest) Invoke(client *sdk.Client) (resp *ReplaceSystemDiskResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ReplaceSystemDisk", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReplaceSystemDiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReplaceSystemDiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReplaceSystemDiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReplaceSystemDiskResponse struct {
+	responses.BaseResponse
 	RequestId string
 	DiskId    string
 }

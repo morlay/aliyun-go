@@ -7,32 +7,19 @@ import (
 )
 
 type QueryApplyStatusRequest struct {
+	requests.RpcRequest
 	ApplyId int64 `position:"Query" name:"ApplyId"`
 }
 
-func (r QueryApplyStatusRequest) Invoke(client *sdk.Client) (response *QueryApplyStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryApplyStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryApplyStatusRequest) Invoke(client *sdk.Client) (resp *QueryApplyStatusResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "QueryApplyStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryApplyStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryApplyStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryApplyStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryApplyStatusResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

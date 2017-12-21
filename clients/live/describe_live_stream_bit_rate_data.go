@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamBitRateDataRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamBitRateDataRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamBitRateDataRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamBitRateDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamBitRateDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamBitRateDataRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamBitRateDataResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamBitRateData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamBitRateDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamBitRateDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamBitRateDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamBitRateDataResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	FrameRateAndBitRateInfos DescribeLiveStreamBitRateDataFrameRateAndBitRateInfoList
 }

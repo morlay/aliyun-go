@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainFlowDataRequest struct {
+	requests.RpcRequest
 	FixTimeGap     string `position:"Query" name:"FixTimeGap"`
 	TimeMerge      string `position:"Query" name:"TimeMerge"`
 	DomainName     string `position:"Query" name:"DomainName"`
@@ -22,29 +23,15 @@ type DescribeDomainFlowDataRequest struct {
 	Interval       string `position:"Query" name:"Interval"`
 }
 
-func (r DescribeDomainFlowDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainFlowDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainFlowDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainFlowDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainFlowDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainFlowData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainFlowDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainFlowDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainFlowDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainFlowDataResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	DomainName          string
 	DataInterval        string

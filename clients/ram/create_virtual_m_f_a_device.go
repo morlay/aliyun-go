@@ -7,32 +7,19 @@ import (
 )
 
 type CreateVirtualMFADeviceRequest struct {
+	requests.RpcRequest
 	VirtualMFADeviceName string `position:"Query" name:"VirtualMFADeviceName"`
 }
 
-func (r CreateVirtualMFADeviceRequest) Invoke(client *sdk.Client) (response *CreateVirtualMFADeviceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateVirtualMFADeviceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateVirtualMFADeviceRequest) Invoke(client *sdk.Client) (resp *CreateVirtualMFADeviceResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "CreateVirtualMFADevice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateVirtualMFADeviceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateVirtualMFADeviceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateVirtualMFADeviceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateVirtualMFADeviceResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	VirtualMFADevice CreateVirtualMFADeviceVirtualMFADevice
 }

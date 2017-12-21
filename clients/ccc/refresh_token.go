@@ -7,32 +7,19 @@ import (
 )
 
 type RefreshTokenRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r RefreshTokenRequest) Invoke(client *sdk.Client) (response *RefreshTokenResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RefreshTokenRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RefreshTokenRequest) Invoke(client *sdk.Client) (resp *RefreshTokenResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "RefreshToken", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RefreshTokenResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RefreshTokenResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RefreshTokenResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RefreshTokenResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

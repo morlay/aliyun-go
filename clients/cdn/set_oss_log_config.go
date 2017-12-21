@@ -7,6 +7,7 @@ import (
 )
 
 type SetOssLogConfigRequest struct {
+	requests.RpcRequest
 	Bucket        string `position:"Query" name:"Bucket"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	Enable        string `position:"Query" name:"Enable"`
@@ -14,28 +15,14 @@ type SetOssLogConfigRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetOssLogConfigRequest) Invoke(client *sdk.Client) (response *SetOssLogConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetOssLogConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetOssLogConfigRequest) Invoke(client *sdk.Client) (resp *SetOssLogConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetOssLogConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetOssLogConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetOssLogConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetOssLogConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetOssLogConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

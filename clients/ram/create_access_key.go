@@ -7,32 +7,19 @@ import (
 )
 
 type CreateAccessKeyRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r CreateAccessKeyRequest) Invoke(client *sdk.Client) (response *CreateAccessKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateAccessKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateAccessKeyRequest) Invoke(client *sdk.Client) (resp *CreateAccessKeyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "CreateAccessKey", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateAccessKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateAccessKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateAccessKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateAccessKeyResponse struct {
+	responses.BaseResponse
 	RequestId string
 	AccessKey CreateAccessKeyAccessKey
 }

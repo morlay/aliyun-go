@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeLoadBalancerUDPListenerAttributeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -17,29 +18,15 @@ type DescribeLoadBalancerUDPListenerAttributeRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeLoadBalancerUDPListenerAttributeRequest) Invoke(client *sdk.Client) (response *DescribeLoadBalancerUDPListenerAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLoadBalancerUDPListenerAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLoadBalancerUDPListenerAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeLoadBalancerUDPListenerAttributeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeLoadBalancerUDPListenerAttribute", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLoadBalancerUDPListenerAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLoadBalancerUDPListenerAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLoadBalancerUDPListenerAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLoadBalancerUDPListenerAttributeResponse struct {
+	responses.BaseResponse
 	RequestId                 string
 	ListenerPort              int
 	BackendServerPort         int

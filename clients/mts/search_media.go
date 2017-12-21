@@ -9,6 +9,7 @@ import (
 )
 
 type SearchMediaRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -25,29 +26,15 @@ type SearchMediaRequest struct {
 	KeyWord              string `position:"Query" name:"KeyWord"`
 }
 
-func (r SearchMediaRequest) Invoke(client *sdk.Client) (response *SearchMediaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchMediaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchMediaRequest) Invoke(client *sdk.Client) (resp *SearchMediaResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SearchMedia", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchMediaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchMediaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchMediaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchMediaResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalNum   int64
 	PageNumber int64

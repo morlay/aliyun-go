@@ -7,6 +7,7 @@ import (
 )
 
 type ReplaceAuthenticIPRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -16,28 +17,14 @@ type ReplaceAuthenticIPRequest struct {
 	NewAuthenticIP       string `position:"Query" name:"NewAuthenticIP"`
 }
 
-func (r ReplaceAuthenticIPRequest) Invoke(client *sdk.Client) (response *ReplaceAuthenticIPResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReplaceAuthenticIPRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReplaceAuthenticIPRequest) Invoke(client *sdk.Client) (resp *ReplaceAuthenticIPResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "ReplaceAuthenticIP", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReplaceAuthenticIPResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReplaceAuthenticIPResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReplaceAuthenticIPResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReplaceAuthenticIPResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateProductRequest struct {
+	requests.RpcRequest
 	CatId       int64  `position:"Query" name:"CatId"`
 	ProductName string `position:"Query" name:"ProductName"`
 	ExtProps    string `position:"Query" name:"ExtProps"`
@@ -14,29 +15,15 @@ type UpdateProductRequest struct {
 	ProductDesc string `position:"Query" name:"ProductDesc"`
 }
 
-func (r UpdateProductRequest) Invoke(client *sdk.Client) (response *UpdateProductResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateProductRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateProductRequest) Invoke(client *sdk.Client) (resp *UpdateProductResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "UpdateProduct", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateProductResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateProductResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateProductResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateProductResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

@@ -7,6 +7,7 @@ import (
 )
 
 type UpgradeInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId          int64  `position:"Query" name:"OwnerId"`
 	ClientToken      string `position:"Query" name:"ClientToken"`
 	InstanceId       string `position:"Query" name:"InstanceId"`
@@ -15,29 +16,15 @@ type UpgradeInstanceRequest struct {
 	ExtBandwidth     int    `position:"Query" name:"ExtBandwidth"`
 }
 
-func (r UpgradeInstanceRequest) Invoke(client *sdk.Client) (response *UpgradeInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpgradeInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpgradeInstanceRequest) Invoke(client *sdk.Client) (resp *UpgradeInstanceResponse, err error) {
 	req.InitWithApiInfo("waf-openapi", "2016-11-11", "UpgradeInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpgradeInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpgradeInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpgradeInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpgradeInstanceResponse struct {
+	responses.BaseResponse
 	OrderId   string
 	RequestId string
 }

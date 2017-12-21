@@ -7,6 +7,7 @@ import (
 )
 
 type RecoverVirtualBorderRouterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type RecoverVirtualBorderRouterRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r RecoverVirtualBorderRouterRequest) Invoke(client *sdk.Client) (response *RecoverVirtualBorderRouterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RecoverVirtualBorderRouterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RecoverVirtualBorderRouterRequest) Invoke(client *sdk.Client) (resp *RecoverVirtualBorderRouterResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "RecoverVirtualBorderRouter", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RecoverVirtualBorderRouterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RecoverVirtualBorderRouterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RecoverVirtualBorderRouterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RecoverVirtualBorderRouterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

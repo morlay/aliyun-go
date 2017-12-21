@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyHpcClusterAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	HpcClusterId         string `position:"Query" name:"HpcClusterId"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,28 +18,14 @@ type ModifyHpcClusterAttributeRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r ModifyHpcClusterAttributeRequest) Invoke(client *sdk.Client) (response *ModifyHpcClusterAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyHpcClusterAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyHpcClusterAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyHpcClusterAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyHpcClusterAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyHpcClusterAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyHpcClusterAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyHpcClusterAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyHpcClusterAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

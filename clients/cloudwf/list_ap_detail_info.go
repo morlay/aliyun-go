@@ -7,32 +7,19 @@ import (
 )
 
 type ListApDetailInfoRequest struct {
+	requests.RpcRequest
 	ApAssetId int64 `position:"Query" name:"ApAssetId"`
 }
 
-func (r ListApDetailInfoRequest) Invoke(client *sdk.Client) (response *ListApDetailInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApDetailInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApDetailInfoRequest) Invoke(client *sdk.Client) (resp *ListApDetailInfoResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApDetailInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApDetailInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApDetailInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApDetailInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApDetailInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

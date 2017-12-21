@@ -7,6 +7,7 @@ import (
 )
 
 type OnsTopicCreateRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	Cluster      string `position:"Query" name:"Cluster"`
 	QueueNum     int    `position:"Query" name:"QueueNum"`
@@ -21,29 +22,15 @@ type OnsTopicCreateRequest struct {
 	Status       int    `position:"Query" name:"Status"`
 }
 
-func (r OnsTopicCreateRequest) Invoke(client *sdk.Client) (response *OnsTopicCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsTopicCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsTopicCreateRequest) Invoke(client *sdk.Client) (resp *OnsTopicCreateResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsTopicCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsTopicCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsTopicCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsTopicCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsTopicCreateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type GetOrderIdByQueryPurchaseRequest struct {
+	requests.RpcRequest
 	OrderId string `position:"Query" name:"OrderId"`
 }
 
-func (r GetOrderIdByQueryPurchaseRequest) Invoke(client *sdk.Client) (response *GetOrderIdByQueryPurchaseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetOrderIdByQueryPurchaseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetOrderIdByQueryPurchaseRequest) Invoke(client *sdk.Client) (resp *GetOrderIdByQueryPurchaseResponse, err error) {
 	req.InitWithApiInfo("Commondriver", "2015-12-29", "GetOrderIdByQueryPurchase", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetOrderIdByQueryPurchaseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetOrderIdByQueryPurchaseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetOrderIdByQueryPurchaseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetOrderIdByQueryPurchaseResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      bool

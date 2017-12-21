@@ -7,32 +7,20 @@ import (
 )
 
 type GetTriggerHookRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 	ProjectId string `position:"Path" name:"ProjectId"`
 }
 
-func (r GetTriggerHookRequest) Invoke(client *sdk.Client) (response *GetTriggerHookResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetTriggerHookRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetTriggerHookRequest) Invoke(client *sdk.Client) (resp *GetTriggerHookResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "GetTriggerHook", "/hook/trigger/[ClusterId]/[ProjectId]", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetTriggerHookResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetTriggerHookResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetTriggerHookResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetTriggerHookResponse struct {
+	responses.BaseResponse
 }

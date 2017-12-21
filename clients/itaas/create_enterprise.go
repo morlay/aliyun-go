@@ -9,6 +9,7 @@ import (
 )
 
 type CreateEnterpriseRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
@@ -16,29 +17,15 @@ type CreateEnterpriseRequest struct {
 	ServiceFlag string `position:"Query" name:"ServiceFlag"`
 }
 
-func (r CreateEnterpriseRequest) Invoke(client *sdk.Client) (response *CreateEnterpriseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateEnterpriseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateEnterpriseRequest) Invoke(client *sdk.Client) (resp *CreateEnterpriseResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "CreateEnterprise", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateEnterpriseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateEnterpriseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateEnterpriseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateEnterpriseResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

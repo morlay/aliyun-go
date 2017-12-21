@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBackupSetsForSecurityRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	TargetAliBid         string `position:"Query" name:"TargetAliBid"`
@@ -26,29 +27,15 @@ type DescribeBackupSetsForSecurityRequest struct {
 	BackupMode           string `position:"Query" name:"BackupMode"`
 }
 
-func (r DescribeBackupSetsForSecurityRequest) Invoke(client *sdk.Client) (response *DescribeBackupSetsForSecurityResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBackupSetsForSecurityRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBackupSetsForSecurityRequest) Invoke(client *sdk.Client) (resp *DescribeBackupSetsForSecurityResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeBackupSetsForSecurity", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBackupSetsForSecurityResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBackupSetsForSecurityResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBackupSetsForSecurityResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBackupSetsForSecurityResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount string
 	PageNumber       string

@@ -7,34 +7,21 @@ import (
 )
 
 type ModifyDrdsDBPasswdRequest struct {
+	requests.RpcRequest
 	NewPasswd      string `position:"Query" name:"NewPasswd"`
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r ModifyDrdsDBPasswdRequest) Invoke(client *sdk.Client) (response *ModifyDrdsDBPasswdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDrdsDBPasswdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDrdsDBPasswdRequest) Invoke(client *sdk.Client) (resp *ModifyDrdsDBPasswdResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "ModifyDrdsDBPasswd", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDrdsDBPasswdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDrdsDBPasswdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDrdsDBPasswdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDrdsDBPasswdResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

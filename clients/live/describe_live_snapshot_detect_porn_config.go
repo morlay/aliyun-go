@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveSnapshotDetectPornConfigRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveSnapshotDetectPornConfigRequest struct {
 	Order         string `position:"Query" name:"Order"`
 }
 
-func (r DescribeLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (response *DescribeLiveSnapshotDetectPornConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveSnapshotDetectPornConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLiveSnapshotDetectPornConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveSnapshotDetectPornConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveSnapshotDetectPornConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveSnapshotDetectPornConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveSnapshotDetectPornConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveSnapshotDetectPornConfigResponse struct {
+	responses.BaseResponse
 	RequestId                        string
 	PageNum                          int
 	PageSize                         int

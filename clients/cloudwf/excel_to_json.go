@@ -7,32 +7,19 @@ import (
 )
 
 type ExcelToJsonRequest struct {
+	requests.RpcRequest
 	UploadData string `position:"Query" name:"UploadData"`
 }
 
-func (r ExcelToJsonRequest) Invoke(client *sdk.Client) (response *ExcelToJsonResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ExcelToJsonRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ExcelToJsonRequest) Invoke(client *sdk.Client) (resp *ExcelToJsonResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ExcelToJson", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ExcelToJsonResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ExcelToJsonResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ExcelToJsonResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ExcelToJsonResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

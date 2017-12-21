@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRouteTablesRequest struct {
+	requests.RpcRequest
 	RouterType           string `position:"Query" name:"RouterType"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	RouteTableName       string `position:"Query" name:"RouteTableName"`
@@ -22,29 +23,15 @@ type DescribeRouteTablesRequest struct {
 	RouteTableId         string `position:"Query" name:"RouteTableId"`
 }
 
-func (r DescribeRouteTablesRequest) Invoke(client *sdk.Client) (response *DescribeRouteTablesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRouteTablesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRouteTablesRequest) Invoke(client *sdk.Client) (resp *DescribeRouteTablesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeRouteTables", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRouteTablesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRouteTablesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRouteTablesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRouteTablesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	PageNumber  int

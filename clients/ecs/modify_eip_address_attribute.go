@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyEipAddressAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            string `position:"Query" name:"Bandwidth"`
@@ -15,28 +16,14 @@ type ModifyEipAddressAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyEipAddressAttributeRequest) Invoke(client *sdk.Client) (response *ModifyEipAddressAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyEipAddressAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyEipAddressAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyEipAddressAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyEipAddressAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyEipAddressAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyEipAddressAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyEipAddressAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyEipAddressAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

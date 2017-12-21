@@ -7,32 +7,19 @@ import (
 )
 
 type ChangePasswordRequest struct {
+	requests.RpcRequest
 	OldPassword string `position:"Query" name:"OldPassword"`
 	NewPassword string `position:"Query" name:"NewPassword"`
 }
 
-func (r ChangePasswordRequest) Invoke(client *sdk.Client) (response *ChangePasswordResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ChangePasswordRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ChangePasswordRequest) Invoke(client *sdk.Client) (resp *ChangePasswordResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ChangePassword", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ChangePasswordResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ChangePasswordResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ChangePasswordResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ChangePasswordResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

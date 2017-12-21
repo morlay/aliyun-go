@@ -7,6 +7,7 @@ import (
 )
 
 type CreateCustomerGatewayRequest struct {
+	requests.RpcRequest
 	IpAddress            string `position:"Query" name:"IpAddress"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type CreateCustomerGatewayRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreateCustomerGatewayRequest) Invoke(client *sdk.Client) (response *CreateCustomerGatewayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateCustomerGatewayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateCustomerGatewayRequest) Invoke(client *sdk.Client) (resp *CreateCustomerGatewayResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateCustomerGateway", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateCustomerGatewayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateCustomerGatewayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateCustomerGatewayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateCustomerGatewayResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	CustomerGatewayId string
 	IpAddress         string

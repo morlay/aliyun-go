@@ -7,6 +7,7 @@ import (
 )
 
 type SetAppsAuthoritiesRequest struct {
+	requests.RpcRequest
 	GroupId     string `position:"Query" name:"GroupId"`
 	ApiId       string `position:"Query" name:"ApiId"`
 	StageName   string `position:"Query" name:"StageName"`
@@ -14,28 +15,14 @@ type SetAppsAuthoritiesRequest struct {
 	Description string `position:"Query" name:"Description"`
 }
 
-func (r SetAppsAuthoritiesRequest) Invoke(client *sdk.Client) (response *SetAppsAuthoritiesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetAppsAuthoritiesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetAppsAuthoritiesRequest) Invoke(client *sdk.Client) (resp *SetAppsAuthoritiesResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "SetAppsAuthorities", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetAppsAuthoritiesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetAppsAuthoritiesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetAppsAuthoritiesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetAppsAuthoritiesResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

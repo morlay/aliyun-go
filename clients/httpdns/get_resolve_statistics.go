@@ -9,35 +9,22 @@ import (
 )
 
 type GetResolveStatisticsRequest struct {
+	requests.RpcRequest
 	DomainName   string `position:"Query" name:"DomainName"`
 	TimeSpan     int    `position:"Query" name:"TimeSpan"`
 	ProtocolName string `position:"Query" name:"ProtocolName"`
 	Granularity  string `position:"Query" name:"Granularity"`
 }
 
-func (r GetResolveStatisticsRequest) Invoke(client *sdk.Client) (response *GetResolveStatisticsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetResolveStatisticsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetResolveStatisticsRequest) Invoke(client *sdk.Client) (resp *GetResolveStatisticsResponse, err error) {
 	req.InitWithApiInfo("Httpdns", "2016-02-01", "GetResolveStatistics", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetResolveStatisticsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetResolveStatisticsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetResolveStatisticsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetResolveStatisticsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	DataPoints GetResolveStatisticsDataPointList
 }

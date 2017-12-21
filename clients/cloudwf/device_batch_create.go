@@ -7,33 +7,20 @@ import (
 )
 
 type DeviceBatchCreateRequest struct {
+	requests.RpcRequest
 	Sn         string `position:"Query" name:"Sn"`
 	DeviceType int    `position:"Query" name:"DeviceType"`
 }
 
-func (r DeviceBatchCreateRequest) Invoke(client *sdk.Client) (response *DeviceBatchCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeviceBatchCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeviceBatchCreateRequest) Invoke(client *sdk.Client) (resp *DeviceBatchCreateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeviceBatchCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeviceBatchCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeviceBatchCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeviceBatchCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeviceBatchCreateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

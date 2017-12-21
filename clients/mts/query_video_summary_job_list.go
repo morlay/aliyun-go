@@ -9,6 +9,7 @@ import (
 )
 
 type QueryVideoSummaryJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -16,29 +17,15 @@ type QueryVideoSummaryJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryVideoSummaryJobListRequest) Invoke(client *sdk.Client) (response *QueryVideoSummaryJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryVideoSummaryJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryVideoSummaryJobListRequest) Invoke(client *sdk.Client) (resp *QueryVideoSummaryJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryVideoSummaryJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryVideoSummaryJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryVideoSummaryJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryVideoSummaryJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryVideoSummaryJobListResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	JobList     QueryVideoSummaryJobListJobList
 	NonExistIds QueryVideoSummaryJobListNonExistIdList

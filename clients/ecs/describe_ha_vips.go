@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeHaVipsRequest struct {
+	requests.RpcRequest
 	Filters              *DescribeHaVipsFilterList `position:"Query" type:"Repeated" name:"Filter"`
 	ResourceOwnerId      int64                     `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                    `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,25 +19,10 @@ type DescribeHaVipsRequest struct {
 	PageNumber           int                       `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeHaVipsRequest) Invoke(client *sdk.Client) (response *DescribeHaVipsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeHaVipsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeHaVipsRequest) Invoke(client *sdk.Client) (resp *DescribeHaVipsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeHaVips", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeHaVipsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeHaVipsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeHaVipsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -46,6 +32,7 @@ type DescribeHaVipsFilter struct {
 }
 
 type DescribeHaVipsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

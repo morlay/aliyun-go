@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDnsProductInstancesRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	PageNumber   int64  `position:"Query" name:"PageNumber"`
@@ -16,29 +17,15 @@ type DescribeDnsProductInstancesRequest struct {
 	VersionCode  string `position:"Query" name:"VersionCode"`
 }
 
-func (r DescribeDnsProductInstancesRequest) Invoke(client *sdk.Client) (response *DescribeDnsProductInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDnsProductInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDnsProductInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeDnsProductInstancesResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDnsProductInstances", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDnsProductInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDnsProductInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDnsProductInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDnsProductInstancesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int64
 	PageNumber  int64

@@ -7,6 +7,7 @@ import (
 )
 
 type ProfileTagRequest struct {
+	requests.RpcRequest
 	Idtype     int64  `position:"Query" name:"Idtype"`
 	BeginDate  string `position:"Query" name:"BeginDate"`
 	EndDate    string `position:"Query" name:"EndDate"`
@@ -16,29 +17,15 @@ type ProfileTagRequest struct {
 	AreaNumber int    `position:"Query" name:"AreaNumber"`
 }
 
-func (r ProfileTagRequest) Invoke(client *sdk.Client) (response *ProfileTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ProfileTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ProfileTagRequest) Invoke(client *sdk.Client) (resp *ProfileTagResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ProfileTag", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ProfileTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ProfileTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ProfileTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ProfileTagResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

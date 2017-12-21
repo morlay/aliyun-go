@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeHistoryMonitorValuesRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type DescribeHistoryMonitorValuesRequest struct {
 	IntervalForHistory   string `position:"Query" name:"IntervalForHistory"`
 }
 
-func (r DescribeHistoryMonitorValuesRequest) Invoke(client *sdk.Client) (response *DescribeHistoryMonitorValuesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeHistoryMonitorValuesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeHistoryMonitorValuesRequest) Invoke(client *sdk.Client) (resp *DescribeHistoryMonitorValuesResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "DescribeHistoryMonitorValues", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeHistoryMonitorValuesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeHistoryMonitorValuesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeHistoryMonitorValuesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeHistoryMonitorValuesResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	MonitorHistory string
 }

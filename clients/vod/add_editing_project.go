@@ -7,6 +7,7 @@ import (
 )
 
 type AddEditingProjectRequest struct {
+	requests.RpcRequest
 	CoverURL             string `position:"Query" name:"CoverURL"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type AddEditingProjectRequest struct {
 	Title                string `position:"Query" name:"Title"`
 }
 
-func (r AddEditingProjectRequest) Invoke(client *sdk.Client) (response *AddEditingProjectResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddEditingProjectRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddEditingProjectRequest) Invoke(client *sdk.Client) (resp *AddEditingProjectResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "AddEditingProject", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddEditingProjectResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddEditingProjectResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddEditingProjectResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddEditingProjectResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Project   AddEditingProjectProject
 }

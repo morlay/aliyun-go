@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBClusterIPArrayListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId          string `position:"Query" name:"DBClusterId"`
@@ -16,29 +17,15 @@ type DescribeDBClusterIPArrayListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBClusterIPArrayListRequest) Invoke(client *sdk.Client) (response *DescribeDBClusterIPArrayListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBClusterIPArrayListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBClusterIPArrayListRequest) Invoke(client *sdk.Client) (resp *DescribeDBClusterIPArrayListResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeDBClusterIPArrayList", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBClusterIPArrayListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBClusterIPArrayListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBClusterIPArrayListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBClusterIPArrayListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeDBClusterIPArrayListDBClusterIPArrayList
 }

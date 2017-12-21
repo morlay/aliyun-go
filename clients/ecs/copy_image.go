@@ -7,6 +7,7 @@ import (
 )
 
 type CopyImageRequest struct {
+	requests.RpcRequest
 	Tag4Value              string `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId                string `position:"Query" name:"ImageId"`
@@ -28,29 +29,15 @@ type CopyImageRequest struct {
 	Tag3Value              string `position:"Query" name:"Tag.3.Value"`
 }
 
-func (r CopyImageRequest) Invoke(client *sdk.Client) (response *CopyImageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CopyImageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CopyImageRequest) Invoke(client *sdk.Client) (resp *CopyImageResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CopyImage", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CopyImageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CopyImageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CopyImageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CopyImageResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ImageId   string
 }

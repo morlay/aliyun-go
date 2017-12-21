@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteAllTrafficSpecialControlRequest struct {
+	requests.RpcRequest
 	TrafficControlId string `position:"Query" name:"TrafficControlId"`
 }
 
-func (r DeleteAllTrafficSpecialControlRequest) Invoke(client *sdk.Client) (response *DeleteAllTrafficSpecialControlResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteAllTrafficSpecialControlRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteAllTrafficSpecialControlRequest) Invoke(client *sdk.Client) (resp *DeleteAllTrafficSpecialControlResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DeleteAllTrafficSpecialControl", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteAllTrafficSpecialControlResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteAllTrafficSpecialControlResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteAllTrafficSpecialControlResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteAllTrafficSpecialControlResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

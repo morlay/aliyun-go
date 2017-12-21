@@ -7,6 +7,7 @@ import (
 )
 
 type AddTerrorismPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type AddTerrorismPipelineRequest struct {
 	Priority             int    `position:"Query" name:"Priority"`
 }
 
-func (r AddTerrorismPipelineRequest) Invoke(client *sdk.Client) (response *AddTerrorismPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddTerrorismPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddTerrorismPipelineRequest) Invoke(client *sdk.Client) (resp *AddTerrorismPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddTerrorismPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddTerrorismPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddTerrorismPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddTerrorismPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddTerrorismPipelineResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Pipeline  AddTerrorismPipelinePipeline
 }

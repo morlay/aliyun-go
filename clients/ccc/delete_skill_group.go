@@ -7,33 +7,20 @@ import (
 )
 
 type DeleteSkillGroupRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	SkillGroupId string `position:"Query" name:"SkillGroupId"`
 }
 
-func (r DeleteSkillGroupRequest) Invoke(client *sdk.Client) (response *DeleteSkillGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteSkillGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteSkillGroupRequest) Invoke(client *sdk.Client) (resp *DeleteSkillGroupResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "DeleteSkillGroup", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteSkillGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteSkillGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteSkillGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteSkillGroupResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

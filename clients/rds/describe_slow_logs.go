@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSlowLogsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type DescribeSlowLogsRequest struct {
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r DescribeSlowLogsRequest) Invoke(client *sdk.Client) (response *DescribeSlowLogsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSlowLogsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSlowLogsRequest) Invoke(client *sdk.Client) (resp *DescribeSlowLogsResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeSlowLogs", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSlowLogsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSlowLogsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSlowLogsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSlowLogsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Engine           string
 	StartTime        string

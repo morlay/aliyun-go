@@ -7,34 +7,21 @@ import (
 )
 
 type SetLiveStreamsNotifyUrlConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	NotifyUrl     string `position:"Query" name:"NotifyUrl"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetLiveStreamsNotifyUrlConfigRequest) Invoke(client *sdk.Client) (response *SetLiveStreamsNotifyUrlConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetLiveStreamsNotifyUrlConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetLiveStreamsNotifyUrlConfigRequest) Invoke(client *sdk.Client) (resp *SetLiveStreamsNotifyUrlConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetLiveStreamsNotifyUrlConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetLiveStreamsNotifyUrlConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetLiveStreamsNotifyUrlConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetLiveStreamsNotifyUrlConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetLiveStreamsNotifyUrlConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

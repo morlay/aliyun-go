@@ -7,6 +7,7 @@ import (
 )
 
 type ListApAssetCanBeAddedRequest struct {
+	requests.RpcRequest
 	SearchName  string `position:"Query" name:"SearchName"`
 	ApgroupId   int64  `position:"Query" name:"ApgroupId"`
 	Length      int    `position:"Query" name:"Length"`
@@ -15,29 +16,15 @@ type ListApAssetCanBeAddedRequest struct {
 	SearchModel string `position:"Query" name:"SearchModel"`
 }
 
-func (r ListApAssetCanBeAddedRequest) Invoke(client *sdk.Client) (response *ListApAssetCanBeAddedResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApAssetCanBeAddedRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApAssetCanBeAddedRequest) Invoke(client *sdk.Client) (resp *ListApAssetCanBeAddedResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApAssetCanBeAdded", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApAssetCanBeAddedResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApAssetCanBeAddedResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApAssetCanBeAddedResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApAssetCanBeAddedResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

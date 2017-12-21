@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVServerGroupsRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -18,29 +19,15 @@ type DescribeVServerGroupsRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeVServerGroupsRequest) Invoke(client *sdk.Client) (response *DescribeVServerGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVServerGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVServerGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeVServerGroupsResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeVServerGroups", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVServerGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVServerGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVServerGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVServerGroupsResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	VServerGroups DescribeVServerGroupsVServerGroupList
 }

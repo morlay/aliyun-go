@@ -7,6 +7,7 @@ import (
 )
 
 type CheckDiskEnableAutoSnapshotValidationRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type CheckDiskEnableAutoSnapshotValidationRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CheckDiskEnableAutoSnapshotValidationRequest) Invoke(client *sdk.Client) (response *CheckDiskEnableAutoSnapshotValidationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckDiskEnableAutoSnapshotValidationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckDiskEnableAutoSnapshotValidationRequest) Invoke(client *sdk.Client) (resp *CheckDiskEnableAutoSnapshotValidationResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CheckDiskEnableAutoSnapshotValidation", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckDiskEnableAutoSnapshotValidationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckDiskEnableAutoSnapshotValidationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckDiskEnableAutoSnapshotValidationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckDiskEnableAutoSnapshotValidationResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	IsPermitted            string
 	AutoSnapshotOccupation int

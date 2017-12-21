@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeErrorLogsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeErrorLogsRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeErrorLogsRequest) Invoke(client *sdk.Client) (response *DescribeErrorLogsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeErrorLogsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeErrorLogsRequest) Invoke(client *sdk.Client) (resp *DescribeErrorLogsResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeErrorLogs", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeErrorLogsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeErrorLogsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeErrorLogsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeErrorLogsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount int
 	PageNumber       int

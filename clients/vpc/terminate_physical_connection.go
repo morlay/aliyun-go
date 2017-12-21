@@ -7,6 +7,7 @@ import (
 )
 
 type TerminatePhysicalConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type TerminatePhysicalConnectionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r TerminatePhysicalConnectionRequest) Invoke(client *sdk.Client) (response *TerminatePhysicalConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		TerminatePhysicalConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *TerminatePhysicalConnectionRequest) Invoke(client *sdk.Client) (resp *TerminatePhysicalConnectionResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "TerminatePhysicalConnection", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		TerminatePhysicalConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.TerminatePhysicalConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &TerminatePhysicalConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type TerminatePhysicalConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeParametersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,29 +18,15 @@ type DescribeParametersRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeParametersRequest) Invoke(client *sdk.Client) (response *DescribeParametersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeParametersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeParametersRequest) Invoke(client *sdk.Client) (resp *DescribeParametersResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeParameters", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeParametersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeParametersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeParametersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeParametersResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	Engine            string
 	EngineVersion     string

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBClusterAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId          string `position:"Query" name:"DBClusterId"`
@@ -16,29 +17,15 @@ type DescribeDBClusterAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBClusterAttributeRequest) Invoke(client *sdk.Client) (response *DescribeDBClusterAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBClusterAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBClusterAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeDBClusterAttributeResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeDBClusterAttribute", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBClusterAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBClusterAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBClusterAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBClusterAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeDBClusterAttributeDBClusterAttributeList
 }

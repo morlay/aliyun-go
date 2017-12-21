@@ -7,6 +7,7 @@ import (
 )
 
 type CreateApiRequest struct {
+	requests.RpcRequest
 	GroupId              string `position:"Query" name:"GroupId"`
 	ApiName              string `position:"Query" name:"ApiName"`
 	Visibility           string `position:"Query" name:"Visibility"`
@@ -26,29 +27,15 @@ type CreateApiRequest struct {
 	OpenIdConnectConfig  string `position:"Query" name:"OpenIdConnectConfig"`
 }
 
-func (r CreateApiRequest) Invoke(client *sdk.Client) (response *CreateApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateApiRequest) Invoke(client *sdk.Client) (resp *CreateApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "CreateApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateApiResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ApiId     string
 }

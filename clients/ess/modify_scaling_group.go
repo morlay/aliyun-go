@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyScalingGroupRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId              int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount         string `position:"Query" name:"ResourceOwnerAccount"`
 	ScalingGroupName             string `position:"Query" name:"ScalingGroupName"`
@@ -21,28 +22,14 @@ type ModifyScalingGroupRequest struct {
 	RemovalPolicy2               string `position:"Query" name:"RemovalPolicy.2"`
 }
 
-func (r ModifyScalingGroupRequest) Invoke(client *sdk.Client) (response *ModifyScalingGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyScalingGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyScalingGroupRequest) Invoke(client *sdk.Client) (resp *ModifyScalingGroupResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "ModifyScalingGroup", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyScalingGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyScalingGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyScalingGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyScalingGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

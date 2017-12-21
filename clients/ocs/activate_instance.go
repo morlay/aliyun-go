@@ -7,6 +7,7 @@ import (
 )
 
 type ActivateInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -14,28 +15,14 @@ type ActivateInstanceRequest struct {
 	OcsInstanceId        string `position:"Query" name:"OcsInstanceId"`
 }
 
-func (r ActivateInstanceRequest) Invoke(client *sdk.Client) (response *ActivateInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ActivateInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ActivateInstanceRequest) Invoke(client *sdk.Client) (resp *ActivateInstanceResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "ActivateInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ActivateInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ActivateInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ActivateInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ActivateInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

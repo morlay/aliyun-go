@@ -9,35 +9,22 @@ import (
 )
 
 type GetThumbnailsRequest struct {
+	requests.RpcRequest
 	LibraryId string                    `position:"Query" name:"LibraryId"`
 	PhotoIds  *GetThumbnailsPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                    `position:"Query" name:"StoreName"`
 	ZoomType  string                    `position:"Query" name:"ZoomType"`
 }
 
-func (r GetThumbnailsRequest) Invoke(client *sdk.Client) (response *GetThumbnailsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetThumbnailsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetThumbnailsRequest) Invoke(client *sdk.Client) (resp *GetThumbnailsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetThumbnails", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetThumbnailsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetThumbnailsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetThumbnailsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetThumbnailsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

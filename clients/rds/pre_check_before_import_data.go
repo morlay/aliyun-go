@@ -7,6 +7,7 @@ import (
 )
 
 type PreCheckBeforeImportDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ImportDataType         string `position:"Query" name:"ImportDataType"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type PreCheckBeforeImportDataRequest struct {
 	DBInstanceId           string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r PreCheckBeforeImportDataRequest) Invoke(client *sdk.Client) (response *PreCheckBeforeImportDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PreCheckBeforeImportDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PreCheckBeforeImportDataRequest) Invoke(client *sdk.Client) (resp *PreCheckBeforeImportDataResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "PreCheckBeforeImportData", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PreCheckBeforeImportDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PreCheckBeforeImportDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PreCheckBeforeImportDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PreCheckBeforeImportDataResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PreCheckId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainHttpsDataRequest struct {
+	requests.RpcRequest
 	DomainType    string `position:"Query" name:"DomainType"`
 	FixTimeGap    string `position:"Query" name:"FixTimeGap"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -21,29 +22,15 @@ type DescribeDomainHttpsDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainHttpsDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainHttpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainHttpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainHttpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainHttpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainHttpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainHttpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainHttpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainHttpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainHttpsDataResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	DomainNames          string
 	DataInterval         string

@@ -7,33 +7,21 @@ import (
 )
 
 type GetSearchRequest struct {
+	requests.RoaRequest
 	Keyword  string `position:"Query" name:"Keyword"`
 	Page     int    `position:"Query" name:"Page"`
 	PageSize int    `position:"Query" name:"PageSize"`
 }
 
-func (r GetSearchRequest) Invoke(client *sdk.Client) (response *GetSearchResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetSearchRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetSearchRequest) Invoke(client *sdk.Client) (resp *GetSearchResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetSearch", "/search", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetSearchResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetSearchResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetSearchResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetSearchResponse struct {
+	responses.BaseResponse
 }

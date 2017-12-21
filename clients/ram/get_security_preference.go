@@ -7,31 +7,18 @@ import (
 )
 
 type GetSecurityPreferenceRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetSecurityPreferenceRequest) Invoke(client *sdk.Client) (response *GetSecurityPreferenceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetSecurityPreferenceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetSecurityPreferenceRequest) Invoke(client *sdk.Client) (resp *GetSecurityPreferenceResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetSecurityPreference", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetSecurityPreferenceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetSecurityPreferenceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetSecurityPreferenceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetSecurityPreferenceResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	SecurityPreference GetSecurityPreferenceSecurityPreference
 }

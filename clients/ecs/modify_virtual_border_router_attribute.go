@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyVirtualBorderRouterAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	CircuitCode          string `position:"Query" name:"CircuitCode"`
 	VlanId               int    `position:"Query" name:"VlanId"`
@@ -23,28 +24,14 @@ type ModifyVirtualBorderRouterAttributeRequest struct {
 	UserCidr             string `position:"Query" name:"UserCidr"`
 }
 
-func (r ModifyVirtualBorderRouterAttributeRequest) Invoke(client *sdk.Client) (response *ModifyVirtualBorderRouterAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyVirtualBorderRouterAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyVirtualBorderRouterAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyVirtualBorderRouterAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyVirtualBorderRouterAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyVirtualBorderRouterAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyVirtualBorderRouterAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyVirtualBorderRouterAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyVirtualBorderRouterAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

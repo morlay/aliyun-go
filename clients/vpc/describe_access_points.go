@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAccessPointsRequest struct {
+	requests.RpcRequest
 	Filters              *DescribeAccessPointsFilterList `position:"Query" type:"Repeated" name:"Filter"`
 	ResourceOwnerId      int64                           `position:"Query" name:"ResourceOwnerId"`
 	HostOperator         string                          `position:"Query" name:"HostOperator"`
@@ -20,25 +21,10 @@ type DescribeAccessPointsRequest struct {
 	PageNumber           int                             `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeAccessPointsRequest) Invoke(client *sdk.Client) (response *DescribeAccessPointsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAccessPointsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAccessPointsRequest) Invoke(client *sdk.Client) (resp *DescribeAccessPointsResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeAccessPoints", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAccessPointsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAccessPointsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAccessPointsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -48,6 +34,7 @@ type DescribeAccessPointsFilter struct {
 }
 
 type DescribeAccessPointsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	PageNumber     int
 	PageSize       int

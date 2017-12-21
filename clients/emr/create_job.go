@@ -7,6 +7,7 @@ import (
 )
 
 type CreateJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Name            string `position:"Query" name:"Name"`
 	Type            string `position:"Query" name:"Type"`
@@ -14,29 +15,15 @@ type CreateJobRequest struct {
 	FailAct         string `position:"Query" name:"FailAct"`
 }
 
-func (r CreateJobRequest) Invoke(client *sdk.Client) (response *CreateJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateJobRequest) Invoke(client *sdk.Client) (resp *CreateJobResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "CreateJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Id        string
 }

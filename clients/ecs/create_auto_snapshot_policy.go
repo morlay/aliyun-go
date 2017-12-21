@@ -7,6 +7,7 @@ import (
 )
 
 type CreateAutoSnapshotPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
 	TimePoints             string `position:"Query" name:"TimePoints"`
@@ -16,29 +17,15 @@ type CreateAutoSnapshotPolicyRequest struct {
 	AutoSnapshotPolicyName string `position:"Query" name:"AutoSnapshotPolicyName"`
 }
 
-func (r CreateAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (response *CreateAutoSnapshotPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateAutoSnapshotPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *CreateAutoSnapshotPolicyResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateAutoSnapshotPolicy", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateAutoSnapshotPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateAutoSnapshotPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateAutoSnapshotPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateAutoSnapshotPolicyResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	AutoSnapshotPolicyId string
 }

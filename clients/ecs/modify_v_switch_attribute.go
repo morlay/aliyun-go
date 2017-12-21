@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyVSwitchAttributeRequest struct {
+	requests.RpcRequest
 	VSwitchId            string `position:"Query" name:"VSwitchId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyVSwitchAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyVSwitchAttributeRequest) Invoke(client *sdk.Client) (response *ModifyVSwitchAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyVSwitchAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyVSwitchAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyVSwitchAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyVSwitchAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyVSwitchAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyVSwitchAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyVSwitchAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyVSwitchAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

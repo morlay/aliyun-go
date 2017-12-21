@@ -9,6 +9,7 @@ import (
 )
 
 type OnsMqttQueryHistoryOnlineRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -17,29 +18,15 @@ type OnsMqttQueryHistoryOnlineRequest struct {
 	BeginTime    int64  `position:"Query" name:"BeginTime"`
 }
 
-func (r OnsMqttQueryHistoryOnlineRequest) Invoke(client *sdk.Client) (response *OnsMqttQueryHistoryOnlineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttQueryHistoryOnlineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttQueryHistoryOnlineRequest) Invoke(client *sdk.Client) (resp *OnsMqttQueryHistoryOnlineResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttQueryHistoryOnline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttQueryHistoryOnlineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttQueryHistoryOnlineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttQueryHistoryOnlineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttQueryHistoryOnlineResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsMqttQueryHistoryOnlineData

@@ -7,34 +7,21 @@ import (
 )
 
 type UpdateBatchDomainRecordsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	Records      string `position:"Query" name:"Records"`
 }
 
-func (r UpdateBatchDomainRecordsRequest) Invoke(client *sdk.Client) (response *UpdateBatchDomainRecordsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateBatchDomainRecordsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateBatchDomainRecordsRequest) Invoke(client *sdk.Client) (resp *UpdateBatchDomainRecordsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "UpdateBatchDomainRecords", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateBatchDomainRecordsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateBatchDomainRecordsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateBatchDomainRecordsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateBatchDomainRecordsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TraceId   string
 }

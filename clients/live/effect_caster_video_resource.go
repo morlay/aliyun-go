@@ -7,6 +7,7 @@ import (
 )
 
 type EffectCasterVideoResourceRequest struct {
+	requests.RpcRequest
 	ResourceId    string `position:"Query" name:"ResourceId"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
@@ -15,28 +16,14 @@ type EffectCasterVideoResourceRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r EffectCasterVideoResourceRequest) Invoke(client *sdk.Client) (response *EffectCasterVideoResourceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EffectCasterVideoResourceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EffectCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *EffectCasterVideoResourceResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "EffectCasterVideoResource", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EffectCasterVideoResourceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EffectCasterVideoResourceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EffectCasterVideoResourceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EffectCasterVideoResourceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeSQLCollectorPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,29 +16,15 @@ type DescribeSQLCollectorPolicyRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeSQLCollectorPolicyRequest) Invoke(client *sdk.Client) (response *DescribeSQLCollectorPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSQLCollectorPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSQLCollectorPolicyRequest) Invoke(client *sdk.Client) (resp *DescribeSQLCollectorPolicyResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeSQLCollectorPolicy", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSQLCollectorPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSQLCollectorPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSQLCollectorPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSQLCollectorPolicyResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	SQLCollectorStatus string
 }

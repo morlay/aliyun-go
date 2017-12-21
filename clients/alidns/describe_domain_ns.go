@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeDomainNsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
 }
 
-func (r DescribeDomainNsRequest) Invoke(client *sdk.Client) (response *DescribeDomainNsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainNsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainNsRequest) Invoke(client *sdk.Client) (resp *DescribeDomainNsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDomainNs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainNsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainNsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainNsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainNsResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	AllAliDns     bool
 	IncludeAliDns bool

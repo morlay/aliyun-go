@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteLiveDomainMappingRequest struct {
+	requests.RpcRequest
 	PullDomain    string `position:"Query" name:"PullDomain"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	PushDomain    string `position:"Query" name:"PushDomain"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteLiveDomainMappingRequest) Invoke(client *sdk.Client) (response *DeleteLiveDomainMappingResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLiveDomainMappingRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLiveDomainMappingRequest) Invoke(client *sdk.Client) (resp *DeleteLiveDomainMappingResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DeleteLiveDomainMapping", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLiveDomainMappingResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLiveDomainMappingResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLiveDomainMappingResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLiveDomainMappingResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

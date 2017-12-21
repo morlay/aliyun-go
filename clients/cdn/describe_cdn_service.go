@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeCdnServiceRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeCdnServiceRequest) Invoke(client *sdk.Client) (response *DescribeCdnServiceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCdnServiceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCdnServiceRequest) Invoke(client *sdk.Client) (resp *DescribeCdnServiceResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeCdnService", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCdnServiceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCdnServiceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCdnServiceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCdnServiceResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	InstanceId         string
 	InternetChargeType string

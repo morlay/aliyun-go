@@ -7,6 +7,7 @@ import (
 )
 
 type PushNoticeToAndroidRequest struct {
+	requests.RpcRequest
 	ExtParameters string `position:"Query" name:"ExtParameters"`
 	AppKey        int64  `position:"Query" name:"AppKey"`
 	TargetValue   string `position:"Query" name:"TargetValue"`
@@ -16,29 +17,15 @@ type PushNoticeToAndroidRequest struct {
 	Target        string `position:"Query" name:"Target"`
 }
 
-func (r PushNoticeToAndroidRequest) Invoke(client *sdk.Client) (response *PushNoticeToAndroidResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PushNoticeToAndroidRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PushNoticeToAndroidRequest) Invoke(client *sdk.Client) (resp *PushNoticeToAndroidResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "PushNoticeToAndroid", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PushNoticeToAndroidResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PushNoticeToAndroidResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PushNoticeToAndroidResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PushNoticeToAndroidResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MessageId string
 }

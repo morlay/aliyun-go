@@ -7,6 +7,7 @@ import (
 )
 
 type StartArchiveSQLLogRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Database             string `position:"Query" name:"Database"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,28 +20,14 @@ type StartArchiveSQLLogRequest struct {
 	QueryKeywords        string `position:"Query" name:"QueryKeywords"`
 }
 
-func (r StartArchiveSQLLogRequest) Invoke(client *sdk.Client) (response *StartArchiveSQLLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StartArchiveSQLLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StartArchiveSQLLogRequest) Invoke(client *sdk.Client) (resp *StartArchiveSQLLogResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "StartArchiveSQLLog", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StartArchiveSQLLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StartArchiveSQLLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StartArchiveSQLLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StartArchiveSQLLogResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

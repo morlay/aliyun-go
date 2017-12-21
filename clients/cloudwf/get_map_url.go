@@ -7,32 +7,19 @@ import (
 )
 
 type GetMapUrlRequest struct {
+	requests.RpcRequest
 	MapId int64 `position:"Query" name:"MapId"`
 }
 
-func (r GetMapUrlRequest) Invoke(client *sdk.Client) (response *GetMapUrlResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetMapUrlRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetMapUrlRequest) Invoke(client *sdk.Client) (resp *GetMapUrlResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetMapUrl", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetMapUrlResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetMapUrlResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetMapUrlResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetMapUrlResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

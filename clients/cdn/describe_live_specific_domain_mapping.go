@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeLiveSpecificDomainMappingRequest struct {
+	requests.RpcRequest
 	PullDomain    string `position:"Query" name:"PullDomain"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	PushDomain    string `position:"Query" name:"PushDomain"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveSpecificDomainMappingRequest) Invoke(client *sdk.Client) (response *DescribeLiveSpecificDomainMappingResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveSpecificDomainMappingRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveSpecificDomainMappingRequest) Invoke(client *sdk.Client) (resp *DescribeLiveSpecificDomainMappingResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveSpecificDomainMapping", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveSpecificDomainMappingResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveSpecificDomainMappingResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveSpecificDomainMappingResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveSpecificDomainMappingResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	DomainMappingModels DescribeLiveSpecificDomainMappingDomainMappingModelList
 }

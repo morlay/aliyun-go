@@ -7,6 +7,7 @@ import (
 )
 
 type SetServerCertificateNameRequest struct {
+	requests.RpcRequest
 	Access_key_id         string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount  string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,28 +18,14 @@ type SetServerCertificateNameRequest struct {
 	Tags                  string `position:"Query" name:"Tags"`
 }
 
-func (r SetServerCertificateNameRequest) Invoke(client *sdk.Client) (response *SetServerCertificateNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetServerCertificateNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetServerCertificateNameRequest) Invoke(client *sdk.Client) (resp *SetServerCertificateNameResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetServerCertificateName", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetServerCertificateNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetServerCertificateNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetServerCertificateNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetServerCertificateNameResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

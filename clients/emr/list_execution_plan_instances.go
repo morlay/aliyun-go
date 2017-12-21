@@ -9,6 +9,7 @@ import (
 )
 
 type ListExecutionPlanInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                                              `position:"Query" name:"ResourceOwnerId"`
 	OnlyLastInstance     string                                             `position:"Query" name:"OnlyLastInstance"`
 	IsDesc               string                                             `position:"Query" name:"IsDesc"`
@@ -18,29 +19,15 @@ type ListExecutionPlanInstancesRequest struct {
 	StatusLists          *ListExecutionPlanInstancesStatusListList          `position:"Query" type:"Repeated" name:"StatusList"`
 }
 
-func (r ListExecutionPlanInstancesRequest) Invoke(client *sdk.Client) (response *ListExecutionPlanInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListExecutionPlanInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListExecutionPlanInstancesRequest) Invoke(client *sdk.Client) (resp *ListExecutionPlanInstancesResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ListExecutionPlanInstances", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListExecutionPlanInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListExecutionPlanInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListExecutionPlanInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListExecutionPlanInstancesResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	TotalCount             int
 	PageNumber             int

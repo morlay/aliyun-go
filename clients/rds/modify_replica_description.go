@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyReplicaDescriptionRequest struct {
+	requests.RpcRequest
 	ReplicaDescription   string `position:"Query" name:"ReplicaDescription"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
@@ -16,28 +17,14 @@ type ModifyReplicaDescriptionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyReplicaDescriptionRequest) Invoke(client *sdk.Client) (response *ModifyReplicaDescriptionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyReplicaDescriptionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyReplicaDescriptionRequest) Invoke(client *sdk.Client) (resp *ModifyReplicaDescriptionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyReplicaDescription", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyReplicaDescriptionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyReplicaDescriptionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyReplicaDescriptionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyReplicaDescriptionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type QueryTerrorismPipelineListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	PipelineIds          string `position:"Query" name:"PipelineIds"`
@@ -16,29 +17,15 @@ type QueryTerrorismPipelineListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryTerrorismPipelineListRequest) Invoke(client *sdk.Client) (response *QueryTerrorismPipelineListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryTerrorismPipelineListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryTerrorismPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryTerrorismPipelineListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTerrorismPipelineList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryTerrorismPipelineListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryTerrorismPipelineListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryTerrorismPipelineListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryTerrorismPipelineListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	PipelineList QueryTerrorismPipelineListPipelineList
 	NonExistIds  QueryTerrorismPipelineListNonExistIdList

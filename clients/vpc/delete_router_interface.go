@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteRouterInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type DeleteRouterInterfaceRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteRouterInterfaceRequest) Invoke(client *sdk.Client) (response *DeleteRouterInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteRouterInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteRouterInterfaceRequest) Invoke(client *sdk.Client) (resp *DeleteRouterInterfaceResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteRouterInterface", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteRouterInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteRouterInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteRouterInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteRouterInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

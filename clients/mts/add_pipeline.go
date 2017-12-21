@@ -7,6 +7,7 @@ import (
 )
 
 type AddPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Role                 string `position:"Query" name:"Role"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type AddPipelineRequest struct {
 	Speed                string `position:"Query" name:"Speed"`
 }
 
-func (r AddPipelineRequest) Invoke(client *sdk.Client) (response *AddPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddPipelineRequest) Invoke(client *sdk.Client) (resp *AddPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddPipelineResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Pipeline  AddPipelinePipeline
 }

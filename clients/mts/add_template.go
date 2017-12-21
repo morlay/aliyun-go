@@ -7,6 +7,7 @@ import (
 )
 
 type AddTemplateRequest struct {
+	requests.RpcRequest
 	Container            string `position:"Query" name:"Container"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type AddTemplateRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddTemplateRequest) Invoke(client *sdk.Client) (response *AddTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddTemplateRequest) Invoke(client *sdk.Client) (resp *AddTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddTemplateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Template  AddTemplateTemplate
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type UpdatePipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Role                 string `position:"Query" name:"Role"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type UpdatePipelineRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r UpdatePipelineRequest) Invoke(client *sdk.Client) (response *UpdatePipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdatePipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdatePipelineRequest) Invoke(client *sdk.Client) (resp *UpdatePipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "UpdatePipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdatePipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdatePipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdatePipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdatePipelineResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Pipeline  UpdatePipelinePipeline
 }

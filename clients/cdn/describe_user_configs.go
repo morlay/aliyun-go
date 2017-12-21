@@ -7,34 +7,21 @@ import (
 )
 
 type DescribeUserConfigsRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Config        string `position:"Query" name:"Config"`
 }
 
-func (r DescribeUserConfigsRequest) Invoke(client *sdk.Client) (response *DescribeUserConfigsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeUserConfigsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeUserConfigsRequest) Invoke(client *sdk.Client) (resp *DescribeUserConfigsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeUserConfigs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeUserConfigsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeUserConfigsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeUserConfigsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeUserConfigsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Configs   DescribeUserConfigsConfigs
 }

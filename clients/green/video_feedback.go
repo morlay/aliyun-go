@@ -7,31 +7,19 @@ import (
 )
 
 type VideoFeedbackRequest struct {
+	requests.RoaRequest
 	ClientInfo string `position:"Query" name:"ClientInfo"`
 }
 
-func (r VideoFeedbackRequest) Invoke(client *sdk.Client) (response *VideoFeedbackResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		VideoFeedbackRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *VideoFeedbackRequest) Invoke(client *sdk.Client) (resp *VideoFeedbackResponse, err error) {
 	req.InitWithApiInfo("Green", "2017-01-12", "VideoFeedback", "/green/video/feedback", "green", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		VideoFeedbackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.VideoFeedbackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &VideoFeedbackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type VideoFeedbackResponse struct {
+	responses.BaseResponse
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type GetLoginProfileRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r GetLoginProfileRequest) Invoke(client *sdk.Client) (response *GetLoginProfileResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetLoginProfileRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetLoginProfileRequest) Invoke(client *sdk.Client) (resp *GetLoginProfileResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetLoginProfile", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetLoginProfileResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetLoginProfileResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetLoginProfileResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetLoginProfileResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	LoginProfile GetLoginProfileLoginProfile
 }

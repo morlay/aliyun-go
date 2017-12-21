@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeCdnRegionAndIspRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeCdnRegionAndIspRequest) Invoke(client *sdk.Client) (response *DescribeCdnRegionAndIspResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCdnRegionAndIspRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCdnRegionAndIspRequest) Invoke(client *sdk.Client) (resp *DescribeCdnRegionAndIspResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeCdnRegionAndIsp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCdnRegionAndIspResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCdnRegionAndIspResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCdnRegionAndIspResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCdnRegionAndIspResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Regions   DescribeCdnRegionAndIspRegionList
 	Isps      DescribeCdnRegionAndIspIspList

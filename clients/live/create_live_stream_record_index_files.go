@@ -7,6 +7,7 @@ import (
 )
 
 type CreateLiveStreamRecordIndexFilesRequest struct {
+	requests.RpcRequest
 	OssBucket     string `position:"Query" name:"OssBucket"`
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -19,29 +20,15 @@ type CreateLiveStreamRecordIndexFilesRequest struct {
 	OssObject     string `position:"Query" name:"OssObject"`
 }
 
-func (r CreateLiveStreamRecordIndexFilesRequest) Invoke(client *sdk.Client) (response *CreateLiveStreamRecordIndexFilesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateLiveStreamRecordIndexFilesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateLiveStreamRecordIndexFilesRequest) Invoke(client *sdk.Client) (resp *CreateLiveStreamRecordIndexFilesResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "CreateLiveStreamRecordIndexFiles", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateLiveStreamRecordIndexFilesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateLiveStreamRecordIndexFilesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateLiveStreamRecordIndexFilesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateLiveStreamRecordIndexFilesResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	RecordInfo CreateLiveStreamRecordIndexFilesRecordInfo
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceNetInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId          int64  `position:"Query" name:"ResourceOwnerId"`
 	Flag                     string `position:"Query" name:"Flag"`
 	DBInstanceNetRWSplitType string `position:"Query" name:"DBInstanceNetRWSplitType"`
@@ -19,29 +20,15 @@ type DescribeDBInstanceNetInfoRequest struct {
 	OwnerId                  int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceNetInfoRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceNetInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceNetInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceNetInfoRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceNetInfoResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceNetInfo", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceNetInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceNetInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceNetInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceNetInfoResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	InstanceNetworkType string
 	DBInstanceNetInfos  DescribeDBInstanceNetInfoDBInstanceNetInfoList

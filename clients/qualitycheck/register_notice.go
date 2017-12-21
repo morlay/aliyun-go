@@ -7,32 +7,19 @@ import (
 )
 
 type RegisterNoticeRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r RegisterNoticeRequest) Invoke(client *sdk.Client) (response *RegisterNoticeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RegisterNoticeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RegisterNoticeRequest) Invoke(client *sdk.Client) (resp *RegisterNoticeResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "RegisterNotice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RegisterNoticeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RegisterNoticeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RegisterNoticeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RegisterNoticeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

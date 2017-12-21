@@ -7,35 +7,22 @@ import (
 )
 
 type QueryContactRequest struct {
+	requests.RpcRequest
 	ContactType  string `position:"Query" name:"ContactType"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
 	Lang         string `position:"Query" name:"Lang"`
 }
 
-func (r QueryContactRequest) Invoke(client *sdk.Client) (response *QueryContactResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryContactRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryContactRequest) Invoke(client *sdk.Client) (resp *QueryContactResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryContact", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryContactResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryContactResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryContactResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryContactResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	CreateDate string
 	UpdateDate string

@@ -9,6 +9,7 @@ import (
 )
 
 type CheckResourceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type CheckResourceRequest struct {
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r CheckResourceRequest) Invoke(client *sdk.Client) (response *CheckResourceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckResourceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckResourceRequest) Invoke(client *sdk.Client) (resp *CheckResourceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CheckResource", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckResourceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckResourceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckResourceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckResourceResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	SpecifyCount string
 	Resources    CheckResourceResourceList

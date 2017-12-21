@@ -7,6 +7,7 @@ import (
 )
 
 type PushMessageToAndroidRequest struct {
+	requests.RpcRequest
 	AppKey      int64  `position:"Query" name:"AppKey"`
 	TargetValue string `position:"Query" name:"TargetValue"`
 	Title       string `position:"Query" name:"Title"`
@@ -15,29 +16,15 @@ type PushMessageToAndroidRequest struct {
 	Target      string `position:"Query" name:"Target"`
 }
 
-func (r PushMessageToAndroidRequest) Invoke(client *sdk.Client) (response *PushMessageToAndroidResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PushMessageToAndroidRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PushMessageToAndroidRequest) Invoke(client *sdk.Client) (resp *PushMessageToAndroidResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "PushMessageToAndroid", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PushMessageToAndroidResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PushMessageToAndroidResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PushMessageToAndroidResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PushMessageToAndroidResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MessageId string
 }

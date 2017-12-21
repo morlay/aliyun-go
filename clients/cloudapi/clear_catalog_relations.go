@@ -7,31 +7,18 @@ import (
 )
 
 type ClearCatalogRelationsRequest struct {
+	requests.RpcRequest
 	CatalogId string `position:"Query" name:"CatalogId"`
 }
 
-func (r ClearCatalogRelationsRequest) Invoke(client *sdk.Client) (response *ClearCatalogRelationsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ClearCatalogRelationsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ClearCatalogRelationsRequest) Invoke(client *sdk.Client) (resp *ClearCatalogRelationsResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ClearCatalogRelations", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ClearCatalogRelationsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ClearCatalogRelationsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ClearCatalogRelationsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ClearCatalogRelationsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

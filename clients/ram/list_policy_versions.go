@@ -9,33 +9,20 @@ import (
 )
 
 type ListPolicyVersionsRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 }
 
-func (r ListPolicyVersionsRequest) Invoke(client *sdk.Client) (response *ListPolicyVersionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPolicyVersionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPolicyVersionsRequest) Invoke(client *sdk.Client) (resp *ListPolicyVersionsResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListPolicyVersions", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPolicyVersionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPolicyVersionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPolicyVersionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPolicyVersionsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	PolicyVersions ListPolicyVersionsPolicyVersionList
 }

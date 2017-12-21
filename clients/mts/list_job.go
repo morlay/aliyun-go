@@ -9,6 +9,7 @@ import (
 )
 
 type ListJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId            int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount       string `position:"Query" name:"ResourceOwnerAccount"`
 	NextPageToken              string `position:"Query" name:"NextPageToken"`
@@ -21,29 +22,15 @@ type ListJobRequest struct {
 	PipelineId                 string `position:"Query" name:"PipelineId"`
 }
 
-func (r ListJobRequest) Invoke(client *sdk.Client) (response *ListJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListJobRequest) Invoke(client *sdk.Client) (resp *ListJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListJobResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	NextPageToken string
 	JobList       ListJobJobList

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAccountsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AccountName          string `position:"Query" name:"AccountName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeAccountsRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeAccountsRequest) Invoke(client *sdk.Client) (response *DescribeAccountsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAccountsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAccountsRequest) Invoke(client *sdk.Client) (resp *DescribeAccountsResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeAccounts", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAccountsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAccountsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAccountsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAccountsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Accounts  DescribeAccountsDBInstanceAccountList
 }

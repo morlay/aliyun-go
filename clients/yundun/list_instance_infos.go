@@ -9,6 +9,7 @@ import (
 )
 
 type ListInstanceInfosRequest struct {
+	requests.RpcRequest
 	JstOwnerId   int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber   int    `position:"Query" name:"PageNumber"`
 	PageSize     int    `position:"Query" name:"PageSize"`
@@ -19,29 +20,15 @@ type ListInstanceInfosRequest struct {
 	InstanceIds  string `position:"Query" name:"InstanceIds"`
 }
 
-func (r ListInstanceInfosRequest) Invoke(client *sdk.Client) (response *ListInstanceInfosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListInstanceInfosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListInstanceInfosRequest) Invoke(client *sdk.Client) (resp *ListInstanceInfosResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "ListInstanceInfos", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListInstanceInfosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListInstanceInfosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListInstanceInfosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListInstanceInfosResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PageNumber int
 	PageSize   int

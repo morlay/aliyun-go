@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyRouterInterfaceSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,29 +18,15 @@ type ModifyRouterInterfaceSpecRequest struct {
 	Spec                 string `position:"Query" name:"Spec"`
 }
 
-func (r ModifyRouterInterfaceSpecRequest) Invoke(client *sdk.Client) (response *ModifyRouterInterfaceSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyRouterInterfaceSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyRouterInterfaceSpecRequest) Invoke(client *sdk.Client) (resp *ModifyRouterInterfaceSpecResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyRouterInterfaceSpec", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyRouterInterfaceSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyRouterInterfaceSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyRouterInterfaceSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyRouterInterfaceSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Spec      string
 }

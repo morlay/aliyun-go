@@ -9,6 +9,7 @@ import (
 )
 
 type SubmitAIJobRequest struct {
+	requests.RpcRequest
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	Types                string `position:"Query" name:"Types"`
@@ -19,29 +20,15 @@ type SubmitAIJobRequest struct {
 	Config               string `position:"Query" name:"Config"`
 }
 
-func (r SubmitAIJobRequest) Invoke(client *sdk.Client) (response *SubmitAIJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAIJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAIJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAIJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAIJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAIJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAIJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	AIJobList SubmitAIJobAIJobList
 }

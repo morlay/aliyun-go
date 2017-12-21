@@ -9,6 +9,7 @@ import (
 )
 
 type VulScanLogRequest struct {
+	requests.RpcRequest
 	JstOwnerId int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
@@ -16,29 +17,15 @@ type VulScanLogRequest struct {
 	VulStatus  int    `position:"Query" name:"VulStatus"`
 }
 
-func (r VulScanLogRequest) Invoke(client *sdk.Client) (response *VulScanLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		VulScanLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *VulScanLogRequest) Invoke(client *sdk.Client) (resp *VulScanLogResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "VulScanLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		VulScanLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.VulScanLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &VulScanLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type VulScanLogResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	StartTime  string
 	EndTime    string

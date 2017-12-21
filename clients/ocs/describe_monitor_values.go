@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeMonitorValuesRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type DescribeMonitorValuesRequest struct {
 	MonitorKeys          string `position:"Query" name:"MonitorKeys"`
 }
 
-func (r DescribeMonitorValuesRequest) Invoke(client *sdk.Client) (response *DescribeMonitorValuesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeMonitorValuesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeMonitorValuesRequest) Invoke(client *sdk.Client) (resp *DescribeMonitorValuesResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "DescribeMonitorValues", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeMonitorValuesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeMonitorValuesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeMonitorValuesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeMonitorValuesResponse struct {
+	responses.BaseResponse
 	RequestId                   string
 	GetOcsMonitorValuesResponse DescribeMonitorValuesGetOcsMonitorValuesResponse
 }

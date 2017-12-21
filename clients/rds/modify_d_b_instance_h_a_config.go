@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceHAConfigRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyDBInstanceHAConfigRequest struct {
 	HAMode               string `position:"Query" name:"HAMode"`
 }
 
-func (r ModifyDBInstanceHAConfigRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceHAConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceHAConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceHAConfigRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceHAConfigResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceHAConfig", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceHAConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceHAConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceHAConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceHAConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

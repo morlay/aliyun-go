@@ -9,32 +9,19 @@ import (
 )
 
 type ListUsersForGroupRequest struct {
+	requests.RpcRequest
 	GroupName string `position:"Query" name:"GroupName"`
 }
 
-func (r ListUsersForGroupRequest) Invoke(client *sdk.Client) (response *ListUsersForGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListUsersForGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListUsersForGroupRequest) Invoke(client *sdk.Client) (resp *ListUsersForGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListUsersForGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListUsersForGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListUsersForGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListUsersForGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListUsersForGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Users     ListUsersForGroupUserList
 }

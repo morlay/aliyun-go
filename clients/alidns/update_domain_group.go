@@ -7,35 +7,22 @@ import (
 )
 
 type UpdateDomainGroupRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	GroupId      string `position:"Query" name:"GroupId"`
 	GroupName    string `position:"Query" name:"GroupName"`
 }
 
-func (r UpdateDomainGroupRequest) Invoke(client *sdk.Client) (response *UpdateDomainGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateDomainGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateDomainGroupRequest) Invoke(client *sdk.Client) (resp *UpdateDomainGroupResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "UpdateDomainGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateDomainGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateDomainGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateDomainGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateDomainGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 	GroupId   string
 	GroupName string

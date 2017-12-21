@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeLogsDownloadStatusRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,29 +16,15 @@ type DescribeLogsDownloadStatusRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeLogsDownloadStatusRequest) Invoke(client *sdk.Client) (response *DescribeLogsDownloadStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLogsDownloadStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLogsDownloadStatusRequest) Invoke(client *sdk.Client) (resp *DescribeLogsDownloadStatusResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeLogsDownloadStatus", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLogsDownloadStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLogsDownloadStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLogsDownloadStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLogsDownloadStatusResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	LogsDownloadStatus string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type SearchWaterMarkTemplateRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type SearchWaterMarkTemplateRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r SearchWaterMarkTemplateRequest) Invoke(client *sdk.Client) (response *SearchWaterMarkTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchWaterMarkTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *SearchWaterMarkTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SearchWaterMarkTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchWaterMarkTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchWaterMarkTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchWaterMarkTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchWaterMarkTemplateResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	TotalCount            int64
 	PageNumber            int64

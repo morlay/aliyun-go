@@ -7,6 +7,7 @@ import (
 )
 
 type ListApRadioStatusRequest struct {
+	requests.RpcRequest
 	SearchDisabled      int    `position:"Query" name:"SearchDisabled"`
 	OrderCol            string `position:"Query" name:"OrderCol"`
 	SearchName          string `position:"Query" name:"SearchName"`
@@ -19,29 +20,15 @@ type ListApRadioStatusRequest struct {
 	SearchApStatus      int    `position:"Query" name:"SearchApStatus"`
 }
 
-func (r ListApRadioStatusRequest) Invoke(client *sdk.Client) (response *ListApRadioStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApRadioStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApRadioStatusRequest) Invoke(client *sdk.Client) (resp *ListApRadioStatusResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApRadioStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApRadioStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApRadioStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApRadioStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApRadioStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

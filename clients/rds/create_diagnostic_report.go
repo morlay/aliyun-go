@@ -7,34 +7,21 @@ import (
 )
 
 type CreateDiagnosticReportRequest struct {
+	requests.RpcRequest
 	EndTime      string `position:"Query" name:"EndTime"`
 	DBInstanceId string `position:"Query" name:"DBInstanceId"`
 	StartTime    string `position:"Query" name:"StartTime"`
 }
 
-func (r CreateDiagnosticReportRequest) Invoke(client *sdk.Client) (response *CreateDiagnosticReportResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDiagnosticReportRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDiagnosticReportRequest) Invoke(client *sdk.Client) (resp *CreateDiagnosticReportResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreateDiagnosticReport", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDiagnosticReportResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDiagnosticReportResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDiagnosticReportResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDiagnosticReportResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ReportId  string
 }

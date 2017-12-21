@@ -7,31 +7,18 @@ import (
 )
 
 type GetBindAp4UmengRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetBindAp4UmengRequest) Invoke(client *sdk.Client) (response *GetBindAp4UmengResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetBindAp4UmengRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetBindAp4UmengRequest) Invoke(client *sdk.Client) (resp *GetBindAp4UmengResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetBindAp4Umeng", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetBindAp4UmengResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetBindAp4UmengResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetBindAp4UmengResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetBindAp4UmengResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

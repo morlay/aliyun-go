@@ -7,33 +7,21 @@ import (
 )
 
 type DeleteClusterNodeRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 	Ip        string `position:"Path" name:"Ip"`
 	Force     string `position:"Query" name:"Force"`
 }
 
-func (r DeleteClusterNodeRequest) Invoke(client *sdk.Client) (response *DeleteClusterNodeResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DeleteClusterNodeRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DeleteClusterNodeRequest) Invoke(client *sdk.Client) (resp *DeleteClusterNodeResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "DeleteClusterNode", "/clusters/[ClusterId]/ip/[Ip]", "", "")
 	req.Method = "DELETE"
 
-	resp := struct {
-		*responses.BaseResponse
-		DeleteClusterNodeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteClusterNodeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteClusterNodeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteClusterNodeResponse struct {
+	responses.BaseResponse
 }

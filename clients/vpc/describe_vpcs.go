@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVpcsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VpcId                string `position:"Query" name:"VpcId"`
@@ -20,29 +21,15 @@ type DescribeVpcsRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeVpcsRequest) Invoke(client *sdk.Client) (response *DescribeVpcsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVpcsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVpcsRequest) Invoke(client *sdk.Client) (resp *DescribeVpcsResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeVpcs", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVpcsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVpcsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVpcsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVpcsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

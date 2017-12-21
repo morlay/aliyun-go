@@ -9,6 +9,7 @@ import (
 )
 
 type CreateScalingGroupRequest struct {
+	requests.RpcRequest
 	DBInstanceIds        string                            `position:"Query" name:"DBInstanceIds"`
 	LoadBalancerIds      string                            `position:"Query" name:"LoadBalancerIds"`
 	ResourceOwnerAccount string                            `position:"Query" name:"ResourceOwnerAccount"`
@@ -24,29 +25,15 @@ type CreateScalingGroupRequest struct {
 	RemovalPolicy2       string                            `position:"Query" name:"RemovalPolicy.2"`
 }
 
-func (r CreateScalingGroupRequest) Invoke(client *sdk.Client) (response *CreateScalingGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateScalingGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateScalingGroupRequest) Invoke(client *sdk.Client) (resp *CreateScalingGroupResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "CreateScalingGroup", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateScalingGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateScalingGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateScalingGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateScalingGroupResponse struct {
+	responses.BaseResponse
 	ScalingGroupId string
 	RequestId      string
 }

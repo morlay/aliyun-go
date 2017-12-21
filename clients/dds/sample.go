@@ -9,6 +9,7 @@ import (
 )
 
 type SampleRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type SampleRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SampleRequest) Invoke(client *sdk.Client) (response *SampleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SampleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SampleRequest) Invoke(client *sdk.Client) (resp *SampleResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "Sample", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SampleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SampleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SampleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SampleResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	SecurityIps      string
 	SecurityIpGroups SampleSecurityIpGroupList

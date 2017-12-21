@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLoadBalancersRelatedEcsRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -18,29 +19,15 @@ type DescribeLoadBalancersRelatedEcsRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeLoadBalancersRelatedEcsRequest) Invoke(client *sdk.Client) (response *DescribeLoadBalancersRelatedEcsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLoadBalancersRelatedEcsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLoadBalancersRelatedEcsRequest) Invoke(client *sdk.Client) (resp *DescribeLoadBalancersRelatedEcsResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeLoadBalancersRelatedEcs", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLoadBalancersRelatedEcsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLoadBalancersRelatedEcsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLoadBalancersRelatedEcsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLoadBalancersRelatedEcsResponse struct {
+	responses.BaseResponse
 	Message       string
 	Success       bool
 	RequestId     string

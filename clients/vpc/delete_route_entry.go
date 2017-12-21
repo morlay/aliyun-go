@@ -9,6 +9,7 @@ import (
 )
 
 type DeleteRouteEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                            `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                           `position:"Query" name:"ResourceOwnerAccount"`
 	DestinationCidrBlock string                           `position:"Query" name:"DestinationCidrBlock"`
@@ -19,25 +20,10 @@ type DeleteRouteEntryRequest struct {
 	RouteTableId         string                           `position:"Query" name:"RouteTableId"`
 }
 
-func (r DeleteRouteEntryRequest) Invoke(client *sdk.Client) (response *DeleteRouteEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteRouteEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteRouteEntryRequest) Invoke(client *sdk.Client) (resp *DeleteRouteEntryResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteRouteEntry", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteRouteEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteRouteEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteRouteEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -47,6 +33,7 @@ type DeleteRouteEntryNextHopList struct {
 }
 
 type DeleteRouteEntryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

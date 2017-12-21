@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteHttpHeaderConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	ConfigID      string `position:"Query" name:"ConfigID"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteHttpHeaderConfigRequest) Invoke(client *sdk.Client) (response *DeleteHttpHeaderConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteHttpHeaderConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteHttpHeaderConfigRequest) Invoke(client *sdk.Client) (resp *DeleteHttpHeaderConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DeleteHttpHeaderConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteHttpHeaderConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteHttpHeaderConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteHttpHeaderConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteHttpHeaderConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeTaskAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	TaskId               string `position:"Query" name:"TaskId"`
 }
 
-func (r DescribeTaskAttributeRequest) Invoke(client *sdk.Client) (response *DescribeTaskAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeTaskAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeTaskAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeTaskAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeTaskAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTaskAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTaskAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTaskAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTaskAttributeResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	TaskId               string
 	RegionId             string

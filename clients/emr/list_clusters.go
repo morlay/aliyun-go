@@ -9,6 +9,7 @@ import (
 )
 
 type ListClustersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId  int64                            `position:"Query" name:"ResourceOwnerId"`
 	CreateType       string                           `position:"Query" name:"CreateType"`
 	IsDesc           string                           `position:"Query" name:"IsDesc"`
@@ -19,29 +20,15 @@ type ListClustersRequest struct {
 	StatusLists      *ListClustersStatusListList      `position:"Query" type:"Repeated" name:"StatusList"`
 }
 
-func (r ListClustersRequest) Invoke(client *sdk.Client) (response *ListClustersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListClustersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListClustersRequest) Invoke(client *sdk.Client) (resp *ListClustersResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ListClusters", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListClustersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListClustersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListClustersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListClustersResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

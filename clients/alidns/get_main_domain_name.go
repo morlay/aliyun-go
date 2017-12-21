@@ -7,34 +7,21 @@ import (
 )
 
 type GetMainDomainNameRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	InputString  string `position:"Query" name:"InputString"`
 }
 
-func (r GetMainDomainNameRequest) Invoke(client *sdk.Client) (response *GetMainDomainNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetMainDomainNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetMainDomainNameRequest) Invoke(client *sdk.Client) (resp *GetMainDomainNameResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "GetMainDomainName", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetMainDomainNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetMainDomainNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetMainDomainNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetMainDomainNameResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	DomainName  string
 	RR          string

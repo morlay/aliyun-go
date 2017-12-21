@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamRecordIndexFilesRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamRecordIndexFilesRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamRecordIndexFilesRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamRecordIndexFilesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamRecordIndexFilesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamRecordIndexFilesRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamRecordIndexFilesResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamRecordIndexFiles", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamRecordIndexFilesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamRecordIndexFilesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamRecordIndexFilesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamRecordIndexFilesResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	RecordIndexInfoList DescribeLiveStreamRecordIndexFilesRecordIndexInfoList
 }

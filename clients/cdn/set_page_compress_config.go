@@ -7,34 +7,21 @@ import (
 )
 
 type SetPageCompressConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	Enable        string `position:"Query" name:"Enable"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetPageCompressConfigRequest) Invoke(client *sdk.Client) (response *SetPageCompressConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetPageCompressConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetPageCompressConfigRequest) Invoke(client *sdk.Client) (resp *SetPageCompressConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetPageCompressConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetPageCompressConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetPageCompressConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetPageCompressConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetPageCompressConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

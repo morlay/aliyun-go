@@ -9,35 +9,22 @@ import (
 )
 
 type RemoveIPSegmentRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 	Uuid        string `position:"Query" name:"Uuid"`
 }
 
-func (r RemoveIPSegmentRequest) Invoke(client *sdk.Client) (response *RemoveIPSegmentResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveIPSegmentRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveIPSegmentRequest) Invoke(client *sdk.Client) (resp *RemoveIPSegmentResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "RemoveIPSegment", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveIPSegmentResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveIPSegmentResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveIPSegmentResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveIPSegmentResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

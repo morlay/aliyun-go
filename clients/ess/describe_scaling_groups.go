@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeScalingGroupsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ScalingGroupId10     string `position:"Query" name:"ScalingGroupId.10"`
 	ScalingGroupId12     string `position:"Query" name:"ScalingGroupId.12"`
@@ -56,29 +57,15 @@ type DescribeScalingGroupsRequest struct {
 	ScalingGroupName12   string `position:"Query" name:"ScalingGroupName.12"`
 }
 
-func (r DescribeScalingGroupsRequest) Invoke(client *sdk.Client) (response *DescribeScalingGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeScalingGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeScalingGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeScalingGroupsResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeScalingGroups", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeScalingGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeScalingGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeScalingGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeScalingGroupsResponse struct {
+	responses.BaseResponse
 	TotalCount    int
 	PageNumber    int
 	PageSize      int

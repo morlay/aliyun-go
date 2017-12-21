@@ -7,32 +7,19 @@ import (
 )
 
 type SubscribeImageRequest struct {
+	requests.RpcRequest
 	ProductCode string `position:"Query" name:"ProductCode"`
 }
 
-func (r SubscribeImageRequest) Invoke(client *sdk.Client) (response *SubscribeImageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubscribeImageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubscribeImageRequest) Invoke(client *sdk.Client) (resp *SubscribeImageResponse, err error) {
 	req.InitWithApiInfo("Market", "2015-11-01", "SubscribeImage", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubscribeImageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubscribeImageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubscribeImageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubscribeImageResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyPhysicalConnectionAttributeRequest struct {
+	requests.RpcRequest
 	RedundantPhysicalConnectionId string `position:"Query" name:"RedundantPhysicalConnectionId"`
 	PeerLocation                  string `position:"Query" name:"PeerLocation"`
 	ResourceOwnerId               int64  `position:"Query" name:"ResourceOwnerId"`
@@ -24,28 +25,14 @@ type ModifyPhysicalConnectionAttributeRequest struct {
 	UserCidr                      string `position:"Query" name:"UserCidr"`
 }
 
-func (r ModifyPhysicalConnectionAttributeRequest) Invoke(client *sdk.Client) (response *ModifyPhysicalConnectionAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyPhysicalConnectionAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyPhysicalConnectionAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyPhysicalConnectionAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyPhysicalConnectionAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyPhysicalConnectionAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyPhysicalConnectionAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyPhysicalConnectionAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyPhysicalConnectionAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteDampPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type DeleteDampPolicyRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteDampPolicyRequest) Invoke(client *sdk.Client) (response *DeleteDampPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDampPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDampPolicyRequest) Invoke(client *sdk.Client) (resp *DeleteDampPolicyResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DeleteDampPolicy", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDampPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDampPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDampPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDampPolicyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

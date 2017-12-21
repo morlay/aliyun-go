@@ -9,6 +9,7 @@ import (
 )
 
 type RefreshCdnDomainConfigsCacheRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type RefreshCdnDomainConfigsCacheRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r RefreshCdnDomainConfigsCacheRequest) Invoke(client *sdk.Client) (response *RefreshCdnDomainConfigsCacheResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RefreshCdnDomainConfigsCacheRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RefreshCdnDomainConfigsCacheRequest) Invoke(client *sdk.Client) (resp *RefreshCdnDomainConfigsCacheResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "RefreshCdnDomainConfigsCache", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RefreshCdnDomainConfigsCacheResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RefreshCdnDomainConfigsCacheResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RefreshCdnDomainConfigsCacheResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RefreshCdnDomainConfigsCacheResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	SucessDomains RefreshCdnDomainConfigsCacheSucessDomainList
 	FailedDomains RefreshCdnDomainConfigsCacheFailedDomainList

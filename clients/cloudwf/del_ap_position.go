@@ -7,33 +7,20 @@ import (
 )
 
 type DelApPositionRequest struct {
+	requests.RpcRequest
 	ApAssetId int64 `position:"Query" name:"ApAssetId"`
 	MapId     int64 `position:"Query" name:"MapId"`
 }
 
-func (r DelApPositionRequest) Invoke(client *sdk.Client) (response *DelApPositionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DelApPositionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DelApPositionRequest) Invoke(client *sdk.Client) (resp *DelApPositionResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DelApPosition", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DelApPositionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DelApPositionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DelApPositionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DelApPositionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -7,6 +7,7 @@ import (
 )
 
 type AddCdnDomainRequest struct {
+	requests.RpcRequest
 	TopLevelDomain  string `position:"Query" name:"TopLevelDomain"`
 	Sources         string `position:"Query" name:"Sources"`
 	OwnerAccount    string `position:"Query" name:"OwnerAccount"`
@@ -24,28 +25,14 @@ type AddCdnDomainRequest struct {
 	Region          string `position:"Query" name:"Region"`
 }
 
-func (r AddCdnDomainRequest) Invoke(client *sdk.Client) (response *AddCdnDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCdnDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCdnDomainRequest) Invoke(client *sdk.Client) (resp *AddCdnDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "AddCdnDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCdnDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCdnDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCdnDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddCdnDomainResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

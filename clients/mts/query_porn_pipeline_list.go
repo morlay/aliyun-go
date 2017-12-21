@@ -9,6 +9,7 @@ import (
 )
 
 type QueryPornPipelineListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	PipelineIds          string `position:"Query" name:"PipelineIds"`
@@ -16,29 +17,15 @@ type QueryPornPipelineListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryPornPipelineListRequest) Invoke(client *sdk.Client) (response *QueryPornPipelineListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPornPipelineListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPornPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryPornPipelineListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryPornPipelineList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPornPipelineListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPornPipelineListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPornPipelineListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPornPipelineListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	PipelineList QueryPornPipelineListPipelineList
 	NonExistIds  QueryPornPipelineListNonExistIdList

@@ -9,6 +9,7 @@ import (
 )
 
 type OnsConsumerAccumulateRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsConsumerAccumulateRequest struct {
 	Detail       string `position:"Query" name:"Detail"`
 }
 
-func (r OnsConsumerAccumulateRequest) Invoke(client *sdk.Client) (response *OnsConsumerAccumulateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsConsumerAccumulateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsConsumerAccumulateRequest) Invoke(client *sdk.Client) (resp *OnsConsumerAccumulateResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsConsumerAccumulate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsConsumerAccumulateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsConsumerAccumulateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsConsumerAccumulateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsConsumerAccumulateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsConsumerAccumulateData

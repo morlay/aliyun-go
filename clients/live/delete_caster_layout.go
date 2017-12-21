@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteCasterLayoutRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
@@ -14,29 +15,15 @@ type DeleteCasterLayoutRequest struct {
 	LayoutId      string `position:"Query" name:"LayoutId"`
 }
 
-func (r DeleteCasterLayoutRequest) Invoke(client *sdk.Client) (response *DeleteCasterLayoutResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCasterLayoutRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCasterLayoutRequest) Invoke(client *sdk.Client) (resp *DeleteCasterLayoutResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterLayout", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCasterLayoutResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCasterLayoutResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCasterLayoutResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCasterLayoutResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CasterId  string
 	LayoutId  string

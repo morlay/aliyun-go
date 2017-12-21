@@ -7,32 +7,19 @@ import (
 )
 
 type NodeUninstallRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r NodeUninstallRequest) Invoke(client *sdk.Client) (response *NodeUninstallResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		NodeUninstallRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *NodeUninstallRequest) Invoke(client *sdk.Client) (resp *NodeUninstallResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "NodeUninstall", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		NodeUninstallResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.NodeUninstallResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &NodeUninstallResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type NodeUninstallResponse struct {
+	responses.BaseResponse
 	ErrorCode    int
 	ErrorMessage string
 	Success      bool

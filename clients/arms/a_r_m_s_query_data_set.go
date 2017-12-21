@@ -9,6 +9,7 @@ import (
 )
 
 type ARMSQueryDataSetRequest struct {
+	requests.RpcRequest
 	DateStr       int64                             `position:"Query" name:"DateStr"`
 	MinTime       int64                             `position:"Query" name:"MinTime"`
 	ReduceTail    string                            `position:"Query" name:"ReduceTail"`
@@ -25,25 +26,10 @@ type ARMSQueryDataSetRequest struct {
 	Dimensionss   *ARMSQueryDataSetDimensionsList   `position:"Query" type:"Repeated" name:"Dimensions"`
 }
 
-func (r ARMSQueryDataSetRequest) Invoke(client *sdk.Client) (response *ARMSQueryDataSetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ARMSQueryDataSetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ARMSQueryDataSetRequest) Invoke(client *sdk.Client) (resp *ARMSQueryDataSetResponse, err error) {
 	req.InitWithApiInfo("ARMS", "2016-11-25", "ARMSQueryDataSet", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ARMSQueryDataSetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ARMSQueryDataSetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ARMSQueryDataSetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -66,6 +52,7 @@ type ARMSQueryDataSetDimensions struct {
 }
 
 type ARMSQueryDataSetResponse struct {
+	responses.BaseResponse
 	Data string
 }
 

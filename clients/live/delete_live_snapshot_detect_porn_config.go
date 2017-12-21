@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteLiveSnapshotDetectPornConfigRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (response *DeleteLiveSnapshotDetectPornConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLiveSnapshotDetectPornConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveSnapshotDetectPornConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveSnapshotDetectPornConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLiveSnapshotDetectPornConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLiveSnapshotDetectPornConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLiveSnapshotDetectPornConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLiveSnapshotDetectPornConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

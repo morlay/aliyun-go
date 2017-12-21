@@ -7,32 +7,19 @@ import (
 )
 
 type GetGroupApRadioConfigProgressRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetGroupApRadioConfigProgressRequest) Invoke(client *sdk.Client) (response *GetGroupApRadioConfigProgressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetGroupApRadioConfigProgressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetGroupApRadioConfigProgressRequest) Invoke(client *sdk.Client) (resp *GetGroupApRadioConfigProgressResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetGroupApRadioConfigProgress", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetGroupApRadioConfigProgressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetGroupApRadioConfigProgressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetGroupApRadioConfigProgressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetGroupApRadioConfigProgressResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

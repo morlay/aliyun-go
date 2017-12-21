@@ -9,6 +9,7 @@ import (
 )
 
 type MoveAlbumPhotosRequest struct {
+	requests.RpcRequest
 	SourceAlbumId int64                       `position:"Query" name:"SourceAlbumId"`
 	TargetAlbumId int64                       `position:"Query" name:"TargetAlbumId"`
 	LibraryId     string                      `position:"Query" name:"LibraryId"`
@@ -16,29 +17,15 @@ type MoveAlbumPhotosRequest struct {
 	StoreName     string                      `position:"Query" name:"StoreName"`
 }
 
-func (r MoveAlbumPhotosRequest) Invoke(client *sdk.Client) (response *MoveAlbumPhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		MoveAlbumPhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *MoveAlbumPhotosRequest) Invoke(client *sdk.Client) (resp *MoveAlbumPhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "MoveAlbumPhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		MoveAlbumPhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.MoveAlbumPhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &MoveAlbumPhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type MoveAlbumPhotosResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,34 +7,21 @@ import (
 )
 
 type ConnectRouterInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	RouterInterfaceId    string `position:"Query" name:"RouterInterfaceId"`
 }
 
-func (r ConnectRouterInterfaceRequest) Invoke(client *sdk.Client) (response *ConnectRouterInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ConnectRouterInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ConnectRouterInterfaceRequest) Invoke(client *sdk.Client) (resp *ConnectRouterInterfaceResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ConnectRouterInterface", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ConnectRouterInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ConnectRouterInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ConnectRouterInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ConnectRouterInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

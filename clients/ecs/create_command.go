@@ -7,6 +7,7 @@ import (
 )
 
 type CreateCommandRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	WorkingDir           string `position:"Query" name:"WorkingDir"`
 	Description          string `position:"Query" name:"Description"`
@@ -19,29 +20,15 @@ type CreateCommandRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r CreateCommandRequest) Invoke(client *sdk.Client) (response *CreateCommandResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateCommandRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateCommandRequest) Invoke(client *sdk.Client) (resp *CreateCommandResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateCommand", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateCommandResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateCommandResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateCommandResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateCommandResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CommandId string
 }

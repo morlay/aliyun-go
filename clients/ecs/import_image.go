@@ -9,6 +9,7 @@ import (
 )
 
 type ImportImageRequest struct {
+	requests.RpcRequest
 	DiskDeviceMappings   *ImportImageDiskDeviceMappingList `position:"Query" type:"Repeated" name:"DiskDeviceMapping"`
 	ResourceOwnerId      int64                             `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                            `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,25 +22,10 @@ type ImportImageRequest struct {
 	Architecture         string                            `position:"Query" name:"Architecture"`
 }
 
-func (r ImportImageRequest) Invoke(client *sdk.Client) (response *ImportImageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ImportImageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ImportImageRequest) Invoke(client *sdk.Client) (resp *ImportImageResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ImportImage", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ImportImageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ImportImageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ImportImageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -53,6 +39,7 @@ type ImportImageDiskDeviceMapping struct {
 }
 
 type ImportImageResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TaskId    string
 	RegionId  string

@@ -7,32 +7,19 @@ import (
 )
 
 type DeleteDomainRequest struct {
+	requests.RpcRequest
 	GroupId    string `position:"Query" name:"GroupId"`
 	DomainName string `position:"Query" name:"DomainName"`
 }
 
-func (r DeleteDomainRequest) Invoke(client *sdk.Client) (response *DeleteDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDomainRequest) Invoke(client *sdk.Client) (resp *DeleteDomainResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DeleteDomain", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDomainResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

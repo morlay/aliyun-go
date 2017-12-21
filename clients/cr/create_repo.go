@@ -7,30 +7,18 @@ import (
 )
 
 type CreateRepoRequest struct {
+	requests.RoaRequest
 }
 
-func (r CreateRepoRequest) Invoke(client *sdk.Client) (response *CreateRepoResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		CreateRepoRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *CreateRepoRequest) Invoke(client *sdk.Client) (resp *CreateRepoResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "CreateRepo", "/repos", "", "")
 	req.Method = "PUT"
 
-	resp := struct {
-		*responses.BaseResponse
-		CreateRepoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateRepoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateRepoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateRepoResponse struct {
+	responses.BaseResponse
 }

@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeBusinessStatusRequest struct {
+	requests.RpcRequest
 	CallerBid string `position:"Query" name:"CallerBid"`
 	Password  string `position:"Query" name:"Password"`
 }
 
-func (r DescribeBusinessStatusRequest) Invoke(client *sdk.Client) (response *DescribeBusinessStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBusinessStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBusinessStatusRequest) Invoke(client *sdk.Client) (resp *DescribeBusinessStatusResponse, err error) {
 	req.InitWithApiInfo("Ubsms", "2015-06-23", "DescribeBusinessStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBusinessStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBusinessStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBusinessStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBusinessStatusResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	Success                bool
 	UserBusinessStatusList DescribeBusinessStatusUserBusinessStatusList

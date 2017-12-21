@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInvocationsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InvokeStatus         string `position:"Query" name:"InvokeStatus"`
 	CommandId            string `position:"Query" name:"CommandId"`
@@ -24,29 +25,15 @@ type DescribeInvocationsRequest struct {
 	InstanceId           string `position:"Query" name:"InstanceId"`
 }
 
-func (r DescribeInvocationsRequest) Invoke(client *sdk.Client) (response *DescribeInvocationsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInvocationsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInvocationsRequest) Invoke(client *sdk.Client) (resp *DescribeInvocationsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInvocations", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInvocationsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInvocationsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInvocationsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInvocationsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int64
 	PageNumber int64

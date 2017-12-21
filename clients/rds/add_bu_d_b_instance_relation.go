@@ -7,6 +7,7 @@ import (
 )
 
 type AddBuDBInstanceRelationRequest struct {
+	requests.RpcRequest
 	BusinessUnit         string `position:"Query" name:"BusinessUnit"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,29 +15,15 @@ type AddBuDBInstanceRelationRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddBuDBInstanceRelationRequest) Invoke(client *sdk.Client) (response *AddBuDBInstanceRelationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddBuDBInstanceRelationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddBuDBInstanceRelationRequest) Invoke(client *sdk.Client) (resp *AddBuDBInstanceRelationResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "AddBuDBInstanceRelation", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddBuDBInstanceRelationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddBuDBInstanceRelationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddBuDBInstanceRelationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddBuDBInstanceRelationResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	BusinessUnit   string
 	DBInstanceName string

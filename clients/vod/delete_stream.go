@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteStreamRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -14,28 +15,14 @@ type DeleteStreamRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteStreamRequest) Invoke(client *sdk.Client) (response *DeleteStreamResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteStreamRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteStreamRequest) Invoke(client *sdk.Client) (resp *DeleteStreamResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "DeleteStream", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteStreamResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteStreamResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteStreamResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteStreamResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

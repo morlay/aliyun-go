@@ -7,6 +7,7 @@ import (
 )
 
 type BindIpRangeRequest struct {
+	requests.RpcRequest
 	IpAddress            string `position:"Query" name:"IpAddress"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
@@ -15,28 +16,14 @@ type BindIpRangeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r BindIpRangeRequest) Invoke(client *sdk.Client) (response *BindIpRangeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BindIpRangeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BindIpRangeRequest) Invoke(client *sdk.Client) (resp *BindIpRangeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "BindIpRange", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BindIpRangeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BindIpRangeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BindIpRangeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BindIpRangeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,33 +7,20 @@ import (
 )
 
 type QueryDdosConfigRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r QueryDdosConfigRequest) Invoke(client *sdk.Client) (response *QueryDdosConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDdosConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDdosConfigRequest) Invoke(client *sdk.Client) (resp *QueryDdosConfigResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "QueryDdosConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDdosConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDdosConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDdosConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDdosConfigResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Bps              int64
 	Pps              int64

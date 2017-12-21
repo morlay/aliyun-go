@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeVpnGatewayRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeVpnGatewayRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeVpnGatewayRequest) Invoke(client *sdk.Client) (response *DescribeVpnGatewayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVpnGatewayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVpnGatewayRequest) Invoke(client *sdk.Client) (resp *DescribeVpnGatewayResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeVpnGateway", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVpnGatewayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVpnGatewayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVpnGatewayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVpnGatewayResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	VpnGatewayId   string
 	VpcId          string

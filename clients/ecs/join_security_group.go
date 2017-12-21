@@ -7,6 +7,7 @@ import (
 )
 
 type JoinSecurityGroupRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type JoinSecurityGroupRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r JoinSecurityGroupRequest) Invoke(client *sdk.Client) (response *JoinSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		JoinSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *JoinSecurityGroupRequest) Invoke(client *sdk.Client) (resp *JoinSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "JoinSecurityGroup", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		JoinSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.JoinSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &JoinSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type JoinSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

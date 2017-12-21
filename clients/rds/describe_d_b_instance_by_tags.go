@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceByTagsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -20,29 +21,15 @@ type DescribeDBInstanceByTagsRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r DescribeDBInstanceByTagsRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceByTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceByTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceByTagsRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceByTagsResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceByTags", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceByTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceByTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceByTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceByTagsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	PageNumber       int
 	PageRecordCount  int

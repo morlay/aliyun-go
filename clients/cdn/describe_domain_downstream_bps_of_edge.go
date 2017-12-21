@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainDownstreamBpsOfEdgeRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainDownstreamBpsOfEdgeRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainDownstreamBpsOfEdgeRequest) Invoke(client *sdk.Client) (response *DescribeDomainDownstreamBpsOfEdgeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainDownstreamBpsOfEdgeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainDownstreamBpsOfEdgeRequest) Invoke(client *sdk.Client) (resp *DescribeDomainDownstreamBpsOfEdgeResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainDownstreamBpsOfEdge", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainDownstreamBpsOfEdgeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainDownstreamBpsOfEdgeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainDownstreamBpsOfEdgeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainDownstreamBpsOfEdgeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	BpsDatas  DescribeDomainDownstreamBpsOfEdgeDomainBpsModelList
 }

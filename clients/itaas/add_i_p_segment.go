@@ -9,6 +9,7 @@ import (
 )
 
 type AddIPSegmentRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
@@ -16,29 +17,15 @@ type AddIPSegmentRequest struct {
 	Memo        string `position:"Query" name:"Memo"`
 }
 
-func (r AddIPSegmentRequest) Invoke(client *sdk.Client) (response *AddIPSegmentResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddIPSegmentRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddIPSegmentRequest) Invoke(client *sdk.Client) (resp *AddIPSegmentResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "AddIPSegment", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddIPSegmentResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddIPSegmentResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddIPSegmentResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddIPSegmentResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

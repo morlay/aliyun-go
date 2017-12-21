@@ -9,6 +9,7 @@ import (
 )
 
 type GetCategoriesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int64  `position:"Query" name:"CateId"`
@@ -18,29 +19,15 @@ type GetCategoriesRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r GetCategoriesRequest) Invoke(client *sdk.Client) (response *GetCategoriesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetCategoriesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetCategoriesRequest) Invoke(client *sdk.Client) (resp *GetCategoriesResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetCategories", "vod", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetCategoriesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetCategoriesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetCategoriesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetCategoriesResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	SubTotal      int64
 	SubCategories GetCategoriesCategoryList

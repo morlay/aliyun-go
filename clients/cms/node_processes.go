@@ -9,32 +9,19 @@ import (
 )
 
 type NodeProcessesRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r NodeProcessesRequest) Invoke(client *sdk.Client) (response *NodeProcessesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		NodeProcessesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *NodeProcessesRequest) Invoke(client *sdk.Client) (resp *NodeProcessesResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "NodeProcesses", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		NodeProcessesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.NodeProcessesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &NodeProcessesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type NodeProcessesResponse struct {
+	responses.BaseResponse
 	ErrorCode     int
 	ErrorMessage  string
 	Success       bool

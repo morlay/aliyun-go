@@ -7,6 +7,7 @@ import (
 )
 
 type QueryMetricListRequest struct {
+	requests.RpcRequest
 	Cursor           string `position:"Query" name:"Cursor"`
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	ResourceOwnerId  int64  `position:"Query" name:"ResourceOwnerId"`
@@ -21,29 +22,15 @@ type QueryMetricListRequest struct {
 	Dimensions       string `position:"Query" name:"Dimensions"`
 }
 
-func (r QueryMetricListRequest) Invoke(client *sdk.Client) (response *QueryMetricListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryMetricListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryMetricListRequest) Invoke(client *sdk.Client) (resp *QueryMetricListResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "QueryMetricList", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryMetricListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryMetricListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryMetricListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryMetricListResponse struct {
+	responses.BaseResponse
 	Code       string
 	Message    string
 	Success    bool

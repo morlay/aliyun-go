@@ -7,32 +7,20 @@ import (
 )
 
 type DeleteNamespaceAuthorizationRequest struct {
+	requests.RoaRequest
 	Namespace   string `position:"Path" name:"Namespace"`
 	AuthorizeId int64  `position:"Path" name:"AuthorizeId"`
 }
 
-func (r DeleteNamespaceAuthorizationRequest) Invoke(client *sdk.Client) (response *DeleteNamespaceAuthorizationResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DeleteNamespaceAuthorizationRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DeleteNamespaceAuthorizationRequest) Invoke(client *sdk.Client) (resp *DeleteNamespaceAuthorizationResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "DeleteNamespaceAuthorization", "/namespace/[Namespace]/authorizations/[AuthorizeId]", "", "")
 	req.Method = "DELETE"
 
-	resp := struct {
-		*responses.BaseResponse
-		DeleteNamespaceAuthorizationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteNamespaceAuthorizationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteNamespaceAuthorizationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteNamespaceAuthorizationResponse struct {
+	responses.BaseResponse
 }

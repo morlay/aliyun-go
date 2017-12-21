@@ -7,31 +7,18 @@ import (
 )
 
 type DescribeCashDetailRequest struct {
+	requests.RpcRequest
 }
 
-func (r DescribeCashDetailRequest) Invoke(client *sdk.Client) (response *DescribeCashDetailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCashDetailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCashDetailRequest) Invoke(client *sdk.Client) (resp *DescribeCashDetailResponse, err error) {
 	req.InitWithApiInfo("Bss", "2014-07-14", "DescribeCashDetail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCashDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCashDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCashDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCashDetailResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	BalanceAmount        string
 	AmountOwed           string

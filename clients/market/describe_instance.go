@@ -7,32 +7,19 @@ import (
 )
 
 type DescribeInstanceRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r DescribeInstanceRequest) Invoke(client *sdk.Client) (response *DescribeInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceResponse, err error) {
 	req.InitWithApiInfo("Market", "2015-11-01", "DescribeInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceResponse struct {
+	responses.BaseResponse
 	InstanceId     int64
 	OrderId        int64
 	SupplierName   string

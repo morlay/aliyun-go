@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage     int    `position:"Query" name:"DBInstanceStorage"`
 	ClientToken           string `position:"Query" name:"ClientToken"`
@@ -34,29 +35,15 @@ type CreateDBInstanceRequest struct {
 	ChargeType            string `position:"Query" name:"ChargeType"`
 }
 
-func (r CreateDBInstanceRequest) Invoke(client *sdk.Client) (response *CreateDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDBInstanceRequest) Invoke(client *sdk.Client) (resp *CreateDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "CreateDBInstance", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	OrderId      string
 	DBInstanceId string

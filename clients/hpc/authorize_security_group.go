@@ -7,6 +7,7 @@ import (
 )
 
 type AuthorizeSecurityGroupRequest struct {
+	requests.RpcRequest
 	TOKEN    string `position:"Query" name:"TOKEN"`
 	SourceIp string `position:"Query" name:"SourceIp"`
 	Policy   string `position:"Query" name:"Policy"`
@@ -14,28 +15,14 @@ type AuthorizeSecurityGroupRequest struct {
 	NicType  string `position:"Query" name:"NicType"`
 }
 
-func (r AuthorizeSecurityGroupRequest) Invoke(client *sdk.Client) (response *AuthorizeSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AuthorizeSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AuthorizeSecurityGroupRequest) Invoke(client *sdk.Client) (resp *AuthorizeSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("HPC", "2016-12-13", "AuthorizeSecurityGroup", "hpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AuthorizeSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AuthorizeSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AuthorizeSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AuthorizeSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

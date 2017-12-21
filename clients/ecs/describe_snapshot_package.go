@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSnapshotPackageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeSnapshotPackageRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeSnapshotPackageRequest) Invoke(client *sdk.Client) (response *DescribeSnapshotPackageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSnapshotPackageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSnapshotPackageRequest) Invoke(client *sdk.Client) (resp *DescribeSnapshotPackageResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSnapshotPackage", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSnapshotPackageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSnapshotPackageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSnapshotPackageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSnapshotPackageResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalCount       int
 	PageNumber       int

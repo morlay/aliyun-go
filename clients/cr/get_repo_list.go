@@ -7,32 +7,20 @@ import (
 )
 
 type GetRepoListRequest struct {
+	requests.RoaRequest
 	Page     int `position:"Query" name:"Page"`
 	PageSize int `position:"Query" name:"PageSize"`
 }
 
-func (r GetRepoListRequest) Invoke(client *sdk.Client) (response *GetRepoListResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetRepoListRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetRepoListRequest) Invoke(client *sdk.Client) (resp *GetRepoListResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetRepoList", "/repos", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetRepoListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRepoListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRepoListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRepoListResponse struct {
+	responses.BaseResponse
 }

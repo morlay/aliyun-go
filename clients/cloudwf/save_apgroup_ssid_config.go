@@ -7,32 +7,19 @@ import (
 )
 
 type SaveApgroupSsidConfigRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r SaveApgroupSsidConfigRequest) Invoke(client *sdk.Client) (response *SaveApgroupSsidConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApgroupSsidConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApgroupSsidConfigRequest) Invoke(client *sdk.Client) (resp *SaveApgroupSsidConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApgroupSsidConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApgroupSsidConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApgroupSsidConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApgroupSsidConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApgroupSsidConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

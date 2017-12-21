@@ -7,6 +7,7 @@ import (
 )
 
 type CreateAlarmRequest struct {
+	requests.RpcRequest
 	Callby_cms_owner   string `position:"Query" name:"Callby_cms_owner"`
 	Period             int    `position:"Query" name:"Period"`
 	Webhook            string `position:"Query" name:"Webhook"`
@@ -25,29 +26,15 @@ type CreateAlarmRequest struct {
 	Statistics         string `position:"Query" name:"Statistics"`
 }
 
-func (r CreateAlarmRequest) Invoke(client *sdk.Client) (response *CreateAlarmResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateAlarmRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateAlarmRequest) Invoke(client *sdk.Client) (resp *CreateAlarmResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "CreateAlarm", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateAlarmResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateAlarmResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateAlarmResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateAlarmResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Code      string
 	Message   string

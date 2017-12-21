@@ -9,35 +9,22 @@ import (
 )
 
 type OnsSubscriptionSearchRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	Search       string `position:"Query" name:"Search"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 }
 
-func (r OnsSubscriptionSearchRequest) Invoke(client *sdk.Client) (response *OnsSubscriptionSearchResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsSubscriptionSearchRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsSubscriptionSearchRequest) Invoke(client *sdk.Client) (resp *OnsSubscriptionSearchResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsSubscriptionSearch", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsSubscriptionSearchResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsSubscriptionSearchResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsSubscriptionSearchResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsSubscriptionSearchResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsSubscriptionSearchSubscribeInfoDoList

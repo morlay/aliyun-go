@@ -9,6 +9,7 @@ import (
 )
 
 type GetEditingProjectMaterialsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -17,29 +18,15 @@ type GetEditingProjectMaterialsRequest struct {
 	ProjectId            string `position:"Query" name:"ProjectId"`
 }
 
-func (r GetEditingProjectMaterialsRequest) Invoke(client *sdk.Client) (response *GetEditingProjectMaterialsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetEditingProjectMaterialsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetEditingProjectMaterialsRequest) Invoke(client *sdk.Client) (resp *GetEditingProjectMaterialsResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetEditingProjectMaterials", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetEditingProjectMaterialsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetEditingProjectMaterialsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetEditingProjectMaterialsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetEditingProjectMaterialsResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	MaterialList GetEditingProjectMaterialsMaterialList
 }

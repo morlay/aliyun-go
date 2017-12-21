@@ -7,6 +7,7 @@ import (
 )
 
 type ListStaOnoffLogRequest struct {
+	requests.RpcRequest
 	OrderCol       string `position:"Query" name:"OrderCol"`
 	SearchSsid     string `position:"Query" name:"SearchSsid"`
 	SearchApName   string `position:"Query" name:"SearchApName"`
@@ -17,29 +18,15 @@ type ListStaOnoffLogRequest struct {
 	OrderDir       string `position:"Query" name:"OrderDir"`
 }
 
-func (r ListStaOnoffLogRequest) Invoke(client *sdk.Client) (response *ListStaOnoffLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListStaOnoffLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListStaOnoffLogRequest) Invoke(client *sdk.Client) (resp *ListStaOnoffLogResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListStaOnoffLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListStaOnoffLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListStaOnoffLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListStaOnoffLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListStaOnoffLogResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

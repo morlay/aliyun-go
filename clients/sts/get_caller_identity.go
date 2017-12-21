@@ -7,31 +7,18 @@ import (
 )
 
 type GetCallerIdentityRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetCallerIdentityRequest) Invoke(client *sdk.Client) (response *GetCallerIdentityResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetCallerIdentityRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetCallerIdentityRequest) Invoke(client *sdk.Client) (resp *GetCallerIdentityResponse, err error) {
 	req.InitWithApiInfo("Sts", "2015-04-01", "GetCallerIdentity", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetCallerIdentityResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetCallerIdentityResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetCallerIdentityResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetCallerIdentityResponse struct {
+	responses.BaseResponse
 	AccountId string
 	UserId    string
 	Arn       string

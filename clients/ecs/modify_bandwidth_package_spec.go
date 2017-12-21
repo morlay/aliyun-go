@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyBandwidthPackageSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyBandwidthPackageSpecRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyBandwidthPackageSpecRequest) Invoke(client *sdk.Client) (response *ModifyBandwidthPackageSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyBandwidthPackageSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyBandwidthPackageSpecRequest) Invoke(client *sdk.Client) (resp *ModifyBandwidthPackageSpecResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyBandwidthPackageSpec", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyBandwidthPackageSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyBandwidthPackageSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyBandwidthPackageSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyBandwidthPackageSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,32 +9,19 @@ import (
 )
 
 type GetScanModeRequest struct {
+	requests.RpcRequest
 	MacLists *GetScanModeMacListList `position:"Query" type:"Repeated" name:"MacList"`
 }
 
-func (r GetScanModeRequest) Invoke(client *sdk.Client) (response *GetScanModeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetScanModeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetScanModeRequest) Invoke(client *sdk.Client) (resp *GetScanModeResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetScanMode", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetScanModeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetScanModeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetScanModeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetScanModeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

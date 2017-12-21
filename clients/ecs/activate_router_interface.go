@@ -7,34 +7,21 @@ import (
 )
 
 type ActivateRouterInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	RouterInterfaceId    string `position:"Query" name:"RouterInterfaceId"`
 }
 
-func (r ActivateRouterInterfaceRequest) Invoke(client *sdk.Client) (response *ActivateRouterInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ActivateRouterInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ActivateRouterInterfaceRequest) Invoke(client *sdk.Client) (resp *ActivateRouterInterfaceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ActivateRouterInterface", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ActivateRouterInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ActivateRouterInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ActivateRouterInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ActivateRouterInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

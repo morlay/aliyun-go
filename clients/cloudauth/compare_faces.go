@@ -7,6 +7,7 @@ import (
 )
 
 type CompareFacesRequest struct {
+	requests.RpcRequest
 	SourceImageType  string `position:"Query" name:"SourceImageType"`
 	ResourceOwnerId  int64  `position:"Query" name:"ResourceOwnerId"`
 	TargetImageType  string `position:"Query" name:"TargetImageType"`
@@ -14,29 +15,15 @@ type CompareFacesRequest struct {
 	TargetImageValue string `position:"Query" name:"TargetImageValue"`
 }
 
-func (r CompareFacesRequest) Invoke(client *sdk.Client) (response *CompareFacesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CompareFacesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CompareFacesRequest) Invoke(client *sdk.Client) (resp *CompareFacesResponse, err error) {
 	req.InitWithApiInfo("Cloudauth", "2017-11-17", "CompareFaces", "cloudauth", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CompareFacesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CompareFacesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CompareFacesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CompareFacesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

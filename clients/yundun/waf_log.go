@@ -9,6 +9,7 @@ import (
 )
 
 type WafLogRequest struct {
+	requests.RpcRequest
 	JstOwnerId   int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber   int    `position:"Query" name:"PageNumber"`
 	PageSize     int    `position:"Query" name:"PageSize"`
@@ -16,29 +17,15 @@ type WafLogRequest struct {
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r WafLogRequest) Invoke(client *sdk.Client) (response *WafLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		WafLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *WafLogRequest) Invoke(client *sdk.Client) (resp *WafLogResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "WafLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		WafLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.WafLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &WafLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type WafLogResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	WebAttack   int
 	NewWafUser  bool

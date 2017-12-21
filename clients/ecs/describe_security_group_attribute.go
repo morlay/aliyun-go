@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSecurityGroupAttributeRequest struct {
+	requests.RpcRequest
 	NicType              string `position:"Query" name:"NicType"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeSecurityGroupAttributeRequest struct {
 	Direction            string `position:"Query" name:"Direction"`
 }
 
-func (r DescribeSecurityGroupAttributeRequest) Invoke(client *sdk.Client) (response *DescribeSecurityGroupAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSecurityGroupAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSecurityGroupAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeSecurityGroupAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSecurityGroupAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSecurityGroupAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSecurityGroupAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSecurityGroupAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSecurityGroupAttributeResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	RegionId          string
 	SecurityGroupId   string

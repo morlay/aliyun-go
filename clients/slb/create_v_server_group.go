@@ -9,6 +9,7 @@ import (
 )
 
 type CreateVServerGroupRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -20,29 +21,15 @@ type CreateVServerGroupRequest struct {
 	VServerGroupName     string `position:"Query" name:"VServerGroupName"`
 }
 
-func (r CreateVServerGroupRequest) Invoke(client *sdk.Client) (response *CreateVServerGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateVServerGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateVServerGroupRequest) Invoke(client *sdk.Client) (resp *CreateVServerGroupResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateVServerGroup", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateVServerGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateVServerGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateVServerGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateVServerGroupResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	VServerGroupId string
 	BackendServers CreateVServerGroupBackendServerList

@@ -7,6 +7,7 @@ import (
 )
 
 type OnsConsumerResetOffsetRequest struct {
+	requests.RpcRequest
 	PreventCache   int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId    string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform    string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsConsumerResetOffsetRequest struct {
 	Type           int    `position:"Query" name:"Type"`
 }
 
-func (r OnsConsumerResetOffsetRequest) Invoke(client *sdk.Client) (response *OnsConsumerResetOffsetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsConsumerResetOffsetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsConsumerResetOffsetRequest) Invoke(client *sdk.Client) (resp *OnsConsumerResetOffsetResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsConsumerResetOffset", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsConsumerResetOffsetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsConsumerResetOffsetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsConsumerResetOffsetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsConsumerResetOffsetResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

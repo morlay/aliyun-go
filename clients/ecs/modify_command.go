@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyCommandRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	WorkingDir           string `position:"Query" name:"WorkingDir"`
 	Description          string `position:"Query" name:"Description"`
@@ -19,28 +20,14 @@ type ModifyCommandRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r ModifyCommandRequest) Invoke(client *sdk.Client) (response *ModifyCommandResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCommandRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCommandRequest) Invoke(client *sdk.Client) (resp *ModifyCommandResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyCommand", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCommandResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCommandResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCommandResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyCommandResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

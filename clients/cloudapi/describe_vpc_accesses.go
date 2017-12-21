@@ -9,31 +9,18 @@ import (
 )
 
 type DescribeVpcAccessesRequest struct {
+	requests.RpcRequest
 }
 
-func (r DescribeVpcAccessesRequest) Invoke(client *sdk.Client) (response *DescribeVpcAccessesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVpcAccessesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVpcAccessesRequest) Invoke(client *sdk.Client) (resp *DescribeVpcAccessesResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeVpcAccesses", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVpcAccessesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVpcAccessesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVpcAccessesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVpcAccessesResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	TotalCount          int
 	PageSize            int

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyAccountDescriptionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AccountName          string `position:"Query" name:"AccountName"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
@@ -17,28 +18,14 @@ type ModifyAccountDescriptionRequest struct {
 	AccountDescription   string `position:"Query" name:"AccountDescription"`
 }
 
-func (r ModifyAccountDescriptionRequest) Invoke(client *sdk.Client) (response *ModifyAccountDescriptionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyAccountDescriptionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyAccountDescriptionRequest) Invoke(client *sdk.Client) (resp *ModifyAccountDescriptionResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "ModifyAccountDescription", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyAccountDescriptionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyAccountDescriptionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyAccountDescriptionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyAccountDescriptionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

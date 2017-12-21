@@ -7,34 +7,21 @@ import (
 )
 
 type SetIpAllowListConfigRequest struct {
+	requests.RpcRequest
 	AllowIps      string `position:"Query" name:"AllowIps"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetIpAllowListConfigRequest) Invoke(client *sdk.Client) (response *SetIpAllowListConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetIpAllowListConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetIpAllowListConfigRequest) Invoke(client *sdk.Client) (resp *SetIpAllowListConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetIpAllowListConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetIpAllowListConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetIpAllowListConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetIpAllowListConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetIpAllowListConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

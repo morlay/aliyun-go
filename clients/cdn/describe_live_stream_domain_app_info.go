@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeLiveStreamDomainAppInfoRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	AppDomain     string `position:"Query" name:"AppDomain"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamDomainAppInfoRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamDomainAppInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamDomainAppInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamDomainAppInfoRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamDomainAppInfoResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamDomainAppInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamDomainAppInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamDomainAppInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamDomainAppInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamDomainAppInfoResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	DomainAppList DescribeLiveStreamDomainAppInfoDomainAppInfoList
 }

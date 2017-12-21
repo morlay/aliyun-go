@@ -7,6 +7,7 @@ import (
 )
 
 type EipFillParamsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Data                 string `position:"Query" name:"Data"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type EipFillParamsRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r EipFillParamsRequest) Invoke(client *sdk.Client) (response *EipFillParamsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EipFillParamsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EipFillParamsRequest) Invoke(client *sdk.Client) (resp *EipFillParamsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "EipFillParams", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EipFillParamsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EipFillParamsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EipFillParamsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EipFillParamsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Data      string
 	Code      string

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifySecurityIpsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId          int64  `position:"Query" name:"ResourceOwnerId"`
 	ModifyMode               string `position:"Query" name:"ModifyMode"`
 	ResourceOwnerAccount     string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,28 +20,14 @@ type ModifySecurityIpsRequest struct {
 	SecurityIpGroupAttribute string `position:"Query" name:"SecurityIpGroupAttribute"`
 }
 
-func (r ModifySecurityIpsRequest) Invoke(client *sdk.Client) (response *ModifySecurityIpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySecurityIpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySecurityIpsRequest) Invoke(client *sdk.Client) (resp *ModifySecurityIpsResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "ModifySecurityIps", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySecurityIpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySecurityIpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySecurityIpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySecurityIpsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

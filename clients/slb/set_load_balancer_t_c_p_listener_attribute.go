@@ -7,6 +7,7 @@ import (
 )
 
 type SetLoadBalancerTCPListenerAttributeRequest struct {
+	requests.RpcRequest
 	Access_key_id             string `position:"Query" name:"Access_key_id"`
 	HealthCheckConnectTimeout int    `position:"Query" name:"HealthCheckConnectTimeout"`
 	ResourceOwnerId           int64  `position:"Query" name:"ResourceOwnerId"`
@@ -36,28 +37,14 @@ type SetLoadBalancerTCPListenerAttributeRequest struct {
 	VServerGroup              string `position:"Query" name:"VServerGroup"`
 }
 
-func (r SetLoadBalancerTCPListenerAttributeRequest) Invoke(client *sdk.Client) (response *SetLoadBalancerTCPListenerAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetLoadBalancerTCPListenerAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetLoadBalancerTCPListenerAttributeRequest) Invoke(client *sdk.Client) (resp *SetLoadBalancerTCPListenerAttributeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetLoadBalancerTCPListenerAttribute", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetLoadBalancerTCPListenerAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetLoadBalancerTCPListenerAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetLoadBalancerTCPListenerAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetLoadBalancerTCPListenerAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

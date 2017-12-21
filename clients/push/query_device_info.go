@@ -7,33 +7,20 @@ import (
 )
 
 type QueryDeviceInfoRequest struct {
+	requests.RpcRequest
 	AppKey   int64  `position:"Query" name:"AppKey"`
 	DeviceId string `position:"Query" name:"DeviceId"`
 }
 
-func (r QueryDeviceInfoRequest) Invoke(client *sdk.Client) (response *QueryDeviceInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDeviceInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDeviceInfoRequest) Invoke(client *sdk.Client) (resp *QueryDeviceInfoResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryDeviceInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDeviceInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDeviceInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDeviceInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDeviceInfoResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	DeviceInfo QueryDeviceInfoDeviceInfo
 }

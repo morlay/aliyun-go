@@ -9,6 +9,7 @@ import (
 )
 
 type ModifyExecutionPlanRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64                                      `position:"Query" name:"ResourceOwnerId"`
 	ClusterName            string                                     `position:"Query" name:"ClusterName"`
 	ClusterId              string                                     `position:"Query" name:"ClusterId"`
@@ -40,25 +41,10 @@ type ModifyExecutionPlanRequest struct {
 	JobIdLists             *ModifyExecutionPlanJobIdListList          `position:"Query" type:"Repeated" name:"JobIdList"`
 }
 
-func (r ModifyExecutionPlanRequest) Invoke(client *sdk.Client) (response *ModifyExecutionPlanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyExecutionPlanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyExecutionPlanRequest) Invoke(client *sdk.Client) (resp *ModifyExecutionPlanResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ModifyExecutionPlan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyExecutionPlanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyExecutionPlanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyExecutionPlanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -79,6 +65,7 @@ type ModifyExecutionPlanBootstrapAction struct {
 }
 
 type ModifyExecutionPlanResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRealtimeLogsRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	LogStartTime         string `position:"Query" name:"LogStartTime"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -23,29 +24,15 @@ type DescribeRealtimeLogsRequest struct {
 	PageSize             int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeRealtimeLogsRequest) Invoke(client *sdk.Client) (response *DescribeRealtimeLogsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRealtimeLogsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRealtimeLogsRequest) Invoke(client *sdk.Client) (resp *DescribeRealtimeLogsResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeRealtimeLogs", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRealtimeLogsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRealtimeLogsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRealtimeLogsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRealtimeLogsResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	PageNumber        int
 	PageSize          int

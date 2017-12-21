@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeExtensiveDomainDataRequest struct {
+	requests.RpcRequest
 	SecurityToken   string `position:"Query" name:"SecurityToken"`
 	ExtensiveDomain string `position:"Query" name:"ExtensiveDomain"`
 	PageSize        int    `position:"Query" name:"PageSize"`
@@ -18,29 +19,15 @@ type DescribeExtensiveDomainDataRequest struct {
 	PageNumber      int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeExtensiveDomainDataRequest) Invoke(client *sdk.Client) (response *DescribeExtensiveDomainDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeExtensiveDomainDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeExtensiveDomainDataRequest) Invoke(client *sdk.Client) (resp *DescribeExtensiveDomainDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeExtensiveDomainData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeExtensiveDomainDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeExtensiveDomainDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeExtensiveDomainDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeExtensiveDomainDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	ExtensiveDomain string
 	DataInterval    string

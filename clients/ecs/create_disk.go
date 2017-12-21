@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDiskRequest struct {
+	requests.RpcRequest
 	Tag4Value            string `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SnapshotId           string `position:"Query" name:"SnapshotId"`
@@ -32,29 +33,15 @@ type CreateDiskRequest struct {
 	Tag4Key              string `position:"Query" name:"Tag.4.Key"`
 }
 
-func (r CreateDiskRequest) Invoke(client *sdk.Client) (response *CreateDiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDiskRequest) Invoke(client *sdk.Client) (resp *CreateDiskResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateDisk", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDiskResponse struct {
+	responses.BaseResponse
 	RequestId string
 	DiskId    string
 }

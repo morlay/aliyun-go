@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyVRouterAttributeRequest struct {
+	requests.RpcRequest
 	VRouterName          string `position:"Query" name:"VRouterName"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	VRouterId            string `position:"Query" name:"VRouterId"`
@@ -16,28 +17,14 @@ type ModifyVRouterAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyVRouterAttributeRequest) Invoke(client *sdk.Client) (response *ModifyVRouterAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyVRouterAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyVRouterAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyVRouterAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyVRouterAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyVRouterAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyVRouterAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyVRouterAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyVRouterAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

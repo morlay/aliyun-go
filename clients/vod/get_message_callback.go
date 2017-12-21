@@ -7,35 +7,22 @@ import (
 )
 
 type GetMessageCallbackRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r GetMessageCallbackRequest) Invoke(client *sdk.Client) (response *GetMessageCallbackResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetMessageCallbackRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetMessageCallbackRequest) Invoke(client *sdk.Client) (resp *GetMessageCallbackResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetMessageCallback", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetMessageCallbackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetMessageCallbackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetMessageCallbackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetMessageCallbackResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	MessageCallback GetMessageCallbackMessageCallback
 }

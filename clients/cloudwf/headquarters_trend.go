@@ -7,32 +7,19 @@ import (
 )
 
 type HeadquartersTrendRequest struct {
+	requests.RpcRequest
 	Bid int64 `position:"Query" name:"Bid"`
 }
 
-func (r HeadquartersTrendRequest) Invoke(client *sdk.Client) (response *HeadquartersTrendResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		HeadquartersTrendRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *HeadquartersTrendRequest) Invoke(client *sdk.Client) (resp *HeadquartersTrendResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "HeadquartersTrend", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		HeadquartersTrendResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.HeadquartersTrendResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &HeadquartersTrendResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type HeadquartersTrendResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

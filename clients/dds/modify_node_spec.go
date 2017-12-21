@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyNodeSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -19,29 +20,15 @@ type ModifyNodeSpecRequest struct {
 	NodeId               string `position:"Query" name:"NodeId"`
 }
 
-func (r ModifyNodeSpecRequest) Invoke(client *sdk.Client) (response *ModifyNodeSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyNodeSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyNodeSpecRequest) Invoke(client *sdk.Client) (resp *ModifyNodeSpecResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "ModifyNodeSpec", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyNodeSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyNodeSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyNodeSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyNodeSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   string
 }

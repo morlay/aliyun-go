@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeImageSharePermissionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeImageSharePermissionRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeImageSharePermissionRequest) Invoke(client *sdk.Client) (response *DescribeImageSharePermissionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeImageSharePermissionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeImageSharePermissionRequest) Invoke(client *sdk.Client) (resp *DescribeImageSharePermissionResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeImageSharePermission", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeImageSharePermissionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeImageSharePermissionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeImageSharePermissionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeImageSharePermissionResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	RegionId    string
 	TotalCount  int

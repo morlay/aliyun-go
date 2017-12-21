@@ -7,35 +7,22 @@ import (
 )
 
 type ProfileHistoryListRequest struct {
+	requests.RpcRequest
 	Idtype int64 `position:"Query" name:"Idtype"`
 	Page   int   `position:"Query" name:"Page"`
 	Per    int   `position:"Query" name:"Per"`
 	Agsid  int64 `position:"Query" name:"Agsid"`
 }
 
-func (r ProfileHistoryListRequest) Invoke(client *sdk.Client) (response *ProfileHistoryListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ProfileHistoryListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ProfileHistoryListRequest) Invoke(client *sdk.Client) (resp *ProfileHistoryListResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ProfileHistoryList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ProfileHistoryListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ProfileHistoryListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ProfileHistoryListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ProfileHistoryListResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

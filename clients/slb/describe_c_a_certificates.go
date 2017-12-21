@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCACertificatesRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -18,29 +19,15 @@ type DescribeCACertificatesRequest struct {
 	CACertificateId      string `position:"Query" name:"CACertificateId"`
 }
 
-func (r DescribeCACertificatesRequest) Invoke(client *sdk.Client) (response *DescribeCACertificatesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCACertificatesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCACertificatesRequest) Invoke(client *sdk.Client) (resp *DescribeCACertificatesResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeCACertificates", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCACertificatesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCACertificatesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCACertificatesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCACertificatesResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	CACertificates DescribeCACertificatesCACertificateList
 }

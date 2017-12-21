@@ -7,6 +7,7 @@ import (
 )
 
 type CreateBgpPeerRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,29 +17,15 @@ type CreateBgpPeerRequest struct {
 	PeerIpAddress        string `position:"Query" name:"PeerIpAddress"`
 }
 
-func (r CreateBgpPeerRequest) Invoke(client *sdk.Client) (response *CreateBgpPeerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateBgpPeerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateBgpPeerRequest) Invoke(client *sdk.Client) (resp *CreateBgpPeerResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateBgpPeer", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateBgpPeerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateBgpPeerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateBgpPeerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateBgpPeerResponse struct {
+	responses.BaseResponse
 	RequestId string
 	BgpPeerId string
 }

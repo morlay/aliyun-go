@@ -7,6 +7,7 @@ import (
 )
 
 type CreateNetworkInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	SecurityGroupId      string `position:"Query" name:"SecurityGroupId"`
@@ -19,29 +20,15 @@ type CreateNetworkInterfaceRequest struct {
 	PrimaryIpAddress     string `position:"Query" name:"PrimaryIpAddress"`
 }
 
-func (r CreateNetworkInterfaceRequest) Invoke(client *sdk.Client) (response *CreateNetworkInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateNetworkInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateNetworkInterfaceRequest) Invoke(client *sdk.Client) (resp *CreateNetworkInterfaceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateNetworkInterface", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateNetworkInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateNetworkInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateNetworkInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateNetworkInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	NetworkInterfaceId string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type GetProbeDataSubscriberConfigRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetProbeDataSubscriberConfigRequest) Invoke(client *sdk.Client) (response *GetProbeDataSubscriberConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetProbeDataSubscriberConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetProbeDataSubscriberConfigRequest) Invoke(client *sdk.Client) (resp *GetProbeDataSubscriberConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetProbeDataSubscriberConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetProbeDataSubscriberConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetProbeDataSubscriberConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetProbeDataSubscriberConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetProbeDataSubscriberConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

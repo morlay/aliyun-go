@@ -9,6 +9,7 @@ import (
 )
 
 type ListFacesRequest struct {
+	requests.RpcRequest
 	Cursor      string `position:"Query" name:"Cursor"`
 	HasFaceName string `position:"Query" name:"HasFaceName"`
 	Size        int    `position:"Query" name:"Size"`
@@ -18,29 +19,15 @@ type ListFacesRequest struct {
 	Direction   string `position:"Query" name:"Direction"`
 }
 
-func (r ListFacesRequest) Invoke(client *sdk.Client) (response *ListFacesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListFacesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListFacesRequest) Invoke(client *sdk.Client) (resp *ListFacesResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ListFaces", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListFacesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListFacesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListFacesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListFacesResponse struct {
+	responses.BaseResponse
 	Code       string
 	Message    string
 	NextCursor string

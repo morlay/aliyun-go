@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSQLReportsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeSQLReportsRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeSQLReportsRequest) Invoke(client *sdk.Client) (response *DescribeSQLReportsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSQLReportsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSQLReportsRequest) Invoke(client *sdk.Client) (resp *DescribeSQLReportsResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeSQLReports", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSQLReportsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSQLReportsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSQLReportsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSQLReportsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount int
 	PageNumber       int

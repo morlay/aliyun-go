@@ -7,32 +7,19 @@ import (
 )
 
 type BatchRegisterApAssetRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r BatchRegisterApAssetRequest) Invoke(client *sdk.Client) (response *BatchRegisterApAssetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BatchRegisterApAssetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BatchRegisterApAssetRequest) Invoke(client *sdk.Client) (resp *BatchRegisterApAssetResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "BatchRegisterApAsset", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BatchRegisterApAssetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BatchRegisterApAssetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BatchRegisterApAssetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BatchRegisterApAssetResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

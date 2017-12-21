@@ -7,34 +7,21 @@ import (
 )
 
 type ModifyMountTargetRequest struct {
+	requests.RpcRequest
 	MountTargetDomain string `position:"Query" name:"MountTargetDomain"`
 	AccessGroupName   string `position:"Query" name:"AccessGroupName"`
 	FileSystemId      string `position:"Query" name:"FileSystemId"`
 	Status            string `position:"Query" name:"Status"`
 }
 
-func (r ModifyMountTargetRequest) Invoke(client *sdk.Client) (response *ModifyMountTargetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyMountTargetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyMountTargetRequest) Invoke(client *sdk.Client) (resp *ModifyMountTargetResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "ModifyMountTarget", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyMountTargetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyMountTargetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyMountTargetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyMountTargetResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

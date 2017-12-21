@@ -9,34 +9,21 @@ import (
 )
 
 type GetRegisterBoxListRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 }
 
-func (r GetRegisterBoxListRequest) Invoke(client *sdk.Client) (response *GetRegisterBoxListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetRegisterBoxListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetRegisterBoxListRequest) Invoke(client *sdk.Client) (resp *GetRegisterBoxListResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "GetRegisterBoxList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetRegisterBoxListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRegisterBoxListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRegisterBoxListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRegisterBoxListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

@@ -7,33 +7,20 @@ import (
 )
 
 type BindAliasRequest struct {
+	requests.RpcRequest
 	AliasName string `position:"Query" name:"AliasName"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 	DeviceId  string `position:"Query" name:"DeviceId"`
 }
 
-func (r BindAliasRequest) Invoke(client *sdk.Client) (response *BindAliasResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BindAliasRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BindAliasRequest) Invoke(client *sdk.Client) (resp *BindAliasResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "BindAlias", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BindAliasResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BindAliasResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BindAliasResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BindAliasResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

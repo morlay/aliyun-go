@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyBackupPolicyRequest struct {
+	requests.RpcRequest
 	PreferredBackupTime      string `position:"Query" name:"PreferredBackupTime"`
 	PreferredBackupPeriod    string `position:"Query" name:"PreferredBackupPeriod"`
 	BackupRetentionPeriod    string `position:"Query" name:"BackupRetentionPeriod"`
@@ -19,28 +20,14 @@ type ModifyBackupPolicyRequest struct {
 	LogBackupRetentionPeriod string `position:"Query" name:"LogBackupRetentionPeriod"`
 }
 
-func (r ModifyBackupPolicyRequest) Invoke(client *sdk.Client) (response *ModifyBackupPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyBackupPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyBackupPolicyRequest) Invoke(client *sdk.Client) (resp *ModifyBackupPolicyResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyBackupPolicy", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyBackupPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyBackupPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyBackupPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyBackupPolicyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type UpLoadMapRequest struct {
+	requests.RpcRequest
 	FileName   string `position:"Query" name:"FileName"`
 	UploadId   string `position:"Query" name:"UploadId"`
 	ObjectName string `position:"Query" name:"ObjectName"`
@@ -14,29 +15,15 @@ type UpLoadMapRequest struct {
 	ChunkCnt   int    `position:"Query" name:"ChunkCnt"`
 }
 
-func (r UpLoadMapRequest) Invoke(client *sdk.Client) (response *UpLoadMapResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpLoadMapRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpLoadMapRequest) Invoke(client *sdk.Client) (resp *UpLoadMapResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "UpLoadMap", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpLoadMapResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpLoadMapResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpLoadMapResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpLoadMapResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

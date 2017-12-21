@@ -7,6 +7,7 @@ import (
 )
 
 type StartDBInstanceDiagnoseRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,29 +17,15 @@ type StartDBInstanceDiagnoseRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r StartDBInstanceDiagnoseRequest) Invoke(client *sdk.Client) (response *StartDBInstanceDiagnoseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StartDBInstanceDiagnoseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StartDBInstanceDiagnoseRequest) Invoke(client *sdk.Client) (resp *StartDBInstanceDiagnoseResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "StartDBInstanceDiagnose", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StartDBInstanceDiagnoseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StartDBInstanceDiagnoseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StartDBInstanceDiagnoseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StartDBInstanceDiagnoseResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	DBInstanceName string
 	DBInstanceId   string

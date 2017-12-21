@@ -7,6 +7,7 @@ import (
 )
 
 type RestoreDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type RestoreDBInstanceRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r RestoreDBInstanceRequest) Invoke(client *sdk.Client) (response *RestoreDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RestoreDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RestoreDBInstanceRequest) Invoke(client *sdk.Client) (resp *RestoreDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "RestoreDBInstance", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RestoreDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RestoreDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RestoreDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RestoreDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateCommonBandwidthPackageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -19,29 +20,15 @@ type CreateCommonBandwidthPackageRequest struct {
 	Ratio                int    `position:"Query" name:"Ratio"`
 }
 
-func (r CreateCommonBandwidthPackageRequest) Invoke(client *sdk.Client) (response *CreateCommonBandwidthPackageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateCommonBandwidthPackageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateCommonBandwidthPackageRequest) Invoke(client *sdk.Client) (resp *CreateCommonBandwidthPackageResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateCommonBandwidthPackage", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateCommonBandwidthPackageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateCommonBandwidthPackageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateCommonBandwidthPackageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateCommonBandwidthPackageResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	BandwidthPackageId string
 }

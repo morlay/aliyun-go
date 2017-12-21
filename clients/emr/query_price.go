@@ -7,6 +7,7 @@ import (
 )
 
 type QueryPriceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ZoneId                 string `position:"Query" name:"ZoneId"`
 	MasterInstanceType     string `position:"Query" name:"MasterInstanceType"`
@@ -28,29 +29,15 @@ type QueryPriceRequest struct {
 	Period                 int    `position:"Query" name:"Period"`
 }
 
-func (r QueryPriceRequest) Invoke(client *sdk.Client) (response *QueryPriceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPriceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPriceRequest) Invoke(client *sdk.Client) (resp *QueryPriceResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "QueryPrice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPriceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPriceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPriceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPriceResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	EmrPrice   string
 	EcsPrice   string

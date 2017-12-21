@@ -7,6 +7,7 @@ import (
 )
 
 type ModifySecurityIpsForChannelRequest struct {
+	requests.RpcRequest
 	DBInstanceIPArrayName      string `position:"Query" name:"DBInstanceIPArrayName"`
 	ResourceOwnerId            int64  `position:"Query" name:"ResourceOwnerId"`
 	ModifyMode                 string `position:"Query" name:"ModifyMode"`
@@ -19,28 +20,14 @@ type ModifySecurityIpsForChannelRequest struct {
 	OwnerId                    int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifySecurityIpsForChannelRequest) Invoke(client *sdk.Client) (response *ModifySecurityIpsForChannelResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySecurityIpsForChannelRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySecurityIpsForChannelRequest) Invoke(client *sdk.Client) (resp *ModifySecurityIpsForChannelResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifySecurityIpsForChannel", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySecurityIpsForChannelResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySecurityIpsForChannelResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySecurityIpsForChannelResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySecurityIpsForChannelResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

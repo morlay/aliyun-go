@@ -7,35 +7,22 @@ import (
 )
 
 type DescribeUserDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeUserDataRequest) Invoke(client *sdk.Client) (response *DescribeUserDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeUserDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeUserDataRequest) Invoke(client *sdk.Client) (resp *DescribeUserDataResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeUserData", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeUserDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeUserDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeUserDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeUserDataResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	RegionId   string
 	InstanceId string

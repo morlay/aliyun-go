@@ -7,32 +7,19 @@ import (
 )
 
 type GetRoleRequest struct {
+	requests.RpcRequest
 	RoleName string `position:"Query" name:"RoleName"`
 }
 
-func (r GetRoleRequest) Invoke(client *sdk.Client) (response *GetRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetRoleRequest) Invoke(client *sdk.Client) (resp *GetRoleResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetRole", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRoleResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Role      GetRoleRole
 }

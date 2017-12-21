@@ -7,6 +7,7 @@ import (
 )
 
 type ReportCensorJobResultRequest struct {
+	requests.RpcRequest
 	JobId                string `position:"Query" name:"JobId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ReportCensorJobResultRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReportCensorJobResultRequest) Invoke(client *sdk.Client) (response *ReportCensorJobResultResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReportCensorJobResultRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReportCensorJobResultRequest) Invoke(client *sdk.Client) (resp *ReportCensorJobResultResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ReportCensorJobResult", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReportCensorJobResultResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReportCensorJobResultResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReportCensorJobResultResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReportCensorJobResultResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

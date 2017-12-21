@@ -9,6 +9,7 @@ import (
 )
 
 type RemoveBandwidthPackageIpsRequest struct {
+	requests.RpcRequest
 	RemovedIpAddressess  *RemoveBandwidthPackageIpsRemovedIpAddressesList `position:"Query" type:"Repeated" name:"RemovedIpAddresses"`
 	ResourceOwnerId      int64                                            `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string                                           `position:"Query" name:"BandwidthPackageId"`
@@ -18,29 +19,15 @@ type RemoveBandwidthPackageIpsRequest struct {
 	OwnerId              int64                                            `position:"Query" name:"OwnerId"`
 }
 
-func (r RemoveBandwidthPackageIpsRequest) Invoke(client *sdk.Client) (response *RemoveBandwidthPackageIpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveBandwidthPackageIpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveBandwidthPackageIpsRequest) Invoke(client *sdk.Client) (resp *RemoveBandwidthPackageIpsResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "RemoveBandwidthPackageIps", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveBandwidthPackageIpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveBandwidthPackageIpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveBandwidthPackageIpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveBandwidthPackageIpsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

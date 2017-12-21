@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDNSSLBSubDomainsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
@@ -16,29 +17,15 @@ type DescribeDNSSLBSubDomainsRequest struct {
 	PageSize     int64  `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeDNSSLBSubDomainsRequest) Invoke(client *sdk.Client) (response *DescribeDNSSLBSubDomainsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDNSSLBSubDomainsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDNSSLBSubDomainsRequest) Invoke(client *sdk.Client) (resp *DescribeDNSSLBSubDomainsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDNSSLBSubDomains", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDNSSLBSubDomainsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDNSSLBSubDomainsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDNSSLBSubDomainsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDNSSLBSubDomainsResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	TotalCount    int64
 	PageNumber    int64

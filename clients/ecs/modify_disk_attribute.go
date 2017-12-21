@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDiskAttributeRequest struct {
+	requests.RpcRequest
 	DiskName             string `position:"Query" name:"DiskName"`
 	DeleteAutoSnapshot   string `position:"Query" name:"DeleteAutoSnapshot"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -19,28 +20,14 @@ type ModifyDiskAttributeRequest struct {
 	DeleteWithInstance   string `position:"Query" name:"DeleteWithInstance"`
 }
 
-func (r ModifyDiskAttributeRequest) Invoke(client *sdk.Client) (response *ModifyDiskAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDiskAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDiskAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyDiskAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyDiskAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDiskAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDiskAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDiskAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDiskAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

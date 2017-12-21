@@ -9,6 +9,7 @@ import (
 )
 
 type GetCDNStatisSumRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	StartStatisTime      string `position:"Query" name:"StartStatisTime"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type GetCDNStatisSumRequest struct {
 	EndStatisTime        string `position:"Query" name:"EndStatisTime"`
 }
 
-func (r GetCDNStatisSumRequest) Invoke(client *sdk.Client) (response *GetCDNStatisSumResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetCDNStatisSumRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetCDNStatisSumRequest) Invoke(client *sdk.Client) (resp *GetCDNStatisSumResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetCDNStatisSum", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetCDNStatisSumResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetCDNStatisSumResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetCDNStatisSumResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetCDNStatisSumResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	SumFlowDataValue int64
 	MaxBpsDataValue  int64

@@ -9,6 +9,7 @@ import (
 )
 
 type CreateScalingConfigurationRequest struct {
+	requests.RpcRequest
 	DataDisk3Size               int                                          `position:"Query" name:"DataDisk.3.Size"`
 	ImageId                     string                                       `position:"Query" name:"ImageId"`
 	DataDisk1SnapshotId         string                                       `position:"Query" name:"DataDisk.1.SnapshotId"`
@@ -53,29 +54,15 @@ type CreateScalingConfigurationRequest struct {
 	DataDisk1DeleteWithInstance string                                       `position:"Query" name:"DataDisk.1.DeleteWithInstance"`
 }
 
-func (r CreateScalingConfigurationRequest) Invoke(client *sdk.Client) (response *CreateScalingConfigurationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateScalingConfigurationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateScalingConfigurationRequest) Invoke(client *sdk.Client) (resp *CreateScalingConfigurationResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "CreateScalingConfiguration", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateScalingConfigurationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateScalingConfigurationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateScalingConfigurationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateScalingConfigurationResponse struct {
+	responses.BaseResponse
 	ScalingConfigurationId string
 	RequestId              string
 }

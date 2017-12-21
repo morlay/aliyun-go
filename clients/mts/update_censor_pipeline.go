@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateCensorPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type UpdateCensorPipelineRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r UpdateCensorPipelineRequest) Invoke(client *sdk.Client) (response *UpdateCensorPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateCensorPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateCensorPipelineRequest) Invoke(client *sdk.Client) (resp *UpdateCensorPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateCensorPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateCensorPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateCensorPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateCensorPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateCensorPipelineResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Pipeline  UpdateCensorPipelinePipeline
 }

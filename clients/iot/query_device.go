@@ -9,34 +9,21 @@ import (
 )
 
 type QueryDeviceRequest struct {
+	requests.RpcRequest
 	PageSize    int    `position:"Query" name:"PageSize"`
 	CurrentPage int    `position:"Query" name:"CurrentPage"`
 	ProductKey  string `position:"Query" name:"ProductKey"`
 }
 
-func (r QueryDeviceRequest) Invoke(client *sdk.Client) (response *QueryDeviceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDeviceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDeviceRequest) Invoke(client *sdk.Client) (resp *QueryDeviceResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "QueryDevice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDeviceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDeviceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDeviceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDeviceResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

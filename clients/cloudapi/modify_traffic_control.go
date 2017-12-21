@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyTrafficControlRequest struct {
+	requests.RpcRequest
 	TrafficControlId   string `position:"Query" name:"TrafficControlId"`
 	TrafficControlName string `position:"Query" name:"TrafficControlName"`
 	TrafficControlUnit string `position:"Query" name:"TrafficControlUnit"`
@@ -16,28 +17,14 @@ type ModifyTrafficControlRequest struct {
 	Description        string `position:"Query" name:"Description"`
 }
 
-func (r ModifyTrafficControlRequest) Invoke(client *sdk.Client) (response *ModifyTrafficControlResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyTrafficControlRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyTrafficControlRequest) Invoke(client *sdk.Client) (resp *ModifyTrafficControlResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ModifyTrafficControl", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyTrafficControlResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyTrafficControlResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyTrafficControlResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyTrafficControlResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

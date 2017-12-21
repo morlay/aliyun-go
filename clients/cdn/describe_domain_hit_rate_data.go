@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainHitRateDataRequest struct {
+	requests.RpcRequest
 	SecurityToken  string `position:"Query" name:"SecurityToken"`
 	TimeMerge      string `position:"Query" name:"TimeMerge"`
 	DomainName     string `position:"Query" name:"DomainName"`
@@ -20,29 +21,15 @@ type DescribeDomainHitRateDataRequest struct {
 	OwnerId        int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainHitRateDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainHitRateDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainHitRateDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainHitRateDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainHitRateDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainHitRateData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainHitRateDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainHitRateDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainHitRateDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainHitRateDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	DomainName      string
 	DataInterval    string

@@ -7,32 +7,19 @@ import (
 )
 
 type ModifyAccessGroupRequest struct {
+	requests.RpcRequest
 	Description     string `position:"Query" name:"Description"`
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 }
 
-func (r ModifyAccessGroupRequest) Invoke(client *sdk.Client) (response *ModifyAccessGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyAccessGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyAccessGroupRequest) Invoke(client *sdk.Client) (resp *ModifyAccessGroupResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "ModifyAccessGroup", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyAccessGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyAccessGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyAccessGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyAccessGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type PurgeDBInstanceLogRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type PurgeDBInstanceLogRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r PurgeDBInstanceLogRequest) Invoke(client *sdk.Client) (response *PurgeDBInstanceLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PurgeDBInstanceLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PurgeDBInstanceLogRequest) Invoke(client *sdk.Client) (resp *PurgeDBInstanceLogResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "PurgeDBInstanceLog", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PurgeDBInstanceLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PurgeDBInstanceLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PurgeDBInstanceLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PurgeDBInstanceLogResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

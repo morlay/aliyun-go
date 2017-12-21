@@ -7,6 +7,7 @@ import (
 )
 
 type AddBandwidthPackageIpsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type AddBandwidthPackageIpsRequest struct {
 	IpCount              string `position:"Query" name:"IpCount"`
 }
 
-func (r AddBandwidthPackageIpsRequest) Invoke(client *sdk.Client) (response *AddBandwidthPackageIpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddBandwidthPackageIpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddBandwidthPackageIpsRequest) Invoke(client *sdk.Client) (resp *AddBandwidthPackageIpsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AddBandwidthPackageIps", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddBandwidthPackageIpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddBandwidthPackageIpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddBandwidthPackageIpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddBandwidthPackageIpsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

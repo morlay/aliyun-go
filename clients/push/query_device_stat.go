@@ -9,6 +9,7 @@ import (
 )
 
 type QueryDeviceStatRequest struct {
+	requests.RpcRequest
 	EndTime    string `position:"Query" name:"EndTime"`
 	AppKey     int64  `position:"Query" name:"AppKey"`
 	StartTime  string `position:"Query" name:"StartTime"`
@@ -16,29 +17,15 @@ type QueryDeviceStatRequest struct {
 	QueryType  string `position:"Query" name:"QueryType"`
 }
 
-func (r QueryDeviceStatRequest) Invoke(client *sdk.Client) (response *QueryDeviceStatResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDeviceStatRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDeviceStatRequest) Invoke(client *sdk.Client) (resp *QueryDeviceStatResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryDeviceStat", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDeviceStatResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDeviceStatResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDeviceStatResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDeviceStatResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	AppDeviceStats QueryDeviceStatAppDeviceStatList
 }

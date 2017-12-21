@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainBpsDataByTimeStampRequest struct {
+	requests.RpcRequest
 	IspNames      string `position:"Query" name:"IspNames"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	LocationNames string `position:"Query" name:"LocationNames"`
@@ -17,29 +18,15 @@ type DescribeDomainBpsDataByTimeStampRequest struct {
 	TimePoint     string `position:"Query" name:"TimePoint"`
 }
 
-func (r DescribeDomainBpsDataByTimeStampRequest) Invoke(client *sdk.Client) (response *DescribeDomainBpsDataByTimeStampResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainBpsDataByTimeStampRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainBpsDataByTimeStampRequest) Invoke(client *sdk.Client) (resp *DescribeDomainBpsDataByTimeStampResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainBpsDataByTimeStamp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainBpsDataByTimeStampResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainBpsDataByTimeStampResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainBpsDataByTimeStampResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainBpsDataByTimeStampResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	DomainName  string
 	TimeStamp   string

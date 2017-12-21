@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteRoleRequest struct {
+	requests.RpcRequest
 	RoleName string `position:"Query" name:"RoleName"`
 }
 
-func (r DeleteRoleRequest) Invoke(client *sdk.Client) (response *DeleteRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteRoleRequest) Invoke(client *sdk.Client) (resp *DeleteRoleResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "DeleteRole", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteRoleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

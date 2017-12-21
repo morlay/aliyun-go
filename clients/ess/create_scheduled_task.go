@@ -7,6 +7,7 @@ import (
 )
 
 type CreateScheduledTaskRequest struct {
+	requests.RpcRequest
 	LaunchTime           string `position:"Query" name:"LaunchTime"`
 	ScheduledAction      string `position:"Query" name:"ScheduledAction"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type CreateScheduledTaskRequest struct {
 	RecurrenceType       string `position:"Query" name:"RecurrenceType"`
 }
 
-func (r CreateScheduledTaskRequest) Invoke(client *sdk.Client) (response *CreateScheduledTaskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateScheduledTaskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateScheduledTaskRequest) Invoke(client *sdk.Client) (resp *CreateScheduledTaskResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "CreateScheduledTask", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateScheduledTaskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateScheduledTaskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateScheduledTaskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateScheduledTaskResponse struct {
+	responses.BaseResponse
 	ScheduledTaskId string
 	RequestId       string
 }

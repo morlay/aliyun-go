@@ -7,33 +7,20 @@ import (
 )
 
 type ScheduleKeyDeletionRequest struct {
+	requests.RpcRequest
 	KeyId               string `position:"Query" name:"KeyId"`
 	PendingWindowInDays int    `position:"Query" name:"PendingWindowInDays"`
 	STSToken            string `position:"Query" name:"STSToken"`
 }
 
-func (r ScheduleKeyDeletionRequest) Invoke(client *sdk.Client) (response *ScheduleKeyDeletionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ScheduleKeyDeletionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ScheduleKeyDeletionRequest) Invoke(client *sdk.Client) (resp *ScheduleKeyDeletionResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "ScheduleKeyDeletion", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ScheduleKeyDeletionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ScheduleKeyDeletionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ScheduleKeyDeletionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ScheduleKeyDeletionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

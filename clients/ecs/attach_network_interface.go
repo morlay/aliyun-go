@@ -7,6 +7,7 @@ import (
 )
 
 type AttachNetworkInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type AttachNetworkInterfaceRequest struct {
 	NetworkInterfaceId   string `position:"Query" name:"NetworkInterfaceId"`
 }
 
-func (r AttachNetworkInterfaceRequest) Invoke(client *sdk.Client) (response *AttachNetworkInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachNetworkInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachNetworkInterfaceRequest) Invoke(client *sdk.Client) (resp *AttachNetworkInterfaceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AttachNetworkInterface", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachNetworkInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachNetworkInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachNetworkInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachNetworkInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

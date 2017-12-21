@@ -7,34 +7,21 @@ import (
 )
 
 type ApplyForRetrievalDomainNameRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
 }
 
-func (r ApplyForRetrievalDomainNameRequest) Invoke(client *sdk.Client) (response *ApplyForRetrievalDomainNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ApplyForRetrievalDomainNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ApplyForRetrievalDomainNameRequest) Invoke(client *sdk.Client) (resp *ApplyForRetrievalDomainNameResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "ApplyForRetrievalDomainName", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ApplyForRetrievalDomainNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ApplyForRetrievalDomainNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ApplyForRetrievalDomainNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ApplyForRetrievalDomainNameResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	DomainName string
 }

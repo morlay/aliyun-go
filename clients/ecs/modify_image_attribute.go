@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyImageAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyImageAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyImageAttributeRequest) Invoke(client *sdk.Client) (response *ModifyImageAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyImageAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyImageAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyImageAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyImageAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyImageAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyImageAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyImageAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyImageAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateVpnConnectionRequest struct {
+	requests.RpcRequest
 	IkeConfig            string `position:"Query" name:"IkeConfig"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	RemoteSubnet         string `position:"Query" name:"RemoteSubnet"`
@@ -22,29 +23,15 @@ type CreateVpnConnectionRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r CreateVpnConnectionRequest) Invoke(client *sdk.Client) (response *CreateVpnConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateVpnConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateVpnConnectionRequest) Invoke(client *sdk.Client) (resp *CreateVpnConnectionResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateVpnConnection", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateVpnConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateVpnConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateVpnConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateVpnConnectionResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	VpnConnectionId string
 	Name            string

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSpotPriceHistoryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	IoOptimized          string `position:"Query" name:"IoOptimized"`
 	NetworkType          string `position:"Query" name:"NetworkType"`
@@ -23,29 +24,15 @@ type DescribeSpotPriceHistoryRequest struct {
 	ZoneId               string `position:"Query" name:"ZoneId"`
 }
 
-func (r DescribeSpotPriceHistoryRequest) Invoke(client *sdk.Client) (response *DescribeSpotPriceHistoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSpotPriceHistoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSpotPriceHistoryRequest) Invoke(client *sdk.Client) (resp *DescribeSpotPriceHistoryResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSpotPriceHistory", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSpotPriceHistoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSpotPriceHistoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSpotPriceHistoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSpotPriceHistoryResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	NextOffset int
 	Currency   string

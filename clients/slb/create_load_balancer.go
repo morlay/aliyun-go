@@ -7,6 +7,7 @@ import (
 )
 
 type CreateLoadBalancerRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -31,29 +32,15 @@ type CreateLoadBalancerRequest struct {
 	PricingCycle         string `position:"Query" name:"PricingCycle"`
 }
 
-func (r CreateLoadBalancerRequest) Invoke(client *sdk.Client) (response *CreateLoadBalancerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateLoadBalancerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateLoadBalancerRequest) Invoke(client *sdk.Client) (resp *CreateLoadBalancerResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateLoadBalancer", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateLoadBalancerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateLoadBalancerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateLoadBalancerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateLoadBalancerResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	LoadBalancerId   string
 	ResourceGroupId  string

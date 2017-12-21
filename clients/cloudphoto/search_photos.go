@@ -9,6 +9,7 @@ import (
 )
 
 type SearchPhotosRequest struct {
+	requests.RpcRequest
 	Size      int    `position:"Query" name:"Size"`
 	LibraryId string `position:"Query" name:"LibraryId"`
 	StoreName string `position:"Query" name:"StoreName"`
@@ -16,29 +17,15 @@ type SearchPhotosRequest struct {
 	Keyword   string `position:"Query" name:"Keyword"`
 }
 
-func (r SearchPhotosRequest) Invoke(client *sdk.Client) (response *SearchPhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchPhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchPhotosRequest) Invoke(client *sdk.Client) (resp *SearchPhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "SearchPhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchPhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchPhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchPhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchPhotosResponse struct {
+	responses.BaseResponse
 	Code       string
 	Message    string
 	TotalCount int

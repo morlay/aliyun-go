@@ -7,32 +7,19 @@ import (
 )
 
 type UnbindPhoneRequest struct {
+	requests.RpcRequest
 	AppKey   int64  `position:"Query" name:"AppKey"`
 	DeviceId string `position:"Query" name:"DeviceId"`
 }
 
-func (r UnbindPhoneRequest) Invoke(client *sdk.Client) (response *UnbindPhoneResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnbindPhoneRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnbindPhoneRequest) Invoke(client *sdk.Client) (resp *UnbindPhoneResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "UnbindPhone", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnbindPhoneResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnbindPhoneResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnbindPhoneResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnbindPhoneResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

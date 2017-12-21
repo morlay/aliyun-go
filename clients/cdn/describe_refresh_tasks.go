@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRefreshTasksRequest struct {
+	requests.RpcRequest
 	ObjectPath      string `position:"Query" name:"ObjectPath"`
 	DomainName      string `position:"Query" name:"DomainName"`
 	EndTime         string `position:"Query" name:"EndTime"`
@@ -23,29 +24,15 @@ type DescribeRefreshTasksRequest struct {
 	Status          string `position:"Query" name:"Status"`
 }
 
-func (r DescribeRefreshTasksRequest) Invoke(client *sdk.Client) (response *DescribeRefreshTasksResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRefreshTasksRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRefreshTasksRequest) Invoke(client *sdk.Client) (resp *DescribeRefreshTasksResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeRefreshTasks", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRefreshTasksResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRefreshTasksResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRefreshTasksResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRefreshTasksResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PageNumber int64
 	PageSize   int64

@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteHpcClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	HpcClusterId         string `position:"Query" name:"HpcClusterId"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type DeleteHpcClusterRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteHpcClusterRequest) Invoke(client *sdk.Client) (response *DeleteHpcClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteHpcClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteHpcClusterRequest) Invoke(client *sdk.Client) (resp *DeleteHpcClusterResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteHpcCluster", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteHpcClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteHpcClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteHpcClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteHpcClusterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAuthorizedAppsRequest struct {
+	requests.RpcRequest
 	GroupId    string `position:"Query" name:"GroupId"`
 	StageName  string `position:"Query" name:"StageName"`
 	ApiId      string `position:"Query" name:"ApiId"`
@@ -16,29 +17,15 @@ type DescribeAuthorizedAppsRequest struct {
 	PageSize   int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeAuthorizedAppsRequest) Invoke(client *sdk.Client) (response *DescribeAuthorizedAppsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAuthorizedAppsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAuthorizedAppsRequest) Invoke(client *sdk.Client) (resp *DescribeAuthorizedAppsResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeAuthorizedApps", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAuthorizedAppsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAuthorizedAppsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAuthorizedAppsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAuthorizedAppsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	TotalCount     int
 	PageSize       int

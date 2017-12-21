@@ -7,6 +7,7 @@ import (
 )
 
 type AllocateClusterPublicConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type AllocateClusterPublicConnectionRequest struct {
 	OwnerId                int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AllocateClusterPublicConnectionRequest) Invoke(client *sdk.Client) (response *AllocateClusterPublicConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AllocateClusterPublicConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AllocateClusterPublicConnectionRequest) Invoke(client *sdk.Client) (resp *AllocateClusterPublicConnectionResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "AllocateClusterPublicConnection", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AllocateClusterPublicConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AllocateClusterPublicConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AllocateClusterPublicConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AllocateClusterPublicConnectionResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DBInstanceId     string
 	ConnectionString string

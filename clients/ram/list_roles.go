@@ -9,33 +9,20 @@ import (
 )
 
 type ListRolesRequest struct {
+	requests.RpcRequest
 	Marker   string `position:"Query" name:"Marker"`
 	MaxItems int    `position:"Query" name:"MaxItems"`
 }
 
-func (r ListRolesRequest) Invoke(client *sdk.Client) (response *ListRolesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListRolesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListRolesRequest) Invoke(client *sdk.Client) (resp *ListRolesResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListRoles", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListRolesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListRolesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListRolesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListRolesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	IsTruncated bool
 	Marker      string

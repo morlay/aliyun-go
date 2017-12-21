@@ -9,34 +9,22 @@ import (
 )
 
 type GetJobsRequest struct {
+	requests.RoaRequest
 	Start         int `position:"Query" name:"Start"`
 	NumberPerPage int `position:"Query" name:"NumberPerPage"`
 }
 
-func (r GetJobsRequest) Invoke(client *sdk.Client) (response *GetJobsResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetJobsRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetJobsRequest) Invoke(client *sdk.Client) (resp *GetJobsResponse, err error) {
 	req.InitWithApiInfo("Cds", "2017-09-25", "GetJobs", "/v1/jobs", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetJobsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetJobsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetJobsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetJobsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Jobs      GetJobsJobList
 }

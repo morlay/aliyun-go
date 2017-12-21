@@ -7,35 +7,22 @@ import (
 )
 
 type ModifyPhoneNumberRequest struct {
+	requests.RpcRequest
 	ContactFlowId string `position:"Query" name:"ContactFlowId"`
 	InstanceId    string `position:"Query" name:"InstanceId"`
 	PhoneNumberId string `position:"Query" name:"PhoneNumberId"`
 	Usage         string `position:"Query" name:"Usage"`
 }
 
-func (r ModifyPhoneNumberRequest) Invoke(client *sdk.Client) (response *ModifyPhoneNumberResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyPhoneNumberRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyPhoneNumberRequest) Invoke(client *sdk.Client) (resp *ModifyPhoneNumberResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ModifyPhoneNumber", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyPhoneNumberResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyPhoneNumberResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyPhoneNumberResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyPhoneNumberResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

@@ -7,35 +7,22 @@ import (
 )
 
 type GetUserDomainBlackListRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerAccount  string `position:"Query" name:"OwnerAccount"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r GetUserDomainBlackListRequest) Invoke(client *sdk.Client) (response *GetUserDomainBlackListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetUserDomainBlackListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetUserDomainBlackListRequest) Invoke(client *sdk.Client) (resp *GetUserDomainBlackListResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "GetUserDomainBlackList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetUserDomainBlackListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserDomainBlackListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserDomainBlackListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserDomainBlackListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Bind      string
 }

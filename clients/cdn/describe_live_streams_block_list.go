@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeLiveStreamsBlockListRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamsBlockListRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamsBlockListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamsBlockListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamsBlockListRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamsBlockListResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamsBlockList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamsBlockListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamsBlockListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamsBlockListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamsBlockListResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	DomainName string
 	StreamUrls DescribeLiveStreamsBlockListStreamUrlList

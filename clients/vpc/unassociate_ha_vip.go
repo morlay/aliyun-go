@@ -7,6 +7,7 @@ import (
 )
 
 type UnassociateHaVipRequest struct {
+	requests.RpcRequest
 	HaVipId              string `position:"Query" name:"HaVipId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
@@ -17,28 +18,14 @@ type UnassociateHaVipRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r UnassociateHaVipRequest) Invoke(client *sdk.Client) (response *UnassociateHaVipResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnassociateHaVipRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnassociateHaVipRequest) Invoke(client *sdk.Client) (resp *UnassociateHaVipResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "UnassociateHaVip", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnassociateHaVipResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnassociateHaVipResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnassociateHaVipResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnassociateHaVipResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

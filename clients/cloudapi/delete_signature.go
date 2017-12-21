@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteSignatureRequest struct {
+	requests.RpcRequest
 	SignatureId string `position:"Query" name:"SignatureId"`
 }
 
-func (r DeleteSignatureRequest) Invoke(client *sdk.Client) (response *DeleteSignatureResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteSignatureRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteSignatureRequest) Invoke(client *sdk.Client) (resp *DeleteSignatureResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DeleteSignature", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteSignatureResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteSignatureResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteSignatureResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteSignatureResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

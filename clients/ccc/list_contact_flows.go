@@ -9,32 +9,19 @@ import (
 )
 
 type ListContactFlowsRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r ListContactFlowsRequest) Invoke(client *sdk.Client) (response *ListContactFlowsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListContactFlowsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListContactFlowsRequest) Invoke(client *sdk.Client) (resp *ListContactFlowsResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ListContactFlows", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListContactFlowsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListContactFlowsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListContactFlowsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListContactFlowsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

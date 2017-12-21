@@ -9,6 +9,7 @@ import (
 )
 
 type InvokeCommandRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                        `position:"Query" name:"ResourceOwnerId"`
 	CommandId            string                       `position:"Query" name:"CommandId"`
 	Frequency            string                       `position:"Query" name:"Frequency"`
@@ -19,29 +20,15 @@ type InvokeCommandRequest struct {
 	InstanceIds          *InvokeCommandInstanceIdList `position:"Query" type:"Repeated" name:"InstanceId"`
 }
 
-func (r InvokeCommandRequest) Invoke(client *sdk.Client) (response *InvokeCommandResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		InvokeCommandRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *InvokeCommandRequest) Invoke(client *sdk.Client) (resp *InvokeCommandResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "InvokeCommand", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		InvokeCommandResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.InvokeCommandResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &InvokeCommandResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type InvokeCommandResponse struct {
+	responses.BaseResponse
 	RequestId string
 	InvokeId  string
 }

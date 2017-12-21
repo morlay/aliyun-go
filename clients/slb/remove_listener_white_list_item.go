@@ -7,6 +7,7 @@ import (
 )
 
 type RemoveListenerWhiteListItemRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -18,28 +19,14 @@ type RemoveListenerWhiteListItemRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r RemoveListenerWhiteListItemRequest) Invoke(client *sdk.Client) (response *RemoveListenerWhiteListItemResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveListenerWhiteListItemRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveListenerWhiteListItemRequest) Invoke(client *sdk.Client) (resp *RemoveListenerWhiteListItemResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "RemoveListenerWhiteListItem", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveListenerWhiteListItemResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveListenerWhiteListItemResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveListenerWhiteListItemResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveListenerWhiteListItemResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

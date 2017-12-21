@@ -9,6 +9,7 @@ import (
 )
 
 type SubmitEditingJobsRequest struct {
+	requests.RpcRequest
 	OutputBucket         string `position:"Query" name:"OutputBucket"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	EditingJobOutputs    string `position:"Query" name:"EditingJobOutputs"`
@@ -20,29 +21,15 @@ type SubmitEditingJobsRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitEditingJobsRequest) Invoke(client *sdk.Client) (response *SubmitEditingJobsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitEditingJobsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitEditingJobsRequest) Invoke(client *sdk.Client) (resp *SubmitEditingJobsResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitEditingJobs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitEditingJobsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitEditingJobsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitEditingJobsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitEditingJobsResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	JobResultList SubmitEditingJobsJobResultList
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type QueryEditingJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -16,29 +17,15 @@ type QueryEditingJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryEditingJobListRequest) Invoke(client *sdk.Client) (response *QueryEditingJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryEditingJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryEditingJobListRequest) Invoke(client *sdk.Client) (resp *QueryEditingJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryEditingJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryEditingJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryEditingJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryEditingJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryEditingJobListResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	JobList        QueryEditingJobListJobList
 	NonExistJobIds QueryEditingJobListNonExistJobIdList

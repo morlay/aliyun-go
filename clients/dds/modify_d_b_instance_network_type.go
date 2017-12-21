@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceNetworkTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,28 +21,14 @@ type ModifyDBInstanceNetworkTypeRequest struct {
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r ModifyDBInstanceNetworkTypeRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceNetworkTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceNetworkTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceNetworkTypeRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceNetworkTypeResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "ModifyDBInstanceNetworkType", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceNetworkTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceNetworkTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceNetworkTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceNetworkTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

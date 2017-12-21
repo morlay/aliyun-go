@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyRouteTableAttributesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            string `position:"Query" name:"Bandwidth"`
@@ -20,29 +21,15 @@ type ModifyRouteTableAttributesRequest struct {
 	RouteTableId         string `position:"Query" name:"RouteTableId"`
 }
 
-func (r ModifyRouteTableAttributesRequest) Invoke(client *sdk.Client) (response *ModifyRouteTableAttributesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyRouteTableAttributesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyRouteTableAttributesRequest) Invoke(client *sdk.Client) (resp *ModifyRouteTableAttributesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyRouteTableAttributes", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyRouteTableAttributesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyRouteTableAttributesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyRouteTableAttributesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyRouteTableAttributesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Message   string

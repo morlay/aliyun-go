@@ -9,34 +9,21 @@ import (
 )
 
 type QueryPageByApplyIdRequest struct {
+	requests.RpcRequest
 	ApplyId     int64 `position:"Query" name:"ApplyId"`
 	PageSize    int   `position:"Query" name:"PageSize"`
 	CurrentPage int   `position:"Query" name:"CurrentPage"`
 }
 
-func (r QueryPageByApplyIdRequest) Invoke(client *sdk.Client) (response *QueryPageByApplyIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPageByApplyIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPageByApplyIdRequest) Invoke(client *sdk.Client) (resp *QueryPageByApplyIdResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "QueryPageByApplyId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPageByApplyIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPageByApplyIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPageByApplyIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPageByApplyIdResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	Success         bool
 	ErrorMessage    string

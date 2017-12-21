@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateLiveRecordNotifyConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken    string `position:"Query" name:"SecurityToken"`
 	DomainName       string `position:"Query" name:"DomainName"`
 	NotifyUrl        string `position:"Query" name:"NotifyUrl"`
@@ -14,28 +15,14 @@ type UpdateLiveRecordNotifyConfigRequest struct {
 	NeedStatusNotify string `position:"Query" name:"NeedStatusNotify"`
 }
 
-func (r UpdateLiveRecordNotifyConfigRequest) Invoke(client *sdk.Client) (response *UpdateLiveRecordNotifyConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateLiveRecordNotifyConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateLiveRecordNotifyConfigRequest) Invoke(client *sdk.Client) (resp *UpdateLiveRecordNotifyConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveRecordNotifyConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateLiveRecordNotifyConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateLiveRecordNotifyConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateLiveRecordNotifyConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateLiveRecordNotifyConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

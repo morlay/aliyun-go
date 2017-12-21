@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeDatabaseLockDiagnosisRequest struct {
+	requests.RpcRequest
 	EndTime      string `position:"Query" name:"EndTime"`
 	DBInstanceId string `position:"Query" name:"DBInstanceId"`
 	StartTime    string `position:"Query" name:"StartTime"`
 }
 
-func (r DescribeDatabaseLockDiagnosisRequest) Invoke(client *sdk.Client) (response *DescribeDatabaseLockDiagnosisResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDatabaseLockDiagnosisRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDatabaseLockDiagnosisRequest) Invoke(client *sdk.Client) (resp *DescribeDatabaseLockDiagnosisResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDatabaseLockDiagnosis", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDatabaseLockDiagnosisResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDatabaseLockDiagnosisResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDatabaseLockDiagnosisResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDatabaseLockDiagnosisResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DeadLockList DescribeDatabaseLockDiagnosisDeadLockListList
 }

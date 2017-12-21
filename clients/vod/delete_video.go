@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteVideoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	VideoIds             string `position:"Query" name:"VideoIds"`
 }
 
-func (r DeleteVideoRequest) Invoke(client *sdk.Client) (response *DeleteVideoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteVideoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteVideoRequest) Invoke(client *sdk.Client) (resp *DeleteVideoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "DeleteVideo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteVideoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteVideoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteVideoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteVideoResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,30 +7,18 @@ import (
 )
 
 type CreateNamespaceRequest struct {
+	requests.RoaRequest
 }
 
-func (r CreateNamespaceRequest) Invoke(client *sdk.Client) (response *CreateNamespaceResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		CreateNamespaceRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *CreateNamespaceRequest) Invoke(client *sdk.Client) (resp *CreateNamespaceResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "CreateNamespace", "/namespace", "", "")
 	req.Method = "PUT"
 
-	resp := struct {
-		*responses.BaseResponse
-		CreateNamespaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateNamespaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateNamespaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateNamespaceResponse struct {
+	responses.BaseResponse
 }

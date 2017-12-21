@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeReadOnlyAccountRequest struct {
+	requests.RpcRequest
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r DescribeReadOnlyAccountRequest) Invoke(client *sdk.Client) (response *DescribeReadOnlyAccountResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeReadOnlyAccountRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeReadOnlyAccountRequest) Invoke(client *sdk.Client) (resp *DescribeReadOnlyAccountResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeReadOnlyAccount", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeReadOnlyAccountResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeReadOnlyAccountResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeReadOnlyAccountResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeReadOnlyAccountResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      DescribeReadOnlyAccountData

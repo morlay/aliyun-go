@@ -7,6 +7,7 @@ import (
 )
 
 type ResetDiskRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SnapshotId           string `position:"Query" name:"SnapshotId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ResetDiskRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ResetDiskRequest) Invoke(client *sdk.Client) (response *ResetDiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResetDiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResetDiskRequest) Invoke(client *sdk.Client) (resp *ResetDiskResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ResetDisk", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResetDiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResetDiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResetDiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResetDiskResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

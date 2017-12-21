@@ -9,6 +9,7 @@ import (
 )
 
 type ListAIVideoCensorJobRequest struct {
+	requests.RpcRequest
 	AIVideoCensorJobIds  string `position:"Query" name:"AIVideoCensorJobIds"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ListAIVideoCensorJobRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAIVideoCensorJobRequest) Invoke(client *sdk.Client) (response *ListAIVideoCensorJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAIVideoCensorJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAIVideoCensorJobRequest) Invoke(client *sdk.Client) (resp *ListAIVideoCensorJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoCensorJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAIVideoCensorJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAIVideoCensorJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAIVideoCensorJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAIVideoCensorJobResponse struct {
+	responses.BaseResponse
 	RequestId                   string
 	AIVideoCensorJobList        ListAIVideoCensorJobAIVideoCensorJobList
 	NonExistAIVideoCensorJobIds ListAIVideoCensorJobNonExistAIVideoCensorJobIdList

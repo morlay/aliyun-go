@@ -7,6 +7,7 @@ import (
 )
 
 type SetUserAgentAcessRestrictionRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	UserAgent     string `position:"Query" name:"UserAgent"`
@@ -14,28 +15,14 @@ type SetUserAgentAcessRestrictionRequest struct {
 	Type          string `position:"Query" name:"Type"`
 }
 
-func (r SetUserAgentAcessRestrictionRequest) Invoke(client *sdk.Client) (response *SetUserAgentAcessRestrictionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetUserAgentAcessRestrictionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetUserAgentAcessRestrictionRequest) Invoke(client *sdk.Client) (resp *SetUserAgentAcessRestrictionResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetUserAgentAcessRestriction", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetUserAgentAcessRestrictionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetUserAgentAcessRestrictionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetUserAgentAcessRestrictionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetUserAgentAcessRestrictionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

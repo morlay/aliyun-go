@@ -9,6 +9,7 @@ import (
 )
 
 type DescribePriceRequest struct {
+	requests.RpcRequest
 	DataDisk3Size           int    `position:"Query" name:"DataDisk.3.Size"`
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId                 string `position:"Query" name:"ImageId"`
@@ -35,29 +36,15 @@ type DescribePriceRequest struct {
 	InstanceNetworkType     string `position:"Query" name:"InstanceNetworkType"`
 }
 
-func (r DescribePriceRequest) Invoke(client *sdk.Client) (response *DescribePriceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribePriceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribePriceRequest) Invoke(client *sdk.Client) (resp *DescribePriceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribePrice", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribePriceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribePriceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribePriceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribePriceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	PriceInfo DescribePricePriceInfo
 }

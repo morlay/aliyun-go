@@ -7,33 +7,20 @@ import (
 )
 
 type AreaInfoRequest struct {
+	requests.RpcRequest
 	Aid int64 `position:"Query" name:"Aid"`
 	Sid int64 `position:"Query" name:"Sid"`
 }
 
-func (r AreaInfoRequest) Invoke(client *sdk.Client) (response *AreaInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AreaInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AreaInfoRequest) Invoke(client *sdk.Client) (resp *AreaInfoResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "AreaInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AreaInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AreaInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AreaInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AreaInfoResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

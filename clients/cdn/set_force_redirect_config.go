@@ -7,34 +7,21 @@ import (
 )
 
 type SetForceRedirectConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	RedirectType  string `position:"Query" name:"RedirectType"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetForceRedirectConfigRequest) Invoke(client *sdk.Client) (response *SetForceRedirectConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetForceRedirectConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetForceRedirectConfigRequest) Invoke(client *sdk.Client) (resp *SetForceRedirectConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetForceRedirectConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetForceRedirectConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetForceRedirectConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetForceRedirectConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetForceRedirectConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

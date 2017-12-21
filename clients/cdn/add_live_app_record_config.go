@@ -7,6 +7,7 @@ import (
 )
 
 type AddLiveAppRecordConfigRequest struct {
+	requests.RpcRequest
 	OssBucket       string `position:"Query" name:"OssBucket"`
 	AppName         string `position:"Query" name:"AppName"`
 	SecurityToken   string `position:"Query" name:"SecurityToken"`
@@ -16,28 +17,14 @@ type AddLiveAppRecordConfigRequest struct {
 	OwnerId         int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (response *AddLiveAppRecordConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddLiveAppRecordConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveAppRecordConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "AddLiveAppRecordConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddLiveAppRecordConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddLiveAppRecordConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddLiveAppRecordConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddLiveAppRecordConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

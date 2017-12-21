@@ -7,6 +7,7 @@ import (
 )
 
 type QueryCustomMetricListRequest struct {
+	requests.RpcRequest
 	Size       string `position:"Query" name:"Size"`
 	GroupId    string `position:"Query" name:"GroupId"`
 	Page       string `position:"Query" name:"Page"`
@@ -16,29 +17,15 @@ type QueryCustomMetricListRequest struct {
 	Md5        string `position:"Query" name:"Md.5"`
 }
 
-func (r QueryCustomMetricListRequest) Invoke(client *sdk.Client) (response *QueryCustomMetricListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryCustomMetricListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryCustomMetricListRequest) Invoke(client *sdk.Client) (resp *QueryCustomMetricListResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "QueryCustomMetricList", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryCustomMetricListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryCustomMetricListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryCustomMetricListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryCustomMetricListResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

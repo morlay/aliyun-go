@@ -9,34 +9,21 @@ import (
 )
 
 type ListPoliciesRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	Marker     string `position:"Query" name:"Marker"`
 	MaxItems   int    `position:"Query" name:"MaxItems"`
 }
 
-func (r ListPoliciesRequest) Invoke(client *sdk.Client) (response *ListPoliciesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPoliciesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPoliciesRequest) Invoke(client *sdk.Client) (resp *ListPoliciesResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListPolicies", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPoliciesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPoliciesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPoliciesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPoliciesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	IsTruncated bool
 	Marker      string

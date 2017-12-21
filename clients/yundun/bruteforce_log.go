@@ -9,6 +9,7 @@ import (
 )
 
 type BruteforceLogRequest struct {
+	requests.RpcRequest
 	JstOwnerId int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
@@ -16,29 +17,15 @@ type BruteforceLogRequest struct {
 	RecordType int    `position:"Query" name:"RecordType"`
 }
 
-func (r BruteforceLogRequest) Invoke(client *sdk.Client) (response *BruteforceLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BruteforceLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BruteforceLogRequest) Invoke(client *sdk.Client) (resp *BruteforceLogResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "BruteforceLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BruteforceLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BruteforceLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BruteforceLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BruteforceLogResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	StartTime  string
 	EndTime    string

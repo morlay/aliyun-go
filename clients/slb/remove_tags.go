@@ -7,6 +7,7 @@ import (
 )
 
 type RemoveTagsRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -16,28 +17,14 @@ type RemoveTagsRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r RemoveTagsRequest) Invoke(client *sdk.Client) (response *RemoveTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveTagsRequest) Invoke(client *sdk.Client) (resp *RemoveTagsResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "RemoveTags", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveTagsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

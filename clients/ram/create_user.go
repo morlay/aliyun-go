@@ -7,6 +7,7 @@ import (
 )
 
 type CreateUserRequest struct {
+	requests.RpcRequest
 	Comments    string `position:"Query" name:"Comments"`
 	DisplayName string `position:"Query" name:"DisplayName"`
 	MobilePhone string `position:"Query" name:"MobilePhone"`
@@ -14,29 +15,15 @@ type CreateUserRequest struct {
 	UserName    string `position:"Query" name:"UserName"`
 }
 
-func (r CreateUserRequest) Invoke(client *sdk.Client) (response *CreateUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateUserRequest) Invoke(client *sdk.Client) (resp *CreateUserResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "CreateUser", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateUserResponse struct {
+	responses.BaseResponse
 	RequestId string
 	User      CreateUserUser
 }

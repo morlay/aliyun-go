@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVirtualBorderRoutersRequest struct {
+	requests.RpcRequest
 	Filters              *DescribeVirtualBorderRoutersFilterList `position:"Query" type:"Repeated" name:"Filter"`
 	ResourceOwnerId      int64                                   `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                                  `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,25 +18,10 @@ type DescribeVirtualBorderRoutersRequest struct {
 	PageNumber           int                                     `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeVirtualBorderRoutersRequest) Invoke(client *sdk.Client) (response *DescribeVirtualBorderRoutersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVirtualBorderRoutersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVirtualBorderRoutersRequest) Invoke(client *sdk.Client) (resp *DescribeVirtualBorderRoutersResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeVirtualBorderRouters", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVirtualBorderRoutersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVirtualBorderRoutersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVirtualBorderRoutersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -45,6 +31,7 @@ type DescribeVirtualBorderRoutersFilter struct {
 }
 
 type DescribeVirtualBorderRoutersResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	PageNumber             int
 	PageSize               int

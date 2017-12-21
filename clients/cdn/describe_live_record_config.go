@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeLiveRecordConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveRecordConfigRequest) Invoke(client *sdk.Client) (response *DescribeLiveRecordConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveRecordConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveRecordConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLiveRecordConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveRecordConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveRecordConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveRecordConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveRecordConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveRecordConfigResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	LiveAppRecordList DescribeLiveRecordConfigLiveAppRecordList
 }

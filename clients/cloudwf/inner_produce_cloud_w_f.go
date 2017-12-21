@@ -7,32 +7,19 @@ import (
 )
 
 type InnerProduceCloudWFRequest struct {
+	requests.RpcRequest
 	Data string `position:"Query" name:"Data"`
 }
 
-func (r InnerProduceCloudWFRequest) Invoke(client *sdk.Client) (response *InnerProduceCloudWFResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		InnerProduceCloudWFRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *InnerProduceCloudWFRequest) Invoke(client *sdk.Client) (resp *InnerProduceCloudWFResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "InnerProduceCloudWF", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		InnerProduceCloudWFResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.InnerProduceCloudWFResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &InnerProduceCloudWFResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type InnerProduceCloudWFResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

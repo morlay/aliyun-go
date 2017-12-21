@@ -7,6 +7,7 @@ import (
 )
 
 type GetVideoConfigRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VideoId              string `position:"Query" name:"VideoId"`
@@ -14,29 +15,15 @@ type GetVideoConfigRequest struct {
 	AuthInfo             string `position:"Query" name:"AuthInfo"`
 }
 
-func (r GetVideoConfigRequest) Invoke(client *sdk.Client) (response *GetVideoConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetVideoConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetVideoConfigRequest) Invoke(client *sdk.Client) (resp *GetVideoConfigResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetVideoConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetVideoConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetVideoConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetVideoConfigResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	DownloadSwitch string
 }

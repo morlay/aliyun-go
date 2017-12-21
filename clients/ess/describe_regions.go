@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeRegionsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeRegionsRequest) Invoke(client *sdk.Client) (response *DescribeRegionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRegionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRegionsRequest) Invoke(client *sdk.Client) (resp *DescribeRegionsResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeRegions", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRegionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRegionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRegionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRegionsResponse struct {
+	responses.BaseResponse
 	Regions DescribeRegionsRegionList
 }
 

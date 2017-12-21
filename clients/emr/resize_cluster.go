@@ -7,6 +7,7 @@ import (
 )
 
 type ResizeClusterRequest struct {
+	requests.RpcRequest
 	ClusterId          string `position:"Query" name:"ClusterId"`
 	NewMasterInstances int    `position:"Query" name:"NewMasterInstances"`
 	NewCoreInstances   int    `position:"Query" name:"NewCoreInstances"`
@@ -15,29 +16,15 @@ type ResizeClusterRequest struct {
 	Period             int    `position:"Query" name:"Period"`
 }
 
-func (r ResizeClusterRequest) Invoke(client *sdk.Client) (response *ResizeClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResizeClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResizeClusterRequest) Invoke(client *sdk.Client) (resp *ResizeClusterResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ResizeCluster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResizeClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResizeClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResizeClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResizeClusterResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	ClusterId   string
 	EmrOrderId  string

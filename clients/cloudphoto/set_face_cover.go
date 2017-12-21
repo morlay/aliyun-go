@@ -7,35 +7,22 @@ import (
 )
 
 type SetFaceCoverRequest struct {
+	requests.RpcRequest
 	LibraryId string `position:"Query" name:"LibraryId"`
 	PhotoId   int64  `position:"Query" name:"PhotoId"`
 	StoreName string `position:"Query" name:"StoreName"`
 	FaceId    int64  `position:"Query" name:"FaceId"`
 }
 
-func (r SetFaceCoverRequest) Invoke(client *sdk.Client) (response *SetFaceCoverResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetFaceCoverRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetFaceCoverRequest) Invoke(client *sdk.Client) (resp *SetFaceCoverResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "SetFaceCover", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetFaceCoverResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetFaceCoverResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetFaceCoverResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetFaceCoverResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,34 +7,21 @@ import (
 )
 
 type UnbindTagRequest struct {
+	requests.RpcRequest
 	TagName   string `position:"Query" name:"TagName"`
 	ClientKey string `position:"Query" name:"ClientKey"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 	KeyType   string `position:"Query" name:"KeyType"`
 }
 
-func (r UnbindTagRequest) Invoke(client *sdk.Client) (response *UnbindTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnbindTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnbindTagRequest) Invoke(client *sdk.Client) (resp *UnbindTagResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "UnbindTag", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnbindTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnbindTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnbindTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnbindTagResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

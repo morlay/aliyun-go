@@ -7,6 +7,7 @@ import (
 )
 
 type RestartDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type RestartDBInstanceRequest struct {
 	NodeId               string `position:"Query" name:"NodeId"`
 }
 
-func (r RestartDBInstanceRequest) Invoke(client *sdk.Client) (response *RestartDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RestartDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RestartDBInstanceRequest) Invoke(client *sdk.Client) (resp *RestartDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "RestartDBInstance", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RestartDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RestartDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RestartDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RestartDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

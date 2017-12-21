@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeLimitationRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLimitationRequest) Invoke(client *sdk.Client) (response *DescribeLimitationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLimitationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLimitationRequest) Invoke(client *sdk.Client) (resp *DescribeLimitationResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeLimitation", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLimitationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLimitationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLimitationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLimitationResponse struct {
+	responses.BaseResponse
 	MaxNumberOfScalingGroups         int
 	MaxNumberOfScalingConfigurations int
 	MaxNumberOfScalingRules          int

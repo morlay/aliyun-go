@@ -7,6 +7,7 @@ import (
 )
 
 type PushRequest struct {
+	requests.RpcRequest
 	AndroidNotificationBarType     int    `position:"Query" name:"AndroidNotificationBarType"`
 	SmsSendPolicy                  int    `position:"Query" name:"SmsSendPolicy"`
 	AndroidExtParameters           string `position:"Query" name:"AndroidExtParameters"`
@@ -53,29 +54,15 @@ type PushRequest struct {
 	PushType                       string `position:"Query" name:"PushType"`
 }
 
-func (r PushRequest) Invoke(client *sdk.Client) (response *PushResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PushRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PushRequest) Invoke(client *sdk.Client) (resp *PushResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "Push", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PushResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PushResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PushResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PushResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MessageId string
 }

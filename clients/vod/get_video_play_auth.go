@@ -7,6 +7,7 @@ import (
 )
 
 type GetVideoPlayAuthRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ReAuthInfo           string `position:"Query" name:"ReAuthInfo"`
@@ -15,29 +16,15 @@ type GetVideoPlayAuthRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r GetVideoPlayAuthRequest) Invoke(client *sdk.Client) (response *GetVideoPlayAuthResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetVideoPlayAuthRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetVideoPlayAuthRequest) Invoke(client *sdk.Client) (resp *GetVideoPlayAuthResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoPlayAuth", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetVideoPlayAuthResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetVideoPlayAuthResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetVideoPlayAuthResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetVideoPlayAuthResponse struct {
+	responses.BaseResponse
 	RequestId string
 	PlayAuth  string
 	VideoMeta GetVideoPlayAuthVideoMeta

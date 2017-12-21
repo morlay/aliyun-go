@@ -7,32 +7,19 @@ import (
 )
 
 type ResetApRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r ResetApRequest) Invoke(client *sdk.Client) (response *ResetApResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResetApRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResetApRequest) Invoke(client *sdk.Client) (resp *ResetApResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ResetAp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResetApResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResetApResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResetApResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResetApResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

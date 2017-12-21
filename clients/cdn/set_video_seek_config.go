@@ -7,34 +7,21 @@ import (
 )
 
 type SetVideoSeekConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	Enable        string `position:"Query" name:"Enable"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetVideoSeekConfigRequest) Invoke(client *sdk.Client) (response *SetVideoSeekConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetVideoSeekConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetVideoSeekConfigRequest) Invoke(client *sdk.Client) (resp *SetVideoSeekConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetVideoSeekConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetVideoSeekConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetVideoSeekConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetVideoSeekConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetVideoSeekConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteLoginProfileRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r DeleteLoginProfileRequest) Invoke(client *sdk.Client) (response *DeleteLoginProfileResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLoginProfileRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLoginProfileRequest) Invoke(client *sdk.Client) (resp *DeleteLoginProfileResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "DeleteLoginProfile", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLoginProfileResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLoginProfileResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLoginProfileResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLoginProfileResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

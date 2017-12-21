@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainRealTimeDataRequest struct {
+	requests.RpcRequest
 	Field         string `position:"Query" name:"Field"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -17,29 +18,15 @@ type DescribeDomainRealTimeDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainRealTimeDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainRealTimeDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainRealTimeDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainRealTimeDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainRealTimeDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainRealTimeData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainRealTimeDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainRealTimeDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainRealTimeDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainRealTimeDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	DomainName      string
 	Field           string

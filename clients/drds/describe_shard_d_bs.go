@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeShardDBsRequest struct {
+	requests.RpcRequest
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r DescribeShardDBsRequest) Invoke(client *sdk.Client) (response *DescribeShardDBsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeShardDBsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeShardDBsRequest) Invoke(client *sdk.Client) (resp *DescribeShardDBsResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeShardDBs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeShardDBsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeShardDBsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeShardDBsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeShardDBsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      DescribeShardDBsDbIntancePairList

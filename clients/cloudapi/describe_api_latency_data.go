@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeApiLatencyDataRequest struct {
+	requests.RpcRequest
 	ApiId     string `position:"Query" name:"ApiId"`
 	GroupId   string `position:"Query" name:"GroupId"`
 	StartTime string `position:"Query" name:"StartTime"`
 	EndTime   string `position:"Query" name:"EndTime"`
 }
 
-func (r DescribeApiLatencyDataRequest) Invoke(client *sdk.Client) (response *DescribeApiLatencyDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeApiLatencyDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeApiLatencyDataRequest) Invoke(client *sdk.Client) (resp *DescribeApiLatencyDataResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApiLatencyData", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiLatencyDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiLatencyDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiLatencyDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiLatencyDataResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	CallLatencys DescribeApiLatencyDataMonitorItemList
 }

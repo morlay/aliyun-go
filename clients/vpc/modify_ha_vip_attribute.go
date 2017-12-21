@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyHaVipAttributeRequest struct {
+	requests.RpcRequest
 	HaVipId              string `position:"Query" name:"HaVipId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyHaVipAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyHaVipAttributeRequest) Invoke(client *sdk.Client) (response *ModifyHaVipAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyHaVipAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyHaVipAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyHaVipAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyHaVipAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyHaVipAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyHaVipAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyHaVipAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyHaVipAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeImportsForSQLServerRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImportId             int    `position:"Query" name:"ImportId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type DescribeImportsForSQLServerRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeImportsForSQLServerRequest) Invoke(client *sdk.Client) (response *DescribeImportsForSQLServerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeImportsForSQLServerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeImportsForSQLServerRequest) Invoke(client *sdk.Client) (resp *DescribeImportsForSQLServerResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeImportsForSQLServer", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeImportsForSQLServerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeImportsForSQLServerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeImportsForSQLServerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeImportsForSQLServerResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalRecordCounts int
 	PageNumber        int

@@ -7,31 +7,19 @@ import (
 )
 
 type ScaleClusterRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 }
 
-func (r ScaleClusterRequest) Invoke(client *sdk.Client) (response *ScaleClusterResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		ScaleClusterRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *ScaleClusterRequest) Invoke(client *sdk.Client) (resp *ScaleClusterResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "ScaleCluster", "/clusters/[ClusterId]", "", "")
 	req.Method = "PUT"
 
-	resp := struct {
-		*responses.BaseResponse
-		ScaleClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ScaleClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ScaleClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ScaleClusterResponse struct {
+	responses.BaseResponse
 }

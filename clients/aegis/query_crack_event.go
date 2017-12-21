@@ -9,6 +9,7 @@ import (
 )
 
 type QueryCrackEventRequest struct {
+	requests.RpcRequest
 	EndTime     string `position:"Query" name:"EndTime"`
 	CurrentPage int    `position:"Query" name:"CurrentPage"`
 	StartTime   string `position:"Query" name:"StartTime"`
@@ -16,29 +17,15 @@ type QueryCrackEventRequest struct {
 	Status      int    `position:"Query" name:"Status"`
 }
 
-func (r QueryCrackEventRequest) Invoke(client *sdk.Client) (response *QueryCrackEventResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryCrackEventRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryCrackEventRequest) Invoke(client *sdk.Client) (resp *QueryCrackEventResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "QueryCrackEvent", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryCrackEventResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryCrackEventResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryCrackEventResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryCrackEventResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Success   bool

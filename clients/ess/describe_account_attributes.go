@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeAccountAttributesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeAccountAttributesRequest) Invoke(client *sdk.Client) (response *DescribeAccountAttributesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAccountAttributesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAccountAttributesRequest) Invoke(client *sdk.Client) (resp *DescribeAccountAttributesResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeAccountAttributes", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAccountAttributesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAccountAttributesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAccountAttributesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAccountAttributesResponse struct {
+	responses.BaseResponse
 	MaxNumberOfScalingGroups         int
 	MaxNumberOfScalingConfigurations int
 	MaxNumberOfScalingRules          int

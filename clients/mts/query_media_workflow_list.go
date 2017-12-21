@@ -9,6 +9,7 @@ import (
 )
 
 type QueryMediaWorkflowListRequest struct {
+	requests.RpcRequest
 	MediaWorkflowIds     string `position:"Query" name:"MediaWorkflowIds"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type QueryMediaWorkflowListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryMediaWorkflowListRequest) Invoke(client *sdk.Client) (response *QueryMediaWorkflowListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryMediaWorkflowListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryMediaWorkflowListRequest) Invoke(client *sdk.Client) (resp *QueryMediaWorkflowListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaWorkflowList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryMediaWorkflowListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryMediaWorkflowListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryMediaWorkflowListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryMediaWorkflowListResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	MediaWorkflowList        QueryMediaWorkflowListMediaWorkflowList
 	NonExistMediaWorkflowIds QueryMediaWorkflowListNonExistMediaWorkflowIdList

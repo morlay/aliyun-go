@@ -7,6 +7,7 @@ import (
 )
 
 type OnsMqttQueryTraceByTraceIdRequest struct {
+	requests.RpcRequest
 	TraceId      string `position:"Query" name:"TraceId"`
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
@@ -14,29 +15,15 @@ type OnsMqttQueryTraceByTraceIdRequest struct {
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsMqttQueryTraceByTraceIdRequest) Invoke(client *sdk.Client) (response *OnsMqttQueryTraceByTraceIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttQueryTraceByTraceIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttQueryTraceByTraceIdRequest) Invoke(client *sdk.Client) (resp *OnsMqttQueryTraceByTraceIdResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttQueryTraceByTraceId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttQueryTraceByTraceIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttQueryTraceByTraceIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttQueryTraceByTraceIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttQueryTraceByTraceIdResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	PushCount int64

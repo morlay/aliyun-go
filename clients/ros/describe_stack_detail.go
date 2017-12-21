@@ -7,32 +7,20 @@ import (
 )
 
 type DescribeStackDetailRequest struct {
+	requests.RoaRequest
 	StackName string `position:"Path" name:"StackName"`
 	StackId   string `position:"Path" name:"StackId"`
 }
 
-func (r DescribeStackDetailRequest) Invoke(client *sdk.Client) (response *DescribeStackDetailResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DescribeStackDetailRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DescribeStackDetailRequest) Invoke(client *sdk.Client) (resp *DescribeStackDetailResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "DescribeStackDetail", "/stacks/[StackName]/[StackId]", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		DescribeStackDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeStackDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeStackDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeStackDetailResponse struct {
+	responses.BaseResponse
 }

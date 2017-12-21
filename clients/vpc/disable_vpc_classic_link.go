@@ -7,6 +7,7 @@ import (
 )
 
 type DisableVpcClassicLinkRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type DisableVpcClassicLinkRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DisableVpcClassicLinkRequest) Invoke(client *sdk.Client) (response *DisableVpcClassicLinkResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DisableVpcClassicLinkRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DisableVpcClassicLinkRequest) Invoke(client *sdk.Client) (resp *DisableVpcClassicLinkResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DisableVpcClassicLink", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DisableVpcClassicLinkResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DisableVpcClassicLinkResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DisableVpcClassicLinkResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DisableVpcClassicLinkResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

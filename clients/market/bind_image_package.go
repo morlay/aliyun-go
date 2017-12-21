@@ -7,33 +7,20 @@ import (
 )
 
 type BindImagePackageRequest struct {
+	requests.RpcRequest
 	EcsInstanceId          string `position:"Query" name:"EcsInstanceId"`
 	ImagePackageInstanceId string `position:"Query" name:"ImagePackageInstanceId"`
 }
 
-func (r BindImagePackageRequest) Invoke(client *sdk.Client) (response *BindImagePackageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BindImagePackageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BindImagePackageRequest) Invoke(client *sdk.Client) (resp *BindImagePackageResponse, err error) {
 	req.InitWithApiInfo("Market", "2015-11-01", "BindImagePackage", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BindImagePackageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BindImagePackageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BindImagePackageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BindImagePackageResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

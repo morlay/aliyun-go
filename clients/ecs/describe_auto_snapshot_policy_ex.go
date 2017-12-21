@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAutoSnapshotPolicyExRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	AutoSnapshotPolicyId string `position:"Query" name:"AutoSnapshotPolicyId"`
@@ -18,29 +19,15 @@ type DescribeAutoSnapshotPolicyExRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeAutoSnapshotPolicyExRequest) Invoke(client *sdk.Client) (response *DescribeAutoSnapshotPolicyExResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAutoSnapshotPolicyExRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAutoSnapshotPolicyExRequest) Invoke(client *sdk.Client) (resp *DescribeAutoSnapshotPolicyExResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeAutoSnapshotPolicyEx", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAutoSnapshotPolicyExResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAutoSnapshotPolicyExResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAutoSnapshotPolicyExResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAutoSnapshotPolicyExResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	TotalCount           int
 	PageNumber           int

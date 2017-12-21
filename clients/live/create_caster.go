@@ -7,6 +7,7 @@ import (
 )
 
 type CreateCasterRequest struct {
+	requests.RpcRequest
 	CasterTemplate string `position:"Query" name:"CasterTemplate"`
 	NormType       int    `position:"Query" name:"NormType"`
 	Period         int    `position:"Query" name:"Period"`
@@ -18,29 +19,15 @@ type CreateCasterRequest struct {
 	Version        string `position:"Query" name:"Version"`
 }
 
-func (r CreateCasterRequest) Invoke(client *sdk.Client) (response *CreateCasterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateCasterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateCasterRequest) Invoke(client *sdk.Client) (resp *CreateCasterResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "CreateCaster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateCasterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateCasterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateCasterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateCasterResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CasterId  string
 }

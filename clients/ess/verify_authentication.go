@@ -7,34 +7,21 @@ import (
 )
 
 type VerifyAuthenticationRequest struct {
+	requests.RpcRequest
 	Uid                  int64  `position:"Query" name:"Uid"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r VerifyAuthenticationRequest) Invoke(client *sdk.Client) (response *VerifyAuthenticationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		VerifyAuthenticationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *VerifyAuthenticationRequest) Invoke(client *sdk.Client) (resp *VerifyAuthenticationResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "VerifyAuthentication", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		VerifyAuthenticationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.VerifyAuthenticationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &VerifyAuthenticationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type VerifyAuthenticationResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

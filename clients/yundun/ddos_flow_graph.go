@@ -9,33 +9,20 @@ import (
 )
 
 type DdosFlowGraphRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r DdosFlowGraphRequest) Invoke(client *sdk.Client) (response *DdosFlowGraphResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DdosFlowGraphRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DdosFlowGraphRequest) Invoke(client *sdk.Client) (resp *DdosFlowGraphResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "DdosFlowGraph", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DdosFlowGraphResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DdosFlowGraphResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DdosFlowGraphResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DdosFlowGraphResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	NormalFlows DdosFlowGraphNormalFlowList
 	TotalFlows  DdosFlowGraphTotalFlowList

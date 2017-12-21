@@ -9,35 +9,22 @@ import (
 )
 
 type PlayerAuthRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r PlayerAuthRequest) Invoke(client *sdk.Client) (response *PlayerAuthResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PlayerAuthRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PlayerAuthRequest) Invoke(client *sdk.Client) (resp *PlayerAuthResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "PlayerAuth", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PlayerAuthResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PlayerAuthResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PlayerAuthResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PlayerAuthResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	LogURL     string
 	SwitchList PlayerAuth_SwitchList

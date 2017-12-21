@@ -9,35 +9,22 @@ import (
 )
 
 type AddAlbumPhotosRequest struct {
+	requests.RpcRequest
 	LibraryId string                     `position:"Query" name:"LibraryId"`
 	AlbumId   int64                      `position:"Query" name:"AlbumId"`
 	PhotoIds  *AddAlbumPhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                     `position:"Query" name:"StoreName"`
 }
 
-func (r AddAlbumPhotosRequest) Invoke(client *sdk.Client) (response *AddAlbumPhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddAlbumPhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddAlbumPhotosRequest) Invoke(client *sdk.Client) (resp *AddAlbumPhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "AddAlbumPhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddAlbumPhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddAlbumPhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddAlbumPhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddAlbumPhotosResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

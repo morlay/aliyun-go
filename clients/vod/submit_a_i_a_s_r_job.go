@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitAIASRJobRequest struct {
+	requests.RpcRequest
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type SubmitAIASRJobRequest struct {
 	MediaId              string `position:"Query" name:"MediaId"`
 }
 
-func (r SubmitAIASRJobRequest) Invoke(client *sdk.Client) (response *SubmitAIASRJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAIASRJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAIASRJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIASRJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIASRJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAIASRJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAIASRJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAIASRJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAIASRJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	AIASRJob  SubmitAIASRJobAIASRJob
 }

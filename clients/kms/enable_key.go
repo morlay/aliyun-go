@@ -7,32 +7,19 @@ import (
 )
 
 type EnableKeyRequest struct {
+	requests.RpcRequest
 	KeyId    string `position:"Query" name:"KeyId"`
 	STSToken string `position:"Query" name:"STSToken"`
 }
 
-func (r EnableKeyRequest) Invoke(client *sdk.Client) (response *EnableKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EnableKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EnableKeyRequest) Invoke(client *sdk.Client) (resp *EnableKeyResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "EnableKey", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EnableKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EnableKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EnableKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EnableKeyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

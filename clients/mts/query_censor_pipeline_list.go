@@ -9,6 +9,7 @@ import (
 )
 
 type QueryCensorPipelineListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	PipelineIds          string `position:"Query" name:"PipelineIds"`
@@ -16,29 +17,15 @@ type QueryCensorPipelineListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryCensorPipelineListRequest) Invoke(client *sdk.Client) (response *QueryCensorPipelineListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryCensorPipelineListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryCensorPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryCensorPipelineListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryCensorPipelineList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryCensorPipelineListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryCensorPipelineListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryCensorPipelineListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryCensorPipelineListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	PipelineList QueryCensorPipelineListPipelineList
 	NonExistIds  QueryCensorPipelineListNonExistIdList

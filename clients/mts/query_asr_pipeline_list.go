@@ -9,6 +9,7 @@ import (
 )
 
 type QueryAsrPipelineListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	PipelineIds          string `position:"Query" name:"PipelineIds"`
@@ -16,29 +17,15 @@ type QueryAsrPipelineListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryAsrPipelineListRequest) Invoke(client *sdk.Client) (response *QueryAsrPipelineListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryAsrPipelineListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryAsrPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryAsrPipelineListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAsrPipelineList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryAsrPipelineListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryAsrPipelineListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryAsrPipelineListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryAsrPipelineListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	PipelineList QueryAsrPipelineListPipelineList
 	NonExistIds  QueryAsrPipelineListNonExistIdList

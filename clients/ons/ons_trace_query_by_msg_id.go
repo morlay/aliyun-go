@@ -7,6 +7,7 @@ import (
 )
 
 type OnsTraceQueryByMsgIdRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsTraceQueryByMsgIdRequest struct {
 	BeginTime    int64  `position:"Query" name:"BeginTime"`
 }
 
-func (r OnsTraceQueryByMsgIdRequest) Invoke(client *sdk.Client) (response *OnsTraceQueryByMsgIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsTraceQueryByMsgIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsTraceQueryByMsgIdRequest) Invoke(client *sdk.Client) (resp *OnsTraceQueryByMsgIdResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsTraceQueryByMsgId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsTraceQueryByMsgIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsTraceQueryByMsgIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsTraceQueryByMsgIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsTraceQueryByMsgIdResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	QueryId   string

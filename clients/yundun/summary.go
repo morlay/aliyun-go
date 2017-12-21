@@ -7,33 +7,20 @@ import (
 )
 
 type SummaryRequest struct {
+	requests.RpcRequest
 	JstOwnerId  int64  `position:"Query" name:"JstOwnerId"`
 	InstanceIds string `position:"Query" name:"InstanceIds"`
 }
 
-func (r SummaryRequest) Invoke(client *sdk.Client) (response *SummaryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SummaryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SummaryRequest) Invoke(client *sdk.Client) (resp *SummaryResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "Summary", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SummaryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SummaryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SummaryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SummaryResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	Status            int64
 	AbnormalHostCount int64

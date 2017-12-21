@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceConnectionStringRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix  string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount    string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ModifyDBInstanceConnectionStringRequest struct {
 	CurrentConnectionString string `position:"Query" name:"CurrentConnectionString"`
 }
 
-func (r ModifyDBInstanceConnectionStringRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceConnectionStringResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceConnectionStringRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceConnectionStringRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceConnectionStringResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ModifyDBInstanceConnectionString", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceConnectionStringResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceConnectionStringResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceConnectionStringResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceConnectionStringResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	DBInstanceId        string
 	OldConnectionString string

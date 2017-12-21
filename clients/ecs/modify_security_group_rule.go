@@ -7,6 +7,7 @@ import (
 )
 
 type ModifySecurityGroupRuleRequest struct {
+	requests.RpcRequest
 	NicType                 string `position:"Query" name:"NicType"`
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	SourcePortRange         string `position:"Query" name:"SourcePortRange"`
@@ -27,28 +28,14 @@ type ModifySecurityGroupRuleRequest struct {
 	SourceGroupId           string `position:"Query" name:"SourceGroupId"`
 }
 
-func (r ModifySecurityGroupRuleRequest) Invoke(client *sdk.Client) (response *ModifySecurityGroupRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySecurityGroupRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySecurityGroupRuleRequest) Invoke(client *sdk.Client) (resp *ModifySecurityGroupRuleResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifySecurityGroupRule", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySecurityGroupRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySecurityGroupRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySecurityGroupRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySecurityGroupRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

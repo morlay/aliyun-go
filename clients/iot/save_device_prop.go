@@ -7,34 +7,21 @@ import (
 )
 
 type SaveDevicePropRequest struct {
+	requests.RpcRequest
 	DeviceName string `position:"Query" name:"DeviceName"`
 	ProductKey string `position:"Query" name:"ProductKey"`
 	Props      string `position:"Query" name:"Props"`
 }
 
-func (r SaveDevicePropRequest) Invoke(client *sdk.Client) (response *SaveDevicePropResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveDevicePropRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveDevicePropRequest) Invoke(client *sdk.Client) (resp *SaveDevicePropResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "SaveDeviceProp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveDevicePropResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveDevicePropResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveDevicePropResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveDevicePropResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

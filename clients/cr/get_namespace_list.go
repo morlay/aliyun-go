@@ -7,30 +7,18 @@ import (
 )
 
 type GetNamespaceListRequest struct {
+	requests.RoaRequest
 }
 
-func (r GetNamespaceListRequest) Invoke(client *sdk.Client) (response *GetNamespaceListResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetNamespaceListRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetNamespaceListRequest) Invoke(client *sdk.Client) (resp *GetNamespaceListResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetNamespaceList", "/namespace", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetNamespaceListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetNamespaceListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetNamespaceListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetNamespaceListResponse struct {
+	responses.BaseResponse
 }

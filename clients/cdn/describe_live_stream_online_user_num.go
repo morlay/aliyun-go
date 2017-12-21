@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamOnlineUserNumRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	HlsSwitch     string `position:"Query" name:"HlsSwitch"`
@@ -19,29 +20,15 @@ type DescribeLiveStreamOnlineUserNumRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamOnlineUserNumRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamOnlineUserNumResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamOnlineUserNumRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamOnlineUserNumRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamOnlineUserNumResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamOnlineUserNum", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamOnlineUserNumResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamOnlineUserNumResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamOnlineUserNumResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamOnlineUserNumResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	TotalUserNumber int64
 	OnlineUserInfo  DescribeLiveStreamOnlineUserNumLiveStreamOnlineUserNumInfoList

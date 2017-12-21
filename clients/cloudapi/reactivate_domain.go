@@ -7,32 +7,19 @@ import (
 )
 
 type ReactivateDomainRequest struct {
+	requests.RpcRequest
 	GroupId    string `position:"Query" name:"GroupId"`
 	DomainName string `position:"Query" name:"DomainName"`
 }
 
-func (r ReactivateDomainRequest) Invoke(client *sdk.Client) (response *ReactivateDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReactivateDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReactivateDomainRequest) Invoke(client *sdk.Client) (resp *ReactivateDomainResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ReactivateDomain", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReactivateDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReactivateDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReactivateDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReactivateDomainResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

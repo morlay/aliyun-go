@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteLiveAppSnapshotConfigRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteLiveAppSnapshotConfigRequest) Invoke(client *sdk.Client) (response *DeleteLiveAppSnapshotConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLiveAppSnapshotConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLiveAppSnapshotConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveAppSnapshotConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DeleteLiveAppSnapshotConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLiveAppSnapshotConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLiveAppSnapshotConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLiveAppSnapshotConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLiveAppSnapshotConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type DeactivateInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -14,28 +15,14 @@ type DeactivateInstanceRequest struct {
 	OcsInstanceId        string `position:"Query" name:"OcsInstanceId"`
 }
 
-func (r DeactivateInstanceRequest) Invoke(client *sdk.Client) (response *DeactivateInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeactivateInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeactivateInstanceRequest) Invoke(client *sdk.Client) (resp *DeactivateInstanceResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "DeactivateInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeactivateInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeactivateInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeactivateInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeactivateInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,35 +9,22 @@ import (
 )
 
 type ListAllMediaBucketRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAllMediaBucketRequest) Invoke(client *sdk.Client) (response *ListAllMediaBucketResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAllMediaBucketRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAllMediaBucketRequest) Invoke(client *sdk.Client) (resp *ListAllMediaBucketResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListAllMediaBucket", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAllMediaBucketResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAllMediaBucketResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAllMediaBucketResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAllMediaBucketResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	MediaBucketList ListAllMediaBucketMediaBucketList
 }

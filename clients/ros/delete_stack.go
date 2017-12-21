@@ -7,32 +7,20 @@ import (
 )
 
 type DeleteStackRequest struct {
+	requests.RoaRequest
 	StackName string `position:"Path" name:"StackName"`
 	StackId   string `position:"Path" name:"StackId"`
 }
 
-func (r DeleteStackRequest) Invoke(client *sdk.Client) (response *DeleteStackResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DeleteStackRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DeleteStackRequest) Invoke(client *sdk.Client) (resp *DeleteStackResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "DeleteStack", "/stacks/[StackName]/[StackId]", "", "")
 	req.Method = "DELETE"
 
-	resp := struct {
-		*responses.BaseResponse
-		DeleteStackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteStackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteStackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteStackResponse struct {
+	responses.BaseResponse
 }

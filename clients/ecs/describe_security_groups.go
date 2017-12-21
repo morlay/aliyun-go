@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSecurityGroupsRequest struct {
+	requests.RpcRequest
 	Tag4Value            string `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Tag2Key              string `position:"Query" name:"Tag.2.Key"`
@@ -34,29 +35,15 @@ type DescribeSecurityGroupsRequest struct {
 	Tag4Key              string `position:"Query" name:"Tag.4.Key"`
 }
 
-func (r DescribeSecurityGroupsRequest) Invoke(client *sdk.Client) (response *DescribeSecurityGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSecurityGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSecurityGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeSecurityGroupsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSecurityGroups", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSecurityGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSecurityGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSecurityGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSecurityGroupsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	RegionId       string
 	TotalCount     int

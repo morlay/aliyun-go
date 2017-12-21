@@ -7,33 +7,20 @@ import (
 )
 
 type ModifyAppRequest struct {
+	requests.RpcRequest
 	AppId       int64  `position:"Query" name:"AppId"`
 	AppName     string `position:"Query" name:"AppName"`
 	Description string `position:"Query" name:"Description"`
 }
 
-func (r ModifyAppRequest) Invoke(client *sdk.Client) (response *ModifyAppResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyAppRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyAppRequest) Invoke(client *sdk.Client) (resp *ModifyAppResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ModifyApp", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyAppResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyAppResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyAppResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyAppResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyReadWriteSplittingConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,28 +20,14 @@ type ModifyReadWriteSplittingConnectionRequest struct {
 	MaxDelayTime           string `position:"Query" name:"MaxDelayTime"`
 }
 
-func (r ModifyReadWriteSplittingConnectionRequest) Invoke(client *sdk.Client) (response *ModifyReadWriteSplittingConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyReadWriteSplittingConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyReadWriteSplittingConnectionRequest) Invoke(client *sdk.Client) (resp *ModifyReadWriteSplittingConnectionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyReadWriteSplittingConnection", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyReadWriteSplittingConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyReadWriteSplittingConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyReadWriteSplittingConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyReadWriteSplittingConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

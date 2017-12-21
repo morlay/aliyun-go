@@ -9,6 +9,7 @@ import (
 )
 
 type CreateNatGatewayRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                                 `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                                `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string                                `position:"Query" name:"ClientToken"`
@@ -20,25 +21,10 @@ type CreateNatGatewayRequest struct {
 	BandwidthPackages    *CreateNatGatewayBandwidthPackageList `position:"Query" type:"Repeated" name:"BandwidthPackage"`
 }
 
-func (r CreateNatGatewayRequest) Invoke(client *sdk.Client) (response *CreateNatGatewayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateNatGatewayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateNatGatewayRequest) Invoke(client *sdk.Client) (resp *CreateNatGatewayResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateNatGateway", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateNatGatewayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateNatGatewayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateNatGatewayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -49,6 +35,7 @@ type CreateNatGatewayBandwidthPackage struct {
 }
 
 type CreateNatGatewayResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	NatGatewayId        string
 	ForwardTableIds     CreateNatGatewayForwardTableIdList

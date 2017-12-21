@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBClustersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeDBClustersRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeDBClustersRequest) Invoke(client *sdk.Client) (response *DescribeDBClustersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBClustersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBClustersRequest) Invoke(client *sdk.Client) (resp *DescribeDBClustersResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeDBClusters", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBClustersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBClustersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBClustersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBClustersResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	PageNumber       int
 	TotalRecordCount int

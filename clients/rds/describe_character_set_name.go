@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCharacterSetNameRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Engine               string `position:"Query" name:"Engine"`
@@ -16,29 +17,15 @@ type DescribeCharacterSetNameRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeCharacterSetNameRequest) Invoke(client *sdk.Client) (response *DescribeCharacterSetNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCharacterSetNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCharacterSetNameRequest) Invoke(client *sdk.Client) (resp *DescribeCharacterSetNameResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeCharacterSetName", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCharacterSetNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCharacterSetNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCharacterSetNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCharacterSetNameResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	Engine                string
 	CharacterSetNameItems DescribeCharacterSetNameCharacterSetNameItemList

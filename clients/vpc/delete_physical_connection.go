@@ -7,6 +7,7 @@ import (
 )
 
 type DeletePhysicalConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type DeletePhysicalConnectionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeletePhysicalConnectionRequest) Invoke(client *sdk.Client) (response *DeletePhysicalConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeletePhysicalConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeletePhysicalConnectionRequest) Invoke(client *sdk.Client) (resp *DeletePhysicalConnectionResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeletePhysicalConnection", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeletePhysicalConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeletePhysicalConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeletePhysicalConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeletePhysicalConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateMailAddressRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -15,28 +16,14 @@ type CreateMailAddressRequest struct {
 	Sendtype             string `position:"Query" name:"Sendtype"`
 }
 
-func (r CreateMailAddressRequest) Invoke(client *sdk.Client) (response *CreateMailAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateMailAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateMailAddressRequest) Invoke(client *sdk.Client) (resp *CreateMailAddressResponse, err error) {
 	req.InitWithApiInfo("Dm", "2015-11-23", "CreateMailAddress", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateMailAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateMailAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateMailAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateMailAddressResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

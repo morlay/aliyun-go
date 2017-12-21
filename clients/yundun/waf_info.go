@@ -9,33 +9,20 @@ import (
 )
 
 type WafInfoRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r WafInfoRequest) Invoke(client *sdk.Client) (response *WafInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		WafInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *WafInfoRequest) Invoke(client *sdk.Client) (resp *WafInfoResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "WafInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		WafInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.WafInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &WafInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type WafInfoResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	WafDomainNum int
 	WafInfos     WafInfoWafInfoList

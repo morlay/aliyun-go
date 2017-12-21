@@ -9,6 +9,7 @@ import (
 )
 
 type DescribePriceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage    int    `position:"Query" name:"DBInstanceStorage"`
 	Quantity             int    `position:"Query" name:"Quantity"`
@@ -28,29 +29,15 @@ type DescribePriceRequest struct {
 	OrderType            string `position:"Query" name:"OrderType"`
 }
 
-func (r DescribePriceRequest) Invoke(client *sdk.Client) (response *DescribePriceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribePriceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribePriceRequest) Invoke(client *sdk.Client) (resp *DescribePriceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribePrice", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribePriceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribePriceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribePriceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribePriceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Rules     DescribePriceRuleList
 	PriceInfo DescribePricePriceInfo

@@ -7,31 +7,18 @@ import (
 )
 
 type ClosePortScanRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r ClosePortScanRequest) Invoke(client *sdk.Client) (response *ClosePortScanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ClosePortScanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ClosePortScanRequest) Invoke(client *sdk.Client) (resp *ClosePortScanResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "ClosePortScan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ClosePortScanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ClosePortScanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ClosePortScanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ClosePortScanResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

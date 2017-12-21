@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitCensorJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitCensorJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitCensorJobRequest) Invoke(client *sdk.Client) (response *SubmitCensorJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitCensorJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitCensorJobRequest) Invoke(client *sdk.Client) (resp *SubmitCensorJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitCensorJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitCensorJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitCensorJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitCensorJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitCensorJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type SetReqHeaderConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
@@ -14,28 +15,14 @@ type SetReqHeaderConfigRequest struct {
 	Key           string `position:"Query" name:"Key"`
 }
 
-func (r SetReqHeaderConfigRequest) Invoke(client *sdk.Client) (response *SetReqHeaderConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetReqHeaderConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetReqHeaderConfigRequest) Invoke(client *sdk.Client) (resp *SetReqHeaderConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetReqHeaderConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetReqHeaderConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetReqHeaderConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetReqHeaderConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetReqHeaderConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

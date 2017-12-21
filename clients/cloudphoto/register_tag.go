@@ -7,35 +7,22 @@ import (
 )
 
 type RegisterTagRequest struct {
+	requests.RpcRequest
 	StoreName string `position:"Query" name:"StoreName"`
 	Text      string `position:"Query" name:"Text"`
 	TagKey    string `position:"Query" name:"TagKey"`
 	Lang      string `position:"Query" name:"Lang"`
 }
 
-func (r RegisterTagRequest) Invoke(client *sdk.Client) (response *RegisterTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RegisterTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RegisterTagRequest) Invoke(client *sdk.Client) (resp *RegisterTagResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "RegisterTag", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RegisterTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RegisterTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RegisterTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RegisterTagResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,33 +7,20 @@ import (
 )
 
 type DeleteFailedDrdsDBRequest struct {
+	requests.RpcRequest
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r DeleteFailedDrdsDBRequest) Invoke(client *sdk.Client) (response *DeleteFailedDrdsDBResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteFailedDrdsDBRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteFailedDrdsDBRequest) Invoke(client *sdk.Client) (resp *DeleteFailedDrdsDBResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DeleteFailedDrdsDB", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteFailedDrdsDBResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteFailedDrdsDBResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteFailedDrdsDBResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteFailedDrdsDBResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

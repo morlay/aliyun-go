@@ -9,34 +9,21 @@ import (
 )
 
 type AddCNameWafRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 	Domain       string `position:"Query" name:"Domain"`
 }
 
-func (r AddCNameWafRequest) Invoke(client *sdk.Client) (response *AddCNameWafResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCNameWafRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCNameWafRequest) Invoke(client *sdk.Client) (resp *AddCNameWafResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "AddCNameWaf", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCNameWafResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCNameWafResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCNameWafResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddCNameWafResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	WafInfoList AddCNameWafWafInfoList
 }

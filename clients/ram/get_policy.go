@@ -7,33 +7,20 @@ import (
 )
 
 type GetPolicyRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 }
 
-func (r GetPolicyRequest) Invoke(client *sdk.Client) (response *GetPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetPolicyRequest) Invoke(client *sdk.Client) (resp *GetPolicyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetPolicy", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetPolicyResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Policy    GetPolicyPolicy
 }

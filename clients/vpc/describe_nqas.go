@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeNqasRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	RouterId             string `position:"Query" name:"RouterId"`
@@ -20,29 +21,15 @@ type DescribeNqasRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeNqasRequest) Invoke(client *sdk.Client) (response *DescribeNqasResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeNqasRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeNqasRequest) Invoke(client *sdk.Client) (resp *DescribeNqasResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeNqas", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeNqasResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeNqasResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeNqasResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeNqasResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

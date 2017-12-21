@@ -7,33 +7,20 @@ import (
 )
 
 type GetCrackStatisticsRequest struct {
+	requests.RpcRequest
 	EndTime   string `position:"Query" name:"EndTime"`
 	StartTime string `position:"Query" name:"StartTime"`
 }
 
-func (r GetCrackStatisticsRequest) Invoke(client *sdk.Client) (response *GetCrackStatisticsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetCrackStatisticsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetCrackStatisticsRequest) Invoke(client *sdk.Client) (resp *GetCrackStatisticsResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "GetCrackStatistics", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetCrackStatisticsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetCrackStatisticsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetCrackStatisticsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetCrackStatisticsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Success   bool

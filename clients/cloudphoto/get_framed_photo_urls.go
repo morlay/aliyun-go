@@ -9,35 +9,22 @@ import (
 )
 
 type GetFramedPhotoUrlsRequest struct {
+	requests.RpcRequest
 	FrameId   string                         `position:"Query" name:"FrameId"`
 	LibraryId string                         `position:"Query" name:"LibraryId"`
 	PhotoIds  *GetFramedPhotoUrlsPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                         `position:"Query" name:"StoreName"`
 }
 
-func (r GetFramedPhotoUrlsRequest) Invoke(client *sdk.Client) (response *GetFramedPhotoUrlsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetFramedPhotoUrlsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetFramedPhotoUrlsRequest) Invoke(client *sdk.Client) (resp *GetFramedPhotoUrlsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetFramedPhotoUrls", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetFramedPhotoUrlsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetFramedPhotoUrlsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetFramedPhotoUrlsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetFramedPhotoUrlsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteNetworkInterfaceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteNetworkInterfaceRequest struct {
 	NetworkInterfaceId   string `position:"Query" name:"NetworkInterfaceId"`
 }
 
-func (r DeleteNetworkInterfaceRequest) Invoke(client *sdk.Client) (response *DeleteNetworkInterfaceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteNetworkInterfaceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteNetworkInterfaceRequest) Invoke(client *sdk.Client) (resp *DeleteNetworkInterfaceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteNetworkInterface", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteNetworkInterfaceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteNetworkInterfaceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteNetworkInterfaceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteNetworkInterfaceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

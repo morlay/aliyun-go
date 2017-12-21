@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeInstancesInSecurityGroupRequest struct {
+	requests.RpcRequest
 	TOKEN string `position:"Query" name:"TOKEN"`
 }
 
-func (r DescribeInstancesInSecurityGroupRequest) Invoke(client *sdk.Client) (response *DescribeInstancesInSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstancesInSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstancesInSecurityGroupRequest) Invoke(client *sdk.Client) (resp *DescribeInstancesInSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("HPC", "2016-12-13", "DescribeInstancesInSecurityGroup", "hpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstancesInSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstancesInSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstancesInSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstancesInSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Records   DescribeInstancesInSecurityGroupRecordList
 }

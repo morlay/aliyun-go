@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeCustomerGatewayRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeCustomerGatewayRequest struct {
 	CustomerGatewayId    string `position:"Query" name:"CustomerGatewayId"`
 }
 
-func (r DescribeCustomerGatewayRequest) Invoke(client *sdk.Client) (response *DescribeCustomerGatewayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCustomerGatewayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCustomerGatewayRequest) Invoke(client *sdk.Client) (resp *DescribeCustomerGatewayResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeCustomerGateway", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCustomerGatewayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCustomerGatewayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCustomerGatewayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCustomerGatewayResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	CustomerGatewayId string
 	IpAddress         string

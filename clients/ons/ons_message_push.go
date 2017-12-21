@@ -7,6 +7,7 @@ import (
 )
 
 type OnsMessagePushRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	ClientId     string `position:"Query" name:"ClientId"`
@@ -16,29 +17,15 @@ type OnsMessagePushRequest struct {
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsMessagePushRequest) Invoke(client *sdk.Client) (response *OnsMessagePushResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMessagePushRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMessagePushRequest) Invoke(client *sdk.Client) (resp *OnsMessagePushResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMessagePush", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMessagePushResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMessagePushResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMessagePushResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMessagePushResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

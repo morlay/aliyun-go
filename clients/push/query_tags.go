@@ -9,34 +9,21 @@ import (
 )
 
 type QueryTagsRequest struct {
+	requests.RpcRequest
 	ClientKey string `position:"Query" name:"ClientKey"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 	KeyType   string `position:"Query" name:"KeyType"`
 }
 
-func (r QueryTagsRequest) Invoke(client *sdk.Client) (response *QueryTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryTagsRequest) Invoke(client *sdk.Client) (resp *QueryTagsResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryTags", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryTagsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TagInfos  QueryTagsTagInfoList
 }

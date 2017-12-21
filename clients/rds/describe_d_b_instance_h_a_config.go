@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceHAConfigRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeDBInstanceHAConfigRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceHAConfigRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceHAConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceHAConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceHAConfigRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceHAConfigResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceHAConfig", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceHAConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceHAConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceHAConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceHAConfigResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	DBInstanceId      string
 	SyncMode          string

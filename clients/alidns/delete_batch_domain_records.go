@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteBatchDomainRecordsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	Records      string `position:"Query" name:"Records"`
 }
 
-func (r DeleteBatchDomainRecordsRequest) Invoke(client *sdk.Client) (response *DeleteBatchDomainRecordsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteBatchDomainRecordsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteBatchDomainRecordsRequest) Invoke(client *sdk.Client) (resp *DeleteBatchDomainRecordsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DeleteBatchDomainRecords", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteBatchDomainRecordsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteBatchDomainRecordsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteBatchDomainRecordsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteBatchDomainRecordsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TraceId   string
 }

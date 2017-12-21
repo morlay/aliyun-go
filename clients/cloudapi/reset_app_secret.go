@@ -7,31 +7,18 @@ import (
 )
 
 type ResetAppSecretRequest struct {
+	requests.RpcRequest
 	AppKey string `position:"Query" name:"AppKey"`
 }
 
-func (r ResetAppSecretRequest) Invoke(client *sdk.Client) (response *ResetAppSecretResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResetAppSecretRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResetAppSecretRequest) Invoke(client *sdk.Client) (resp *ResetAppSecretResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ResetAppSecret", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResetAppSecretResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResetAppSecretResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResetAppSecretResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResetAppSecretResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

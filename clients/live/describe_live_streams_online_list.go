@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeLiveStreamsOnlineListRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamsOnlineListRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamsOnlineListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamsOnlineListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamsOnlineListRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamsOnlineListResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamsOnlineList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamsOnlineListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamsOnlineListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamsOnlineListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamsOnlineListResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	OnlineInfo DescribeLiveStreamsOnlineListLiveStreamOnlineInfoList
 }

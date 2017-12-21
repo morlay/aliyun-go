@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeRegionsRequest struct {
+	requests.RpcRequest
 	PageSize   int `position:"Query" name:"PageSize"`
 	PageNumber int `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeRegionsRequest) Invoke(client *sdk.Client) (response *DescribeRegionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRegionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRegionsRequest) Invoke(client *sdk.Client) (resp *DescribeRegionsResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DescribeRegions", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRegionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRegionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRegionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRegionsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageSize   int

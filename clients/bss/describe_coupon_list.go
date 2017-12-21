@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCouponListRequest struct {
+	requests.RpcRequest
 	Status            string `position:"Query" name:"Status"`
 	StartDeliveryTime string `position:"Query" name:"StartDeliveryTime"`
 	EndDeliveryTime   string `position:"Query" name:"EndDeliveryTime"`
@@ -16,29 +17,15 @@ type DescribeCouponListRequest struct {
 	PageNum           int    `position:"Query" name:"PageNum"`
 }
 
-func (r DescribeCouponListRequest) Invoke(client *sdk.Client) (response *DescribeCouponListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCouponListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCouponListRequest) Invoke(client *sdk.Client) (resp *DescribeCouponListResponse, err error) {
 	req.InitWithApiInfo("Bss", "2014-07-14", "DescribeCouponList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCouponListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCouponListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCouponListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCouponListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Coupons   DescribeCouponListCouponList
 }

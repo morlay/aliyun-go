@@ -7,33 +7,20 @@ import (
 )
 
 type QueryPushDetailRequest struct {
+	requests.RpcRequest
 	MessageId string `position:"Query" name:"MessageId"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 }
 
-func (r QueryPushDetailRequest) Invoke(client *sdk.Client) (response *QueryPushDetailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPushDetailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPushDetailRequest) Invoke(client *sdk.Client) (resp *QueryPushDetailResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryPushDetail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPushDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPushDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPushDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPushDetailResponse struct {
+	responses.BaseResponse
 	RequestId                      string
 	AppKey                         int64
 	Target                         string

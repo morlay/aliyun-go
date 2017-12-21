@@ -7,32 +7,19 @@ import (
 )
 
 type GetApgroupConfigProgressRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetApgroupConfigProgressRequest) Invoke(client *sdk.Client) (response *GetApgroupConfigProgressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetApgroupConfigProgressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetApgroupConfigProgressRequest) Invoke(client *sdk.Client) (resp *GetApgroupConfigProgressResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetApgroupConfigProgress", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetApgroupConfigProgressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetApgroupConfigProgressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetApgroupConfigProgressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetApgroupConfigProgressResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

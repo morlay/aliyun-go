@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage    int    `position:"Query" name:"DBInstanceStorage"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,28 +19,14 @@ type ModifyDBInstanceSpecRequest struct {
 	DBInstanceClass      string `position:"Query" name:"DBInstanceClass"`
 }
 
-func (r ModifyDBInstanceSpecRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceSpecRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceSpecResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceSpec", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

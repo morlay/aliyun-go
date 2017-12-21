@@ -7,6 +7,7 @@ import (
 )
 
 type RemoveAuthenticIPRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -15,28 +16,14 @@ type RemoveAuthenticIPRequest struct {
 	AuthenticIP          string `position:"Query" name:"AuthenticIP"`
 }
 
-func (r RemoveAuthenticIPRequest) Invoke(client *sdk.Client) (response *RemoveAuthenticIPResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveAuthenticIPRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveAuthenticIPRequest) Invoke(client *sdk.Client) (resp *RemoveAuthenticIPResponse, err error) {
 	req.InitWithApiInfo("Ocs", "2015-03-01", "RemoveAuthenticIP", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveAuthenticIPResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveAuthenticIPResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveAuthenticIPResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveAuthenticIPResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

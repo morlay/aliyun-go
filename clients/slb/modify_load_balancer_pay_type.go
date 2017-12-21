@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyLoadBalancerPayTypeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AutoPay              string `position:"Query" name:"AutoPay"`
@@ -20,29 +21,15 @@ type ModifyLoadBalancerPayTypeRequest struct {
 	PricingCycle         string `position:"Query" name:"PricingCycle"`
 }
 
-func (r ModifyLoadBalancerPayTypeRequest) Invoke(client *sdk.Client) (response *ModifyLoadBalancerPayTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyLoadBalancerPayTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyLoadBalancerPayTypeRequest) Invoke(client *sdk.Client) (resp *ModifyLoadBalancerPayTypeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "ModifyLoadBalancerPayType", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyLoadBalancerPayTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyLoadBalancerPayTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyLoadBalancerPayTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyLoadBalancerPayTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   int64
 }

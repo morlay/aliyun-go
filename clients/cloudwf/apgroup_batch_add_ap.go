@@ -7,33 +7,20 @@ import (
 )
 
 type ApgroupBatchAddApRequest struct {
+	requests.RpcRequest
 	ApAssetIds string `position:"Query" name:"ApAssetIds"`
 	ApgroupId  int64  `position:"Query" name:"ApgroupId"`
 }
 
-func (r ApgroupBatchAddApRequest) Invoke(client *sdk.Client) (response *ApgroupBatchAddApResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ApgroupBatchAddApRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ApgroupBatchAddApRequest) Invoke(client *sdk.Client) (resp *ApgroupBatchAddApResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ApgroupBatchAddAp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ApgroupBatchAddApResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ApgroupBatchAddApResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ApgroupBatchAddApResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ApgroupBatchAddApResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

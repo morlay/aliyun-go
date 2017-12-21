@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeDBInstanceSSLRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeDBInstanceSSLRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceSSLRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceSSLResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceSSLRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceSSLRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceSSLResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceSSL", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceSSLResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceSSLResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceSSLResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceSSLResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	ConnectionString    string
 	SSLExpireTime       string

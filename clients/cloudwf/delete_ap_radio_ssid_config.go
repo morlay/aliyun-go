@@ -7,33 +7,20 @@ import (
 )
 
 type DeleteApRadioSsidConfigRequest struct {
+	requests.RpcRequest
 	InstantlyEffective int   `position:"Query" name:"InstantlyEffective"`
 	Id                 int64 `position:"Query" name:"Id"`
 }
 
-func (r DeleteApRadioSsidConfigRequest) Invoke(client *sdk.Client) (response *DeleteApRadioSsidConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteApRadioSsidConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteApRadioSsidConfigRequest) Invoke(client *sdk.Client) (resp *DeleteApRadioSsidConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeleteApRadioSsidConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteApRadioSsidConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteApRadioSsidConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteApRadioSsidConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteApRadioSsidConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

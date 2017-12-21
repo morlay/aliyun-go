@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCastersRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterName    string `position:"Query" name:"CasterName"`
 	CasterId      string `position:"Query" name:"CasterId"`
@@ -21,29 +22,15 @@ type DescribeCastersRequest struct {
 	Status        int    `position:"Query" name:"Status"`
 }
 
-func (r DescribeCastersRequest) Invoke(client *sdk.Client) (response *DescribeCastersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCastersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCastersRequest) Invoke(client *sdk.Client) (resp *DescribeCastersResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasters", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCastersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCastersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCastersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCastersResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	Total      int
 	CasterList DescribeCastersCasterList

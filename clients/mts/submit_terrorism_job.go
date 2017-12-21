@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitTerrorismJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitTerrorismJobRequest struct {
 	TerrorismConfig      string `position:"Query" name:"TerrorismConfig"`
 }
 
-func (r SubmitTerrorismJobRequest) Invoke(client *sdk.Client) (response *SubmitTerrorismJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitTerrorismJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitTerrorismJobRequest) Invoke(client *sdk.Client) (resp *SubmitTerrorismJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitTerrorismJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitTerrorismJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitTerrorismJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitTerrorismJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitTerrorismJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

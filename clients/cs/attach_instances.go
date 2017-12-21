@@ -7,31 +7,19 @@ import (
 )
 
 type AttachInstancesRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 }
 
-func (r AttachInstancesRequest) Invoke(client *sdk.Client) (response *AttachInstancesResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		AttachInstancesRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *AttachInstancesRequest) Invoke(client *sdk.Client) (resp *AttachInstancesResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "AttachInstances", "/clusters/[ClusterId]/attach", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		AttachInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachInstancesResponse struct {
+	responses.BaseResponse
 }

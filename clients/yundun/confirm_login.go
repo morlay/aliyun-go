@@ -7,33 +7,20 @@ import (
 )
 
 type ConfirmLoginRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	SourceIp   string `position:"Query" name:"SourceIp"`
 	Time       string `position:"Query" name:"Time"`
 }
 
-func (r ConfirmLoginRequest) Invoke(client *sdk.Client) (response *ConfirmLoginResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ConfirmLoginRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ConfirmLoginRequest) Invoke(client *sdk.Client) (resp *ConfirmLoginResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "ConfirmLogin", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ConfirmLoginResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ConfirmLoginResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ConfirmLoginResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ConfirmLoginResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

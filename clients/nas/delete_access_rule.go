@@ -7,32 +7,19 @@ import (
 )
 
 type DeleteAccessRuleRequest struct {
+	requests.RpcRequest
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 	AccessRuleId    string `position:"Query" name:"AccessRuleId"`
 }
 
-func (r DeleteAccessRuleRequest) Invoke(client *sdk.Client) (response *DeleteAccessRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteAccessRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteAccessRuleRequest) Invoke(client *sdk.Client) (resp *DeleteAccessRuleResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DeleteAccessRule", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteAccessRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteAccessRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteAccessRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteAccessRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type AssociateGlobalAccelerationInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId              int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount         string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount                 string `position:"Query" name:"OwnerAccount"`
@@ -17,28 +18,14 @@ type AssociateGlobalAccelerationInstanceRequest struct {
 	BackendServerType            string `position:"Query" name:"BackendServerType"`
 }
 
-func (r AssociateGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (response *AssociateGlobalAccelerationInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AssociateGlobalAccelerationInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AssociateGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (resp *AssociateGlobalAccelerationInstanceResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "AssociateGlobalAccelerationInstance", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AssociateGlobalAccelerationInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AssociateGlobalAccelerationInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AssociateGlobalAccelerationInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AssociateGlobalAccelerationInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

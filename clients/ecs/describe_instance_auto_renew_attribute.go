@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceAutoRenewAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeInstanceAutoRenewAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeInstanceAutoRenewAttributeRequest) Invoke(client *sdk.Client) (response *DescribeInstanceAutoRenewAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceAutoRenewAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceAutoRenewAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceAutoRenewAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceAutoRenewAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceAutoRenewAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceAutoRenewAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceAutoRenewAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceAutoRenewAttributeResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	InstanceRenewAttributes DescribeInstanceAutoRenewAttributeInstanceRenewAttributeList
 }

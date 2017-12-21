@@ -7,6 +7,7 @@ import (
 )
 
 type ForbidLiveStreamRequest struct {
+	requests.RpcRequest
 	ResumeTime     string `position:"Query" name:"ResumeTime"`
 	AppName        string `position:"Query" name:"AppName"`
 	SecurityToken  string `position:"Query" name:"SecurityToken"`
@@ -16,28 +17,14 @@ type ForbidLiveStreamRequest struct {
 	StreamName     string `position:"Query" name:"StreamName"`
 }
 
-func (r ForbidLiveStreamRequest) Invoke(client *sdk.Client) (response *ForbidLiveStreamResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ForbidLiveStreamRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ForbidLiveStreamRequest) Invoke(client *sdk.Client) (resp *ForbidLiveStreamResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "ForbidLiveStream", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ForbidLiveStreamResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ForbidLiveStreamResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ForbidLiveStreamResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ForbidLiveStreamResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,32 +9,19 @@ import (
 )
 
 type ListPoliciesForUserRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r ListPoliciesForUserRequest) Invoke(client *sdk.Client) (response *ListPoliciesForUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPoliciesForUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPoliciesForUserRequest) Invoke(client *sdk.Client) (resp *ListPoliciesForUserResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListPoliciesForUser", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPoliciesForUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPoliciesForUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPoliciesForUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPoliciesForUserResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Policies  ListPoliciesForUserPolicyList
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyCdnDomainRequest struct {
+	requests.RpcRequest
 	TopLevelDomain  string `position:"Query" name:"TopLevelDomain"`
 	SourcePort      int    `position:"Query" name:"SourcePort"`
 	ResourceGroupId string `position:"Query" name:"ResourceGroupId"`
@@ -18,28 +19,14 @@ type ModifyCdnDomainRequest struct {
 	OwnerId         int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyCdnDomainRequest) Invoke(client *sdk.Client) (response *ModifyCdnDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCdnDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCdnDomainRequest) Invoke(client *sdk.Client) (resp *ModifyCdnDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "ModifyCdnDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCdnDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCdnDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCdnDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyCdnDomainResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

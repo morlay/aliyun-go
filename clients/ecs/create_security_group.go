@@ -7,6 +7,7 @@ import (
 )
 
 type CreateSecurityGroupRequest struct {
+	requests.RpcRequest
 	Tag4Value            string `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Tag2Key              string `position:"Query" name:"Tag.2.Key"`
@@ -27,29 +28,15 @@ type CreateSecurityGroupRequest struct {
 	Tag3Value            string `position:"Query" name:"Tag.3.Value"`
 }
 
-func (r CreateSecurityGroupRequest) Invoke(client *sdk.Client) (response *CreateSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateSecurityGroupRequest) Invoke(client *sdk.Client) (resp *CreateSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateSecurityGroup", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	SecurityGroupId string
 }

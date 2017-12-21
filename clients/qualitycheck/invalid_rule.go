@@ -7,32 +7,19 @@ import (
 )
 
 type InvalidRuleRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r InvalidRuleRequest) Invoke(client *sdk.Client) (response *InvalidRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		InvalidRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *InvalidRuleRequest) Invoke(client *sdk.Client) (resp *InvalidRuleResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "InvalidRule", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		InvalidRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.InvalidRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &InvalidRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type InvalidRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

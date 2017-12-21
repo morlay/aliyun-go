@@ -7,6 +7,7 @@ import (
 )
 
 type SingleSendMailRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -24,29 +25,15 @@ type SingleSendMailRequest struct {
 	ClickTrace           string `position:"Query" name:"ClickTrace"`
 }
 
-func (r SingleSendMailRequest) Invoke(client *sdk.Client) (response *SingleSendMailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SingleSendMailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SingleSendMailRequest) Invoke(client *sdk.Client) (resp *SingleSendMailResponse, err error) {
 	req.InitWithApiInfo("Dm", "2015-11-23", "SingleSendMail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SingleSendMailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SingleSendMailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SingleSendMailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SingleSendMailResponse struct {
+	responses.BaseResponse
 	RequestId string
 	EnvId     string
 }

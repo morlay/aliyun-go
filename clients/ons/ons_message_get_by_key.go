@@ -9,6 +9,7 @@ import (
 )
 
 type OnsMessageGetByKeyRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsMessageGetByKeyRequest struct {
 	Key          string `position:"Query" name:"Key"`
 }
 
-func (r OnsMessageGetByKeyRequest) Invoke(client *sdk.Client) (response *OnsMessageGetByKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMessageGetByKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMessageGetByKeyRequest) Invoke(client *sdk.Client) (resp *OnsMessageGetByKeyResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMessageGetByKey", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMessageGetByKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMessageGetByKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMessageGetByKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMessageGetByKeyResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsMessageGetByKeyOnsRestMessageDoList

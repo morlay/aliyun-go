@@ -9,6 +9,7 @@ import (
 )
 
 type CreateInstanceRequest struct {
+	requests.RpcRequest
 	Tag4Value                   string                      `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId             int64                       `position:"Query" name:"ResourceOwnerId"`
 	Tag2Key                     string                      `position:"Query" name:"Tag.2.Key"`
@@ -64,25 +65,10 @@ type CreateInstanceRequest struct {
 	SystemDiskDescription       string                      `position:"Query" name:"SystemDiskDescription"`
 }
 
-func (r CreateInstanceRequest) Invoke(client *sdk.Client) (response *CreateInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateInstanceRequest) Invoke(client *sdk.Client) (resp *CreateInstanceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateInstance", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -98,6 +84,7 @@ type CreateInstanceDataDisk struct {
 }
 
 type CreateInstanceResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	InstanceId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDampPoliciesByCidRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeDampPoliciesByCidRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDampPoliciesByCidRequest) Invoke(client *sdk.Client) (response *DescribeDampPoliciesByCidResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDampPoliciesByCidRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDampPoliciesByCidRequest) Invoke(client *sdk.Client) (resp *DescribeDampPoliciesByCidResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDampPoliciesByCid", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDampPoliciesByCidResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDampPoliciesByCidResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDampPoliciesByCidResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDampPoliciesByCidResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Policies  DescribeDampPoliciesByCidPolicyList
 }

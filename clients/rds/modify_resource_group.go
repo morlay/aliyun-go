@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyResourceGroupRequest struct {
+	requests.RpcRequest
 	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyResourceGroupRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyResourceGroupRequest) Invoke(client *sdk.Client) (response *ModifyResourceGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyResourceGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyResourceGroupRequest) Invoke(client *sdk.Client) (resp *ModifyResourceGroupResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyResourceGroup", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyResourceGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyResourceGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyResourceGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyResourceGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

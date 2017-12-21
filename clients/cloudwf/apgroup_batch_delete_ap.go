@@ -7,32 +7,19 @@ import (
 )
 
 type ApgroupBatchDeleteApRequest struct {
+	requests.RpcRequest
 	ApAssetIds string `position:"Query" name:"ApAssetIds"`
 }
 
-func (r ApgroupBatchDeleteApRequest) Invoke(client *sdk.Client) (response *ApgroupBatchDeleteApResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ApgroupBatchDeleteApRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ApgroupBatchDeleteApRequest) Invoke(client *sdk.Client) (resp *ApgroupBatchDeleteApResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ApgroupBatchDeleteAp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ApgroupBatchDeleteApResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ApgroupBatchDeleteApResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ApgroupBatchDeleteApResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ApgroupBatchDeleteApResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

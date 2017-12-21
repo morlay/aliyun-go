@@ -7,32 +7,20 @@ import (
 )
 
 type GetProjectEventsRequest struct {
+	requests.RoaRequest
 	ClusterId string `position:"Path" name:"ClusterId"`
 	ProjectId string `position:"Path" name:"ProjectId"`
 }
 
-func (r GetProjectEventsRequest) Invoke(client *sdk.Client) (response *GetProjectEventsResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetProjectEventsRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetProjectEventsRequest) Invoke(client *sdk.Client) (resp *GetProjectEventsResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "GetProjectEvents", "/clusters/[ClusterId]/projects/[ProjectId]/events", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetProjectEventsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetProjectEventsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetProjectEventsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetProjectEventsResponse struct {
+	responses.BaseResponse
 }

@@ -9,33 +9,20 @@ import (
 )
 
 type GetUserRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	UserId     string `position:"Query" name:"UserId"`
 }
 
-func (r GetUserRequest) Invoke(client *sdk.Client) (response *GetUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetUserRequest) Invoke(client *sdk.Client) (resp *GetUserResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "GetUser", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

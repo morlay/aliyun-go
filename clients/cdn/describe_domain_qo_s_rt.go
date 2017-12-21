@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainQoSRtRequest struct {
+	requests.RpcRequest
 	Ip            string `position:"Query" name:"Ip"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -18,29 +19,15 @@ type DescribeDomainQoSRtRequest struct {
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 }
 
-func (r DescribeDomainQoSRtRequest) Invoke(client *sdk.Client) (response *DescribeDomainQoSRtResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainQoSRtRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainQoSRtRequest) Invoke(client *sdk.Client) (resp *DescribeDomainQoSRtResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainQoSRt", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainQoSRtResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainQoSRtResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainQoSRtResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainQoSRtResponse struct {
+	responses.BaseResponse
 	DomainName string
 	StartTime  string
 	EndTime    string

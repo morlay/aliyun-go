@@ -7,34 +7,21 @@ import (
 )
 
 type SetIpBlackListConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	BlockIps      string `position:"Query" name:"BlockIps"`
 }
 
-func (r SetIpBlackListConfigRequest) Invoke(client *sdk.Client) (response *SetIpBlackListConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetIpBlackListConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetIpBlackListConfigRequest) Invoke(client *sdk.Client) (resp *SetIpBlackListConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetIpBlackListConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetIpBlackListConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetIpBlackListConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetIpBlackListConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetIpBlackListConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

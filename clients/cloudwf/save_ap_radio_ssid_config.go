@@ -7,6 +7,7 @@ import (
 )
 
 type SaveApRadioSsidConfigRequest struct {
+	requests.RpcRequest
 	Hidden             int    `position:"Query" name:"Hidden"`
 	DynamicVlan        int    `position:"Query" name:"DynamicVlan"`
 	Ssid               string `position:"Query" name:"Ssid"`
@@ -35,29 +36,15 @@ type SaveApRadioSsidConfigRequest struct {
 	ShortPreamble      int    `position:"Query" name:"ShortPreamble"`
 }
 
-func (r SaveApRadioSsidConfigRequest) Invoke(client *sdk.Client) (response *SaveApRadioSsidConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApRadioSsidConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApRadioSsidConfigRequest) Invoke(client *sdk.Client) (resp *SaveApRadioSsidConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApRadioSsidConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApRadioSsidConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApRadioSsidConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApRadioSsidConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApRadioSsidConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

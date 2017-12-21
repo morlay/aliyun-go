@@ -7,32 +7,19 @@ import (
 )
 
 type HeadquartersToolsCoincideRequest struct {
+	requests.RpcRequest
 	Bid int64 `position:"Query" name:"Bid"`
 }
 
-func (r HeadquartersToolsCoincideRequest) Invoke(client *sdk.Client) (response *HeadquartersToolsCoincideResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		HeadquartersToolsCoincideRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *HeadquartersToolsCoincideRequest) Invoke(client *sdk.Client) (resp *HeadquartersToolsCoincideResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "HeadquartersToolsCoincide", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		HeadquartersToolsCoincideResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.HeadquartersToolsCoincideResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &HeadquartersToolsCoincideResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type HeadquartersToolsCoincideResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

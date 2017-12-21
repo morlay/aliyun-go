@@ -7,6 +7,7 @@ import (
 )
 
 type CreateForwardEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	IpProtocol           string `position:"Query" name:"IpProtocol"`
@@ -19,29 +20,15 @@ type CreateForwardEntryRequest struct {
 	InternalIp           string `position:"Query" name:"InternalIp"`
 }
 
-func (r CreateForwardEntryRequest) Invoke(client *sdk.Client) (response *CreateForwardEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateForwardEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateForwardEntryRequest) Invoke(client *sdk.Client) (resp *CreateForwardEntryResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateForwardEntry", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateForwardEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateForwardEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateForwardEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateForwardEntryResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	ForwardEntryId string
 }

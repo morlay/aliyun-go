@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteCdnDomainRequest struct {
+	requests.RpcRequest
 	ResourceGroupId string `position:"Query" name:"ResourceGroupId"`
 	SecurityToken   string `position:"Query" name:"SecurityToken"`
 	DomainName      string `position:"Query" name:"DomainName"`
 	OwnerId         int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteCdnDomainRequest) Invoke(client *sdk.Client) (response *DeleteCdnDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCdnDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCdnDomainRequest) Invoke(client *sdk.Client) (resp *DeleteCdnDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DeleteCdnDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCdnDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCdnDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCdnDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCdnDomainResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

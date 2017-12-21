@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeTrafficControlsByApiRequest struct {
+	requests.RpcRequest
 	GroupId   string `position:"Query" name:"GroupId"`
 	ApiId     string `position:"Query" name:"ApiId"`
 	StageName string `position:"Query" name:"StageName"`
 }
 
-func (r DescribeTrafficControlsByApiRequest) Invoke(client *sdk.Client) (response *DescribeTrafficControlsByApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeTrafficControlsByApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeTrafficControlsByApiRequest) Invoke(client *sdk.Client) (resp *DescribeTrafficControlsByApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeTrafficControlsByApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTrafficControlsByApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTrafficControlsByApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTrafficControlsByApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTrafficControlsByApiResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	TrafficControlItems DescribeTrafficControlsByApiTrafficControlItemList
 }

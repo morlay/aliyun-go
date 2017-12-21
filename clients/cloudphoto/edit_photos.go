@@ -9,6 +9,7 @@ import (
 )
 
 type EditPhotosRequest struct {
+	requests.RpcRequest
 	LibraryId       string                 `position:"Query" name:"LibraryId"`
 	ShareExpireTime int64                  `position:"Query" name:"ShareExpireTime"`
 	PhotoIds        *EditPhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
@@ -17,29 +18,15 @@ type EditPhotosRequest struct {
 	Title           string                 `position:"Query" name:"Title"`
 }
 
-func (r EditPhotosRequest) Invoke(client *sdk.Client) (response *EditPhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EditPhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EditPhotosRequest) Invoke(client *sdk.Client) (resp *EditPhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "EditPhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EditPhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EditPhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EditPhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EditPhotosResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

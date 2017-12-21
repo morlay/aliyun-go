@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainQpsDataRequest struct {
+	requests.RpcRequest
 	FixTimeGap     string `position:"Query" name:"FixTimeGap"`
 	TimeMerge      string `position:"Query" name:"TimeMerge"`
 	DomainName     string `position:"Query" name:"DomainName"`
@@ -22,29 +23,15 @@ type DescribeDomainQpsDataRequest struct {
 	Interval       string `position:"Query" name:"Interval"`
 }
 
-func (r DescribeDomainQpsDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainQpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainQpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainQpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainQpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainQpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainQpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainQpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainQpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainQpsDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	DomainName      string
 	DataInterval    string

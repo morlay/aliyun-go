@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDeploymentSetTopologyRequest struct {
+	requests.RpcRequest
 	DeploymentSetId      string `position:"Query" name:"DeploymentSetId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeDeploymentSetTopologyRequest struct {
 	Strategy             string `position:"Query" name:"Strategy"`
 }
 
-func (r DescribeDeploymentSetTopologyRequest) Invoke(client *sdk.Client) (response *DescribeDeploymentSetTopologyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDeploymentSetTopologyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDeploymentSetTopologyRequest) Invoke(client *sdk.Client) (resp *DescribeDeploymentSetTopologyResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeDeploymentSetTopology", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDeploymentSetTopologyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDeploymentSetTopologyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDeploymentSetTopologyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDeploymentSetTopologyResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Switchs   DescribeDeploymentSetTopology_SwitchList
 	Racks     DescribeDeploymentSetTopologyRackList

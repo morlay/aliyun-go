@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDBInstanceReplicaRequest struct {
+	requests.RpcRequest
 	ConnectionMode        string `position:"Query" name:"ConnectionMode"`
 	ReplicaDescription    string `position:"Query" name:"ReplicaDescription"`
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
@@ -33,29 +34,15 @@ type CreateDBInstanceReplicaRequest struct {
 	InstanceNetworkType   string `position:"Query" name:"InstanceNetworkType"`
 }
 
-func (r CreateDBInstanceReplicaRequest) Invoke(client *sdk.Client) (response *CreateDBInstanceReplicaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDBInstanceReplicaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDBInstanceReplicaRequest) Invoke(client *sdk.Client) (resp *CreateDBInstanceReplicaResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreateDBInstanceReplica", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDBInstanceReplicaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDBInstanceReplicaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDBInstanceReplicaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDBInstanceReplicaResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DBInstanceId string
 	OrderId      int64

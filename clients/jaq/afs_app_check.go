@@ -7,33 +7,20 @@ import (
 )
 
 type AfsAppCheckRequest struct {
+	requests.RpcRequest
 	CallerName string `position:"Query" name:"CallerName"`
 	Session    string `position:"Query" name:"Session"`
 }
 
-func (r AfsAppCheckRequest) Invoke(client *sdk.Client) (response *AfsAppCheckResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AfsAppCheckRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AfsAppCheckRequest) Invoke(client *sdk.Client) (resp *AfsAppCheckResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "AfsAppCheck", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AfsAppCheckResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AfsAppCheckResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AfsAppCheckResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AfsAppCheckResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      AfsAppCheckData

@@ -7,6 +7,7 @@ import (
 )
 
 type RemoveInstancesRequest struct {
+	requests.RpcRequest
 	InstanceId10         string `position:"Query" name:"InstanceId.10"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId12         string `position:"Query" name:"InstanceId.12"`
@@ -34,29 +35,15 @@ type RemoveInstancesRequest struct {
 	InstanceId15         string `position:"Query" name:"InstanceId.15"`
 }
 
-func (r RemoveInstancesRequest) Invoke(client *sdk.Client) (response *RemoveInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveInstancesRequest) Invoke(client *sdk.Client) (resp *RemoveInstancesResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "RemoveInstances", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveInstancesResponse struct {
+	responses.BaseResponse
 	ScalingActivityId string
 	RequestId         string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type ShopSetredressRequest struct {
+	requests.RpcRequest
 	Workday     string `position:"Query" name:"Workday"`
 	Filterclose int    `position:"Query" name:"Filterclose"`
 	Minstoptime int    `position:"Query" name:"Minstoptime"`
@@ -21,29 +22,15 @@ type ShopSetredressRequest struct {
 	Maxstoptime int    `position:"Query" name:"Maxstoptime"`
 }
 
-func (r ShopSetredressRequest) Invoke(client *sdk.Client) (response *ShopSetredressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ShopSetredressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ShopSetredressRequest) Invoke(client *sdk.Client) (resp *ShopSetredressResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ShopSetredress", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ShopSetredressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ShopSetredressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ShopSetredressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ShopSetredressResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

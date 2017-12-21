@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeApiErrorDataRequest struct {
+	requests.RpcRequest
 	ApiId     string `position:"Query" name:"ApiId"`
 	GroupId   string `position:"Query" name:"GroupId"`
 	StartTime string `position:"Query" name:"StartTime"`
 	EndTime   string `position:"Query" name:"EndTime"`
 }
 
-func (r DescribeApiErrorDataRequest) Invoke(client *sdk.Client) (response *DescribeApiErrorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeApiErrorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeApiErrorDataRequest) Invoke(client *sdk.Client) (resp *DescribeApiErrorDataResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApiErrorData", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiErrorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiErrorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiErrorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiErrorDataResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	ClientErrors DescribeApiErrorDataMonitorItemList
 	ServerErrors DescribeApiErrorDataMonitorItemList

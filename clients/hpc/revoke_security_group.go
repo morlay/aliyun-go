@@ -7,6 +7,7 @@ import (
 )
 
 type RevokeSecurityGroupRequest struct {
+	requests.RpcRequest
 	TOKEN    string `position:"Query" name:"TOKEN"`
 	SourceIp string `position:"Query" name:"SourceIp"`
 	Policy   string `position:"Query" name:"Policy"`
@@ -14,28 +15,14 @@ type RevokeSecurityGroupRequest struct {
 	NicType  string `position:"Query" name:"NicType"`
 }
 
-func (r RevokeSecurityGroupRequest) Invoke(client *sdk.Client) (response *RevokeSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RevokeSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RevokeSecurityGroupRequest) Invoke(client *sdk.Client) (resp *RevokeSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("HPC", "2016-12-13", "RevokeSecurityGroup", "hpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RevokeSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RevokeSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RevokeSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RevokeSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

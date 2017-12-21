@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeExecutionPlanRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 }
 
-func (r DescribeExecutionPlanRequest) Invoke(client *sdk.Client) (response *DescribeExecutionPlanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeExecutionPlanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeExecutionPlanRequest) Invoke(client *sdk.Client) (resp *DescribeExecutionPlanResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "DescribeExecutionPlan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeExecutionPlanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeExecutionPlanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeExecutionPlanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeExecutionPlanResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	Id                    string
 	Name                  string

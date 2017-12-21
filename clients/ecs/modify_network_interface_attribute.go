@@ -9,6 +9,7 @@ import (
 )
 
 type ModifyNetworkInterfaceAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                                               `position:"Query" name:"ResourceOwnerId"`
 	SecurityGroupIds     *ModifyNetworkInterfaceAttributeSecurityGroupIdList `position:"Query" type:"Repeated" name:"SecurityGroupId"`
 	Description          string                                              `position:"Query" name:"Description"`
@@ -19,29 +20,15 @@ type ModifyNetworkInterfaceAttributeRequest struct {
 	NetworkInterfaceId   string                                              `position:"Query" name:"NetworkInterfaceId"`
 }
 
-func (r ModifyNetworkInterfaceAttributeRequest) Invoke(client *sdk.Client) (response *ModifyNetworkInterfaceAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyNetworkInterfaceAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyNetworkInterfaceAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyNetworkInterfaceAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyNetworkInterfaceAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyNetworkInterfaceAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyNetworkInterfaceAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyNetworkInterfaceAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyNetworkInterfaceAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

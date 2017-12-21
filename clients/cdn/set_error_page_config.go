@@ -7,6 +7,7 @@ import (
 )
 
 type SetErrorPageConfigRequest struct {
+	requests.RpcRequest
 	PageType      string `position:"Query" name:"PageType"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -14,28 +15,14 @@ type SetErrorPageConfigRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetErrorPageConfigRequest) Invoke(client *sdk.Client) (response *SetErrorPageConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetErrorPageConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetErrorPageConfigRequest) Invoke(client *sdk.Client) (resp *SetErrorPageConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetErrorPageConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetErrorPageConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetErrorPageConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetErrorPageConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetErrorPageConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

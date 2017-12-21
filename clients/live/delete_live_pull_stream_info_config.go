@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteLivePullStreamInfoConfigRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -14,28 +15,14 @@ type DeleteLivePullStreamInfoConfigRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DeleteLivePullStreamInfoConfigRequest) Invoke(client *sdk.Client) (response *DeleteLivePullStreamInfoConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLivePullStreamInfoConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLivePullStreamInfoConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLivePullStreamInfoConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteLivePullStreamInfoConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLivePullStreamInfoConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLivePullStreamInfoConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLivePullStreamInfoConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLivePullStreamInfoConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

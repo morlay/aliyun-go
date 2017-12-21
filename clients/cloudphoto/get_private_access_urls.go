@@ -9,35 +9,22 @@ import (
 )
 
 type GetPrivateAccessUrlsRequest struct {
+	requests.RpcRequest
 	LibraryId string                           `position:"Query" name:"LibraryId"`
 	PhotoIds  *GetPrivateAccessUrlsPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                           `position:"Query" name:"StoreName"`
 	ZoomType  string                           `position:"Query" name:"ZoomType"`
 }
 
-func (r GetPrivateAccessUrlsRequest) Invoke(client *sdk.Client) (response *GetPrivateAccessUrlsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetPrivateAccessUrlsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetPrivateAccessUrlsRequest) Invoke(client *sdk.Client) (resp *GetPrivateAccessUrlsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetPrivateAccessUrls", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetPrivateAccessUrlsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetPrivateAccessUrlsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetPrivateAccessUrlsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetPrivateAccessUrlsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyLoadBalancerInstanceSpecRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	LoadBalancerSpec     string `position:"Query" name:"LoadBalancerSpec"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -18,29 +19,15 @@ type ModifyLoadBalancerInstanceSpecRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r ModifyLoadBalancerInstanceSpecRequest) Invoke(client *sdk.Client) (response *ModifyLoadBalancerInstanceSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyLoadBalancerInstanceSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyLoadBalancerInstanceSpecRequest) Invoke(client *sdk.Client) (resp *ModifyLoadBalancerInstanceSpecResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "ModifyLoadBalancerInstanceSpec", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyLoadBalancerInstanceSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyLoadBalancerInstanceSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyLoadBalancerInstanceSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyLoadBalancerInstanceSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   int64
 }

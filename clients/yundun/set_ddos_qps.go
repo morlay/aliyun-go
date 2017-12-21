@@ -7,34 +7,21 @@ import (
 )
 
 type SetDdosQpsRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 	QpsPosition  int    `position:"Query" name:"QpsPosition"`
 	Level        int    `position:"Query" name:"Level"`
 }
 
-func (r SetDdosQpsRequest) Invoke(client *sdk.Client) (response *SetDdosQpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetDdosQpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetDdosQpsRequest) Invoke(client *sdk.Client) (resp *SetDdosQpsResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "SetDdosQps", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetDdosQpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetDdosQpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetDdosQpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetDdosQpsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

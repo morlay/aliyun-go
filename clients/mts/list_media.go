@@ -9,6 +9,7 @@ import (
 )
 
 type ListMediaRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	NextPageToken        string `position:"Query" name:"NextPageToken"`
@@ -19,29 +20,15 @@ type ListMediaRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ListMediaRequest) Invoke(client *sdk.Client) (response *ListMediaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListMediaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListMediaRequest) Invoke(client *sdk.Client) (resp *ListMediaResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListMedia", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListMediaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListMediaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListMediaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListMediaResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	NextPageToken string
 	MediaList     ListMediaMediaList

@@ -9,33 +9,20 @@ import (
 )
 
 type RemoveUsersRequest struct {
+	requests.RpcRequest
 	InstanceId string                 `position:"Query" name:"InstanceId"`
 	UserIds    *RemoveUsersUserIdList `position:"Query" type:"Repeated" name:"UserId"`
 }
 
-func (r RemoveUsersRequest) Invoke(client *sdk.Client) (response *RemoveUsersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveUsersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveUsersRequest) Invoke(client *sdk.Client) (resp *RemoveUsersResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "RemoveUsers", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveUsersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveUsersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveUsersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveUsersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

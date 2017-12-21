@@ -7,6 +7,7 @@ import (
 )
 
 type StartInstanceRequest struct {
+	requests.RpcRequest
 	InitLocalDisk        string `position:"Query" name:"InitLocalDisk"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
@@ -15,28 +16,14 @@ type StartInstanceRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r StartInstanceRequest) Invoke(client *sdk.Client) (response *StartInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StartInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StartInstanceRequest) Invoke(client *sdk.Client) (resp *StartInstanceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "StartInstance", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StartInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StartInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StartInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StartInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

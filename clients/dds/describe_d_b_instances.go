@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceIds        string `position:"Query" name:"DBInstanceIds"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type DescribeDBInstancesRequest struct {
 	PageSize             int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeDBInstancesRequest) Invoke(client *sdk.Client) (response *DescribeDBInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstancesResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeDBInstances", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstancesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	PageNumber  int
 	PageSize    int

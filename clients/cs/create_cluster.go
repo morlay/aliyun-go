@@ -7,30 +7,18 @@ import (
 )
 
 type CreateClusterRequest struct {
+	requests.RoaRequest
 }
 
-func (r CreateClusterRequest) Invoke(client *sdk.Client) (response *CreateClusterResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		CreateClusterRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *CreateClusterRequest) Invoke(client *sdk.Client) (resp *CreateClusterResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "CreateCluster", "/clusters", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		CreateClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateClusterResponse struct {
+	responses.BaseResponse
 }

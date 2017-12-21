@@ -7,6 +7,7 @@ import (
 )
 
 type AddMediaTagRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type AddMediaTagRequest struct {
 	MediaId              string `position:"Query" name:"MediaId"`
 }
 
-func (r AddMediaTagRequest) Invoke(client *sdk.Client) (response *AddMediaTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddMediaTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddMediaTagRequest) Invoke(client *sdk.Client) (resp *AddMediaTagResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddMediaTag", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddMediaTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddMediaTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddMediaTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddMediaTagResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

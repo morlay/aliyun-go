@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeLoadBalancerAutoReleaseTimeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -16,29 +17,15 @@ type DescribeLoadBalancerAutoReleaseTimeRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeLoadBalancerAutoReleaseTimeRequest) Invoke(client *sdk.Client) (response *DescribeLoadBalancerAutoReleaseTimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLoadBalancerAutoReleaseTimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLoadBalancerAutoReleaseTimeRequest) Invoke(client *sdk.Client) (resp *DescribeLoadBalancerAutoReleaseTimeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeLoadBalancerAutoReleaseTime", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLoadBalancerAutoReleaseTimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLoadBalancerAutoReleaseTimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLoadBalancerAutoReleaseTimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLoadBalancerAutoReleaseTimeResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	AutoReleaseTime int64
 }

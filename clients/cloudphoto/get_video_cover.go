@@ -7,35 +7,22 @@ import (
 )
 
 type GetVideoCoverRequest struct {
+	requests.RpcRequest
 	LibraryId string `position:"Query" name:"LibraryId"`
 	PhotoId   int64  `position:"Query" name:"PhotoId"`
 	StoreName string `position:"Query" name:"StoreName"`
 	ZoomType  string `position:"Query" name:"ZoomType"`
 }
 
-func (r GetVideoCoverRequest) Invoke(client *sdk.Client) (response *GetVideoCoverResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetVideoCoverRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetVideoCoverRequest) Invoke(client *sdk.Client) (resp *GetVideoCoverResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetVideoCover", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetVideoCoverResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetVideoCoverResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetVideoCoverResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetVideoCoverResponse struct {
+	responses.BaseResponse
 	Code          string
 	Message       string
 	VideoCoverUrl string

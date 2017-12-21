@@ -9,32 +9,19 @@ import (
 )
 
 type QueryOrderRequest struct {
+	requests.RpcRequest
 	OrderID string `position:"Query" name:"OrderID"`
 }
 
-func (r QueryOrderRequest) Invoke(client *sdk.Client) (response *QueryOrderResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryOrderRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryOrderRequest) Invoke(client *sdk.Client) (resp *QueryOrderResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryOrder", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryOrderResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryOrderResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryOrderResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryOrderResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	OrderID       string
 	UserID        string

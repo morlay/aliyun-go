@@ -7,6 +7,7 @@ import (
 )
 
 type OnsSubscriptionCreateRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -14,29 +15,15 @@ type OnsSubscriptionCreateRequest struct {
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsSubscriptionCreateRequest) Invoke(client *sdk.Client) (response *OnsSubscriptionCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsSubscriptionCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsSubscriptionCreateRequest) Invoke(client *sdk.Client) (resp *OnsSubscriptionCreateResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsSubscriptionCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsSubscriptionCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsSubscriptionCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsSubscriptionCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsSubscriptionCreateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

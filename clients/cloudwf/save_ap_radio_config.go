@@ -7,6 +7,7 @@ import (
 )
 
 type SaveApRadioConfigRequest struct {
+	requests.RpcRequest
 	RequireMode        string `position:"Query" name:"RequireMode"`
 	Htmode             string `position:"Query" name:"Htmode"`
 	Frag               int    `position:"Query" name:"Frag"`
@@ -28,29 +29,15 @@ type SaveApRadioConfigRequest struct {
 	RadioIndex         int    `position:"Query" name:"RadioIndex"`
 }
 
-func (r SaveApRadioConfigRequest) Invoke(client *sdk.Client) (response *SaveApRadioConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApRadioConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApRadioConfigRequest) Invoke(client *sdk.Client) (resp *SaveApRadioConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApRadioConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApRadioConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApRadioConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApRadioConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApRadioConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

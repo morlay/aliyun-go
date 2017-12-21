@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceAutoRenewalAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -20,29 +21,15 @@ type DescribeInstanceAutoRenewalAttributeRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r DescribeInstanceAutoRenewalAttributeRequest) Invoke(client *sdk.Client) (response *DescribeInstanceAutoRenewalAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceAutoRenewalAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceAutoRenewalAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceAutoRenewalAttributeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeInstanceAutoRenewalAttribute", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceAutoRenewalAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceAutoRenewalAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceAutoRenewalAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceAutoRenewalAttributeResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	PageNumber       int
 	TotalRecordCount int

@@ -9,33 +9,20 @@ import (
 )
 
 type ListDomainsRequest struct {
+	requests.RpcRequest
 	PageSize   int `position:"Query" name:"PageSize"`
 	PageNumber int `position:"Query" name:"PageNumber"`
 }
 
-func (r ListDomainsRequest) Invoke(client *sdk.Client) (response *ListDomainsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListDomainsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListDomainsRequest) Invoke(client *sdk.Client) (resp *ListDomainsResponse, err error) {
 	req.InitWithApiInfo("Httpdns", "2016-02-01", "ListDomains", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListDomainsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListDomainsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListDomainsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListDomainsResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int64
 	PageNumber  int64

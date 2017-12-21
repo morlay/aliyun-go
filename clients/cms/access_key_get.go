@@ -7,32 +7,19 @@ import (
 )
 
 type AccessKeyGetRequest struct {
+	requests.RpcRequest
 	UserId int64 `position:"Query" name:"UserId"`
 }
 
-func (r AccessKeyGetRequest) Invoke(client *sdk.Client) (response *AccessKeyGetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AccessKeyGetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AccessKeyGetRequest) Invoke(client *sdk.Client) (resp *AccessKeyGetResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "AccessKeyGet", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AccessKeyGetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AccessKeyGetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AccessKeyGetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AccessKeyGetResponse struct {
+	responses.BaseResponse
 	ErrorCode    int
 	ErrorMessage string
 	Success      bool

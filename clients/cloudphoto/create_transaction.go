@@ -7,6 +7,7 @@ import (
 )
 
 type CreateTransactionRequest struct {
+	requests.RpcRequest
 	Ext       string `position:"Query" name:"Ext"`
 	Size      int64  `position:"Query" name:"Size"`
 	LibraryId string `position:"Query" name:"LibraryId"`
@@ -15,29 +16,15 @@ type CreateTransactionRequest struct {
 	Md5       string `position:"Query" name:"Md.5"`
 }
 
-func (r CreateTransactionRequest) Invoke(client *sdk.Client) (response *CreateTransactionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateTransactionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateTransactionRequest) Invoke(client *sdk.Client) (resp *CreateTransactionResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "CreateTransaction", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateTransactionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateTransactionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateTransactionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateTransactionResponse struct {
+	responses.BaseResponse
 	Code        string
 	Message     string
 	RequestId   string

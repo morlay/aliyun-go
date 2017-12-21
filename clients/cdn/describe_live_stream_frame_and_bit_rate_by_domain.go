@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamFrameAndBitRateByDomainRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -17,29 +18,15 @@ type DescribeLiveStreamFrameAndBitRateByDomainRequest struct {
 	PageNumber    int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeLiveStreamFrameAndBitRateByDomainRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamFrameAndBitRateByDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamFrameAndBitRateByDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamFrameAndBitRateByDomainRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamFrameAndBitRateByDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamFrameAndBitRateByDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamFrameAndBitRateByDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamFrameAndBitRateByDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamFrameAndBitRateByDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamFrameAndBitRateByDomainResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	Count                    int64
 	PageNumber               int64

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId                  int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount             string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken                      string `position:"Query" name:"ClientToken"`
@@ -24,28 +25,14 @@ type ModifyInstanceSpecRequest struct {
 	InternetMaxBandwidthIn           int    `position:"Query" name:"InternetMaxBandwidthIn"`
 }
 
-func (r ModifyInstanceSpecRequest) Invoke(client *sdk.Client) (response *ModifyInstanceSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceSpecRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceSpecResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceSpec", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

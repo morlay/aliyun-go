@@ -7,30 +7,17 @@ import (
 )
 
 type ClearAccountAliasRequest struct {
+	requests.RpcRequest
 }
 
-func (r ClearAccountAliasRequest) Invoke(client *sdk.Client) (response *ClearAccountAliasResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ClearAccountAliasRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ClearAccountAliasRequest) Invoke(client *sdk.Client) (resp *ClearAccountAliasResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ClearAccountAlias", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ClearAccountAliasResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ClearAccountAliasResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ClearAccountAliasResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ClearAccountAliasResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

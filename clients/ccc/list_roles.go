@@ -9,32 +9,19 @@ import (
 )
 
 type ListRolesRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r ListRolesRequest) Invoke(client *sdk.Client) (response *ListRolesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListRolesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListRolesRequest) Invoke(client *sdk.Client) (resp *ListRolesResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ListRoles", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListRolesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListRolesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListRolesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListRolesResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

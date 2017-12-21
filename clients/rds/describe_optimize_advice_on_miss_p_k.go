@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeOptimizeAdviceOnMissPKRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeOptimizeAdviceOnMissPKRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeOptimizeAdviceOnMissPKRequest) Invoke(client *sdk.Client) (response *DescribeOptimizeAdviceOnMissPKResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOptimizeAdviceOnMissPKRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOptimizeAdviceOnMissPKRequest) Invoke(client *sdk.Client) (resp *DescribeOptimizeAdviceOnMissPKResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeOptimizeAdviceOnMissPK", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOptimizeAdviceOnMissPKResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOptimizeAdviceOnMissPKResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOptimizeAdviceOnMissPKResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOptimizeAdviceOnMissPKResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalRecordsCount int
 	PageNumber        int

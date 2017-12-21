@@ -7,30 +7,18 @@ import (
 )
 
 type DescribeApiVersionRequest struct {
+	requests.RoaRequest
 }
 
-func (r DescribeApiVersionRequest) Invoke(client *sdk.Client) (response *DescribeApiVersionResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DescribeApiVersionRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DescribeApiVersionRequest) Invoke(client *sdk.Client) (resp *DescribeApiVersionResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "DescribeApiVersion", "/version", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiVersionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiVersionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiVersionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiVersionResponse struct {
+	responses.BaseResponse
 }

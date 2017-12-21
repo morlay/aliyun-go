@@ -7,6 +7,7 @@ import (
 )
 
 type UserDataShowListRequest struct {
+	requests.RpcRequest
 	Iid  int64  `position:"Query" name:"Iid"`
 	Name string `position:"Query" name:"Name"`
 	Page int    `position:"Query" name:"Page"`
@@ -14,29 +15,15 @@ type UserDataShowListRequest struct {
 	Per  int    `position:"Query" name:"Per"`
 }
 
-func (r UserDataShowListRequest) Invoke(client *sdk.Client) (response *UserDataShowListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UserDataShowListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UserDataShowListRequest) Invoke(client *sdk.Client) (resp *UserDataShowListResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "UserDataShowList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UserDataShowListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UserDataShowListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UserDataShowListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UserDataShowListResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

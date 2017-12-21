@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeLoadBalancerHTTPSListenerAttributeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -17,29 +18,15 @@ type DescribeLoadBalancerHTTPSListenerAttributeRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DescribeLoadBalancerHTTPSListenerAttributeRequest) Invoke(client *sdk.Client) (response *DescribeLoadBalancerHTTPSListenerAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLoadBalancerHTTPSListenerAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLoadBalancerHTTPSListenerAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeLoadBalancerHTTPSListenerAttributeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeLoadBalancerHTTPSListenerAttribute", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLoadBalancerHTTPSListenerAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLoadBalancerHTTPSListenerAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLoadBalancerHTTPSListenerAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLoadBalancerHTTPSListenerAttributeResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	ListenerPort           int
 	BackendServerPort      int

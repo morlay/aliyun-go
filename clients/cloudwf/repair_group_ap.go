@@ -7,32 +7,19 @@ import (
 )
 
 type RepairGroupApRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r RepairGroupApRequest) Invoke(client *sdk.Client) (response *RepairGroupApResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RepairGroupApRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RepairGroupApRequest) Invoke(client *sdk.Client) (resp *RepairGroupApResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "RepairGroupAp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RepairGroupApResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RepairGroupApResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RepairGroupApResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RepairGroupApResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

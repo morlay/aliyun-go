@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeReplicaPerformanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -21,29 +22,15 @@ type DescribeReplicaPerformanceRequest struct {
 	Key                  string `position:"Query" name:"Key"`
 }
 
-func (r DescribeReplicaPerformanceRequest) Invoke(client *sdk.Client) (response *DescribeReplicaPerformanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeReplicaPerformanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeReplicaPerformanceRequest) Invoke(client *sdk.Client) (resp *DescribeReplicaPerformanceResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeReplicaPerformance", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeReplicaPerformanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeReplicaPerformanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeReplicaPerformanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeReplicaPerformanceResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	StartTime       string
 	EndTime         string

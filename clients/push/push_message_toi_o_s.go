@@ -7,6 +7,7 @@ import (
 )
 
 type PushMessageToiOSRequest struct {
+	requests.RpcRequest
 	AppKey      int64  `position:"Query" name:"AppKey"`
 	TargetValue string `position:"Query" name:"TargetValue"`
 	Title       string `position:"Query" name:"Title"`
@@ -15,29 +16,15 @@ type PushMessageToiOSRequest struct {
 	Target      string `position:"Query" name:"Target"`
 }
 
-func (r PushMessageToiOSRequest) Invoke(client *sdk.Client) (response *PushMessageToiOSResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PushMessageToiOSRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PushMessageToiOSRequest) Invoke(client *sdk.Client) (resp *PushMessageToiOSResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "PushMessageToiOS", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PushMessageToiOSResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PushMessageToiOSResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PushMessageToiOSResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PushMessageToiOSResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MessageId string
 }

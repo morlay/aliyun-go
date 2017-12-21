@@ -9,34 +9,21 @@ import (
 )
 
 type OnsRegionListRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 }
 
-func (r OnsRegionListRequest) Invoke(client *sdk.Client) (response *OnsRegionListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsRegionListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsRegionListRequest) Invoke(client *sdk.Client) (resp *OnsRegionListResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsRegionList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsRegionListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsRegionListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsRegionListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsRegionListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsRegionListRegionDoList

@@ -7,6 +7,7 @@ import (
 )
 
 type OnsTopicUpdateRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -14,29 +15,15 @@ type OnsTopicUpdateRequest struct {
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsTopicUpdateRequest) Invoke(client *sdk.Client) (response *OnsTopicUpdateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsTopicUpdateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsTopicUpdateRequest) Invoke(client *sdk.Client) (resp *OnsTopicUpdateResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsTopicUpdate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsTopicUpdateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsTopicUpdateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsTopicUpdateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsTopicUpdateResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

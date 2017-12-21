@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeDomainMonthBillingBpsDataRequest struct {
+	requests.RpcRequest
 	SecurityToken      string `position:"Query" name:"SecurityToken"`
 	InternetChargeType string `position:"Query" name:"InternetChargeType"`
 	DomainName         string `position:"Query" name:"DomainName"`
@@ -15,29 +16,15 @@ type DescribeDomainMonthBillingBpsDataRequest struct {
 	OwnerId            int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainMonthBillingBpsDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainMonthBillingBpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainMonthBillingBpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainMonthBillingBpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainMonthBillingBpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainMonthBillingBpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainMonthBillingBpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainMonthBillingBpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainMonthBillingBpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainMonthBillingBpsDataResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	DomainName             string
 	StartTime              string

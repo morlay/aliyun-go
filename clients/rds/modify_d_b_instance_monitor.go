@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceMonitorRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               string `position:"Query" name:"Period"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyDBInstanceMonitorRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDBInstanceMonitorRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceMonitorResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceMonitorRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceMonitorRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceMonitorResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceMonitor", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceMonitorResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceMonitorResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceMonitorResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceMonitorResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

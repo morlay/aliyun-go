@@ -7,6 +7,7 @@ import (
 )
 
 type CreateReadOnlyDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage     int    `position:"Query" name:"DBInstanceStorage"`
 	ResourceOwnerAccount  string `position:"Query" name:"ResourceOwnerAccount"`
@@ -26,29 +27,15 @@ type CreateReadOnlyDBInstanceRequest struct {
 	InstanceNetworkType   string `position:"Query" name:"InstanceNetworkType"`
 }
 
-func (r CreateReadOnlyDBInstanceRequest) Invoke(client *sdk.Client) (response *CreateReadOnlyDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateReadOnlyDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateReadOnlyDBInstanceRequest) Invoke(client *sdk.Client) (resp *CreateReadOnlyDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreateReadOnlyDBInstance", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateReadOnlyDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateReadOnlyDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateReadOnlyDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateReadOnlyDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DBInstanceId     string
 	OrderId          string

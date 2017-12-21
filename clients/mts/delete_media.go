@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteMediaRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteMediaRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteMediaRequest) Invoke(client *sdk.Client) (response *DeleteMediaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteMediaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteMediaRequest) Invoke(client *sdk.Client) (resp *DeleteMediaResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteMedia", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteMediaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteMediaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteMediaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteMediaResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

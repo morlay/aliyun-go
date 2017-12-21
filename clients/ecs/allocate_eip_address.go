@@ -7,6 +7,7 @@ import (
 )
 
 type AllocateEipAddressRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            string `position:"Query" name:"Bandwidth"`
@@ -16,29 +17,15 @@ type AllocateEipAddressRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AllocateEipAddressRequest) Invoke(client *sdk.Client) (response *AllocateEipAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AllocateEipAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AllocateEipAddressRequest) Invoke(client *sdk.Client) (resp *AllocateEipAddressResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AllocateEipAddress", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AllocateEipAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AllocateEipAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AllocateEipAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AllocateEipAddressResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	AllocationId string
 	EipAddress   string

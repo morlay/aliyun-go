@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyNatGatewaySpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type ModifyNatGatewaySpecRequest struct {
 	Spec                 string `position:"Query" name:"Spec"`
 }
 
-func (r ModifyNatGatewaySpecRequest) Invoke(client *sdk.Client) (response *ModifyNatGatewaySpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyNatGatewaySpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyNatGatewaySpecRequest) Invoke(client *sdk.Client) (resp *ModifyNatGatewaySpecResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyNatGatewaySpec", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyNatGatewaySpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyNatGatewaySpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyNatGatewaySpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyNatGatewaySpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

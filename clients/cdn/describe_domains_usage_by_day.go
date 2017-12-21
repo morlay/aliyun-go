@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainsUsageByDayRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainsUsageByDayRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainsUsageByDayRequest) Invoke(client *sdk.Client) (response *DescribeDomainsUsageByDayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainsUsageByDayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainsUsageByDayRequest) Invoke(client *sdk.Client) (resp *DescribeDomainsUsageByDayResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainsUsageByDay", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainsUsageByDayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainsUsageByDayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainsUsageByDayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainsUsageByDayResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DomainName   string
 	DataInterval string

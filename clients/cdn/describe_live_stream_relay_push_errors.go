@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamRelayPushErrorsRequest struct {
+	requests.RpcRequest
 	RelayDomain   string `position:"Query" name:"RelayDomain"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeLiveStreamRelayPushErrorsRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamRelayPushErrorsRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamRelayPushErrorsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamRelayPushErrorsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamRelayPushErrorsRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamRelayPushErrorsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamRelayPushErrors", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamRelayPushErrorsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamRelayPushErrorsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamRelayPushErrorsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamRelayPushErrorsResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	RelayPushErrorsModelList DescribeLiveStreamRelayPushErrorsRelayPushErrorsModelList
 }

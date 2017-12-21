@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeScheduledTasksRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ScheduledAction2     string `position:"Query" name:"ScheduledAction.2"`
 	ScheduledAction1     string `position:"Query" name:"ScheduledAction.1"`
@@ -77,29 +78,15 @@ type DescribeScheduledTasksRequest struct {
 	ScheduledAction11    string `position:"Query" name:"ScheduledAction.11"`
 }
 
-func (r DescribeScheduledTasksRequest) Invoke(client *sdk.Client) (response *DescribeScheduledTasksResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeScheduledTasksRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeScheduledTasksRequest) Invoke(client *sdk.Client) (resp *DescribeScheduledTasksResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeScheduledTasks", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeScheduledTasksResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeScheduledTasksResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeScheduledTasksResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeScheduledTasksResponse struct {
+	responses.BaseResponse
 	TotalCount     int
 	PageNumber     int
 	PageSize       int

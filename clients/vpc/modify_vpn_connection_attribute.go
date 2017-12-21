@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyVpnConnectionAttributeRequest struct {
+	requests.RpcRequest
 	IkeConfig            string `position:"Query" name:"IkeConfig"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	RemoteSubnet         string `position:"Query" name:"RemoteSubnet"`
@@ -21,29 +22,15 @@ type ModifyVpnConnectionAttributeRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r ModifyVpnConnectionAttributeRequest) Invoke(client *sdk.Client) (response *ModifyVpnConnectionAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyVpnConnectionAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyVpnConnectionAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyVpnConnectionAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyVpnConnectionAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyVpnConnectionAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyVpnConnectionAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyVpnConnectionAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyVpnConnectionAttributeResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	VpnConnectionId   string
 	CustomerGatewayId string

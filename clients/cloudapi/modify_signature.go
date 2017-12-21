@@ -7,35 +7,22 @@ import (
 )
 
 type ModifySignatureRequest struct {
+	requests.RpcRequest
 	SignatureId     string `position:"Query" name:"SignatureId"`
 	SignatureName   string `position:"Query" name:"SignatureName"`
 	SignatureKey    string `position:"Query" name:"SignatureKey"`
 	SignatureSecret string `position:"Query" name:"SignatureSecret"`
 }
 
-func (r ModifySignatureRequest) Invoke(client *sdk.Client) (response *ModifySignatureResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySignatureRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySignatureRequest) Invoke(client *sdk.Client) (resp *ModifySignatureResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ModifySignature", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySignatureResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySignatureResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySignatureResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySignatureResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	SignatureId   string
 	SignatureName string

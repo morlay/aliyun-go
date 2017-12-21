@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeEipMonitorDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeEipMonitorDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeEipMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeEipMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeEipMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeEipMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeEipMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeEipMonitorData", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeEipMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeEipMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeEipMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeEipMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	EipMonitorDatas DescribeEipMonitorDataEipMonitorDataList
 }

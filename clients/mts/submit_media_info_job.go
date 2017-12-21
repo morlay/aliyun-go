@@ -9,6 +9,7 @@ import (
 )
 
 type SubmitMediaInfoJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -18,29 +19,15 @@ type SubmitMediaInfoJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitMediaInfoJobRequest) Invoke(client *sdk.Client) (response *SubmitMediaInfoJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitMediaInfoJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitMediaInfoJobRequest) Invoke(client *sdk.Client) (resp *SubmitMediaInfoJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitMediaInfoJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitMediaInfoJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitMediaInfoJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitMediaInfoJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitMediaInfoJobResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	MediaInfoJob SubmitMediaInfoJobMediaInfoJob
 }

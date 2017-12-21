@@ -7,32 +7,19 @@ import (
 )
 
 type BatchSaveApPositionRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r BatchSaveApPositionRequest) Invoke(client *sdk.Client) (response *BatchSaveApPositionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BatchSaveApPositionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BatchSaveApPositionRequest) Invoke(client *sdk.Client) (resp *BatchSaveApPositionResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "BatchSaveApPosition", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BatchSaveApPositionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BatchSaveApPositionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BatchSaveApPositionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BatchSaveApPositionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

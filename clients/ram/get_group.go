@@ -7,32 +7,19 @@ import (
 )
 
 type GetGroupRequest struct {
+	requests.RpcRequest
 	GroupName string `position:"Query" name:"GroupName"`
 }
 
-func (r GetGroupRequest) Invoke(client *sdk.Client) (response *GetGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetGroupRequest) Invoke(client *sdk.Client) (resp *GetGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Group     GetGroupGroup
 }

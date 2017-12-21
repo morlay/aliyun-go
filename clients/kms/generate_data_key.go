@@ -7,6 +7,7 @@ import (
 )
 
 type GenerateDataKeyRequest struct {
+	requests.RpcRequest
 	KeyId             string `position:"Query" name:"KeyId"`
 	KeySpec           string `position:"Query" name:"KeySpec"`
 	NumberOfBytes     int    `position:"Query" name:"NumberOfBytes"`
@@ -14,29 +15,15 @@ type GenerateDataKeyRequest struct {
 	EncryptionContext string `position:"Query" name:"EncryptionContext"`
 }
 
-func (r GenerateDataKeyRequest) Invoke(client *sdk.Client) (response *GenerateDataKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GenerateDataKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GenerateDataKeyRequest) Invoke(client *sdk.Client) (resp *GenerateDataKeyResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "GenerateDataKey", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GenerateDataKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GenerateDataKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GenerateDataKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GenerateDataKeyResponse struct {
+	responses.BaseResponse
 	CiphertextBlob string
 	KeyId          string
 	Plaintext      string

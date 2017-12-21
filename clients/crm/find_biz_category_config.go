@@ -9,32 +9,19 @@ import (
 )
 
 type FindBizCategoryConfigRequest struct {
+	requests.RpcRequest
 	KpId int64 `position:"Query" name:"KpId"`
 }
 
-func (r FindBizCategoryConfigRequest) Invoke(client *sdk.Client) (response *FindBizCategoryConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FindBizCategoryConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FindBizCategoryConfigRequest) Invoke(client *sdk.Client) (resp *FindBizCategoryConfigResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "FindBizCategoryConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FindBizCategoryConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FindBizCategoryConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FindBizCategoryConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FindBizCategoryConfigResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateBandwidthPackageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -22,29 +23,15 @@ type CreateBandwidthPackageRequest struct {
 	IpCount              int    `position:"Query" name:"IpCount"`
 }
 
-func (r CreateBandwidthPackageRequest) Invoke(client *sdk.Client) (response *CreateBandwidthPackageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateBandwidthPackageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateBandwidthPackageRequest) Invoke(client *sdk.Client) (resp *CreateBandwidthPackageResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateBandwidthPackage", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateBandwidthPackageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateBandwidthPackageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateBandwidthPackageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateBandwidthPackageResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	BandwidthPackageId string
 }

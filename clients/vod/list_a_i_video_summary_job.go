@@ -9,6 +9,7 @@ import (
 )
 
 type ListAIVideoSummaryJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	AIVideoSummaryJobIds string `position:"Query" name:"AIVideoSummaryJobIds"`
@@ -16,29 +17,15 @@ type ListAIVideoSummaryJobRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAIVideoSummaryJobRequest) Invoke(client *sdk.Client) (response *ListAIVideoSummaryJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAIVideoSummaryJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAIVideoSummaryJobRequest) Invoke(client *sdk.Client) (resp *ListAIVideoSummaryJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoSummaryJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAIVideoSummaryJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAIVideoSummaryJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAIVideoSummaryJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAIVideoSummaryJobResponse struct {
+	responses.BaseResponse
 	RequestId                    string
 	AIVideoSummaryJobList        ListAIVideoSummaryJobAIVideoSummaryJobList
 	NonExistAIVideoSummaryJobIds ListAIVideoSummaryJobNonExistAIVideoSummaryJobIdList

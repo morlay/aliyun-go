@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeGlobalAccelerationInstancesRequest struct {
+	requests.RpcRequest
 	IpAddress                    string `position:"Query" name:"IpAddress"`
 	ResourceOwnerId              int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount         string `position:"Query" name:"ResourceOwnerAccount"`
@@ -23,29 +24,15 @@ type DescribeGlobalAccelerationInstancesRequest struct {
 	Status                       string `position:"Query" name:"Status"`
 }
 
-func (r DescribeGlobalAccelerationInstancesRequest) Invoke(client *sdk.Client) (response *DescribeGlobalAccelerationInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeGlobalAccelerationInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeGlobalAccelerationInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeGlobalAccelerationInstancesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeGlobalAccelerationInstances", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeGlobalAccelerationInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeGlobalAccelerationInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeGlobalAccelerationInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeGlobalAccelerationInstancesResponse struct {
+	responses.BaseResponse
 	RequestId                   string
 	TotalCount                  int
 	PageNumber                  int

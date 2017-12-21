@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceAttributeRequest struct {
+	requests.RpcRequest
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Password             string `position:"Query" name:"Password"`
@@ -20,28 +21,14 @@ type ModifyInstanceAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyInstanceAttributeRequest) Invoke(client *sdk.Client) (response *ModifyInstanceAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

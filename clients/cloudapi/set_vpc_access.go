@@ -7,34 +7,21 @@ import (
 )
 
 type SetVpcAccessRequest struct {
+	requests.RpcRequest
 	VpcId      string `position:"Query" name:"VpcId"`
 	InstanceId string `position:"Query" name:"InstanceId"`
 	Port       int    `position:"Query" name:"Port"`
 	Name       string `position:"Query" name:"Name"`
 }
 
-func (r SetVpcAccessRequest) Invoke(client *sdk.Client) (response *SetVpcAccessResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetVpcAccessRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetVpcAccessRequest) Invoke(client *sdk.Client) (resp *SetVpcAccessResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "SetVpcAccess", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetVpcAccessResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetVpcAccessResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetVpcAccessResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetVpcAccessResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

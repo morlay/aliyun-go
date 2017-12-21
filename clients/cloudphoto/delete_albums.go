@@ -9,34 +9,21 @@ import (
 )
 
 type DeleteAlbumsRequest struct {
+	requests.RpcRequest
 	LibraryId string                   `position:"Query" name:"LibraryId"`
 	AlbumIds  *DeleteAlbumsAlbumIdList `position:"Query" type:"Repeated" name:"AlbumId"`
 	StoreName string                   `position:"Query" name:"StoreName"`
 }
 
-func (r DeleteAlbumsRequest) Invoke(client *sdk.Client) (response *DeleteAlbumsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteAlbumsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteAlbumsRequest) Invoke(client *sdk.Client) (resp *DeleteAlbumsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "DeleteAlbums", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteAlbumsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteAlbumsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteAlbumsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteAlbumsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteKeyPairsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	KeyPairNames         string `position:"Query" name:"KeyPairNames"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteKeyPairsRequest) Invoke(client *sdk.Client) (response *DeleteKeyPairsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteKeyPairsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteKeyPairsRequest) Invoke(client *sdk.Client) (resp *DeleteKeyPairsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteKeyPairs", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteKeyPairsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteKeyPairsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteKeyPairsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteKeyPairsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

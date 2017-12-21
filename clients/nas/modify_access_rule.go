@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyAccessRuleRequest struct {
+	requests.RpcRequest
 	RWAccessType    string `position:"Query" name:"RWAccessType"`
 	SourceCidrIp    string `position:"Query" name:"SourceCidrIp"`
 	UserAccessType  string `position:"Query" name:"UserAccessType"`
@@ -15,28 +16,14 @@ type ModifyAccessRuleRequest struct {
 	AccessRuleId    string `position:"Query" name:"AccessRuleId"`
 }
 
-func (r ModifyAccessRuleRequest) Invoke(client *sdk.Client) (response *ModifyAccessRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyAccessRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyAccessRuleRequest) Invoke(client *sdk.Client) (resp *ModifyAccessRuleResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "ModifyAccessRule", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyAccessRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyAccessRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyAccessRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyAccessRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

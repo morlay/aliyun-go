@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAuditRecordsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -26,29 +27,15 @@ type DescribeAuditRecordsRequest struct {
 	User                 string `position:"Query" name:"User"`
 }
 
-func (r DescribeAuditRecordsRequest) Invoke(client *sdk.Client) (response *DescribeAuditRecordsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAuditRecordsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAuditRecordsRequest) Invoke(client *sdk.Client) (resp *DescribeAuditRecordsResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeAuditRecords", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAuditRecordsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAuditRecordsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAuditRecordsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAuditRecordsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount int
 	PageNumber       int

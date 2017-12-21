@@ -7,6 +7,7 @@ import (
 )
 
 type CreateBackupRequest struct {
+	requests.RpcRequest
 	BackupMethod         string `position:"Query" name:"BackupMethod"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBName               string `position:"Query" name:"DBName"`
@@ -17,28 +18,14 @@ type CreateBackupRequest struct {
 	BackupType           string `position:"Query" name:"BackupType"`
 }
 
-func (r CreateBackupRequest) Invoke(client *sdk.Client) (response *CreateBackupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateBackupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateBackupRequest) Invoke(client *sdk.Client) (resp *CreateBackupResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreateBackup", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateBackupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateBackupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateBackupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateBackupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type SaveContactTemplateCredentialRequest struct {
+	requests.RpcRequest
 	CredentialNo      string `position:"Query" name:"CredentialNo"`
 	Credential        string `position:"Query" name:"Credential"`
 	UserClientIp      string `position:"Query" name:"UserClientIp"`
@@ -14,28 +15,14 @@ type SaveContactTemplateCredentialRequest struct {
 	ContactTemplateId int64  `position:"Query" name:"ContactTemplateId"`
 }
 
-func (r SaveContactTemplateCredentialRequest) Invoke(client *sdk.Client) (response *SaveContactTemplateCredentialResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveContactTemplateCredentialRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveContactTemplateCredentialRequest) Invoke(client *sdk.Client) (resp *SaveContactTemplateCredentialResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "SaveContactTemplateCredential", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveContactTemplateCredentialResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveContactTemplateCredentialResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveContactTemplateCredentialResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveContactTemplateCredentialResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRecycleBinRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceId           string `position:"Query" name:"ResourceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeRecycleBinRequest struct {
 	Status               string `position:"Query" name:"Status"`
 }
 
-func (r DescribeRecycleBinRequest) Invoke(client *sdk.Client) (response *DescribeRecycleBinResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRecycleBinRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRecycleBinRequest) Invoke(client *sdk.Client) (resp *DescribeRecycleBinResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeRecycleBin", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRecycleBinResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRecycleBinResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRecycleBinResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRecycleBinResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalCount       int
 	RecycleBinModels DescribeRecycleBinRecycleBinModelList

@@ -7,6 +7,7 @@ import (
 )
 
 type SetFileTypeForceTtlCodeConfigRequest struct {
+	requests.RpcRequest
 	FileType      string `position:"Query" name:"FileType"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
@@ -15,28 +16,14 @@ type SetFileTypeForceTtlCodeConfigRequest struct {
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 }
 
-func (r SetFileTypeForceTtlCodeConfigRequest) Invoke(client *sdk.Client) (response *SetFileTypeForceTtlCodeConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetFileTypeForceTtlCodeConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetFileTypeForceTtlCodeConfigRequest) Invoke(client *sdk.Client) (resp *SetFileTypeForceTtlCodeConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetFileTypeForceTtlCodeConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetFileTypeForceTtlCodeConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetFileTypeForceTtlCodeConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetFileTypeForceTtlCodeConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetFileTypeForceTtlCodeConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type BatchSendMailRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -20,29 +21,15 @@ type BatchSendMailRequest struct {
 	ClickTrace           string `position:"Query" name:"ClickTrace"`
 }
 
-func (r BatchSendMailRequest) Invoke(client *sdk.Client) (response *BatchSendMailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BatchSendMailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BatchSendMailRequest) Invoke(client *sdk.Client) (resp *BatchSendMailResponse, err error) {
 	req.InitWithApiInfo("Dm", "2015-11-23", "BatchSendMail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BatchSendMailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BatchSendMailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BatchSendMailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BatchSendMailResponse struct {
+	responses.BaseResponse
 	RequestId string
 	EnvId     string
 }

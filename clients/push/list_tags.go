@@ -9,32 +9,19 @@ import (
 )
 
 type ListTagsRequest struct {
+	requests.RpcRequest
 	AppKey int64 `position:"Query" name:"AppKey"`
 }
 
-func (r ListTagsRequest) Invoke(client *sdk.Client) (response *ListTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListTagsRequest) Invoke(client *sdk.Client) (resp *ListTagsResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "ListTags", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListTagsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TagInfos  ListTagsTagInfoList
 }

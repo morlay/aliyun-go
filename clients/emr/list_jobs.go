@@ -9,35 +9,22 @@ import (
 )
 
 type ListJobsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	IsDesc          string `position:"Query" name:"IsDesc"`
 	PageNumber      int    `position:"Query" name:"PageNumber"`
 	PageSize        int    `position:"Query" name:"PageSize"`
 }
 
-func (r ListJobsRequest) Invoke(client *sdk.Client) (response *ListJobsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListJobsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListJobsRequest) Invoke(client *sdk.Client) (resp *ListJobsResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ListJobs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListJobsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListJobsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListJobsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListJobsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

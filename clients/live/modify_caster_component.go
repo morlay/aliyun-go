@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyCasterComponentRequest struct {
+	requests.RpcRequest
 	ComponentId       string `position:"Query" name:"ComponentId"`
 	ImageLayerContent string `position:"Query" name:"ImageLayerContent"`
 	CasterId          string `position:"Query" name:"CasterId"`
@@ -20,29 +21,15 @@ type ModifyCasterComponentRequest struct {
 	TextLayerContent  string `position:"Query" name:"TextLayerContent"`
 }
 
-func (r ModifyCasterComponentRequest) Invoke(client *sdk.Client) (response *ModifyCasterComponentResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCasterComponentRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCasterComponentRequest) Invoke(client *sdk.Client) (resp *ModifyCasterComponentResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "ModifyCasterComponent", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCasterComponentResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCasterComponentResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCasterComponentResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyCasterComponentResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	ComponentId string
 }

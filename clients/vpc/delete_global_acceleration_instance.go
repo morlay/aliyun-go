@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteGlobalAccelerationInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId              int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount         string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount                 string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteGlobalAccelerationInstanceRequest struct {
 	GlobalAccelerationInstanceId string `position:"Query" name:"GlobalAccelerationInstanceId"`
 }
 
-func (r DeleteGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (response *DeleteGlobalAccelerationInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteGlobalAccelerationInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (resp *DeleteGlobalAccelerationInstanceResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteGlobalAccelerationInstance", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteGlobalAccelerationInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteGlobalAccelerationInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteGlobalAccelerationInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteGlobalAccelerationInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

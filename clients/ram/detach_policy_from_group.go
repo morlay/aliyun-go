@@ -7,33 +7,20 @@ import (
 )
 
 type DetachPolicyFromGroupRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 	GroupName  string `position:"Query" name:"GroupName"`
 }
 
-func (r DetachPolicyFromGroupRequest) Invoke(client *sdk.Client) (response *DetachPolicyFromGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DetachPolicyFromGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DetachPolicyFromGroupRequest) Invoke(client *sdk.Client) (resp *DetachPolicyFromGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "DetachPolicyFromGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DetachPolicyFromGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DetachPolicyFromGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DetachPolicyFromGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DetachPolicyFromGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

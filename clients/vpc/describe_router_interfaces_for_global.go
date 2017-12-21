@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRouterInterfacesForGlobalRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeRouterInterfacesForGlobalRequest struct {
 	Status               string `position:"Query" name:"Status"`
 }
 
-func (r DescribeRouterInterfacesForGlobalRequest) Invoke(client *sdk.Client) (response *DescribeRouterInterfacesForGlobalResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRouterInterfacesForGlobalRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRouterInterfacesForGlobalRequest) Invoke(client *sdk.Client) (resp *DescribeRouterInterfacesForGlobalResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeRouterInterfacesForGlobal", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRouterInterfacesForGlobalResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRouterInterfacesForGlobalResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRouterInterfacesForGlobalResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRouterInterfacesForGlobalResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	Code               string
 	Message            string

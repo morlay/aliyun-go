@@ -7,6 +7,7 @@ import (
 )
 
 type OnsPublishDeleteRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -14,29 +15,15 @@ type OnsPublishDeleteRequest struct {
 	ProducerId   string `position:"Query" name:"ProducerId"`
 }
 
-func (r OnsPublishDeleteRequest) Invoke(client *sdk.Client) (response *OnsPublishDeleteResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsPublishDeleteRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsPublishDeleteRequest) Invoke(client *sdk.Client) (resp *OnsPublishDeleteResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsPublishDelete", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsPublishDeleteResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsPublishDeleteResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsPublishDeleteResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsPublishDeleteResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

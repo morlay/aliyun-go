@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceAutoReleaseTimeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyInstanceAutoReleaseTimeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyInstanceAutoReleaseTimeRequest) Invoke(client *sdk.Client) (response *ModifyInstanceAutoReleaseTimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceAutoReleaseTimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceAutoReleaseTimeRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceAutoReleaseTimeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceAutoReleaseTime", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceAutoReleaseTimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceAutoReleaseTimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceAutoReleaseTimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceAutoReleaseTimeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

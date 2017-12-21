@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeSQLDiagnosisListRequest struct {
+	requests.RpcRequest
 	DBInstanceId string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r DescribeSQLDiagnosisListRequest) Invoke(client *sdk.Client) (response *DescribeSQLDiagnosisListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSQLDiagnosisListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSQLDiagnosisListRequest) Invoke(client *sdk.Client) (resp *DescribeSQLDiagnosisListResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeSQLDiagnosisList", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSQLDiagnosisListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSQLDiagnosisListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSQLDiagnosisListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSQLDiagnosisListResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	SQLDiagList DescribeSQLDiagnosisListSQLDiagList
 }

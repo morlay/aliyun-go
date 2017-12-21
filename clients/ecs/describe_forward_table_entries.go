@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeForwardTableEntriesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ForwardEntryId       string `position:"Query" name:"ForwardEntryId"`
@@ -19,29 +20,15 @@ type DescribeForwardTableEntriesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeForwardTableEntriesRequest) Invoke(client *sdk.Client) (response *DescribeForwardTableEntriesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeForwardTableEntriesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeForwardTableEntriesRequest) Invoke(client *sdk.Client) (resp *DescribeForwardTableEntriesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeForwardTableEntries", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeForwardTableEntriesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeForwardTableEntriesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeForwardTableEntriesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeForwardTableEntriesResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	TotalCount          int
 	PageNumber          int

@@ -9,32 +9,19 @@ import (
 )
 
 type ListPublicKeysRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r ListPublicKeysRequest) Invoke(client *sdk.Client) (response *ListPublicKeysResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPublicKeysRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPublicKeysRequest) Invoke(client *sdk.Client) (resp *ListPublicKeysResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListPublicKeys", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPublicKeysResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPublicKeysResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPublicKeysResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPublicKeysResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PublicKeys ListPublicKeysPublicKeyList
 }

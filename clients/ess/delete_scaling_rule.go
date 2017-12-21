@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteScalingRuleRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ScalingRuleId        string `position:"Query" name:"ScalingRuleId"`
 }
 
-func (r DeleteScalingRuleRequest) Invoke(client *sdk.Client) (response *DeleteScalingRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteScalingRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteScalingRuleRequest) Invoke(client *sdk.Client) (resp *DeleteScalingRuleResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DeleteScalingRule", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteScalingRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteScalingRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteScalingRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteScalingRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

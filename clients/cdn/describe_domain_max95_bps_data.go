@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeDomainMax95BpsDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -14,29 +15,15 @@ type DescribeDomainMax95BpsDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainMax95BpsDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainMax95BpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainMax95BpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainMax95BpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainMax95BpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainMax95BpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainMax95BpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainMax95BpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainMax95BpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainMax95BpsDataResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DomainName       string
 	StartTime        string

@@ -7,32 +7,19 @@ import (
 )
 
 type AddUserToGroupRequest struct {
+	requests.RpcRequest
 	GroupName string `position:"Query" name:"GroupName"`
 	UserName  string `position:"Query" name:"UserName"`
 }
 
-func (r AddUserToGroupRequest) Invoke(client *sdk.Client) (response *AddUserToGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddUserToGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddUserToGroupRequest) Invoke(client *sdk.Client) (resp *AddUserToGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "AddUserToGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddUserToGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddUserToGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddUserToGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddUserToGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

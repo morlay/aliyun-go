@@ -7,6 +7,7 @@ import (
 )
 
 type UnbindOutputBucketRequest struct {
+	requests.RpcRequest
 	Bucket               string `position:"Query" name:"Bucket"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,28 +15,14 @@ type UnbindOutputBucketRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r UnbindOutputBucketRequest) Invoke(client *sdk.Client) (response *UnbindOutputBucketResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnbindOutputBucketRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnbindOutputBucketRequest) Invoke(client *sdk.Client) (resp *UnbindOutputBucketResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "UnbindOutputBucket", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnbindOutputBucketResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnbindOutputBucketResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnbindOutputBucketResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnbindOutputBucketResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

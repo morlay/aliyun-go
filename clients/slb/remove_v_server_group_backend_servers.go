@@ -9,6 +9,7 @@ import (
 )
 
 type RemoveVServerGroupBackendServersRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	VServerGroupId       string `position:"Query" name:"VServerGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -19,29 +20,15 @@ type RemoveVServerGroupBackendServersRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r RemoveVServerGroupBackendServersRequest) Invoke(client *sdk.Client) (response *RemoveVServerGroupBackendServersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveVServerGroupBackendServersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveVServerGroupBackendServersRequest) Invoke(client *sdk.Client) (resp *RemoveVServerGroupBackendServersResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "RemoveVServerGroupBackendServers", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveVServerGroupBackendServersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveVServerGroupBackendServersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveVServerGroupBackendServersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveVServerGroupBackendServersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	VServerGroupId string
 	BackendServers RemoveVServerGroupBackendServersBackendServerList

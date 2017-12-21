@@ -7,6 +7,7 @@ import (
 )
 
 type ReleaseReplicaRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ReleaseReplicaRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReleaseReplicaRequest) Invoke(client *sdk.Client) (response *ReleaseReplicaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseReplicaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseReplicaRequest) Invoke(client *sdk.Client) (resp *ReleaseReplicaResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ReleaseReplica", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseReplicaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseReplicaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseReplicaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseReplicaResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

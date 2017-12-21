@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAlarmHistoryRequest struct {
+	requests.RpcRequest
 	AlertName  string `position:"Query" name:"AlertName"`
 	GroupId    string `position:"Query" name:"GroupId"`
 	EndTime    string `position:"Query" name:"EndTime"`
@@ -24,29 +25,15 @@ type DescribeAlarmHistoryRequest struct {
 	Status     string `position:"Query" name:"Status"`
 }
 
-func (r DescribeAlarmHistoryRequest) Invoke(client *sdk.Client) (response *DescribeAlarmHistoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAlarmHistoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAlarmHistoryRequest) Invoke(client *sdk.Client) (resp *DescribeAlarmHistoryResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "DescribeAlarmHistory", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAlarmHistoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAlarmHistoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAlarmHistoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAlarmHistoryResponse struct {
+	responses.BaseResponse
 	Success          bool
 	Code             string
 	Message          string

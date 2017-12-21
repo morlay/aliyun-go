@@ -7,34 +7,21 @@ import (
 )
 
 type BindTagRequest struct {
+	requests.RpcRequest
 	TagName   string `position:"Query" name:"TagName"`
 	ClientKey string `position:"Query" name:"ClientKey"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 	KeyType   string `position:"Query" name:"KeyType"`
 }
 
-func (r BindTagRequest) Invoke(client *sdk.Client) (response *BindTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BindTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BindTagRequest) Invoke(client *sdk.Client) (resp *BindTagResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "BindTag", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BindTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BindTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BindTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BindTagResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

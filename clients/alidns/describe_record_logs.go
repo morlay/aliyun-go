@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRecordLogsRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
@@ -17,29 +18,15 @@ type DescribeRecordLogsRequest struct {
 	KeyWord      string `position:"Query" name:"KeyWord"`
 }
 
-func (r DescribeRecordLogsRequest) Invoke(client *sdk.Client) (response *DescribeRecordLogsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRecordLogsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRecordLogsRequest) Invoke(client *sdk.Client) (resp *DescribeRecordLogsResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeRecordLogs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRecordLogsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRecordLogsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRecordLogsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRecordLogsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int64
 	PageNumber int64

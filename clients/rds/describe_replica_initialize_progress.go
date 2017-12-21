@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeReplicaInitializeProgressRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeReplicaInitializeProgressRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeReplicaInitializeProgressRequest) Invoke(client *sdk.Client) (response *DescribeReplicaInitializeProgressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeReplicaInitializeProgressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeReplicaInitializeProgressRequest) Invoke(client *sdk.Client) (resp *DescribeReplicaInitializeProgressResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeReplicaInitializeProgress", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeReplicaInitializeProgressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeReplicaInitializeProgressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeReplicaInitializeProgressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeReplicaInitializeProgressResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeReplicaInitializeProgressItemsItemList
 }

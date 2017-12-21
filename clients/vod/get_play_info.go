@@ -9,6 +9,7 @@ import (
 )
 
 type GetPlayInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	StreamType           string `position:"Query" name:"StreamType"`
 	Formats              string `position:"Query" name:"Formats"`
@@ -24,29 +25,15 @@ type GetPlayInfoRequest struct {
 	AuthInfo             string `position:"Query" name:"AuthInfo"`
 }
 
-func (r GetPlayInfoRequest) Invoke(client *sdk.Client) (response *GetPlayInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetPlayInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetPlayInfoRequest) Invoke(client *sdk.Client) (resp *GetPlayInfoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetPlayInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetPlayInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetPlayInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetPlayInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetPlayInfoResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	PlayInfoList GetPlayInfoPlayInfoList
 	VideoBase    GetPlayInfoVideoBase

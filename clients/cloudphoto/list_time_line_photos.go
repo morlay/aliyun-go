@@ -9,6 +9,7 @@ import (
 )
 
 type ListTimeLinePhotosRequest struct {
+	requests.RpcRequest
 	Size      int    `position:"Query" name:"Size"`
 	LibraryId string `position:"Query" name:"LibraryId"`
 	EndTime   int64  `position:"Query" name:"EndTime"`
@@ -20,29 +21,15 @@ type ListTimeLinePhotosRequest struct {
 	Order     string `position:"Query" name:"Order"`
 }
 
-func (r ListTimeLinePhotosRequest) Invoke(client *sdk.Client) (response *ListTimeLinePhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListTimeLinePhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListTimeLinePhotosRequest) Invoke(client *sdk.Client) (resp *ListTimeLinePhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ListTimeLinePhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListTimeLinePhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListTimeLinePhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListTimeLinePhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListTimeLinePhotosResponse struct {
+	responses.BaseResponse
 	Code       string
 	Message    string
 	TotalCount int

@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 }
 
-func (r DescribeClusterRequest) Invoke(client *sdk.Client) (response *DescribeClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeClusterRequest) Invoke(client *sdk.Client) (resp *DescribeClusterResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "DescribeCluster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeClusterResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	ClusterInfo DescribeClusterClusterInfo
 }

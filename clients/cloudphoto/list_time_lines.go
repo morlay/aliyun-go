@@ -9,6 +9,7 @@ import (
 )
 
 type ListTimeLinesRequest struct {
+	requests.RpcRequest
 	Cursor        int64  `position:"Query" name:"Cursor"`
 	PhotoSize     int    `position:"Query" name:"PhotoSize"`
 	TimeLineCount int    `position:"Query" name:"TimeLineCount"`
@@ -20,29 +21,15 @@ type ListTimeLinesRequest struct {
 	Order         string `position:"Query" name:"Order"`
 }
 
-func (r ListTimeLinesRequest) Invoke(client *sdk.Client) (response *ListTimeLinesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListTimeLinesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListTimeLinesRequest) Invoke(client *sdk.Client) (resp *ListTimeLinesResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ListTimeLines", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListTimeLinesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListTimeLinesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListTimeLinesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListTimeLinesResponse struct {
+	responses.BaseResponse
 	Code       string
 	Message    string
 	NextCursor int

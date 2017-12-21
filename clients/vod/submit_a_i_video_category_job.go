@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitAIVideoCategoryJobRequest struct {
+	requests.RpcRequest
 	AIVideoCategoryConfig string `position:"Query" name:"AIVideoCategoryConfig"`
 	UserData              string `position:"Query" name:"UserData"`
 	ResourceOwnerId       string `position:"Query" name:"ResourceOwnerId"`
@@ -16,29 +17,15 @@ type SubmitAIVideoCategoryJobRequest struct {
 	MediaId               string `position:"Query" name:"MediaId"`
 }
 
-func (r SubmitAIVideoCategoryJobRequest) Invoke(client *sdk.Client) (response *SubmitAIVideoCategoryJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAIVideoCategoryJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAIVideoCategoryJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIVideoCategoryJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIVideoCategoryJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAIVideoCategoryJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAIVideoCategoryJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAIVideoCategoryJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAIVideoCategoryJobResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	AIVideoCategoryJob SubmitAIVideoCategoryJobAIVideoCategoryJob
 }

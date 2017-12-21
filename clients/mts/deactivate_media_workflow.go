@@ -7,6 +7,7 @@ import (
 )
 
 type DeactivateMediaWorkflowRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DeactivateMediaWorkflowRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeactivateMediaWorkflowRequest) Invoke(client *sdk.Client) (response *DeactivateMediaWorkflowResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeactivateMediaWorkflowRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeactivateMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *DeactivateMediaWorkflowResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeactivateMediaWorkflow", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeactivateMediaWorkflowResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeactivateMediaWorkflowResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeactivateMediaWorkflowResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeactivateMediaWorkflowResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	MediaWorkflow DeactivateMediaWorkflowMediaWorkflow
 }

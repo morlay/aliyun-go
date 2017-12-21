@@ -9,6 +9,7 @@ import (
 )
 
 type QueryBatchTaskListRequest struct {
+	requests.RpcRequest
 	BeginCreateTime string `position:"Query" name:"BeginCreateTime"`
 	EndCreateTime   string `position:"Query" name:"EndCreateTime"`
 	UserClientIp    string `position:"Query" name:"UserClientIp"`
@@ -17,29 +18,15 @@ type QueryBatchTaskListRequest struct {
 	PageNum         int    `position:"Query" name:"PageNum"`
 }
 
-func (r QueryBatchTaskListRequest) Invoke(client *sdk.Client) (response *QueryBatchTaskListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryBatchTaskListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryBatchTaskListRequest) Invoke(client *sdk.Client) (resp *QueryBatchTaskListResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryBatchTaskList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryBatchTaskListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryBatchTaskListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryBatchTaskListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryBatchTaskListResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	TotalItemNum   int
 	CurrentPageNum int

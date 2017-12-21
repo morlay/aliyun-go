@@ -9,35 +9,22 @@ import (
 )
 
 type ListAllCategoryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAllCategoryRequest) Invoke(client *sdk.Client) (response *ListAllCategoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAllCategoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAllCategoryRequest) Invoke(client *sdk.Client) (resp *ListAllCategoryResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListAllCategory", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAllCategoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAllCategoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAllCategoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAllCategoryResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	CategoryList ListAllCategoryCategoryList
 }

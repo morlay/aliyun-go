@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveSnapshotConfigRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -19,29 +20,15 @@ type DescribeLiveSnapshotConfigRequest struct {
 	Order         string `position:"Query" name:"Order"`
 }
 
-func (r DescribeLiveSnapshotConfigRequest) Invoke(client *sdk.Client) (response *DescribeLiveSnapshotConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveSnapshotConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveSnapshotConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLiveSnapshotConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveSnapshotConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveSnapshotConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveSnapshotConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveSnapshotConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveSnapshotConfigResponse struct {
+	responses.BaseResponse
 	RequestId                    string
 	PageNum                      int
 	PageSize                     int

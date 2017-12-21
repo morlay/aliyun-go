@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteDBClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type DeleteDBClusterRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteDBClusterRequest) Invoke(client *sdk.Client) (response *DeleteDBClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDBClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDBClusterRequest) Invoke(client *sdk.Client) (resp *DeleteDBClusterResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DeleteDBCluster", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDBClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDBClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDBClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDBClusterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

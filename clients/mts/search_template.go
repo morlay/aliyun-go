@@ -9,6 +9,7 @@ import (
 )
 
 type SearchTemplateRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type SearchTemplateRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r SearchTemplateRequest) Invoke(client *sdk.Client) (response *SearchTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchTemplateRequest) Invoke(client *sdk.Client) (resp *SearchTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SearchTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchTemplateResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

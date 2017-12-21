@@ -7,6 +7,7 @@ import (
 )
 
 type NotifyUserBusinessCommandRequest struct {
+	requests.RpcRequest
 	Uid         string `position:"Query" name:"Uid"`
 	ServiceCode string `position:"Query" name:"ServiceCode"`
 	Cmd         string `position:"Query" name:"Cmd"`
@@ -16,29 +17,15 @@ type NotifyUserBusinessCommandRequest struct {
 	Password    string `position:"Query" name:"Password"`
 }
 
-func (r NotifyUserBusinessCommandRequest) Invoke(client *sdk.Client) (response *NotifyUserBusinessCommandResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		NotifyUserBusinessCommandRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *NotifyUserBusinessCommandRequest) Invoke(client *sdk.Client) (resp *NotifyUserBusinessCommandResponse, err error) {
 	req.InitWithApiInfo("Ubsms", "2015-06-23", "NotifyUserBusinessCommand", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		NotifyUserBusinessCommandResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.NotifyUserBusinessCommandResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &NotifyUserBusinessCommandResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type NotifyUserBusinessCommandResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

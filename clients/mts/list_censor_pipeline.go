@@ -9,6 +9,7 @@ import (
 )
 
 type ListCensorPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type ListCensorPipelineRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r ListCensorPipelineRequest) Invoke(client *sdk.Client) (response *ListCensorPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListCensorPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListCensorPipelineRequest) Invoke(client *sdk.Client) (resp *ListCensorPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListCensorPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListCensorPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListCensorPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListCensorPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListCensorPipelineResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

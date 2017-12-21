@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVSwitchesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type DescribeVSwitchesRequest struct {
 	IsDefault            string `position:"Query" name:"IsDefault"`
 }
 
-func (r DescribeVSwitchesRequest) Invoke(client *sdk.Client) (response *DescribeVSwitchesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVSwitchesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVSwitchesRequest) Invoke(client *sdk.Client) (resp *DescribeVSwitchesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeVSwitches", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVSwitchesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVSwitchesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVSwitchesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVSwitchesResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamHlsOnlineUserNumByDomainRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	HlsSwitch     string `position:"Query" name:"HlsSwitch"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamHlsOnlineUserNumByDomainRequest struct {
 	PageNumber    int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeLiveStreamHlsOnlineUserNumByDomainRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamHlsOnlineUserNumByDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamHlsOnlineUserNumByDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamHlsOnlineUserNumByDomainRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamHlsOnlineUserNumByDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamHlsOnlineUserNumByDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamHlsOnlineUserNumByDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamHlsOnlineUserNumByDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamHlsOnlineUserNumByDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamHlsOnlineUserNumByDomainResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	TotalUserNumber int64
 	Count           int64

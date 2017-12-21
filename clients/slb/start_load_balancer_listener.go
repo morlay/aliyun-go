@@ -7,6 +7,7 @@ import (
 )
 
 type StartLoadBalancerListenerRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -17,28 +18,14 @@ type StartLoadBalancerListenerRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r StartLoadBalancerListenerRequest) Invoke(client *sdk.Client) (response *StartLoadBalancerListenerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StartLoadBalancerListenerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StartLoadBalancerListenerRequest) Invoke(client *sdk.Client) (resp *StartLoadBalancerListenerResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "StartLoadBalancerListener", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StartLoadBalancerListenerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StartLoadBalancerListenerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StartLoadBalancerListenerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StartLoadBalancerListenerResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

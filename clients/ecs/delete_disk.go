@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteDiskRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteDiskRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteDiskRequest) Invoke(client *sdk.Client) (response *DeleteDiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDiskRequest) Invoke(client *sdk.Client) (resp *DeleteDiskResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteDisk", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDiskResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteScalingGroupRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ScalingGroupId       string `position:"Query" name:"ScalingGroupId"`
 	ForceDelete          string `position:"Query" name:"ForceDelete"`
@@ -14,28 +15,14 @@ type DeleteScalingGroupRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteScalingGroupRequest) Invoke(client *sdk.Client) (response *DeleteScalingGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteScalingGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteScalingGroupRequest) Invoke(client *sdk.Client) (resp *DeleteScalingGroupResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DeleteScalingGroup", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteScalingGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteScalingGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteScalingGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteScalingGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

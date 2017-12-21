@@ -7,6 +7,7 @@ import (
 )
 
 type BindInputBucketRequest struct {
+	requests.RpcRequest
 	Bucket               string `position:"Query" name:"Bucket"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type BindInputBucketRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r BindInputBucketRequest) Invoke(client *sdk.Client) (response *BindInputBucketResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BindInputBucketRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BindInputBucketRequest) Invoke(client *sdk.Client) (resp *BindInputBucketResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "BindInputBucket", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BindInputBucketResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BindInputBucketResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BindInputBucketResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BindInputBucketResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

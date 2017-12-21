@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDBClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBClusterDescription string `position:"Query" name:"DBClusterDescription"`
 	Period               string `position:"Query" name:"Period"`
@@ -29,29 +30,15 @@ type CreateDBClusterRequest struct {
 	PayType              string `position:"Query" name:"PayType"`
 }
 
-func (r CreateDBClusterRequest) Invoke(client *sdk.Client) (response *CreateDBClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDBClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDBClusterRequest) Invoke(client *sdk.Client) (resp *CreateDBClusterResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "CreateDBCluster", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDBClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDBClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDBClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDBClusterResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DBClusterId      string
 	OrderId          string

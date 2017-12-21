@@ -7,32 +7,19 @@ import (
 )
 
 type DeleteApgroupConfigRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r DeleteApgroupConfigRequest) Invoke(client *sdk.Client) (response *DeleteApgroupConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteApgroupConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteApgroupConfigRequest) Invoke(client *sdk.Client) (resp *DeleteApgroupConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeleteApgroupConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteApgroupConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteApgroupConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteApgroupConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteApgroupConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

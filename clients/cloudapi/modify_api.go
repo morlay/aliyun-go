@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyApiRequest struct {
+	requests.RpcRequest
 	GroupId              string `position:"Query" name:"GroupId"`
 	ApiId                string `position:"Query" name:"ApiId"`
 	ApiName              string `position:"Query" name:"ApiName"`
@@ -27,28 +28,14 @@ type ModifyApiRequest struct {
 	OpenIdConnectConfig  string `position:"Query" name:"OpenIdConnectConfig"`
 }
 
-func (r ModifyApiRequest) Invoke(client *sdk.Client) (response *ModifyApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyApiRequest) Invoke(client *sdk.Client) (resp *ModifyApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "ModifyApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyApiResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

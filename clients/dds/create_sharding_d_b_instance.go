@@ -9,6 +9,7 @@ import (
 )
 
 type CreateShardingDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId       int64                                     `position:"Query" name:"ResourceOwnerId"`
 	ClientToken           string                                    `position:"Query" name:"ClientToken"`
 	EngineVersion         string                                    `position:"Query" name:"EngineVersion"`
@@ -34,25 +35,10 @@ type CreateShardingDBInstanceRequest struct {
 	ChargeType            string                                    `position:"Query" name:"ChargeType"`
 }
 
-func (r CreateShardingDBInstanceRequest) Invoke(client *sdk.Client) (response *CreateShardingDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateShardingDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateShardingDBInstanceRequest) Invoke(client *sdk.Client) (resp *CreateShardingDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "CreateShardingDBInstance", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateShardingDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateShardingDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateShardingDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -71,6 +57,7 @@ type CreateShardingDBInstanceMongos struct {
 }
 
 type CreateShardingDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	OrderId      string
 	DBInstanceId string

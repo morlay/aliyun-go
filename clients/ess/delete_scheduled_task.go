@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteScheduledTaskRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ScheduledTaskId      string `position:"Query" name:"ScheduledTaskId"`
 }
 
-func (r DeleteScheduledTaskRequest) Invoke(client *sdk.Client) (response *DeleteScheduledTaskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteScheduledTaskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteScheduledTaskRequest) Invoke(client *sdk.Client) (resp *DeleteScheduledTaskResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DeleteScheduledTask", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteScheduledTaskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteScheduledTaskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteScheduledTaskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteScheduledTaskResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

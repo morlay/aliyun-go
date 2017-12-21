@@ -7,34 +7,21 @@ import (
 )
 
 type UpdateDeviceShadowRequest struct {
+	requests.RpcRequest
 	ShadowMessage string `position:"Query" name:"ShadowMessage"`
 	DeviceName    string `position:"Query" name:"DeviceName"`
 	ProductKey    string `position:"Query" name:"ProductKey"`
 }
 
-func (r UpdateDeviceShadowRequest) Invoke(client *sdk.Client) (response *UpdateDeviceShadowResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateDeviceShadowRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateDeviceShadowRequest) Invoke(client *sdk.Client) (resp *UpdateDeviceShadowResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "UpdateDeviceShadow", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateDeviceShadowResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateDeviceShadowResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateDeviceShadowResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateDeviceShadowResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

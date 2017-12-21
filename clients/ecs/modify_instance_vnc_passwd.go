@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceVncPasswdRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyInstanceVncPasswdRequest struct {
 	VncPassword          string `position:"Query" name:"VncPassword"`
 }
 
-func (r ModifyInstanceVncPasswdRequest) Invoke(client *sdk.Client) (response *ModifyInstanceVncPasswdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceVncPasswdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceVncPasswdRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceVncPasswdResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceVncPasswd", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceVncPasswdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceVncPasswdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceVncPasswdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceVncPasswdResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

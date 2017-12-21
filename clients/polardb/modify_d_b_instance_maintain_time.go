@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceMaintainTimeRequest struct {
+	requests.RpcRequest
 	MaintainTime         string `position:"Query" name:"MaintainTime"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyDBInstanceMaintainTimeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDBInstanceMaintainTimeRequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceMaintainTimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceMaintainTimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceMaintainTimeRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceMaintainTimeResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ModifyDBInstanceMaintainTime", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceMaintainTimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceMaintainTimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceMaintainTimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceMaintainTimeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

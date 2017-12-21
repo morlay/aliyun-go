@@ -7,34 +7,21 @@ import (
 )
 
 type CheckAccountAndPasswordRiskRequest struct {
+	requests.RpcRequest
 	CallerName   string `position:"Query" name:"CallerName"`
 	AccountName  string `position:"Query" name:"AccountName"`
 	PasswordHash string `position:"Query" name:"PasswordHash"`
 }
 
-func (r CheckAccountAndPasswordRiskRequest) Invoke(client *sdk.Client) (response *CheckAccountAndPasswordRiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckAccountAndPasswordRiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckAccountAndPasswordRiskRequest) Invoke(client *sdk.Client) (resp *CheckAccountAndPasswordRiskResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "CheckAccountAndPasswordRisk", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckAccountAndPasswordRiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckAccountAndPasswordRiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckAccountAndPasswordRiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckAccountAndPasswordRiskResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      CheckAccountAndPasswordRiskData

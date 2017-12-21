@@ -7,32 +7,19 @@ import (
 )
 
 type FrequencyAnalyseRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r FrequencyAnalyseRequest) Invoke(client *sdk.Client) (response *FrequencyAnalyseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FrequencyAnalyseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FrequencyAnalyseRequest) Invoke(client *sdk.Client) (resp *FrequencyAnalyseResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "FrequencyAnalyse", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FrequencyAnalyseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FrequencyAnalyseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FrequencyAnalyseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FrequencyAnalyseResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

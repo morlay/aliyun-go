@@ -9,35 +9,22 @@ import (
 )
 
 type ListPhotoTagsRequest struct {
+	requests.RpcRequest
 	LibraryId string `position:"Query" name:"LibraryId"`
 	PhotoId   int64  `position:"Query" name:"PhotoId"`
 	StoreName string `position:"Query" name:"StoreName"`
 	Lang      string `position:"Query" name:"Lang"`
 }
 
-func (r ListPhotoTagsRequest) Invoke(client *sdk.Client) (response *ListPhotoTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPhotoTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPhotoTagsRequest) Invoke(client *sdk.Client) (resp *ListPhotoTagsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ListPhotoTags", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPhotoTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPhotoTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPhotoTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPhotoTagsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

@@ -9,6 +9,7 @@ import (
 )
 
 type ListVideoSummaryPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type ListVideoSummaryPipelineRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r ListVideoSummaryPipelineRequest) Invoke(client *sdk.Client) (response *ListVideoSummaryPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListVideoSummaryPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListVideoSummaryPipelineRequest) Invoke(client *sdk.Client) (resp *ListVideoSummaryPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListVideoSummaryPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListVideoSummaryPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListVideoSummaryPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListVideoSummaryPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListVideoSummaryPipelineResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

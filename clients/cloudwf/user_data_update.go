@@ -7,6 +7,7 @@ import (
 )
 
 type UserDataUpdateRequest struct {
+	requests.RpcRequest
 	Iid        int64  `position:"Query" name:"Iid"`
 	UploadFile string `position:"Query" name:"UploadFile"`
 	Name       string `position:"Query" name:"Name"`
@@ -14,29 +15,15 @@ type UserDataUpdateRequest struct {
 	Type       string `position:"Query" name:"Type"`
 }
 
-func (r UserDataUpdateRequest) Invoke(client *sdk.Client) (response *UserDataUpdateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UserDataUpdateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UserDataUpdateRequest) Invoke(client *sdk.Client) (resp *UserDataUpdateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "UserDataUpdate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UserDataUpdateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UserDataUpdateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UserDataUpdateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UserDataUpdateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

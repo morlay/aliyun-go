@@ -7,33 +7,20 @@ import (
 )
 
 type DeleteAlarmRequest struct {
+	requests.RpcRequest
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	Id               string `position:"Query" name:"Id"`
 }
 
-func (r DeleteAlarmRequest) Invoke(client *sdk.Client) (response *DeleteAlarmResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteAlarmRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteAlarmRequest) Invoke(client *sdk.Client) (resp *DeleteAlarmResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteAlarm", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteAlarmResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteAlarmResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteAlarmResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteAlarmResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Code      string
 	Message   string

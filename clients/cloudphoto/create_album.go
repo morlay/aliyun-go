@@ -7,35 +7,22 @@ import (
 )
 
 type CreateAlbumRequest struct {
+	requests.RpcRequest
 	AlbumName string `position:"Query" name:"AlbumName"`
 	LibraryId string `position:"Query" name:"LibraryId"`
 	StoreName string `position:"Query" name:"StoreName"`
 	Remark    string `position:"Query" name:"Remark"`
 }
 
-func (r CreateAlbumRequest) Invoke(client *sdk.Client) (response *CreateAlbumResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateAlbumRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateAlbumRequest) Invoke(client *sdk.Client) (resp *CreateAlbumResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "CreateAlbum", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateAlbumResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateAlbumResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateAlbumResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateAlbumResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

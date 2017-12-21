@@ -7,6 +7,7 @@ import (
 )
 
 type ListApPositionMapRequest struct {
+	requests.RpcRequest
 	OrderCol          string `position:"Query" name:"OrderCol"`
 	SearchName        string `position:"Query" name:"SearchName"`
 	TotalItem         int    `position:"Query" name:"TotalItem"`
@@ -17,29 +18,15 @@ type ListApPositionMapRequest struct {
 	OrderDir          string `position:"Query" name:"OrderDir"`
 }
 
-func (r ListApPositionMapRequest) Invoke(client *sdk.Client) (response *ListApPositionMapResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApPositionMapRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApPositionMapRequest) Invoke(client *sdk.Client) (resp *ListApPositionMapResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApPositionMap", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApPositionMapResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApPositionMapResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApPositionMapResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApPositionMapResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

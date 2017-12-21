@@ -7,6 +7,7 @@ import (
 )
 
 type AuthorizeSecurityGroupRequest struct {
+	requests.RpcRequest
 	NicType                 string `position:"Query" name:"NicType"`
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	SourcePortRange         string `position:"Query" name:"SourcePortRange"`
@@ -27,28 +28,14 @@ type AuthorizeSecurityGroupRequest struct {
 	SourceGroupId           string `position:"Query" name:"SourceGroupId"`
 }
 
-func (r AuthorizeSecurityGroupRequest) Invoke(client *sdk.Client) (response *AuthorizeSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AuthorizeSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AuthorizeSecurityGroupRequest) Invoke(client *sdk.Client) (resp *AuthorizeSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AuthorizeSecurityGroup", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AuthorizeSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AuthorizeSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AuthorizeSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AuthorizeSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

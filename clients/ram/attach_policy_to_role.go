@@ -7,33 +7,20 @@ import (
 )
 
 type AttachPolicyToRoleRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	RoleName   string `position:"Query" name:"RoleName"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 }
 
-func (r AttachPolicyToRoleRequest) Invoke(client *sdk.Client) (response *AttachPolicyToRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachPolicyToRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachPolicyToRoleRequest) Invoke(client *sdk.Client) (resp *AttachPolicyToRoleResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "AttachPolicyToRole", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachPolicyToRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachPolicyToRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachPolicyToRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachPolicyToRoleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

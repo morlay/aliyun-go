@@ -9,6 +9,7 @@ import (
 )
 
 type UpdateLiveSnapshotDetectPornConfigRequest struct {
+	requests.RpcRequest
 	OssBucket     string                                       `position:"Query" name:"OssBucket"`
 	AppName       string                                       `position:"Query" name:"AppName"`
 	SecurityToken string                                       `position:"Query" name:"SecurityToken"`
@@ -20,29 +21,15 @@ type UpdateLiveSnapshotDetectPornConfigRequest struct {
 	Scenes        *UpdateLiveSnapshotDetectPornConfigSceneList `position:"Query" type:"Repeated" name:"Scene"`
 }
 
-func (r UpdateLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (response *UpdateLiveSnapshotDetectPornConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateLiveSnapshotDetectPornConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (resp *UpdateLiveSnapshotDetectPornConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveSnapshotDetectPornConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateLiveSnapshotDetectPornConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateLiveSnapshotDetectPornConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateLiveSnapshotDetectPornConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateLiveSnapshotDetectPornConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteCustomerGatewayRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type DeleteCustomerGatewayRequest struct {
 	CustomerGatewayId    string `position:"Query" name:"CustomerGatewayId"`
 }
 
-func (r DeleteCustomerGatewayRequest) Invoke(client *sdk.Client) (response *DeleteCustomerGatewayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCustomerGatewayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCustomerGatewayRequest) Invoke(client *sdk.Client) (resp *DeleteCustomerGatewayResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteCustomerGateway", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCustomerGatewayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCustomerGatewayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCustomerGatewayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCustomerGatewayResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

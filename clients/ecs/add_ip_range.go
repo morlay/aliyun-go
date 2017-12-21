@@ -7,6 +7,7 @@ import (
 )
 
 type AddIpRangeRequest struct {
+	requests.RpcRequest
 	IpAddress            string `position:"Query" name:"IpAddress"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type AddIpRangeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddIpRangeRequest) Invoke(client *sdk.Client) (response *AddIpRangeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddIpRangeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddIpRangeRequest) Invoke(client *sdk.Client) (resp *AddIpRangeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AddIpRange", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddIpRangeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddIpRangeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddIpRangeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddIpRangeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type GroupTrendRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r GroupTrendRequest) Invoke(client *sdk.Client) (response *GroupTrendResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GroupTrendRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GroupTrendRequest) Invoke(client *sdk.Client) (resp *GroupTrendResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GroupTrend", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GroupTrendResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GroupTrendResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GroupTrendResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GroupTrendResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

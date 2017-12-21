@@ -7,6 +7,7 @@ import (
 )
 
 type ModifySecurityIpsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId           int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount      string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId               string `position:"Query" name:"DBClusterId"`
@@ -17,28 +18,14 @@ type ModifySecurityIpsRequest struct {
 	DBClusterIPArrayAttribute string `position:"Query" name:"DBClusterIPArrayAttribute"`
 }
 
-func (r ModifySecurityIpsRequest) Invoke(client *sdk.Client) (response *ModifySecurityIpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySecurityIpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySecurityIpsRequest) Invoke(client *sdk.Client) (resp *ModifySecurityIpsResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ModifySecurityIps", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySecurityIpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySecurityIpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySecurityIpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySecurityIpsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

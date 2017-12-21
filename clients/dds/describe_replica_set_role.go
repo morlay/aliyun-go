@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeReplicaSetRoleRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeReplicaSetRoleRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeReplicaSetRoleRequest) Invoke(client *sdk.Client) (response *DescribeReplicaSetRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeReplicaSetRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeReplicaSetRoleRequest) Invoke(client *sdk.Client) (resp *DescribeReplicaSetRoleResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeReplicaSetRole", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeReplicaSetRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeReplicaSetRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeReplicaSetRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeReplicaSetRoleResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DBInstanceId string
 	ReplicaSets  DescribeReplicaSetRoleReplicaSetList

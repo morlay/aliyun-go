@@ -7,33 +7,21 @@ import (
 )
 
 type GetRepoSyncTaskRequest struct {
+	requests.RoaRequest
 	RepoNamespace string `position:"Path" name:"RepoNamespace"`
 	RepoName      string `position:"Path" name:"RepoName"`
 	SyncTaskId    string `position:"Path" name:"SyncTaskId"`
 }
 
-func (r GetRepoSyncTaskRequest) Invoke(client *sdk.Client) (response *GetRepoSyncTaskResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetRepoSyncTaskRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetRepoSyncTaskRequest) Invoke(client *sdk.Client) (resp *GetRepoSyncTaskResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetRepoSyncTask", "/repos/[RepoNamespace]/[RepoName]/syncTasks/[SyncTaskId]", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetRepoSyncTaskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRepoSyncTaskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRepoSyncTaskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRepoSyncTaskResponse struct {
+	responses.BaseResponse
 }

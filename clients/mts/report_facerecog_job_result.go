@@ -7,6 +7,7 @@ import (
 )
 
 type ReportFacerecogJobResultRequest struct {
+	requests.RpcRequest
 	JobId                string `position:"Query" name:"JobId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ReportFacerecogJobResultRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReportFacerecogJobResultRequest) Invoke(client *sdk.Client) (response *ReportFacerecogJobResultResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReportFacerecogJobResultRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReportFacerecogJobResultRequest) Invoke(client *sdk.Client) (resp *ReportFacerecogJobResultResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ReportFacerecogJobResult", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReportFacerecogJobResultResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReportFacerecogJobResultResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReportFacerecogJobResultResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReportFacerecogJobResultResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

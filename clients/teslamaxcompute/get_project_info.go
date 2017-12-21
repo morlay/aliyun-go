@@ -9,35 +9,22 @@ import (
 )
 
 type GetProjectInfoRequest struct {
+	requests.RpcRequest
 	PageSize int    `position:"Query" name:"PageSize"`
 	Project  string `position:"Query" name:"Project"`
 	PageNum  int    `position:"Query" name:"PageNum"`
 	Status   string `position:"Query" name:"Status"`
 }
 
-func (r GetProjectInfoRequest) Invoke(client *sdk.Client) (response *GetProjectInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetProjectInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetProjectInfoRequest) Invoke(client *sdk.Client) (resp *GetProjectInfoResponse, err error) {
 	req.InitWithApiInfo("TeslaMaxCompute", "2017-11-30", "GetProjectInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetProjectInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetProjectInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetProjectInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetProjectInfoResponse struct {
+	responses.BaseResponse
 	Code      int
 	Message   string
 	RequestId string

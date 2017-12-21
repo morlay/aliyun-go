@@ -7,6 +7,7 @@ import (
 )
 
 type SetCcConfigRequest struct {
+	requests.RpcRequest
 	AllowIps      string `position:"Query" name:"AllowIps"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -14,28 +15,14 @@ type SetCcConfigRequest struct {
 	BlockIps      string `position:"Query" name:"BlockIps"`
 }
 
-func (r SetCcConfigRequest) Invoke(client *sdk.Client) (response *SetCcConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetCcConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetCcConfigRequest) Invoke(client *sdk.Client) (resp *SetCcConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetCcConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetCcConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetCcConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetCcConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetCcConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

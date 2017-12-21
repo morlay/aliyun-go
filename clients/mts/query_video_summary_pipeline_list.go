@@ -9,6 +9,7 @@ import (
 )
 
 type QueryVideoSummaryPipelineListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	PipelineIds          string `position:"Query" name:"PipelineIds"`
@@ -16,29 +17,15 @@ type QueryVideoSummaryPipelineListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryVideoSummaryPipelineListRequest) Invoke(client *sdk.Client) (response *QueryVideoSummaryPipelineListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryVideoSummaryPipelineListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryVideoSummaryPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryVideoSummaryPipelineListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryVideoSummaryPipelineList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryVideoSummaryPipelineListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryVideoSummaryPipelineListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryVideoSummaryPipelineListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryVideoSummaryPipelineListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	PipelineList QueryVideoSummaryPipelineListPipelineList
 	NonExistIds  QueryVideoSummaryPipelineListNonExistIdList

@@ -7,6 +7,7 @@ import (
 )
 
 type SetLogsDownloadStatusRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,28 +18,14 @@ type SetLogsDownloadStatusRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r SetLogsDownloadStatusRequest) Invoke(client *sdk.Client) (response *SetLogsDownloadStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetLogsDownloadStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetLogsDownloadStatusRequest) Invoke(client *sdk.Client) (resp *SetLogsDownloadStatusResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetLogsDownloadStatus", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetLogsDownloadStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetLogsDownloadStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetLogsDownloadStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetLogsDownloadStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

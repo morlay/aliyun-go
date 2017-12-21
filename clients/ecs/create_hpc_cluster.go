@@ -7,6 +7,7 @@ import (
 )
 
 type CreateHpcClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	Description          string `position:"Query" name:"Description"`
@@ -16,29 +17,15 @@ type CreateHpcClusterRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r CreateHpcClusterRequest) Invoke(client *sdk.Client) (response *CreateHpcClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateHpcClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateHpcClusterRequest) Invoke(client *sdk.Client) (resp *CreateHpcClusterResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateHpcCluster", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateHpcClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateHpcClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateHpcClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateHpcClusterResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	HpcClusterId string
 }

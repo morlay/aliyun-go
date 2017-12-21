@@ -7,6 +7,7 @@ import (
 )
 
 type JoinResourceGroupRequest struct {
+	requests.RpcRequest
 	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceId           string `position:"Query" name:"ResourceId"`
@@ -16,28 +17,14 @@ type JoinResourceGroupRequest struct {
 	ResourceType         string `position:"Query" name:"ResourceType"`
 }
 
-func (r JoinResourceGroupRequest) Invoke(client *sdk.Client) (response *JoinResourceGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		JoinResourceGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *JoinResourceGroupRequest) Invoke(client *sdk.Client) (resp *JoinResourceGroupResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "JoinResourceGroup", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		JoinResourceGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.JoinResourceGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &JoinResourceGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type JoinResourceGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

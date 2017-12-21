@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainOnlineUserNumberRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainOnlineUserNumberRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainOnlineUserNumberRequest) Invoke(client *sdk.Client) (response *DescribeDomainOnlineUserNumberResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainOnlineUserNumberRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainOnlineUserNumberRequest) Invoke(client *sdk.Client) (resp *DescribeDomainOnlineUserNumberResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainOnlineUserNumber", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainOnlineUserNumberResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainOnlineUserNumberResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainOnlineUserNumberResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainOnlineUserNumberResponse struct {
+	responses.BaseResponse
 	RequestId                    string
 	LiveStreamOnlineUserNumInfos DescribeDomainOnlineUserNumberLiveStreamOnlineUserNumInfoList
 }

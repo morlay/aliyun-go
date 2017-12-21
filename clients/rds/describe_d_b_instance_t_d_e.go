@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceTDERequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeDBInstanceTDERequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceTDERequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceTDEResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceTDERequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceTDERequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceTDEResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceTDE", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceTDEResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceTDEResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceTDEResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceTDEResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TDEStatus string
 	Databases DescribeDBInstanceTDEDatabaseList

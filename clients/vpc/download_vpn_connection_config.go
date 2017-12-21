@@ -7,6 +7,7 @@ import (
 )
 
 type DownloadVpnConnectionConfigRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VpnConnectionId      string `position:"Query" name:"VpnConnectionId"`
@@ -14,29 +15,15 @@ type DownloadVpnConnectionConfigRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DownloadVpnConnectionConfigRequest) Invoke(client *sdk.Client) (response *DownloadVpnConnectionConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DownloadVpnConnectionConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DownloadVpnConnectionConfigRequest) Invoke(client *sdk.Client) (resp *DownloadVpnConnectionConfigResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DownloadVpnConnectionConfig", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DownloadVpnConnectionConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DownloadVpnConnectionConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DownloadVpnConnectionConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DownloadVpnConnectionConfigResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	VpnConnectionConfig DownloadVpnConnectionConfigVpnConnectionConfig
 }

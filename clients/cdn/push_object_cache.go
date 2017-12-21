@@ -7,34 +7,21 @@ import (
 )
 
 type PushObjectCacheRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	ObjectPath    string `position:"Query" name:"ObjectPath"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r PushObjectCacheRequest) Invoke(client *sdk.Client) (response *PushObjectCacheResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PushObjectCacheRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PushObjectCacheRequest) Invoke(client *sdk.Client) (resp *PushObjectCacheResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "PushObjectCache", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PushObjectCacheResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PushObjectCacheResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PushObjectCacheResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PushObjectCacheResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PushTaskId string
 }

@@ -9,35 +9,22 @@ import (
 )
 
 type SetWelcomePageURIRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 	Welcomeuri  string `position:"Query" name:"Welcomeuri"`
 }
 
-func (r SetWelcomePageURIRequest) Invoke(client *sdk.Client) (response *SetWelcomePageURIResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetWelcomePageURIRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetWelcomePageURIRequest) Invoke(client *sdk.Client) (resp *SetWelcomePageURIResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "SetWelcomePageURI", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetWelcomePageURIResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetWelcomePageURIResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetWelcomePageURIResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetWelcomePageURIResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

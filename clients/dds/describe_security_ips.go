@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSecurityIpsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeSecurityIpsRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeSecurityIpsRequest) Invoke(client *sdk.Client) (response *DescribeSecurityIpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSecurityIpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSecurityIpsRequest) Invoke(client *sdk.Client) (resp *DescribeSecurityIpsResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeSecurityIps", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSecurityIpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSecurityIpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSecurityIpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSecurityIpsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	SecurityIps      string
 	SecurityIpGroups DescribeSecurityIpsSecurityIpGroupList

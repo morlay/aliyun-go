@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeAccessGroupsRequest struct {
+	requests.RpcRequest
 	PageSize        int    `position:"Query" name:"PageSize"`
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 	PageNumber      int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeAccessGroupsRequest) Invoke(client *sdk.Client) (response *DescribeAccessGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAccessGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAccessGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeAccessGroupsResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DescribeAccessGroups", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAccessGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAccessGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAccessGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAccessGroupsResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int
 	PageSize     int

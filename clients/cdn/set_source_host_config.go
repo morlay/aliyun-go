@@ -7,6 +7,7 @@ import (
 )
 
 type SetSourceHostConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	Enable        string `position:"Query" name:"Enable"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -14,28 +15,14 @@ type SetSourceHostConfigRequest struct {
 	BackSrcDomain string `position:"Query" name:"BackSrcDomain"`
 }
 
-func (r SetSourceHostConfigRequest) Invoke(client *sdk.Client) (response *SetSourceHostConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetSourceHostConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetSourceHostConfigRequest) Invoke(client *sdk.Client) (resp *SetSourceHostConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetSourceHostConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetSourceHostConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetSourceHostConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetSourceHostConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetSourceHostConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

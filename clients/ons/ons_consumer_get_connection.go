@@ -9,35 +9,22 @@ import (
 )
 
 type OnsConsumerGetConnectionRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 	ConsumerId   string `position:"Query" name:"ConsumerId"`
 }
 
-func (r OnsConsumerGetConnectionRequest) Invoke(client *sdk.Client) (response *OnsConsumerGetConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsConsumerGetConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsConsumerGetConnectionRequest) Invoke(client *sdk.Client) (resp *OnsConsumerGetConnectionResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsConsumerGetConnection", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsConsumerGetConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsConsumerGetConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsConsumerGetConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsConsumerGetConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsConsumerGetConnectionData

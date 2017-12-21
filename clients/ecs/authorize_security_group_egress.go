@@ -7,6 +7,7 @@ import (
 )
 
 type AuthorizeSecurityGroupEgressRequest struct {
+	requests.RpcRequest
 	NicType               string `position:"Query" name:"NicType"`
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	SourcePortRange       string `position:"Query" name:"SourcePortRange"`
@@ -27,28 +28,14 @@ type AuthorizeSecurityGroupEgressRequest struct {
 	DestGroupOwnerId      int64  `position:"Query" name:"DestGroupOwnerId"`
 }
 
-func (r AuthorizeSecurityGroupEgressRequest) Invoke(client *sdk.Client) (response *AuthorizeSecurityGroupEgressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AuthorizeSecurityGroupEgressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AuthorizeSecurityGroupEgressRequest) Invoke(client *sdk.Client) (resp *AuthorizeSecurityGroupEgressResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AuthorizeSecurityGroupEgress", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AuthorizeSecurityGroupEgressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AuthorizeSecurityGroupEgressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AuthorizeSecurityGroupEgressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AuthorizeSecurityGroupEgressResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

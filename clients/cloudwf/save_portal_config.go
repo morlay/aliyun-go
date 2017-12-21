@@ -7,32 +7,19 @@ import (
 )
 
 type SavePortalConfigRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r SavePortalConfigRequest) Invoke(client *sdk.Client) (response *SavePortalConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SavePortalConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SavePortalConfigRequest) Invoke(client *sdk.Client) (resp *SavePortalConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SavePortalConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SavePortalConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SavePortalConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SavePortalConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SavePortalConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -7,6 +7,7 @@ import (
 )
 
 type AddLivePullStreamInfoRequest struct {
+	requests.RpcRequest
 	SourceUrl     string `position:"Query" name:"SourceUrl"`
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -17,28 +18,14 @@ type AddLivePullStreamInfoRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r AddLivePullStreamInfoRequest) Invoke(client *sdk.Client) (response *AddLivePullStreamInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddLivePullStreamInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddLivePullStreamInfoRequest) Invoke(client *sdk.Client) (resp *AddLivePullStreamInfoResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "AddLivePullStreamInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddLivePullStreamInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddLivePullStreamInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddLivePullStreamInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddLivePullStreamInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type ProfileTradeRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r ProfileTradeRequest) Invoke(client *sdk.Client) (response *ProfileTradeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ProfileTradeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ProfileTradeRequest) Invoke(client *sdk.Client) (resp *ProfileTradeResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ProfileTrade", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ProfileTradeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ProfileTradeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ProfileTradeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ProfileTradeResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

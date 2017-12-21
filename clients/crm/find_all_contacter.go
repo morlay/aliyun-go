@@ -9,32 +9,19 @@ import (
 )
 
 type FindAllContacterRequest struct {
+	requests.RpcRequest
 	KpId int64 `position:"Query" name:"KpId"`
 }
 
-func (r FindAllContacterRequest) Invoke(client *sdk.Client) (response *FindAllContacterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FindAllContacterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FindAllContacterRequest) Invoke(client *sdk.Client) (resp *FindAllContacterResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "FindAllContacter", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FindAllContacterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FindAllContacterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FindAllContacterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FindAllContacterResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

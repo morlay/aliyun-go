@@ -7,34 +7,21 @@ import (
 )
 
 type CreateAccessGroupRequest struct {
+	requests.RpcRequest
 	Description     string `position:"Query" name:"Description"`
 	AccessGroupType string `position:"Query" name:"AccessGroupType"`
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 }
 
-func (r CreateAccessGroupRequest) Invoke(client *sdk.Client) (response *CreateAccessGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateAccessGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateAccessGroupRequest) Invoke(client *sdk.Client) (resp *CreateAccessGroupResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "CreateAccessGroup", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateAccessGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateAccessGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateAccessGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateAccessGroupResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	AccessGroupName string
 }

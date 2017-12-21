@@ -9,33 +9,20 @@ import (
 )
 
 type BatchGetDeviceStateRequest struct {
+	requests.RpcRequest
 	DeviceNames *BatchGetDeviceStateDeviceNameList `position:"Query" type:"Repeated" name:"DeviceName"`
 	ProductKey  string                             `position:"Query" name:"ProductKey"`
 }
 
-func (r BatchGetDeviceStateRequest) Invoke(client *sdk.Client) (response *BatchGetDeviceStateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BatchGetDeviceStateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BatchGetDeviceStateRequest) Invoke(client *sdk.Client) (resp *BatchGetDeviceStateResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "BatchGetDeviceState", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BatchGetDeviceStateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BatchGetDeviceStateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BatchGetDeviceStateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BatchGetDeviceStateResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Success          bool
 	ErrorMessage     string

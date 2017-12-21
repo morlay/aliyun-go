@@ -7,6 +7,7 @@ import (
 )
 
 type RemoveApisAuthoritiesRequest struct {
+	requests.RpcRequest
 	GroupId     string `position:"Query" name:"GroupId"`
 	AppId       int64  `position:"Query" name:"AppId"`
 	StageName   string `position:"Query" name:"StageName"`
@@ -14,28 +15,14 @@ type RemoveApisAuthoritiesRequest struct {
 	Description string `position:"Query" name:"Description"`
 }
 
-func (r RemoveApisAuthoritiesRequest) Invoke(client *sdk.Client) (response *RemoveApisAuthoritiesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveApisAuthoritiesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveApisAuthoritiesRequest) Invoke(client *sdk.Client) (resp *RemoveApisAuthoritiesResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "RemoveApisAuthorities", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveApisAuthoritiesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveApisAuthoritiesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveApisAuthoritiesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveApisAuthoritiesResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

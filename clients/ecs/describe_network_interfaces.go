@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeNetworkInterfacesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                                            `position:"Query" name:"ResourceOwnerId"`
 	SecurityGroupId      string                                           `position:"Query" name:"SecurityGroupId"`
 	Type                 string                                           `position:"Query" name:"Type"`
@@ -24,29 +25,15 @@ type DescribeNetworkInterfacesRequest struct {
 	NetworkInterfaceIds  *DescribeNetworkInterfacesNetworkInterfaceIdList `position:"Query" type:"Repeated" name:"NetworkInterfaceId"`
 }
 
-func (r DescribeNetworkInterfacesRequest) Invoke(client *sdk.Client) (response *DescribeNetworkInterfacesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeNetworkInterfacesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeNetworkInterfacesRequest) Invoke(client *sdk.Client) (resp *DescribeNetworkInterfacesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeNetworkInterfaces", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeNetworkInterfacesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeNetworkInterfacesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeNetworkInterfacesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeNetworkInterfacesResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	TotalCount           int
 	PageNumber           int

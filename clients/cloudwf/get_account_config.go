@@ -7,32 +7,19 @@ import (
 )
 
 type GetAccountConfigRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetAccountConfigRequest) Invoke(client *sdk.Client) (response *GetAccountConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetAccountConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetAccountConfigRequest) Invoke(client *sdk.Client) (resp *GetAccountConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetAccountConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetAccountConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetAccountConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetAccountConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetAccountConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

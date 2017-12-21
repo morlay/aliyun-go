@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVSwitchAttributesRequest struct {
+	requests.RpcRequest
 	VSwitchId            string `position:"Query" name:"VSwitchId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeVSwitchAttributesRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeVSwitchAttributesRequest) Invoke(client *sdk.Client) (response *DescribeVSwitchAttributesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVSwitchAttributesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVSwitchAttributesRequest) Invoke(client *sdk.Client) (resp *DescribeVSwitchAttributesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeVSwitchAttributes", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVSwitchAttributesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVSwitchAttributesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVSwitchAttributesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVSwitchAttributesResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	VSwitchId               string
 	VpcId                   string

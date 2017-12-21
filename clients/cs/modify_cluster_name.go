@@ -7,30 +7,18 @@ import (
 )
 
 type ModifyClusterNameRequest struct {
+	requests.RoaRequest
 }
 
-func (r ModifyClusterNameRequest) Invoke(client *sdk.Client) (response *ModifyClusterNameResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		ModifyClusterNameRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *ModifyClusterNameRequest) Invoke(client *sdk.Client) (resp *ModifyClusterNameResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "ModifyClusterName", "/clusters/[ClusterId]/name/[ClusterName]", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		ModifyClusterNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyClusterNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyClusterNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyClusterNameResponse struct {
+	responses.BaseResponse
 }

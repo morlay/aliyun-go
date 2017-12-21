@@ -9,6 +9,7 @@ import (
 )
 
 type QueryMediaListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	IncludeSnapshotList  string `position:"Query" name:"IncludeSnapshotList"`
@@ -19,29 +20,15 @@ type QueryMediaListRequest struct {
 	IncludeMediaInfo     string `position:"Query" name:"IncludeMediaInfo"`
 }
 
-func (r QueryMediaListRequest) Invoke(client *sdk.Client) (response *QueryMediaListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryMediaListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryMediaListRequest) Invoke(client *sdk.Client) (resp *QueryMediaListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryMediaListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryMediaListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryMediaListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryMediaListResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	MediaList        QueryMediaListMediaList
 	NonExistMediaIds QueryMediaListNonExistMediaIdList

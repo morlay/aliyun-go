@@ -9,6 +9,7 @@ import (
 )
 
 type CreateMasterSlaveVServerGroupRequest struct {
+	requests.RpcRequest
 	Access_key_id               string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId             int64  `position:"Query" name:"ResourceOwnerId"`
 	MasterSlaveBackendServers   string `position:"Query" name:"MasterSlaveBackendServers"`
@@ -20,29 +21,15 @@ type CreateMasterSlaveVServerGroupRequest struct {
 	Tags                        string `position:"Query" name:"Tags"`
 }
 
-func (r CreateMasterSlaveVServerGroupRequest) Invoke(client *sdk.Client) (response *CreateMasterSlaveVServerGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateMasterSlaveVServerGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateMasterSlaveVServerGroupRequest) Invoke(client *sdk.Client) (resp *CreateMasterSlaveVServerGroupResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateMasterSlaveVServerGroup", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateMasterSlaveVServerGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateMasterSlaveVServerGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateMasterSlaveVServerGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateMasterSlaveVServerGroupResponse struct {
+	responses.BaseResponse
 	RequestId                 string
 	MasterSlaveVServerGroupId string
 	MasterSlaveBackendServers CreateMasterSlaveVServerGroupMasterSlaveBackendServerList

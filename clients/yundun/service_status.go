@@ -7,32 +7,19 @@ import (
 )
 
 type ServiceStatusRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r ServiceStatusRequest) Invoke(client *sdk.Client) (response *ServiceStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ServiceStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ServiceStatusRequest) Invoke(client *sdk.Client) (resp *ServiceStatusResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "ServiceStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ServiceStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ServiceStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ServiceStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ServiceStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	PortScan  bool
 	VulScan   bool

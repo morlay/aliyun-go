@@ -7,33 +7,20 @@ import (
 )
 
 type AddDomainRequest struct {
+	requests.RpcRequest
 	AccountId  string `position:"Query" name:"AccountId"`
 	DomainName string `position:"Query" name:"DomainName"`
 }
 
-func (r AddDomainRequest) Invoke(client *sdk.Client) (response *AddDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddDomainRequest) Invoke(client *sdk.Client) (resp *AddDomainResponse, err error) {
 	req.InitWithApiInfo("Httpdns", "2016-02-01", "AddDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddDomainResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	DomainName string
 }

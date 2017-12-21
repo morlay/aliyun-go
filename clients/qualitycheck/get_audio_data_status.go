@@ -9,32 +9,19 @@ import (
 )
 
 type GetAudioDataStatusRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r GetAudioDataStatusRequest) Invoke(client *sdk.Client) (response *GetAudioDataStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetAudioDataStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetAudioDataStatusRequest) Invoke(client *sdk.Client) (resp *GetAudioDataStatusResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "GetAudioDataStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetAudioDataStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetAudioDataStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetAudioDataStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetAudioDataStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

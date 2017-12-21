@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitPornJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitPornJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitPornJobRequest) Invoke(client *sdk.Client) (response *SubmitPornJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitPornJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitPornJobRequest) Invoke(client *sdk.Client) (resp *SubmitPornJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitPornJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitPornJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitPornJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitPornJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitPornJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

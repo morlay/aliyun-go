@@ -7,6 +7,7 @@ import (
 )
 
 type SetRemoteReqAuthConfigRequest struct {
+	requests.RpcRequest
 	AuthPath      string `position:"Query" name:"AuthPath"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	AuthEnable    string `position:"Query" name:"AuthEnable"`
@@ -20,28 +21,14 @@ type SetRemoteReqAuthConfigRequest struct {
 	AuthFileType  string `position:"Query" name:"AuthFileType"`
 }
 
-func (r SetRemoteReqAuthConfigRequest) Invoke(client *sdk.Client) (response *SetRemoteReqAuthConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetRemoteReqAuthConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetRemoteReqAuthConfigRequest) Invoke(client *sdk.Client) (resp *SetRemoteReqAuthConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetRemoteReqAuthConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetRemoteReqAuthConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetRemoteReqAuthConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetRemoteReqAuthConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetRemoteReqAuthConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

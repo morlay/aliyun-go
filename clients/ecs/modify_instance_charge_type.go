@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceChargeTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	DryRun               string `position:"Query" name:"DryRun"`
@@ -20,29 +21,15 @@ type ModifyInstanceChargeTypeRequest struct {
 	InstanceIds          string `position:"Query" name:"InstanceIds"`
 }
 
-func (r ModifyInstanceChargeTypeRequest) Invoke(client *sdk.Client) (response *ModifyInstanceChargeTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceChargeTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceChargeTypeRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceChargeTypeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceChargeType", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceChargeTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceChargeTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceChargeTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceChargeTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   string
 }

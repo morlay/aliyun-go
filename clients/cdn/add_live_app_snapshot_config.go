@@ -7,6 +7,7 @@ import (
 )
 
 type AddLiveAppSnapshotConfigRequest struct {
+	requests.RpcRequest
 	TimeInterval       int    `position:"Query" name:"TimeInterval"`
 	OssBucket          string `position:"Query" name:"OssBucket"`
 	AppName            string `position:"Query" name:"AppName"`
@@ -18,28 +19,14 @@ type AddLiveAppSnapshotConfigRequest struct {
 	OwnerId            int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddLiveAppSnapshotConfigRequest) Invoke(client *sdk.Client) (response *AddLiveAppSnapshotConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddLiveAppSnapshotConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddLiveAppSnapshotConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveAppSnapshotConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "AddLiveAppSnapshotConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddLiveAppSnapshotConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddLiveAppSnapshotConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddLiveAppSnapshotConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddLiveAppSnapshotConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

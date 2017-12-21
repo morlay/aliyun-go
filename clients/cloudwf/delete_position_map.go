@@ -7,32 +7,19 @@ import (
 )
 
 type DeletePositionMapRequest struct {
+	requests.RpcRequest
 	MapId int64 `position:"Query" name:"MapId"`
 }
 
-func (r DeletePositionMapRequest) Invoke(client *sdk.Client) (response *DeletePositionMapResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeletePositionMapRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeletePositionMapRequest) Invoke(client *sdk.Client) (resp *DeletePositionMapResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeletePositionMap", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeletePositionMapResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeletePositionMapResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeletePositionMapResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeletePositionMapResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSecurityGroupReferencesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                                               `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                                              `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string                                              `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeSecurityGroupReferencesRequest struct {
 	OwnerId              int64                                               `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeSecurityGroupReferencesRequest) Invoke(client *sdk.Client) (response *DescribeSecurityGroupReferencesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSecurityGroupReferencesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSecurityGroupReferencesRequest) Invoke(client *sdk.Client) (resp *DescribeSecurityGroupReferencesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSecurityGroupReferences", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSecurityGroupReferencesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSecurityGroupReferencesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSecurityGroupReferencesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSecurityGroupReferencesResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	SecurityGroupReferences DescribeSecurityGroupReferencesSecurityGroupReferenceList
 }

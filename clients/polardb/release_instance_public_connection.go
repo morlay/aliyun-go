@@ -7,6 +7,7 @@ import (
 )
 
 type ReleaseInstancePublicConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount    string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount            string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type ReleaseInstancePublicConnectionRequest struct {
 	CurrentConnectionString string `position:"Query" name:"CurrentConnectionString"`
 }
 
-func (r ReleaseInstancePublicConnectionRequest) Invoke(client *sdk.Client) (response *ReleaseInstancePublicConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseInstancePublicConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseInstancePublicConnectionRequest) Invoke(client *sdk.Client) (resp *ReleaseInstancePublicConnectionResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ReleaseInstancePublicConnection", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseInstancePublicConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseInstancePublicConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseInstancePublicConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseInstancePublicConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

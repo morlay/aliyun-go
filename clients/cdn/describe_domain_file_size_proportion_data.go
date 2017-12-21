@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainFileSizeProportionDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainFileSizeProportionDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainFileSizeProportionDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainFileSizeProportionDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainFileSizeProportionDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainFileSizeProportionDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainFileSizeProportionDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainFileSizeProportionData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainFileSizeProportionDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainFileSizeProportionDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainFileSizeProportionDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainFileSizeProportionDataResponse struct {
+	responses.BaseResponse
 	RequestId                      string
 	DomainName                     string
 	DataInterval                   string

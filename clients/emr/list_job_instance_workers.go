@@ -9,33 +9,20 @@ import (
 )
 
 type ListJobInstanceWorkersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	JobInstanceId   string `position:"Query" name:"JobInstanceId"`
 }
 
-func (r ListJobInstanceWorkersRequest) Invoke(client *sdk.Client) (response *ListJobInstanceWorkersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListJobInstanceWorkersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListJobInstanceWorkersRequest) Invoke(client *sdk.Client) (resp *ListJobInstanceWorkersResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ListJobInstanceWorkers", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListJobInstanceWorkersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListJobInstanceWorkersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListJobInstanceWorkersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListJobInstanceWorkersResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	JobInstanceWorkers ListJobInstanceWorkersJobInstanceWorkerInfoList
 }

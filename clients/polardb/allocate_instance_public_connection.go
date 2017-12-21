@@ -7,6 +7,7 @@ import (
 )
 
 type AllocateInstancePublicConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type AllocateInstancePublicConnectionRequest struct {
 	OwnerId                int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AllocateInstancePublicConnectionRequest) Invoke(client *sdk.Client) (response *AllocateInstancePublicConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AllocateInstancePublicConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AllocateInstancePublicConnectionRequest) Invoke(client *sdk.Client) (resp *AllocateInstancePublicConnectionResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "AllocateInstancePublicConnection", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AllocateInstancePublicConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AllocateInstancePublicConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AllocateInstancePublicConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AllocateInstancePublicConnectionResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DBInstanceId     string
 	ConnectionString string

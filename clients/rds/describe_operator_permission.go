@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeOperatorPermissionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeOperatorPermissionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeOperatorPermissionRequest) Invoke(client *sdk.Client) (response *DescribeOperatorPermissionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOperatorPermissionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOperatorPermissionRequest) Invoke(client *sdk.Client) (resp *DescribeOperatorPermissionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeOperatorPermission", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOperatorPermissionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOperatorPermissionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOperatorPermissionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOperatorPermissionResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	Privileges  string
 	CreatedTime string

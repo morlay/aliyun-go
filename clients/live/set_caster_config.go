@@ -7,6 +7,7 @@ import (
 )
 
 type SetCasterConfigRequest struct {
+	requests.RpcRequest
 	UrgentMaterialId string  `position:"Query" name:"UrgentMaterialId"`
 	TranscodeConfig  string  `position:"Query" name:"TranscodeConfig"`
 	Delay            float32 `position:"Query" name:"Delay"`
@@ -19,29 +20,15 @@ type SetCasterConfigRequest struct {
 	RecordConfig     string  `position:"Query" name:"RecordConfig"`
 }
 
-func (r SetCasterConfigRequest) Invoke(client *sdk.Client) (response *SetCasterConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetCasterConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetCasterConfigRequest) Invoke(client *sdk.Client) (resp *SetCasterConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "SetCasterConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetCasterConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetCasterConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetCasterConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetCasterConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CasterId  string
 }

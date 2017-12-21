@@ -7,6 +7,7 @@ import (
 )
 
 type StopSyncingRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImportId             int    `position:"Query" name:"ImportId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type StopSyncingRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r StopSyncingRequest) Invoke(client *sdk.Client) (response *StopSyncingResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StopSyncingRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StopSyncingRequest) Invoke(client *sdk.Client) (resp *StopSyncingResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "StopSyncing", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StopSyncingResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StopSyncingResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StopSyncingResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StopSyncingResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

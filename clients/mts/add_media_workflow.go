@@ -7,6 +7,7 @@ import (
 )
 
 type AddMediaWorkflowRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Topology             string `position:"Query" name:"Topology"`
@@ -15,29 +16,15 @@ type AddMediaWorkflowRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddMediaWorkflowRequest) Invoke(client *sdk.Client) (response *AddMediaWorkflowResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddMediaWorkflowRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *AddMediaWorkflowResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddMediaWorkflow", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddMediaWorkflowResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddMediaWorkflowResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddMediaWorkflowResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddMediaWorkflowResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	MediaWorkflow AddMediaWorkflowMediaWorkflow
 }

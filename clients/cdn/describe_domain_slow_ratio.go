@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainSlowRatioRequest struct {
+	requests.RpcRequest
 	StartTime     string `position:"Query" name:"StartTime"`
 	PageNumber    int    `position:"Query" name:"PageNumber"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -19,29 +20,15 @@ type DescribeDomainSlowRatioRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DescribeDomainSlowRatioRequest) Invoke(client *sdk.Client) (response *DescribeDomainSlowRatioResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainSlowRatioRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainSlowRatioRequest) Invoke(client *sdk.Client) (resp *DescribeDomainSlowRatioResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainSlowRatio", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainSlowRatioResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainSlowRatioResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainSlowRatioResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainSlowRatioResponse struct {
+	responses.BaseResponse
 	EndTime                  string
 	DataInterval             int
 	PageNumber               int

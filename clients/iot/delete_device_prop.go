@@ -7,34 +7,21 @@ import (
 )
 
 type DeleteDevicePropRequest struct {
+	requests.RpcRequest
 	DeviceName string `position:"Query" name:"DeviceName"`
 	ProductKey string `position:"Query" name:"ProductKey"`
 	PropKey    string `position:"Query" name:"PropKey"`
 }
 
-func (r DeleteDevicePropRequest) Invoke(client *sdk.Client) (response *DeleteDevicePropResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteDevicePropRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteDevicePropRequest) Invoke(client *sdk.Client) (resp *DeleteDevicePropResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "DeleteDeviceProp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteDevicePropResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteDevicePropResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteDevicePropResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteDevicePropResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

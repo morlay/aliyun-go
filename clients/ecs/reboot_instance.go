@@ -7,6 +7,7 @@ import (
 )
 
 type RebootInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type RebootInstanceRequest struct {
 	ForceStop            string `position:"Query" name:"ForceStop"`
 }
 
-func (r RebootInstanceRequest) Invoke(client *sdk.Client) (response *RebootInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RebootInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RebootInstanceRequest) Invoke(client *sdk.Client) (resp *RebootInstanceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "RebootInstance", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RebootInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RebootInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RebootInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RebootInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

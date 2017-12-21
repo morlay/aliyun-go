@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRenewalPriceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceId           string `position:"Query" name:"ResourceId"`
 	Period               int    `position:"Query" name:"Period"`
@@ -19,29 +20,15 @@ type DescribeRenewalPriceRequest struct {
 	ResourceType         string `position:"Query" name:"ResourceType"`
 }
 
-func (r DescribeRenewalPriceRequest) Invoke(client *sdk.Client) (response *DescribeRenewalPriceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRenewalPriceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRenewalPriceRequest) Invoke(client *sdk.Client) (resp *DescribeRenewalPriceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeRenewalPrice", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRenewalPriceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRenewalPriceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRenewalPriceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRenewalPriceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	PriceInfo DescribeRenewalPricePriceInfo
 }

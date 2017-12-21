@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeDBInstanceAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceAttributeResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeDBInstanceAttribute", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeDBInstanceAttributeDBInstanceAttributeList
 }

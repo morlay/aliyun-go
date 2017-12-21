@@ -9,34 +9,21 @@ import (
 )
 
 type ListKeysRequest struct {
+	requests.RpcRequest
 	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
 	STSToken   string `position:"Query" name:"STSToken"`
 }
 
-func (r ListKeysRequest) Invoke(client *sdk.Client) (response *ListKeysResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListKeysRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListKeysRequest) Invoke(client *sdk.Client) (resp *ListKeysResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "ListKeys", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListKeysResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListKeysResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListKeysResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListKeysResponse struct {
+	responses.BaseResponse
 	TotalCount int
 	PageNumber int
 	PageSize   int

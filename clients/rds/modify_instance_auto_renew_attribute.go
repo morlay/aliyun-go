@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceAutoRenewAttributeRequest struct {
+	requests.RpcRequest
 	Duration             string `position:"Query" name:"Duration"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AutoRenew            string `position:"Query" name:"AutoRenew"`
@@ -17,28 +18,14 @@ type ModifyInstanceAutoRenewAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyInstanceAutoRenewAttributeRequest) Invoke(client *sdk.Client) (response *ModifyInstanceAutoRenewAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceAutoRenewAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceAutoRenewAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceAutoRenewAttributeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyInstanceAutoRenewAttribute", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceAutoRenewAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceAutoRenewAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceAutoRenewAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceAutoRenewAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

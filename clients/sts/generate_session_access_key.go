@@ -7,32 +7,19 @@ import (
 )
 
 type GenerateSessionAccessKeyRequest struct {
+	requests.RpcRequest
 	DurationSeconds int64 `position:"Query" name:"DurationSeconds"`
 }
 
-func (r GenerateSessionAccessKeyRequest) Invoke(client *sdk.Client) (response *GenerateSessionAccessKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GenerateSessionAccessKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GenerateSessionAccessKeyRequest) Invoke(client *sdk.Client) (resp *GenerateSessionAccessKeyResponse, err error) {
 	req.InitWithApiInfo("Sts", "2015-04-01", "GenerateSessionAccessKey", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GenerateSessionAccessKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GenerateSessionAccessKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GenerateSessionAccessKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GenerateSessionAccessKeyResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	SessionAccessKey GenerateSessionAccessKeySessionAccessKey
 }

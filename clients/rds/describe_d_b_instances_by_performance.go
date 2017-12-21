@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstancesByPerformanceRequest struct {
+	requests.RpcRequest
 	Tag4value            string `position:"Query" name:"Tag.4.value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Tag2key              string `position:"Query" name:"Tag.2.key"`
@@ -33,29 +34,15 @@ type DescribeDBInstancesByPerformanceRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r DescribeDBInstancesByPerformanceRequest) Invoke(client *sdk.Client) (response *DescribeDBInstancesByPerformanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstancesByPerformanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstancesByPerformanceRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstancesByPerformanceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstancesByPerformance", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstancesByPerformanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstancesByPerformanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstancesByPerformanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstancesByPerformanceResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	PageNumber       int
 	TotalRecordCount int

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSnatTableEntriesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeSnatTableEntriesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeSnatTableEntriesRequest) Invoke(client *sdk.Client) (response *DescribeSnatTableEntriesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSnatTableEntriesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSnatTableEntriesRequest) Invoke(client *sdk.Client) (resp *DescribeSnatTableEntriesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeSnatTableEntries", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSnatTableEntriesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSnatTableEntriesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSnatTableEntriesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSnatTableEntriesResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalCount       int
 	PageNumber       int

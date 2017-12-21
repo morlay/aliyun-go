@@ -7,6 +7,7 @@ import (
 )
 
 type SetIgnoreQueryStringConfigRequest struct {
+	requests.RpcRequest
 	KeepOssArgs   string `position:"Query" name:"KeepOssArgs"`
 	HashKeyArgs   string `position:"Query" name:"HashKeyArgs"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -15,28 +16,14 @@ type SetIgnoreQueryStringConfigRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetIgnoreQueryStringConfigRequest) Invoke(client *sdk.Client) (response *SetIgnoreQueryStringConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetIgnoreQueryStringConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetIgnoreQueryStringConfigRequest) Invoke(client *sdk.Client) (resp *SetIgnoreQueryStringConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetIgnoreQueryStringConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetIgnoreQueryStringConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetIgnoreQueryStringConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetIgnoreQueryStringConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetIgnoreQueryStringConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

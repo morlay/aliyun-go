@@ -7,32 +7,19 @@ import (
 )
 
 type ResumeExecutionPlanSchedulerRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 }
 
-func (r ResumeExecutionPlanSchedulerRequest) Invoke(client *sdk.Client) (response *ResumeExecutionPlanSchedulerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResumeExecutionPlanSchedulerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResumeExecutionPlanSchedulerRequest) Invoke(client *sdk.Client) (resp *ResumeExecutionPlanSchedulerResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ResumeExecutionPlanScheduler", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResumeExecutionPlanSchedulerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResumeExecutionPlanSchedulerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResumeExecutionPlanSchedulerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResumeExecutionPlanSchedulerResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

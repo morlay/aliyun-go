@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyReadOnlyAccountPasswordRequest struct {
+	requests.RpcRequest
 	NewPasswd      string `position:"Query" name:"NewPasswd"`
 	DbName         string `position:"Query" name:"DbName"`
 	AccountName    string `position:"Query" name:"AccountName"`
@@ -14,29 +15,15 @@ type ModifyReadOnlyAccountPasswordRequest struct {
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r ModifyReadOnlyAccountPasswordRequest) Invoke(client *sdk.Client) (response *ModifyReadOnlyAccountPasswordResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyReadOnlyAccountPasswordRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyReadOnlyAccountPasswordRequest) Invoke(client *sdk.Client) (resp *ModifyReadOnlyAccountPasswordResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "ModifyReadOnlyAccountPassword", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyReadOnlyAccountPasswordResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyReadOnlyAccountPasswordResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyReadOnlyAccountPasswordResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyReadOnlyAccountPasswordResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

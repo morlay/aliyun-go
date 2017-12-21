@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitFacerecogJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitFacerecogJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitFacerecogJobRequest) Invoke(client *sdk.Client) (response *SubmitFacerecogJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitFacerecogJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitFacerecogJobRequest) Invoke(client *sdk.Client) (resp *SubmitFacerecogJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitFacerecogJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitFacerecogJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitFacerecogJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitFacerecogJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitFacerecogJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

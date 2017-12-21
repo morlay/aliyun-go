@@ -7,32 +7,19 @@ import (
 )
 
 type SaveAccountConfigRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r SaveAccountConfigRequest) Invoke(client *sdk.Client) (response *SaveAccountConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveAccountConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveAccountConfigRequest) Invoke(client *sdk.Client) (resp *SaveAccountConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveAccountConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveAccountConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveAccountConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveAccountConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveAccountConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

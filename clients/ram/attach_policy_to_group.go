@@ -7,33 +7,20 @@ import (
 )
 
 type AttachPolicyToGroupRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 	GroupName  string `position:"Query" name:"GroupName"`
 }
 
-func (r AttachPolicyToGroupRequest) Invoke(client *sdk.Client) (response *AttachPolicyToGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachPolicyToGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachPolicyToGroupRequest) Invoke(client *sdk.Client) (resp *AttachPolicyToGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "AttachPolicyToGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachPolicyToGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachPolicyToGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachPolicyToGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachPolicyToGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

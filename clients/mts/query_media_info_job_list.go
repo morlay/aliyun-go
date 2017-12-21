@@ -9,6 +9,7 @@ import (
 )
 
 type QueryMediaInfoJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	MediaInfoJobIds      string `position:"Query" name:"MediaInfoJobIds"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type QueryMediaInfoJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryMediaInfoJobListRequest) Invoke(client *sdk.Client) (response *QueryMediaInfoJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryMediaInfoJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryMediaInfoJobListRequest) Invoke(client *sdk.Client) (resp *QueryMediaInfoJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaInfoJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryMediaInfoJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryMediaInfoJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryMediaInfoJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryMediaInfoJobListResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	MediaInfoJobList        QueryMediaInfoJobListMediaInfoJobList
 	NonExistMediaInfoJobIds QueryMediaInfoJobListNonExistMediaInfoJobIdList

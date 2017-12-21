@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRealtimeDiagnosesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeRealtimeDiagnosesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeRealtimeDiagnosesRequest) Invoke(client *sdk.Client) (response *DescribeRealtimeDiagnosesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRealtimeDiagnosesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRealtimeDiagnosesRequest) Invoke(client *sdk.Client) (resp *DescribeRealtimeDiagnosesResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeRealtimeDiagnoses", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRealtimeDiagnosesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRealtimeDiagnosesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRealtimeDiagnosesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRealtimeDiagnosesResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Engine           string
 	TotalRecordCount int

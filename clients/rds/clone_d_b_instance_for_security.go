@@ -7,6 +7,7 @@ import (
 )
 
 type CloneDBInstanceForSecurityRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage    int    `position:"Query" name:"DBInstanceStorage"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -22,29 +23,15 @@ type CloneDBInstanceForSecurityRequest struct {
 	PayType              string `position:"Query" name:"PayType"`
 }
 
-func (r CloneDBInstanceForSecurityRequest) Invoke(client *sdk.Client) (response *CloneDBInstanceForSecurityResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CloneDBInstanceForSecurityRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CloneDBInstanceForSecurityRequest) Invoke(client *sdk.Client) (resp *CloneDBInstanceForSecurityResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CloneDBInstanceForSecurity", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CloneDBInstanceForSecurityResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CloneDBInstanceForSecurityResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CloneDBInstanceForSecurityResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CloneDBInstanceForSecurityResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DBInstanceId     string
 	OrderId          string

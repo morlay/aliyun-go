@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeRangeDataByLocateAndIspServiceRequest struct {
+	requests.RpcRequest
 	IspNames      string `position:"Query" name:"IspNames"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainNames   string `position:"Query" name:"DomainNames"`
@@ -16,29 +17,15 @@ type DescribeRangeDataByLocateAndIspServiceRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeRangeDataByLocateAndIspServiceRequest) Invoke(client *sdk.Client) (response *DescribeRangeDataByLocateAndIspServiceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRangeDataByLocateAndIspServiceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRangeDataByLocateAndIspServiceRequest) Invoke(client *sdk.Client) (resp *DescribeRangeDataByLocateAndIspServiceResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeRangeDataByLocateAndIspService", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRangeDataByLocateAndIspServiceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRangeDataByLocateAndIspServiceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRangeDataByLocateAndIspServiceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRangeDataByLocateAndIspServiceResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	JsonResult string
 }

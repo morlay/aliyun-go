@@ -7,33 +7,20 @@ import (
 )
 
 type RegistDeviceRequest struct {
+	requests.RpcRequest
 	DeviceName string `position:"Query" name:"DeviceName"`
 	ProductKey string `position:"Query" name:"ProductKey"`
 }
 
-func (r RegistDeviceRequest) Invoke(client *sdk.Client) (response *RegistDeviceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RegistDeviceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RegistDeviceRequest) Invoke(client *sdk.Client) (resp *RegistDeviceResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "RegistDevice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RegistDeviceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RegistDeviceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RegistDeviceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RegistDeviceResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

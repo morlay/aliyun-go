@@ -7,32 +7,19 @@ import (
 )
 
 type DeleteContacterRequest struct {
+	requests.RpcRequest
 	ContacterId int64 `position:"Query" name:"ContacterId"`
 }
 
-func (r DeleteContacterRequest) Invoke(client *sdk.Client) (response *DeleteContacterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteContacterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteContacterRequest) Invoke(client *sdk.Client) (resp *DeleteContacterResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "DeleteContacter", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteContacterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteContacterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteContacterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteContacterResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

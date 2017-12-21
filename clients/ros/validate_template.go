@@ -7,30 +7,18 @@ import (
 )
 
 type ValidateTemplateRequest struct {
+	requests.RoaRequest
 }
 
-func (r ValidateTemplateRequest) Invoke(client *sdk.Client) (response *ValidateTemplateResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		ValidateTemplateRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *ValidateTemplateRequest) Invoke(client *sdk.Client) (resp *ValidateTemplateResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "ValidateTemplate", "/validate", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		ValidateTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ValidateTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ValidateTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ValidateTemplateResponse struct {
+	responses.BaseResponse
 }

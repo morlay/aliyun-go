@@ -7,6 +7,7 @@ import (
 )
 
 type CreateLoadBalancerHTTPSListenerRequest struct {
+	requests.RpcRequest
 	Access_key_id          string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	HealthCheckTimeout     int    `position:"Query" name:"HealthCheckTimeout"`
@@ -42,28 +43,14 @@ type CreateLoadBalancerHTTPSListenerRequest struct {
 	HealthCheckHttpCode    string `position:"Query" name:"HealthCheckHttpCode"`
 }
 
-func (r CreateLoadBalancerHTTPSListenerRequest) Invoke(client *sdk.Client) (response *CreateLoadBalancerHTTPSListenerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateLoadBalancerHTTPSListenerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateLoadBalancerHTTPSListenerRequest) Invoke(client *sdk.Client) (resp *CreateLoadBalancerHTTPSListenerResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateLoadBalancerHTTPSListener", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateLoadBalancerHTTPSListenerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateLoadBalancerHTTPSListenerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateLoadBalancerHTTPSListenerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateLoadBalancerHTTPSListenerResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

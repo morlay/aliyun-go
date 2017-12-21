@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeScalingActivitiesRequest struct {
+	requests.RpcRequest
 	ScalingActivityId9   string `position:"Query" name:"ScalingActivityId.9"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ScalingActivityId5   string `position:"Query" name:"ScalingActivityId.5"`
@@ -39,29 +40,15 @@ type DescribeScalingActivitiesRequest struct {
 	ScalingActivityId20  string `position:"Query" name:"ScalingActivityId.20"`
 }
 
-func (r DescribeScalingActivitiesRequest) Invoke(client *sdk.Client) (response *DescribeScalingActivitiesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeScalingActivitiesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeScalingActivitiesRequest) Invoke(client *sdk.Client) (resp *DescribeScalingActivitiesResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeScalingActivities", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeScalingActivitiesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeScalingActivitiesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeScalingActivitiesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeScalingActivitiesResponse struct {
+	responses.BaseResponse
 	TotalCount        int
 	PageNumber        int
 	PageSize          int

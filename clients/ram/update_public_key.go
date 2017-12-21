@@ -7,33 +7,20 @@ import (
 )
 
 type UpdatePublicKeyRequest struct {
+	requests.RpcRequest
 	UserPublicKeyId string `position:"Query" name:"UserPublicKeyId"`
 	UserName        string `position:"Query" name:"UserName"`
 	Status          string `position:"Query" name:"Status"`
 }
 
-func (r UpdatePublicKeyRequest) Invoke(client *sdk.Client) (response *UpdatePublicKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdatePublicKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdatePublicKeyRequest) Invoke(client *sdk.Client) (resp *UpdatePublicKeyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "UpdatePublicKey", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdatePublicKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdatePublicKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdatePublicKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdatePublicKeyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

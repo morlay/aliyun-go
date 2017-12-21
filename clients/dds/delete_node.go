@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteNodeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DeleteNodeRequest struct {
 	NodeId               string `position:"Query" name:"NodeId"`
 }
 
-func (r DeleteNodeRequest) Invoke(client *sdk.Client) (response *DeleteNodeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteNodeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteNodeRequest) Invoke(client *sdk.Client) (resp *DeleteNodeResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DeleteNode", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteNodeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteNodeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteNodeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteNodeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TaskId    int
 }

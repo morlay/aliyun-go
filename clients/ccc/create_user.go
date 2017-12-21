@@ -9,6 +9,7 @@ import (
 )
 
 type CreateUserRequest struct {
+	requests.RpcRequest
 	SkillLevels   *CreateUserSkillLevelList   `position:"Query" type:"Repeated" name:"SkillLevel"`
 	InstanceId    string                      `position:"Query" name:"InstanceId"`
 	LoginName     string                      `position:"Query" name:"LoginName"`
@@ -19,29 +20,15 @@ type CreateUserRequest struct {
 	Email         string                      `position:"Query" name:"Email"`
 }
 
-func (r CreateUserRequest) Invoke(client *sdk.Client) (response *CreateUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateUserRequest) Invoke(client *sdk.Client) (resp *CreateUserResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "CreateUser", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateUserResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

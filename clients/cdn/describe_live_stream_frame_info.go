@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamFrameInfoRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamFrameInfoRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamFrameInfoRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamFrameInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamFrameInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamFrameInfoRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamFrameInfoResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamFrameInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamFrameInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamFrameInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamFrameInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamFrameInfoResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	FrameDataInfos DescribeLiveStreamFrameInfoFrameDataModelList
 }

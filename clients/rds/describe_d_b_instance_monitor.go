@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeDBInstanceMonitorRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,29 +16,15 @@ type DescribeDBInstanceMonitorRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceMonitorRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceMonitorResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceMonitorRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceMonitorRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceMonitorResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceMonitor", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceMonitorResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceMonitorResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceMonitorResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceMonitorResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Period    string
 }

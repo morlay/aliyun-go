@@ -7,7 +7,7 @@ import java.io.FileOutputStream
 import java.io.InputStream
 
 fun toLowerSnakeCase(s: String): String {
-    return s.replace(Regex("([A-Z])"), "_$1").toLowerCase().trimStart { c -> c.toString() == "_" }
+    return toUpperCamelCase(s).replace(Regex("([A-Z])"), "_$1").toLowerCase().trimStart { c -> c.toString() == "_" }
 }
 
 fun toUpperCamelCase(s: String): String {

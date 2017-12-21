@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeTasksRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type DescribeTasksRequest struct {
 	TaskAction           string `position:"Query" name:"TaskAction"`
 }
 
-func (r DescribeTasksRequest) Invoke(client *sdk.Client) (response *DescribeTasksResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeTasksRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeTasksRequest) Invoke(client *sdk.Client) (resp *DescribeTasksResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeTasks", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTasksResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTasksResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTasksResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTasksResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	RegionId   string
 	TotalCount int

@@ -7,31 +7,18 @@ import (
 )
 
 type GetPasswordPolicyRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetPasswordPolicyRequest) Invoke(client *sdk.Client) (response *GetPasswordPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetPasswordPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetPasswordPolicyRequest) Invoke(client *sdk.Client) (resp *GetPasswordPolicyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetPasswordPolicy", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetPasswordPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetPasswordPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetPasswordPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetPasswordPolicyResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	PasswordPolicy GetPasswordPolicyPasswordPolicy
 }

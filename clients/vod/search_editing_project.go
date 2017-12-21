@@ -9,6 +9,7 @@ import (
 )
 
 type SearchEditingProjectRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type SearchEditingProjectRequest struct {
 	Status               string `position:"Query" name:"Status"`
 }
 
-func (r SearchEditingProjectRequest) Invoke(client *sdk.Client) (response *SearchEditingProjectResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchEditingProjectRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchEditingProjectRequest) Invoke(client *sdk.Client) (resp *SearchEditingProjectResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SearchEditingProject", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchEditingProjectResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchEditingProjectResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchEditingProjectResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchEditingProjectResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	Total       int
 	ProjectList SearchEditingProjectProjectList

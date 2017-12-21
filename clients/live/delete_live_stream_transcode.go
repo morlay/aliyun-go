@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteLiveStreamTranscodeRequest struct {
+	requests.RpcRequest
 	App           string `position:"Query" name:"App"`
 	Template      string `position:"Query" name:"Template"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
@@ -14,28 +15,14 @@ type DeleteLiveStreamTranscodeRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (response *DeleteLiveStreamTranscodeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLiveStreamTranscodeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (resp *DeleteLiveStreamTranscodeResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveStreamTranscode", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLiveStreamTranscodeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLiveStreamTranscodeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLiveStreamTranscodeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLiveStreamTranscodeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

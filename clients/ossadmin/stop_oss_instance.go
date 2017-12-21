@@ -7,6 +7,7 @@ import (
 )
 
 type StopOssInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -14,28 +15,14 @@ type StopOssInstanceRequest struct {
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 }
 
-func (r StopOssInstanceRequest) Invoke(client *sdk.Client) (response *StopOssInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StopOssInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StopOssInstanceRequest) Invoke(client *sdk.Client) (resp *StopOssInstanceResponse, err error) {
 	req.InitWithApiInfo("OssAdmin", "2015-03-02", "StopOssInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StopOssInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StopOssInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StopOssInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StopOssInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

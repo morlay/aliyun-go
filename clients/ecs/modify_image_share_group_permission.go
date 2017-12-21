@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyImageShareGroupPermissionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
 	AddGroup1            string `position:"Query" name:"AddGroup.1"`
@@ -16,28 +17,14 @@ type ModifyImageShareGroupPermissionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyImageShareGroupPermissionRequest) Invoke(client *sdk.Client) (response *ModifyImageShareGroupPermissionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyImageShareGroupPermissionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyImageShareGroupPermissionRequest) Invoke(client *sdk.Client) (resp *ModifyImageShareGroupPermissionResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyImageShareGroupPermission", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyImageShareGroupPermissionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyImageShareGroupPermissionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyImageShareGroupPermissionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyImageShareGroupPermissionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

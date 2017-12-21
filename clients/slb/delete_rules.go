@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteRulesRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	RuleIds              string `position:"Query" name:"RuleIds"`
@@ -16,28 +17,14 @@ type DeleteRulesRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DeleteRulesRequest) Invoke(client *sdk.Client) (response *DeleteRulesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteRulesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteRulesRequest) Invoke(client *sdk.Client) (resp *DeleteRulesResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DeleteRules", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteRulesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteRulesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteRulesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteRulesResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type CancelPushRequest struct {
+	requests.RpcRequest
 	MessageId string `position:"Query" name:"MessageId"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
 }
 
-func (r CancelPushRequest) Invoke(client *sdk.Client) (response *CancelPushResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CancelPushRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CancelPushRequest) Invoke(client *sdk.Client) (resp *CancelPushResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "CancelPush", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CancelPushResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CancelPushResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CancelPushResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CancelPushResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

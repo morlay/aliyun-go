@@ -9,6 +9,7 @@ import (
 )
 
 type ListPornPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type ListPornPipelineRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r ListPornPipelineRequest) Invoke(client *sdk.Client) (response *ListPornPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPornPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPornPipelineRequest) Invoke(client *sdk.Client) (resp *ListPornPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListPornPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPornPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPornPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPornPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPornPipelineResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

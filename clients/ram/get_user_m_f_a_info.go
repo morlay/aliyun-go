@@ -7,32 +7,19 @@ import (
 )
 
 type GetUserMFAInfoRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r GetUserMFAInfoRequest) Invoke(client *sdk.Client) (response *GetUserMFAInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetUserMFAInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetUserMFAInfoRequest) Invoke(client *sdk.Client) (resp *GetUserMFAInfoResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "GetUserMFAInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetUserMFAInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserMFAInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserMFAInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserMFAInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MFADevice GetUserMFAInfoMFADevice
 }

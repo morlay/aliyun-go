@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDeploymentSetsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -23,29 +24,15 @@ type DescribeDeploymentSetsRequest struct {
 	Strategy             string `position:"Query" name:"Strategy"`
 }
 
-func (r DescribeDeploymentSetsRequest) Invoke(client *sdk.Client) (response *DescribeDeploymentSetsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDeploymentSetsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDeploymentSetsRequest) Invoke(client *sdk.Client) (resp *DescribeDeploymentSetsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeDeploymentSets", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDeploymentSetsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDeploymentSetsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDeploymentSetsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDeploymentSetsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	RegionId       string
 	TotalCount     int

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyContacterRequest struct {
+	requests.RpcRequest
 	ContacterId       int64  `position:"Query" name:"ContacterId"`
 	ContacterName     string `position:"Query" name:"ContacterName"`
 	ContacterEmail    string `position:"Query" name:"ContacterEmail"`
@@ -14,29 +15,15 @@ type ModifyContacterRequest struct {
 	ContacterPosition string `position:"Query" name:"ContacterPosition"`
 }
 
-func (r ModifyContacterRequest) Invoke(client *sdk.Client) (response *ModifyContacterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyContacterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyContacterRequest) Invoke(client *sdk.Client) (resp *ModifyContacterResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "ModifyContacter", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyContacterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyContacterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyContacterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyContacterResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

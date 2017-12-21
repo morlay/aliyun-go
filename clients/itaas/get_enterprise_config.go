@@ -9,34 +9,21 @@ import (
 )
 
 type GetEnterpriseConfigRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 }
 
-func (r GetEnterpriseConfigRequest) Invoke(client *sdk.Client) (response *GetEnterpriseConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetEnterpriseConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetEnterpriseConfigRequest) Invoke(client *sdk.Client) (resp *GetEnterpriseConfigResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "GetEnterpriseConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetEnterpriseConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetEnterpriseConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetEnterpriseConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetEnterpriseConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

@@ -9,6 +9,7 @@ import (
 )
 
 type SearchMediaWorkflowRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type SearchMediaWorkflowRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r SearchMediaWorkflowRequest) Invoke(client *sdk.Client) (response *SearchMediaWorkflowResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchMediaWorkflowRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *SearchMediaWorkflowResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SearchMediaWorkflow", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchMediaWorkflowResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchMediaWorkflowResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchMediaWorkflowResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchMediaWorkflowResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalCount        int64
 	PageNumber        int64

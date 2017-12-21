@@ -7,6 +7,7 @@ import (
 )
 
 type AddTagsRequest struct {
+	requests.RpcRequest
 	Tag4Value            string `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceId           string `position:"Query" name:"ResourceId"`
@@ -24,28 +25,14 @@ type AddTagsRequest struct {
 	Tag3Value            string `position:"Query" name:"Tag.3.Value"`
 }
 
-func (r AddTagsRequest) Invoke(client *sdk.Client) (response *AddTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddTagsRequest) Invoke(client *sdk.Client) (resp *AddTagsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AddTags", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddTagsResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

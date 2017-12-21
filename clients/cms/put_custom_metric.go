@@ -7,32 +7,19 @@ import (
 )
 
 type PutCustomMetricRequest struct {
+	requests.RpcRequest
 	MetricList string `position:"Query" name:"MetricList"`
 }
 
-func (r PutCustomMetricRequest) Invoke(client *sdk.Client) (response *PutCustomMetricResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PutCustomMetricRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PutCustomMetricRequest) Invoke(client *sdk.Client) (resp *PutCustomMetricResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "PutCustomMetric", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PutCustomMetricResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PutCustomMetricResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PutCustomMetricResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PutCustomMetricResponse struct {
+	responses.BaseResponse
 	Code    string
 	Message string
 	Data    string

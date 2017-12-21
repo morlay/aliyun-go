@@ -7,6 +7,7 @@ import (
 )
 
 type GetImageInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,29 +15,15 @@ type GetImageInfoRequest struct {
 	AuthTimeout          int64  `position:"Query" name:"AuthTimeout"`
 }
 
-func (r GetImageInfoRequest) Invoke(client *sdk.Client) (response *GetImageInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetImageInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetImageInfoRequest) Invoke(client *sdk.Client) (resp *GetImageInfoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetImageInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetImageInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetImageInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetImageInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetImageInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ImageInfo GetImageInfoImageInfo
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type CompensateInstanceForChannelRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ZoneId               string `position:"Query" name:"ZoneId"`
@@ -15,28 +16,14 @@ type CompensateInstanceForChannelRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CompensateInstanceForChannelRequest) Invoke(client *sdk.Client) (response *CompensateInstanceForChannelResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CompensateInstanceForChannelRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CompensateInstanceForChannelRequest) Invoke(client *sdk.Client) (resp *CompensateInstanceForChannelResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CompensateInstanceForChannel", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CompensateInstanceForChannelResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CompensateInstanceForChannelResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CompensateInstanceForChannelResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CompensateInstanceForChannelResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

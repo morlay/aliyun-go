@@ -9,6 +9,7 @@ import (
 )
 
 type ListAIVideoTerrorismRecogJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId             string `position:"Query" name:"ResourceOwnerId"`
 	AIVideoTerrorismRecogJobIds string `position:"Query" name:"AIVideoTerrorismRecogJobIds"`
 	ResourceOwnerAccount        string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ListAIVideoTerrorismRecogJobRequest struct {
 	OwnerId                     string `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAIVideoTerrorismRecogJobRequest) Invoke(client *sdk.Client) (response *ListAIVideoTerrorismRecogJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAIVideoTerrorismRecogJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAIVideoTerrorismRecogJobRequest) Invoke(client *sdk.Client) (resp *ListAIVideoTerrorismRecogJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoTerrorismRecogJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAIVideoTerrorismRecogJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAIVideoTerrorismRecogJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAIVideoTerrorismRecogJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAIVideoTerrorismRecogJobResponse struct {
+	responses.BaseResponse
 	RequestId                    string
 	AIVideoTerrorismRecogJobList ListAIVideoTerrorismRecogJobAIVideoTerrorismRecogJobList
 	NonExistTerrorismRecogJobIds ListAIVideoTerrorismRecogJobNonExistTerrorismRecogJobIdList

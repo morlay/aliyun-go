@@ -9,32 +9,19 @@ import (
 )
 
 type GetWhoisInfoRequest struct {
+	requests.RpcRequest
 	DomainName string `position:"Query" name:"DomainName"`
 }
 
-func (r GetWhoisInfoRequest) Invoke(client *sdk.Client) (response *GetWhoisInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetWhoisInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetWhoisInfoRequest) Invoke(client *sdk.Client) (resp *GetWhoisInfoResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "GetWhoisInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetWhoisInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetWhoisInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetWhoisInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetWhoisInfoResponse struct {
+	responses.BaseResponse
 	RequestId                  string
 	ReferralURL                string
 	DomainName                 string

@@ -7,35 +7,22 @@ import (
 )
 
 type AddPhoneNumberRequest struct {
+	requests.RpcRequest
 	ContactFlowId string `position:"Query" name:"ContactFlowId"`
 	InstanceId    string `position:"Query" name:"InstanceId"`
 	Usage         string `position:"Query" name:"Usage"`
 	PhoneNumber   string `position:"Query" name:"PhoneNumber"`
 }
 
-func (r AddPhoneNumberRequest) Invoke(client *sdk.Client) (response *AddPhoneNumberResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddPhoneNumberRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddPhoneNumberRequest) Invoke(client *sdk.Client) (resp *AddPhoneNumberResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "AddPhoneNumber", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddPhoneNumberResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddPhoneNumberResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddPhoneNumberResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddPhoneNumberResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

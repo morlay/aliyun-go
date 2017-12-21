@@ -7,32 +7,19 @@ import (
 )
 
 type UpdateOnPurchaseSuccessRequest struct {
+	requests.RpcRequest
 	Data string `position:"Query" name:"Data"`
 }
 
-func (r UpdateOnPurchaseSuccessRequest) Invoke(client *sdk.Client) (response *UpdateOnPurchaseSuccessResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateOnPurchaseSuccessRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateOnPurchaseSuccessRequest) Invoke(client *sdk.Client) (resp *UpdateOnPurchaseSuccessResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "UpdateOnPurchaseSuccess", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateOnPurchaseSuccessResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateOnPurchaseSuccessResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateOnPurchaseSuccessResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateOnPurchaseSuccessResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Data      string
 	Success   bool

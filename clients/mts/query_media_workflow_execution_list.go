@@ -9,6 +9,7 @@ import (
 )
 
 type QueryMediaWorkflowExecutionListRequest struct {
+	requests.RpcRequest
 	RunIds               string `position:"Query" name:"RunIds"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type QueryMediaWorkflowExecutionListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryMediaWorkflowExecutionListRequest) Invoke(client *sdk.Client) (response *QueryMediaWorkflowExecutionListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryMediaWorkflowExecutionListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryMediaWorkflowExecutionListRequest) Invoke(client *sdk.Client) (resp *QueryMediaWorkflowExecutionListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaWorkflowExecutionList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryMediaWorkflowExecutionListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryMediaWorkflowExecutionListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryMediaWorkflowExecutionListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryMediaWorkflowExecutionListResponse struct {
+	responses.BaseResponse
 	RequestId                  string
 	MediaWorkflowExecutionList QueryMediaWorkflowExecutionListMediaWorkflowExecutionList
 	NonExistRunIds             QueryMediaWorkflowExecutionListNonExistRunIdList

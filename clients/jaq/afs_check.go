@@ -7,6 +7,7 @@ import (
 )
 
 type AfsCheckRequest struct {
+	requests.RpcRequest
 	CallerName string `position:"Query" name:"CallerName"`
 	Session    string `position:"Query" name:"Session"`
 	Token      string `position:"Query" name:"Token"`
@@ -15,29 +16,15 @@ type AfsCheckRequest struct {
 	Scene      string `position:"Query" name:"Scene"`
 }
 
-func (r AfsCheckRequest) Invoke(client *sdk.Client) (response *AfsCheckResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AfsCheckRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AfsCheckRequest) Invoke(client *sdk.Client) (resp *AfsCheckResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "AfsCheck", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AfsCheckResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AfsCheckResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AfsCheckResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AfsCheckResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      bool

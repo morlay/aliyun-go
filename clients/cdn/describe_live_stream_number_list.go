@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamNumberListRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -17,29 +18,15 @@ type DescribeLiveStreamNumberListRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamNumberListRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamNumberListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamNumberListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamNumberListRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamNumberListResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamNumberList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamNumberListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamNumberListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamNumberListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamNumberListResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	DomainName        string
 	StreamNumberInfos DescribeLiveStreamNumberListStreamNumberInfoList

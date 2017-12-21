@@ -7,6 +7,7 @@ import (
 )
 
 type StopInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,28 +18,14 @@ type StopInstanceRequest struct {
 	ForceStop            string `position:"Query" name:"ForceStop"`
 }
 
-func (r StopInstanceRequest) Invoke(client *sdk.Client) (response *StopInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StopInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StopInstanceRequest) Invoke(client *sdk.Client) (resp *StopInstanceResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "StopInstance", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StopInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StopInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StopInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StopInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

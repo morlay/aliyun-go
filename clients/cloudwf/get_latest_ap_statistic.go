@@ -7,32 +7,19 @@ import (
 )
 
 type GetLatestApStatisticRequest struct {
+	requests.RpcRequest
 	ApgroupId int64 `position:"Query" name:"ApgroupId"`
 }
 
-func (r GetLatestApStatisticRequest) Invoke(client *sdk.Client) (response *GetLatestApStatisticResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetLatestApStatisticRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetLatestApStatisticRequest) Invoke(client *sdk.Client) (resp *GetLatestApStatisticResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetLatestApStatistic", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetLatestApStatisticResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetLatestApStatisticResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetLatestApStatisticResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetLatestApStatisticResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

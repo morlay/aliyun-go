@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitSnapshotJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitSnapshotJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitSnapshotJobRequest) Invoke(client *sdk.Client) (response *SubmitSnapshotJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitSnapshotJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitSnapshotJobRequest) Invoke(client *sdk.Client) (resp *SubmitSnapshotJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitSnapshotJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitSnapshotJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitSnapshotJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitSnapshotJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitSnapshotJobResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	SnapshotJob SubmitSnapshotJobSnapshotJob
 }

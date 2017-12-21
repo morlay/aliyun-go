@@ -7,6 +7,7 @@ import (
 )
 
 type BusinessCreateRequest struct {
+	requests.RpcRequest
 	BusinessCity     string `position:"Query" name:"BusinessCity"`
 	Combo            string `position:"Query" name:"Combo"`
 	WarnEmail        string `position:"Query" name:"WarnEmail"`
@@ -21,29 +22,15 @@ type BusinessCreateRequest struct {
 	BusinessSubtype  int    `position:"Query" name:"BusinessSubtype"`
 }
 
-func (r BusinessCreateRequest) Invoke(client *sdk.Client) (response *BusinessCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BusinessCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BusinessCreateRequest) Invoke(client *sdk.Client) (resp *BusinessCreateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "BusinessCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BusinessCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BusinessCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BusinessCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BusinessCreateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

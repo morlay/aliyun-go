@@ -7,6 +7,7 @@ import (
 )
 
 type StartCasterSceneRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	SceneId       string `position:"Query" name:"SceneId"`
@@ -14,29 +15,15 @@ type StartCasterSceneRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r StartCasterSceneRequest) Invoke(client *sdk.Client) (response *StartCasterSceneResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StartCasterSceneRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StartCasterSceneRequest) Invoke(client *sdk.Client) (resp *StartCasterSceneResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "StartCasterScene", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StartCasterSceneResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StartCasterSceneResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StartCasterSceneResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StartCasterSceneResponse struct {
+	responses.BaseResponse
 	RequestId string
 	StreamUrl string
 }

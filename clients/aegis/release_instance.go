@@ -7,32 +7,19 @@ import (
 )
 
 type ReleaseInstanceRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	OwnerId    int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReleaseInstanceRequest) Invoke(client *sdk.Client) (response *ReleaseInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseInstanceRequest) Invoke(client *sdk.Client) (resp *ReleaseInstanceResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "ReleaseInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

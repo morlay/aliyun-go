@@ -7,6 +7,7 @@ import (
 )
 
 type CreateBgpGroupRequest struct {
+	requests.RpcRequest
 	AuthKey              string `position:"Query" name:"AuthKey"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -20,29 +21,15 @@ type CreateBgpGroupRequest struct {
 	Name                 string `position:"Query" name:"Name"`
 }
 
-func (r CreateBgpGroupRequest) Invoke(client *sdk.Client) (response *CreateBgpGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateBgpGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateBgpGroupRequest) Invoke(client *sdk.Client) (resp *CreateBgpGroupResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateBgpGroup", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateBgpGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateBgpGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateBgpGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateBgpGroupResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	BgpGroupId string
 }

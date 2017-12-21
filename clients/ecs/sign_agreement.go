@@ -7,6 +7,7 @@ import (
 )
 
 type SignAgreementRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type SignAgreementRequest struct {
 	AgreementType        string `position:"Query" name:"AgreementType"`
 }
 
-func (r SignAgreementRequest) Invoke(client *sdk.Client) (response *SignAgreementResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SignAgreementRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SignAgreementRequest) Invoke(client *sdk.Client) (resp *SignAgreementResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "SignAgreement", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SignAgreementResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SignAgreementResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SignAgreementResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SignAgreementResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

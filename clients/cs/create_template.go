@@ -7,30 +7,18 @@ import (
 )
 
 type CreateTemplateRequest struct {
+	requests.RoaRequest
 }
 
-func (r CreateTemplateRequest) Invoke(client *sdk.Client) (response *CreateTemplateResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		CreateTemplateRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *CreateTemplateRequest) Invoke(client *sdk.Client) (resp *CreateTemplateResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "CreateTemplate", "/templates", "", "")
 	req.Method = "PUT"
 
-	resp := struct {
-		*responses.BaseResponse
-		CreateTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateTemplateResponse struct {
+	responses.BaseResponse
 }

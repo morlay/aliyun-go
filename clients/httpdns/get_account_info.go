@@ -7,31 +7,18 @@ import (
 )
 
 type GetAccountInfoRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetAccountInfoRequest) Invoke(client *sdk.Client) (response *GetAccountInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetAccountInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetAccountInfoRequest) Invoke(client *sdk.Client) (resp *GetAccountInfoResponse, err error) {
 	req.InitWithApiInfo("Httpdns", "2016-02-01", "GetAccountInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetAccountInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetAccountInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetAccountInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetAccountInfoResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	AccountInfo GetAccountInfoAccountInfo
 }

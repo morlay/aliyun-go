@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyParameterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyParameterRequest struct {
 	Parameters           string `position:"Query" name:"Parameters"`
 }
 
-func (r ModifyParameterRequest) Invoke(client *sdk.Client) (response *ModifyParameterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyParameterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyParameterRequest) Invoke(client *sdk.Client) (resp *ModifyParameterResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ModifyParameter", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyParameterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyParameterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyParameterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyParameterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

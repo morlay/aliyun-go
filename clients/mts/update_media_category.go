@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateMediaCategoryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int64  `position:"Query" name:"CateId"`
@@ -15,28 +16,14 @@ type UpdateMediaCategoryRequest struct {
 	MediaId              string `position:"Query" name:"MediaId"`
 }
 
-func (r UpdateMediaCategoryRequest) Invoke(client *sdk.Client) (response *UpdateMediaCategoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateMediaCategoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateMediaCategoryRequest) Invoke(client *sdk.Client) (resp *UpdateMediaCategoryResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaCategory", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateMediaCategoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateMediaCategoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateMediaCategoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateMediaCategoryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

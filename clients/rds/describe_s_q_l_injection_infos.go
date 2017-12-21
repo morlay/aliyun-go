@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSQLInjectionInfosRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeSQLInjectionInfosRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeSQLInjectionInfosRequest) Invoke(client *sdk.Client) (response *DescribeSQLInjectionInfosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSQLInjectionInfosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSQLInjectionInfosRequest) Invoke(client *sdk.Client) (resp *DescribeSQLInjectionInfosResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeSQLInjectionInfos", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSQLInjectionInfosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSQLInjectionInfosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSQLInjectionInfosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSQLInjectionInfosResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Engine           string
 	TotalRecordCount int

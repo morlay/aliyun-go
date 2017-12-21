@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeIntranetAttributeKbRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeIntranetAttributeKbRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeIntranetAttributeKbRequest) Invoke(client *sdk.Client) (response *DescribeIntranetAttributeKbResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeIntranetAttributeKbRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeIntranetAttributeKbRequest) Invoke(client *sdk.Client) (resp *DescribeIntranetAttributeKbResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeIntranetAttributeKb", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeIntranetAttributeKbResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeIntranetAttributeKbResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeIntranetAttributeKbResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeIntranetAttributeKbResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	InstanceId              string
 	VlanId                  string

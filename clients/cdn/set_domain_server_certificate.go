@@ -7,6 +7,7 @@ import (
 )
 
 type SetDomainServerCertificateRequest struct {
+	requests.RpcRequest
 	PrivateKey              string `position:"Query" name:"PrivateKey"`
 	ServerCertificateStatus string `position:"Query" name:"ServerCertificateStatus"`
 	ServerCertificate       string `position:"Query" name:"ServerCertificate"`
@@ -17,28 +18,14 @@ type SetDomainServerCertificateRequest struct {
 	Region                  string `position:"Query" name:"Region"`
 }
 
-func (r SetDomainServerCertificateRequest) Invoke(client *sdk.Client) (response *SetDomainServerCertificateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetDomainServerCertificateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetDomainServerCertificateRequest) Invoke(client *sdk.Client) (resp *SetDomainServerCertificateResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetDomainServerCertificate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetDomainServerCertificateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetDomainServerCertificateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetDomainServerCertificateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetDomainServerCertificateResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

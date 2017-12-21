@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteCasterVideoResourceRequest struct {
+	requests.RpcRequest
 	ResourceId    string `position:"Query" name:"ResourceId"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
@@ -14,28 +15,14 @@ type DeleteCasterVideoResourceRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DeleteCasterVideoResourceRequest) Invoke(client *sdk.Client) (response *DeleteCasterVideoResourceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCasterVideoResourceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *DeleteCasterVideoResourceResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterVideoResource", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCasterVideoResourceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCasterVideoResourceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCasterVideoResourceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCasterVideoResourceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

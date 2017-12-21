@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeDnsProductAttributesRequest struct {
+	requests.RpcRequest
 	VersionCode string `position:"Query" name:"VersionCode"`
 }
 
-func (r DescribeDnsProductAttributesRequest) Invoke(client *sdk.Client) (response *DescribeDnsProductAttributesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDnsProductAttributesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDnsProductAttributesRequest) Invoke(client *sdk.Client) (resp *DescribeDnsProductAttributesResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "DescribeDnsProductAttributes", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDnsProductAttributesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDnsProductAttributesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDnsProductAttributesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDnsProductAttributesResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TtlMinValue string
 	TtlMaxValue string

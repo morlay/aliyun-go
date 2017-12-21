@@ -7,6 +7,7 @@ import (
 )
 
 type UpgradeDBInstanceEngineVersionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,29 +17,15 @@ type UpgradeDBInstanceEngineVersionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r UpgradeDBInstanceEngineVersionRequest) Invoke(client *sdk.Client) (response *UpgradeDBInstanceEngineVersionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpgradeDBInstanceEngineVersionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpgradeDBInstanceEngineVersionRequest) Invoke(client *sdk.Client) (resp *UpgradeDBInstanceEngineVersionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "UpgradeDBInstanceEngineVersion", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpgradeDBInstanceEngineVersionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpgradeDBInstanceEngineVersionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpgradeDBInstanceEngineVersionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpgradeDBInstanceEngineVersionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TaskId    string
 }

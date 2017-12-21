@@ -9,35 +9,22 @@ import (
 )
 
 type GetClusterStatusRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 	ItemType        string `position:"Query" name:"ItemType"`
 	Interval        string `position:"Query" name:"Interval"`
 }
 
-func (r GetClusterStatusRequest) Invoke(client *sdk.Client) (response *GetClusterStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetClusterStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetClusterStatusRequest) Invoke(client *sdk.Client) (resp *GetClusterStatusResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "GetClusterStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetClusterStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetClusterStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetClusterStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetClusterStatusResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	StatusList GetClusterStatusStatusList
 }

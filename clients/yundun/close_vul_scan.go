@@ -7,31 +7,18 @@ import (
 )
 
 type CloseVulScanRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r CloseVulScanRequest) Invoke(client *sdk.Client) (response *CloseVulScanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CloseVulScanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CloseVulScanRequest) Invoke(client *sdk.Client) (resp *CloseVulScanResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "CloseVulScan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CloseVulScanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CloseVulScanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CloseVulScanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CloseVulScanResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

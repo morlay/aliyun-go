@@ -9,34 +9,21 @@ import (
 )
 
 type GetIPSegmentsListRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 }
 
-func (r GetIPSegmentsListRequest) Invoke(client *sdk.Client) (response *GetIPSegmentsListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetIPSegmentsListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetIPSegmentsListRequest) Invoke(client *sdk.Client) (resp *GetIPSegmentsListResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "GetIPSegmentsList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetIPSegmentsListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetIPSegmentsListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetIPSegmentsListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetIPSegmentsListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

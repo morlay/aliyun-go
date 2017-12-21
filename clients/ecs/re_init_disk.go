@@ -7,6 +7,7 @@ import (
 )
 
 type ReInitDiskRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId             int64  `position:"Query" name:"ResourceOwnerId"`
 	Password                    string `position:"Query" name:"Password"`
 	ResourceOwnerAccount        string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,28 +19,14 @@ type ReInitDiskRequest struct {
 	OwnerId                     int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReInitDiskRequest) Invoke(client *sdk.Client) (response *ReInitDiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReInitDiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReInitDiskRequest) Invoke(client *sdk.Client) (resp *ReInitDiskResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ReInitDisk", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReInitDiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReInitDiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReInitDiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReInitDiskResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

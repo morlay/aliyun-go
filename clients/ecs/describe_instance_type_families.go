@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceTypeFamiliesRequest struct {
+	requests.RpcRequest
 	Generation           string `position:"Query" name:"Generation"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeInstanceTypeFamiliesRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeInstanceTypeFamiliesRequest) Invoke(client *sdk.Client) (response *DescribeInstanceTypeFamiliesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceTypeFamiliesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceTypeFamiliesRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceTypeFamiliesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceTypeFamilies", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceTypeFamiliesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceTypeFamiliesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceTypeFamiliesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceTypeFamiliesResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	InstanceTypeFamilies DescribeInstanceTypeFamiliesInstanceTypeFamilyList
 }

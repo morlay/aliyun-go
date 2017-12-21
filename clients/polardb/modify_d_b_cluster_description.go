@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBClusterDescriptionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBClusterDescription string `position:"Query" name:"DBClusterDescription"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type ModifyDBClusterDescriptionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDBClusterDescriptionRequest) Invoke(client *sdk.Client) (response *ModifyDBClusterDescriptionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBClusterDescriptionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBClusterDescriptionRequest) Invoke(client *sdk.Client) (resp *ModifyDBClusterDescriptionResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ModifyDBClusterDescription", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBClusterDescriptionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBClusterDescriptionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBClusterDescriptionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBClusterDescriptionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

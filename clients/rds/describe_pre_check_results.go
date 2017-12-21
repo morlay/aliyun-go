@@ -9,6 +9,7 @@ import (
 )
 
 type DescribePreCheckResultsRequest struct {
+	requests.RpcRequest
 	PreCheckId           string `position:"Query" name:"PreCheckId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribePreCheckResultsRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribePreCheckResultsRequest) Invoke(client *sdk.Client) (response *DescribePreCheckResultsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribePreCheckResultsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribePreCheckResultsRequest) Invoke(client *sdk.Client) (resp *DescribePreCheckResultsResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribePreCheckResults", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribePreCheckResultsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribePreCheckResultsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribePreCheckResultsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribePreCheckResultsResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DBInstanceId string
 	Items        DescribePreCheckResultsPreCheckResultList

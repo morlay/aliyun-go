@@ -7,31 +7,19 @@ import (
 )
 
 type GetNamespaceAuthorizationListRequest struct {
+	requests.RoaRequest
 	Namespace string `position:"Path" name:"Namespace"`
 }
 
-func (r GetNamespaceAuthorizationListRequest) Invoke(client *sdk.Client) (response *GetNamespaceAuthorizationListResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetNamespaceAuthorizationListRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetNamespaceAuthorizationListRequest) Invoke(client *sdk.Client) (resp *GetNamespaceAuthorizationListResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetNamespaceAuthorizationList", "/namespace/[Namespace]/authorizations", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetNamespaceAuthorizationListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetNamespaceAuthorizationListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetNamespaceAuthorizationListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetNamespaceAuthorizationListResponse struct {
+	responses.BaseResponse
 }

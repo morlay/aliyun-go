@@ -9,6 +9,7 @@ import (
 )
 
 type ARMSQueryDataSetRequest struct {
+	requests.RpcRequest
 	Measuress     *ARMSQueryDataSetMeasuresList   `position:"Query" type:"Repeated" name:"Measures"`
 	IntervalInSec int                             `position:"Query" name:"IntervalInSec"`
 	DateStr       string                          `position:"Query" name:"DateStr"`
@@ -19,25 +20,10 @@ type ARMSQueryDataSetRequest struct {
 	Dimensionss   *ARMSQueryDataSetDimensionsList `position:"Query" type:"Repeated" name:"Dimensions"`
 }
 
-func (r ARMSQueryDataSetRequest) Invoke(client *sdk.Client) (response *ARMSQueryDataSetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ARMSQueryDataSetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ARMSQueryDataSetRequest) Invoke(client *sdk.Client) (resp *ARMSQueryDataSetResponse, err error) {
 	req.InitWithApiInfo("ARMS4FINANCE", "2017-11-30", "ARMSQueryDataSet", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ARMSQueryDataSetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ARMSQueryDataSetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ARMSQueryDataSetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -47,6 +33,7 @@ type ARMSQueryDataSetDimensions struct {
 }
 
 type ARMSQueryDataSetResponse struct {
+	responses.BaseResponse
 	Data string
 }
 

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVRoutersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	VRouterId            string `position:"Query" name:"VRouterId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeVRoutersRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeVRoutersRequest) Invoke(client *sdk.Client) (response *DescribeVRoutersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVRoutersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVRoutersRequest) Invoke(client *sdk.Client) (resp *DescribeVRoutersResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeVRouters", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVRoutersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVRoutersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVRoutersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVRoutersResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

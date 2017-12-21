@@ -7,34 +7,21 @@ import (
 )
 
 type GetStatusRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Biz             string `position:"Query" name:"Biz"`
 	TicketId        string `position:"Query" name:"TicketId"`
 }
 
-func (r GetStatusRequest) Invoke(client *sdk.Client) (response *GetStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetStatusRequest) Invoke(client *sdk.Client) (resp *GetStatusResponse, err error) {
 	req.InitWithApiInfo("Cloudauth", "2017-11-17", "GetStatus", "cloudauth", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

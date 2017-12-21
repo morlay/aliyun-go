@@ -7,33 +7,20 @@ import (
 )
 
 type RunExecutionPlanRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 }
 
-func (r RunExecutionPlanRequest) Invoke(client *sdk.Client) (response *RunExecutionPlanResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RunExecutionPlanRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RunExecutionPlanRequest) Invoke(client *sdk.Client) (resp *RunExecutionPlanResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "RunExecutionPlan", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RunExecutionPlanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RunExecutionPlanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RunExecutionPlanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RunExecutionPlanResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	ExecutionPlanInstanceId string
 }

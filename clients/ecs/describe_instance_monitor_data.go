@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceMonitorDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
@@ -19,29 +20,15 @@ type DescribeInstanceMonitorDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeInstanceMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeInstanceMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceMonitorData", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	MonitorData DescribeInstanceMonitorDataInstanceMonitorDataList
 }

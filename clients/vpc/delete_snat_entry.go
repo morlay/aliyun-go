@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteSnatEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type DeleteSnatEntryRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteSnatEntryRequest) Invoke(client *sdk.Client) (response *DeleteSnatEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteSnatEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteSnatEntryRequest) Invoke(client *sdk.Client) (resp *DeleteSnatEntryResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteSnatEntry", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteSnatEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteSnatEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteSnatEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteSnatEntryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

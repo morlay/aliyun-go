@@ -9,34 +9,21 @@ import (
 )
 
 type OnsMqttGroupIdListRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 }
 
-func (r OnsMqttGroupIdListRequest) Invoke(client *sdk.Client) (response *OnsMqttGroupIdListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttGroupIdListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttGroupIdListRequest) Invoke(client *sdk.Client) (resp *OnsMqttGroupIdListResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttGroupIdList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttGroupIdListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttGroupIdListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttGroupIdListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttGroupIdListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsMqttGroupIdListMqttGroupIdDoList

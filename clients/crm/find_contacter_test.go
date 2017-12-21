@@ -7,32 +7,19 @@ import (
 )
 
 type FindContacterTestRequest struct {
+	requests.RpcRequest
 	ContacterId int64 `position:"Query" name:"ContacterId"`
 }
 
-func (r FindContacterTestRequest) Invoke(client *sdk.Client) (response *FindContacterTestResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FindContacterTestRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FindContacterTestRequest) Invoke(client *sdk.Client) (resp *FindContacterTestResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "FindContacterTest", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FindContacterTestResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FindContacterTestResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FindContacterTestResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FindContacterTestResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

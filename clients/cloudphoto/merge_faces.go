@@ -9,35 +9,22 @@ import (
 )
 
 type MergeFacesRequest struct {
+	requests.RpcRequest
 	LibraryId    string                `position:"Query" name:"LibraryId"`
 	TargetFaceId int64                 `position:"Query" name:"TargetFaceId"`
 	StoreName    string                `position:"Query" name:"StoreName"`
 	FaceIds      *MergeFacesFaceIdList `position:"Query" type:"Repeated" name:"FaceId"`
 }
 
-func (r MergeFacesRequest) Invoke(client *sdk.Client) (response *MergeFacesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		MergeFacesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *MergeFacesRequest) Invoke(client *sdk.Client) (resp *MergeFacesResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "MergeFaces", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		MergeFacesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.MergeFacesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &MergeFacesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type MergeFacesResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

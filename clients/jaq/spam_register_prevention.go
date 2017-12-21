@@ -7,6 +7,7 @@ import (
 )
 
 type SpamRegisterPreventionRequest struct {
+	requests.RpcRequest
 	CallerName      string `position:"Query" name:"CallerName"`
 	Ip              string `position:"Query" name:"Ip"`
 	ProtocolVersion string `position:"Query" name:"ProtocolVersion"`
@@ -31,29 +32,15 @@ type SpamRegisterPreventionRequest struct {
 	ExtendData      string `position:"Query" name:"ExtendData"`
 }
 
-func (r SpamRegisterPreventionRequest) Invoke(client *sdk.Client) (response *SpamRegisterPreventionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SpamRegisterPreventionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SpamRegisterPreventionRequest) Invoke(client *sdk.Client) (resp *SpamRegisterPreventionResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "SpamRegisterPrevention", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SpamRegisterPreventionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SpamRegisterPreventionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SpamRegisterPreventionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SpamRegisterPreventionResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      SpamRegisterPreventionData

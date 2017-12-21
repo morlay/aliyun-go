@@ -9,6 +9,7 @@ import (
 )
 
 type QueryTerrorismJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -16,29 +17,15 @@ type QueryTerrorismJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryTerrorismJobListRequest) Invoke(client *sdk.Client) (response *QueryTerrorismJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryTerrorismJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryTerrorismJobListRequest) Invoke(client *sdk.Client) (resp *QueryTerrorismJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTerrorismJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryTerrorismJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryTerrorismJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryTerrorismJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryTerrorismJobListResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TerrorismJobList QueryTerrorismJobListTerrorismJobList
 	NonExistIds      QueryTerrorismJobListNonExistIdList

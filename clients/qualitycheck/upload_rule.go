@@ -9,32 +9,19 @@ import (
 )
 
 type UploadRuleRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r UploadRuleRequest) Invoke(client *sdk.Client) (response *UploadRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UploadRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UploadRuleRequest) Invoke(client *sdk.Client) (resp *UploadRuleResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "UploadRule", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UploadRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UploadRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UploadRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UploadRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

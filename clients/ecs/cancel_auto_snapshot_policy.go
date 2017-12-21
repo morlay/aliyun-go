@@ -7,34 +7,21 @@ import (
 )
 
 type CancelAutoSnapshotPolicyRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DiskIds              string `position:"Query" name:"DiskIds"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CancelAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (response *CancelAutoSnapshotPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CancelAutoSnapshotPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CancelAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *CancelAutoSnapshotPolicyResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CancelAutoSnapshotPolicy", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CancelAutoSnapshotPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CancelAutoSnapshotPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CancelAutoSnapshotPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CancelAutoSnapshotPolicyResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

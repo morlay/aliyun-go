@@ -7,31 +7,18 @@ import (
 )
 
 type GetSubAccountStatusRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetSubAccountStatusRequest) Invoke(client *sdk.Client) (response *GetSubAccountStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetSubAccountStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetSubAccountStatusRequest) Invoke(client *sdk.Client) (resp *GetSubAccountStatusResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetSubAccountStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetSubAccountStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetSubAccountStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetSubAccountStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetSubAccountStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

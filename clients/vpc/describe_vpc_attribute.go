@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeVpcAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VpcId                string `position:"Query" name:"VpcId"`
@@ -17,29 +18,15 @@ type DescribeVpcAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeVpcAttributeRequest) Invoke(client *sdk.Client) (response *DescribeVpcAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeVpcAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeVpcAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeVpcAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeVpcAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeVpcAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeVpcAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeVpcAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeVpcAttributeResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	VpcId              string
 	RegionId           string

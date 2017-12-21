@@ -7,31 +7,18 @@ import (
 )
 
 type CheckUmengDataAnalysisPermissionRequest struct {
+	requests.RpcRequest
 }
 
-func (r CheckUmengDataAnalysisPermissionRequest) Invoke(client *sdk.Client) (response *CheckUmengDataAnalysisPermissionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckUmengDataAnalysisPermissionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckUmengDataAnalysisPermissionRequest) Invoke(client *sdk.Client) (resp *CheckUmengDataAnalysisPermissionResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "CheckUmengDataAnalysisPermission", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckUmengDataAnalysisPermissionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckUmengDataAnalysisPermissionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckUmengDataAnalysisPermissionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckUmengDataAnalysisPermissionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

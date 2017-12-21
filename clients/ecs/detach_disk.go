@@ -7,6 +7,7 @@ import (
 )
 
 type DetachDiskRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type DetachDiskRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DetachDiskRequest) Invoke(client *sdk.Client) (response *DetachDiskResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DetachDiskRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DetachDiskRequest) Invoke(client *sdk.Client) (resp *DetachDiskResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DetachDisk", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DetachDiskResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DetachDiskResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DetachDiskResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DetachDiskResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

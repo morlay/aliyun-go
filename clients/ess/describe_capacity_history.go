@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCapacityHistoryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ScalingGroupId       string `position:"Query" name:"ScalingGroupId"`
 	PageSize             int    `position:"Query" name:"PageSize"`
@@ -18,29 +19,15 @@ type DescribeCapacityHistoryRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeCapacityHistoryRequest) Invoke(client *sdk.Client) (response *DescribeCapacityHistoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCapacityHistoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCapacityHistoryRequest) Invoke(client *sdk.Client) (resp *DescribeCapacityHistoryResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeCapacityHistory", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCapacityHistoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCapacityHistoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCapacityHistoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCapacityHistoryResponse struct {
+	responses.BaseResponse
 	TotalCount           int
 	PageNumber           int
 	PageSize             int

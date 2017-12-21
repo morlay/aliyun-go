@@ -9,34 +9,21 @@ import (
 )
 
 type ModifyHichinaDomainDNSRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	DomainName   string `position:"Query" name:"DomainName"`
 }
 
-func (r ModifyHichinaDomainDNSRequest) Invoke(client *sdk.Client) (response *ModifyHichinaDomainDNSResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyHichinaDomainDNSRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyHichinaDomainDNSRequest) Invoke(client *sdk.Client) (resp *ModifyHichinaDomainDNSResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "ModifyHichinaDomainDNS", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyHichinaDomainDNSResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyHichinaDomainDNSResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyHichinaDomainDNSResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyHichinaDomainDNSResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	OriginalDnsServers ModifyHichinaDomainDNSOriginalDnsServerList
 	NewDnsServers      ModifyHichinaDomainDNSNewDnsServerList

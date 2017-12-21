@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDiskMonitorDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeDiskMonitorDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDiskMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeDiskMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDiskMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDiskMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeDiskMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeDiskMonitorData", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDiskMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDiskMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDiskMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDiskMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	MonitorData DescribeDiskMonitorDataDiskMonitorDataList

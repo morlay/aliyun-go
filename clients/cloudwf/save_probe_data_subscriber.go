@@ -9,6 +9,7 @@ import (
 )
 
 type SaveProbeDataSubscriberRequest struct {
+	requests.RpcRequest
 	ApiUrl         string                                  `position:"Query" name:"ApiUrl"`
 	ParamGenScript string                                  `position:"Query" name:"ParamGenScript"`
 	Name           string                                  `position:"Query" name:"Name"`
@@ -19,29 +20,15 @@ type SaveProbeDataSubscriberRequest struct {
 	ResourceIdss   *SaveProbeDataSubscriberResourceIdsList `position:"Query" type:"Repeated" name:"ResourceIds"`
 }
 
-func (r SaveProbeDataSubscriberRequest) Invoke(client *sdk.Client) (response *SaveProbeDataSubscriberResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveProbeDataSubscriberRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveProbeDataSubscriberRequest) Invoke(client *sdk.Client) (resp *SaveProbeDataSubscriberResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveProbeDataSubscriber", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveProbeDataSubscriberResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveProbeDataSubscriberResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveProbeDataSubscriberResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveProbeDataSubscriberResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

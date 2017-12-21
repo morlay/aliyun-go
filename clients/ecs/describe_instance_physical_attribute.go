@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeInstancePhysicalAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeInstancePhysicalAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeInstancePhysicalAttributeRequest) Invoke(client *sdk.Client) (response *DescribeInstancePhysicalAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstancePhysicalAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstancePhysicalAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeInstancePhysicalAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstancePhysicalAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstancePhysicalAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstancePhysicalAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstancePhysicalAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstancePhysicalAttributeResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	InstanceId       string
 	VlanId           string

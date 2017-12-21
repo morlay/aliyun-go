@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeCouponDetailRequest struct {
+	requests.RpcRequest
 	CouponNumber string `position:"Query" name:"CouponNumber"`
 }
 
-func (r DescribeCouponDetailRequest) Invoke(client *sdk.Client) (response *DescribeCouponDetailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCouponDetailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCouponDetailRequest) Invoke(client *sdk.Client) (resp *DescribeCouponDetailResponse, err error) {
 	req.InitWithApiInfo("Bss", "2014-07-14", "DescribeCouponDetail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCouponDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCouponDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCouponDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCouponDetailResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	CouponTemplateId int64
 	TotalAmount      string

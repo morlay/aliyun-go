@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeCasterStreamUrlRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DescribeCasterStreamUrlRequest) Invoke(client *sdk.Client) (response *DescribeCasterStreamUrlResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCasterStreamUrlRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCasterStreamUrlRequest) Invoke(client *sdk.Client) (resp *DescribeCasterStreamUrlResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterStreamUrl", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCasterStreamUrlResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCasterStreamUrlResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCasterStreamUrlResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCasterStreamUrlResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	CasterId      string
 	Total         int

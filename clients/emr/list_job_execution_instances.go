@@ -9,6 +9,7 @@ import (
 )
 
 type ListJobExecutionInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ExecutionPlanInstanceId string `position:"Query" name:"ExecutionPlanInstanceId"`
 	IsDesc                  string `position:"Query" name:"IsDesc"`
@@ -16,29 +17,15 @@ type ListJobExecutionInstancesRequest struct {
 	PageSize                int    `position:"Query" name:"PageSize"`
 }
 
-func (r ListJobExecutionInstancesRequest) Invoke(client *sdk.Client) (response *ListJobExecutionInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListJobExecutionInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListJobExecutionInstancesRequest) Invoke(client *sdk.Client) (resp *ListJobExecutionInstancesResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ListJobExecutionInstances", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListJobExecutionInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListJobExecutionInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListJobExecutionInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListJobExecutionInstancesResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int
 	PageNumber   int

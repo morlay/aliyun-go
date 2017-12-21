@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeEventsRequest struct {
+	requests.RoaRequest
 	StackName      string `position:"Path" name:"StackName"`
 	StackId        string `position:"Path" name:"StackId"`
 	ResourceStatus string `position:"Query" name:"ResourceStatus"`
@@ -16,28 +17,15 @@ type DescribeEventsRequest struct {
 	PageNumber     int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeEventsRequest) Invoke(client *sdk.Client) (response *DescribeEventsResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DescribeEventsRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DescribeEventsRequest) Invoke(client *sdk.Client) (resp *DescribeEventsResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "DescribeEvents", "/stacks/[StackName]/[StackId]/events", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		DescribeEventsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeEventsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeEventsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeEventsResponse struct {
+	responses.BaseResponse
 }

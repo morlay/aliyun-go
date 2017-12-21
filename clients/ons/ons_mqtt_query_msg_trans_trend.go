@@ -9,6 +9,7 @@ import (
 )
 
 type OnsMqttQueryMsgTransTrendRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -22,29 +23,15 @@ type OnsMqttQueryMsgTransTrendRequest struct {
 	SubTopic     string `position:"Query" name:"SubTopic"`
 }
 
-func (r OnsMqttQueryMsgTransTrendRequest) Invoke(client *sdk.Client) (response *OnsMqttQueryMsgTransTrendResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttQueryMsgTransTrendRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttQueryMsgTransTrendRequest) Invoke(client *sdk.Client) (resp *OnsMqttQueryMsgTransTrendResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttQueryMsgTransTrend", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttQueryMsgTransTrendResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttQueryMsgTransTrendResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttQueryMsgTransTrendResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttQueryMsgTransTrendResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsMqttQueryMsgTransTrendData

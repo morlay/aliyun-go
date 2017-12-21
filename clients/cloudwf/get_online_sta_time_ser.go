@@ -7,6 +7,7 @@ import (
 )
 
 type GetOnlineStaTimeSerRequest struct {
+	requests.RpcRequest
 	ZoomStart int64 `position:"Query" name:"ZoomStart"`
 	CompanyId int64 `position:"Query" name:"CompanyId"`
 	ApgroupId int64 `position:"Query" name:"ApgroupId"`
@@ -15,29 +16,15 @@ type GetOnlineStaTimeSerRequest struct {
 	End       int64 `position:"Query" name:"End"`
 }
 
-func (r GetOnlineStaTimeSerRequest) Invoke(client *sdk.Client) (response *GetOnlineStaTimeSerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetOnlineStaTimeSerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetOnlineStaTimeSerRequest) Invoke(client *sdk.Client) (resp *GetOnlineStaTimeSerResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetOnlineStaTimeSer", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetOnlineStaTimeSerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetOnlineStaTimeSerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetOnlineStaTimeSerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetOnlineStaTimeSerResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyRouterInterfaceAttributeRequest struct {
+	requests.RpcRequest
 	OppositeRouterId         string `position:"Query" name:"OppositeRouterId"`
 	ResourceOwnerId          int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount     string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,28 +22,14 @@ type ModifyRouterInterfaceAttributeRequest struct {
 	OppositeInterfaceId      string `position:"Query" name:"OppositeInterfaceId"`
 }
 
-func (r ModifyRouterInterfaceAttributeRequest) Invoke(client *sdk.Client) (response *ModifyRouterInterfaceAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyRouterInterfaceAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyRouterInterfaceAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyRouterInterfaceAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyRouterInterfaceAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyRouterInterfaceAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyRouterInterfaceAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyRouterInterfaceAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyRouterInterfaceAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

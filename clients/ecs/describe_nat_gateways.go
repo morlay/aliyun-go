@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeNatGatewaysRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeNatGatewaysRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeNatGatewaysRequest) Invoke(client *sdk.Client) (response *DescribeNatGatewaysResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeNatGatewaysRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeNatGatewaysRequest) Invoke(client *sdk.Client) (resp *DescribeNatGatewaysResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeNatGateways", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeNatGatewaysResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeNatGatewaysResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeNatGatewaysResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeNatGatewaysResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	PageNumber  int

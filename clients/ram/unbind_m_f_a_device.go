@@ -7,32 +7,19 @@ import (
 )
 
 type UnbindMFADeviceRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r UnbindMFADeviceRequest) Invoke(client *sdk.Client) (response *UnbindMFADeviceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UnbindMFADeviceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UnbindMFADeviceRequest) Invoke(client *sdk.Client) (resp *UnbindMFADeviceResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "UnbindMFADevice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UnbindMFADeviceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UnbindMFADeviceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UnbindMFADeviceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UnbindMFADeviceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MFADevice UnbindMFADeviceMFADevice
 }

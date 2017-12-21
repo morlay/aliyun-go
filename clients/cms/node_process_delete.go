@@ -7,34 +7,21 @@ import (
 )
 
 type NodeProcessDeleteRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	Name       string `position:"Query" name:"Name"`
 	Id         string `position:"Query" name:"Id"`
 }
 
-func (r NodeProcessDeleteRequest) Invoke(client *sdk.Client) (response *NodeProcessDeleteResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		NodeProcessDeleteRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *NodeProcessDeleteRequest) Invoke(client *sdk.Client) (resp *NodeProcessDeleteResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "NodeProcessDelete", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		NodeProcessDeleteResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.NodeProcessDeleteResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &NodeProcessDeleteResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type NodeProcessDeleteResponse struct {
+	responses.BaseResponse
 	ErrorCode    int
 	ErrorMessage string
 	Success      bool

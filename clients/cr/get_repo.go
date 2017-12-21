@@ -7,32 +7,20 @@ import (
 )
 
 type GetRepoRequest struct {
+	requests.RoaRequest
 	RepoNamespace string `position:"Path" name:"RepoNamespace"`
 	RepoName      string `position:"Path" name:"RepoName"`
 }
 
-func (r GetRepoRequest) Invoke(client *sdk.Client) (response *GetRepoResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetRepoRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetRepoRequest) Invoke(client *sdk.Client) (resp *GetRepoResponse, err error) {
 	req.InitWithApiInfo("cr", "2016-06-07", "GetRepo", "/repos/[RepoNamespace]/[RepoName]", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetRepoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRepoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRepoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRepoResponse struct {
+	responses.BaseResponse
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateDatabaseRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBName               string `position:"Query" name:"DBName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,28 +18,14 @@ type CreateDatabaseRequest struct {
 	CharacterSetName     string `position:"Query" name:"CharacterSetName"`
 }
 
-func (r CreateDatabaseRequest) Invoke(client *sdk.Client) (response *CreateDatabaseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateDatabaseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateDatabaseRequest) Invoke(client *sdk.Client) (resp *CreateDatabaseResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreateDatabase", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateDatabaseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateDatabaseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateDatabaseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateDatabaseResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

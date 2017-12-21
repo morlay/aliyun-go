@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamSnapshotInfoRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -19,29 +20,15 @@ type DescribeLiveStreamSnapshotInfoRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamSnapshotInfoRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamSnapshotInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamSnapshotInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamSnapshotInfoRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamSnapshotInfoResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamSnapshotInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamSnapshotInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamSnapshotInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamSnapshotInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamSnapshotInfoResponse struct {
+	responses.BaseResponse
 	RequestId                  string
 	NextStartTime              string
 	LiveStreamSnapshotInfoList DescribeLiveStreamSnapshotInfoLiveStreamSnapshotInfoList

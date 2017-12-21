@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeIpRangesRequest struct {
+	requests.RpcRequest
 	NicType              string `position:"Query" name:"NicType"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeIpRangesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeIpRangesRequest) Invoke(client *sdk.Client) (response *DescribeIpRangesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeIpRangesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeIpRangesRequest) Invoke(client *sdk.Client) (resp *DescribeIpRangesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeIpRanges", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeIpRangesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeIpRangesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeIpRangesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeIpRangesResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	RegionId   string
 	ClusterId  string

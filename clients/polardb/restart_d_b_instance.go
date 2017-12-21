@@ -7,6 +7,7 @@ import (
 )
 
 type RestartDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -15,28 +16,14 @@ type RestartDBInstanceRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r RestartDBInstanceRequest) Invoke(client *sdk.Client) (response *RestartDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RestartDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RestartDBInstanceRequest) Invoke(client *sdk.Client) (resp *RestartDBInstanceResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "RestartDBInstance", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RestartDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RestartDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RestartDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RestartDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

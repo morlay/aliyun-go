@@ -7,6 +7,7 @@ import (
 )
 
 type ImportDataFromDatabaseRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ImportDataType         string `position:"Query" name:"ImportDataType"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type ImportDataFromDatabaseRequest struct {
 	DBInstanceId           string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r ImportDataFromDatabaseRequest) Invoke(client *sdk.Client) (response *ImportDataFromDatabaseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ImportDataFromDatabaseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ImportDataFromDatabaseRequest) Invoke(client *sdk.Client) (resp *ImportDataFromDatabaseResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ImportDataFromDatabase", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ImportDataFromDatabaseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ImportDataFromDatabaseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ImportDataFromDatabaseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ImportDataFromDatabaseResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ImportId  int
 }

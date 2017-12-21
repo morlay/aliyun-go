@@ -7,6 +7,7 @@ import (
 )
 
 type TerminateVirtualBorderRouterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type TerminateVirtualBorderRouterRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r TerminateVirtualBorderRouterRequest) Invoke(client *sdk.Client) (response *TerminateVirtualBorderRouterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		TerminateVirtualBorderRouterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *TerminateVirtualBorderRouterRequest) Invoke(client *sdk.Client) (resp *TerminateVirtualBorderRouterResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "TerminateVirtualBorderRouter", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		TerminateVirtualBorderRouterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.TerminateVirtualBorderRouterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &TerminateVirtualBorderRouterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type TerminateVirtualBorderRouterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

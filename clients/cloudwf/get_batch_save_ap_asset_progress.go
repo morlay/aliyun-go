@@ -7,31 +7,18 @@ import (
 )
 
 type GetBatchSaveApAssetProgressRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetBatchSaveApAssetProgressRequest) Invoke(client *sdk.Client) (response *GetBatchSaveApAssetProgressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetBatchSaveApAssetProgressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetBatchSaveApAssetProgressRequest) Invoke(client *sdk.Client) (resp *GetBatchSaveApAssetProgressResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetBatchSaveApAssetProgress", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetBatchSaveApAssetProgressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetBatchSaveApAssetProgressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetBatchSaveApAssetProgressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetBatchSaveApAssetProgressResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

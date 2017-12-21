@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeParametersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeParametersRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeParametersRequest) Invoke(client *sdk.Client) (response *DescribeParametersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeParametersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeParametersRequest) Invoke(client *sdk.Client) (resp *DescribeParametersResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeParameters", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeParametersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeParametersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeParametersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeParametersResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	Engine            string
 	DBType            string

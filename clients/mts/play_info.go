@@ -9,6 +9,7 @@ import (
 )
 
 type PlayInfoRequest struct {
+	requests.RpcRequest
 	PlayDomain           string `position:"Query" name:"PlayDomain"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	Formats              string `position:"Query" name:"Formats"`
@@ -22,29 +23,15 @@ type PlayInfoRequest struct {
 	AuthInfo             string `position:"Query" name:"AuthInfo"`
 }
 
-func (r PlayInfoRequest) Invoke(client *sdk.Client) (response *PlayInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PlayInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PlayInfoRequest) Invoke(client *sdk.Client) (resp *PlayInfoResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "PlayInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PlayInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PlayInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PlayInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PlayInfoResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	PlayInfoList      PlayInfoPlayInfoList
 	NotFoundCDNDomain PlayInfoNotFoundCDNDomainList

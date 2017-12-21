@@ -9,6 +9,7 @@ import (
 )
 
 type GetUserDataRequest struct {
+	requests.RpcRequest
 	OwnerId      int64  `position:"Query" name:"OwnerId"`
 	OwnerAccount string `position:"Query" name:"OwnerAccount"`
 	ProductName  string `position:"Query" name:"ProductName"`
@@ -19,29 +20,15 @@ type GetUserDataRequest struct {
 	MaxResult    int    `position:"Query" name:"MaxResult"`
 }
 
-func (r GetUserDataRequest) Invoke(client *sdk.Client) (response *GetUserDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetUserDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetUserDataRequest) Invoke(client *sdk.Client) (resp *GetUserDataResponse, err error) {
 	req.InitWithApiInfo("Oms", "2015-02-12", "GetUserData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetUserDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserDataResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	ProductName string
 	DataType    string

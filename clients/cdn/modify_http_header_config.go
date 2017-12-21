@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyHttpHeaderConfigRequest struct {
+	requests.RpcRequest
 	HeaderValue   string `position:"Query" name:"HeaderValue"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	ConfigID      string `position:"Query" name:"ConfigID"`
@@ -15,28 +16,14 @@ type ModifyHttpHeaderConfigRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyHttpHeaderConfigRequest) Invoke(client *sdk.Client) (response *ModifyHttpHeaderConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyHttpHeaderConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyHttpHeaderConfigRequest) Invoke(client *sdk.Client) (resp *ModifyHttpHeaderConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "ModifyHttpHeaderConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyHttpHeaderConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyHttpHeaderConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyHttpHeaderConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyHttpHeaderConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

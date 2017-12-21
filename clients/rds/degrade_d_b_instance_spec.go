@@ -7,6 +7,7 @@ import (
 )
 
 type DegradeDBInstanceSpecRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage    int    `position:"Query" name:"DBInstanceStorage"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,28 +18,14 @@ type DegradeDBInstanceSpecRequest struct {
 	DBInstanceClass      string `position:"Query" name:"DBInstanceClass"`
 }
 
-func (r DegradeDBInstanceSpecRequest) Invoke(client *sdk.Client) (response *DegradeDBInstanceSpecResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DegradeDBInstanceSpecRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DegradeDBInstanceSpecRequest) Invoke(client *sdk.Client) (resp *DegradeDBInstanceSpecResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DegradeDBInstanceSpec", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DegradeDBInstanceSpecResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DegradeDBInstanceSpecResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DegradeDBInstanceSpecResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DegradeDBInstanceSpecResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

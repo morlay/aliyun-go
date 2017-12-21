@@ -9,35 +9,22 @@ import (
 )
 
 type RemoveBoxCodeRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 	Code        string `position:"Query" name:"Code"`
 }
 
-func (r RemoveBoxCodeRequest) Invoke(client *sdk.Client) (response *RemoveBoxCodeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveBoxCodeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveBoxCodeRequest) Invoke(client *sdk.Client) (resp *RemoveBoxCodeResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "RemoveBoxCode", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveBoxCodeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveBoxCodeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveBoxCodeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveBoxCodeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

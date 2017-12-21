@@ -7,6 +7,7 @@ import (
 )
 
 type CreateOssInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -14,29 +15,15 @@ type CreateOssInstanceRequest struct {
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 }
 
-func (r CreateOssInstanceRequest) Invoke(client *sdk.Client) (response *CreateOssInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateOssInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateOssInstanceRequest) Invoke(client *sdk.Client) (resp *CreateOssInstanceResponse, err error) {
 	req.InitWithApiInfo("OssAdmin", "2015-03-02", "CreateOssInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateOssInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateOssInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateOssInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateOssInstanceResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	AliUid         int64
 	InstanceId     string

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainISPDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeDomainISPDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainISPDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainISPDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainISPDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainISPDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainISPDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainISPData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainISPDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainISPDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainISPDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainISPDataResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DomainName   string
 	DataInterval string

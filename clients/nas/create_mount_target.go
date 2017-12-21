@@ -7,6 +7,7 @@ import (
 )
 
 type CreateMountTargetRequest struct {
+	requests.RpcRequest
 	VSwitchId       string `position:"Query" name:"VSwitchId"`
 	VpcId           string `position:"Query" name:"VpcId"`
 	NetworkType     string `position:"Query" name:"NetworkType"`
@@ -14,29 +15,15 @@ type CreateMountTargetRequest struct {
 	FileSystemId    string `position:"Query" name:"FileSystemId"`
 }
 
-func (r CreateMountTargetRequest) Invoke(client *sdk.Client) (response *CreateMountTargetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateMountTargetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateMountTargetRequest) Invoke(client *sdk.Client) (resp *CreateMountTargetResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "CreateMountTarget", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateMountTargetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateMountTargetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateMountTargetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateMountTargetResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	MountTargetDomain string
 }

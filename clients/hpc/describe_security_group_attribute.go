@@ -9,33 +9,20 @@ import (
 )
 
 type DescribeSecurityGroupAttributeRequest struct {
+	requests.RpcRequest
 	TOKEN   string `position:"Query" name:"TOKEN"`
 	NicType string `position:"Query" name:"NicType"`
 }
 
-func (r DescribeSecurityGroupAttributeRequest) Invoke(client *sdk.Client) (response *DescribeSecurityGroupAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSecurityGroupAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSecurityGroupAttributeRequest) Invoke(client *sdk.Client) (resp *DescribeSecurityGroupAttributeResponse, err error) {
 	req.InitWithApiInfo("HPC", "2016-12-13", "DescribeSecurityGroupAttribute", "hpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSecurityGroupAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSecurityGroupAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSecurityGroupAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSecurityGroupAttributeResponse struct {
+	responses.BaseResponse
 	Records DescribeSecurityGroupAttributeRecords
 }
 

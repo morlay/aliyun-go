@@ -9,35 +9,22 @@ import (
 )
 
 type OnsTopicListRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsTopicListRequest) Invoke(client *sdk.Client) (response *OnsTopicListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsTopicListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsTopicListRequest) Invoke(client *sdk.Client) (resp *OnsTopicListResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsTopicList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsTopicListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsTopicListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsTopicListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsTopicListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsTopicListPublishInfoDoList

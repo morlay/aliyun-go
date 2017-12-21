@@ -9,6 +9,7 @@ import (
 )
 
 type SetBackendServersRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -19,29 +20,15 @@ type SetBackendServersRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r SetBackendServersRequest) Invoke(client *sdk.Client) (response *SetBackendServersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetBackendServersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetBackendServersRequest) Invoke(client *sdk.Client) (resp *SetBackendServersResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetBackendServers", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetBackendServersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetBackendServersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetBackendServersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetBackendServersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	LoadBalancerId string
 	BackendServers SetBackendServersBackendServerList

@@ -7,6 +7,7 @@ import (
 )
 
 type CancelImportRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImportId             int    `position:"Query" name:"ImportId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type CancelImportRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CancelImportRequest) Invoke(client *sdk.Client) (response *CancelImportResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CancelImportRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CancelImportRequest) Invoke(client *sdk.Client) (resp *CancelImportResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CancelImport", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CancelImportResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CancelImportResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CancelImportResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CancelImportResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

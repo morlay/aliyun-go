@@ -7,35 +7,22 @@ import (
 )
 
 type DeleteCasterRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DeleteCasterRequest) Invoke(client *sdk.Client) (response *DeleteCasterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCasterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCasterRequest) Invoke(client *sdk.Client) (resp *DeleteCasterResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DeleteCaster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCasterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCasterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCasterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCasterResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CasterId  string
 }

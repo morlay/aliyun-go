@@ -9,6 +9,7 @@ import (
 )
 
 type SearchPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type SearchPipelineRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r SearchPipelineRequest) Invoke(client *sdk.Client) (response *SearchPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SearchPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SearchPipelineRequest) Invoke(client *sdk.Client) (resp *SearchPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SearchPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SearchPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SearchPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SearchPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SearchPipelineResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

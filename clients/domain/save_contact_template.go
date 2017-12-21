@@ -7,6 +7,7 @@ import (
 )
 
 type SaveContactTemplateRequest struct {
+	requests.RpcRequest
 	CCompany          string `position:"Query" name:"CCompany"`
 	DefaultTemplate   string `position:"Query" name:"DefaultTemplate"`
 	TelArea           string `position:"Query" name:"TelArea"`
@@ -30,29 +31,15 @@ type SaveContactTemplateRequest struct {
 	ContactTemplateId int64  `position:"Query" name:"ContactTemplateId"`
 }
 
-func (r SaveContactTemplateRequest) Invoke(client *sdk.Client) (response *SaveContactTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveContactTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveContactTemplateRequest) Invoke(client *sdk.Client) (resp *SaveContactTemplateResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "SaveContactTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveContactTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveContactTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveContactTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveContactTemplateResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	Success           bool
 	ContactTemplateId int64

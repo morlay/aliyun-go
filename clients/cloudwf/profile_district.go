@@ -7,32 +7,19 @@ import (
 )
 
 type ProfileDistrictRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r ProfileDistrictRequest) Invoke(client *sdk.Client) (response *ProfileDistrictResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ProfileDistrictRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ProfileDistrictRequest) Invoke(client *sdk.Client) (resp *ProfileDistrictResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ProfileDistrict", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ProfileDistrictResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ProfileDistrictResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ProfileDistrictResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ProfileDistrictResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

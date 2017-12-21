@@ -7,33 +7,20 @@ import (
 )
 
 type StopCdnDomainRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r StopCdnDomainRequest) Invoke(client *sdk.Client) (response *StopCdnDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StopCdnDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StopCdnDomainRequest) Invoke(client *sdk.Client) (resp *StopCdnDomainResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "StopCdnDomain", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StopCdnDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StopCdnDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StopCdnDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StopCdnDomainResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

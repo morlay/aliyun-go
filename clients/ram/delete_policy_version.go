@@ -7,32 +7,19 @@ import (
 )
 
 type DeletePolicyVersionRequest struct {
+	requests.RpcRequest
 	VersionId  string `position:"Query" name:"VersionId"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 }
 
-func (r DeletePolicyVersionRequest) Invoke(client *sdk.Client) (response *DeletePolicyVersionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeletePolicyVersionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeletePolicyVersionRequest) Invoke(client *sdk.Client) (resp *DeletePolicyVersionResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "DeletePolicyVersion", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeletePolicyVersionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeletePolicyVersionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeletePolicyVersionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeletePolicyVersionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

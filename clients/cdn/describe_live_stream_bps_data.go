@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamBpsDataRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamBpsDataRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamBpsDataRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamBpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamBpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamBpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamBpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamBpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamBpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamBpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamBpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamBpsDataResponse struct {
+	responses.BaseResponse
 	RequestId string
 	BpsDatas  DescribeLiveStreamBpsDataDomainBpsModelList
 }

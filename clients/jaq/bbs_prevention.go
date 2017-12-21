@@ -7,6 +7,7 @@ import (
 )
 
 type BbsPreventionRequest struct {
+	requests.RpcRequest
 	CallerName      string `position:"Query" name:"CallerName"`
 	Ip              string `position:"Query" name:"Ip"`
 	ProtocolVersion string `position:"Query" name:"ProtocolVersion"`
@@ -29,29 +30,15 @@ type BbsPreventionRequest struct {
 	ExtendData      string `position:"Query" name:"ExtendData"`
 }
 
-func (r BbsPreventionRequest) Invoke(client *sdk.Client) (response *BbsPreventionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BbsPreventionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BbsPreventionRequest) Invoke(client *sdk.Client) (resp *BbsPreventionResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "BbsPrevention", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BbsPreventionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BbsPreventionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BbsPreventionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BbsPreventionResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      BbsPreventionData

@@ -7,32 +7,19 @@ import (
 )
 
 type ListApPositionStatusRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r ListApPositionStatusRequest) Invoke(client *sdk.Client) (response *ListApPositionStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApPositionStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApPositionStatusRequest) Invoke(client *sdk.Client) (resp *ListApPositionStatusResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApPositionStatus", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApPositionStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApPositionStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApPositionStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApPositionStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

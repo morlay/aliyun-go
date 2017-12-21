@@ -7,6 +7,7 @@ import (
 )
 
 type AttachClassicLinkVpcRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,28 +15,14 @@ type AttachClassicLinkVpcRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AttachClassicLinkVpcRequest) Invoke(client *sdk.Client) (response *AttachClassicLinkVpcResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachClassicLinkVpcRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachClassicLinkVpcRequest) Invoke(client *sdk.Client) (resp *AttachClassicLinkVpcResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AttachClassicLinkVpc", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachClassicLinkVpcResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachClassicLinkVpcResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachClassicLinkVpcResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachClassicLinkVpcResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

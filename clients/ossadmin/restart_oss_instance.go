@@ -7,6 +7,7 @@ import (
 )
 
 type RestartOssInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -14,28 +15,14 @@ type RestartOssInstanceRequest struct {
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 }
 
-func (r RestartOssInstanceRequest) Invoke(client *sdk.Client) (response *RestartOssInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RestartOssInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RestartOssInstanceRequest) Invoke(client *sdk.Client) (resp *RestartOssInstanceResponse, err error) {
 	req.InitWithApiInfo("OssAdmin", "2015-03-02", "RestartOssInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RestartOssInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RestartOssInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RestartOssInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RestartOssInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

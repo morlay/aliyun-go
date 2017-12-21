@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeImageSupportInstanceTypesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeImageSupportInstanceTypesRequest) Invoke(client *sdk.Client) (response *DescribeImageSupportInstanceTypesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeImageSupportInstanceTypesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeImageSupportInstanceTypesRequest) Invoke(client *sdk.Client) (resp *DescribeImageSupportInstanceTypesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeImageSupportInstanceTypes", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeImageSupportInstanceTypesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeImageSupportInstanceTypesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeImageSupportInstanceTypesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeImageSupportInstanceTypesResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	RegionId      string
 	ImageId       string

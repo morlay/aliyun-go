@@ -7,32 +7,19 @@ import (
 )
 
 type ShopInfoRequest struct {
+	requests.RpcRequest
 	Sid int64 `position:"Query" name:"Sid"`
 }
 
-func (r ShopInfoRequest) Invoke(client *sdk.Client) (response *ShopInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ShopInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ShopInfoRequest) Invoke(client *sdk.Client) (resp *ShopInfoResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ShopInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ShopInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ShopInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ShopInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ShopInfoResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

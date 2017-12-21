@@ -9,6 +9,7 @@ import (
 )
 
 type CreateRulesRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -20,29 +21,15 @@ type CreateRulesRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r CreateRulesRequest) Invoke(client *sdk.Client) (response *CreateRulesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateRulesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateRulesRequest) Invoke(client *sdk.Client) (resp *CreateRulesResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "CreateRules", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateRulesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateRulesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateRulesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateRulesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Rules     CreateRulesRuleList
 }

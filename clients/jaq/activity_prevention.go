@@ -7,6 +7,7 @@ import (
 )
 
 type ActivityPreventionRequest struct {
+	requests.RpcRequest
 	CallerName          string `position:"Query" name:"CallerName"`
 	Ip                  string `position:"Query" name:"Ip"`
 	ProtocolVersion     string `position:"Query" name:"ProtocolVersion"`
@@ -37,29 +38,15 @@ type ActivityPreventionRequest struct {
 	SDKToken            string `position:"Query" name:"SDKToken"`
 }
 
-func (r ActivityPreventionRequest) Invoke(client *sdk.Client) (response *ActivityPreventionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ActivityPreventionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ActivityPreventionRequest) Invoke(client *sdk.Client) (resp *ActivityPreventionResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "ActivityPrevention", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ActivityPreventionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ActivityPreventionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ActivityPreventionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ActivityPreventionResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      ActivityPreventionData

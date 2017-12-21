@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteWaterMarkTemplateRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DeleteWaterMarkTemplateRequest struct {
 	WaterMarkTemplateId  string `position:"Query" name:"WaterMarkTemplateId"`
 }
 
-func (r DeleteWaterMarkTemplateRequest) Invoke(client *sdk.Client) (response *DeleteWaterMarkTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteWaterMarkTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *DeleteWaterMarkTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteWaterMarkTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteWaterMarkTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteWaterMarkTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteWaterMarkTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteWaterMarkTemplateResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	WaterMarkTemplateId string
 }

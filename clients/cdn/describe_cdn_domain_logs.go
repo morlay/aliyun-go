@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCdnDomainLogsRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	PageSize      int64  `position:"Query" name:"PageSize"`
@@ -19,29 +20,15 @@ type DescribeCdnDomainLogsRequest struct {
 	LogDay        string `position:"Query" name:"LogDay"`
 }
 
-func (r DescribeCdnDomainLogsRequest) Invoke(client *sdk.Client) (response *DescribeCdnDomainLogsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCdnDomainLogsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCdnDomainLogsRequest) Invoke(client *sdk.Client) (resp *DescribeCdnDomainLogsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeCdnDomainLogs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCdnDomainLogsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCdnDomainLogsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCdnDomainLogsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCdnDomainLogsResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	PageNumber     int64
 	PageSize       int64

@@ -7,6 +7,7 @@ import (
 )
 
 type SetAuthConfigRequest struct {
+	requests.RpcRequest
 	Key1                 string `position:"Query" name:"Key.1"`
 	Key2                 string `position:"Query" name:"Key.2"`
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
@@ -15,29 +16,15 @@ type SetAuthConfigRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r SetAuthConfigRequest) Invoke(client *sdk.Client) (response *SetAuthConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetAuthConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetAuthConfigRequest) Invoke(client *sdk.Client) (resp *SetAuthConfigResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SetAuthConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetAuthConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetAuthConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetAuthConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetAuthConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Key1      string
 	Key2      string

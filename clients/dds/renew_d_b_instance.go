@@ -7,6 +7,7 @@ import (
 )
 
 type RenewDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	AutoPay              string `position:"Query" name:"AutoPay"`
@@ -20,29 +21,15 @@ type RenewDBInstanceRequest struct {
 	BusinessInfo         string `position:"Query" name:"BusinessInfo"`
 }
 
-func (r RenewDBInstanceRequest) Invoke(client *sdk.Client) (response *RenewDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RenewDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RenewDBInstanceRequest) Invoke(client *sdk.Client) (resp *RenewDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "RenewDBInstance", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RenewDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RenewDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RenewDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RenewDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   string
 }

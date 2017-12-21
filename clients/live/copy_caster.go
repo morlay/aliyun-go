@@ -7,6 +7,7 @@ import (
 )
 
 type CopyCasterRequest struct {
+	requests.RpcRequest
 	SrcCasterId   string `position:"Query" name:"SrcCasterId"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterName    string `position:"Query" name:"CasterName"`
@@ -15,29 +16,15 @@ type CopyCasterRequest struct {
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r CopyCasterRequest) Invoke(client *sdk.Client) (response *CopyCasterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CopyCasterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CopyCasterRequest) Invoke(client *sdk.Client) (resp *CopyCasterResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "CopyCaster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CopyCasterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CopyCasterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CopyCasterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CopyCasterResponse struct {
+	responses.BaseResponse
 	RequestId string
 	CasterId  string
 }

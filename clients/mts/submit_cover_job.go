@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitCoverJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitCoverJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitCoverJobRequest) Invoke(client *sdk.Client) (response *SubmitCoverJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitCoverJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitCoverJobRequest) Invoke(client *sdk.Client) (resp *SubmitCoverJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitCoverJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitCoverJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitCoverJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitCoverJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitCoverJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

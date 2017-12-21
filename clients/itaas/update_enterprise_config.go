@@ -9,6 +9,7 @@ import (
 )
 
 type UpdateEnterpriseConfigRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
@@ -17,29 +18,15 @@ type UpdateEnterpriseConfigRequest struct {
 	Memo        string `position:"Query" name:"Memo"`
 }
 
-func (r UpdateEnterpriseConfigRequest) Invoke(client *sdk.Client) (response *UpdateEnterpriseConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateEnterpriseConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateEnterpriseConfigRequest) Invoke(client *sdk.Client) (resp *UpdateEnterpriseConfigResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "UpdateEnterpriseConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateEnterpriseConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateEnterpriseConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateEnterpriseConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateEnterpriseConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

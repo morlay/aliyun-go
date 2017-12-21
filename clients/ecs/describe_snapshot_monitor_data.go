@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeSnapshotMonitorDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeSnapshotMonitorDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeSnapshotMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeSnapshotMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSnapshotMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSnapshotMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeSnapshotMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSnapshotMonitorData", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSnapshotMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSnapshotMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSnapshotMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSnapshotMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	MonitorData DescribeSnapshotMonitorDataDataPointList
 }

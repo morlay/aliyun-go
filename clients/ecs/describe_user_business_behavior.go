@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeUserBusinessBehaviorRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeUserBusinessBehaviorRequest struct {
 	StatusKey            string `position:"Query" name:"StatusKey"`
 }
 
-func (r DescribeUserBusinessBehaviorRequest) Invoke(client *sdk.Client) (response *DescribeUserBusinessBehaviorResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeUserBusinessBehaviorRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeUserBusinessBehaviorRequest) Invoke(client *sdk.Client) (resp *DescribeUserBusinessBehaviorResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeUserBusinessBehavior", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeUserBusinessBehaviorResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeUserBusinessBehaviorResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeUserBusinessBehaviorResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeUserBusinessBehaviorResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	StatusValue string
 }

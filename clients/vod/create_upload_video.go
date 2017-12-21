@@ -7,6 +7,7 @@ import (
 )
 
 type CreateUploadVideoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	TranscodeMode        string `position:"Query" name:"TranscodeMode"`
@@ -23,29 +24,15 @@ type CreateUploadVideoRequest struct {
 	CateId               int    `position:"Query" name:"CateId"`
 }
 
-func (r CreateUploadVideoRequest) Invoke(client *sdk.Client) (response *CreateUploadVideoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateUploadVideoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateUploadVideoRequest) Invoke(client *sdk.Client) (resp *CreateUploadVideoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "CreateUploadVideo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateUploadVideoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateUploadVideoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateUploadVideoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateUploadVideoResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	VideoId       string
 	UploadAddress string

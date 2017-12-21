@@ -9,30 +9,16 @@ import (
 )
 
 type SubmitMaterialsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64                        `position:"Query" name:"ResourceOwnerId"`
 	Materials       *SubmitMaterialsMaterialList `position:"Query" type:"Repeated" name:"Material"`
 	VerifyToken     string                       `position:"Query" name:"VerifyToken"`
 }
 
-func (r SubmitMaterialsRequest) Invoke(client *sdk.Client) (response *SubmitMaterialsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitMaterialsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitMaterialsRequest) Invoke(client *sdk.Client) (resp *SubmitMaterialsResponse, err error) {
 	req.InitWithApiInfo("Cloudauth", "2017-11-17", "SubmitMaterials", "cloudauth", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitMaterialsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitMaterialsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitMaterialsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -42,6 +28,7 @@ type SubmitMaterialsMaterial struct {
 }
 
 type SubmitMaterialsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

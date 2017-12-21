@@ -7,33 +7,20 @@ import (
 )
 
 type EnableAlarmRequest struct {
+	requests.RpcRequest
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	Id               string `position:"Query" name:"Id"`
 }
 
-func (r EnableAlarmRequest) Invoke(client *sdk.Client) (response *EnableAlarmResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EnableAlarmRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EnableAlarmRequest) Invoke(client *sdk.Client) (resp *EnableAlarmResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "EnableAlarm", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EnableAlarmResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EnableAlarmResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EnableAlarmResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EnableAlarmResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Code      string
 	Message   string

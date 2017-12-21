@@ -7,6 +7,7 @@ import (
 )
 
 type ImportDatabaseBetweenInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SourceDBInstanceId   string `position:"Query" name:"SourceDBInstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ImportDatabaseBetweenInstancesRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ImportDatabaseBetweenInstancesRequest) Invoke(client *sdk.Client) (response *ImportDatabaseBetweenInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ImportDatabaseBetweenInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ImportDatabaseBetweenInstancesRequest) Invoke(client *sdk.Client) (resp *ImportDatabaseBetweenInstancesResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ImportDatabaseBetweenInstances", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ImportDatabaseBetweenInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ImportDatabaseBetweenInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ImportDatabaseBetweenInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ImportDatabaseBetweenInstancesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ImportId  string
 }

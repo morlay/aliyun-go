@@ -7,32 +7,20 @@ import (
 )
 
 type CallbackClusterTokenRequest struct {
+	requests.RoaRequest
 	Token   string `position:"Path" name:"Token"`
 	ReqOnce string `position:"Path" name:"ReqOnce"`
 }
 
-func (r CallbackClusterTokenRequest) Invoke(client *sdk.Client) (response *CallbackClusterTokenResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		CallbackClusterTokenRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *CallbackClusterTokenRequest) Invoke(client *sdk.Client) (resp *CallbackClusterTokenResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "CallbackClusterToken", "/token/[Token]/req_once/[ReqOnce]/callback", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		CallbackClusterTokenResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CallbackClusterTokenResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CallbackClusterTokenResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CallbackClusterTokenResponse struct {
+	responses.BaseResponse
 }

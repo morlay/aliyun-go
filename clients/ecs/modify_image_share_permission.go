@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyImageSharePermissionRequest struct {
+	requests.RpcRequest
 	AddAccount1          string `position:"Query" name:"AddAccount.1"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
@@ -34,28 +35,14 @@ type ModifyImageSharePermissionRequest struct {
 	RemoveAccount10      string `position:"Query" name:"RemoveAccount.10"`
 }
 
-func (r ModifyImageSharePermissionRequest) Invoke(client *sdk.Client) (response *ModifyImageSharePermissionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyImageSharePermissionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyImageSharePermissionRequest) Invoke(client *sdk.Client) (resp *ModifyImageSharePermissionResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyImageSharePermission", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyImageSharePermissionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyImageSharePermissionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyImageSharePermissionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyImageSharePermissionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

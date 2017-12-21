@@ -7,35 +7,22 @@ import (
 )
 
 type RefreshObjectCachesRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	ObjectPath    string `position:"Query" name:"ObjectPath"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	ObjectType    string `position:"Query" name:"ObjectType"`
 }
 
-func (r RefreshObjectCachesRequest) Invoke(client *sdk.Client) (response *RefreshObjectCachesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RefreshObjectCachesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RefreshObjectCachesRequest) Invoke(client *sdk.Client) (resp *RefreshObjectCachesResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "RefreshObjectCaches", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RefreshObjectCachesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RefreshObjectCachesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RefreshObjectCachesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RefreshObjectCachesResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	RefreshTaskId string
 }

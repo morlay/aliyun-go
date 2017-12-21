@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeOptimizeAdviceOnBigTableRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeOptimizeAdviceOnBigTableRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeOptimizeAdviceOnBigTableRequest) Invoke(client *sdk.Client) (response *DescribeOptimizeAdviceOnBigTableResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOptimizeAdviceOnBigTableRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOptimizeAdviceOnBigTableRequest) Invoke(client *sdk.Client) (resp *DescribeOptimizeAdviceOnBigTableResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeOptimizeAdviceOnBigTable", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOptimizeAdviceOnBigTableResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOptimizeAdviceOnBigTableResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOptimizeAdviceOnBigTableResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOptimizeAdviceOnBigTableResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalRecordsCount int
 	PageNumber        int

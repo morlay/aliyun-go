@@ -7,6 +7,7 @@ import (
 )
 
 type CreatePhysicalConnectionNewRequest struct {
+	requests.RpcRequest
 	AccessPointId                 string `position:"Query" name:"AccessPointId"`
 	RedundantPhysicalConnectionId string `position:"Query" name:"RedundantPhysicalConnectionId"`
 	PeerLocation                  string `position:"Query" name:"PeerLocation"`
@@ -27,29 +28,15 @@ type CreatePhysicalConnectionNewRequest struct {
 	UserCidr                      string `position:"Query" name:"UserCidr"`
 }
 
-func (r CreatePhysicalConnectionNewRequest) Invoke(client *sdk.Client) (response *CreatePhysicalConnectionNewResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreatePhysicalConnectionNewRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreatePhysicalConnectionNewRequest) Invoke(client *sdk.Client) (resp *CreatePhysicalConnectionNewResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreatePhysicalConnectionNew", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreatePhysicalConnectionNewResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreatePhysicalConnectionNewResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreatePhysicalConnectionNewResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreatePhysicalConnectionNewResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	PhysicalConnectionId string
 }

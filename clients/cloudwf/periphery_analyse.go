@@ -7,32 +7,19 @@ import (
 )
 
 type PeripheryAnalyseRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r PeripheryAnalyseRequest) Invoke(client *sdk.Client) (response *PeripheryAnalyseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PeripheryAnalyseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PeripheryAnalyseRequest) Invoke(client *sdk.Client) (resp *PeripheryAnalyseResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "PeripheryAnalyse", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PeripheryAnalyseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PeripheryAnalyseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PeripheryAnalyseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PeripheryAnalyseResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

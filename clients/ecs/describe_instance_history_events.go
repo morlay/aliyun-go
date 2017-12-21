@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceHistoryEventsRequest struct {
+	requests.RpcRequest
 	EventIds              *DescribeInstanceHistoryEventsEventIdList `position:"Query" type:"Repeated" name:"EventId"`
 	ResourceOwnerId       int64                                     `position:"Query" name:"ResourceOwnerId"`
 	EventCycleStatus      string                                    `position:"Query" name:"EventCycleStatus"`
@@ -25,29 +26,15 @@ type DescribeInstanceHistoryEventsRequest struct {
 	EventType             string                                    `position:"Query" name:"EventType"`
 }
 
-func (r DescribeInstanceHistoryEventsRequest) Invoke(client *sdk.Client) (response *DescribeInstanceHistoryEventsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceHistoryEventsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceHistoryEventsRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceHistoryEventsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceHistoryEvents", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceHistoryEventsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceHistoryEventsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceHistoryEventsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceHistoryEventsResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	TotalCount             int
 	PageNumber             int

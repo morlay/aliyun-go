@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstancePerformanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type DescribeDBInstancePerformanceRequest struct {
 	Key                  string `position:"Query" name:"Key"`
 }
 
-func (r DescribeDBInstancePerformanceRequest) Invoke(client *sdk.Client) (response *DescribeDBInstancePerformanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstancePerformanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstancePerformanceRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstancePerformanceResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeDBInstancePerformance", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstancePerformanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstancePerformanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstancePerformanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstancePerformanceResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	DBInstanceId    string
 	Engine          string

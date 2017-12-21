@@ -7,6 +7,7 @@ import (
 )
 
 type SetDynamicConfigRequest struct {
+	requests.RpcRequest
 	DynamicOrigin       string `position:"Query" name:"DynamicOrigin"`
 	StaticType          string `position:"Query" name:"StaticType"`
 	SecurityToken       string `position:"Query" name:"SecurityToken"`
@@ -17,28 +18,14 @@ type SetDynamicConfigRequest struct {
 	OwnerId             int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetDynamicConfigRequest) Invoke(client *sdk.Client) (response *SetDynamicConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetDynamicConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetDynamicConfigRequest) Invoke(client *sdk.Client) (resp *SetDynamicConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetDynamicConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetDynamicConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetDynamicConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetDynamicConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetDynamicConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

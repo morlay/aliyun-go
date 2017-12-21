@@ -7,6 +7,7 @@ import (
 )
 
 type GetOnlineApTimeSerRequest struct {
+	requests.RpcRequest
 	ZoomStart int64 `position:"Query" name:"ZoomStart"`
 	CompanyId int64 `position:"Query" name:"CompanyId"`
 	ApgroupId int64 `position:"Query" name:"ApgroupId"`
@@ -15,29 +16,15 @@ type GetOnlineApTimeSerRequest struct {
 	End       int64 `position:"Query" name:"End"`
 }
 
-func (r GetOnlineApTimeSerRequest) Invoke(client *sdk.Client) (response *GetOnlineApTimeSerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetOnlineApTimeSerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetOnlineApTimeSerRequest) Invoke(client *sdk.Client) (resp *GetOnlineApTimeSerResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetOnlineApTimeSer", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetOnlineApTimeSerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetOnlineApTimeSerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetOnlineApTimeSerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetOnlineApTimeSerResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

@@ -7,6 +7,7 @@ import (
 )
 
 type ReportTerrorismJobResultRequest struct {
+	requests.RpcRequest
 	JobId                string `position:"Query" name:"JobId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ReportTerrorismJobResultRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReportTerrorismJobResultRequest) Invoke(client *sdk.Client) (response *ReportTerrorismJobResultResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReportTerrorismJobResultRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReportTerrorismJobResultRequest) Invoke(client *sdk.Client) (resp *ReportTerrorismJobResultResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ReportTerrorismJobResult", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReportTerrorismJobResultResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReportTerrorismJobResultResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReportTerrorismJobResultResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReportTerrorismJobResultResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

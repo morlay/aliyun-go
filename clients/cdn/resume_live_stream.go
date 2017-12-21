@@ -7,6 +7,7 @@ import (
 )
 
 type ResumeLiveStreamRequest struct {
+	requests.RpcRequest
 	AppName        string `position:"Query" name:"AppName"`
 	SecurityToken  string `position:"Query" name:"SecurityToken"`
 	LiveStreamType string `position:"Query" name:"LiveStreamType"`
@@ -15,28 +16,14 @@ type ResumeLiveStreamRequest struct {
 	StreamName     string `position:"Query" name:"StreamName"`
 }
 
-func (r ResumeLiveStreamRequest) Invoke(client *sdk.Client) (response *ResumeLiveStreamResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ResumeLiveStreamRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ResumeLiveStreamRequest) Invoke(client *sdk.Client) (resp *ResumeLiveStreamResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "ResumeLiveStream", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ResumeLiveStreamResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ResumeLiveStreamResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ResumeLiveStreamResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ResumeLiveStreamResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

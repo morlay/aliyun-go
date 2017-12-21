@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeKeyPairsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	KeyPairFingerPrint   string `position:"Query" name:"KeyPairFingerPrint"`
@@ -18,29 +19,15 @@ type DescribeKeyPairsRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeKeyPairsRequest) Invoke(client *sdk.Client) (response *DescribeKeyPairsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeKeyPairsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeKeyPairsRequest) Invoke(client *sdk.Client) (resp *DescribeKeyPairsResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeKeyPairs", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeKeyPairsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeKeyPairsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeKeyPairsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeKeyPairsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

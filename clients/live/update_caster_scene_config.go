@@ -9,6 +9,7 @@ import (
 )
 
 type UpdateCasterSceneConfigRequest struct {
+	requests.RpcRequest
 	ComponentIds  *UpdateCasterSceneConfigComponentIdList `position:"Query" type:"Repeated" name:"ComponentId"`
 	SecurityToken string                                  `position:"Query" name:"SecurityToken"`
 	CasterId      string                                  `position:"Query" name:"CasterId"`
@@ -18,29 +19,15 @@ type UpdateCasterSceneConfigRequest struct {
 	LayoutId      string                                  `position:"Query" name:"LayoutId"`
 }
 
-func (r UpdateCasterSceneConfigRequest) Invoke(client *sdk.Client) (response *UpdateCasterSceneConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateCasterSceneConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *UpdateCasterSceneConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "UpdateCasterSceneConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateCasterSceneConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateCasterSceneConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateCasterSceneConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateCasterSceneConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

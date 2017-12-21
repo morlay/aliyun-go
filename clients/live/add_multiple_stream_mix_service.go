@@ -7,6 +7,7 @@ import (
 )
 
 type AddMultipleStreamMixServiceRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -17,28 +18,14 @@ type AddMultipleStreamMixServiceRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r AddMultipleStreamMixServiceRequest) Invoke(client *sdk.Client) (response *AddMultipleStreamMixServiceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddMultipleStreamMixServiceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddMultipleStreamMixServiceRequest) Invoke(client *sdk.Client) (resp *AddMultipleStreamMixServiceResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "AddMultipleStreamMixService", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddMultipleStreamMixServiceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddMultipleStreamMixServiceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddMultipleStreamMixServiceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddMultipleStreamMixServiceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

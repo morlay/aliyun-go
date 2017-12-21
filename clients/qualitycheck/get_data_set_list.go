@@ -9,32 +9,19 @@ import (
 )
 
 type GetDataSetListRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r GetDataSetListRequest) Invoke(client *sdk.Client) (response *GetDataSetListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetDataSetListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetDataSetListRequest) Invoke(client *sdk.Client) (resp *GetDataSetListResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "GetDataSetList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetDataSetListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetDataSetListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetDataSetListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetDataSetListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

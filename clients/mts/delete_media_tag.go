@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteMediaTagRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type DeleteMediaTagRequest struct {
 	MediaId              string `position:"Query" name:"MediaId"`
 }
 
-func (r DeleteMediaTagRequest) Invoke(client *sdk.Client) (response *DeleteMediaTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteMediaTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteMediaTagRequest) Invoke(client *sdk.Client) (resp *DeleteMediaTagResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteMediaTag", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteMediaTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteMediaTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteMediaTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteMediaTagResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

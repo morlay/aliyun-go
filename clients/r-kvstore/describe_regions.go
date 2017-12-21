@@ -1,66 +1,52 @@
-
-package r-kvstore
+package r_kvstore
 
 import (
-    "github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
-	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"encoding/json"
+
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
 )
 
-
 type DescribeRegionsRequest struct {
-ResourceOwnerId int64 `position:"Query" name:"ResourceOwnerId"`
-SecurityToken string `position:"Query" name:"SecurityToken"`
-ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-OwnerAccount string `position:"Query" name:"OwnerAccount"`
-OwnerId int64 `position:"Query" name:"OwnerId"`
+	requests.RpcRequest
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	SecurityToken        string `position:"Query" name:"SecurityToken"`
+	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeRegionsRequest) Invoke(client *sdk.Client) (response *DescribeRegionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRegionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRegionsRequest) Invoke(client *sdk.Client) (resp *DescribeRegionsResponse, err error) {
 	req.InitWithApiInfo("R-kvstore", "2015-01-01", "DescribeRegions", "redisa", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRegionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-    response = &resp.DescribeRegionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRegionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRegionsResponse struct {
-RequestId string
-RegionIds DescribeRegionsKVStoreRegionList
+	responses.BaseResponse
+	RequestId string
+	RegionIds DescribeRegionsKVStoreRegionList
 }
 
 type DescribeRegionsKVStoreRegion struct {
-RegionId string
-ZoneIds string
-LocalName string
+	RegionId  string
+	ZoneIds   string
+	LocalName string
 }
 
-                    type DescribeRegionsKVStoreRegionList []DescribeRegionsKVStoreRegion
+type DescribeRegionsKVStoreRegionList []DescribeRegionsKVStoreRegion
 
-                    func (list *DescribeRegionsKVStoreRegionList) UnmarshalJSON(data []byte) error {
-                        m := make(map[string][]DescribeRegionsKVStoreRegion)
-                        err := json.Unmarshal(data, &m)
-                        if err != nil {
-                            return err
-                        }
-                        for _, v := range m {
-                            *list = v
-                            break
-                        }
-                        return nil
-                    }
-                    
+func (list *DescribeRegionsKVStoreRegionList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeRegionsKVStoreRegion)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}

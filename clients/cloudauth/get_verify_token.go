@@ -7,6 +7,7 @@ import (
 )
 
 type GetVerifyTokenRequest struct {
+	requests.RpcRequest
 	UserData        string `position:"Query" name:"UserData"`
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Biz             string `position:"Query" name:"Biz"`
@@ -14,29 +15,15 @@ type GetVerifyTokenRequest struct {
 	TicketId        string `position:"Query" name:"TicketId"`
 }
 
-func (r GetVerifyTokenRequest) Invoke(client *sdk.Client) (response *GetVerifyTokenResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetVerifyTokenRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetVerifyTokenRequest) Invoke(client *sdk.Client) (resp *GetVerifyTokenResponse, err error) {
 	req.InitWithApiInfo("Cloudauth", "2017-11-17", "GetVerifyToken", "cloudauth", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetVerifyTokenResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetVerifyTokenResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetVerifyTokenResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetVerifyTokenResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

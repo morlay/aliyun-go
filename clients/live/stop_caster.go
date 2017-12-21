@@ -7,34 +7,21 @@ import (
 )
 
 type StopCasterRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r StopCasterRequest) Invoke(client *sdk.Client) (response *StopCasterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StopCasterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StopCasterRequest) Invoke(client *sdk.Client) (resp *StopCasterResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "StopCaster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StopCasterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StopCasterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StopCasterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StopCasterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

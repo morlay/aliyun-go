@@ -7,32 +7,19 @@ import (
 )
 
 type RebootInstanceRequest struct {
+	requests.RpcRequest
 	TOKEN      string `position:"Query" name:"TOKEN"`
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r RebootInstanceRequest) Invoke(client *sdk.Client) (response *RebootInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RebootInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RebootInstanceRequest) Invoke(client *sdk.Client) (resp *RebootInstanceResponse, err error) {
 	req.InitWithApiInfo("HPC", "2016-12-13", "RebootInstance", "hpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RebootInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RebootInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RebootInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RebootInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

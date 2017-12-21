@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeServerRelatedGlobalAccelerationInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ServerType           string `position:"Query" name:"ServerType"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type DescribeServerRelatedGlobalAccelerationInstancesRequest struct {
 	ServerId             string `position:"Query" name:"ServerId"`
 }
 
-func (r DescribeServerRelatedGlobalAccelerationInstancesRequest) Invoke(client *sdk.Client) (response *DescribeServerRelatedGlobalAccelerationInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeServerRelatedGlobalAccelerationInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeServerRelatedGlobalAccelerationInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeServerRelatedGlobalAccelerationInstancesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeServerRelatedGlobalAccelerationInstances", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeServerRelatedGlobalAccelerationInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeServerRelatedGlobalAccelerationInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeServerRelatedGlobalAccelerationInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeServerRelatedGlobalAccelerationInstancesResponse struct {
+	responses.BaseResponse
 	RequestId                   string
 	GlobalAccelerationInstances DescribeServerRelatedGlobalAccelerationInstancesGlobalAccelerationInstanceList
 }

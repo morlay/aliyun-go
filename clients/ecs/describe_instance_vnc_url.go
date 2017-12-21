@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeInstanceVncUrlRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,29 +15,15 @@ type DescribeInstanceVncUrlRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeInstanceVncUrlRequest) Invoke(client *sdk.Client) (response *DescribeInstanceVncUrlResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceVncUrlRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceVncUrlRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceVncUrlResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceVncUrl", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceVncUrlResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceVncUrlResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceVncUrlResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceVncUrlResponse struct {
+	responses.BaseResponse
 	RequestId string
 	VncUrl    string
 }

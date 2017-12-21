@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeRecommendInstanceTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -22,29 +23,15 @@ type DescribeRecommendInstanceTypeRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r DescribeRecommendInstanceTypeRequest) Invoke(client *sdk.Client) (response *DescribeRecommendInstanceTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRecommendInstanceTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRecommendInstanceTypeRequest) Invoke(client *sdk.Client) (resp *DescribeRecommendInstanceTypeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeRecommendInstanceType", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRecommendInstanceTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRecommendInstanceTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRecommendInstanceTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRecommendInstanceTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Data      DescribeRecommendInstanceTypeRecommendInstanceTypeList
 }

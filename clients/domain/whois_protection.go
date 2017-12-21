@@ -7,6 +7,7 @@ import (
 )
 
 type WhoisProtectionRequest struct {
+	requests.RpcRequest
 	WhoisProtect string `position:"Query" name:"WhoisProtect"`
 	DataSource   int    `position:"Query" name:"DataSource"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
@@ -14,29 +15,15 @@ type WhoisProtectionRequest struct {
 	Lang         string `position:"Query" name:"Lang"`
 }
 
-func (r WhoisProtectionRequest) Invoke(client *sdk.Client) (response *WhoisProtectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		WhoisProtectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *WhoisProtectionRequest) Invoke(client *sdk.Client) (resp *WhoisProtectionResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "WhoisProtection", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		WhoisProtectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.WhoisProtectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &WhoisProtectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type WhoisProtectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Result    int
 }

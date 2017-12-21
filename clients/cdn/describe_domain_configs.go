@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeDomainConfigsRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	ConfigList    string `position:"Query" name:"ConfigList"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainConfigsRequest) Invoke(client *sdk.Client) (response *DescribeDomainConfigsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainConfigsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainConfigsRequest) Invoke(client *sdk.Client) (resp *DescribeDomainConfigsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainConfigs", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainConfigsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainConfigsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainConfigsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainConfigsResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	DomainConfigs DescribeDomainConfigsDomainConfigs
 }

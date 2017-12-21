@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBClusterConnectionStringRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix  string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount    string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type ModifyDBClusterConnectionStringRequest struct {
 	CurrentConnectionString string `position:"Query" name:"CurrentConnectionString"`
 }
 
-func (r ModifyDBClusterConnectionStringRequest) Invoke(client *sdk.Client) (response *ModifyDBClusterConnectionStringResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBClusterConnectionStringRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBClusterConnectionStringRequest) Invoke(client *sdk.Client) (resp *ModifyDBClusterConnectionStringResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "ModifyDBClusterConnectionString", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBClusterConnectionStringResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBClusterConnectionStringResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBClusterConnectionStringResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBClusterConnectionStringResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	DBClusterId         string
 	OldConnectionString string

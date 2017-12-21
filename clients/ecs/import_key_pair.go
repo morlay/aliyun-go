@@ -7,6 +7,7 @@ import (
 )
 
 type ImportKeyPairRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	PublicKeyBody        string `position:"Query" name:"PublicKeyBody"`
@@ -14,29 +15,15 @@ type ImportKeyPairRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ImportKeyPairRequest) Invoke(client *sdk.Client) (response *ImportKeyPairResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ImportKeyPairRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ImportKeyPairRequest) Invoke(client *sdk.Client) (resp *ImportKeyPairResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ImportKeyPair", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ImportKeyPairResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ImportKeyPairResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ImportKeyPairResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ImportKeyPairResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	KeyPairName        string
 	KeyPairFingerPrint string

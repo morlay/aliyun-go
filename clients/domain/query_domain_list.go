@@ -9,6 +9,7 @@ import (
 )
 
 type QueryDomainListRequest struct {
+	requests.RpcRequest
 	ProductDomainType string `position:"Query" name:"ProductDomainType"`
 	RegStartDate      int64  `position:"Query" name:"RegStartDate"`
 	OrderKeyType      string `position:"Query" name:"OrderKeyType"`
@@ -28,29 +29,15 @@ type QueryDomainListRequest struct {
 	QueryType         string `position:"Query" name:"QueryType"`
 }
 
-func (r QueryDomainListRequest) Invoke(client *sdk.Client) (response *QueryDomainListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryDomainListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryDomainListRequest) Invoke(client *sdk.Client) (resp *QueryDomainListResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryDomainList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryDomainListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryDomainListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryDomainListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryDomainListResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	TotalItemNum   int
 	CurrentPageNum int

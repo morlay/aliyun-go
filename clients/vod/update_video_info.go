@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateVideoInfoRequest struct {
+	requests.RpcRequest
 	CoverURL             string `position:"Query" name:"CoverURL"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,28 +19,14 @@ type UpdateVideoInfoRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r UpdateVideoInfoRequest) Invoke(client *sdk.Client) (response *UpdateVideoInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateVideoInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateVideoInfoRequest) Invoke(client *sdk.Client) (resp *UpdateVideoInfoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "UpdateVideoInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateVideoInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateVideoInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateVideoInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateVideoInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

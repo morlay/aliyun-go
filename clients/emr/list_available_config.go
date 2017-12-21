@@ -9,32 +9,19 @@ import (
 )
 
 type ListAvailableConfigRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64 `position:"Query" name:"ResourceOwnerId"`
 }
 
-func (r ListAvailableConfigRequest) Invoke(client *sdk.Client) (response *ListAvailableConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAvailableConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAvailableConfigRequest) Invoke(client *sdk.Client) (resp *ListAvailableConfigResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ListAvailableConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAvailableConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAvailableConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAvailableConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAvailableConfigResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	SecurityGroupTypes ListAvailableConfigSecurityGroupTypeList
 	InstanceTypes      ListAvailableConfigInstanceTypeList

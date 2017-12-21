@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBgpGroupsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	RouterId             string `position:"Query" name:"RouterId"`
@@ -20,29 +21,15 @@ type DescribeBgpGroupsRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeBgpGroupsRequest) Invoke(client *sdk.Client) (response *DescribeBgpGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBgpGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBgpGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeBgpGroupsResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeBgpGroups", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBgpGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBgpGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBgpGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBgpGroupsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

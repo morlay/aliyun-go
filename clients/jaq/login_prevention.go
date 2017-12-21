@@ -7,6 +7,7 @@ import (
 )
 
 type LoginPreventionRequest struct {
+	requests.RpcRequest
 	CallerName      string `position:"Query" name:"CallerName"`
 	Ip              string `position:"Query" name:"Ip"`
 	ProtocolVersion string `position:"Query" name:"ProtocolVersion"`
@@ -37,29 +38,15 @@ type LoginPreventionRequest struct {
 	PasswordCorrect int    `position:"Query" name:"PasswordCorrect"`
 }
 
-func (r LoginPreventionRequest) Invoke(client *sdk.Client) (response *LoginPreventionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		LoginPreventionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *LoginPreventionRequest) Invoke(client *sdk.Client) (resp *LoginPreventionResponse, err error) {
 	req.InitWithApiInfo("jaq", "2016-11-23", "LoginPrevention", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		LoginPreventionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.LoginPreventionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &LoginPreventionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type LoginPreventionResponse struct {
+	responses.BaseResponse
 	ErrorCode int
 	ErrorMsg  string
 	Data      LoginPreventionData

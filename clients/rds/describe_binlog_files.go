@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBinlogFilesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -20,29 +21,15 @@ type DescribeBinlogFilesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeBinlogFilesRequest) Invoke(client *sdk.Client) (response *DescribeBinlogFilesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBinlogFilesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBinlogFilesRequest) Invoke(client *sdk.Client) (resp *DescribeBinlogFilesResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeBinlogFiles", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBinlogFilesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBinlogFilesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBinlogFilesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBinlogFilesResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount int
 	PageNumber       int

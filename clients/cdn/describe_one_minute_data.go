@@ -7,6 +7,7 @@ import (
 )
 
 type DescribeOneMinuteDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DataTime             string `position:"Query" name:"DataTime"`
@@ -14,29 +15,15 @@ type DescribeOneMinuteDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeOneMinuteDataRequest) Invoke(client *sdk.Client) (response *DescribeOneMinuteDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOneMinuteDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOneMinuteDataRequest) Invoke(client *sdk.Client) (resp *DescribeOneMinuteDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeOneMinuteData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOneMinuteDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOneMinuteDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOneMinuteDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOneMinuteDataResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Bps       string
 	Qps       string

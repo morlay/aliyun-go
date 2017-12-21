@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteAccessGroupRequest struct {
+	requests.RpcRequest
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 }
 
-func (r DeleteAccessGroupRequest) Invoke(client *sdk.Client) (response *DeleteAccessGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteAccessGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteAccessGroupRequest) Invoke(client *sdk.Client) (resp *DeleteAccessGroupResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "DeleteAccessGroup", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteAccessGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteAccessGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteAccessGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteAccessGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

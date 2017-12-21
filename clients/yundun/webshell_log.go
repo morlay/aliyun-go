@@ -9,6 +9,7 @@ import (
 )
 
 type WebshellLogRequest struct {
+	requests.RpcRequest
 	JstOwnerId int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
@@ -16,29 +17,15 @@ type WebshellLogRequest struct {
 	RecordType int    `position:"Query" name:"RecordType"`
 }
 
-func (r WebshellLogRequest) Invoke(client *sdk.Client) (response *WebshellLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		WebshellLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *WebshellLogRequest) Invoke(client *sdk.Client) (resp *WebshellLogResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "WebshellLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		WebshellLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.WebshellLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &WebshellLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type WebshellLogResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PageNumber int
 	PageSize   int

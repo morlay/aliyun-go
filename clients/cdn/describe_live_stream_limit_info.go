@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeLiveStreamLimitInfoRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	LimitDomain   string `position:"Query" name:"LimitDomain"`
 }
 
-func (r DescribeLiveStreamLimitInfoRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamLimitInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamLimitInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamLimitInfoRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamLimitInfoResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamLimitInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamLimitInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamLimitInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamLimitInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamLimitInfoResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	UserLimitLists DescribeLiveStreamLimitInfoUserLimitModeList
 }

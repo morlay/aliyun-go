@@ -9,32 +9,19 @@ import (
 )
 
 type ListAccessKeysRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r ListAccessKeysRequest) Invoke(client *sdk.Client) (response *ListAccessKeysResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAccessKeysRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAccessKeysRequest) Invoke(client *sdk.Client) (resp *ListAccessKeysResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListAccessKeys", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAccessKeysResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAccessKeysResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAccessKeysResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAccessKeysResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	AccessKeys ListAccessKeysAccessKeyList
 }

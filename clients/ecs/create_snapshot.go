@@ -7,6 +7,7 @@ import (
 )
 
 type CreateSnapshotRequest struct {
+	requests.RpcRequest
 	Tag4Value            string `position:"Query" name:"Tag.4.Value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Tag2Key              string `position:"Query" name:"Tag.2.Key"`
@@ -27,29 +28,15 @@ type CreateSnapshotRequest struct {
 	Tag3Value            string `position:"Query" name:"Tag.3.Value"`
 }
 
-func (r CreateSnapshotRequest) Invoke(client *sdk.Client) (response *CreateSnapshotResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateSnapshotRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateSnapshotRequest) Invoke(client *sdk.Client) (resp *CreateSnapshotResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateSnapshot", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateSnapshotResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateSnapshotResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateSnapshotResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateSnapshotResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	SnapshotId string
 }

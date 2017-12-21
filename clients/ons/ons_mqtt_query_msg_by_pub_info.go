@@ -9,6 +9,7 @@ import (
 )
 
 type OnsMqttQueryMsgByPubInfoRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	ClientId     string `position:"Query" name:"ClientId"`
@@ -18,29 +19,15 @@ type OnsMqttQueryMsgByPubInfoRequest struct {
 	BeginTime    int64  `position:"Query" name:"BeginTime"`
 }
 
-func (r OnsMqttQueryMsgByPubInfoRequest) Invoke(client *sdk.Client) (response *OnsMqttQueryMsgByPubInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttQueryMsgByPubInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttQueryMsgByPubInfoRequest) Invoke(client *sdk.Client) (resp *OnsMqttQueryMsgByPubInfoResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttQueryMsgByPubInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttQueryMsgByPubInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttQueryMsgByPubInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttQueryMsgByPubInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttQueryMsgByPubInfoResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	HelpUrl        string
 	MqttMessageDos OnsMqttQueryMsgByPubInfoMqttMessageDoList

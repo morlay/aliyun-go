@@ -7,6 +7,7 @@ import (
 )
 
 type SetUserBusinessStatusesRequest struct {
+	requests.RpcRequest
 	Uid           string `position:"Query" name:"Uid"`
 	ServiceCode   string `position:"Query" name:"ServiceCode"`
 	StatusKey1    string `position:"Query" name:"StatusKey.1"`
@@ -32,29 +33,15 @@ type SetUserBusinessStatusesRequest struct {
 	Password      string `position:"Query" name:"Password"`
 }
 
-func (r SetUserBusinessStatusesRequest) Invoke(client *sdk.Client) (response *SetUserBusinessStatusesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetUserBusinessStatusesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetUserBusinessStatusesRequest) Invoke(client *sdk.Client) (resp *SetUserBusinessStatusesResponse, err error) {
 	req.InitWithApiInfo("Ubsms", "2015-06-23", "SetUserBusinessStatuses", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetUserBusinessStatusesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetUserBusinessStatusesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetUserBusinessStatusesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetUserBusinessStatusesResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

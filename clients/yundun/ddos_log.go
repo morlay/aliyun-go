@@ -9,6 +9,7 @@ import (
 )
 
 type DdosLogRequest struct {
+	requests.RpcRequest
 	JstOwnerId   int64  `position:"Query" name:"JstOwnerId"`
 	PageNumber   int    `position:"Query" name:"PageNumber"`
 	PageSize     int    `position:"Query" name:"PageSize"`
@@ -16,29 +17,15 @@ type DdosLogRequest struct {
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r DdosLogRequest) Invoke(client *sdk.Client) (response *DdosLogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DdosLogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DdosLogRequest) Invoke(client *sdk.Client) (resp *DdosLogResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "DdosLog", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DdosLogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DdosLogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DdosLogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DdosLogResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	AttackStatus int
 	StartTime    string

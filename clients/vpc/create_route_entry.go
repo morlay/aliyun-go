@@ -9,6 +9,7 @@ import (
 )
 
 type CreateRouteEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                            `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                           `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string                           `position:"Query" name:"ClientToken"`
@@ -21,25 +22,10 @@ type CreateRouteEntryRequest struct {
 	RouteTableId         string                           `position:"Query" name:"RouteTableId"`
 }
 
-func (r CreateRouteEntryRequest) Invoke(client *sdk.Client) (response *CreateRouteEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateRouteEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateRouteEntryRequest) Invoke(client *sdk.Client) (resp *CreateRouteEntryResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateRouteEntry", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateRouteEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateRouteEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateRouteEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -50,6 +36,7 @@ type CreateRouteEntryNextHopList struct {
 }
 
 type CreateRouteEntryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

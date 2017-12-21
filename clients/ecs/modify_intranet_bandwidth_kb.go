@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyIntranetBandwidthKbRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	IntranetMaxBandwidthOut int    `position:"Query" name:"IntranetMaxBandwidthOut"`
 	InstanceId              string `position:"Query" name:"InstanceId"`
@@ -16,28 +17,14 @@ type ModifyIntranetBandwidthKbRequest struct {
 	OwnerId                 int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyIntranetBandwidthKbRequest) Invoke(client *sdk.Client) (response *ModifyIntranetBandwidthKbResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyIntranetBandwidthKbRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyIntranetBandwidthKbRequest) Invoke(client *sdk.Client) (resp *ModifyIntranetBandwidthKbResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyIntranetBandwidthKb", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyIntranetBandwidthKbResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyIntranetBandwidthKbResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyIntranetBandwidthKbResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyIntranetBandwidthKbResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

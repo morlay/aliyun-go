@@ -7,35 +7,22 @@ import (
 )
 
 type CreateKeyPairRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	KeyPairName          string `position:"Query" name:"KeyPairName"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreateKeyPairRequest) Invoke(client *sdk.Client) (response *CreateKeyPairResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateKeyPairRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateKeyPairRequest) Invoke(client *sdk.Client) (resp *CreateKeyPairResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CreateKeyPair", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateKeyPairResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateKeyPairResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateKeyPairResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateKeyPairResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	KeyPairName        string
 	KeyPairFingerPrint string

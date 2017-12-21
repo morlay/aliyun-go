@@ -9,33 +9,20 @@ import (
 )
 
 type SecureCheckRequest struct {
+	requests.RpcRequest
 	JstOwnerId  int64  `position:"Query" name:"JstOwnerId"`
 	InstanceIds string `position:"Query" name:"InstanceIds"`
 }
 
-func (r SecureCheckRequest) Invoke(client *sdk.Client) (response *SecureCheckResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SecureCheckRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SecureCheckRequest) Invoke(client *sdk.Client) (resp *SecureCheckResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "SecureCheck", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SecureCheckResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SecureCheckResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SecureCheckResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SecureCheckResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	RecentInstanceId string
 	ProblemList      SecureCheckInfoList

@@ -9,6 +9,7 @@ import (
 )
 
 type SetCasterSceneConfigRequest struct {
+	requests.RpcRequest
 	ComponentIds  *SetCasterSceneConfigComponentIdList `position:"Query" type:"Repeated" name:"ComponentId"`
 	SecurityToken string                               `position:"Query" name:"SecurityToken"`
 	CasterId      string                               `position:"Query" name:"CasterId"`
@@ -18,29 +19,15 @@ type SetCasterSceneConfigRequest struct {
 	LayoutId      string                               `position:"Query" name:"LayoutId"`
 }
 
-func (r SetCasterSceneConfigRequest) Invoke(client *sdk.Client) (response *SetCasterSceneConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetCasterSceneConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *SetCasterSceneConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "SetCasterSceneConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetCasterSceneConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetCasterSceneConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetCasterSceneConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetCasterSceneConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamFrameLossRatioRequest struct {
+	requests.RpcRequest
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -18,29 +19,15 @@ type DescribeLiveStreamFrameLossRatioRequest struct {
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 
-func (r DescribeLiveStreamFrameLossRatioRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamFrameLossRatioResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamFrameLossRatioRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamFrameLossRatioRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamFrameLossRatioResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamFrameLossRatio", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamFrameLossRatioResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamFrameLossRatioResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamFrameLossRatioResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamFrameLossRatioResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	FrameLossRatioInfos DescribeLiveStreamFrameLossRatioFrameLossRatioInfoList
 }

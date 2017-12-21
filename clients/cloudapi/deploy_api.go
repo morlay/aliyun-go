@@ -7,34 +7,21 @@ import (
 )
 
 type DeployApiRequest struct {
+	requests.RpcRequest
 	GroupId     string `position:"Query" name:"GroupId"`
 	ApiId       string `position:"Query" name:"ApiId"`
 	StageName   string `position:"Query" name:"StageName"`
 	Description string `position:"Query" name:"Description"`
 }
 
-func (r DeployApiRequest) Invoke(client *sdk.Client) (response *DeployApiResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeployApiRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeployApiRequest) Invoke(client *sdk.Client) (resp *DeployApiResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DeployApi", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeployApiResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeployApiResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeployApiResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeployApiResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

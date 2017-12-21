@@ -7,6 +7,7 @@ import (
 )
 
 type OnsMqttManualUpdateRuleRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	InstanceId   string `position:"Query" name:"InstanceId"`
@@ -15,29 +16,15 @@ type OnsMqttManualUpdateRuleRequest struct {
 	AdminKey     string `position:"Query" name:"AdminKey"`
 }
 
-func (r OnsMqttManualUpdateRuleRequest) Invoke(client *sdk.Client) (response *OnsMqttManualUpdateRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttManualUpdateRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttManualUpdateRuleRequest) Invoke(client *sdk.Client) (resp *OnsMqttManualUpdateRuleResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttManualUpdateRule", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttManualUpdateRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttManualUpdateRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttManualUpdateRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttManualUpdateRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 }

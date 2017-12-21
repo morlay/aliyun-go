@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeKeyRequest struct {
+	requests.RpcRequest
 	KeyId    string `position:"Query" name:"KeyId"`
 	STSToken string `position:"Query" name:"STSToken"`
 }
 
-func (r DescribeKeyRequest) Invoke(client *sdk.Client) (response *DescribeKeyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeKeyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeKeyRequest) Invoke(client *sdk.Client) (resp *DescribeKeyResponse, err error) {
 	req.InitWithApiInfo("Kms", "2016-01-20", "DescribeKey", "kms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeKeyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeKeyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeKeyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeKeyResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	KeyMetadata DescribeKeyKeyMetadata
 }

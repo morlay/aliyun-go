@@ -9,6 +9,7 @@ import (
 )
 
 type CalculateDBInstanceWeightRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type CalculateDBInstanceWeightRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CalculateDBInstanceWeightRequest) Invoke(client *sdk.Client) (response *CalculateDBInstanceWeightResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CalculateDBInstanceWeightRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CalculateDBInstanceWeightRequest) Invoke(client *sdk.Client) (resp *CalculateDBInstanceWeightResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CalculateDBInstanceWeight", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CalculateDBInstanceWeightResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CalculateDBInstanceWeightResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CalculateDBInstanceWeightResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CalculateDBInstanceWeightResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     CalculateDBInstanceWeightDBInstanceWeightList
 }

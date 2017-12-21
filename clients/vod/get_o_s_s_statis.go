@@ -9,6 +9,7 @@ import (
 )
 
 type GetOSSStatisRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	StartStatisTime      string `position:"Query" name:"StartStatisTime"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type GetOSSStatisRequest struct {
 	EndStatisTime        string `position:"Query" name:"EndStatisTime"`
 }
 
-func (r GetOSSStatisRequest) Invoke(client *sdk.Client) (response *GetOSSStatisResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetOSSStatisRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetOSSStatisRequest) Invoke(client *sdk.Client) (resp *GetOSSStatisResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetOSSStatis", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetOSSStatisResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetOSSStatisResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetOSSStatisResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetOSSStatisResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	MaxStorageUtilization int64
 	OssStatisList         GetOSSStatisOSSMetricList

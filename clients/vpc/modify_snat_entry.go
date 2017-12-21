@@ -7,6 +7,7 @@ import (
 )
 
 type ModifySnatEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,28 +17,14 @@ type ModifySnatEntryRequest struct {
 	SnatIp               string `position:"Query" name:"SnatIp"`
 }
 
-func (r ModifySnatEntryRequest) Invoke(client *sdk.Client) (response *ModifySnatEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifySnatEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifySnatEntryRequest) Invoke(client *sdk.Client) (resp *ModifySnatEntryResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifySnatEntry", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifySnatEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifySnatEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifySnatEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifySnatEntryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

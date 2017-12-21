@@ -7,6 +7,7 @@ import (
 )
 
 type SetRemoveQueryStringConfigRequest struct {
+	requests.RpcRequest
 	KeepOssArgs   string `position:"Query" name:"KeepOssArgs"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
@@ -14,28 +15,14 @@ type SetRemoveQueryStringConfigRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetRemoveQueryStringConfigRequest) Invoke(client *sdk.Client) (response *SetRemoveQueryStringConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetRemoveQueryStringConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetRemoveQueryStringConfigRequest) Invoke(client *sdk.Client) (resp *SetRemoveQueryStringConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetRemoveQueryStringConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetRemoveQueryStringConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetRemoveQueryStringConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetRemoveQueryStringConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetRemoveQueryStringConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

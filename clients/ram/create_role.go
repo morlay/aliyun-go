@@ -7,34 +7,21 @@ import (
 )
 
 type CreateRoleRequest struct {
+	requests.RpcRequest
 	RoleName                 string `position:"Query" name:"RoleName"`
 	Description              string `position:"Query" name:"Description"`
 	AssumeRolePolicyDocument string `position:"Query" name:"AssumeRolePolicyDocument"`
 }
 
-func (r CreateRoleRequest) Invoke(client *sdk.Client) (response *CreateRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateRoleRequest) Invoke(client *sdk.Client) (resp *CreateRoleResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "CreateRole", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateRoleResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Role      CreateRoleRole
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstanceTDERequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	DBName               string `position:"Query" name:"DBName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type ModifyDBInstanceTDERequest struct {
 	TDEStatus            string `position:"Query" name:"TDEStatus"`
 }
 
-func (r ModifyDBInstanceTDERequest) Invoke(client *sdk.Client) (response *ModifyDBInstanceTDEResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstanceTDERequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstanceTDERequest) Invoke(client *sdk.Client) (resp *ModifyDBInstanceTDEResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstanceTDE", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstanceTDEResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstanceTDEResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstanceTDEResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstanceTDEResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

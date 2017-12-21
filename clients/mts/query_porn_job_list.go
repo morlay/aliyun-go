@@ -9,6 +9,7 @@ import (
 )
 
 type QueryPornJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -16,29 +17,15 @@ type QueryPornJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryPornJobListRequest) Invoke(client *sdk.Client) (response *QueryPornJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPornJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPornJobListRequest) Invoke(client *sdk.Client) (resp *QueryPornJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryPornJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPornJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPornJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPornJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPornJobListResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	PornJobList QueryPornJobListPornJobList
 	NonExistIds QueryPornJobListNonExistIdList

@@ -7,6 +7,7 @@ import (
 )
 
 type PushNoticeToiOSRequest struct {
+	requests.RpcRequest
 	ExtParameters string `position:"Query" name:"ExtParameters"`
 	ApnsEnv       string `position:"Query" name:"ApnsEnv"`
 	AppKey        int64  `position:"Query" name:"AppKey"`
@@ -17,29 +18,15 @@ type PushNoticeToiOSRequest struct {
 	Target        string `position:"Query" name:"Target"`
 }
 
-func (r PushNoticeToiOSRequest) Invoke(client *sdk.Client) (response *PushNoticeToiOSResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PushNoticeToiOSRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PushNoticeToiOSRequest) Invoke(client *sdk.Client) (resp *PushNoticeToiOSResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "PushNoticeToiOS", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PushNoticeToiOSResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PushNoticeToiOSResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PushNoticeToiOSResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PushNoticeToiOSResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MessageId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeTagsRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -21,29 +22,15 @@ type DescribeTagsRequest struct {
 	PageSize             int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeTagsRequest) Invoke(client *sdk.Client) (response *DescribeTagsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeTagsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeTagsRequest) Invoke(client *sdk.Client) (resp *DescribeTagsResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeTags", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTagsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTagsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTagsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTagsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	PageSize   int
 	PageNumber int

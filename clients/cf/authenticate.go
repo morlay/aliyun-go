@@ -7,6 +7,7 @@ import (
 )
 
 type AuthenticateRequest struct {
+	requests.RpcRequest
 	Sig       string `position:"Query" name:"Sig"`
 	RemoteIp  string `position:"Query" name:"RemoteIp"`
 	AccessKey string `position:"Query" name:"AccessKey"`
@@ -15,29 +16,15 @@ type AuthenticateRequest struct {
 	Token     string `position:"Query" name:"Token"`
 }
 
-func (r AuthenticateRequest) Invoke(client *sdk.Client) (response *AuthenticateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AuthenticateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AuthenticateRequest) Invoke(client *sdk.Client) (resp *AuthenticateResponse, err error) {
 	req.InitWithApiInfo("CF", "2015-12-08", "Authenticate", "cf", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AuthenticateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AuthenticateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AuthenticateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AuthenticateResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	Success               bool
 	Msg                   string

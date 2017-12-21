@@ -7,33 +7,20 @@ import (
 )
 
 type RemoveVpcAccessRequest struct {
+	requests.RpcRequest
 	VpcId      string `position:"Query" name:"VpcId"`
 	InstanceId string `position:"Query" name:"InstanceId"`
 	Port       int    `position:"Query" name:"Port"`
 }
 
-func (r RemoveVpcAccessRequest) Invoke(client *sdk.Client) (response *RemoveVpcAccessResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveVpcAccessRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveVpcAccessRequest) Invoke(client *sdk.Client) (resp *RemoveVpcAccessResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "RemoveVpcAccess", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveVpcAccessResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveVpcAccessResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveVpcAccessResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveVpcAccessResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

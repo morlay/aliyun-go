@@ -7,6 +7,7 @@ import (
 )
 
 type CreateNqaRequest struct {
+	requests.RpcRequest
 	DestinationIp        string `position:"Query" name:"DestinationIp"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type CreateNqaRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreateNqaRequest) Invoke(client *sdk.Client) (response *CreateNqaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateNqaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateNqaRequest) Invoke(client *sdk.Client) (resp *CreateNqaResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "CreateNqa", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateNqaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateNqaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateNqaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateNqaResponse struct {
+	responses.BaseResponse
 	RequestId string
 	NqaId     string
 }

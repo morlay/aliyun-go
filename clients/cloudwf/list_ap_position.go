@@ -7,32 +7,19 @@ import (
 )
 
 type ListApPositionRequest struct {
+	requests.RpcRequest
 	MapId int64 `position:"Query" name:"MapId"`
 }
 
-func (r ListApPositionRequest) Invoke(client *sdk.Client) (response *ListApPositionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApPositionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApPositionRequest) Invoke(client *sdk.Client) (resp *ListApPositionResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApPosition", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApPositionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApPositionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApPositionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApPositionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

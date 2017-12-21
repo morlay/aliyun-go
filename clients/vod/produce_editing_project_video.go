@@ -7,6 +7,7 @@ import (
 )
 
 type ProduceEditingProjectVideoRequest struct {
+	requests.RpcRequest
 	CoverURL             string `position:"Query" name:"CoverURL"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type ProduceEditingProjectVideoRequest struct {
 	ProjectId            string `position:"Query" name:"ProjectId"`
 }
 
-func (r ProduceEditingProjectVideoRequest) Invoke(client *sdk.Client) (response *ProduceEditingProjectVideoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ProduceEditingProjectVideoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ProduceEditingProjectVideoRequest) Invoke(client *sdk.Client) (resp *ProduceEditingProjectVideoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ProduceEditingProjectVideo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ProduceEditingProjectVideoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ProduceEditingProjectVideoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ProduceEditingProjectVideoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ProduceEditingProjectVideoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	MediaId   string
 }

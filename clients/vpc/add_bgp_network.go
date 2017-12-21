@@ -7,6 +7,7 @@ import (
 )
 
 type AddBgpNetworkRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,28 +18,14 @@ type AddBgpNetworkRequest struct {
 	DstCidrBlock         string `position:"Query" name:"DstCidrBlock"`
 }
 
-func (r AddBgpNetworkRequest) Invoke(client *sdk.Client) (response *AddBgpNetworkResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddBgpNetworkRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddBgpNetworkRequest) Invoke(client *sdk.Client) (resp *AddBgpNetworkResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "AddBgpNetwork", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddBgpNetworkResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddBgpNetworkResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddBgpNetworkResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddBgpNetworkResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

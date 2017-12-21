@@ -7,6 +7,7 @@ import (
 )
 
 type CreateInstanceRequest struct {
+	requests.RpcRequest
 	OwnerId           int64  `position:"Query" name:"OwnerId"`
 	ClientToken       string `position:"Query" name:"ClientToken"`
 	Duration          int    `position:"Query" name:"Duration"`
@@ -18,29 +19,15 @@ type CreateInstanceRequest struct {
 	AutoRenewDuration int    `position:"Query" name:"AutoRenewDuration"`
 }
 
-func (r CreateInstanceRequest) Invoke(client *sdk.Client) (response *CreateInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateInstanceRequest) Invoke(client *sdk.Client) (resp *CreateInstanceResponse, err error) {
 	req.InitWithApiInfo("waf-openapi", "2016-11-11", "CreateInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateInstanceResponse struct {
+	responses.BaseResponse
 	OrderId    string
 	InstanceId string
 	RequestId  string

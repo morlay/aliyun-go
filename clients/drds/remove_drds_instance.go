@@ -7,32 +7,19 @@ import (
 )
 
 type RemoveDrdsInstanceRequest struct {
+	requests.RpcRequest
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r RemoveDrdsInstanceRequest) Invoke(client *sdk.Client) (response *RemoveDrdsInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveDrdsInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveDrdsInstanceRequest) Invoke(client *sdk.Client) (resp *RemoveDrdsInstanceResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "RemoveDrdsInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveDrdsInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveDrdsInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveDrdsInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveDrdsInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

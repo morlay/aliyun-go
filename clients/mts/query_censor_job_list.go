@@ -9,6 +9,7 @@ import (
 )
 
 type QueryCensorJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -16,29 +17,15 @@ type QueryCensorJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryCensorJobListRequest) Invoke(client *sdk.Client) (response *QueryCensorJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryCensorJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryCensorJobListRequest) Invoke(client *sdk.Client) (resp *QueryCensorJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryCensorJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryCensorJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryCensorJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryCensorJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryCensorJobListResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	CensorJobList QueryCensorJobListCensorJobList
 	NonExistIds   QueryCensorJobListNonExistIdList

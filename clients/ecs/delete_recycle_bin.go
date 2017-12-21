@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteRecycleBinRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteRecycleBinRequest struct {
 	ResourceIds          string `position:"Query" name:"ResourceIds"`
 }
 
-func (r DeleteRecycleBinRequest) Invoke(client *sdk.Client) (response *DeleteRecycleBinResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteRecycleBinRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteRecycleBinRequest) Invoke(client *sdk.Client) (resp *DeleteRecycleBinResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteRecycleBin", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteRecycleBinResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteRecycleBinResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteRecycleBinResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteRecycleBinResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

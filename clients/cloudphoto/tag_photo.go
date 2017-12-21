@@ -9,6 +9,7 @@ import (
 )
 
 type TagPhotoRequest struct {
+	requests.RpcRequest
 	LibraryId   string                  `position:"Query" name:"LibraryId"`
 	Confidences *TagPhotoConfidenceList `position:"Query" type:"Repeated" name:"Confidence"`
 	StoreName   string                  `position:"Query" name:"StoreName"`
@@ -16,29 +17,15 @@ type TagPhotoRequest struct {
 	TagKeys     *TagPhotoTagKeyList     `position:"Query" type:"Repeated" name:"TagKey"`
 }
 
-func (r TagPhotoRequest) Invoke(client *sdk.Client) (response *TagPhotoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		TagPhotoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *TagPhotoRequest) Invoke(client *sdk.Client) (resp *TagPhotoResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "TagPhoto", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		TagPhotoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.TagPhotoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &TagPhotoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type TagPhotoResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

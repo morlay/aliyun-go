@@ -7,35 +7,22 @@ import (
 )
 
 type RefreshUploadVideoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VideoId              string `position:"Query" name:"VideoId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r RefreshUploadVideoRequest) Invoke(client *sdk.Client) (response *RefreshUploadVideoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RefreshUploadVideoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RefreshUploadVideoRequest) Invoke(client *sdk.Client) (resp *RefreshUploadVideoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "RefreshUploadVideo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RefreshUploadVideoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RefreshUploadVideoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RefreshUploadVideoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RefreshUploadVideoResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	UploadAuth    string
 	UploadAddress string

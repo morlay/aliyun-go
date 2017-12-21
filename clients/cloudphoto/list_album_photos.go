@@ -9,6 +9,7 @@ import (
 )
 
 type ListAlbumPhotosRequest struct {
+	requests.RpcRequest
 	Cursor    string `position:"Query" name:"Cursor"`
 	Size      int    `position:"Query" name:"Size"`
 	LibraryId string `position:"Query" name:"LibraryId"`
@@ -18,29 +19,15 @@ type ListAlbumPhotosRequest struct {
 	Direction string `position:"Query" name:"Direction"`
 }
 
-func (r ListAlbumPhotosRequest) Invoke(client *sdk.Client) (response *ListAlbumPhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAlbumPhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAlbumPhotosRequest) Invoke(client *sdk.Client) (resp *ListAlbumPhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ListAlbumPhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAlbumPhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAlbumPhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAlbumPhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAlbumPhotosResponse struct {
+	responses.BaseResponse
 	Code       string
 	Message    string
 	NextCursor string

@@ -7,6 +7,7 @@ import (
 )
 
 type FailoverDBClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -16,28 +17,14 @@ type FailoverDBClusterRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r FailoverDBClusterRequest) Invoke(client *sdk.Client) (response *FailoverDBClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FailoverDBClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FailoverDBClusterRequest) Invoke(client *sdk.Client) (resp *FailoverDBClusterResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "FailoverDBCluster", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FailoverDBClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FailoverDBClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FailoverDBClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FailoverDBClusterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

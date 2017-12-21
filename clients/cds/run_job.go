@@ -7,32 +7,20 @@ import (
 )
 
 type RunJobRequest struct {
+	requests.RoaRequest
 	JobName string `position:"Path" name:"JobName"`
 }
 
-func (r RunJobRequest) Invoke(client *sdk.Client) (response *RunJobResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		RunJobRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *RunJobRequest) Invoke(client *sdk.Client) (resp *RunJobResponse, err error) {
 	req.InitWithApiInfo("Cds", "2017-09-25", "RunJob", "/v1/job/[JobName]/run", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		RunJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RunJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RunJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RunJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

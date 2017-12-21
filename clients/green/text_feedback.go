@@ -7,31 +7,19 @@ import (
 )
 
 type TextFeedbackRequest struct {
+	requests.RoaRequest
 	ClientInfo string `position:"Query" name:"ClientInfo"`
 }
 
-func (r TextFeedbackRequest) Invoke(client *sdk.Client) (response *TextFeedbackResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		TextFeedbackRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *TextFeedbackRequest) Invoke(client *sdk.Client) (resp *TextFeedbackResponse, err error) {
 	req.InitWithApiInfo("Green", "2017-01-12", "TextFeedback", "/green/text/feedback", "green", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		TextFeedbackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.TextFeedbackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &TextFeedbackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type TextFeedbackResponse struct {
+	responses.BaseResponse
 }

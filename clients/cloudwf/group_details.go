@@ -7,32 +7,19 @@ import (
 )
 
 type GroupDetailsRequest struct {
+	requests.RpcRequest
 	Gsid int64 `position:"Query" name:"Gsid"`
 }
 
-func (r GroupDetailsRequest) Invoke(client *sdk.Client) (response *GroupDetailsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GroupDetailsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GroupDetailsRequest) Invoke(client *sdk.Client) (resp *GroupDetailsResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GroupDetails", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GroupDetailsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GroupDetailsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GroupDetailsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GroupDetailsResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

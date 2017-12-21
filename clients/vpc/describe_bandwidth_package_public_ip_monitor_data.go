@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBandwidthPackagePublicIpMonitorDataRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               int    `position:"Query" name:"Period"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeBandwidthPackagePublicIpMonitorDataRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeBandwidthPackagePublicIpMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeBandwidthPackagePublicIpMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBandwidthPackagePublicIpMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBandwidthPackagePublicIpMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeBandwidthPackagePublicIpMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeBandwidthPackagePublicIpMonitorData", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBandwidthPackagePublicIpMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBandwidthPackagePublicIpMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBandwidthPackagePublicIpMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBandwidthPackagePublicIpMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	MonitorDatas DescribeBandwidthPackagePublicIpMonitorDataMonitorDataList
 }

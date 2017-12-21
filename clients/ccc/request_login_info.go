@@ -7,32 +7,19 @@ import (
 )
 
 type RequestLoginInfoRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 }
 
-func (r RequestLoginInfoRequest) Invoke(client *sdk.Client) (response *RequestLoginInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RequestLoginInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RequestLoginInfoRequest) Invoke(client *sdk.Client) (resp *RequestLoginInfoResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "RequestLoginInfo", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RequestLoginInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RequestLoginInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RequestLoginInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RequestLoginInfoResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

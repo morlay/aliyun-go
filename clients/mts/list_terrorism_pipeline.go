@@ -9,6 +9,7 @@ import (
 )
 
 type ListTerrorismPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -18,29 +19,15 @@ type ListTerrorismPipelineRequest struct {
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 }
 
-func (r ListTerrorismPipelineRequest) Invoke(client *sdk.Client) (response *ListTerrorismPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListTerrorismPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListTerrorismPipelineRequest) Invoke(client *sdk.Client) (resp *ListTerrorismPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "ListTerrorismPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListTerrorismPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListTerrorismPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListTerrorismPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListTerrorismPipelineResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TotalCount   int64
 	PageNumber   int64

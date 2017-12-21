@@ -9,33 +9,20 @@ import (
 )
 
 type ListGroupsRequest struct {
+	requests.RpcRequest
 	Marker   string `position:"Query" name:"Marker"`
 	MaxItems int    `position:"Query" name:"MaxItems"`
 }
 
-func (r ListGroupsRequest) Invoke(client *sdk.Client) (response *ListGroupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListGroupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListGroupsRequest) Invoke(client *sdk.Client) (resp *ListGroupsResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListGroups", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListGroupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListGroupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListGroupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListGroupsResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	IsTruncated bool
 	Marker      string

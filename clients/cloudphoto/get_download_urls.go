@@ -9,34 +9,21 @@ import (
 )
 
 type GetDownloadUrlsRequest struct {
+	requests.RpcRequest
 	LibraryId string                      `position:"Query" name:"LibraryId"`
 	PhotoIds  *GetDownloadUrlsPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                      `position:"Query" name:"StoreName"`
 }
 
-func (r GetDownloadUrlsRequest) Invoke(client *sdk.Client) (response *GetDownloadUrlsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetDownloadUrlsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetDownloadUrlsRequest) Invoke(client *sdk.Client) (resp *GetDownloadUrlsResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetDownloadUrls", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetDownloadUrlsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetDownloadUrlsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetDownloadUrlsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetDownloadUrlsResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

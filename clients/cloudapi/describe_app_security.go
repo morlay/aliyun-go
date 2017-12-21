@@ -7,32 +7,19 @@ import (
 )
 
 type DescribeAppSecurityRequest struct {
+	requests.RpcRequest
 	AppId int64 `position:"Query" name:"AppId"`
 }
 
-func (r DescribeAppSecurityRequest) Invoke(client *sdk.Client) (response *DescribeAppSecurityResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAppSecurityRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAppSecurityRequest) Invoke(client *sdk.Client) (resp *DescribeAppSecurityResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeAppSecurity", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAppSecurityResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAppSecurityResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAppSecurityResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAppSecurityResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	AppKey       string
 	AppSecret    string

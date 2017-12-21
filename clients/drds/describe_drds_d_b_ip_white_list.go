@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeDrdsDBIpWhiteListRequest struct {
+	requests.RpcRequest
 	DbName         string `position:"Query" name:"DbName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 	GroupName      string `position:"Query" name:"GroupName"`
 }
 
-func (r DescribeDrdsDBIpWhiteListRequest) Invoke(client *sdk.Client) (response *DescribeDrdsDBIpWhiteListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDrdsDBIpWhiteListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDrdsDBIpWhiteListRequest) Invoke(client *sdk.Client) (resp *DescribeDrdsDBIpWhiteListResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeDrdsDBIpWhiteList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDrdsDBIpWhiteListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDrdsDBIpWhiteListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDrdsDBIpWhiteListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDrdsDBIpWhiteListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Data      DescribeDrdsDBIpWhiteListData

@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateDomainRecordRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	RecordId     string `position:"Query" name:"RecordId"`
@@ -18,29 +19,15 @@ type UpdateDomainRecordRequest struct {
 	Line         string `position:"Query" name:"Line"`
 }
 
-func (r UpdateDomainRecordRequest) Invoke(client *sdk.Client) (response *UpdateDomainRecordResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateDomainRecordRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateDomainRecordRequest) Invoke(client *sdk.Client) (resp *UpdateDomainRecordResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "UpdateDomainRecord", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateDomainRecordResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateDomainRecordResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateDomainRecordResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateDomainRecordResponse struct {
+	responses.BaseResponse
 	RequestId string
 	RecordId  string
 }

@@ -7,32 +7,19 @@ import (
 )
 
 type BatchChangeGroupApNameRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r BatchChangeGroupApNameRequest) Invoke(client *sdk.Client) (response *BatchChangeGroupApNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BatchChangeGroupApNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BatchChangeGroupApNameRequest) Invoke(client *sdk.Client) (resp *BatchChangeGroupApNameResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "BatchChangeGroupApName", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BatchChangeGroupApNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BatchChangeGroupApNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BatchChangeGroupApNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BatchChangeGroupApNameResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

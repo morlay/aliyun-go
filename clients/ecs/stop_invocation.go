@@ -9,6 +9,7 @@ import (
 )
 
 type StopInvocationRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64                         `position:"Query" name:"ResourceOwnerId"`
 	InvokeId             string                        `position:"Query" name:"InvokeId"`
 	ResourceOwnerAccount string                        `position:"Query" name:"ResourceOwnerAccount"`
@@ -17,29 +18,15 @@ type StopInvocationRequest struct {
 	InstanceIds          *StopInvocationInstanceIdList `position:"Query" type:"Repeated" name:"InstanceId"`
 }
 
-func (r StopInvocationRequest) Invoke(client *sdk.Client) (response *StopInvocationResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		StopInvocationRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *StopInvocationRequest) Invoke(client *sdk.Client) (resp *StopInvocationResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "StopInvocation", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		StopInvocationResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.StopInvocationResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &StopInvocationResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type StopInvocationResponse struct {
+	responses.BaseResponse
 	RequestId string
 }
 

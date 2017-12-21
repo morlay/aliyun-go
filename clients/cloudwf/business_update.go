@@ -7,6 +7,7 @@ import (
 )
 
 type BusinessUpdateRequest struct {
+	requests.RpcRequest
 	Warn             int    `position:"Query" name:"Warn"`
 	BusinessCity     string `position:"Query" name:"BusinessCity"`
 	WarnEmail        string `position:"Query" name:"WarnEmail"`
@@ -16,29 +17,15 @@ type BusinessUpdateRequest struct {
 	BusinessProvince string `position:"Query" name:"BusinessProvince"`
 }
 
-func (r BusinessUpdateRequest) Invoke(client *sdk.Client) (response *BusinessUpdateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		BusinessUpdateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *BusinessUpdateRequest) Invoke(client *sdk.Client) (resp *BusinessUpdateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "BusinessUpdate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		BusinessUpdateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.BusinessUpdateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &BusinessUpdateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type BusinessUpdateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

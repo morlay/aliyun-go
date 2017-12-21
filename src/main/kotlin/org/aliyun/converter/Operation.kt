@@ -10,6 +10,12 @@ class Operation(
         var method: String,
         val uriPattern: String
 ) {
+    companion object {
+        fun withAnonymous(structStruct: String, s: String): String {
+            return structStruct.replace(Regex("^struct \\{"), "struct {\n${s}")
+        }
+    }
+
     private var parameters = Schema("")
     private var response = Schema("")
 
@@ -27,57 +33,29 @@ class Operation(
 
         var codes = ""
 
-        codes += """
-type ${this.action}Request ${this.parameters.goType(subTypePrefix, true, sideCodes)}
-"""
         when (requestType) {
             "roa" -> {
                 codes += """
-func (r ${this.action}Request) Invoke(client *sdk.Client) (response *${this.action}Response, err error) {
-	req := struct {
-		*requests.RoaRequest
-		${this.action}Request
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+type ${this.action}Request ${withAnonymous(this.parameters.goType(subTypePrefix, true, sideCodes), "requests.RoaRequest")}
+
+func (req *${this.action}Request) Invoke(client *sdk.Client) (resp *${this.action}Response, err error) {
 	req.InitWithApiInfo("${this.product}", "${this.version}", "${this.action}", "${this.uriPattern}","${this.serviceCode}", "")
     req.Method = "${this.method}"
 
-	resp := struct {
-		*responses.BaseResponse
-		${this.action}Response
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-    response = &resp.${this.action}Response
-
-	err = client.DoAction(&req, &resp)
+    resp = &${this.action}Response{}
+	err = client.DoAction(req, resp)
 	return
 }
 """
             }
             "rpc" -> {
                 codes += """
-func (r ${this.action}Request) Invoke(client *sdk.Client) (response *${this.action}Response, err error) {
-	req := struct {
-		*requests.RpcRequest
-		${this.action}Request
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+type ${this.action}Request ${withAnonymous(this.parameters.goType(subTypePrefix, true, sideCodes), "requests.RpcRequest")}
+
+func (req *${this.action}Request) Invoke(client *sdk.Client) (resp *${this.action}Response, err error) {
 	req.InitWithApiInfo("${this.product}", "${this.version}", "${this.action}", "${this.serviceCode}", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		${this.action}Response
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-    response = &resp.${this.action}Response
-
-	err = client.DoAction(&req, &resp)
+	resp = &${this.action}Response{}
+	err = client.DoAction(req, resp)
 	return
 }
 """
@@ -91,7 +69,7 @@ type ${subTypePrefix}${s.key} ${s.value.goType(subTypePrefix, true, sideCodes)}
         }
 
         codes += """
-type ${this.action}Response ${this.response.goType(subTypePrefix, false, sideCodes)}
+type ${this.action}Response ${withAnonymous(this.response.goType(subTypePrefix, false, sideCodes), "responses.BaseResponse")}
 """
         this.response.getAllDefinitions().forEach { s ->
             codes += """

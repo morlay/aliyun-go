@@ -7,34 +7,21 @@ import (
 )
 
 type SetL2OssKeyConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken  string `position:"Query" name:"SecurityToken"`
 	DomainName     string `position:"Query" name:"DomainName"`
 	OwnerId        int64  `position:"Query" name:"OwnerId"`
 	PrivateOssAuth string `position:"Query" name:"PrivateOssAuth"`
 }
 
-func (r SetL2OssKeyConfigRequest) Invoke(client *sdk.Client) (response *SetL2OssKeyConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetL2OssKeyConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetL2OssKeyConfigRequest) Invoke(client *sdk.Client) (resp *SetL2OssKeyConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetL2OssKeyConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetL2OssKeyConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetL2OssKeyConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetL2OssKeyConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetL2OssKeyConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

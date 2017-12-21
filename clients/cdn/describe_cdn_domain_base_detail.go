@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeCdnDomainBaseDetailRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeCdnDomainBaseDetailRequest) Invoke(client *sdk.Client) (response *DescribeCdnDomainBaseDetailResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCdnDomainBaseDetailRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCdnDomainBaseDetailRequest) Invoke(client *sdk.Client) (resp *DescribeCdnDomainBaseDetailResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeCdnDomainBaseDetail", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCdnDomainBaseDetailResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCdnDomainBaseDetailResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCdnDomainBaseDetailResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCdnDomainBaseDetailResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	DomainBaseDetailModel DescribeCdnDomainBaseDetailDomainBaseDetailModel
 }

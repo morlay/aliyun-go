@@ -7,6 +7,7 @@ import (
 )
 
 type ListGroupApBriefConfigRequest struct {
+	requests.RpcRequest
 	OrderCol   string `position:"Query" name:"OrderCol"`
 	SearchName string `position:"Query" name:"SearchName"`
 	ApgroupId  int64  `position:"Query" name:"ApgroupId"`
@@ -17,29 +18,15 @@ type ListGroupApBriefConfigRequest struct {
 	OrderDir   string `position:"Query" name:"OrderDir"`
 }
 
-func (r ListGroupApBriefConfigRequest) Invoke(client *sdk.Client) (response *ListGroupApBriefConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListGroupApBriefConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListGroupApBriefConfigRequest) Invoke(client *sdk.Client) (resp *ListGroupApBriefConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListGroupApBriefConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListGroupApBriefConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListGroupApBriefConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListGroupApBriefConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListGroupApBriefConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

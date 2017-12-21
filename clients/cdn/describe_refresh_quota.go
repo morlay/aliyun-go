@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeRefreshQuotaRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeRefreshQuotaRequest) Invoke(client *sdk.Client) (response *DescribeRefreshQuotaResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeRefreshQuotaRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeRefreshQuotaRequest) Invoke(client *sdk.Client) (resp *DescribeRefreshQuotaResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeRefreshQuota", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeRefreshQuotaResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeRefreshQuotaResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeRefreshQuotaResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeRefreshQuotaResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	UrlQuota      string
 	DirQuota      string

@@ -7,32 +7,19 @@ import (
 )
 
 type SaveApMapInfoRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r SaveApMapInfoRequest) Invoke(client *sdk.Client) (response *SaveApMapInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveApMapInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveApMapInfoRequest) Invoke(client *sdk.Client) (resp *SaveApMapInfoResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveApMapInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveApMapInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveApMapInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveApMapInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveApMapInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

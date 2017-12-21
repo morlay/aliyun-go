@@ -9,31 +9,18 @@ import (
 )
 
 type DescribeSystemParametersRequest struct {
+	requests.RpcRequest
 }
 
-func (r DescribeSystemParametersRequest) Invoke(client *sdk.Client) (response *DescribeSystemParametersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSystemParametersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSystemParametersRequest) Invoke(client *sdk.Client) (resp *DescribeSystemParametersResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeSystemParameters", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSystemParametersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSystemParametersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSystemParametersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSystemParametersResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	SystemParams DescribeSystemParametersSystemParamItemList
 }

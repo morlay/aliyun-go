@@ -9,34 +9,21 @@ import (
 )
 
 type ToggleFeaturesRequest struct {
+	requests.RpcRequest
 	DisabledFeaturess *ToggleFeaturesDisabledFeaturesList `position:"Query" type:"Repeated" name:"DisabledFeatures"`
 	StoreName         string                              `position:"Query" name:"StoreName"`
 	EnabledFeaturess  *ToggleFeaturesEnabledFeaturesList  `position:"Query" type:"Repeated" name:"EnabledFeatures"`
 }
 
-func (r ToggleFeaturesRequest) Invoke(client *sdk.Client) (response *ToggleFeaturesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ToggleFeaturesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ToggleFeaturesRequest) Invoke(client *sdk.Client) (resp *ToggleFeaturesResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ToggleFeatures", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ToggleFeaturesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ToggleFeaturesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ToggleFeaturesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ToggleFeaturesResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

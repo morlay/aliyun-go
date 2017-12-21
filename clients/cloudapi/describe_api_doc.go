@@ -9,34 +9,21 @@ import (
 )
 
 type DescribeApiDocRequest struct {
+	requests.RpcRequest
 	GroupId   string `position:"Query" name:"GroupId"`
 	StageName string `position:"Query" name:"StageName"`
 	ApiId     string `position:"Query" name:"ApiId"`
 }
 
-func (r DescribeApiDocRequest) Invoke(client *sdk.Client) (response *DescribeApiDocResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeApiDocRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeApiDocRequest) Invoke(client *sdk.Client) (resp *DescribeApiDocResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApiDoc", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiDocResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiDocResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiDocResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiDocResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	RegionId          string
 	GroupId           string

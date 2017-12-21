@@ -7,6 +7,7 @@ import (
 )
 
 type CreatePhotoRequest struct {
+	requests.RpcRequest
 	PhotoTitle      string `position:"Query" name:"PhotoTitle"`
 	LibraryId       string `position:"Query" name:"LibraryId"`
 	ShareExpireTime int64  `position:"Query" name:"ShareExpireTime"`
@@ -18,29 +19,15 @@ type CreatePhotoRequest struct {
 	FileId          string `position:"Query" name:"FileId"`
 }
 
-func (r CreatePhotoRequest) Invoke(client *sdk.Client) (response *CreatePhotoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreatePhotoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreatePhotoRequest) Invoke(client *sdk.Client) (resp *CreatePhotoResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "CreatePhoto", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreatePhotoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreatePhotoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreatePhotoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreatePhotoResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

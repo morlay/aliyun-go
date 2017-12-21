@@ -9,33 +9,20 @@ import (
 )
 
 type GetProductDefineRequest struct {
+	requests.RpcRequest
 	ProductName string `position:"Query" name:"ProductName"`
 	DataType    string `position:"Query" name:"DataType"`
 }
 
-func (r GetProductDefineRequest) Invoke(client *sdk.Client) (response *GetProductDefineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetProductDefineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetProductDefineRequest) Invoke(client *sdk.Client) (resp *GetProductDefineResponse, err error) {
 	req.InitWithApiInfo("Oms", "2015-02-12", "GetProductDefine", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetProductDefineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetProductDefineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetProductDefineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetProductDefineResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	ProductName string
 	DataType    string

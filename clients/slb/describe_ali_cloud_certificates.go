@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeAliCloudCertificatesRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeAliCloudCertificatesRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeAliCloudCertificatesRequest) Invoke(client *sdk.Client) (response *DescribeAliCloudCertificatesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAliCloudCertificatesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAliCloudCertificatesRequest) Invoke(client *sdk.Client) (resp *DescribeAliCloudCertificatesResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DescribeAliCloudCertificates", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAliCloudCertificatesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAliCloudCertificatesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAliCloudCertificatesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAliCloudCertificatesResponse struct {
+	responses.BaseResponse
 	RequestId            string
 	AliCloudCertificates DescribeAliCloudCertificatesAliCloudCertificateList
 }

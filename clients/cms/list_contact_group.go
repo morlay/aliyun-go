@@ -9,34 +9,21 @@ import (
 )
 
 type ListContactGroupRequest struct {
+	requests.RpcRequest
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	PageSize         int    `position:"Query" name:"PageSize"`
 	PageNumber       int    `position:"Query" name:"PageNumber"`
 }
 
-func (r ListContactGroupRequest) Invoke(client *sdk.Client) (response *ListContactGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListContactGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListContactGroupRequest) Invoke(client *sdk.Client) (resp *ListContactGroupResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "ListContactGroup", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListContactGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListContactGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListContactGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListContactGroupResponse struct {
+	responses.BaseResponse
 	Success       bool
 	Code          string
 	Message       string

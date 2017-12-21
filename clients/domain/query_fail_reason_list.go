@@ -9,6 +9,7 @@ import (
 )
 
 type QueryFailReasonListRequest struct {
+	requests.RpcRequest
 	SaleId            string `position:"Query" name:"SaleId"`
 	UserClientIp      string `position:"Query" name:"UserClientIp"`
 	DomainName        string `position:"Query" name:"DomainName"`
@@ -16,29 +17,15 @@ type QueryFailReasonListRequest struct {
 	ContactTemplateId int64  `position:"Query" name:"ContactTemplateId"`
 }
 
-func (r QueryFailReasonListRequest) Invoke(client *sdk.Client) (response *QueryFailReasonListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryFailReasonListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryFailReasonListRequest) Invoke(client *sdk.Client) (resp *QueryFailReasonListResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryFailReasonList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryFailReasonListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryFailReasonListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryFailReasonListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryFailReasonListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Data      QueryFailReasonListFailRecordList
 }

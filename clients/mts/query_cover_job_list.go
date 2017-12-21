@@ -9,6 +9,7 @@ import (
 )
 
 type QueryCoverJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type QueryCoverJobListRequest struct {
 	CoverJobIds          string `position:"Query" name:"CoverJobIds"`
 }
 
-func (r QueryCoverJobListRequest) Invoke(client *sdk.Client) (response *QueryCoverJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryCoverJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryCoverJobListRequest) Invoke(client *sdk.Client) (resp *QueryCoverJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryCoverJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryCoverJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryCoverJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryCoverJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryCoverJobListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	CoverJobList QueryCoverJobListCoverJobList
 	NonExistIds  QueryCoverJobListNonExistIdList

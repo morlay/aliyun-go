@@ -7,6 +7,7 @@ import (
 )
 
 type ExportImageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ImageId              string `position:"Query" name:"ImageId"`
 	OSSBucket            string `position:"Query" name:"OSSBucket"`
@@ -17,29 +18,15 @@ type ExportImageRequest struct {
 	ImageFormat          string `position:"Query" name:"ImageFormat"`
 }
 
-func (r ExportImageRequest) Invoke(client *sdk.Client) (response *ExportImageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ExportImageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ExportImageRequest) Invoke(client *sdk.Client) (resp *ExportImageResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ExportImage", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ExportImageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ExportImageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ExportImageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ExportImageResponse struct {
+	responses.BaseResponse
 	RequestId string
 	TaskId    string
 	RegionId  string

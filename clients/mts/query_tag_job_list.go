@@ -9,6 +9,7 @@ import (
 )
 
 type QueryTagJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	TagJobIds            string `position:"Query" name:"TagJobIds"`
@@ -16,29 +17,15 @@ type QueryTagJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryTagJobListRequest) Invoke(client *sdk.Client) (response *QueryTagJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryTagJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryTagJobListRequest) Invoke(client *sdk.Client) (resp *QueryTagJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTagJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryTagJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryTagJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryTagJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryTagJobListResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TagJobList  QueryTagJobListTagJobList
 	NonExistIds QueryTagJobListNonExistIdList

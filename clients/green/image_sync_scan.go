@@ -7,31 +7,19 @@ import (
 )
 
 type ImageSyncScanRequest struct {
+	requests.RoaRequest
 	ClientInfo string `position:"Query" name:"ClientInfo"`
 }
 
-func (r ImageSyncScanRequest) Invoke(client *sdk.Client) (response *ImageSyncScanResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		ImageSyncScanRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *ImageSyncScanRequest) Invoke(client *sdk.Client) (resp *ImageSyncScanResponse, err error) {
 	req.InitWithApiInfo("Green", "2017-01-12", "ImageSyncScan", "/green/image/scan", "green", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		ImageSyncScanResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ImageSyncScanResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ImageSyncScanResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ImageSyncScanResponse struct {
+	responses.BaseResponse
 }

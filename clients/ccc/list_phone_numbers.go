@@ -9,33 +9,20 @@ import (
 )
 
 type ListPhoneNumbersRequest struct {
+	requests.RpcRequest
 	OutboundOnly string `position:"Query" name:"OutboundOnly"`
 	InstanceId   string `position:"Query" name:"InstanceId"`
 }
 
-func (r ListPhoneNumbersRequest) Invoke(client *sdk.Client) (response *ListPhoneNumbersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPhoneNumbersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPhoneNumbersRequest) Invoke(client *sdk.Client) (resp *ListPhoneNumbersResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ListPhoneNumbers", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPhoneNumbersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPhoneNumbersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPhoneNumbersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPhoneNumbersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

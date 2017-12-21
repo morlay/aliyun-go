@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstancesByExpireTimeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -21,29 +22,15 @@ type DescribeDBInstancesByExpireTimeRequest struct {
 	ProxyId              string `position:"Query" name:"ProxyId"`
 }
 
-func (r DescribeDBInstancesByExpireTimeRequest) Invoke(client *sdk.Client) (response *DescribeDBInstancesByExpireTimeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstancesByExpireTimeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstancesByExpireTimeRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstancesByExpireTimeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstancesByExpireTime", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstancesByExpireTimeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstancesByExpireTimeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstancesByExpireTimeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstancesByExpireTimeResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	PageNumber       int
 	TotalRecordCount int

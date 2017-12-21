@@ -9,6 +9,7 @@ import (
 )
 
 type UpdateRoomNameRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
@@ -16,29 +17,15 @@ type UpdateRoomNameRequest struct {
 	Drname      string `position:"Query" name:"Drname"`
 }
 
-func (r UpdateRoomNameRequest) Invoke(client *sdk.Client) (response *UpdateRoomNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateRoomNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateRoomNameRequest) Invoke(client *sdk.Client) (resp *UpdateRoomNameResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "UpdateRoomName", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateRoomNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateRoomNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateRoomNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateRoomNameResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

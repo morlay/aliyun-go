@@ -7,6 +7,7 @@ import (
 )
 
 type GetCrowdListRequest struct {
+	requests.RpcRequest
 	Gsid      int64  `position:"Query" name:"Gsid"`
 	ClassType int    `position:"Query" name:"ClassType"`
 	GsType    string `position:"Query" name:"GsType"`
@@ -16,29 +17,15 @@ type GetCrowdListRequest struct {
 	Per       int    `position:"Query" name:"Per"`
 }
 
-func (r GetCrowdListRequest) Invoke(client *sdk.Client) (response *GetCrowdListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetCrowdListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetCrowdListRequest) Invoke(client *sdk.Client) (resp *GetCrowdListResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetCrowdList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetCrowdListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetCrowdListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetCrowdListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetCrowdListResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

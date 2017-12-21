@@ -9,33 +9,20 @@ import (
 )
 
 type QueryAliasesRequest struct {
+	requests.RpcRequest
 	AppKey   int64  `position:"Query" name:"AppKey"`
 	DeviceId string `position:"Query" name:"DeviceId"`
 }
 
-func (r QueryAliasesRequest) Invoke(client *sdk.Client) (response *QueryAliasesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryAliasesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryAliasesRequest) Invoke(client *sdk.Client) (resp *QueryAliasesResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryAliases", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryAliasesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryAliasesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryAliasesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryAliasesResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	AliasInfos QueryAliasesAliasInfoList
 }

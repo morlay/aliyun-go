@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeDBInstancesAsCsvRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstancesAsCsvRequest) Invoke(client *sdk.Client) (response *DescribeDBInstancesAsCsvResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstancesAsCsvRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstancesAsCsvRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstancesAsCsvResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstancesAsCsv", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstancesAsCsvResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstancesAsCsvResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstancesAsCsvResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstancesAsCsvResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeDBInstancesAsCsvDBInstanceAttributeList
 }

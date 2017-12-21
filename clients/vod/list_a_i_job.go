@@ -9,6 +9,7 @@ import (
 )
 
 type ListAIJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type ListAIJobRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAIJobRequest) Invoke(client *sdk.Client) (response *ListAIJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAIJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAIJobRequest) Invoke(client *sdk.Client) (resp *ListAIJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ListAIJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAIJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAIJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAIJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAIJobResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	AIJobList        ListAIJobAIJobList
 	NonExistAIJobIds ListAIJobNonExistAIJobIdList

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDBInstancePayTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Period               string `position:"Query" name:"Period"`
 	AgentId              string `position:"Query" name:"AgentId"`
@@ -22,29 +23,15 @@ type ModifyDBInstancePayTypeRequest struct {
 	BusinessInfo         string `position:"Query" name:"BusinessInfo"`
 }
 
-func (r ModifyDBInstancePayTypeRequest) Invoke(client *sdk.Client) (response *ModifyDBInstancePayTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDBInstancePayTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDBInstancePayTypeRequest) Invoke(client *sdk.Client) (resp *ModifyDBInstancePayTypeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "ModifyDBInstancePayType", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDBInstancePayTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDBInstancePayTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDBInstancePayTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDBInstancePayTypeResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DBInstanceId string
 	OrderId      int64

@@ -9,34 +9,21 @@ import (
 )
 
 type ReactivatePhotosRequest struct {
+	requests.RpcRequest
 	LibraryId string                       `position:"Query" name:"LibraryId"`
 	PhotoIds  *ReactivatePhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                       `position:"Query" name:"StoreName"`
 }
 
-func (r ReactivatePhotosRequest) Invoke(client *sdk.Client) (response *ReactivatePhotosResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReactivatePhotosRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReactivatePhotosRequest) Invoke(client *sdk.Client) (resp *ReactivatePhotosResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "ReactivatePhotos", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReactivatePhotosResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReactivatePhotosResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReactivatePhotosResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReactivatePhotosResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

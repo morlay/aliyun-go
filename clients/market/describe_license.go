@@ -7,32 +7,19 @@ import (
 )
 
 type DescribeLicenseRequest struct {
+	requests.RpcRequest
 	LicenseCode string `position:"Query" name:"LicenseCode"`
 }
 
-func (r DescribeLicenseRequest) Invoke(client *sdk.Client) (response *DescribeLicenseResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLicenseRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLicenseRequest) Invoke(client *sdk.Client) (resp *DescribeLicenseResponse, err error) {
 	req.InitWithApiInfo("Market", "2015-11-01", "DescribeLicense", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLicenseResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLicenseResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLicenseResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLicenseResponse struct {
+	responses.BaseResponse
 	RequestId string
 	License   DescribeLicenseLicense
 }

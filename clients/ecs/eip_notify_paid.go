@@ -7,6 +7,7 @@ import (
 )
 
 type EipNotifyPaidRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Data                 string `position:"Query" name:"Data"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type EipNotifyPaidRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r EipNotifyPaidRequest) Invoke(client *sdk.Client) (response *EipNotifyPaidResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EipNotifyPaidRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EipNotifyPaidRequest) Invoke(client *sdk.Client) (resp *EipNotifyPaidResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "EipNotifyPaid", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EipNotifyPaidResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EipNotifyPaidResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EipNotifyPaidResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EipNotifyPaidResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Data      string
 	Code      string

@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDrdsIpWhiteListRequest struct {
+	requests.RpcRequest
 	Mode           string `position:"Query" name:"Mode"`
 	DbName         string `position:"Query" name:"DbName"`
 	GroupAttribute string `position:"Query" name:"GroupAttribute"`
@@ -15,29 +16,15 @@ type ModifyDrdsIpWhiteListRequest struct {
 	GroupName      string `position:"Query" name:"GroupName"`
 }
 
-func (r ModifyDrdsIpWhiteListRequest) Invoke(client *sdk.Client) (response *ModifyDrdsIpWhiteListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDrdsIpWhiteListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDrdsIpWhiteListRequest) Invoke(client *sdk.Client) (resp *ModifyDrdsIpWhiteListResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "ModifyDrdsIpWhiteList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDrdsIpWhiteListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDrdsIpWhiteListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDrdsIpWhiteListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDrdsIpWhiteListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

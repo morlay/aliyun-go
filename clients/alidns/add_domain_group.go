@@ -7,34 +7,21 @@ import (
 )
 
 type AddDomainGroupRequest struct {
+	requests.RpcRequest
 	Lang         string `position:"Query" name:"Lang"`
 	UserClientIp string `position:"Query" name:"UserClientIp"`
 	GroupName    string `position:"Query" name:"GroupName"`
 }
 
-func (r AddDomainGroupRequest) Invoke(client *sdk.Client) (response *AddDomainGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddDomainGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddDomainGroupRequest) Invoke(client *sdk.Client) (resp *AddDomainGroupResponse, err error) {
 	req.InitWithApiInfo("Alidns", "2015-01-09", "AddDomainGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddDomainGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddDomainGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddDomainGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddDomainGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 	GroupId   string
 	GroupName string

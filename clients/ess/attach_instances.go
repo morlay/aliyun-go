@@ -7,6 +7,7 @@ import (
 )
 
 type AttachInstancesRequest struct {
+	requests.RpcRequest
 	InstanceId10         string `position:"Query" name:"InstanceId.10"`
 	LoadBalancerWeight6  int    `position:"Query" name:"LoadBalancerWeight.6"`
 	LoadBalancerWeight11 int    `position:"Query" name:"LoadBalancerWeight.11"`
@@ -54,29 +55,15 @@ type AttachInstancesRequest struct {
 	InstanceId15         string `position:"Query" name:"InstanceId.15"`
 }
 
-func (r AttachInstancesRequest) Invoke(client *sdk.Client) (response *AttachInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachInstancesRequest) Invoke(client *sdk.Client) (resp *AttachInstancesResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "AttachInstances", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachInstancesResponse struct {
+	responses.BaseResponse
 	ScalingActivityId string
 	RequestId         string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type CreateTempDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	RestoreTime          string `position:"Query" name:"RestoreTime"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type CreateTempDBInstanceRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreateTempDBInstanceRequest) Invoke(client *sdk.Client) (response *CreateTempDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateTempDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateTempDBInstanceRequest) Invoke(client *sdk.Client) (resp *CreateTempDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CreateTempDBInstance", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateTempDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateTempDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateTempDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateTempDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TempDBInstanceId string
 }

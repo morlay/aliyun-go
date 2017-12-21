@@ -9,35 +9,23 @@ import (
 )
 
 type GetBuildsRequest struct {
+	requests.RoaRequest
 	Start         int    `position:"Query" name:"Start"`
 	NumberPerPage int    `position:"Query" name:"NumberPerPage"`
 	JobName       string `position:"Path" name:"JobName"`
 }
 
-func (r GetBuildsRequest) Invoke(client *sdk.Client) (response *GetBuildsResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		GetBuildsRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *GetBuildsRequest) Invoke(client *sdk.Client) (resp *GetBuildsResponse, err error) {
 	req.InitWithApiInfo("Cds", "2017-09-25", "GetBuilds", "/v1/job/[JobName]/builds", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		GetBuildsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetBuildsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetBuildsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetBuildsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Builds    GetBuildsBuildList
 }

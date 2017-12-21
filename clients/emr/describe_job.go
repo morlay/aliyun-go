@@ -7,33 +7,20 @@ import (
 )
 
 type DescribeJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 }
 
-func (r DescribeJobRequest) Invoke(client *sdk.Client) (response *DescribeJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeJobRequest) Invoke(client *sdk.Client) (resp *DescribeJobResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "DescribeJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeJobResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Id           string
 	Name         string

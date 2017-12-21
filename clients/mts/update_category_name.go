@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateCategoryNameRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               string `position:"Query" name:"CateId"`
@@ -15,28 +16,14 @@ type UpdateCategoryNameRequest struct {
 	CateName             string `position:"Query" name:"CateName"`
 }
 
-func (r UpdateCategoryNameRequest) Invoke(client *sdk.Client) (response *UpdateCategoryNameResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateCategoryNameRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateCategoryNameRequest) Invoke(client *sdk.Client) (resp *UpdateCategoryNameResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateCategoryName", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateCategoryNameResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateCategoryNameResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateCategoryNameResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateCategoryNameResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type OnsEmpowerListRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -16,29 +17,15 @@ type OnsEmpowerListRequest struct {
 	Topic        string `position:"Query" name:"Topic"`
 }
 
-func (r OnsEmpowerListRequest) Invoke(client *sdk.Client) (response *OnsEmpowerListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsEmpowerListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsEmpowerListRequest) Invoke(client *sdk.Client) (resp *OnsEmpowerListResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsEmpowerList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsEmpowerListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsEmpowerListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsEmpowerListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsEmpowerListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsEmpowerListAuthOwnerInfoDoList

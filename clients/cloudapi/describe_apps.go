@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeAppsRequest struct {
+	requests.RpcRequest
 	AppId      int64  `position:"Query" name:"AppId"`
 	AppOwner   string `position:"Query" name:"AppOwner"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeAppsRequest) Invoke(client *sdk.Client) (response *DescribeAppsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAppsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAppsRequest) Invoke(client *sdk.Client) (resp *DescribeAppsResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApps", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAppsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAppsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAppsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAppsResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageSize   int

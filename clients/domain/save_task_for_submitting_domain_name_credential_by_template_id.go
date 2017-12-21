@@ -7,6 +7,7 @@ import (
 )
 
 type SaveTaskForSubmittingDomainNameCredentialByTemplateIdRequest struct {
+	requests.RpcRequest
 	SaleId            string `position:"Query" name:"SaleId"`
 	UserClientIp      string `position:"Query" name:"UserClientIp"`
 	DomainName        string `position:"Query" name:"DomainName"`
@@ -14,29 +15,15 @@ type SaveTaskForSubmittingDomainNameCredentialByTemplateIdRequest struct {
 	ContactTemplateId int64  `position:"Query" name:"ContactTemplateId"`
 }
 
-func (r SaveTaskForSubmittingDomainNameCredentialByTemplateIdRequest) Invoke(client *sdk.Client) (response *SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveTaskForSubmittingDomainNameCredentialByTemplateIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveTaskForSubmittingDomainNameCredentialByTemplateIdRequest) Invoke(client *sdk.Client) (resp *SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "SaveTaskForSubmittingDomainNameCredentialByTemplateId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveTaskForSubmittingDomainNameCredentialByTemplateIdResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	TaskNo    string

@@ -7,30 +7,18 @@ import (
 )
 
 type DescribeTemplatesRequest struct {
+	requests.RoaRequest
 }
 
-func (r DescribeTemplatesRequest) Invoke(client *sdk.Client) (response *DescribeTemplatesResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		DescribeTemplatesRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *DescribeTemplatesRequest) Invoke(client *sdk.Client) (resp *DescribeTemplatesResponse, err error) {
 	req.InitWithApiInfo("CS", "2015-12-15", "DescribeTemplates", "/templates", "", "")
 	req.Method = "GET"
 
-	resp := struct {
-		*responses.BaseResponse
-		DescribeTemplatesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeTemplatesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeTemplatesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeTemplatesResponse struct {
+	responses.BaseResponse
 }

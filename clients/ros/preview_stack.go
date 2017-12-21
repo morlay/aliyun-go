@@ -7,30 +7,18 @@ import (
 )
 
 type PreviewStackRequest struct {
+	requests.RoaRequest
 }
 
-func (r PreviewStackRequest) Invoke(client *sdk.Client) (response *PreviewStackResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		PreviewStackRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *PreviewStackRequest) Invoke(client *sdk.Client) (resp *PreviewStackResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "PreviewStack", "/stacks/preview", "", "")
 	req.Method = "POST"
 
-	resp := struct {
-		*responses.BaseResponse
-		PreviewStackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PreviewStackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PreviewStackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PreviewStackResponse struct {
+	responses.BaseResponse
 }

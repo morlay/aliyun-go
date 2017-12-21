@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeDrdsInstanceNetInfoForInnerRequest struct {
+	requests.RpcRequest
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r DescribeDrdsInstanceNetInfoForInnerRequest) Invoke(client *sdk.Client) (response *DescribeDrdsInstanceNetInfoForInnerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDrdsInstanceNetInfoForInnerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDrdsInstanceNetInfoForInnerRequest) Invoke(client *sdk.Client) (resp *DescribeDrdsInstanceNetInfoForInnerResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "DescribeDrdsInstanceNetInfoForInner", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDrdsInstanceNetInfoForInnerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDrdsInstanceNetInfoForInnerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDrdsInstanceNetInfoForInnerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDrdsInstanceNetInfoForInnerResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	DrdsInstanceId string

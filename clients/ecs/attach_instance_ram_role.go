@@ -9,6 +9,7 @@ import (
 )
 
 type AttachInstanceRamRoleRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	InstanceIds          string `position:"Query" name:"InstanceIds"`
@@ -16,29 +17,15 @@ type AttachInstanceRamRoleRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AttachInstanceRamRoleRequest) Invoke(client *sdk.Client) (response *AttachInstanceRamRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachInstanceRamRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachInstanceRamRoleRequest) Invoke(client *sdk.Client) (resp *AttachInstanceRamRoleResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AttachInstanceRamRole", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachInstanceRamRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachInstanceRamRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachInstanceRamRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachInstanceRamRoleResponse struct {
+	responses.BaseResponse
 	RequestId                    string
 	TotalCount                   int
 	FailCount                    int

@@ -9,6 +9,7 @@ import (
 )
 
 type AddVServerGroupBackendServersRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	VServerGroupId       string `position:"Query" name:"VServerGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -19,29 +20,15 @@ type AddVServerGroupBackendServersRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r AddVServerGroupBackendServersRequest) Invoke(client *sdk.Client) (response *AddVServerGroupBackendServersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddVServerGroupBackendServersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddVServerGroupBackendServersRequest) Invoke(client *sdk.Client) (resp *AddVServerGroupBackendServersResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "AddVServerGroupBackendServers", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddVServerGroupBackendServersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddVServerGroupBackendServersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddVServerGroupBackendServersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddVServerGroupBackendServersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	VServerGroupId string
 	BackendServers AddVServerGroupBackendServersBackendServerList

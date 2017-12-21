@@ -9,35 +9,22 @@ import (
 )
 
 type GetUserInfoRequest struct {
+	requests.RpcRequest
 	PageSize int    `position:"Query" name:"PageSize"`
 	PageNum  int    `position:"Query" name:"PageNum"`
 	User     string `position:"Query" name:"User"`
 	Status   string `position:"Query" name:"Status"`
 }
 
-func (r GetUserInfoRequest) Invoke(client *sdk.Client) (response *GetUserInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetUserInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetUserInfoRequest) Invoke(client *sdk.Client) (resp *GetUserInfoResponse, err error) {
 	req.InitWithApiInfo("TeslaMaxCompute", "2017-11-30", "GetUserInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetUserInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetUserInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetUserInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetUserInfoResponse struct {
+	responses.BaseResponse
 	Code      int
 	Message   string
 	RequestId string

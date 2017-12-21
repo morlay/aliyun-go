@@ -9,35 +9,22 @@ import (
 )
 
 type OnsMqttQueryClientByClientIdRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	ClientId     string `position:"Query" name:"ClientId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
 }
 
-func (r OnsMqttQueryClientByClientIdRequest) Invoke(client *sdk.Client) (response *OnsMqttQueryClientByClientIdResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMqttQueryClientByClientIdRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMqttQueryClientByClientIdRequest) Invoke(client *sdk.Client) (resp *OnsMqttQueryClientByClientIdResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMqttQueryClientByClientId", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMqttQueryClientByClientIdResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMqttQueryClientByClientIdResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMqttQueryClientByClientIdResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMqttQueryClientByClientIdResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	HelpUrl          string
 	MqttClientInfoDo OnsMqttQueryClientByClientIdMqttClientInfoDo

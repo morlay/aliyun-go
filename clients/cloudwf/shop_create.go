@@ -7,6 +7,7 @@ import (
 )
 
 type ShopCreateRequest struct {
+	requests.RpcRequest
 	ShopCoordinate    string `position:"Query" name:"ShopCoordinate"`
 	ShopProvince      string `position:"Query" name:"ShopProvince"`
 	ShopTopType       int    `position:"Query" name:"ShopTopType"`
@@ -28,29 +29,15 @@ type ShopCreateRequest struct {
 	ShopBusinessHours string `position:"Query" name:"ShopBusinessHours"`
 }
 
-func (r ShopCreateRequest) Invoke(client *sdk.Client) (response *ShopCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ShopCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ShopCreateRequest) Invoke(client *sdk.Client) (resp *ShopCreateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ShopCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ShopCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ShopCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ShopCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ShopCreateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

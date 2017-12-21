@@ -7,33 +7,20 @@ import (
 )
 
 type UpdateRoleRequest struct {
+	requests.RpcRequest
 	NewAssumeRolePolicyDocument string `position:"Query" name:"NewAssumeRolePolicyDocument"`
 	RoleName                    string `position:"Query" name:"RoleName"`
 }
 
-func (r UpdateRoleRequest) Invoke(client *sdk.Client) (response *UpdateRoleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UpdateRoleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UpdateRoleRequest) Invoke(client *sdk.Client) (resp *UpdateRoleResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "UpdateRole", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UpdateRoleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateRoleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateRoleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateRoleResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Role      UpdateRoleRole
 }

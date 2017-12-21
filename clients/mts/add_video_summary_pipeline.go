@@ -7,6 +7,7 @@ import (
 )
 
 type AddVideoSummaryPipelineRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type AddVideoSummaryPipelineRequest struct {
 	Priority             int    `position:"Query" name:"Priority"`
 }
 
-func (r AddVideoSummaryPipelineRequest) Invoke(client *sdk.Client) (response *AddVideoSummaryPipelineResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddVideoSummaryPipelineRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddVideoSummaryPipelineRequest) Invoke(client *sdk.Client) (resp *AddVideoSummaryPipelineResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddVideoSummaryPipeline", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddVideoSummaryPipelineResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddVideoSummaryPipelineResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddVideoSummaryPipelineResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddVideoSummaryPipelineResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Pipeline  AddVideoSummaryPipelinePipeline
 }

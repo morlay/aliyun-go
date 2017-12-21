@@ -7,33 +7,20 @@ import (
 )
 
 type PutMetricDataRequest struct {
+	requests.RpcRequest
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	Body             string `position:"Query" name:"Body"`
 }
 
-func (r PutMetricDataRequest) Invoke(client *sdk.Client) (response *PutMetricDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		PutMetricDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *PutMetricDataRequest) Invoke(client *sdk.Client) (resp *PutMetricDataResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "PutMetricData", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		PutMetricDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.PutMetricDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &PutMetricDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type PutMetricDataResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

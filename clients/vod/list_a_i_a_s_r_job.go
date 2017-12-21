@@ -9,6 +9,7 @@ import (
 )
 
 type ListAIASRJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type ListAIASRJobRequest struct {
 	AIASRJobIds          string `position:"Query" name:"AIASRJobIds"`
 }
 
-func (r ListAIASRJobRequest) Invoke(client *sdk.Client) (response *ListAIASRJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAIASRJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAIASRJobRequest) Invoke(client *sdk.Client) (resp *ListAIASRJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ListAIASRJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAIASRJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAIASRJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAIASRJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAIASRJobResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	AIASRJobList        ListAIASRJobAIASRJobList
 	NonExistAIASRJobIds ListAIASRJobNonExistAIASRJobIdList

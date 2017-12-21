@@ -7,32 +7,19 @@ import (
 )
 
 type SetDdosAutoRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r SetDdosAutoRequest) Invoke(client *sdk.Client) (response *SetDdosAutoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetDdosAutoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetDdosAutoRequest) Invoke(client *sdk.Client) (resp *SetDdosAutoResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "SetDdosAuto", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetDdosAutoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetDdosAutoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetDdosAutoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetDdosAutoResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

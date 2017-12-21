@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeHpcClustersRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	PageNumber           int    `position:"Query" name:"PageNumber"`
@@ -19,29 +20,15 @@ type DescribeHpcClustersRequest struct {
 	HpcClusterIds        string `position:"Query" name:"HpcClusterIds"`
 }
 
-func (r DescribeHpcClustersRequest) Invoke(client *sdk.Client) (response *DescribeHpcClustersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeHpcClustersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeHpcClustersRequest) Invoke(client *sdk.Client) (resp *DescribeHpcClustersResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeHpcClusters", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeHpcClustersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeHpcClustersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeHpcClustersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeHpcClustersResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	PageNumber  int

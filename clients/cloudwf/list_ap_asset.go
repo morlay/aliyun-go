@@ -7,6 +7,7 @@ import (
 )
 
 type ListApAssetRequest struct {
+	requests.RpcRequest
 	OrderCol       string `position:"Query" name:"OrderCol"`
 	SearchName     string `position:"Query" name:"SearchName"`
 	SearchSerialNo string `position:"Query" name:"SearchSerialNo"`
@@ -17,29 +18,15 @@ type ListApAssetRequest struct {
 	SearchModel    string `position:"Query" name:"SearchModel"`
 }
 
-func (r ListApAssetRequest) Invoke(client *sdk.Client) (response *ListApAssetResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListApAssetRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListApAssetRequest) Invoke(client *sdk.Client) (resp *ListApAssetResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ListApAsset", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListApAssetResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListApAssetResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListApAssetResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListApAssetResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

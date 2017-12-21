@@ -7,6 +7,7 @@ import (
 )
 
 type CreateBackupRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId          string `position:"Query" name:"DBClusterId"`
@@ -14,28 +15,14 @@ type CreateBackupRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r CreateBackupRequest) Invoke(client *sdk.Client) (response *CreateBackupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateBackupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateBackupRequest) Invoke(client *sdk.Client) (resp *CreateBackupResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "CreateBackup", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateBackupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateBackupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateBackupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateBackupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

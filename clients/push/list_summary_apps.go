@@ -9,31 +9,18 @@ import (
 )
 
 type ListSummaryAppsRequest struct {
+	requests.RpcRequest
 }
 
-func (r ListSummaryAppsRequest) Invoke(client *sdk.Client) (response *ListSummaryAppsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListSummaryAppsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListSummaryAppsRequest) Invoke(client *sdk.Client) (resp *ListSummaryAppsResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "ListSummaryApps", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListSummaryAppsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListSummaryAppsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListSummaryAppsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListSummaryAppsResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	SummaryAppInfos ListSummaryAppsSummaryAppInfoList
 }

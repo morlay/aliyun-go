@@ -9,6 +9,7 @@ import (
 )
 
 type QueryContactTemplateRequest struct {
+	requests.RpcRequest
 	CCompany          string `position:"Query" name:"CCompany"`
 	AuditStatus       string `position:"Query" name:"AuditStatus"`
 	DefaultTemplate   string `position:"Query" name:"DefaultTemplate"`
@@ -21,29 +22,15 @@ type QueryContactTemplateRequest struct {
 	RegType           string `position:"Query" name:"RegType"`
 }
 
-func (r QueryContactTemplateRequest) Invoke(client *sdk.Client) (response *QueryContactTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryContactTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryContactTemplateRequest) Invoke(client *sdk.Client) (resp *QueryContactTemplateResponse, err error) {
 	req.InitWithApiInfo("Domain", "2016-05-11", "QueryContactTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryContactTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryContactTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryContactTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryContactTemplateResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalItemNum     int
 	CurrentPageNum   int

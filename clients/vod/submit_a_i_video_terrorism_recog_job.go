@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitAIVideoTerrorismRecogJobRequest struct {
+	requests.RpcRequest
 	UserData                    string `position:"Query" name:"UserData"`
 	ResourceOwnerId             string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount        string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type SubmitAIVideoTerrorismRecogJobRequest struct {
 	MediaId                     string `position:"Query" name:"MediaId"`
 }
 
-func (r SubmitAIVideoTerrorismRecogJobRequest) Invoke(client *sdk.Client) (response *SubmitAIVideoTerrorismRecogJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAIVideoTerrorismRecogJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAIVideoTerrorismRecogJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIVideoTerrorismRecogJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIVideoTerrorismRecogJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAIVideoTerrorismRecogJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAIVideoTerrorismRecogJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAIVideoTerrorismRecogJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAIVideoTerrorismRecogJobResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	AIVideoTerrorismRecogJob SubmitAIVideoTerrorismRecogJobAIVideoTerrorismRecogJob
 }

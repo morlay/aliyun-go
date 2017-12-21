@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteCommonBandwidthPackageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type DeleteCommonBandwidthPackageRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteCommonBandwidthPackageRequest) Invoke(client *sdk.Client) (response *DeleteCommonBandwidthPackageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCommonBandwidthPackageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCommonBandwidthPackageRequest) Invoke(client *sdk.Client) (resp *DeleteCommonBandwidthPackageResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteCommonBandwidthPackage", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCommonBandwidthPackageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCommonBandwidthPackageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCommonBandwidthPackageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCommonBandwidthPackageResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

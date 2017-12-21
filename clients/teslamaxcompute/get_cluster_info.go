@@ -9,35 +9,22 @@ import (
 )
 
 type GetClusterInfoRequest struct {
+	requests.RpcRequest
 	Cluster  string `position:"Query" name:"Cluster"`
 	PageSize int    `position:"Query" name:"PageSize"`
 	PageNum  int    `position:"Query" name:"PageNum"`
 	Status   string `position:"Query" name:"Status"`
 }
 
-func (r GetClusterInfoRequest) Invoke(client *sdk.Client) (response *GetClusterInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetClusterInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetClusterInfoRequest) Invoke(client *sdk.Client) (resp *GetClusterInfoResponse, err error) {
 	req.InitWithApiInfo("TeslaMaxCompute", "2017-11-30", "GetClusterInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetClusterInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetClusterInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetClusterInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetClusterInfoResponse struct {
+	responses.BaseResponse
 	Code      int
 	Message   string
 	RequestId string

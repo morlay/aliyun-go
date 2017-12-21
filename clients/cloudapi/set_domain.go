@@ -7,6 +7,7 @@ import (
 )
 
 type SetDomainRequest struct {
+	requests.RpcRequest
 	GroupId               string `position:"Query" name:"GroupId"`
 	DomainName            string `position:"Query" name:"DomainName"`
 	CertificateName       string `position:"Query" name:"CertificateName"`
@@ -14,29 +15,15 @@ type SetDomainRequest struct {
 	CertificatePrivateKey string `position:"Query" name:"CertificatePrivateKey"`
 }
 
-func (r SetDomainRequest) Invoke(client *sdk.Client) (response *SetDomainResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetDomainRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetDomainRequest) Invoke(client *sdk.Client) (resp *SetDomainResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "SetDomain", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetDomainResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetDomainResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetDomainResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetDomainResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	GroupId             string
 	DomainName          string

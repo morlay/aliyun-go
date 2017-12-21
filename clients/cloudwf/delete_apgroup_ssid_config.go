@@ -7,33 +7,20 @@ import (
 )
 
 type DeleteApgroupSsidConfigRequest struct {
+	requests.RpcRequest
 	ApgroupId int64 `position:"Query" name:"ApgroupId"`
 	Id        int64 `position:"Query" name:"Id"`
 }
 
-func (r DeleteApgroupSsidConfigRequest) Invoke(client *sdk.Client) (response *DeleteApgroupSsidConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteApgroupSsidConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteApgroupSsidConfigRequest) Invoke(client *sdk.Client) (resp *DeleteApgroupSsidConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "DeleteApgroupSsidConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteApgroupSsidConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteApgroupSsidConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteApgroupSsidConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteApgroupSsidConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

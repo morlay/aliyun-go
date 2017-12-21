@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainTopReferVisitRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	SortBy        string `position:"Query" name:"SortBy"`
@@ -16,29 +17,15 @@ type DescribeDomainTopReferVisitRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDomainTopReferVisitRequest) Invoke(client *sdk.Client) (response *DescribeDomainTopReferVisitResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainTopReferVisitRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainTopReferVisitRequest) Invoke(client *sdk.Client) (resp *DescribeDomainTopReferVisitResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainTopReferVisit", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainTopReferVisitResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainTopReferVisitResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainTopReferVisitResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainTopReferVisitResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	DomainName   string
 	StartTime    string

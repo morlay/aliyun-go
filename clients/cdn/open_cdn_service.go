@@ -7,33 +7,20 @@ import (
 )
 
 type OpenCdnServiceRequest struct {
+	requests.RpcRequest
 	SecurityToken      string `position:"Query" name:"SecurityToken"`
 	InternetChargeType string `position:"Query" name:"InternetChargeType"`
 	OwnerId            int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r OpenCdnServiceRequest) Invoke(client *sdk.Client) (response *OpenCdnServiceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OpenCdnServiceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OpenCdnServiceRequest) Invoke(client *sdk.Client) (resp *OpenCdnServiceResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "OpenCdnService", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OpenCdnServiceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OpenCdnServiceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OpenCdnServiceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OpenCdnServiceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

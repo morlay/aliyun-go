@@ -9,35 +9,22 @@ import (
 )
 
 type QueryPushStatByAppRequest struct {
+	requests.RpcRequest
 	Granularity string `position:"Query" name:"Granularity"`
 	EndTime     string `position:"Query" name:"EndTime"`
 	AppKey      int64  `position:"Query" name:"AppKey"`
 	StartTime   string `position:"Query" name:"StartTime"`
 }
 
-func (r QueryPushStatByAppRequest) Invoke(client *sdk.Client) (response *QueryPushStatByAppResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryPushStatByAppRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryPushStatByAppRequest) Invoke(client *sdk.Client) (resp *QueryPushStatByAppResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "QueryPushStatByApp", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryPushStatByAppResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryPushStatByAppResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryPushStatByAppResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryPushStatByAppResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	AppPushStats QueryPushStatByAppAppPushStatList
 }

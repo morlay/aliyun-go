@@ -9,6 +9,7 @@ import (
 )
 
 type ListAIVideoPornRecogJobRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount           string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type ListAIVideoPornRecogJobRequest struct {
 	OwnerId                string `position:"Query" name:"OwnerId"`
 }
 
-func (r ListAIVideoPornRecogJobRequest) Invoke(client *sdk.Client) (response *ListAIVideoPornRecogJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAIVideoPornRecogJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAIVideoPornRecogJobRequest) Invoke(client *sdk.Client) (resp *ListAIVideoPornRecogJobResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoPornRecogJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAIVideoPornRecogJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAIVideoPornRecogJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAIVideoPornRecogJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAIVideoPornRecogJobResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	AIVideoPornRecogJobList ListAIVideoPornRecogJobAIVideoPornRecogJobList
 	NonExistPornRecogJobIds ListAIVideoPornRecogJobNonExistPornRecogJobIdList

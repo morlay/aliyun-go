@@ -7,6 +7,7 @@ import (
 )
 
 type EnableScalingGroupRequest struct {
+	requests.RpcRequest
 	InstanceId10                 string `position:"Query" name:"InstanceId.10"`
 	LoadBalancerWeight6          int    `position:"Query" name:"LoadBalancerWeight.6"`
 	LoadBalancerWeight11         int    `position:"Query" name:"LoadBalancerWeight.11"`
@@ -55,28 +56,14 @@ type EnableScalingGroupRequest struct {
 	InstanceId15                 string `position:"Query" name:"InstanceId.15"`
 }
 
-func (r EnableScalingGroupRequest) Invoke(client *sdk.Client) (response *EnableScalingGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		EnableScalingGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *EnableScalingGroupRequest) Invoke(client *sdk.Client) (resp *EnableScalingGroupResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "EnableScalingGroup", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		EnableScalingGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.EnableScalingGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &EnableScalingGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type EnableScalingGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

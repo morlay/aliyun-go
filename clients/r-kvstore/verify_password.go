@@ -1,46 +1,30 @@
-
-package r-kvstore
+package r_kvstore
 
 import (
-    "github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
-	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
 )
 
-
 type VerifyPasswordRequest struct {
-ResourceOwnerId int64 `position:"Query" name:"ResourceOwnerId"`
-Password string `position:"Query" name:"Password"`
-InstanceId string `position:"Query" name:"InstanceId"`
-SecurityToken string `position:"Query" name:"SecurityToken"`
-ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-OwnerAccount string `position:"Query" name:"OwnerAccount"`
-OwnerId int64 `position:"Query" name:"OwnerId"`
+	requests.RpcRequest
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	Password             string `position:"Query" name:"Password"`
+	InstanceId           string `position:"Query" name:"InstanceId"`
+	SecurityToken        string `position:"Query" name:"SecurityToken"`
+	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r VerifyPasswordRequest) Invoke(client *sdk.Client) (response *VerifyPasswordResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		VerifyPasswordRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *VerifyPasswordRequest) Invoke(client *sdk.Client) (resp *VerifyPasswordResponse, err error) {
 	req.InitWithApiInfo("R-kvstore", "2015-01-01", "VerifyPassword", "redisa", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		VerifyPasswordResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-    response = &resp.VerifyPasswordResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &VerifyPasswordResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type VerifyPasswordResponse struct {
-RequestId string
+	responses.BaseResponse
+	RequestId string
 }
-

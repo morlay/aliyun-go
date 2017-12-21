@@ -9,35 +9,22 @@ import (
 )
 
 type DeleteCNameWafRequest struct {
+	requests.RpcRequest
 	InstanceId   string `position:"Query" name:"InstanceId"`
 	Domain       string `position:"Query" name:"Domain"`
 	CnameId      int    `position:"Query" name:"CnameId"`
 	InstanceType string `position:"Query" name:"InstanceType"`
 }
 
-func (r DeleteCNameWafRequest) Invoke(client *sdk.Client) (response *DeleteCNameWafResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCNameWafRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCNameWafRequest) Invoke(client *sdk.Client) (resp *DeleteCNameWafResponse, err error) {
 	req.InitWithApiInfo("Yundun", "2015-04-16", "DeleteCNameWaf", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCNameWafResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCNameWafResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCNameWafResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCNameWafResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	WafInfoList DeleteCNameWafWafInfoList
 }

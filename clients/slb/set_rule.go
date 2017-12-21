@@ -7,6 +7,7 @@ import (
 )
 
 type SetRuleRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	VServerGroupId       string `position:"Query" name:"VServerGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,28 +18,14 @@ type SetRuleRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r SetRuleRequest) Invoke(client *sdk.Client) (response *SetRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetRuleRequest) Invoke(client *sdk.Client) (resp *SetRuleResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetRule", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetRuleResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

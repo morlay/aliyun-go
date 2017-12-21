@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeHistoryApisRequest struct {
+	requests.RpcRequest
 	GroupId    string `position:"Query" name:"GroupId"`
 	StageName  string `position:"Query" name:"StageName"`
 	ApiId      string `position:"Query" name:"ApiId"`
@@ -17,29 +18,15 @@ type DescribeHistoryApisRequest struct {
 	PageNumber string `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeHistoryApisRequest) Invoke(client *sdk.Client) (response *DescribeHistoryApisResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeHistoryApisRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeHistoryApisRequest) Invoke(client *sdk.Client) (resp *DescribeHistoryApisResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeHistoryApis", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeHistoryApisResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeHistoryApisResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeHistoryApisResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeHistoryApisResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  int
 	PageSize    int

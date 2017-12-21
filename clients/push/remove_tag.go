@@ -7,32 +7,19 @@ import (
 )
 
 type RemoveTagRequest struct {
+	requests.RpcRequest
 	TagName string `position:"Query" name:"TagName"`
 	AppKey  int64  `position:"Query" name:"AppKey"`
 }
 
-func (r RemoveTagRequest) Invoke(client *sdk.Client) (response *RemoveTagResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveTagRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveTagRequest) Invoke(client *sdk.Client) (resp *RemoveTagResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "RemoveTag", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveTagResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveTagResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveTagResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveTagResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type AllocateInstancePrivateConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type AllocateInstancePrivateConnectionRequest struct {
 	OwnerId                int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AllocateInstancePrivateConnectionRequest) Invoke(client *sdk.Client) (response *AllocateInstancePrivateConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AllocateInstancePrivateConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AllocateInstancePrivateConnectionRequest) Invoke(client *sdk.Client) (resp *AllocateInstancePrivateConnectionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "AllocateInstancePrivateConnection", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AllocateInstancePrivateConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AllocateInstancePrivateConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AllocateInstancePrivateConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AllocateInstancePrivateConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

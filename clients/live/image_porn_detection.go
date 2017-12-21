@@ -7,34 +7,21 @@ import (
 )
 
 type ImagePornDetectionRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	ImageUrl      string `position:"Query" name:"ImageUrl"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ImagePornDetectionRequest) Invoke(client *sdk.Client) (response *ImagePornDetectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ImagePornDetectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ImagePornDetectionRequest) Invoke(client *sdk.Client) (resp *ImagePornDetectionResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "ImagePornDetection", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ImagePornDetectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ImagePornDetectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ImagePornDetectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ImagePornDetectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Label     string
 	Rate      float32

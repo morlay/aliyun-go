@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstanceIPArrayListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeDBInstanceIPArrayListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBInstanceIPArrayListRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceIPArrayListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstanceIPArrayListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstanceIPArrayListRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstanceIPArrayListResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceIPArrayList", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstanceIPArrayListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstanceIPArrayListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstanceIPArrayListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstanceIPArrayListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeDBInstanceIPArrayListDBInstanceIPArrayList
 }

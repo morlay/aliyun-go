@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteLoadBalancerRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
@@ -16,28 +17,14 @@ type DeleteLoadBalancerRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r DeleteLoadBalancerRequest) Invoke(client *sdk.Client) (response *DeleteLoadBalancerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteLoadBalancerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteLoadBalancerRequest) Invoke(client *sdk.Client) (resp *DeleteLoadBalancerResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "DeleteLoadBalancer", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteLoadBalancerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteLoadBalancerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteLoadBalancerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteLoadBalancerResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

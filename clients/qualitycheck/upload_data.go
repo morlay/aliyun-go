@@ -7,32 +7,19 @@ import (
 )
 
 type UploadDataRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r UploadDataRequest) Invoke(client *sdk.Client) (response *UploadDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UploadDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UploadDataRequest) Invoke(client *sdk.Client) (resp *UploadDataResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "UploadData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UploadDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UploadDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UploadDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UploadDataResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

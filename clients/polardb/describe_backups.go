@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBackupsRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId          string `position:"Query" name:"DBClusterId"`
@@ -23,29 +24,15 @@ type DescribeBackupsRequest struct {
 	BackupMode           string `position:"Query" name:"BackupMode"`
 }
 
-func (r DescribeBackupsRequest) Invoke(client *sdk.Client) (response *DescribeBackupsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBackupsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBackupsRequest) Invoke(client *sdk.Client) (resp *DescribeBackupsResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeBackups", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBackupsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBackupsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBackupsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBackupsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	TotalRecordCount string
 	PageNumber       string

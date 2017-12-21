@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeCasterVideoResourcesRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Version       string `position:"Query" name:"Version"`
 }
 
-func (r DescribeCasterVideoResourcesRequest) Invoke(client *sdk.Client) (response *DescribeCasterVideoResourcesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCasterVideoResourcesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCasterVideoResourcesRequest) Invoke(client *sdk.Client) (resp *DescribeCasterVideoResourcesResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterVideoResources", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCasterVideoResourcesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCasterVideoResourcesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCasterVideoResourcesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCasterVideoResourcesResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Total          int
 	VideoResources DescribeCasterVideoResourcesVideoResourceList

@@ -7,32 +7,19 @@ import (
 )
 
 type UploadAudioData4PreRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r UploadAudioData4PreRequest) Invoke(client *sdk.Client) (response *UploadAudioData4PreResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UploadAudioData4PreRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UploadAudioData4PreRequest) Invoke(client *sdk.Client) (resp *UploadAudioData4PreResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "UploadAudioData4Pre", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UploadAudioData4PreResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UploadAudioData4PreResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UploadAudioData4PreResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UploadAudioData4PreResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

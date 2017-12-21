@@ -7,6 +7,7 @@ import (
 )
 
 type CloneDBInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	RestoreTime           string `position:"Query" name:"RestoreTime"`
 	Period                string `position:"Query" name:"Period"`
@@ -28,29 +29,15 @@ type CloneDBInstanceRequest struct {
 	InstanceNetworkType   string `position:"Query" name:"InstanceNetworkType"`
 }
 
-func (r CloneDBInstanceRequest) Invoke(client *sdk.Client) (response *CloneDBInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CloneDBInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CloneDBInstanceRequest) Invoke(client *sdk.Client) (resp *CloneDBInstanceResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "CloneDBInstance", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CloneDBInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CloneDBInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CloneDBInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CloneDBInstanceResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	DBInstanceId     string
 	OrderId          string

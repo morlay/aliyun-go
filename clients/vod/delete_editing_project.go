@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteEditingProjectRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteEditingProjectRequest struct {
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteEditingProjectRequest) Invoke(client *sdk.Client) (response *DeleteEditingProjectResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteEditingProjectRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteEditingProjectRequest) Invoke(client *sdk.Client) (resp *DeleteEditingProjectResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "DeleteEditingProject", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteEditingProjectResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteEditingProjectResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteEditingProjectResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteEditingProjectResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

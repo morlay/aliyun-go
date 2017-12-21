@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBClusterNetInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBClusterId          string `position:"Query" name:"DBClusterId"`
@@ -16,29 +17,15 @@ type DescribeDBClusterNetInfoRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeDBClusterNetInfoRequest) Invoke(client *sdk.Client) (response *DescribeDBClusterNetInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBClusterNetInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBClusterNetInfoRequest) Invoke(client *sdk.Client) (resp *DescribeDBClusterNetInfoResponse, err error) {
 	req.InitWithApiInfo("polardb", "2017-08-01", "DescribeDBClusterNetInfo", "polardb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBClusterNetInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBClusterNetInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBClusterNetInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBClusterNetInfoResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	ClusterNetworkType string
 	DBClusterNetInfos  DescribeDBClusterNetInfoDBClusterNetInfoList

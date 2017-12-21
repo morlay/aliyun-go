@@ -9,6 +9,7 @@ import (
 )
 
 type OnsTrendGroupOutputTpsRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	Period       int64  `position:"Query" name:"Period"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
@@ -20,29 +21,15 @@ type OnsTrendGroupOutputTpsRequest struct {
 	Type         int    `position:"Query" name:"Type"`
 }
 
-func (r OnsTrendGroupOutputTpsRequest) Invoke(client *sdk.Client) (response *OnsTrendGroupOutputTpsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsTrendGroupOutputTpsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsTrendGroupOutputTpsRequest) Invoke(client *sdk.Client) (resp *OnsTrendGroupOutputTpsResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsTrendGroupOutputTps", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsTrendGroupOutputTpsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsTrendGroupOutputTpsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsTrendGroupOutputTpsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsTrendGroupOutputTpsResponse struct {
+	responses.BaseResponse
 	RequestId string
 	HelpUrl   string
 	Data      OnsTrendGroupOutputTpsData

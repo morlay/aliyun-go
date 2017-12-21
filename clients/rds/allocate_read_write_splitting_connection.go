@@ -7,6 +7,7 @@ import (
 )
 
 type AllocateReadWriteSplittingConnectionRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix string `position:"Query" name:"ConnectionStringPrefix"`
 	ResourceOwnerAccount   string `position:"Query" name:"ResourceOwnerAccount"`
@@ -20,28 +21,14 @@ type AllocateReadWriteSplittingConnectionRequest struct {
 	MaxDelayTime           string `position:"Query" name:"MaxDelayTime"`
 }
 
-func (r AllocateReadWriteSplittingConnectionRequest) Invoke(client *sdk.Client) (response *AllocateReadWriteSplittingConnectionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AllocateReadWriteSplittingConnectionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AllocateReadWriteSplittingConnectionRequest) Invoke(client *sdk.Client) (resp *AllocateReadWriteSplittingConnectionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "AllocateReadWriteSplittingConnection", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AllocateReadWriteSplittingConnectionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AllocateReadWriteSplittingConnectionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AllocateReadWriteSplittingConnectionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AllocateReadWriteSplittingConnectionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

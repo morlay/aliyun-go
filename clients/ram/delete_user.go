@@ -7,31 +7,18 @@ import (
 )
 
 type DeleteUserRequest struct {
+	requests.RpcRequest
 	UserName string `position:"Query" name:"UserName"`
 }
 
-func (r DeleteUserRequest) Invoke(client *sdk.Client) (response *DeleteUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteUserRequest) Invoke(client *sdk.Client) (resp *DeleteUserResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "DeleteUser", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteUserResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

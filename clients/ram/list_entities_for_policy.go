@@ -9,33 +9,20 @@ import (
 )
 
 type ListEntitiesForPolicyRequest struct {
+	requests.RpcRequest
 	PolicyType string `position:"Query" name:"PolicyType"`
 	PolicyName string `position:"Query" name:"PolicyName"`
 }
 
-func (r ListEntitiesForPolicyRequest) Invoke(client *sdk.Client) (response *ListEntitiesForPolicyResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListEntitiesForPolicyRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListEntitiesForPolicyRequest) Invoke(client *sdk.Client) (resp *ListEntitiesForPolicyResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "ListEntitiesForPolicy", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListEntitiesForPolicyResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListEntitiesForPolicyResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListEntitiesForPolicyResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListEntitiesForPolicyResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Groups    ListEntitiesForPolicyGroupList
 	Users     ListEntitiesForPolicyUserList

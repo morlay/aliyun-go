@@ -7,31 +7,18 @@ import (
 )
 
 type GetOssServerSignRequest struct {
+	requests.RpcRequest
 }
 
-func (r GetOssServerSignRequest) Invoke(client *sdk.Client) (response *GetOssServerSignResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetOssServerSignRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetOssServerSignRequest) Invoke(client *sdk.Client) (resp *GetOssServerSignResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetOssServerSign", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetOssServerSignResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetOssServerSignResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetOssServerSignResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetOssServerSignResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

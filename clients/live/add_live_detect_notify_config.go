@@ -7,34 +7,21 @@ import (
 )
 
 type AddLiveDetectNotifyConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	NotifyUrl     string `position:"Query" name:"NotifyUrl"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddLiveDetectNotifyConfigRequest) Invoke(client *sdk.Client) (response *AddLiveDetectNotifyConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddLiveDetectNotifyConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddLiveDetectNotifyConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveDetectNotifyConfigResponse, err error) {
 	req.InitWithApiInfo("live", "2016-11-01", "AddLiveDetectNotifyConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddLiveDetectNotifyConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddLiveDetectNotifyConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddLiveDetectNotifyConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddLiveDetectNotifyConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

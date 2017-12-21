@@ -7,34 +7,21 @@ import (
 )
 
 type DescribeIpInfoRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	IP            string `position:"Query" name:"IP"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeIpInfoRequest) Invoke(client *sdk.Client) (response *DescribeIpInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeIpInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeIpInfoRequest) Invoke(client *sdk.Client) (resp *DescribeIpInfoResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeIpInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeIpInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeIpInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeIpInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeIpInfoResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	CdnIp       string
 	ISP         string

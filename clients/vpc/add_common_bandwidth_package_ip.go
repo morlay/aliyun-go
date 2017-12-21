@@ -7,6 +7,7 @@ import (
 )
 
 type AddCommonBandwidthPackageIpRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,28 +16,14 @@ type AddCommonBandwidthPackageIpRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AddCommonBandwidthPackageIpRequest) Invoke(client *sdk.Client) (response *AddCommonBandwidthPackageIpResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCommonBandwidthPackageIpRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCommonBandwidthPackageIpRequest) Invoke(client *sdk.Client) (resp *AddCommonBandwidthPackageIpResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "AddCommonBandwidthPackageIp", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCommonBandwidthPackageIpResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCommonBandwidthPackageIpResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCommonBandwidthPackageIpResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddCommonBandwidthPackageIpResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

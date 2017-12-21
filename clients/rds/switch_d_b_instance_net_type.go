@@ -7,6 +7,7 @@ import (
 )
 
 type SwitchDBInstanceNetTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId        int64  `position:"Query" name:"ResourceOwnerId"`
 	ConnectionStringPrefix string `position:"Query" name:"ConnectionStringPrefix"`
 	ConnectionStringType   string `position:"Query" name:"ConnectionStringType"`
@@ -18,28 +19,14 @@ type SwitchDBInstanceNetTypeRequest struct {
 	OwnerId                int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SwitchDBInstanceNetTypeRequest) Invoke(client *sdk.Client) (response *SwitchDBInstanceNetTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SwitchDBInstanceNetTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SwitchDBInstanceNetTypeRequest) Invoke(client *sdk.Client) (resp *SwitchDBInstanceNetTypeResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "SwitchDBInstanceNetType", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SwitchDBInstanceNetTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SwitchDBInstanceNetTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SwitchDBInstanceNetTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SwitchDBInstanceNetTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

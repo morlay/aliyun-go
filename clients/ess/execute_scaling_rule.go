@@ -7,6 +7,7 @@ import (
 )
 
 type ExecuteScalingRuleRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ScalingRuleAri       string `position:"Query" name:"ScalingRuleAri"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -15,29 +16,15 @@ type ExecuteScalingRuleRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ExecuteScalingRuleRequest) Invoke(client *sdk.Client) (response *ExecuteScalingRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ExecuteScalingRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ExecuteScalingRuleRequest) Invoke(client *sdk.Client) (resp *ExecuteScalingRuleResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "ExecuteScalingRule", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ExecuteScalingRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ExecuteScalingRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ExecuteScalingRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ExecuteScalingRuleResponse struct {
+	responses.BaseResponse
 	ScalingActivityId string
 	RequestId         string
 }

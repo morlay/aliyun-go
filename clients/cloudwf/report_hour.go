@@ -7,34 +7,21 @@ import (
 )
 
 type ReportHourRequest struct {
+	requests.RpcRequest
 	BeginDate string `position:"Query" name:"BeginDate"`
 	EndDate   string `position:"Query" name:"EndDate"`
 	Agsid     int64  `position:"Query" name:"Agsid"`
 }
 
-func (r ReportHourRequest) Invoke(client *sdk.Client) (response *ReportHourResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReportHourRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReportHourRequest) Invoke(client *sdk.Client) (resp *ReportHourResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ReportHour", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReportHourResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReportHourResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReportHourResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReportHourResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

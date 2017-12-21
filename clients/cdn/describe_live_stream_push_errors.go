@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamPushErrorsRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeLiveStreamPushErrorsRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamPushErrorsRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamPushErrorsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamPushErrorsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamPushErrorsRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamPushErrorsResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamPushErrors", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamPushErrorsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamPushErrorsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamPushErrorsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamPushErrorsResponse struct {
+	responses.BaseResponse
 	RequestId           string
 	PushErrorsModelList DescribeLiveStreamPushErrorsPushErrorsModelList
 }

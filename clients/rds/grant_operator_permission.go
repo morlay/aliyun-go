@@ -7,6 +7,7 @@ import (
 )
 
 type GrantOperatorPermissionRequest struct {
+	requests.RpcRequest
 	Privileges           string `position:"Query" name:"Privileges"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,28 +17,14 @@ type GrantOperatorPermissionRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r GrantOperatorPermissionRequest) Invoke(client *sdk.Client) (response *GrantOperatorPermissionResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GrantOperatorPermissionRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GrantOperatorPermissionRequest) Invoke(client *sdk.Client) (resp *GrantOperatorPermissionResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "GrantOperatorPermission", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GrantOperatorPermissionResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GrantOperatorPermissionResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GrantOperatorPermissionResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GrantOperatorPermissionResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

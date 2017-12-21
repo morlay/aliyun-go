@@ -9,6 +9,7 @@ import (
 )
 
 type ListAlarmRequest struct {
+	requests.RpcRequest
 	IsEnable         string `position:"Query" name:"IsEnable"`
 	Callby_cms_owner string `position:"Query" name:"Callby_cms_owner"`
 	Name             string `position:"Query" name:"Name"`
@@ -20,29 +21,15 @@ type ListAlarmRequest struct {
 	PageNumber       int    `position:"Query" name:"PageNumber"`
 }
 
-func (r ListAlarmRequest) Invoke(client *sdk.Client) (response *ListAlarmResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListAlarmRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListAlarmRequest) Invoke(client *sdk.Client) (resp *ListAlarmResponse, err error) {
 	req.InitWithApiInfo("Cms", "2017-03-01", "ListAlarm", "cms", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListAlarmResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListAlarmResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListAlarmResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListAlarmResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Code      string
 	Message   string

@@ -7,32 +7,19 @@ import (
 )
 
 type ModifyFileSystemRequest struct {
+	requests.RpcRequest
 	Description  string `position:"Query" name:"Description"`
 	FileSystemId string `position:"Query" name:"FileSystemId"`
 }
 
-func (r ModifyFileSystemRequest) Invoke(client *sdk.Client) (response *ModifyFileSystemResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyFileSystemRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyFileSystemRequest) Invoke(client *sdk.Client) (resp *ModifyFileSystemResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "ModifyFileSystem", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyFileSystemResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyFileSystemResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyFileSystemResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyFileSystemResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

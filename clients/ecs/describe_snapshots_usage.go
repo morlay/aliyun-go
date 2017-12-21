@@ -7,35 +7,22 @@ import (
 )
 
 type DescribeSnapshotsUsageRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeSnapshotsUsageRequest) Invoke(client *sdk.Client) (response *DescribeSnapshotsUsageResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeSnapshotsUsageRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeSnapshotsUsageRequest) Invoke(client *sdk.Client) (resp *DescribeSnapshotsUsageResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeSnapshotsUsage", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeSnapshotsUsageResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeSnapshotsUsageResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeSnapshotsUsageResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeSnapshotsUsageResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	SnapshotCount int
 	SnapshotSize  int64

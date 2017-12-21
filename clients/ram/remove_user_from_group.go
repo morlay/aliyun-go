@@ -7,32 +7,19 @@ import (
 )
 
 type RemoveUserFromGroupRequest struct {
+	requests.RpcRequest
 	GroupName string `position:"Query" name:"GroupName"`
 	UserName  string `position:"Query" name:"UserName"`
 }
 
-func (r RemoveUserFromGroupRequest) Invoke(client *sdk.Client) (response *RemoveUserFromGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveUserFromGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveUserFromGroupRequest) Invoke(client *sdk.Client) (resp *RemoveUserFromGroupResponse, err error) {
 	req.InitWithApiInfo("Ram", "2015-05-01", "RemoveUserFromGroup", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveUserFromGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveUserFromGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveUserFromGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveUserFromGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,6 +9,7 @@ import (
 )
 
 type AttachKeyPairRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	InstanceIds          string `position:"Query" name:"InstanceIds"`
@@ -16,29 +17,15 @@ type AttachKeyPairRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r AttachKeyPairRequest) Invoke(client *sdk.Client) (response *AttachKeyPairResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AttachKeyPairRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AttachKeyPairRequest) Invoke(client *sdk.Client) (resp *AttachKeyPairResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "AttachKeyPair", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AttachKeyPairResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AttachKeyPairResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AttachKeyPairResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AttachKeyPairResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	TotalCount  string
 	FailCount   string

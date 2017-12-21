@@ -7,6 +7,7 @@ import (
 )
 
 type AddWaterMarkTemplateRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,29 +16,15 @@ type AddWaterMarkTemplateRequest struct {
 	Config               string `position:"Query" name:"Config"`
 }
 
-func (r AddWaterMarkTemplateRequest) Invoke(client *sdk.Client) (response *AddWaterMarkTemplateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddWaterMarkTemplateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *AddWaterMarkTemplateResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddWaterMarkTemplate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddWaterMarkTemplateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddWaterMarkTemplateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddWaterMarkTemplateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddWaterMarkTemplateResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	WaterMarkTemplate AddWaterMarkTemplateWaterMarkTemplate
 }

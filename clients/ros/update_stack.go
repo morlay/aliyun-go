@@ -7,32 +7,20 @@ import (
 )
 
 type UpdateStackRequest struct {
+	requests.RoaRequest
 	StackName string `position:"Path" name:"StackName"`
 	StackId   string `position:"Path" name:"StackId"`
 }
 
-func (r UpdateStackRequest) Invoke(client *sdk.Client) (response *UpdateStackResponse, err error) {
-	req := struct {
-		*requests.RoaRequest
-		UpdateStackRequest
-	}{
-		&requests.RoaRequest{},
-		r,
-	}
+func (req *UpdateStackRequest) Invoke(client *sdk.Client) (resp *UpdateStackResponse, err error) {
 	req.InitWithApiInfo("ROS", "2015-09-01", "UpdateStack", "/stacks/[StackName]/[StackId]", "", "")
 	req.Method = "PUT"
 
-	resp := struct {
-		*responses.BaseResponse
-		UpdateStackResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UpdateStackResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UpdateStackResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UpdateStackResponse struct {
+	responses.BaseResponse
 }

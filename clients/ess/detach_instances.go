@@ -7,6 +7,7 @@ import (
 )
 
 type DetachInstancesRequest struct {
+	requests.RpcRequest
 	InstanceId10         string `position:"Query" name:"InstanceId.10"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId12         string `position:"Query" name:"InstanceId.12"`
@@ -34,29 +35,15 @@ type DetachInstancesRequest struct {
 	InstanceId15         string `position:"Query" name:"InstanceId.15"`
 }
 
-func (r DetachInstancesRequest) Invoke(client *sdk.Client) (response *DetachInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DetachInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DetachInstancesRequest) Invoke(client *sdk.Client) (resp *DetachInstancesResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DetachInstances", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DetachInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DetachInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DetachInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DetachInstancesResponse struct {
+	responses.BaseResponse
 	ScalingActivityId string
 	RequestId         string
 }

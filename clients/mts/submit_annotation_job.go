@@ -7,6 +7,7 @@ import (
 )
 
 type SubmitAnnotationJobRequest struct {
+	requests.RpcRequest
 	Input                string `position:"Query" name:"Input"`
 	UserData             string `position:"Query" name:"UserData"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -17,29 +18,15 @@ type SubmitAnnotationJobRequest struct {
 	PipelineId           string `position:"Query" name:"PipelineId"`
 }
 
-func (r SubmitAnnotationJobRequest) Invoke(client *sdk.Client) (response *SubmitAnnotationJobResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SubmitAnnotationJobRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SubmitAnnotationJobRequest) Invoke(client *sdk.Client) (resp *SubmitAnnotationJobResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitAnnotationJob", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SubmitAnnotationJobResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SubmitAnnotationJobResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SubmitAnnotationJobResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SubmitAnnotationJobResponse struct {
+	responses.BaseResponse
 	RequestId string
 	JobId     string
 }

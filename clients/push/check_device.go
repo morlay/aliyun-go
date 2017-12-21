@@ -7,33 +7,20 @@ import (
 )
 
 type CheckDeviceRequest struct {
+	requests.RpcRequest
 	AppKey   int64  `position:"Query" name:"AppKey"`
 	DeviceId string `position:"Query" name:"DeviceId"`
 }
 
-func (r CheckDeviceRequest) Invoke(client *sdk.Client) (response *CheckDeviceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CheckDeviceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CheckDeviceRequest) Invoke(client *sdk.Client) (resp *CheckDeviceResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "CheckDevice", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CheckDeviceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CheckDeviceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CheckDeviceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CheckDeviceResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Available bool
 }

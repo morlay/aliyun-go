@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeInstanceTypesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -16,29 +17,15 @@ type DescribeInstanceTypesRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeInstanceTypesRequest) Invoke(client *sdk.Client) (response *DescribeInstanceTypesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeInstanceTypesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeInstanceTypesRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceTypesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeInstanceTypes", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeInstanceTypesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeInstanceTypesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeInstanceTypesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeInstanceTypesResponse struct {
+	responses.BaseResponse
 	RequestId     string
 	InstanceTypes DescribeInstanceTypesInstanceTypeList
 }

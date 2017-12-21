@@ -7,32 +7,19 @@ import (
 )
 
 type FindCustomerInfoRequest struct {
+	requests.RpcRequest
 	KpId int64 `position:"Query" name:"KpId"`
 }
 
-func (r FindCustomerInfoRequest) Invoke(client *sdk.Client) (response *FindCustomerInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		FindCustomerInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *FindCustomerInfoRequest) Invoke(client *sdk.Client) (resp *FindCustomerInfoResponse, err error) {
 	req.InitWithApiInfo("Crm", "2015-03-24", "FindCustomerInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		FindCustomerInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.FindCustomerInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &FindCustomerInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type FindCustomerInfoResponse struct {
+	responses.BaseResponse
 	Success       bool
 	ResultCode    string
 	ResultMessage string

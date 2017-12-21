@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeClassicLinkInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeClassicLinkInstancesRequest struct {
 	PageNumber           string `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeClassicLinkInstancesRequest) Invoke(client *sdk.Client) (response *DescribeClassicLinkInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeClassicLinkInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeClassicLinkInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeClassicLinkInstancesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeClassicLinkInstances", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeClassicLinkInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeClassicLinkInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeClassicLinkInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeClassicLinkInstancesResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	TotalCount int
 	PageNumber int

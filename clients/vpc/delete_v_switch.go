@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteVSwitchRequest struct {
+	requests.RpcRequest
 	VSwitchId            string `position:"Query" name:"VSwitchId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteVSwitchRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteVSwitchRequest) Invoke(client *sdk.Client) (response *DeleteVSwitchResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteVSwitchRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteVSwitchRequest) Invoke(client *sdk.Client) (resp *DeleteVSwitchResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteVSwitch", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteVSwitchResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteVSwitchResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteVSwitchResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteVSwitchResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

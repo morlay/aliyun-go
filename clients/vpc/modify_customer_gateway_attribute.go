@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyCustomerGatewayAttributeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -17,29 +18,15 @@ type ModifyCustomerGatewayAttributeRequest struct {
 	CustomerGatewayId    string `position:"Query" name:"CustomerGatewayId"`
 }
 
-func (r ModifyCustomerGatewayAttributeRequest) Invoke(client *sdk.Client) (response *ModifyCustomerGatewayAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyCustomerGatewayAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyCustomerGatewayAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyCustomerGatewayAttributeResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "ModifyCustomerGatewayAttribute", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyCustomerGatewayAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyCustomerGatewayAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyCustomerGatewayAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyCustomerGatewayAttributeResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	CustomerGatewayId string
 	IpAddress         string

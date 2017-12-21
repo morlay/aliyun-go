@@ -7,32 +7,19 @@ import (
 )
 
 type GetRadioRunHistoryTimeSerRequest struct {
+	requests.RpcRequest
 	Id int64 `position:"Query" name:"Id"`
 }
 
-func (r GetRadioRunHistoryTimeSerRequest) Invoke(client *sdk.Client) (response *GetRadioRunHistoryTimeSerResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetRadioRunHistoryTimeSerRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetRadioRunHistoryTimeSerRequest) Invoke(client *sdk.Client) (resp *GetRadioRunHistoryTimeSerResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "GetRadioRunHistoryTimeSer", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetRadioRunHistoryTimeSerResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRadioRunHistoryTimeSerResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRadioRunHistoryTimeSerResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRadioRunHistoryTimeSerResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

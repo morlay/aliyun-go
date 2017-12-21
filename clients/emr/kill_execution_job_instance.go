@@ -7,32 +7,19 @@ import (
 )
 
 type KillExecutionJobInstanceRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	JobInstanceId   string `position:"Query" name:"JobInstanceId"`
 }
 
-func (r KillExecutionJobInstanceRequest) Invoke(client *sdk.Client) (response *KillExecutionJobInstanceResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		KillExecutionJobInstanceRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *KillExecutionJobInstanceRequest) Invoke(client *sdk.Client) (resp *KillExecutionJobInstanceResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "KillExecutionJobInstance", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		KillExecutionJobInstanceResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.KillExecutionJobInstanceResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &KillExecutionJobInstanceResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type KillExecutionJobInstanceResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

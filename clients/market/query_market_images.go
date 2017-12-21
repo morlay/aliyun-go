@@ -9,32 +9,19 @@ import (
 )
 
 type QueryMarketImagesRequest struct {
+	requests.RpcRequest
 	Param string `position:"Query" name:"Param"`
 }
 
-func (r QueryMarketImagesRequest) Invoke(client *sdk.Client) (response *QueryMarketImagesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryMarketImagesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryMarketImagesRequest) Invoke(client *sdk.Client) (resp *QueryMarketImagesResponse, err error) {
 	req.InitWithApiInfo("Market", "2015-11-01", "QueryMarketImages", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryMarketImagesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryMarketImagesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryMarketImagesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryMarketImagesResponse struct {
+	responses.BaseResponse
 	PageNumber int
 	PageSize   int
 	TotalCount int

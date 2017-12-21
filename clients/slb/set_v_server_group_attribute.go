@@ -9,6 +9,7 @@ import (
 )
 
 type SetVServerGroupAttributeRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	VServerGroupId       string `position:"Query" name:"VServerGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -20,29 +21,15 @@ type SetVServerGroupAttributeRequest struct {
 	VServerGroupName     string `position:"Query" name:"VServerGroupName"`
 }
 
-func (r SetVServerGroupAttributeRequest) Invoke(client *sdk.Client) (response *SetVServerGroupAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetVServerGroupAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetVServerGroupAttributeRequest) Invoke(client *sdk.Client) (resp *SetVServerGroupAttributeResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetVServerGroupAttribute", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetVServerGroupAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetVServerGroupAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetVServerGroupAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetVServerGroupAttributeResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	VServerGroupId   string
 	VServerGroupName string

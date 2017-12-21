@@ -9,6 +9,7 @@ import (
 )
 
 type QueryTemplateListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	TemplateIds          string `position:"Query" name:"TemplateIds"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -16,29 +17,15 @@ type QueryTemplateListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryTemplateListRequest) Invoke(client *sdk.Client) (response *QueryTemplateListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryTemplateListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryTemplateListRequest) Invoke(client *sdk.Client) (resp *QueryTemplateListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTemplateList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryTemplateListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryTemplateListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryTemplateListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryTemplateListResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	TemplateList QueryTemplateListTemplateList
 	NonExistTids QueryTemplateListNonExistTidList

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeBackupTasksRequest struct {
+	requests.RpcRequest
 	BackupJobId          string `position:"Query" name:"BackupJobId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	Flag                 string `position:"Query" name:"Flag"`
@@ -21,29 +22,15 @@ type DescribeBackupTasksRequest struct {
 	BackupJobStatus      string `position:"Query" name:"BackupJobStatus"`
 }
 
-func (r DescribeBackupTasksRequest) Invoke(client *sdk.Client) (response *DescribeBackupTasksResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeBackupTasksRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeBackupTasksRequest) Invoke(client *sdk.Client) (resp *DescribeBackupTasksResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeBackupTasks", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeBackupTasksResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeBackupTasksResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeBackupTasksResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeBackupTasksResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Items     DescribeBackupTasksBackupJobList
 }

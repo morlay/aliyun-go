@@ -7,34 +7,21 @@ import (
 )
 
 type SetOptimizeConfigRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	Enable        string `position:"Query" name:"Enable"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r SetOptimizeConfigRequest) Invoke(client *sdk.Client) (response *SetOptimizeConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetOptimizeConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetOptimizeConfigRequest) Invoke(client *sdk.Client) (resp *SetOptimizeConfigResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "SetOptimizeConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetOptimizeConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetOptimizeConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetOptimizeConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetOptimizeConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

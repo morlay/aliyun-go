@@ -9,32 +9,19 @@ import (
 )
 
 type GetStatisticsByUuidRequest struct {
+	requests.RpcRequest
 	Uuid string `position:"Query" name:"Uuid"`
 }
 
-func (r GetStatisticsByUuidRequest) Invoke(client *sdk.Client) (response *GetStatisticsByUuidResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetStatisticsByUuidRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetStatisticsByUuidRequest) Invoke(client *sdk.Client) (resp *GetStatisticsByUuidResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "GetStatisticsByUuid", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetStatisticsByUuidResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetStatisticsByUuidResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetStatisticsByUuidResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetStatisticsByUuidResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Success   bool

@@ -9,6 +9,7 @@ import (
 )
 
 type GetQuotaInfoRequest struct {
+	requests.RpcRequest
 	Cluster  string `position:"Query" name:"Cluster"`
 	PageSize int    `position:"Query" name:"PageSize"`
 	QuotaId  string `position:"Query" name:"QuotaId"`
@@ -16,29 +17,15 @@ type GetQuotaInfoRequest struct {
 	Status   string `position:"Query" name:"Status"`
 }
 
-func (r GetQuotaInfoRequest) Invoke(client *sdk.Client) (response *GetQuotaInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetQuotaInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetQuotaInfoRequest) Invoke(client *sdk.Client) (resp *GetQuotaInfoResponse, err error) {
 	req.InitWithApiInfo("TeslaMaxCompute", "2017-11-30", "GetQuotaInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetQuotaInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetQuotaInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetQuotaInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetQuotaInfoResponse struct {
+	responses.BaseResponse
 	Code      int
 	Message   string
 	RequestId string

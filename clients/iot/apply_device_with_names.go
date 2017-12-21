@@ -9,33 +9,20 @@ import (
 )
 
 type ApplyDeviceWithNamesRequest struct {
+	requests.RpcRequest
 	DeviceNames *ApplyDeviceWithNamesDeviceNameList `position:"Query" type:"Repeated" name:"DeviceName"`
 	ProductKey  string                              `position:"Query" name:"ProductKey"`
 }
 
-func (r ApplyDeviceWithNamesRequest) Invoke(client *sdk.Client) (response *ApplyDeviceWithNamesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ApplyDeviceWithNamesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ApplyDeviceWithNamesRequest) Invoke(client *sdk.Client) (resp *ApplyDeviceWithNamesResponse, err error) {
 	req.InitWithApiInfo("Iot", "2017-04-20", "ApplyDeviceWithNames", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ApplyDeviceWithNamesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ApplyDeviceWithNamesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ApplyDeviceWithNamesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ApplyDeviceWithNamesResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	Success      bool
 	ErrorMessage string

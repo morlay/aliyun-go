@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteVpcRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VpcId                string `position:"Query" name:"VpcId"`
@@ -14,28 +15,14 @@ type DeleteVpcRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteVpcRequest) Invoke(client *sdk.Client) (response *DeleteVpcResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteVpcRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteVpcRequest) Invoke(client *sdk.Client) (resp *DeleteVpcResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteVpc", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteVpcResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteVpcResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteVpcResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteVpcResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

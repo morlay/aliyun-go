@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDBInstancesRequest struct {
+	requests.RpcRequest
 	ConnectionMode       string `position:"Query" name:"ConnectionMode"`
 	Tag4value            string `position:"Query" name:"Tag.4.value"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -39,29 +40,15 @@ type DescribeDBInstancesRequest struct {
 	InstanceNetworkType  string `position:"Query" name:"InstanceNetworkType"`
 }
 
-func (r DescribeDBInstancesRequest) Invoke(client *sdk.Client) (response *DescribeDBInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDBInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDBInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeDBInstancesResponse, err error) {
 	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstances", "rds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDBInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDBInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDBInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDBInstancesResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	PageNumber       int
 	TotalRecordCount int

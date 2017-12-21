@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDomainBpsDataRequest struct {
+	requests.RpcRequest
 	FixTimeGap     string `position:"Query" name:"FixTimeGap"`
 	TimeMerge      string `position:"Query" name:"TimeMerge"`
 	DomainName     string `position:"Query" name:"DomainName"`
@@ -22,29 +23,15 @@ type DescribeDomainBpsDataRequest struct {
 	Interval       string `position:"Query" name:"Interval"`
 }
 
-func (r DescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (response *DescribeDomainBpsDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDomainBpsDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainBpsDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeDomainBpsData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDomainBpsDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDomainBpsDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDomainBpsDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDomainBpsDataResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	DomainName         string
 	DataInterval       string

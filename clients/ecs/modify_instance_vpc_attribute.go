@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyInstanceVpcAttributeRequest struct {
+	requests.RpcRequest
 	VSwitchId            string `position:"Query" name:"VSwitchId"`
 	PrivateIpAddress     string `position:"Query" name:"PrivateIpAddress"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
@@ -16,28 +17,14 @@ type ModifyInstanceVpcAttributeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyInstanceVpcAttributeRequest) Invoke(client *sdk.Client) (response *ModifyInstanceVpcAttributeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyInstanceVpcAttributeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyInstanceVpcAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceVpcAttributeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyInstanceVpcAttribute", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyInstanceVpcAttributeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyInstanceVpcAttributeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyInstanceVpcAttributeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyInstanceVpcAttributeResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

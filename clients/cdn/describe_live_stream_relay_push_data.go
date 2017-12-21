@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeLiveStreamRelayPushDataRequest struct {
+	requests.RpcRequest
 	RelayDomain   string `position:"Query" name:"RelayDomain"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -16,29 +17,15 @@ type DescribeLiveStreamRelayPushDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeLiveStreamRelayPushDataRequest) Invoke(client *sdk.Client) (response *DescribeLiveStreamRelayPushDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeLiveStreamRelayPushDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeLiveStreamRelayPushDataRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamRelayPushDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeLiveStreamRelayPushData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeLiveStreamRelayPushDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeLiveStreamRelayPushDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeLiveStreamRelayPushDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeLiveStreamRelayPushDataResponse struct {
+	responses.BaseResponse
 	RequestId                string
 	RelayPushDetailModelList DescribeLiveStreamRelayPushDataRelayPushDetailModelList
 }

@@ -9,33 +9,20 @@ import (
 )
 
 type GetServiceExtensionsRequest struct {
+	requests.RpcRequest
 	ServiceType string `position:"Query" name:"ServiceType"`
 	InstanceId  string `position:"Query" name:"InstanceId"`
 }
 
-func (r GetServiceExtensionsRequest) Invoke(client *sdk.Client) (response *GetServiceExtensionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetServiceExtensionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetServiceExtensionsRequest) Invoke(client *sdk.Client) (resp *GetServiceExtensionsResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "GetServiceExtensions", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetServiceExtensionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetServiceExtensionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetServiceExtensionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetServiceExtensionsResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	Success           bool
 	Code              string

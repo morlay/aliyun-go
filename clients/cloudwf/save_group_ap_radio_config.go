@@ -7,32 +7,19 @@ import (
 )
 
 type SaveGroupApRadioConfigRequest struct {
+	requests.RpcRequest
 	JsonData string `position:"Query" name:"JsonData"`
 }
 
-func (r SaveGroupApRadioConfigRequest) Invoke(client *sdk.Client) (response *SaveGroupApRadioConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SaveGroupApRadioConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SaveGroupApRadioConfigRequest) Invoke(client *sdk.Client) (resp *SaveGroupApRadioConfigResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "SaveGroupApRadioConfig", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SaveGroupApRadioConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SaveGroupApRadioConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SaveGroupApRadioConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SaveGroupApRadioConfigResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Message   string

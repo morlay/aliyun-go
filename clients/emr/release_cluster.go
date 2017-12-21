@@ -7,33 +7,20 @@ import (
 )
 
 type ReleaseClusterRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Id              string `position:"Query" name:"Id"`
 	ForceRelease    string `position:"Query" name:"ForceRelease"`
 }
 
-func (r ReleaseClusterRequest) Invoke(client *sdk.Client) (response *ReleaseClusterResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleaseClusterRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleaseClusterRequest) Invoke(client *sdk.Client) (resp *ReleaseClusterResponse, err error) {
 	req.InitWithApiInfo("Emr", "2016-04-08", "ReleaseCluster", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleaseClusterResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleaseClusterResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleaseClusterResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleaseClusterResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

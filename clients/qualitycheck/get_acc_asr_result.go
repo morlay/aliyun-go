@@ -9,32 +9,19 @@ import (
 )
 
 type GetAccAsrResultRequest struct {
+	requests.RpcRequest
 	JsonStr string `position:"Query" name:"JsonStr"`
 }
 
-func (r GetAccAsrResultRequest) Invoke(client *sdk.Client) (response *GetAccAsrResultResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetAccAsrResultRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetAccAsrResultRequest) Invoke(client *sdk.Client) (resp *GetAccAsrResultResponse, err error) {
 	req.InitWithApiInfo("Qualitycheck", "2016-08-01", "GetAccAsrResult", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetAccAsrResultResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetAccAsrResultResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetAccAsrResultResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetAccAsrResultResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 	Code      string

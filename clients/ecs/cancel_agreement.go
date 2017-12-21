@@ -7,6 +7,7 @@ import (
 )
 
 type CancelAgreementRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type CancelAgreementRequest struct {
 	AgreementType        string `position:"Query" name:"AgreementType"`
 }
 
-func (r CancelAgreementRequest) Invoke(client *sdk.Client) (response *CancelAgreementResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CancelAgreementRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CancelAgreementRequest) Invoke(client *sdk.Client) (resp *CancelAgreementResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "CancelAgreement", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CancelAgreementResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CancelAgreementResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CancelAgreementResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CancelAgreementResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

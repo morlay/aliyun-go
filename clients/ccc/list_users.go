@@ -9,34 +9,21 @@ import (
 )
 
 type ListUsersRequest struct {
+	requests.RpcRequest
 	InstanceId string `position:"Query" name:"InstanceId"`
 	PageSize   int    `position:"Query" name:"PageSize"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 }
 
-func (r ListUsersRequest) Invoke(client *sdk.Client) (response *ListUsersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListUsersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListUsersRequest) Invoke(client *sdk.Client) (resp *ListUsersResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ListUsers", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListUsersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListUsersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListUsersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListUsersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

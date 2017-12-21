@@ -7,6 +7,7 @@ import (
 )
 
 type SetListenerAccessControlStatusRequest struct {
+	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ListenerPort         int    `position:"Query" name:"ListenerPort"`
@@ -18,28 +19,14 @@ type SetListenerAccessControlStatusRequest struct {
 	Tags                 string `position:"Query" name:"Tags"`
 }
 
-func (r SetListenerAccessControlStatusRequest) Invoke(client *sdk.Client) (response *SetListenerAccessControlStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		SetListenerAccessControlStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *SetListenerAccessControlStatusRequest) Invoke(client *sdk.Client) (resp *SetListenerAccessControlStatusResponse, err error) {
 	req.InitWithApiInfo("Slb", "2014-05-15", "SetListenerAccessControlStatus", "slb", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		SetListenerAccessControlStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.SetListenerAccessControlStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &SetListenerAccessControlStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type SetListenerAccessControlStatusResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

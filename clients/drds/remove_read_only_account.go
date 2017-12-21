@@ -7,34 +7,21 @@ import (
 )
 
 type RemoveReadOnlyAccountRequest struct {
+	requests.RpcRequest
 	DbName         string `position:"Query" name:"DbName"`
 	AccountName    string `position:"Query" name:"AccountName"`
 	DrdsInstanceId string `position:"Query" name:"DrdsInstanceId"`
 }
 
-func (r RemoveReadOnlyAccountRequest) Invoke(client *sdk.Client) (response *RemoveReadOnlyAccountResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RemoveReadOnlyAccountRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RemoveReadOnlyAccountRequest) Invoke(client *sdk.Client) (resp *RemoveReadOnlyAccountResponse, err error) {
 	req.InitWithApiInfo("Drds", "2017-10-16", "RemoveReadOnlyAccount", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RemoveReadOnlyAccountResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RemoveReadOnlyAccountResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RemoveReadOnlyAccountResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type RemoveReadOnlyAccountResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Success   bool
 }

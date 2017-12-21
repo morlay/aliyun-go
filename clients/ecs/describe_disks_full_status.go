@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeDisksFullStatusRequest struct {
+	requests.RpcRequest
 	EventIds             *DescribeDisksFullStatusEventIdList `position:"Query" type:"Repeated" name:"EventId"`
 	ResourceOwnerId      int64                               `position:"Query" name:"ResourceOwnerId"`
 	PageNumber           int                                 `position:"Query" name:"PageNumber"`
@@ -24,29 +25,15 @@ type DescribeDisksFullStatusRequest struct {
 	Status               string                              `position:"Query" name:"Status"`
 }
 
-func (r DescribeDisksFullStatusRequest) Invoke(client *sdk.Client) (response *DescribeDisksFullStatusResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeDisksFullStatusRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeDisksFullStatusRequest) Invoke(client *sdk.Client) (resp *DescribeDisksFullStatusResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DescribeDisksFullStatus", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeDisksFullStatusResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeDisksFullStatusResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeDisksFullStatusResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeDisksFullStatusResponse struct {
+	responses.BaseResponse
 	RequestId         string
 	TotalCount        int
 	PageNumber        int

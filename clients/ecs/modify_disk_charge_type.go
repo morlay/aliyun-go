@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyDiskChargeTypeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	AutoPay              string `position:"Query" name:"AutoPay"`
@@ -17,29 +18,15 @@ type ModifyDiskChargeTypeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ModifyDiskChargeTypeRequest) Invoke(client *sdk.Client) (response *ModifyDiskChargeTypeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyDiskChargeTypeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyDiskChargeTypeRequest) Invoke(client *sdk.Client) (resp *ModifyDiskChargeTypeResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyDiskChargeType", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyDiskChargeTypeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyDiskChargeTypeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyDiskChargeTypeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyDiskChargeTypeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   string
 }

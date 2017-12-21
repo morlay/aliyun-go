@@ -9,6 +9,7 @@ import (
 )
 
 type ModifyUserRequest struct {
+	requests.RpcRequest
 	SkillLevels   *ModifyUserSkillLevelList   `position:"Query" type:"Repeated" name:"SkillLevel"`
 	InstanceId    string                      `position:"Query" name:"InstanceId"`
 	Phone         string                      `position:"Query" name:"Phone"`
@@ -19,29 +20,15 @@ type ModifyUserRequest struct {
 	Email         string                      `position:"Query" name:"Email"`
 }
 
-func (r ModifyUserRequest) Invoke(client *sdk.Client) (response *ModifyUserResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyUserRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyUserRequest) Invoke(client *sdk.Client) (resp *ModifyUserResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "ModifyUser", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyUserResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyUserResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyUserResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyUserResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

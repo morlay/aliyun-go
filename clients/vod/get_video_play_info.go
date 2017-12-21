@@ -7,6 +7,7 @@ import (
 )
 
 type GetVideoPlayInfoRequest struct {
+	requests.RpcRequest
 	SignVersion          string `position:"Query" name:"SignVersion"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ClientVersion        string `position:"Query" name:"ClientVersion"`
@@ -18,29 +19,15 @@ type GetVideoPlayInfoRequest struct {
 	ClientTS             int64  `position:"Query" name:"ClientTS"`
 }
 
-func (r GetVideoPlayInfoRequest) Invoke(client *sdk.Client) (response *GetVideoPlayInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetVideoPlayInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetVideoPlayInfoRequest) Invoke(client *sdk.Client) (resp *GetVideoPlayInfoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoPlayInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetVideoPlayInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetVideoPlayInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetVideoPlayInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetVideoPlayInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	PlayInfo  GetVideoPlayInfoPlayInfo
 	VideoInfo GetVideoPlayInfoVideoInfo

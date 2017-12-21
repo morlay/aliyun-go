@@ -7,6 +7,7 @@ import (
 )
 
 type AddCategoryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,29 +16,15 @@ type AddCategoryRequest struct {
 	CateName             string `position:"Query" name:"CateName"`
 }
 
-func (r AddCategoryRequest) Invoke(client *sdk.Client) (response *AddCategoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AddCategoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AddCategoryRequest) Invoke(client *sdk.Client) (resp *AddCategoryResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "AddCategory", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AddCategoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AddCategoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AddCategoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AddCategoryResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Category  AddCategoryCategory
 }

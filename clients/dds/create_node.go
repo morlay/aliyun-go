@@ -7,6 +7,7 @@ import (
 )
 
 type CreateNodeRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	NodeType             string `position:"Query" name:"NodeType"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type CreateNodeRequest struct {
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 }
 
-func (r CreateNodeRequest) Invoke(client *sdk.Client) (response *CreateNodeResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateNodeRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateNodeRequest) Invoke(client *sdk.Client) (resp *CreateNodeResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "CreateNode", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateNodeResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateNodeResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateNodeResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateNodeResponse struct {
+	responses.BaseResponse
 	RequestId string
 	OrderId   string
 }

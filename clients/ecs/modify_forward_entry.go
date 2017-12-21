@@ -7,6 +7,7 @@ import (
 )
 
 type ModifyForwardEntryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	IpProtocol           string `position:"Query" name:"IpProtocol"`
@@ -20,28 +21,14 @@ type ModifyForwardEntryRequest struct {
 	ExternalPort         string `position:"Query" name:"ExternalPort"`
 }
 
-func (r ModifyForwardEntryRequest) Invoke(client *sdk.Client) (response *ModifyForwardEntryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ModifyForwardEntryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ModifyForwardEntryRequest) Invoke(client *sdk.Client) (resp *ModifyForwardEntryResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ModifyForwardEntry", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ModifyForwardEntryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ModifyForwardEntryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ModifyForwardEntryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ModifyForwardEntryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

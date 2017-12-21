@@ -7,6 +7,7 @@ import (
 )
 
 type ReleasePublicIpAddressRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	PublicIpAddress      string `position:"Query" name:"PublicIpAddress"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
@@ -15,28 +16,14 @@ type ReleasePublicIpAddressRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r ReleasePublicIpAddressRequest) Invoke(client *sdk.Client) (response *ReleasePublicIpAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ReleasePublicIpAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ReleasePublicIpAddressRequest) Invoke(client *sdk.Client) (resp *ReleasePublicIpAddressResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "ReleasePublicIpAddress", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ReleasePublicIpAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ReleasePublicIpAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ReleasePublicIpAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ReleasePublicIpAddressResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

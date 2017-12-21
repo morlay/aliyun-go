@@ -7,34 +7,21 @@ import (
 )
 
 type DescribeAlertConfigRequest struct {
+	requests.RpcRequest
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ScalingGroupId       string `position:"Query" name:"ScalingGroupId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeAlertConfigRequest) Invoke(client *sdk.Client) (response *DescribeAlertConfigResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeAlertConfigRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeAlertConfigRequest) Invoke(client *sdk.Client) (resp *DescribeAlertConfigResponse, err error) {
 	req.InitWithApiInfo("Ess", "2014-08-28", "DescribeAlertConfig", "ess", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeAlertConfigResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeAlertConfigResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeAlertConfigResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeAlertConfigResponse struct {
+	responses.BaseResponse
 	SuccessConfig int
 	FailConfig    int
 	RejectConfig  int

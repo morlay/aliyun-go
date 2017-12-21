@@ -7,33 +7,20 @@ import (
 )
 
 type UserDataDeleteRequest struct {
+	requests.RpcRequest
 	Iid int64 `position:"Query" name:"Iid"`
 	Bid int64 `position:"Query" name:"Bid"`
 }
 
-func (r UserDataDeleteRequest) Invoke(client *sdk.Client) (response *UserDataDeleteResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		UserDataDeleteRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *UserDataDeleteRequest) Invoke(client *sdk.Client) (resp *UserDataDeleteResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "UserDataDelete", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		UserDataDeleteResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.UserDataDeleteResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &UserDataDeleteResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type UserDataDeleteResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCommonBandwidthPackagesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	BandwidthPackageId   string `position:"Query" name:"BandwidthPackageId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -19,29 +20,15 @@ type DescribeCommonBandwidthPackagesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribeCommonBandwidthPackagesRequest) Invoke(client *sdk.Client) (response *DescribeCommonBandwidthPackagesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCommonBandwidthPackagesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCommonBandwidthPackagesRequest) Invoke(client *sdk.Client) (resp *DescribeCommonBandwidthPackagesResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribeCommonBandwidthPackages", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCommonBandwidthPackagesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCommonBandwidthPackagesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCommonBandwidthPackagesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCommonBandwidthPackagesResponse struct {
+	responses.BaseResponse
 	RequestId               string
 	TotalCount              int
 	PageNumber              int

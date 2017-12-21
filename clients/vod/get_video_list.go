@@ -9,6 +9,7 @@ import (
 )
 
 type GetVideoListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int    `position:"Query" name:"CateId"`
@@ -21,29 +22,15 @@ type GetVideoListRequest struct {
 	Status               string `position:"Query" name:"Status"`
 }
 
-func (r GetVideoListRequest) Invoke(client *sdk.Client) (response *GetVideoListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetVideoListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetVideoListRequest) Invoke(client *sdk.Client) (resp *GetVideoListResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetVideoListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetVideoListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetVideoListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetVideoListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Total     int
 	VideoList GetVideoListVideoList

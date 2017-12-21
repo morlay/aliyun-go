@@ -7,6 +7,7 @@ import (
 )
 
 type CreateAccessRuleRequest struct {
+	requests.RpcRequest
 	RWAccessType    string `position:"Query" name:"RWAccessType"`
 	SourceCidrIp    string `position:"Query" name:"SourceCidrIp"`
 	UserAccessType  string `position:"Query" name:"UserAccessType"`
@@ -14,29 +15,15 @@ type CreateAccessRuleRequest struct {
 	AccessGroupName string `position:"Query" name:"AccessGroupName"`
 }
 
-func (r CreateAccessRuleRequest) Invoke(client *sdk.Client) (response *CreateAccessRuleResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		CreateAccessRuleRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *CreateAccessRuleRequest) Invoke(client *sdk.Client) (resp *CreateAccessRuleResponse, err error) {
 	req.InitWithApiInfo("NAS", "2017-06-26", "CreateAccessRule", "nas", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		CreateAccessRuleResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.CreateAccessRuleResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &CreateAccessRuleResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type CreateAccessRuleResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	AccessRuleId string
 }

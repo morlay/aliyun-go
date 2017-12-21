@@ -9,6 +9,7 @@ import (
 )
 
 type RunInstancesRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId             int64                             `position:"Query" name:"ResourceOwnerId"`
 	SecurityEnhancementStrategy string                            `position:"Query" name:"SecurityEnhancementStrategy"`
 	KeyPairName                 string                            `position:"Query" name:"KeyPairName"`
@@ -44,25 +45,10 @@ type RunInstancesRequest struct {
 	SystemDiskDescription       string                            `position:"Query" name:"SystemDiskDescription"`
 }
 
-func (r RunInstancesRequest) Invoke(client *sdk.Client) (response *RunInstancesResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		RunInstancesRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *RunInstancesRequest) Invoke(client *sdk.Client) (resp *RunInstancesResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "RunInstances", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		RunInstancesResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.RunInstancesResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &RunInstancesResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -90,6 +76,7 @@ type RunInstancesDataDisk struct {
 }
 
 type RunInstancesResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	InstanceIdSets RunInstancesInstanceIdSetList
 }

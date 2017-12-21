@@ -9,6 +9,7 @@ import (
 )
 
 type AssignUsersRequest struct {
+	requests.RpcRequest
 	UserRamIds    *AssignUsersUserRamIdList    `position:"Query" type:"Repeated" name:"UserRamId"`
 	SkillLevels   *AssignUsersSkillLevelList   `position:"Query" type:"Repeated" name:"SkillLevel"`
 	InstanceId    string                       `position:"Query" name:"InstanceId"`
@@ -16,29 +17,15 @@ type AssignUsersRequest struct {
 	SkillGroupIds *AssignUsersSkillGroupIdList `position:"Query" type:"Repeated" name:"SkillGroupId"`
 }
 
-func (r AssignUsersRequest) Invoke(client *sdk.Client) (response *AssignUsersResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		AssignUsersRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *AssignUsersRequest) Invoke(client *sdk.Client) (resp *AssignUsersResponse, err error) {
 	req.InitWithApiInfo("CCC", "2017-07-05", "AssignUsers", "ccc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		AssignUsersResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.AssignUsersResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &AssignUsersResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type AssignUsersResponse struct {
+	responses.BaseResponse
 	RequestId      string
 	Success        bool
 	Code           string

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeCdnMonitorDataRequest struct {
+	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	EndTime       string `position:"Query" name:"EndTime"`
@@ -17,29 +18,15 @@ type DescribeCdnMonitorDataRequest struct {
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DescribeCdnMonitorDataRequest) Invoke(client *sdk.Client) (response *DescribeCdnMonitorDataResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCdnMonitorDataRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCdnMonitorDataRequest) Invoke(client *sdk.Client) (resp *DescribeCdnMonitorDataResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "DescribeCdnMonitorData", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCdnMonitorDataResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCdnMonitorDataResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCdnMonitorDataResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCdnMonitorDataResponse struct {
+	responses.BaseResponse
 	RequestId       string
 	DomainName      string
 	MonitorInterval int64

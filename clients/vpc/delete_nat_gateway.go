@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteNatGatewayRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -15,28 +16,14 @@ type DeleteNatGatewayRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteNatGatewayRequest) Invoke(client *sdk.Client) (response *DeleteNatGatewayResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteNatGatewayRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteNatGatewayRequest) Invoke(client *sdk.Client) (resp *DeleteNatGatewayResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DeleteNatGateway", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteNatGatewayResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteNatGatewayResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteNatGatewayResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteNatGatewayResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

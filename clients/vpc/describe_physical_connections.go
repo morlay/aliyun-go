@@ -9,6 +9,7 @@ import (
 )
 
 type DescribePhysicalConnectionsRequest struct {
+	requests.RpcRequest
 	Filters              *DescribePhysicalConnectionsFilterList `position:"Query" type:"Repeated" name:"Filter"`
 	ResourceOwnerId      int64                                  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string                                 `position:"Query" name:"ResourceOwnerAccount"`
@@ -20,25 +21,10 @@ type DescribePhysicalConnectionsRequest struct {
 	PageNumber           int                                    `position:"Query" name:"PageNumber"`
 }
 
-func (r DescribePhysicalConnectionsRequest) Invoke(client *sdk.Client) (response *DescribePhysicalConnectionsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribePhysicalConnectionsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribePhysicalConnectionsRequest) Invoke(client *sdk.Client) (resp *DescribePhysicalConnectionsResponse, err error) {
 	req.InitWithApiInfo("Vpc", "2016-04-28", "DescribePhysicalConnections", "vpc", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribePhysicalConnectionsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribePhysicalConnectionsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribePhysicalConnectionsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
@@ -48,6 +34,7 @@ type DescribePhysicalConnectionsFilter struct {
 }
 
 type DescribePhysicalConnectionsResponse struct {
+	responses.BaseResponse
 	RequestId             string
 	PageNumber            int
 	PageSize              int

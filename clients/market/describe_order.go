@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeOrderRequest struct {
+	requests.RpcRequest
 	OrderId string `position:"Query" name:"OrderId"`
 }
 
-func (r DescribeOrderRequest) Invoke(client *sdk.Client) (response *DescribeOrderResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeOrderRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeOrderRequest) Invoke(client *sdk.Client) (resp *DescribeOrderResponse, err error) {
 	req.InitWithApiInfo("Market", "2015-11-01", "DescribeOrder", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeOrderResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeOrderResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeOrderResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeOrderResponse struct {
+	responses.BaseResponse
 	OrderId             int64
 	AliUid              int64
 	SupplierCompanyName string

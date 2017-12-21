@@ -7,35 +7,22 @@ import (
 )
 
 type ShopGroupCreateRequest struct {
+	requests.RpcRequest
 	ShopIds     string `position:"Query" name:"ShopIds"`
 	Name        string `position:"Query" name:"Name"`
 	Description string `position:"Query" name:"Description"`
 	Bid         int64  `position:"Query" name:"Bid"`
 }
 
-func (r ShopGroupCreateRequest) Invoke(client *sdk.Client) (response *ShopGroupCreateResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ShopGroupCreateRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ShopGroupCreateRequest) Invoke(client *sdk.Client) (resp *ShopGroupCreateResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ShopGroupCreate", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ShopGroupCreateResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ShopGroupCreateResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ShopGroupCreateResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ShopGroupCreateResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

@@ -7,6 +7,7 @@ import (
 )
 
 type MigrateDomainToHttpsDeliveryRequest struct {
+	requests.RpcRequest
 	PrivateKey        string `position:"Query" name:"PrivateKey"`
 	ServerCertificate string `position:"Query" name:"ServerCertificate"`
 	SecurityToken     string `position:"Query" name:"SecurityToken"`
@@ -15,28 +16,14 @@ type MigrateDomainToHttpsDeliveryRequest struct {
 	OwnerId           int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r MigrateDomainToHttpsDeliveryRequest) Invoke(client *sdk.Client) (response *MigrateDomainToHttpsDeliveryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		MigrateDomainToHttpsDeliveryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *MigrateDomainToHttpsDeliveryRequest) Invoke(client *sdk.Client) (resp *MigrateDomainToHttpsDeliveryResponse, err error) {
 	req.InitWithApiInfo("Cdn", "2014-11-11", "MigrateDomainToHttpsDelivery", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		MigrateDomainToHttpsDeliveryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.MigrateDomainToHttpsDeliveryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &MigrateDomainToHttpsDeliveryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type MigrateDomainToHttpsDeliveryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

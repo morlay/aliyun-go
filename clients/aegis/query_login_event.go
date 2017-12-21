@@ -9,6 +9,7 @@ import (
 )
 
 type QueryLoginEventRequest struct {
+	requests.RpcRequest
 	EndTime     string `position:"Query" name:"EndTime"`
 	CurrentPage int    `position:"Query" name:"CurrentPage"`
 	StartTime   string `position:"Query" name:"StartTime"`
@@ -16,29 +17,15 @@ type QueryLoginEventRequest struct {
 	Status      int    `position:"Query" name:"Status"`
 }
 
-func (r QueryLoginEventRequest) Invoke(client *sdk.Client) (response *QueryLoginEventResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryLoginEventRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryLoginEventRequest) Invoke(client *sdk.Client) (resp *QueryLoginEventResponse, err error) {
 	req.InitWithApiInfo("aegis", "2016-11-11", "QueryLoginEvent", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryLoginEventResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryLoginEventResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryLoginEventResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryLoginEventResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Code      string
 	Success   bool

@@ -9,6 +9,7 @@ import (
 )
 
 type QueryAsrJobListRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	JobIds               string `position:"Query" name:"JobIds"`
@@ -16,29 +17,15 @@ type QueryAsrJobListRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r QueryAsrJobListRequest) Invoke(client *sdk.Client) (response *QueryAsrJobListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		QueryAsrJobListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *QueryAsrJobListRequest) Invoke(client *sdk.Client) (resp *QueryAsrJobListResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAsrJobList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		QueryAsrJobListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.QueryAsrJobListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &QueryAsrJobListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type QueryAsrJobListResponse struct {
+	responses.BaseResponse
 	RequestId   string
 	JobList     QueryAsrJobListJobList
 	NonExistIds QueryAsrJobListNonExistIdList

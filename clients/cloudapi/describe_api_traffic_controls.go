@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeApiTrafficControlsRequest struct {
+	requests.RpcRequest
 	StageName  string `position:"Query" name:"StageName"`
 	GroupId    string `position:"Query" name:"GroupId"`
 	ApiIds     string `position:"Query" name:"ApiIds"`
@@ -16,29 +17,15 @@ type DescribeApiTrafficControlsRequest struct {
 	PageSize   int    `position:"Query" name:"PageSize"`
 }
 
-func (r DescribeApiTrafficControlsRequest) Invoke(client *sdk.Client) (response *DescribeApiTrafficControlsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeApiTrafficControlsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeApiTrafficControlsRequest) Invoke(client *sdk.Client) (resp *DescribeApiTrafficControlsResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApiTrafficControls", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiTrafficControlsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiTrafficControlsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiTrafficControlsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiTrafficControlsResponse struct {
+	responses.BaseResponse
 	RequestId          string
 	TotalCount         int
 	PageSize           int

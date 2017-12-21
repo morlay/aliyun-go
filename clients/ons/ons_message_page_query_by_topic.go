@@ -9,6 +9,7 @@ import (
 )
 
 type OnsMessagePageQueryByTopicRequest struct {
+	requests.RpcRequest
 	PreventCache int64  `position:"Query" name:"PreventCache"`
 	OnsRegionId  string `position:"Query" name:"OnsRegionId"`
 	OnsPlatform  string `position:"Query" name:"OnsPlatform"`
@@ -20,29 +21,15 @@ type OnsMessagePageQueryByTopicRequest struct {
 	TaskId       string `position:"Query" name:"TaskId"`
 }
 
-func (r OnsMessagePageQueryByTopicRequest) Invoke(client *sdk.Client) (response *OnsMessagePageQueryByTopicResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		OnsMessagePageQueryByTopicRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *OnsMessagePageQueryByTopicRequest) Invoke(client *sdk.Client) (resp *OnsMessagePageQueryByTopicResponse, err error) {
 	req.InitWithApiInfo("Ons", "2017-09-18", "OnsMessagePageQueryByTopic", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		OnsMessagePageQueryByTopicResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.OnsMessagePageQueryByTopicResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &OnsMessagePageQueryByTopicResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type OnsMessagePageQueryByTopicResponse struct {
+	responses.BaseResponse
 	RequestId  string
 	HelpUrl    string
 	MsgFoundDo OnsMessagePageQueryByTopicMsgFoundDo

@@ -9,34 +9,21 @@ import (
 )
 
 type GetRegisterHistoryListRequest struct {
+	requests.RpcRequest
 	Sysfrom     string `position:"Query" name:"Sysfrom"`
 	Operator    string `position:"Query" name:"Operator"`
 	Clientappid string `position:"Query" name:"Clientappid"`
 }
 
-func (r GetRegisterHistoryListRequest) Invoke(client *sdk.Client) (response *GetRegisterHistoryListResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetRegisterHistoryListRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetRegisterHistoryListRequest) Invoke(client *sdk.Client) (resp *GetRegisterHistoryListResponse, err error) {
 	req.InitWithApiInfo("ITaaS", "2017-05-05", "GetRegisterHistoryList", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetRegisterHistoryListResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetRegisterHistoryListResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetRegisterHistoryListResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetRegisterHistoryListResponse struct {
+	responses.BaseResponse
 	RequestId string
 	ErrorCode int
 	ErrorMsg  string

@@ -9,6 +9,7 @@ import (
 )
 
 type DescribeShardingNetworkAddressRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	SecurityToken        string `position:"Query" name:"SecurityToken"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
@@ -18,29 +19,15 @@ type DescribeShardingNetworkAddressRequest struct {
 	NodeId               string `position:"Query" name:"NodeId"`
 }
 
-func (r DescribeShardingNetworkAddressRequest) Invoke(client *sdk.Client) (response *DescribeShardingNetworkAddressResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeShardingNetworkAddressRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeShardingNetworkAddressRequest) Invoke(client *sdk.Client) (resp *DescribeShardingNetworkAddressResponse, err error) {
 	req.InitWithApiInfo("Dds", "2015-12-01", "DescribeShardingNetworkAddress", "dds", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeShardingNetworkAddressResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeShardingNetworkAddressResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeShardingNetworkAddressResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeShardingNetworkAddressResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	NetworkAddresses DescribeShardingNetworkAddressNetworkAddressList
 }

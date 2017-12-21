@@ -9,35 +9,22 @@ import (
 )
 
 type DescribeApiHistoryRequest struct {
+	requests.RpcRequest
 	GroupId        string `position:"Query" name:"GroupId"`
 	ApiId          string `position:"Query" name:"ApiId"`
 	StageName      string `position:"Query" name:"StageName"`
 	HistoryVersion string `position:"Query" name:"HistoryVersion"`
 }
 
-func (r DescribeApiHistoryRequest) Invoke(client *sdk.Client) (response *DescribeApiHistoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeApiHistoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeApiHistoryRequest) Invoke(client *sdk.Client) (resp *DescribeApiHistoryResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeApiHistory", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeApiHistoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeApiHistoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeApiHistoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeApiHistoryResponse struct {
+	responses.BaseResponse
 	RequestId              string
 	RegionId               string
 	GroupId                string

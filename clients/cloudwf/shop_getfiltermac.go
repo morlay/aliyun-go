@@ -7,32 +7,19 @@ import (
 )
 
 type ShopGetfiltermacRequest struct {
+	requests.RpcRequest
 	Sid int64 `position:"Query" name:"Sid"`
 }
 
-func (r ShopGetfiltermacRequest) Invoke(client *sdk.Client) (response *ShopGetfiltermacResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ShopGetfiltermacRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ShopGetfiltermacRequest) Invoke(client *sdk.Client) (resp *ShopGetfiltermacResponse, err error) {
 	req.InitWithApiInfo("cloudwf", "2017-03-28", "ShopGetfiltermac", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ShopGetfiltermacResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ShopGetfiltermacResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ShopGetfiltermacResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ShopGetfiltermacResponse struct {
+	responses.BaseResponse
 	Success   bool
 	Data      string
 	ErrorCode int

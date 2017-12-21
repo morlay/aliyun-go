@@ -7,33 +7,20 @@ import (
 )
 
 type GetLibraryRequest struct {
+	requests.RpcRequest
 	LibraryId string `position:"Query" name:"LibraryId"`
 	StoreName string `position:"Query" name:"StoreName"`
 }
 
-func (r GetLibraryRequest) Invoke(client *sdk.Client) (response *GetLibraryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetLibraryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetLibraryRequest) Invoke(client *sdk.Client) (resp *GetLibraryResponse, err error) {
 	req.InitWithApiInfo("CloudPhoto", "2017-07-11", "GetLibrary", "cloudphoto", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetLibraryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetLibraryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetLibraryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetLibraryResponse struct {
+	responses.BaseResponse
 	Code      string
 	Message   string
 	RequestId string

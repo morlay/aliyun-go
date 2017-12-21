@@ -9,6 +9,7 @@ import (
 )
 
 type ListPushRecordsRequest struct {
+	requests.RpcRequest
 	PageSize  int    `position:"Query" name:"PageSize"`
 	EndTime   string `position:"Query" name:"EndTime"`
 	AppKey    int64  `position:"Query" name:"AppKey"`
@@ -17,29 +18,15 @@ type ListPushRecordsRequest struct {
 	PushType  string `position:"Query" name:"PushType"`
 }
 
-func (r ListPushRecordsRequest) Invoke(client *sdk.Client) (response *ListPushRecordsResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		ListPushRecordsRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *ListPushRecordsRequest) Invoke(client *sdk.Client) (resp *ListPushRecordsResponse, err error) {
 	req.InitWithApiInfo("Push", "2016-08-01", "ListPushRecords", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		ListPushRecordsResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.ListPushRecordsResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &ListPushRecordsResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type ListPushRecordsResponse struct {
+	responses.BaseResponse
 	RequestId        string
 	Total            int
 	Page             int

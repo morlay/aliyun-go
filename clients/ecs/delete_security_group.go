@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteSecurityGroupRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
@@ -14,28 +15,14 @@ type DeleteSecurityGroupRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteSecurityGroupRequest) Invoke(client *sdk.Client) (response *DeleteSecurityGroupResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteSecurityGroupRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteSecurityGroupRequest) Invoke(client *sdk.Client) (resp *DeleteSecurityGroupResponse, err error) {
 	req.InitWithApiInfo("Ecs", "2014-05-26", "DeleteSecurityGroup", "ecs", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteSecurityGroupResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteSecurityGroupResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteSecurityGroupResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteSecurityGroupResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

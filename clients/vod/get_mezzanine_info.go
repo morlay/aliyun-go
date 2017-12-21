@@ -7,6 +7,7 @@ import (
 )
 
 type GetMezzanineInfoRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VideoId              string `position:"Query" name:"VideoId"`
@@ -14,29 +15,15 @@ type GetMezzanineInfoRequest struct {
 	AuthTimeout          int64  `position:"Query" name:"AuthTimeout"`
 }
 
-func (r GetMezzanineInfoRequest) Invoke(client *sdk.Client) (response *GetMezzanineInfoResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		GetMezzanineInfoRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *GetMezzanineInfoRequest) Invoke(client *sdk.Client) (resp *GetMezzanineInfoResponse, err error) {
 	req.InitWithApiInfo("vod", "2017-03-21", "GetMezzanineInfo", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		GetMezzanineInfoResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.GetMezzanineInfoResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &GetMezzanineInfoResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type GetMezzanineInfoResponse struct {
+	responses.BaseResponse
 	RequestId string
 	Mezzanine GetMezzanineInfoMezzanine
 }

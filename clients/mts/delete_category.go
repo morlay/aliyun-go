@@ -7,6 +7,7 @@ import (
 )
 
 type DeleteCategoryRequest struct {
+	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int64  `position:"Query" name:"CateId"`
@@ -14,28 +15,14 @@ type DeleteCategoryRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 
-func (r DeleteCategoryRequest) Invoke(client *sdk.Client) (response *DeleteCategoryResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DeleteCategoryRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DeleteCategoryRequest) Invoke(client *sdk.Client) (resp *DeleteCategoryResponse, err error) {
 	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteCategory", "", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DeleteCategoryResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DeleteCategoryResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DeleteCategoryResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DeleteCategoryResponse struct {
+	responses.BaseResponse
 	RequestId string
 }

@@ -9,32 +9,19 @@ import (
 )
 
 type DescribeCatalogRequest struct {
+	requests.RpcRequest
 	CatalogId string `position:"Query" name:"CatalogId"`
 }
 
-func (r DescribeCatalogRequest) Invoke(client *sdk.Client) (response *DescribeCatalogResponse, err error) {
-	req := struct {
-		*requests.RpcRequest
-		DescribeCatalogRequest
-	}{
-		&requests.RpcRequest{},
-		r,
-	}
+func (req *DescribeCatalogRequest) Invoke(client *sdk.Client) (resp *DescribeCatalogResponse, err error) {
 	req.InitWithApiInfo("CloudAPI", "2016-07-14", "DescribeCatalog", "apigateway", "")
-
-	resp := struct {
-		*responses.BaseResponse
-		DescribeCatalogResponse
-	}{
-		BaseResponse: &responses.BaseResponse{},
-	}
-	response = &resp.DescribeCatalogResponse
-
-	err = client.DoAction(&req, &resp)
+	resp = &DescribeCatalogResponse{}
+	err = client.DoAction(req, resp)
 	return
 }
 
 type DescribeCatalogResponse struct {
+	responses.BaseResponse
 	RequestId    string
 	CatalogId    string
 	CatalogName  string
