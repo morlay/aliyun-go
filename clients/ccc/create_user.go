@@ -1,0 +1,96 @@
+package ccc
+
+import (
+	"encoding/json"
+
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+)
+
+type CreateUserRequest struct {
+	SkillLevels   *CreateUserSkillLevelList   `position:"Query" type:"Repeated" name:"SkillLevel"`
+	InstanceId    string                      `position:"Query" name:"InstanceId"`
+	LoginName     string                      `position:"Query" name:"LoginName"`
+	Phone         string                      `position:"Query" name:"Phone"`
+	RoleIds       *CreateUserRoleIdList       `position:"Query" type:"Repeated" name:"RoleId"`
+	DisplayName   string                      `position:"Query" name:"DisplayName"`
+	SkillGroupIds *CreateUserSkillGroupIdList `position:"Query" type:"Repeated" name:"SkillGroupId"`
+	Email         string                      `position:"Query" name:"Email"`
+}
+
+func (r CreateUserRequest) Invoke(client *sdk.Client) (response *CreateUserResponse, err error) {
+	req := struct {
+		*requests.RpcRequest
+		CreateUserRequest
+	}{
+		&requests.RpcRequest{},
+		r,
+	}
+	req.InitWithApiInfo("CCC", "2017-07-05", "CreateUser", "ccc", "")
+
+	resp := struct {
+		*responses.BaseResponse
+		CreateUserResponse
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+	response = &resp.CreateUserResponse
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+
+type CreateUserResponse struct {
+	RequestId      string
+	Success        bool
+	Code           string
+	Message        string
+	HttpStatusCode int
+	UserId         string
+}
+
+type CreateUserSkillLevelList []int
+
+func (list *CreateUserSkillLevelList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]int)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type CreateUserRoleIdList []string
+
+func (list *CreateUserRoleIdList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type CreateUserSkillGroupIdList []string
+
+func (list *CreateUserSkillGroupIdList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}

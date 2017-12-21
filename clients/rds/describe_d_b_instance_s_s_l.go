@@ -1,0 +1,45 @@
+package rds
+
+import (
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+)
+
+type DescribeDBInstanceSSLRequest struct {
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
+}
+
+func (r DescribeDBInstanceSSLRequest) Invoke(client *sdk.Client) (response *DescribeDBInstanceSSLResponse, err error) {
+	req := struct {
+		*requests.RpcRequest
+		DescribeDBInstanceSSLRequest
+	}{
+		&requests.RpcRequest{},
+		r,
+	}
+	req.InitWithApiInfo("Rds", "2014-08-15", "DescribeDBInstanceSSL", "rds", "")
+
+	resp := struct {
+		*responses.BaseResponse
+		DescribeDBInstanceSSLResponse
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+	response = &resp.DescribeDBInstanceSSLResponse
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+
+type DescribeDBInstanceSSLResponse struct {
+	RequestId           string
+	ConnectionString    string
+	SSLExpireTime       string
+	RequireUpdate       string
+	RequireUpdateReason string
+}

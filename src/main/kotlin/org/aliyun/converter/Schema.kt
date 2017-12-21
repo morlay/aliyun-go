@@ -6,12 +6,40 @@ import converter.Inflection
 
 class Schema(val type: String) {
     companion object {
-        var fieldWithNumber = Regex("[0-9]")
+        var positionMethod = Regex("put([A-Za-z]+)Parameter")
+
+        fun fromTypeDeclForParameter(typeDeclaration: TypeDeclaration<*>, imports: Map<String, List<String>>): Schema {
+            val schema = Schema("object").named(typeDeclaration.name.asString())
+            typeDeclaration.fields.forEach { field ->
+                val name = toUpperCamelCase(field.asFieldDeclaration().getVariable(0).nameAsString)
+                schema.propOf(Schema.fromType(field.commonType, name, imports))
+            }
+            typeDeclaration.methods.forEach { method ->
+                if (method.name.asString().startsWith("set")) {
+                    val body = method.body.toString()
+                    if (positionMethod.containsMatchIn(body)) {
+                        val fieldName = toUpperCamelCase(method.name.asString().replace(Regex("^set"), ""))
+                        if (schema.props != null) {
+                            if (schema.props!![fieldName] != null) {
+                                schema.props!![fieldName]!!.positionIn(positionMethod.find(body)!!.groupValues[1])
+                            }
+                        }
+                    }
+                }
+            }
+            typeDeclaration.members.forEach { member ->
+                if (member.isTypeDeclaration) {
+                    schema.def(Schema.fromTypeDecl(member.asTypeDeclaration(), imports))
+                }
+            }
+            return schema
+        }
+
 
         fun fromTypeDecl(typeDeclaration: TypeDeclaration<*>, imports: Map<String, List<String>>): Schema {
             val schema = Schema("object").named(typeDeclaration.name.asString())
             typeDeclaration.fields.forEach { field ->
-                val name = field.asFieldDeclaration().getVariable(0).nameAsString
+                val name = toUpperCamelCase(field.asFieldDeclaration().getVariable(0).nameAsString)
                 schema.propOf(Schema.fromType(field.commonType, name, imports))
             }
             typeDeclaration.members.forEach { member ->
@@ -19,7 +47,7 @@ class Schema(val type: String) {
                     schema.def(Schema.fromTypeDecl(member.asTypeDeclaration(), imports))
                 }
             }
-            return patchSchema(schema)
+            return schema
         }
 
         fun getRefName(importPaths: List<String>): String {
@@ -30,7 +58,7 @@ class Schema(val type: String) {
         fun fromType(type: Type, name: String, imports: Map<String, List<String>>): Schema {
             if (type.childNodes.size == 2) {
                 val generalTypeName = type.childNodes.get(0).toString()
-                val itemName = type.childNodes.get(1).toString()
+                val itemName = toUpperCamelCase(type.childNodes.get(1).toString())
                 val itemSchema = Schema(itemName).named(itemName)
 
                 if (imports[itemName] != null) {
@@ -67,70 +95,18 @@ class Schema(val type: String) {
                 }
             }
         }
-
-        fun patchSchema(s: Schema): Schema {
-            if (!s.isObject()) {
-                return s
-            }
-
-            if (s.props == null) {
-                return s
-            }
-
-            val finalSchema = Schema("object").named(s.name)
-            finalSchema.props = mutableMapOf()
-
-            s.definitions.forEach { d ->
-                finalSchema.definitions[d.key] = d.value
-            }
-
-            s.props!!.forEach { p ->
-                val name = p.key
-                val currentSchema = p.value.clone()
-                if (fieldWithNumber.matches(name)) {
-                    val args = name.split(fieldWithNumber)
-                    if (finalSchema.props!!.get(args[0]) == null) {
-                        val schema = Schema("array")
-                        if (args[1] != "") {
-                            schema.itemOf(Schema("object"))
-                        }
-                        finalSchema.propOf(schema.named(args[0]))
-                    }
-                    if (args[1] != "") {
-                        finalSchema.props!![args[0]]!!.items!!.propOf(currentSchema.named(args[1]))
-                    } else {
-                        finalSchema.props!![args[0]]!!.itemOf(currentSchema)
-                    }
-                } else {
-                    finalSchema.propOf(p.value)
-                }
-            }
-
-            return finalSchema
-        }
     }
 
     var name = ""
     var ref = ""
+    var position = ""
     var items: Schema? = null
     var props: MutableMap<String, Schema>? = null
     val definitions = mutableMapOf<String, Schema>()
 
-    fun clone(): Schema {
-        val s = Schema(this.type)
-        s.named(this.name)
-        if (this.isArray()) {
-            s.itemOf(this.items!!)
-        }
-        if (this.isObject()) {
-            this.props!!.forEach { p ->
-                s.propOf(p.value)
-            }
-        }
-        this.definitions.forEach { d ->
-            s.definitions[d.key] = d.value
-        }
-        return s
+    fun positionIn(position: String): Schema {
+        this.position = position
+        return this
     }
 
     fun getAllDefinitions(): Map<String, Schema> {
@@ -177,7 +153,7 @@ class Schema(val type: String) {
         return this
     }
 
-    fun goType(prefix: String, sideCodes: MutableMap<String, String>): String {
+    fun goType(prefix: String, asParameter: Boolean, sideCodes: MutableMap<String, String>): String {
         if (this.ref != "") {
             return this.ref
         }
@@ -187,8 +163,26 @@ class Schema(val type: String) {
 """
             if (this.props != null) {
                 this.props!!.forEach { prop ->
-                    t += """${toUpperCamelCase(prop.key)} ${prop.value.goType(prefix, sideCodes)}
-            """
+                    t += "${toUpperCamelCase(prop.key)} "
+                    if (asParameter && prop.value.isArray()) {
+                        t += "*"
+                    }
+                    t += prop.value.goType(prefix, asParameter, sideCodes)
+                    if (asParameter) {
+                        t += " `"
+                        if (prop.value.position != "") {
+                            t += "position:\"${prop.value.position}\" "
+                        }
+                        name = prop.value.name
+                        if (prop.value.isArray()) {
+                            t += "type:\"Repeated\" "
+                            name = Inflection.singularize(name)
+                        }
+                        name = name.replace(Regex("([0-9]+)"), ".$1.").trimEnd { s -> s.toString() == "." }
+                        t += "name:\"${name}\""
+                        t += "`"
+                    }
+                    t += "\n"
                 }
             }
             t += "}"
@@ -198,14 +192,13 @@ class Schema(val type: String) {
         if (this.isArray()) {
             when (this.type) {
                 "List" -> {
-
                     var itemName = this.items!!.name
                     if (itemName == "" || listOf("String", "Long", "Integer", "Float", "Boolean", "boolean").contains(itemName)) {
                         itemName = Inflection.singularize(this.name)
                     }
 
                     val listTypeName = prefix + toUpperCamelCase(itemName) + "List"
-                    val subType = Schema("array").named(itemName).itemOf(this.items!!).goType(prefix, sideCodes)
+                    val subType = Schema("array").named(itemName).itemOf(this.items!!).goType(prefix, asParameter, sideCodes)
 
                     sideCodes.set(listTypeName, """
                     type ${listTypeName} ${subType}
@@ -227,7 +220,7 @@ class Schema(val type: String) {
                     return listTypeName
                 }
                 "array" -> {
-                    return "[]${this.items!!.goType(prefix, sideCodes)}"
+                    return "[]${this.items!!.goType(prefix, asParameter, sideCodes)}"
                 }
                 else -> {
                     println("unsupported type ${this.type} ${this.items!!.type}")
@@ -249,11 +242,11 @@ class Schema(val type: String) {
             "Integer" -> {
                 return "int"
             }
-            "boolean" -> {
-                return "core.Bool"
-            }
-            "Boolean" -> {
-                return "core.Bool"
+            "boolean", "Boolean" -> {
+                if (asParameter) {
+                    return "string"
+                }
+                return "bool"
             }
             else -> {
                 return prefix + this.type

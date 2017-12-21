@@ -1,0 +1,67 @@
+package dds
+
+import (
+	"encoding/json"
+
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+)
+
+type SampleRequest struct {
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	SecurityToken        string `position:"Query" name:"SecurityToken"`
+	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
+}
+
+func (r SampleRequest) Invoke(client *sdk.Client) (response *SampleResponse, err error) {
+	req := struct {
+		*requests.RpcRequest
+		SampleRequest
+	}{
+		&requests.RpcRequest{},
+		r,
+	}
+	req.InitWithApiInfo("Dds", "2015-12-01", "Sample", "dds", "")
+
+	resp := struct {
+		*responses.BaseResponse
+		SampleResponse
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+	response = &resp.SampleResponse
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+
+type SampleResponse struct {
+	RequestId        string
+	SecurityIps      string
+	SecurityIpGroups SampleSecurityIpGroupList
+}
+
+type SampleSecurityIpGroup struct {
+	SecurityIpGroupName      string
+	SecurityIpGroupAttribute string
+	SecurityIpList           string
+}
+
+type SampleSecurityIpGroupList []SampleSecurityIpGroup
+
+func (list *SampleSecurityIpGroupList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]SampleSecurityIpGroup)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}

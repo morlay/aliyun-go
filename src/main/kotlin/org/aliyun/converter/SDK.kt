@@ -4,7 +4,7 @@ import java.io.File
 
 class SDK(val name: String, val version: String, val baseDir: String) {
     companion object {
-        fun collectAll(): Map<String, SDK> {
+        fun collectAll(): MutableMap<String, SDK> {
             val dirs = glob(sdkModelPath, File("aliyun-openapi-java-sdk"))
 
             val sdks = mutableMapOf<String, SDK>()
@@ -23,49 +23,26 @@ class SDK(val name: String, val version: String, val baseDir: String) {
     }
 
     val operations = mutableMapOf<String, Operation>()
-    private val definitions = mutableMapOf<String, Schema>()
 
     fun addOperation(op: Operation) {
         this.operations[op.action] = op
     }
 
-    fun def(s: Schema) {
-        this.definitions[s.name] = s
+    fun safeName(): String {
+        return toLowerSnakeCase(this.name)
     }
 
     fun withPkg(code: String): String {
         return """
-package ${this.name.replace("-", "_")}
+package ${this.safeName()}
 
 import (
-    "encoding/json"
-    "github.com/morlay/aliyun-go/core"
+    "github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 )
 
 ${code}
-            """
-    }
-
-    fun goClient(): String {
-        val name = toUpperCamelCase(this.name)
-        val endpoint = "https://${this.name}.aliyuncs.com"
-
-        return this.withPkg("""
-func New${name}Client(key string, secret string, regionId string) *${name}Client {
-    return &${name}Client{
-        Client: core.Client{
-            Endpoint: "${endpoint}",
-            Version: "${this.version}",
-            RegionID: regionId,
-            AccessKeyId: key,
-            AccessKeySecret: secret,
-        },
-    }
-}
-
-type ${name}Client struct {
-    core.Client
-}
-""")
+"""
     }
 }

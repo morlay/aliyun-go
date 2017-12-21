@@ -1,0 +1,69 @@
+package mts
+
+import (
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+)
+
+type AddWaterMarkTemplateRequest struct {
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	Name                 string `position:"Query" name:"Name"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	Config               string `position:"Query" name:"Config"`
+}
+
+func (r AddWaterMarkTemplateRequest) Invoke(client *sdk.Client) (response *AddWaterMarkTemplateResponse, err error) {
+	req := struct {
+		*requests.RpcRequest
+		AddWaterMarkTemplateRequest
+	}{
+		&requests.RpcRequest{},
+		r,
+	}
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddWaterMarkTemplate", "", "")
+
+	resp := struct {
+		*responses.BaseResponse
+		AddWaterMarkTemplateResponse
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+	response = &resp.AddWaterMarkTemplateResponse
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+
+type AddWaterMarkTemplateResponse struct {
+	RequestId         string
+	WaterMarkTemplate AddWaterMarkTemplateWaterMarkTemplate
+}
+
+type AddWaterMarkTemplateWaterMarkTemplate struct {
+	Id         string
+	Name       string
+	Width      string
+	Height     string
+	Dx         string
+	Dy         string
+	ReferPos   string
+	Type       string
+	State      string
+	Timeline   AddWaterMarkTemplateTimeline
+	RatioRefer AddWaterMarkTemplateRatioRefer
+}
+
+type AddWaterMarkTemplateTimeline struct {
+	Start    string
+	Duration string
+}
+
+type AddWaterMarkTemplateRatioRefer struct {
+	Dx     string
+	Dy     string
+	Width  string
+	Height string
+}

@@ -1,5 +1,7 @@
 package org.aliyun.converter
 
+import java.io.File
+
 var sdkModelPath = Regex("aliyun-openapi-java-sdk/([^\\/]+)/src/main/java/com/aliyuncs/([^\\/]+)/model/v([^\\/]+)$")
 
 class Converter {
@@ -8,33 +10,22 @@ class Converter {
         fun main(args: Array<String>) {
             val sdks = SDK.collectAll()
 
+            // ignore batchcompute, because of different code struct
+            sdks.remove("batchcompute")
+
             sdks.forEach { s ->
                 generateSDK(s.value)
             }
 
-//            val sdk = sdks.getValue("vpc")
+//            val sdk = sdks.getValue("cs")
 //            generateSDK(sdk)
         }
 
         fun generateSDK(sdk: SDK) {
             println("generating sdk ${sdk.name} ...")
-
+            val reForMethod = Regex("MethodType\\.([A-Z]+)")
+            val reForUri = Regex("setUriPattern\\(\"([^\"]+)\"\\)")
             val parsedCodes = loadAndParseAllJavaFile(sdk.baseDir)
-
-            var canGenerate = false
-
-            parsedCodes.forEach { parsedCode ->
-                parsedCode.value.imports.forEach { i ->
-                    if (i.name.asString() == "com.aliyuncs.RpcAcsRequest") {
-                        canGenerate = true
-                    }
-                }
-            }
-
-            if (!canGenerate) {
-                println("${sdk.name} is not support")
-                return
-            }
 
             parsedCodes.forEach { parsedCode ->
                 parsedCode.value.types.forEach { type ->
@@ -42,13 +33,55 @@ class Converter {
                         type.members.forEach { member ->
                             if (member.isConstructorDeclaration) {
                                 val constructorDeclaration = member.asConstructorDeclaration()
+                                var requestType = ""
+                                var product = ""
+                                var version = ""
+                                var action = ""
+                                var serviceCode = ""
+                                var method = ""
+                                var uriPattern = ""
+
+                                parsedCode.value.imports.forEach { i ->
+                                    when (i.name.asString()) {
+                                        "com.aliyuncs.RpcAcsRequest" -> {
+                                            requestType = "rpc"
+                                        }
+                                        "com.aliyuncs.RoaAcsRequest" -> {
+                                            requestType = "roa"
+                                        }
+                                    }
+                                }
+
                                 constructorDeclaration.body.statements.forEach { stmt ->
                                     if (stmt.isExplicitConstructorInvocationStmt) {
                                         val argsForSuper = stmt.asExplicitConstructorInvocationStmt().arguments
-                                        if (argsForSuper[2].isStringLiteralExpr) {
-                                            sdk.addOperation(Operation(argsForSuper[2].asStringLiteralExpr().asString()))
+                                        if (argsForSuper.size > 0) {
+                                            product = argsForSuper[0].asStringLiteralExpr().asString()
+                                        }
+                                        if (argsForSuper.size > 1) {
+                                            version = argsForSuper[1].asStringLiteralExpr().asString()
+                                        }
+                                        if (argsForSuper.size > 2) {
+                                            action = argsForSuper[2].asStringLiteralExpr().asString()
+                                        }
+                                        if (argsForSuper.size > 3) {
+                                            serviceCode = argsForSuper[3].asStringLiteralExpr().asString()
                                         }
                                     }
+
+                                    if (requestType == "roa") {
+                                        val stmtString = stmt.toString()
+                                        if (reForMethod.containsMatchIn(stmtString)) {
+                                            method = reForMethod.find(stmtString)!!.groupValues[1]
+                                        }
+                                        if (reForUri.containsMatchIn(stmt.toString())) {
+                                            uriPattern = reForUri.find(stmtString)!!.groupValues[1]
+                                        }
+                                    }
+                                }
+
+                                if (action != "") {
+                                    sdk.addOperation(Operation(requestType, product, version, action, serviceCode, method, uriPattern))
                                 }
                             }
                         }
@@ -66,16 +99,14 @@ class Converter {
 
                 sdk.operations.forEach { op ->
                     parsedCode.value.types.forEach { type ->
-                        val schema = Schema.fromTypeDecl(type, imports)
-                        when (schema.name) {
+                        when (type.name.asString()) {
                             op.key + "Request" -> {
+                                val schema = Schema.fromTypeDeclForParameter(type, imports)
                                 op.value.setParam(schema)
                             }
                             op.key + "Response" -> {
+                                val schema = Schema.fromTypeDecl(type, imports)
                                 op.value.setResp(schema)
-                            }
-                            else -> {
-                                sdk.def(schema)
                             }
                         }
                     }
@@ -83,16 +114,11 @@ class Converter {
             })
 
             val baseDir = "clients/${sdk.name}"
-
-            writeFile("${baseDir}/client.go", sdk.goClient())
-
-            var operations = ""
+            File(baseDir).deleteRecursively()
 
             sdk.operations.forEach { op ->
-                operations += op.value.goClientMethod(sdk.name)
+                writeFile("${baseDir}/${toLowerSnakeCase(op.value.action)}.go", sdk.withPkg(op.value.goClientMethod()))
             }
-
-            writeFile("${baseDir}/operations.go", sdk.withPkg(operations))
 
             Runtime.getRuntime().exec("goimports -w ./${baseDir}")
         }

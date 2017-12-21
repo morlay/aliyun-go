@@ -1,0 +1,44 @@
+package rds
+
+import (
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+)
+
+type CreateTempDBInstanceRequest struct {
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	RestoreTime          string `position:"Query" name:"RestoreTime"`
+	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	BackupId             int    `position:"Query" name:"BackupId"`
+	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
+}
+
+func (r CreateTempDBInstanceRequest) Invoke(client *sdk.Client) (response *CreateTempDBInstanceResponse, err error) {
+	req := struct {
+		*requests.RpcRequest
+		CreateTempDBInstanceRequest
+	}{
+		&requests.RpcRequest{},
+		r,
+	}
+	req.InitWithApiInfo("Rds", "2014-08-15", "CreateTempDBInstance", "rds", "")
+
+	resp := struct {
+		*responses.BaseResponse
+		CreateTempDBInstanceResponse
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+	response = &resp.CreateTempDBInstanceResponse
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+
+type CreateTempDBInstanceResponse struct {
+	RequestId        string
+	TempDBInstanceId string
+}

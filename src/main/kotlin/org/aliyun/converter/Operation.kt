@@ -1,7 +1,15 @@
 package org.aliyun.converter
 
 
-class Operation(val action: String) {
+class Operation(
+        var requestType: String,
+        val product: String,
+        val version: String,
+        val action: String,
+        val serviceCode: String,
+        var method: String,
+        val uriPattern: String
+) {
     private var parameters = Schema("")
     private var response = Schema("")
 
@@ -13,42 +21,88 @@ class Operation(val action: String) {
         this.response = s
     }
 
-    fun goClientMethod(name: String): String {
+    fun goClientMethod(): String {
         val subTypePrefix = this.action
-
         val sideCodes = mutableMapOf<String, String>()
 
-        var others = ""
+        var codes = ""
+
+        codes += """
+type ${this.action}Request ${this.parameters.goType(subTypePrefix, true, sideCodes)}
+"""
+        when (requestType) {
+            "roa" -> {
+                codes += """
+func (r ${this.action}Request) Invoke(client *sdk.Client) (response *${this.action}Response, err error) {
+	req := struct {
+		*requests.RoaRequest
+		${this.action}Request
+	}{
+		&requests.RoaRequest{},
+		r,
+	}
+	req.InitWithApiInfo("${this.product}", "${this.version}", "${this.action}", "${this.uriPattern}","${this.serviceCode}", "")
+    req.Method = "${this.method}"
+
+	resp := struct {
+		*responses.BaseResponse
+		${this.action}Response
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+    response = &resp.${this.action}Response
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+"""
+            }
+            "rpc" -> {
+                codes += """
+func (r ${this.action}Request) Invoke(client *sdk.Client) (response *${this.action}Response, err error) {
+	req := struct {
+		*requests.RpcRequest
+		${this.action}Request
+	}{
+		&requests.RpcRequest{},
+		r,
+	}
+	req.InitWithApiInfo("${this.product}", "${this.version}", "${this.action}", "${this.serviceCode}", "")
+
+	resp := struct {
+		*responses.BaseResponse
+		${this.action}Response
+	}{
+		BaseResponse: &responses.BaseResponse{},
+	}
+    response = &resp.${this.action}Response
+
+	err = client.DoAction(&req, &resp)
+	return
+}
+"""
+            }
+        }
 
         this.parameters.getAllDefinitions().forEach { s ->
-            others += """
-type ${subTypePrefix}${s.key} ${s.value.goType(subTypePrefix, sideCodes)}
+            codes += """
+type ${subTypePrefix}${s.key} ${s.value.goType(subTypePrefix, true, sideCodes)}
 """
         }
 
+        codes += """
+type ${this.action}Response ${this.response.goType(subTypePrefix, false, sideCodes)}
+"""
         this.response.getAllDefinitions().forEach { s ->
-            others += """
-type ${subTypePrefix}${s.key} ${s.value.goType(subTypePrefix, sideCodes)}
+            codes += """
+type ${subTypePrefix}${s.key} ${s.value.goType(subTypePrefix, false, sideCodes)}
 """
         }
-
-        others += "type ${this.action}Args ${this.parameters.goType(subTypePrefix, sideCodes)}\n"
-        others += "type ${this.action}Response ${this.response.goType(subTypePrefix, sideCodes)}\n"
-
 
         sideCodes.forEach { s ->
-            others += s.value
+            codes += s.value
         }
 
-        return """
-
-        func (c *${toUpperCamelCase(name)}Client) ${this.action}(req *${this.action}Args) (resp *${this.action}Response, err error) {
-            resp = &${this.action}Response{}
-            err = c.Request("${this.action}", req, resp)
-            return
-        }
-
-        ${others}
-"""
+        return codes
     }
 }
