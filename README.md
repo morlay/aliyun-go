@@ -10,6 +10,7 @@ package main
 import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/morlay/aliyun-go/clients/ecs"
+	"github.com/morlay/aliyun-go/clients/vpc"
 	"fmt"
 )
 
@@ -23,16 +24,30 @@ func main() {
     	// 异常处理
     	panic(err)
     }
-    // 创建 API 请求并设置参数
-    req := ecs.DescribeInstancesRequest{
-    	IoOptimized: "true",
+    
+    {
+    	// 创建 ecs API 请求并设置参数
+        req := ecs.DescribeInstancesRequest{
+            IoOptimized: "true",
+        }
+        // 请求接口
+        response, err := req.Invoke(client)
+        if err != nil {
+            panic(err)
+        }
+        fmt.Println(response)
     }
-    // 请求接口
-    response, err := req.Invoke(client)
-    if err != nil {
-        panic(err)
+    
+    {
+       // 创建 vpc API 请求并设置参数
+       req := vpc.DescribeVRoutersRequest{}
+       // 请求接口
+       response, err := req.Invoke(client)
+       if err != nil {
+           panic(err)
+       }
+       fmt.Println(response)
     }
-    fmt.Println(response)
 }
 ```
 
