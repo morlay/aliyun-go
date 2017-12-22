@@ -64,7 +64,7 @@ type DescribeInstancesKVStoreInstance struct {
 	PrivateIp           string
 	CreateTime          string
 	EndTime             string
-	HasRenewChangeOrder string
+	HasRenewChangeOrder bool
 	IsRds               bool
 	InstanceType        string
 	ArchitectureType    string
