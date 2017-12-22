@@ -11,12 +11,11 @@ type DeleteCategoryRequest struct {
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int64  `position:"Query" name:"CateId"`
-	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }
 
 func (req *DeleteCategoryRequest) Invoke(client *sdk.Client) (resp *DeleteCategoryResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "DeleteCategory", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "DeleteCategory", "vod", "")
 	resp = &DeleteCategoryResponse{}
 	err = client.DoAction(req, resp)
 	return

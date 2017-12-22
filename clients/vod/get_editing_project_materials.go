@@ -19,7 +19,7 @@ type GetEditingProjectMaterialsRequest struct {
 }
 
 func (req *GetEditingProjectMaterialsRequest) Invoke(client *sdk.Client) (resp *GetEditingProjectMaterialsResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetEditingProjectMaterials", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetEditingProjectMaterials", "vod", "")
 	resp = &GetEditingProjectMaterialsResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -16,7 +16,7 @@ type GetMezzanineInfoRequest struct {
 }
 
 func (req *GetMezzanineInfoRequest) Invoke(client *sdk.Client) (resp *GetMezzanineInfoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetMezzanineInfo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetMezzanineInfo", "vod", "")
 	resp = &GetMezzanineInfoResponse{}
 	err = client.DoAction(req, resp)
 	return

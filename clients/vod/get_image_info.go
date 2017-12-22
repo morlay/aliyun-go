@@ -16,7 +16,7 @@ type GetImageInfoRequest struct {
 }
 
 func (req *GetImageInfoRequest) Invoke(client *sdk.Client) (resp *GetImageInfoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetImageInfo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetImageInfo", "vod", "")
 	resp = &GetImageInfoResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -16,7 +16,7 @@ type GetEditingProjectRequest struct {
 }
 
 func (req *GetEditingProjectRequest) Invoke(client *sdk.Client) (resp *GetEditingProjectResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetEditingProject", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetEditingProject", "vod", "")
 	resp = &GetEditingProjectResponse{}
 	err = client.DoAction(req, resp)
 	return

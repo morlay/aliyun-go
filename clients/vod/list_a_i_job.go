@@ -18,7 +18,7 @@ type ListAIJobRequest struct {
 }
 
 func (req *ListAIJobRequest) Invoke(client *sdk.Client) (resp *ListAIJobResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "ListAIJob", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "ListAIJob", "vod", "")
 	resp = &ListAIJobResponse{}
 	err = client.DoAction(req, resp)
 	return

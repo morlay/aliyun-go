@@ -15,7 +15,7 @@ type DeleteVideoRequest struct {
 }
 
 func (req *DeleteVideoRequest) Invoke(client *sdk.Client) (resp *DeleteVideoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "DeleteVideo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "DeleteVideo", "vod", "")
 	resp = &DeleteVideoResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -10,14 +10,13 @@ type AddCategoryRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              string `position:"Query" name:"OwnerId"`
 	ParentId             int64  `position:"Query" name:"ParentId"`
 	CateName             string `position:"Query" name:"CateName"`
 }
 
 func (req *AddCategoryRequest) Invoke(client *sdk.Client) (resp *AddCategoryResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "AddCategory", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "AddCategory", "vod", "")
 	resp = &AddCategoryResponse{}
 	err = client.DoAction(req, resp)
 	return

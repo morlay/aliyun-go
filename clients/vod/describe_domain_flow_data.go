@@ -24,7 +24,7 @@ type DescribeDomainFlowDataRequest struct {
 }
 
 func (req *DescribeDomainFlowDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainFlowDataResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "DescribeDomainFlowData", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "DescribeDomainFlowData", "vod", "")
 	resp = &DescribeDomainFlowDataResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -23,7 +23,7 @@ type DescribeCdnDomainLogsRequest struct {
 }
 
 func (req *DescribeCdnDomainLogsRequest) Invoke(client *sdk.Client) (resp *DescribeCdnDomainLogsResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "DescribeCdnDomainLogs", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "DescribeCdnDomainLogs", "vod", "")
 	resp = &DescribeCdnDomainLogsResponse{}
 	err = client.DoAction(req, resp)
 	return

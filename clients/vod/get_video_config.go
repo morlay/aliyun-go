@@ -16,7 +16,7 @@ type GetVideoConfigRequest struct {
 }
 
 func (req *GetVideoConfigRequest) Invoke(client *sdk.Client) (resp *GetVideoConfigResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoConfig", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoConfig", "vod", "")
 	resp = &GetVideoConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

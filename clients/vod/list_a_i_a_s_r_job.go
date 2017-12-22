@@ -18,7 +18,7 @@ type ListAIASRJobRequest struct {
 }
 
 func (req *ListAIASRJobRequest) Invoke(client *sdk.Client) (resp *ListAIASRJobResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "ListAIASRJob", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "ListAIASRJob", "vod", "")
 	resp = &ListAIASRJobResponse{}
 	err = client.DoAction(req, resp)
 	return

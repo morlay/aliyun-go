@@ -17,7 +17,7 @@ type SetEditingProjectMaterialsRequest struct {
 }
 
 func (req *SetEditingProjectMaterialsRequest) Invoke(client *sdk.Client) (resp *SetEditingProjectMaterialsResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "SetEditingProjectMaterials", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "SetEditingProjectMaterials", "vod", "")
 	resp = &SetEditingProjectMaterialsResponse{}
 	err = client.DoAction(req, resp)
 	return

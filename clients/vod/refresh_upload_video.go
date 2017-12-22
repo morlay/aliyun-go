@@ -15,7 +15,7 @@ type RefreshUploadVideoRequest struct {
 }
 
 func (req *RefreshUploadVideoRequest) Invoke(client *sdk.Client) (resp *RefreshUploadVideoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "RefreshUploadVideo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "RefreshUploadVideo", "vod", "")
 	resp = &RefreshUploadVideoResponse{}
 	err = client.DoAction(req, resp)
 	return

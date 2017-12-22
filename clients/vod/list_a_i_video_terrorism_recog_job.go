@@ -18,7 +18,7 @@ type ListAIVideoTerrorismRecogJobRequest struct {
 }
 
 func (req *ListAIVideoTerrorismRecogJobRequest) Invoke(client *sdk.Client) (resp *ListAIVideoTerrorismRecogJobResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoTerrorismRecogJob", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoTerrorismRecogJob", "vod", "")
 	resp = &ListAIVideoTerrorismRecogJobResponse{}
 	err = client.DoAction(req, resp)
 	return

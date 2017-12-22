@@ -24,7 +24,7 @@ type SearchEditingProjectRequest struct {
 }
 
 func (req *SearchEditingProjectRequest) Invoke(client *sdk.Client) (resp *SearchEditingProjectResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "SearchEditingProject", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "SearchEditingProject", "vod", "")
 	resp = &SearchEditingProjectResponse{}
 	err = client.DoAction(req, resp)
 	return

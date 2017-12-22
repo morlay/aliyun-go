@@ -20,7 +20,7 @@ type UpdateVideoInfoRequest struct {
 }
 
 func (req *UpdateVideoInfoRequest) Invoke(client *sdk.Client) (resp *UpdateVideoInfoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "UpdateVideoInfo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "UpdateVideoInfo", "vod", "")
 	resp = &UpdateVideoInfoResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -25,7 +25,7 @@ type CreateUploadVideoRequest struct {
 }
 
 func (req *CreateUploadVideoRequest) Invoke(client *sdk.Client) (resp *CreateUploadVideoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "CreateUploadVideo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "CreateUploadVideo", "vod", "")
 	resp = &CreateUploadVideoResponse{}
 	err = client.DoAction(req, resp)
 	return

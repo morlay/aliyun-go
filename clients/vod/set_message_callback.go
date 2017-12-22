@@ -19,7 +19,7 @@ type SetMessageCallbackRequest struct {
 }
 
 func (req *SetMessageCallbackRequest) Invoke(client *sdk.Client) (resp *SetMessageCallbackResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "SetMessageCallback", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "SetMessageCallback", "vod", "")
 	resp = &SetMessageCallbackResponse{}
 	err = client.DoAction(req, resp)
 	return

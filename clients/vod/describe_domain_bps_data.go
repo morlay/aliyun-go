@@ -24,7 +24,7 @@ type DescribeDomainBpsDataRequest struct {
 }
 
 func (req *DescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainBpsDataResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "DescribeDomainBpsData", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "DescribeDomainBpsData", "vod", "")
 	resp = &DescribeDomainBpsDataResponse{}
 	err = client.DoAction(req, resp)
 	return

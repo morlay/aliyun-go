@@ -20,7 +20,7 @@ type GetOSSStatisRequest struct {
 }
 
 func (req *GetOSSStatisRequest) Invoke(client *sdk.Client) (resp *GetOSSStatisResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetOSSStatis", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetOSSStatis", "vod", "")
 	resp = &GetOSSStatisResponse{}
 	err = client.DoAction(req, resp)
 	return

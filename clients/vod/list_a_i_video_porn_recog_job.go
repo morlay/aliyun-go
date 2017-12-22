@@ -18,7 +18,7 @@ type ListAIVideoPornRecogJobRequest struct {
 }
 
 func (req *ListAIVideoPornRecogJobRequest) Invoke(client *sdk.Client) (resp *ListAIVideoPornRecogJobResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoPornRecogJob", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "ListAIVideoPornRecogJob", "vod", "")
 	resp = &ListAIVideoPornRecogJobResponse{}
 	err = client.DoAction(req, resp)
 	return

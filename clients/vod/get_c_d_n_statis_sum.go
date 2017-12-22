@@ -20,7 +20,7 @@ type GetCDNStatisSumRequest struct {
 }
 
 func (req *GetCDNStatisSumRequest) Invoke(client *sdk.Client) (resp *GetCDNStatisSumResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetCDNStatisSum", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetCDNStatisSum", "vod", "")
 	resp = &GetCDNStatisSumResponse{}
 	err = client.DoAction(req, resp)
 	return

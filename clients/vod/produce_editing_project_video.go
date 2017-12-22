@@ -19,7 +19,7 @@ type ProduceEditingProjectVideoRequest struct {
 }
 
 func (req *ProduceEditingProjectVideoRequest) Invoke(client *sdk.Client) (resp *ProduceEditingProjectVideoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "ProduceEditingProjectVideo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "ProduceEditingProjectVideo", "vod", "")
 	resp = &ProduceEditingProjectVideoResponse{}
 	err = client.DoAction(req, resp)
 	return

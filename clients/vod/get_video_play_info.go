@@ -20,7 +20,7 @@ type GetVideoPlayInfoRequest struct {
 }
 
 func (req *GetVideoPlayInfoRequest) Invoke(client *sdk.Client) (resp *GetVideoPlayInfoResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoPlayInfo", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "GetVideoPlayInfo", "vod", "")
 	resp = &GetVideoPlayInfoResponse{}
 	err = client.DoAction(req, resp)
 	return

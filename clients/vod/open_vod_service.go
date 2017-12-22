@@ -15,7 +15,7 @@ type OpenVodServiceRequest struct {
 }
 
 func (req *OpenVodServiceRequest) Invoke(client *sdk.Client) (resp *OpenVodServiceResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "OpenVodService", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "OpenVodService", "vod", "")
 	resp = &OpenVodServiceResponse{}
 	err = client.DoAction(req, resp)
 	return

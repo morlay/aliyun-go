@@ -11,13 +11,12 @@ type UpdateCategoryRequest struct {
 	ResourceOwnerId      string `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int64  `position:"Query" name:"CateId"`
-	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              string `position:"Query" name:"OwnerId"`
 	CateName             string `position:"Query" name:"CateName"`
 }
 
 func (req *UpdateCategoryRequest) Invoke(client *sdk.Client) (resp *UpdateCategoryResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "UpdateCategory", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "UpdateCategory", "vod", "")
 	resp = &UpdateCategoryResponse{}
 	err = client.DoAction(req, resp)
 	return

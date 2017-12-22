@@ -16,7 +16,7 @@ type DeleteEditingProjectRequest struct {
 }
 
 func (req *DeleteEditingProjectRequest) Invoke(client *sdk.Client) (resp *DeleteEditingProjectResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "DeleteEditingProject", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "DeleteEditingProject", "vod", "")
 	resp = &DeleteEditingProjectResponse{}
 	err = client.DoAction(req, resp)
 	return

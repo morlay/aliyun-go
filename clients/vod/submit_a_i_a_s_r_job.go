@@ -18,7 +18,7 @@ type SubmitAIASRJobRequest struct {
 }
 
 func (req *SubmitAIASRJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIASRJobResponse, err error) {
-	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIASRJob", "", "")
+	req.InitWithApiInfo("vod", "2017-03-21", "SubmitAIASRJob", "vod", "")
 	resp = &SubmitAIASRJobResponse{}
 	err = client.DoAction(req, resp)
 	return
