@@ -23,6 +23,7 @@ type DescribeSecurityGroupsRequest struct {
 	Tag1Value            string `position:"Query" name:"Tag.1.Value"`
 	PageSize             int    `position:"Query" name:"PageSize"`
 	Tag3Value            string `position:"Query" name:"Tag.3.Value"`
+	DryRun               string `position:"Query" name:"DryRun"`
 	Tag5Key              string `position:"Query" name:"Tag.5.Key"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`

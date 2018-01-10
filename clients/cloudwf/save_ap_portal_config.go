@@ -31,6 +31,7 @@ type SaveApPortalConfigResponse struct {
 	RequestId string
 	Success   bool
 	Message   string
+	Data      string
 	ErrorCode int
 	ErrorMsg  string
 }

@@ -35,12 +35,14 @@ type GetPhotosPhoto struct {
 	Id              int64
 	Title           string
 	FileId          string
+	Location        string
 	State           string
 	Md5             string
 	IsVideo         bool
 	Remark          string
 	Width           int64
 	Height          int64
+	Size            int64
 	Ctime           int64
 	Mtime           int64
 	TakenAt         int64

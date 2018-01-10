@@ -42,10 +42,12 @@ type ListTimeLinePhotosPhoto struct {
 	Id              int64
 	Title           string
 	FileId          string
+	Location        string
 	State           string
 	Md5             string
 	IsVideo         bool
 	Remark          string
+	Size            int64
 	Width           int64
 	Height          int64
 	Ctime           int64

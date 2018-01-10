@@ -14,6 +14,7 @@ type DescribeCasterLayoutsRequest struct {
 	CasterId      string `position:"Query" name:"CasterId"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Version       string `position:"Query" name:"Version"`
+	LayoutId      string `position:"Query" name:"LayoutId"`
 }
 
 func (req *DescribeCasterLayoutsRequest) Invoke(client *sdk.Client) (resp *DescribeCasterLayoutsResponse, err error) {

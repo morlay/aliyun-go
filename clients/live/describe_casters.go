@@ -42,7 +42,9 @@ type DescribeCastersCaster struct {
 	CasterId       string
 	CasterName     string
 	CreateTime     string
-	Period         int
+	StartTime      string
+	PurchaseTime   string
+	ExpireTime     string
 	ChargeType     string
 	CasterTemplate string
 }

@@ -25,6 +25,7 @@ type DescribeInstancesRequest struct {
 	Filter1Key           string `position:"Query" name:"Filter.1.Key"`
 	DeviceAvailable      string `position:"Query" name:"DeviceAvailable"`
 	Filter3Value         string `position:"Query" name:"Filter.3.Value"`
+	DryRun               string `position:"Query" name:"DryRun"`
 	Tag5Key              string `position:"Query" name:"Tag.5.Key"`
 	Filter1Value         string `position:"Query" name:"Filter.1.Value"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
@@ -97,6 +98,7 @@ type DescribeInstancesInstance struct {
 	InternetMaxBandwidthOut int
 	VlanId                  string
 	CreationTime            string
+	StartTime               string
 	InstanceNetworkType     string
 	InstanceChargeType      string
 	SaleCycle               string

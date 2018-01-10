@@ -34,11 +34,14 @@ type GetLibraryLibrary struct {
 }
 
 type GetLibraryQuota struct {
-	TotalQuota  int64
-	FacesCount  int
-	PhotosCount int
-	UsedQuota   int64
-	VideosCount int
+	TotalQuota      int64
+	TotalTrashQuota int64
+	FacesCount      int
+	PhotosCount     int
+	UsedQuota       int64
+	VideosCount     int
+	ActiveSize      int64
+	InactiveSize    int64
 }
 
 type GetLibraryAutoCleanConfig struct {

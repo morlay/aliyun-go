@@ -8,8 +8,9 @@ import (
 
 type ProfileSetRequest struct {
 	requests.RpcRequest
-	AutoInstall string `position:"Query" name:"AutoInstall"`
-	UserId      int64  `position:"Query" name:"UserId"`
+	EnableInstallAgentNewECS string `position:"Query" name:"EnableInstallAgentNewECS"`
+	AutoInstall              string `position:"Query" name:"AutoInstall"`
+	UserId                   int64  `position:"Query" name:"UserId"`
 }
 
 func (req *ProfileSetRequest) Invoke(client *sdk.Client) (resp *ProfileSetResponse, err error) {

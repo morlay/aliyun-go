@@ -80,9 +80,16 @@ type GetRuleDetailRange struct {
 }
 
 type GetRuleDetailRuleBasicInfo struct {
-	Rid        string
-	RuleLambda string
-	Triggers   GetRuleDetailTriggerList
+	Rid                string
+	RuleLambda         string
+	BusinessCategories GetRuleDetailBusinessCategoryBasicInfoList
+	Triggers           GetRuleDetailTriggerList
+}
+
+type GetRuleDetailBusinessCategoryBasicInfo struct {
+	Bid          int
+	ServiceType  int
+	BusinessName string
 }
 
 type GetRuleDetailConditionBasicInfoList []GetRuleDetailConditionBasicInfo
@@ -149,6 +156,21 @@ type GetRuleDetailReferenceList []string
 
 func (list *GetRuleDetailReferenceList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type GetRuleDetailBusinessCategoryBasicInfoList []GetRuleDetailBusinessCategoryBasicInfo
+
+func (list *GetRuleDetailBusinessCategoryBasicInfoList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]GetRuleDetailBusinessCategoryBasicInfo)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

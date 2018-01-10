@@ -31,11 +31,17 @@ type GetAccAsrResultResponse struct {
 }
 
 type GetAccAsrResultAccAsrSentenceResult struct {
-	RecordId     string
-	Status       string
-	StatusCode   string
-	ErrorMessage string
-	Results      GetAccAsrResultSentenceResultList
+	RecordId         string
+	Status           string
+	StatusCode       string
+	ErrorMessage     string
+	Duration         int64
+	InteractiveCount int
+	Results          GetAccAsrResultSentenceResultList
+	ServiceEvStat    GetAccAsrResultServiceEvStat
+	ClientEvStat     GetAccAsrResultClientEvStat
+	ServiceSrStat    GetAccAsrResultServiceSrStat
+	ClientSrStat     GetAccAsrResultClientSrStat
 }
 
 type GetAccAsrResultSentenceResult struct {
@@ -49,6 +55,34 @@ type GetAccAsrResultSentenceResult struct {
 	SpeakerId       string
 	AgentId         string
 	ChannelKey      string
+}
+
+type GetAccAsrResultServiceEvStat struct {
+	Srole            int
+	SmaxEmotionValue float32
+	SminEmotionValue float32
+	SavgEmotionValue float32
+}
+
+type GetAccAsrResultClientEvStat struct {
+	Crole            int
+	CmaxEmotionValue float32
+	CminEmotionValue float32
+	CavgEmotionValue float32
+}
+
+type GetAccAsrResultServiceSrStat struct {
+	Srole          int
+	SmaxSpeechRate float32
+	SminSpeechRate float32
+	SavgSpeechRate float32
+}
+
+type GetAccAsrResultClientSrStat struct {
+	Crole          int
+	CmaxSpeechRate float32
+	CminSpeechRate float32
+	CavgSpeechRate float32
 }
 
 type GetAccAsrResultAccAsrSentenceResultList []GetAccAsrResultAccAsrSentenceResult

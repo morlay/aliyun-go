@@ -35,15 +35,16 @@ type DescribeLiveStreamsPublishListResponse struct {
 }
 
 type DescribeLiveStreamsPublishListLiveStreamPublishInfo struct {
-	DomainName   string
-	AppName      string
-	StreamName   string
-	StreamUrl    string
-	PublishTime  string
-	StopTime     string
-	PublishUrl   string
-	ClientAddr   string
-	EdgeNodeAddr string
+	DomainName    string
+	AppName       string
+	StreamName    string
+	StreamUrl     string
+	PublishTime   string
+	StopTime      string
+	PublishUrl    string
+	ClientAddr    string
+	EdgeNodeAddr  string
+	PublishDomain string
 }
 
 type DescribeLiveStreamsPublishListLiveStreamPublishInfoList []DescribeLiveStreamsPublishListLiveStreamPublishInfo

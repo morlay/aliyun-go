@@ -30,11 +30,12 @@ type DescribeLiveStreamsOnlineListResponse struct {
 }
 
 type DescribeLiveStreamsOnlineListLiveStreamOnlineInfo struct {
-	DomainName  string
-	AppName     string
-	StreamName  string
-	PublishTime string
-	PublishUrl  string
+	DomainName    string
+	AppName       string
+	StreamName    string
+	PublishTime   string
+	PublishUrl    string
+	PublishDomain string
 }
 
 type DescribeLiveStreamsOnlineListLiveStreamOnlineInfoList []DescribeLiveStreamsOnlineListLiveStreamOnlineInfo

@@ -13,11 +13,12 @@ type GetClusterInstanceRequest struct {
 	Cluster  string `position:"Query" name:"Cluster"`
 	PageSize int    `position:"Query" name:"PageSize"`
 	PageNum  int    `position:"Query" name:"PageNum"`
+	Region   string `position:"Query" name:"Region"`
 	Status   string `position:"Query" name:"Status"`
 }
 
 func (req *GetClusterInstanceRequest) Invoke(client *sdk.Client) (resp *GetClusterInstanceResponse, err error) {
-	req.InitWithApiInfo("TeslaMaxCompute", "2017-11-30", "GetClusterInstance", "", "")
+	req.InitWithApiInfo("TeslaMaxCompute", "2018-01-04", "GetClusterInstance", "", "")
 	resp = &GetClusterInstanceResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -44,18 +45,20 @@ type GetClusterInstanceInstance struct {
 	NickName        string
 	Cluster         string
 	RunTime         string
-	CpuUsed         int
-	CpuRequest      int
-	CpuUsedTotal    int
+	CpuUsed         int64
+	CpuRequest      int64
+	CpuUsedTotal    int64
 	CpuUsedRatioMax float32
 	CpuUsedRatioMin float32
-	MemUsed         int
-	MemRequest      int
-	MemUsedTotal    int
+	MemUsed         int64
+	MemRequest      int64
+	MemUsedTotal    int64
 	MemUsedRatioMax float32
 	MemUsedRatioMin float32
 	TaskType        string
 	SkynetId        string
+	QuotaName       string
+	QuotaId         int
 }
 
 type GetClusterInstanceInstanceList []GetClusterInstanceInstance

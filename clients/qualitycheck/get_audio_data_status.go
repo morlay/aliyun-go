@@ -22,12 +22,13 @@ func (req *GetAudioDataStatusRequest) Invoke(client *sdk.Client) (resp *GetAudio
 
 type GetAudioDataStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Success   bool
-	Code      string
-	Message   string
-	Count     int
-	Data      GetAudioDataStatusTaskAsrResultList
+	RequestId     string
+	Success       bool
+	Code          string
+	Message       string
+	Count         int
+	OverallStatus int
+	Data          GetAudioDataStatusTaskAsrResultList
 }
 
 type GetAudioDataStatusTaskAsrResult struct {

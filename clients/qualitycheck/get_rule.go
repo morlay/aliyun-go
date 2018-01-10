@@ -34,31 +34,47 @@ type GetRuleData struct {
 }
 
 type GetRuleRuleInfo struct {
-	Rid             string
-	RuleLambda      string
-	Name            string
-	Type            int
-	Status          int
-	IsDelete        int
-	StartTime       string
-	EndTime         string
-	Weight          string
-	IsOnline        int
-	CreateEmpid     string
-	CreateTime      string
-	LastUpdateTime  string
-	LastUpdateEmpid string
-	Comments        string
-	AutoReview      int
-	RuleScoreType   int
-	ScoreName       string
-	ScoreSubName    string
+	Rid                      string
+	RuleLambda               string
+	Name                     string
+	Type                     int
+	Status                   int
+	IsDelete                 int
+	StartTime                string
+	EndTime                  string
+	Weight                   string
+	IsOnline                 int
+	CreateEmpid              string
+	CreateTime               string
+	LastUpdateTime           string
+	LastUpdateEmpid          string
+	Comments                 string
+	AutoReview               int
+	RuleScoreType            int
+	ScoreName                string
+	ScoreSubName             string
+	BusinessCategoryNameList GetRuleBusinessCategoryNameListList
 }
 
 type GetRuleRuleInfoList []GetRuleRuleInfo
 
 func (list *GetRuleRuleInfoList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]GetRuleRuleInfo)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type GetRuleBusinessCategoryNameListList []string
+
+func (list *GetRuleBusinessCategoryNameListList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

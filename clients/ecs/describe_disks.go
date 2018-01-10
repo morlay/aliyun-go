@@ -30,6 +30,7 @@ type DescribeDisksRequest struct {
 	DeleteWithInstance            string                                 `position:"Query" name:"DeleteWithInstance"`
 	Tag3Value                     string                                 `position:"Query" name:"Tag.3.Value"`
 	EnableAutoSnapshot            string                                 `position:"Query" name:"EnableAutoSnapshot"`
+	DryRun                        string                                 `position:"Query" name:"DryRun"`
 	Tag5Key                       string                                 `position:"Query" name:"Tag.5.Key"`
 	ResourceOwnerAccount          string                                 `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount                  string                                 `position:"Query" name:"OwnerAccount"`
@@ -96,15 +97,23 @@ type DescribeDisksDisk struct {
 	ExpiredTime                   string
 	ResourceGroupId               string
 	Encrypted                     bool
+	MountInstanceNum              int
 	IOPS                          int
 	IOPSRead                      int
 	IOPSWrite                     int
 	OperationLocks                DescribeDisksOperationLockList
+	MountInstances                DescribeDisksMountInstanceList
 	Tags                          DescribeDisksTagList
 }
 
 type DescribeDisksOperationLock struct {
 	LockReason string
+}
+
+type DescribeDisksMountInstance struct {
+	InstanceId   string
+	Device       string
+	AttachedTime string
 }
 
 type DescribeDisksTag struct {
@@ -146,6 +155,21 @@ type DescribeDisksOperationLockList []DescribeDisksOperationLock
 
 func (list *DescribeDisksOperationLockList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]DescribeDisksOperationLock)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeDisksMountInstanceList []DescribeDisksMountInstance
+
+func (list *DescribeDisksMountInstanceList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeDisksMountInstance)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

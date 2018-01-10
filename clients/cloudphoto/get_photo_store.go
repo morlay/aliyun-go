@@ -30,15 +30,16 @@ type GetPhotoStoreResponse struct {
 }
 
 type GetPhotoStorePhotoStore struct {
-	Id               int64
-	Name             string
-	Remark           string
-	AutoCleanEnabled bool
-	AutoCleanDays    int
-	DefaultQuota     int64
-	Ctime            int64
-	Mtime            int64
-	Buckets          GetPhotoStoreBucketList
+	Id                int64
+	Name              string
+	Remark            string
+	AutoCleanEnabled  bool
+	AutoCleanDays     int
+	DefaultQuota      int64
+	DefaultTrashQuota int64
+	Ctime             int64
+	Mtime             int64
+	Buckets           GetPhotoStoreBucketList
 }
 
 type GetPhotoStoreBucket struct {

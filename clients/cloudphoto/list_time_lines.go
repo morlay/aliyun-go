@@ -49,11 +49,13 @@ type ListTimeLinesTimeLine struct {
 type ListTimeLinesPhoto struct {
 	Id              int64
 	Title           string
+	Location        string
 	FileId          string
 	State           string
 	Md5             string
 	IsVideo         bool
 	Remark          string
+	Size            int64
 	Width           int64
 	Height          int64
 	Ctime           int64

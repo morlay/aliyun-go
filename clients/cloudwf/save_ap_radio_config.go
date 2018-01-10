@@ -12,6 +12,7 @@ type SaveApRadioConfigRequest struct {
 	Htmode             string `position:"Query" name:"Htmode"`
 	Frag               int    `position:"Query" name:"Frag"`
 	Minrate            int    `position:"Query" name:"Minrate"`
+	McastRate          int    `position:"Query" name:"McastRate"`
 	Probereq           int    `position:"Query" name:"Probereq"`
 	Channel            int    `position:"Query" name:"Channel"`
 	Shortgi            int    `position:"Query" name:"Shortgi"`
@@ -41,6 +42,7 @@ type SaveApRadioConfigResponse struct {
 	RequestId string
 	Success   bool
 	Message   string
+	Data      string
 	ErrorCode int
 	ErrorMsg  string
 }

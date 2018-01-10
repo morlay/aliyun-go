@@ -9,13 +9,14 @@ import (
 type CreateCasterRequest struct {
 	requests.RpcRequest
 	CasterTemplate string `position:"Query" name:"CasterTemplate"`
+	ExpireTime     string `position:"Query" name:"ExpireTime"`
 	NormType       int    `position:"Query" name:"NormType"`
-	Period         int    `position:"Query" name:"Period"`
 	SecurityToken  string `position:"Query" name:"SecurityToken"`
 	CasterName     string `position:"Query" name:"CasterName"`
 	ClientToken    string `position:"Query" name:"ClientToken"`
 	ChargeType     string `position:"Query" name:"ChargeType"`
 	OwnerId        int64  `position:"Query" name:"OwnerId"`
+	PurchaseTime   string `position:"Query" name:"PurchaseTime"`
 	Version        string `position:"Query" name:"Version"`
 }
 

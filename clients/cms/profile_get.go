@@ -20,10 +20,11 @@ func (req *ProfileGetRequest) Invoke(client *sdk.Client) (resp *ProfileGetRespon
 
 type ProfileGetResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
-	Success      bool
-	RequestId    string
-	UserId       int64
-	AutoInstall  bool
+	ErrorCode                int
+	ErrorMessage             string
+	Success                  bool
+	RequestId                string
+	UserId                   int64
+	AutoInstall              bool
+	EnableInstallAgentNewECS bool
 }

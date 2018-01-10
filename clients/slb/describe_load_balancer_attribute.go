@@ -117,10 +117,10 @@ func (list *DescribeLoadBalancerAttributeBackendServerList) UnmarshalJSON(data [
 	return nil
 }
 
-type DescribeLoadBalancerAttributeListenerPortList []string
+type DescribeLoadBalancerAttributeListenerPortList []int
 
 func (list *DescribeLoadBalancerAttributeListenerPortList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]int)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

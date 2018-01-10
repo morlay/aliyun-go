@@ -29,6 +29,7 @@ type DescribeImagesRequest struct {
 	InstanceType         string `position:"Query" name:"InstanceType"`
 	Tag3Value            string `position:"Query" name:"Tag.3.Value"`
 	Architecture         string `position:"Query" name:"Architecture"`
+	DryRun               string `position:"Query" name:"DryRun"`
 	Tag5Key              string `position:"Query" name:"Tag.5.Key"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`

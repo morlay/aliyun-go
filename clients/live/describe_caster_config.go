@@ -31,6 +31,8 @@ type DescribeCasterConfigResponse struct {
 	DomainName       string
 	Delay            float32
 	UrgentMaterialId string
+	SideOutputUrl    string
+	CallbackUrl      string
 	TranscodeConfig  DescribeCasterConfigTranscodeConfig
 	RecordConfig     DescribeCasterConfigRecordConfig
 }

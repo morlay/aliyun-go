@@ -8,11 +8,12 @@ import (
 
 type EditPhotoStoreRequest struct {
 	requests.RpcRequest
-	AutoCleanEnabled string `position:"Query" name:"AutoCleanEnabled"`
-	StoreName        string `position:"Query" name:"StoreName"`
-	Remark           string `position:"Query" name:"Remark"`
-	DefaultQuota     int64  `position:"Query" name:"DefaultQuota"`
-	AutoCleanDays    int    `position:"Query" name:"AutoCleanDays"`
+	AutoCleanEnabled  string `position:"Query" name:"AutoCleanEnabled"`
+	DefaultTrashQuota int64  `position:"Query" name:"DefaultTrashQuota"`
+	StoreName         string `position:"Query" name:"StoreName"`
+	Remark            string `position:"Query" name:"Remark"`
+	DefaultQuota      int64  `position:"Query" name:"DefaultQuota"`
+	AutoCleanDays     int    `position:"Query" name:"AutoCleanDays"`
 }
 
 func (req *EditPhotoStoreRequest) Invoke(client *sdk.Client) (resp *EditPhotoStoreResponse, err error) {
