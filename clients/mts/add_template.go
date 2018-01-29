@@ -21,7 +21,7 @@ type AddTemplateRequest struct {
 }
 
 func (req *AddTemplateRequest) Invoke(client *sdk.Client) (resp *AddTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddTemplate", "mts", "")
 	resp = &AddTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

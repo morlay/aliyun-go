@@ -19,7 +19,7 @@ type SubmitFpShotJobRequest struct {
 }
 
 func (req *SubmitFpShotJobRequest) Invoke(client *sdk.Client) (resp *SubmitFpShotJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitFpShotJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitFpShotJob", "mts", "")
 	resp = &SubmitFpShotJobResponse{}
 	err = client.DoAction(req, resp)
 	return

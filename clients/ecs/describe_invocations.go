@@ -34,32 +34,33 @@ func (req *DescribeInvocationsRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeInvocationsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int64
-	PageNumber int64
-	PageSize   int64
-	Invocation DescribeInvocationsInvocationItemList
+	RequestId   string
+	TotalCount  int64
+	PageNumber  int64
+	PageSize    int64
+	Invocations DescribeInvocationsInvocationList
 }
 
-type DescribeInvocationsInvocationItem struct {
-	InvokeId     string
-	CommandId    string
-	CommandType  string
-	CommandName  string
-	Timed        bool
-	InvokeStatus string
-	InvokeItem   DescribeInvocationsInvokeItemItemList
+type DescribeInvocationsInvocation struct {
+	InvokeId        string
+	CommandId       string
+	CommandType     string
+	CommandName     string
+	Frequency       string
+	Timed           bool
+	InvokeStatus    string
+	InvokeInstances DescribeInvocationsInvokeInstanceList
 }
 
-type DescribeInvocationsInvokeItemItem struct {
-	InstanceId string
-	Status     string
+type DescribeInvocationsInvokeInstance struct {
+	InstanceId           string
+	InstanceInvokeStatus string
 }
 
-type DescribeInvocationsInvocationItemList []DescribeInvocationsInvocationItem
+type DescribeInvocationsInvocationList []DescribeInvocationsInvocation
 
-func (list *DescribeInvocationsInvocationItemList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeInvocationsInvocationItem)
+func (list *DescribeInvocationsInvocationList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeInvocationsInvocation)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -71,10 +72,10 @@ func (list *DescribeInvocationsInvocationItemList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeInvocationsInvokeItemItemList []DescribeInvocationsInvokeItemItem
+type DescribeInvocationsInvokeInstanceList []DescribeInvocationsInvokeInstance
 
-func (list *DescribeInvocationsInvokeItemItemList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeInvocationsInvokeItemItem)
+func (list *DescribeInvocationsInvokeInstanceList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeInvocationsInvokeInstance)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

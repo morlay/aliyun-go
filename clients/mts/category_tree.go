@@ -15,7 +15,7 @@ type CategoryTreeRequest struct {
 }
 
 func (req *CategoryTreeRequest) Invoke(client *sdk.Client) (resp *CategoryTreeResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "CategoryTree", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "CategoryTree", "mts", "")
 	resp = &CategoryTreeResponse{}
 	err = client.DoAction(req, resp)
 	return

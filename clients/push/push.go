@@ -40,6 +40,7 @@ type PushRequest struct {
 	JobKey                         string `position:"Query" name:"JobKey"`
 	Target                         string `position:"Query" name:"Target"`
 	AndroidOpenUrl                 string `position:"Query" name:"AndroidOpenUrl"`
+	AndroidNotificationChannel     string `position:"Query" name:"AndroidNotificationChannel"`
 	AndroidRemind                  string `position:"Query" name:"AndroidRemind"`
 	AndroidActivity                string `position:"Query" name:"AndroidActivity"`
 	AndroidXiaoMiNotifyBody        string `position:"Query" name:"AndroidXiaoMiNotifyBody"`

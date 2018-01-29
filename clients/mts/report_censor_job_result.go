@@ -18,7 +18,7 @@ type ReportCensorJobResultRequest struct {
 }
 
 func (req *ReportCensorJobResultRequest) Invoke(client *sdk.Client) (resp *ReportCensorJobResultResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ReportCensorJobResult", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ReportCensorJobResult", "mts", "")
 	resp = &ReportCensorJobResultResponse{}
 	err = client.DoAction(req, resp)
 	return

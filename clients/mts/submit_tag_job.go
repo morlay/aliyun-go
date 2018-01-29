@@ -19,7 +19,7 @@ type SubmitTagJobRequest struct {
 }
 
 func (req *SubmitTagJobRequest) Invoke(client *sdk.Client) (resp *SubmitTagJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitTagJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitTagJob", "mts", "")
 	resp = &SubmitTagJobResponse{}
 	err = client.DoAction(req, resp)
 	return

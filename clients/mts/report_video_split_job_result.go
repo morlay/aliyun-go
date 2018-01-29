@@ -18,7 +18,7 @@ type ReportVideoSplitJobResultRequest struct {
 }
 
 func (req *ReportVideoSplitJobResultRequest) Invoke(client *sdk.Client) (resp *ReportVideoSplitJobResultResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ReportVideoSplitJobResult", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ReportVideoSplitJobResult", "mts", "")
 	resp = &ReportVideoSplitJobResultResponse{}
 	err = client.DoAction(req, resp)
 	return

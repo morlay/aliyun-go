@@ -18,7 +18,7 @@ type QueryAnnotationJobListRequest struct {
 }
 
 func (req *QueryAnnotationJobListRequest) Invoke(client *sdk.Client) (resp *QueryAnnotationJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAnnotationJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAnnotationJobList", "mts", "")
 	resp = &QueryAnnotationJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

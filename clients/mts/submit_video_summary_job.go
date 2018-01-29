@@ -19,7 +19,7 @@ type SubmitVideoSummaryJobRequest struct {
 }
 
 func (req *SubmitVideoSummaryJobRequest) Invoke(client *sdk.Client) (resp *SubmitVideoSummaryJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitVideoSummaryJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitVideoSummaryJob", "mts", "")
 	resp = &SubmitVideoSummaryJobResponse{}
 	err = client.DoAction(req, resp)
 	return

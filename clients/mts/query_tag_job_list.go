@@ -18,7 +18,7 @@ type QueryTagJobListRequest struct {
 }
 
 func (req *QueryTagJobListRequest) Invoke(client *sdk.Client) (resp *QueryTagJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTagJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTagJobList", "mts", "")
 	resp = &QueryTagJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

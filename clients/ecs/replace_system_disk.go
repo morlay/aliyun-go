@@ -16,10 +16,13 @@ type ReplaceSystemDiskRequest struct {
 	SecurityEnhancementStrategy string `position:"Query" name:"SecurityEnhancementStrategy"`
 	KeyPairName                 string `position:"Query" name:"KeyPairName"`
 	OwnerId                     int64  `position:"Query" name:"OwnerId"`
+	Platform                    string `position:"Query" name:"Platform"`
 	Password                    string `position:"Query" name:"Password"`
 	InstanceId                  string `position:"Query" name:"InstanceId"`
 	SystemDiskSize              int    `position:"Query" name:"SystemDiskSize"`
+	DiskId                      string `position:"Query" name:"DiskId"`
 	UseAdditionalService        string `position:"Query" name:"UseAdditionalService"`
+	Architecture                string `position:"Query" name:"Architecture"`
 }
 
 func (req *ReplaceSystemDiskRequest) Invoke(client *sdk.Client) (resp *ReplaceSystemDiskResponse, err error) {

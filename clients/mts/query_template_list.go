@@ -18,7 +18,7 @@ type QueryTemplateListRequest struct {
 }
 
 func (req *QueryTemplateListRequest) Invoke(client *sdk.Client) (resp *QueryTemplateListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTemplateList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryTemplateList", "mts", "")
 	resp = &QueryTemplateListResponse{}
 	err = client.DoAction(req, resp)
 	return

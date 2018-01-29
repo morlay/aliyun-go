@@ -38,6 +38,7 @@ type DescribeDeployedApiResponse struct {
 	ResultSample           string
 	FailResultSample       string
 	DeployedTime           string
+	AllowSignatureMethod   string
 	ErrorCodeSamples       DescribeDeployedApiErrorCodeSampleList
 	SystemParameters       DescribeDeployedApiSystemParameterList
 	CustomSystemParameters DescribeDeployedApiSystemParameterList
@@ -45,15 +46,15 @@ type DescribeDeployedApiResponse struct {
 	RequestParameters      DescribeDeployedApiRequestParameterList
 	ServiceParameters      DescribeDeployedApiServiceParameterList
 	ServiceParametersMap   DescribeDeployedApiServiceParameterMapList
-	RequestConfig          DescribeApiRequestConfig
-	ServiceConfig          DescribeApiServiceConfig
-	OpenIdConnectConfig    DescribeApiOpenIdConnectConfig
+	RequestConfig          DescribeDeployedApiRequestConfig
+	ServiceConfig          DescribeDeployedApiServiceConfig
+	OpenIdConnectConfig    DescribeDeployedApiOpenIdConnectConfig
 }
 
-type DescribeDeployedApiErrorCodeSampleList []DescribeApiErrorCodeSample
+type DescribeDeployedApiErrorCodeSampleList []DescribeDeployedApiErrorCodeSample
 
 func (list *DescribeDeployedApiErrorCodeSampleList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiErrorCodeSample)
+	m := make(map[string][]DescribeDeployedApiErrorCodeSample)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -65,10 +66,10 @@ func (list *DescribeDeployedApiErrorCodeSampleList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeDeployedApiSystemParameterList []DescribeApiSystemParameter
+type DescribeDeployedApiSystemParameterList []DescribeDeployedApiSystemParameter
 
 func (list *DescribeDeployedApiSystemParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiSystemParameter)
+	m := make(map[string][]DescribeDeployedApiSystemParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -80,10 +81,10 @@ func (list *DescribeDeployedApiSystemParameterList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeDeployedApiConstantParameterList []DescribeApiConstantParameter
+type DescribeDeployedApiConstantParameterList []DescribeDeployedApiConstantParameter
 
 func (list *DescribeDeployedApiConstantParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiConstantParameter)
+	m := make(map[string][]DescribeDeployedApiConstantParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -95,10 +96,10 @@ func (list *DescribeDeployedApiConstantParameterList) UnmarshalJSON(data []byte)
 	return nil
 }
 
-type DescribeDeployedApiRequestParameterList []DescribeApiRequestParameter
+type DescribeDeployedApiRequestParameterList []DescribeDeployedApiRequestParameter
 
 func (list *DescribeDeployedApiRequestParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiRequestParameter)
+	m := make(map[string][]DescribeDeployedApiRequestParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -110,10 +111,10 @@ func (list *DescribeDeployedApiRequestParameterList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type DescribeDeployedApiServiceParameterList []DescribeApiServiceParameter
+type DescribeDeployedApiServiceParameterList []DescribeDeployedApiServiceParameter
 
 func (list *DescribeDeployedApiServiceParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiServiceParameter)
+	m := make(map[string][]DescribeDeployedApiServiceParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -125,10 +126,10 @@ func (list *DescribeDeployedApiServiceParameterList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type DescribeDeployedApiServiceParameterMapList []DescribeApiServiceParameterMap
+type DescribeDeployedApiServiceParameterMapList []DescribeDeployedApiServiceParameterMap
 
 func (list *DescribeDeployedApiServiceParameterMapList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiServiceParameterMap)
+	m := make(map[string][]DescribeDeployedApiServiceParameterMap)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

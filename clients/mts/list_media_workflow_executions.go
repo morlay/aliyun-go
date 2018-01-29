@@ -22,7 +22,7 @@ type ListMediaWorkflowExecutionsRequest struct {
 }
 
 func (req *ListMediaWorkflowExecutionsRequest) Invoke(client *sdk.Client) (resp *ListMediaWorkflowExecutionsResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ListMediaWorkflowExecutions", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ListMediaWorkflowExecutions", "mts", "")
 	resp = &ListMediaWorkflowExecutionsResponse{}
 	err = client.DoAction(req, resp)
 	return

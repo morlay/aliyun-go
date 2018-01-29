@@ -11,6 +11,7 @@ import (
 type DescribeInvocationResultsRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	CommandId            string `position:"Query" name:"CommandId"`
 	PageNumber           int64  `position:"Query" name:"PageNumber"`
 	PageSize             int64  `position:"Query" name:"PageSize"`
 	InvokeId             string `position:"Query" name:"InvokeId"`
@@ -18,6 +19,7 @@ type DescribeInvocationResultsRequest struct {
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
+	InvokeRecordStatus   string `position:"Query" name:"InvokeRecordStatus"`
 }
 
 func (req *DescribeInvocationResultsRequest) Invoke(client *sdk.Client) (resp *DescribeInvocationResultsResponse, err error) {
@@ -34,25 +36,26 @@ type DescribeInvocationResultsResponse struct {
 }
 
 type DescribeInvocationResultsInvocation struct {
-	InvokeId    string
-	PageSize    int64
-	PageNumber  int64
-	TotalCount  int64
-	Status      string
-	ResultLists DescribeInvocationResultsResultItemList
+	PageSize          int64
+	PageNumber        int64
+	TotalCount        int64
+	InvocationResults DescribeInvocationResultsInvocationResultList
 }
 
-type DescribeInvocationResultsResultItem struct {
-	InstanceId   string
-	FinishedTime string
-	Output       string
-	ExitCode     int64
+type DescribeInvocationResultsInvocationResult struct {
+	CommandId          string
+	InvokeId           string
+	InstanceId         string
+	FinishedTime       string
+	Output             string
+	InvokeRecordStatus string
+	ExitCode           int64
 }
 
-type DescribeInvocationResultsResultItemList []DescribeInvocationResultsResultItem
+type DescribeInvocationResultsInvocationResultList []DescribeInvocationResultsInvocationResult
 
-func (list *DescribeInvocationResultsResultItemList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeInvocationResultsResultItem)
+func (list *DescribeInvocationResultsInvocationResultList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeInvocationResultsInvocationResult)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

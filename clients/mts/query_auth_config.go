@@ -15,7 +15,7 @@ type QueryAuthConfigRequest struct {
 }
 
 func (req *QueryAuthConfigRequest) Invoke(client *sdk.Client) (resp *QueryAuthConfigResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAuthConfig", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAuthConfig", "mts", "")
 	resp = &QueryAuthConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

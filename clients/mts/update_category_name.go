@@ -17,7 +17,7 @@ type UpdateCategoryNameRequest struct {
 }
 
 func (req *UpdateCategoryNameRequest) Invoke(client *sdk.Client) (resp *UpdateCategoryNameResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateCategoryName", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateCategoryName", "mts", "")
 	resp = &UpdateCategoryNameResponse{}
 	err = client.DoAction(req, resp)
 	return

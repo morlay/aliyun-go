@@ -17,7 +17,7 @@ type DeleteMediaTagRequest struct {
 }
 
 func (req *DeleteMediaTagRequest) Invoke(client *sdk.Client) (resp *DeleteMediaTagResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteMediaTag", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteMediaTag", "mts", "")
 	resp = &DeleteMediaTagResponse{}
 	err = client.DoAction(req, resp)
 	return

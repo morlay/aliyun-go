@@ -18,7 +18,7 @@ type QueryMediaInfoJobListRequest struct {
 }
 
 func (req *QueryMediaInfoJobListRequest) Invoke(client *sdk.Client) (resp *QueryMediaInfoJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaInfoJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaInfoJobList", "mts", "")
 	resp = &QueryMediaInfoJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

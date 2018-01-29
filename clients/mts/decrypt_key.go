@@ -17,7 +17,7 @@ type DecryptKeyRequest struct {
 }
 
 func (req *DecryptKeyRequest) Invoke(client *sdk.Client) (resp *DecryptKeyResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DecryptKey", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DecryptKey", "mts", "")
 	resp = &DecryptKeyResponse{}
 	err = client.DoAction(req, resp)
 	return

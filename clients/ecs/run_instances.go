@@ -17,6 +17,7 @@ type RunInstancesRequest struct {
 	HostName                    string                            `position:"Query" name:"HostName"`
 	Password                    string                            `position:"Query" name:"Password"`
 	Tags                        *RunInstancesTagList              `position:"Query" type:"Repeated" name:"Tag"`
+	DryRun                      string                            `position:"Query" name:"DryRun"`
 	OwnerId                     int64                             `position:"Query" name:"OwnerId"`
 	VSwitchId                   string                            `position:"Query" name:"VSwitchId"`
 	SpotStrategy                string                            `position:"Query" name:"SpotStrategy"`

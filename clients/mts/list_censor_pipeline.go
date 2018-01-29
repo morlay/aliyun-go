@@ -20,7 +20,7 @@ type ListCensorPipelineRequest struct {
 }
 
 func (req *ListCensorPipelineRequest) Invoke(client *sdk.Client) (resp *ListCensorPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ListCensorPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ListCensorPipeline", "mts", "")
 	resp = &ListCensorPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

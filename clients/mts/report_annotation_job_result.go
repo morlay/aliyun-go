@@ -18,7 +18,7 @@ type ReportAnnotationJobResultRequest struct {
 }
 
 func (req *ReportAnnotationJobResultRequest) Invoke(client *sdk.Client) (resp *ReportAnnotationJobResultResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ReportAnnotationJobResult", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ReportAnnotationJobResult", "mts", "")
 	resp = &ReportAnnotationJobResultResponse{}
 	err = client.DoAction(req, resp)
 	return

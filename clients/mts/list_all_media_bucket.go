@@ -17,7 +17,7 @@ type ListAllMediaBucketRequest struct {
 }
 
 func (req *ListAllMediaBucketRequest) Invoke(client *sdk.Client) (resp *ListAllMediaBucketResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ListAllMediaBucket", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ListAllMediaBucket", "mts", "")
 	resp = &ListAllMediaBucketResponse{}
 	err = client.DoAction(req, resp)
 	return

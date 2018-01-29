@@ -27,7 +27,7 @@ type SearchMediaRequest struct {
 }
 
 func (req *SearchMediaRequest) Invoke(client *sdk.Client) (resp *SearchMediaResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SearchMedia", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SearchMedia", "mts", "")
 	resp = &SearchMediaResponse{}
 	err = client.DoAction(req, resp)
 	return

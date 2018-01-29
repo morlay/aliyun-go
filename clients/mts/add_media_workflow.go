@@ -14,10 +14,11 @@ type AddMediaWorkflowRequest struct {
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	Name                 string `position:"Query" name:"Name"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	TriggerMode          string `position:"Query" name:"TriggerMode"`
 }
 
 func (req *AddMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *AddMediaWorkflowResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddMediaWorkflow", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddMediaWorkflow", "mts", "")
 	resp = &AddMediaWorkflowResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -33,6 +34,7 @@ type AddMediaWorkflowMediaWorkflow struct {
 	MediaWorkflowId string
 	Name            string
 	Topology        string
+	TriggerMode     string
 	State           string
 	CreationTime    string
 }

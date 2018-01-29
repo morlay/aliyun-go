@@ -18,7 +18,7 @@ type QueryAsrJobListRequest struct {
 }
 
 func (req *QueryAsrJobListRequest) Invoke(client *sdk.Client) (resp *QueryAsrJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAsrJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryAsrJobList", "mts", "")
 	resp = &QueryAsrJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

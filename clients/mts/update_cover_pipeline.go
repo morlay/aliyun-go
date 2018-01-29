@@ -21,7 +21,7 @@ type UpdateCoverPipelineRequest struct {
 }
 
 func (req *UpdateCoverPipelineRequest) Invoke(client *sdk.Client) (resp *UpdateCoverPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateCoverPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateCoverPipeline", "mts", "")
 	resp = &UpdateCoverPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

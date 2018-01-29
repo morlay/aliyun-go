@@ -18,7 +18,7 @@ type QueryPornJobListRequest struct {
 }
 
 func (req *QueryPornJobListRequest) Invoke(client *sdk.Client) (resp *QueryPornJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryPornJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryPornJobList", "mts", "")
 	resp = &QueryPornJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

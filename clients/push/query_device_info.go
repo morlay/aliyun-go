@@ -34,4 +34,6 @@ type QueryDeviceInfoDeviceInfo struct {
 	Alias          string
 	LastOnlineTime string
 	Online         bool
+	PhoneNumber    string
+	PushEnabled    bool
 }

@@ -17,7 +17,7 @@ type AddMediaTagRequest struct {
 }
 
 func (req *AddMediaTagRequest) Invoke(client *sdk.Client) (resp *AddMediaTagResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddMediaTag", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddMediaTag", "mts", "")
 	resp = &AddMediaTagResponse{}
 	err = client.DoAction(req, resp)
 	return

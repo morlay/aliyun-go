@@ -20,7 +20,7 @@ type SubmitMediaInfoJobRequest struct {
 }
 
 func (req *SubmitMediaInfoJobRequest) Invoke(client *sdk.Client) (resp *SubmitMediaInfoJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitMediaInfoJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitMediaInfoJob", "mts", "")
 	resp = &SubmitMediaInfoJobResponse{}
 	err = client.DoAction(req, resp)
 	return

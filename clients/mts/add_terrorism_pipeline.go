@@ -18,7 +18,7 @@ type AddTerrorismPipelineRequest struct {
 }
 
 func (req *AddTerrorismPipelineRequest) Invoke(client *sdk.Client) (resp *AddTerrorismPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddTerrorismPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddTerrorismPipeline", "mts", "")
 	resp = &AddTerrorismPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

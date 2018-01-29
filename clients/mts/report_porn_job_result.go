@@ -18,7 +18,7 @@ type ReportPornJobResultRequest struct {
 }
 
 func (req *ReportPornJobResultRequest) Invoke(client *sdk.Client) (resp *ReportPornJobResultResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ReportPornJobResult", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ReportPornJobResult", "mts", "")
 	resp = &ReportPornJobResultResponse{}
 	err = client.DoAction(req, resp)
 	return

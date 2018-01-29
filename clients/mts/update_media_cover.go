@@ -17,7 +17,7 @@ type UpdateMediaCoverRequest struct {
 }
 
 func (req *UpdateMediaCoverRequest) Invoke(client *sdk.Client) (resp *UpdateMediaCoverResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaCover", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaCover", "mts", "")
 	resp = &UpdateMediaCoverResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -17,7 +17,7 @@ type BindOutputBucketRequest struct {
 }
 
 func (req *BindOutputBucketRequest) Invoke(client *sdk.Client) (resp *BindOutputBucketResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "BindOutputBucket", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "BindOutputBucket", "mts", "")
 	resp = &BindOutputBucketResponse{}
 	err = client.DoAction(req, resp)
 	return

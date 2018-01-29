@@ -25,6 +25,7 @@ type CreateInstanceRequest struct {
 	AutoRenewPeriod             int                         `position:"Query" name:"AutoRenewPeriod"`
 	NodeControllerId            string                      `position:"Query" name:"NodeControllerId"`
 	Period                      int                         `position:"Query" name:"Period"`
+	DryRun                      string                      `position:"Query" name:"DryRun"`
 	Tag5Key                     string                      `position:"Query" name:"Tag.5.Key"`
 	OwnerId                     int64                       `position:"Query" name:"OwnerId"`
 	VSwitchId                   string                      `position:"Query" name:"VSwitchId"`

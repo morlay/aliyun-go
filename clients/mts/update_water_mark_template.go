@@ -18,7 +18,7 @@ type UpdateWaterMarkTemplateRequest struct {
 }
 
 func (req *UpdateWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *UpdateWaterMarkTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateWaterMarkTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateWaterMarkTemplate", "mts", "")
 	resp = &UpdateWaterMarkTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

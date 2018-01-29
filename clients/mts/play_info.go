@@ -24,7 +24,7 @@ type PlayInfoRequest struct {
 }
 
 func (req *PlayInfoRequest) Invoke(client *sdk.Client) (resp *PlayInfoResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "PlayInfo", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "PlayInfo", "mts", "")
 	resp = &PlayInfoResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -38,20 +38,22 @@ type PlayInfoResponse struct {
 }
 
 type PlayInfoPlayInfo struct {
-	Url          string
-	Duration     string
-	Size         string
-	Width        string
-	Height       string
-	Bitrate      string
-	Fps          string
-	Format       string
-	Definition   string
-	Encryption   string
-	Rand         string
-	Plaintext    string
-	Complexity   string
-	ActivityName string
+	Url            string
+	Duration       string
+	Size           string
+	Width          string
+	Height         string
+	Bitrate        string
+	Fps            string
+	Format         string
+	Definition     string
+	Encryption     string
+	Rand           string
+	Plaintext      string
+	Complexity     string
+	ActivityName   string
+	EncryptionType string
+	DownloadType   string
 }
 
 type PlayInfoPlayInfoList []PlayInfoPlayInfo

@@ -19,7 +19,7 @@ type SubmitFacerecogJobRequest struct {
 }
 
 func (req *SubmitFacerecogJobRequest) Invoke(client *sdk.Client) (resp *SubmitFacerecogJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitFacerecogJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitFacerecogJob", "mts", "")
 	resp = &SubmitFacerecogJobResponse{}
 	err = client.DoAction(req, resp)
 	return

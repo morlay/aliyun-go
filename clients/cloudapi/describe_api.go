@@ -37,6 +37,7 @@ type DescribeApiResponse struct {
 	CreatedTime            string
 	ModifiedTime           string
 	Description            string
+	AllowSignatureMethod   string
 	SystemParameters       DescribeApiSystemParameterList
 	CustomSystemParameters DescribeApiSystemParameterList
 	ConstantParameters     DescribeApiConstantParameterList
@@ -117,15 +118,18 @@ type DescribeApiRequestConfig struct {
 }
 
 type DescribeApiServiceConfig struct {
-	ServiceProtocol   string
-	ServiceAddress    string
-	ServiceHttpMethod string
-	ServicePath       string
-	ServiceTimeout    int
-	Mock              string
-	MockResult        string
-	ServiceVpcEnable  bool
-	VpcConfig         DescribeApiVpcConfig
+	ServiceProtocol     string
+	ServiceAddress      string
+	ServiceHttpMethod   string
+	ServicePath         string
+	ServiceTimeout      int
+	Mock                string
+	MockResult          string
+	ServiceVpcEnable    bool
+	VpcConfig           DescribeApiVpcConfig
+	ContentTypeCatagory string
+	ContentTypeValue    string
+	AoneAppName         string
 }
 
 type DescribeApiOpenIdConnectConfig struct {

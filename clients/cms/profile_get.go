@@ -27,4 +27,5 @@ type ProfileGetResponse struct {
 	UserId                   int64
 	AutoInstall              bool
 	EnableInstallAgentNewECS bool
+	EnableActiveAlert        string
 }

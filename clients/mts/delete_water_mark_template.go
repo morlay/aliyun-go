@@ -16,7 +16,7 @@ type DeleteWaterMarkTemplateRequest struct {
 }
 
 func (req *DeleteWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *DeleteWaterMarkTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteWaterMarkTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteWaterMarkTemplate", "mts", "")
 	resp = &DeleteWaterMarkTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

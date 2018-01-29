@@ -20,7 +20,7 @@ type SearchMediaWorkflowRequest struct {
 }
 
 func (req *SearchMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *SearchMediaWorkflowResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SearchMediaWorkflow", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SearchMediaWorkflow", "mts", "")
 	resp = &SearchMediaWorkflowResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -39,6 +39,7 @@ type SearchMediaWorkflowMediaWorkflow struct {
 	MediaWorkflowId string
 	Name            string
 	Topology        string
+	TriggerMode     string
 	State           string
 	CreationTime    string
 }

@@ -31,11 +31,11 @@ func (req *DescribeCommandsRequest) Invoke(client *sdk.Client) (resp *DescribeCo
 
 type DescribeCommandsResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int64
-	PageNumber  int64
-	PageSize    int64
-	CommandList DescribeCommandsCommandList
+	RequestId  string
+	TotalCount int64
+	PageNumber int64
+	PageSize   int64
+	Commands   DescribeCommandsCommandList
 }
 
 type DescribeCommandsCommand struct {

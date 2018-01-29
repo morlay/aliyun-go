@@ -17,7 +17,7 @@ type UnbindInputBucketRequest struct {
 }
 
 func (req *UnbindInputBucketRequest) Invoke(client *sdk.Client) (resp *UnbindInputBucketResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UnbindInputBucket", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UnbindInputBucket", "mts", "")
 	resp = &UnbindInputBucketResponse{}
 	err = client.DoAction(req, resp)
 	return

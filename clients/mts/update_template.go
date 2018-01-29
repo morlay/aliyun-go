@@ -22,7 +22,7 @@ type UpdateTemplateRequest struct {
 }
 
 func (req *UpdateTemplateRequest) Invoke(client *sdk.Client) (resp *UpdateTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateTemplate", "mts", "")
 	resp = &UpdateTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

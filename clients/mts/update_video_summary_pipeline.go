@@ -20,7 +20,7 @@ type UpdateVideoSummaryPipelineRequest struct {
 }
 
 func (req *UpdateVideoSummaryPipelineRequest) Invoke(client *sdk.Client) (resp *UpdateVideoSummaryPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateVideoSummaryPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateVideoSummaryPipeline", "mts", "")
 	resp = &UpdateVideoSummaryPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

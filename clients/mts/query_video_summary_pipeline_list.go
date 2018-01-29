@@ -18,7 +18,7 @@ type QueryVideoSummaryPipelineListRequest struct {
 }
 
 func (req *QueryVideoSummaryPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryVideoSummaryPipelineListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryVideoSummaryPipelineList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryVideoSummaryPipelineList", "mts", "")
 	resp = &QueryVideoSummaryPipelineListResponse{}
 	err = client.DoAction(req, resp)
 	return

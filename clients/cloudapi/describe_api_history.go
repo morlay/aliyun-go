@@ -41,6 +41,7 @@ type DescribeApiHistoryResponse struct {
 	ResultSample           string
 	FailResultSample       string
 	DeployedTime           string
+	AllowSignatureMethod   string
 	ErrorCodeSamples       DescribeApiHistoryErrorCodeSampleList
 	SystemParameters       DescribeApiHistorySystemParameterList
 	CustomSystemParameters DescribeApiHistorySystemParameterList
@@ -48,15 +49,15 @@ type DescribeApiHistoryResponse struct {
 	RequestParameters      DescribeApiHistoryRequestParameterList
 	ServiceParameters      DescribeApiHistoryServiceParameterList
 	ServiceParametersMap   DescribeApiHistoryServiceParameterMapList
-	RequestConfig          DescribeApiRequestConfig
-	ServiceConfig          DescribeApiServiceConfig
-	OpenIdConnectConfig    DescribeApiOpenIdConnectConfig
+	RequestConfig          DescribeApiHistoryRequestConfig
+	ServiceConfig          DescribeApiHistoryServiceConfig
+	OpenIdConnectConfig    DescribeApiHistoryOpenIdConnectConfig
 }
 
-type DescribeApiHistoryErrorCodeSampleList []DescribeApiErrorCodeSample
+type DescribeApiHistoryErrorCodeSampleList []DescribeApiHistoryErrorCodeSample
 
 func (list *DescribeApiHistoryErrorCodeSampleList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiErrorCodeSample)
+	m := make(map[string][]DescribeApiHistoryErrorCodeSample)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -68,10 +69,10 @@ func (list *DescribeApiHistoryErrorCodeSampleList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeApiHistorySystemParameterList []DescribeApiSystemParameter
+type DescribeApiHistorySystemParameterList []DescribeApiHistorySystemParameter
 
 func (list *DescribeApiHistorySystemParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiSystemParameter)
+	m := make(map[string][]DescribeApiHistorySystemParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -83,10 +84,10 @@ func (list *DescribeApiHistorySystemParameterList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeApiHistoryConstantParameterList []DescribeApiConstantParameter
+type DescribeApiHistoryConstantParameterList []DescribeApiHistoryConstantParameter
 
 func (list *DescribeApiHistoryConstantParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiConstantParameter)
+	m := make(map[string][]DescribeApiHistoryConstantParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -98,10 +99,10 @@ func (list *DescribeApiHistoryConstantParameterList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type DescribeApiHistoryRequestParameterList []DescribeApiRequestParameter
+type DescribeApiHistoryRequestParameterList []DescribeApiHistoryRequestParameter
 
 func (list *DescribeApiHistoryRequestParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiRequestParameter)
+	m := make(map[string][]DescribeApiHistoryRequestParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -113,10 +114,10 @@ func (list *DescribeApiHistoryRequestParameterList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeApiHistoryServiceParameterList []DescribeApiServiceParameter
+type DescribeApiHistoryServiceParameterList []DescribeApiHistoryServiceParameter
 
 func (list *DescribeApiHistoryServiceParameterList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiServiceParameter)
+	m := make(map[string][]DescribeApiHistoryServiceParameter)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -128,10 +129,10 @@ func (list *DescribeApiHistoryServiceParameterList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeApiHistoryServiceParameterMapList []DescribeApiServiceParameterMap
+type DescribeApiHistoryServiceParameterMapList []DescribeApiHistoryServiceParameterMap
 
 func (list *DescribeApiHistoryServiceParameterMapList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeApiServiceParameterMap)
+	m := make(map[string][]DescribeApiHistoryServiceParameterMap)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

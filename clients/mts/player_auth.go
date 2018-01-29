@@ -17,7 +17,7 @@ type PlayerAuthRequest struct {
 }
 
 func (req *PlayerAuthRequest) Invoke(client *sdk.Client) (resp *PlayerAuthResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "PlayerAuth", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "PlayerAuth", "mts", "")
 	resp = &PlayerAuthResponse{}
 	err = client.DoAction(req, resp)
 	return

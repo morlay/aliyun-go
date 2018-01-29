@@ -18,7 +18,7 @@ type QuerySnapshotJobListRequest struct {
 }
 
 func (req *QuerySnapshotJobListRequest) Invoke(client *sdk.Client) (resp *QuerySnapshotJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QuerySnapshotJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QuerySnapshotJobList", "mts", "")
 	resp = &QuerySnapshotJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

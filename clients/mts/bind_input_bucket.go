@@ -17,7 +17,7 @@ type BindInputBucketRequest struct {
 }
 
 func (req *BindInputBucketRequest) Invoke(client *sdk.Client) (resp *BindInputBucketResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "BindInputBucket", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "BindInputBucket", "mts", "")
 	resp = &BindInputBucketResponse{}
 	err = client.DoAction(req, resp)
 	return

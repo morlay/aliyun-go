@@ -23,7 +23,7 @@ type ListJobRequest struct {
 }
 
 func (req *ListJobRequest) Invoke(client *sdk.Client) (resp *ListJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ListJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ListJob", "mts", "")
 	resp = &ListJobResponse{}
 	err = client.DoAction(req, resp)
 	return

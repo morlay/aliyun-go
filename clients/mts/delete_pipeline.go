@@ -16,7 +16,7 @@ type DeletePipelineRequest struct {
 }
 
 func (req *DeletePipelineRequest) Invoke(client *sdk.Client) (resp *DeletePipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeletePipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeletePipeline", "mts", "")
 	resp = &DeletePipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

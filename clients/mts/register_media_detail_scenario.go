@@ -18,7 +18,7 @@ type RegisterMediaDetailScenarioRequest struct {
 }
 
 func (req *RegisterMediaDetailScenarioRequest) Invoke(client *sdk.Client) (resp *RegisterMediaDetailScenarioResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "RegisterMediaDetailScenario", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "RegisterMediaDetailScenario", "mts", "")
 	resp = &RegisterMediaDetailScenarioResponse{}
 	err = client.DoAction(req, resp)
 	return

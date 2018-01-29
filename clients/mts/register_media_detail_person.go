@@ -20,7 +20,7 @@ type RegisterMediaDetailPersonRequest struct {
 }
 
 func (req *RegisterMediaDetailPersonRequest) Invoke(client *sdk.Client) (resp *RegisterMediaDetailPersonResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "RegisterMediaDetailPerson", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "RegisterMediaDetailPerson", "mts", "")
 	resp = &RegisterMediaDetailPersonResponse{}
 	err = client.DoAction(req, resp)
 	return

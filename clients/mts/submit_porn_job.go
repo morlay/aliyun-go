@@ -19,7 +19,7 @@ type SubmitPornJobRequest struct {
 }
 
 func (req *SubmitPornJobRequest) Invoke(client *sdk.Client) (resp *SubmitPornJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitPornJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitPornJob", "mts", "")
 	resp = &SubmitPornJobResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -17,7 +17,7 @@ type AddCategoryRequest struct {
 }
 
 func (req *AddCategoryRequest) Invoke(client *sdk.Client) (resp *AddCategoryResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddCategory", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddCategory", "mts", "")
 	resp = &AddCategoryResponse{}
 	err = client.DoAction(req, resp)
 	return

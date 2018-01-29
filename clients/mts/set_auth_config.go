@@ -17,7 +17,7 @@ type SetAuthConfigRequest struct {
 }
 
 func (req *SetAuthConfigRequest) Invoke(client *sdk.Client) (resp *SetAuthConfigResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SetAuthConfig", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SetAuthConfig", "mts", "")
 	resp = &SetAuthConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

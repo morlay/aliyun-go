@@ -18,7 +18,7 @@ type QueryWaterMarkTemplateListRequest struct {
 }
 
 func (req *QueryWaterMarkTemplateListRequest) Invoke(client *sdk.Client) (resp *QueryWaterMarkTemplateListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryWaterMarkTemplateList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryWaterMarkTemplateList", "mts", "")
 	resp = &QueryWaterMarkTemplateListResponse{}
 	err = client.DoAction(req, resp)
 	return

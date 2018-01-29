@@ -16,7 +16,7 @@ type DeleteMediaWorkflowRequest struct {
 }
 
 func (req *DeleteMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *DeleteMediaWorkflowResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteMediaWorkflow", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteMediaWorkflow", "mts", "")
 	resp = &DeleteMediaWorkflowResponse{}
 	err = client.DoAction(req, resp)
 	return

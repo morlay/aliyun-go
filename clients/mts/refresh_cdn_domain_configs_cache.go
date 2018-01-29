@@ -18,7 +18,7 @@ type RefreshCdnDomainConfigsCacheRequest struct {
 }
 
 func (req *RefreshCdnDomainConfigsCacheRequest) Invoke(client *sdk.Client) (resp *RefreshCdnDomainConfigsCacheResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "RefreshCdnDomainConfigsCache", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "RefreshCdnDomainConfigsCache", "mts", "")
 	resp = &RefreshCdnDomainConfigsCacheResponse{}
 	err = client.DoAction(req, resp)
 	return

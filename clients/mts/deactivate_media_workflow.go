@@ -16,7 +16,7 @@ type DeactivateMediaWorkflowRequest struct {
 }
 
 func (req *DeactivateMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *DeactivateMediaWorkflowResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeactivateMediaWorkflow", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeactivateMediaWorkflow", "mts", "")
 	resp = &DeactivateMediaWorkflowResponse{}
 	err = client.DoAction(req, resp)
 	return

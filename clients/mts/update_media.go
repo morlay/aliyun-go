@@ -23,7 +23,7 @@ type UpdateMediaRequest struct {
 }
 
 func (req *UpdateMediaRequest) Invoke(client *sdk.Client) (resp *UpdateMediaResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMedia", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMedia", "mts", "")
 	resp = &UpdateMediaResponse{}
 	err = client.DoAction(req, resp)
 	return

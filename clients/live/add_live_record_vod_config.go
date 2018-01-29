@@ -13,7 +13,6 @@ type AddLiveRecordVodConfigRequest struct {
 	DomainName          string `position:"Query" name:"DomainName"`
 	CycleDuration       int    `position:"Query" name:"CycleDuration"`
 	OwnerId             int64  `position:"Query" name:"OwnerId"`
-	Version             string `position:"Query" name:"Version"`
 	StreamName          string `position:"Query" name:"StreamName"`
 	VodTranscodeGroupId string `position:"Query" name:"VodTranscodeGroupId"`
 }

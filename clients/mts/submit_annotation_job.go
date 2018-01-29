@@ -19,7 +19,7 @@ type SubmitAnnotationJobRequest struct {
 }
 
 func (req *SubmitAnnotationJobRequest) Invoke(client *sdk.Client) (resp *SubmitAnnotationJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitAnnotationJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitAnnotationJob", "mts", "")
 	resp = &SubmitAnnotationJobResponse{}
 	err = client.DoAction(req, resp)
 	return

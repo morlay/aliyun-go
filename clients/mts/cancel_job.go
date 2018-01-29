@@ -16,7 +16,7 @@ type CancelJobRequest struct {
 }
 
 func (req *CancelJobRequest) Invoke(client *sdk.Client) (resp *CancelJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "CancelJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "CancelJob", "mts", "")
 	resp = &CancelJobResponse{}
 	err = client.DoAction(req, resp)
 	return

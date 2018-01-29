@@ -19,7 +19,7 @@ type SubmitAsrJobRequest struct {
 }
 
 func (req *SubmitAsrJobRequest) Invoke(client *sdk.Client) (resp *SubmitAsrJobResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitAsrJob", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SubmitAsrJob", "mts", "")
 	resp = &SubmitAsrJobResponse{}
 	err = client.DoAction(req, resp)
 	return

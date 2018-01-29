@@ -17,7 +17,7 @@ type UpdateMediaPublishStateRequest struct {
 }
 
 func (req *UpdateMediaPublishStateRequest) Invoke(client *sdk.Client) (resp *UpdateMediaPublishStateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaPublishState", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaPublishState", "mts", "")
 	resp = &UpdateMediaPublishStateResponse{}
 	err = client.DoAction(req, resp)
 	return

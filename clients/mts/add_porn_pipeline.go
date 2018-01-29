@@ -18,7 +18,7 @@ type AddPornPipelineRequest struct {
 }
 
 func (req *AddPornPipelineRequest) Invoke(client *sdk.Client) (resp *AddPornPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddPornPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddPornPipeline", "mts", "")
 	resp = &AddPornPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

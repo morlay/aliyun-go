@@ -20,7 +20,7 @@ type SearchPipelineRequest struct {
 }
 
 func (req *SearchPipelineRequest) Invoke(client *sdk.Client) (resp *SearchPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SearchPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SearchPipeline", "mts", "")
 	resp = &SearchPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

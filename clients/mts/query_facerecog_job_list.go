@@ -18,7 +18,7 @@ type QueryFacerecogJobListRequest struct {
 }
 
 func (req *QueryFacerecogJobListRequest) Invoke(client *sdk.Client) (resp *QueryFacerecogJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryFacerecogJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryFacerecogJobList", "mts", "")
 	resp = &QueryFacerecogJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

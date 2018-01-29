@@ -18,7 +18,7 @@ type AddCensorPipelineRequest struct {
 }
 
 func (req *AddCensorPipelineRequest) Invoke(client *sdk.Client) (resp *AddCensorPipelineResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "AddCensorPipeline", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "AddCensorPipeline", "mts", "")
 	resp = &AddCensorPipelineResponse{}
 	err = client.DoAction(req, resp)
 	return

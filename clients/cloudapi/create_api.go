@@ -25,6 +25,7 @@ type CreateApiRequest struct {
 	FailResultSample     string `position:"Query" name:"FailResultSample"`
 	ErrorCodeSamples     string `position:"Query" name:"ErrorCodeSamples"`
 	OpenIdConnectConfig  string `position:"Query" name:"OpenIdConnectConfig"`
+	AllowSignatureMethod string `position:"Query" name:"AllowSignatureMethod"`
 }
 
 func (req *CreateApiRequest) Invoke(client *sdk.Client) (resp *CreateApiResponse, err error) {

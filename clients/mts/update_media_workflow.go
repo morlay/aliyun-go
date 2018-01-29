@@ -17,7 +17,7 @@ type UpdateMediaWorkflowRequest struct {
 }
 
 func (req *UpdateMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *UpdateMediaWorkflowResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaWorkflow", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "UpdateMediaWorkflow", "mts", "")
 	resp = &UpdateMediaWorkflowResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -33,6 +33,7 @@ type UpdateMediaWorkflowMediaWorkflow struct {
 	MediaWorkflowId string
 	Name            string
 	Topology        string
+	TriggerMode     string
 	State           string
 	CreationTime    string
 }

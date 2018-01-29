@@ -18,7 +18,7 @@ type QueryMediaWorkflowExecutionListRequest struct {
 }
 
 func (req *QueryMediaWorkflowExecutionListRequest) Invoke(client *sdk.Client) (resp *QueryMediaWorkflowExecutionListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaWorkflowExecutionList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaWorkflowExecutionList", "mts", "")
 	resp = &QueryMediaWorkflowExecutionListResponse{}
 	err = client.DoAction(req, resp)
 	return

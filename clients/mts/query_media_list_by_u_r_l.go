@@ -21,7 +21,7 @@ type QueryMediaListByURLRequest struct {
 }
 
 func (req *QueryMediaListByURLRequest) Invoke(client *sdk.Client) (resp *QueryMediaListByURLResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaListByURL", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryMediaListByURL", "mts", "")
 	resp = &QueryMediaListByURLResponse{}
 	err = client.DoAction(req, resp)
 	return

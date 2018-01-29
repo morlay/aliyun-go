@@ -9,6 +9,7 @@ import (
 type ProfileSetRequest struct {
 	requests.RpcRequest
 	EnableInstallAgentNewECS string `position:"Query" name:"EnableInstallAgentNewECS"`
+	EnableActiveAlert        string `position:"Query" name:"EnableActiveAlert"`
 	AutoInstall              string `position:"Query" name:"AutoInstall"`
 	UserId                   int64  `position:"Query" name:"UserId"`
 }

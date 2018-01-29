@@ -20,7 +20,7 @@ type SearchWaterMarkTemplateRequest struct {
 }
 
 func (req *SearchWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *SearchWaterMarkTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SearchWaterMarkTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SearchWaterMarkTemplate", "mts", "")
 	resp = &SearchWaterMarkTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -18,7 +18,7 @@ type QueryCensorJobListRequest struct {
 }
 
 func (req *QueryCensorJobListRequest) Invoke(client *sdk.Client) (resp *QueryCensorJobListResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "QueryCensorJobList", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "QueryCensorJobList", "mts", "")
 	resp = &QueryCensorJobListResponse{}
 	err = client.DoAction(req, resp)
 	return

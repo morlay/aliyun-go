@@ -42,6 +42,7 @@ type DescribeInstanceTypesInstanceType struct {
 	GPUSpec              string
 	InitialCredit        int
 	BaselineCredit       int
+	EniQuantity          int
 }
 
 type DescribeInstanceTypesInstanceTypeList []DescribeInstanceTypesInstanceType

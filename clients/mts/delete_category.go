@@ -16,7 +16,7 @@ type DeleteCategoryRequest struct {
 }
 
 func (req *DeleteCategoryRequest) Invoke(client *sdk.Client) (resp *DeleteCategoryResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteCategory", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteCategory", "mts", "")
 	resp = &DeleteCategoryResponse{}
 	err = client.DoAction(req, resp)
 	return

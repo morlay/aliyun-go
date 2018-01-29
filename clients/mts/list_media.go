@@ -21,7 +21,7 @@ type ListMediaRequest struct {
 }
 
 func (req *ListMediaRequest) Invoke(client *sdk.Client) (resp *ListMediaResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ListMedia", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ListMedia", "mts", "")
 	resp = &ListMediaResponse{}
 	err = client.DoAction(req, resp)
 	return

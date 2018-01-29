@@ -16,7 +16,6 @@ type DescribeLiveRecordVodConfigsRequest struct {
 	PageSize      int64  `position:"Query" name:"PageSize"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	PageNum       int64  `position:"Query" name:"PageNum"`
-	Version       string `position:"Query" name:"Version"`
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 

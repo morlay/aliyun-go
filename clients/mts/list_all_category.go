@@ -17,7 +17,7 @@ type ListAllCategoryRequest struct {
 }
 
 func (req *ListAllCategoryRequest) Invoke(client *sdk.Client) (resp *ListAllCategoryResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ListAllCategory", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ListAllCategory", "mts", "")
 	resp = &ListAllCategoryResponse{}
 	err = client.DoAction(req, resp)
 	return

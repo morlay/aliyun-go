@@ -26,6 +26,7 @@ type ModifyApiRequest struct {
 	FailResultSample     string `position:"Query" name:"FailResultSample"`
 	ErrorCodeSamples     string `position:"Query" name:"ErrorCodeSamples"`
 	OpenIdConnectConfig  string `position:"Query" name:"OpenIdConnectConfig"`
+	AllowSignatureMethod string `position:"Query" name:"AllowSignatureMethod"`
 }
 
 func (req *ModifyApiRequest) Invoke(client *sdk.Client) (resp *ModifyApiResponse, err error) {

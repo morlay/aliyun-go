@@ -12,7 +12,6 @@ type DeleteLiveRecordVodConfigRequest struct {
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
 	StreamName    string `position:"Query" name:"StreamName"`
 }
 

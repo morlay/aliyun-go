@@ -16,7 +16,7 @@ type DeleteTemplateRequest struct {
 }
 
 func (req *DeleteTemplateRequest) Invoke(client *sdk.Client) (resp *DeleteTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "DeleteTemplate", "mts", "")
 	resp = &DeleteTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

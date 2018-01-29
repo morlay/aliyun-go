@@ -20,7 +20,7 @@ type SearchTemplateRequest struct {
 }
 
 func (req *SearchTemplateRequest) Invoke(client *sdk.Client) (resp *SearchTemplateResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "SearchTemplate", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "SearchTemplate", "mts", "")
 	resp = &SearchTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

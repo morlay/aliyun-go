@@ -8,8 +8,8 @@ import (
 
 type CancelPushRequest struct {
 	requests.RpcRequest
-	MessageId string `position:"Query" name:"MessageId"`
-	AppKey    int64  `position:"Query" name:"AppKey"`
+	MessageId int64 `position:"Query" name:"MessageId"`
+	AppKey    int64 `position:"Query" name:"AppKey"`
 }
 
 func (req *CancelPushRequest) Invoke(client *sdk.Client) (resp *CancelPushResponse, err error) {

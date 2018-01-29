@@ -16,7 +16,7 @@ type ActivateMediaWorkflowRequest struct {
 }
 
 func (req *ActivateMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *ActivateMediaWorkflowResponse, err error) {
-	req.InitWithApiInfo("Mts", "2014-06-18", "ActivateMediaWorkflow", "", "")
+	req.InitWithApiInfo("Mts", "2014-06-18", "ActivateMediaWorkflow", "mts", "")
 	resp = &ActivateMediaWorkflowResponse{}
 	err = client.DoAction(req, resp)
 	return
