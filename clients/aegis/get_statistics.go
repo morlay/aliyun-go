@@ -13,7 +13,7 @@ type GetStatisticsRequest struct {
 }
 
 func (req *GetStatisticsRequest) Invoke(client *sdk.Client) (resp *GetStatisticsResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "GetStatistics", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "GetStatistics", "vipaegis", "")
 	resp = &GetStatisticsResponse{}
 	err = client.DoAction(req, resp)
 	return

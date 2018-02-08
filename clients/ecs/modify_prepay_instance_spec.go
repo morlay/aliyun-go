@@ -16,6 +16,7 @@ type ModifyPrepayInstanceSpecRequest struct {
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	InstanceType         string `position:"Query" name:"InstanceType"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	OperatorType         string `position:"Query" name:"OperatorType"`
 }
 
 func (req *ModifyPrepayInstanceSpecRequest) Invoke(client *sdk.Client) (resp *ModifyPrepayInstanceSpecResponse, err error) {

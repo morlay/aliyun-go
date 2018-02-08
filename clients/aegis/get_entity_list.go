@@ -19,7 +19,7 @@ type GetEntityListRequest struct {
 }
 
 func (req *GetEntityListRequest) Invoke(client *sdk.Client) (resp *GetEntityListResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "GetEntityList", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "GetEntityList", "vipaegis", "")
 	resp = &GetEntityListResponse{}
 	err = client.DoAction(req, resp)
 	return

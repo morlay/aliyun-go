@@ -19,7 +19,7 @@ type CreateInstanceRequest struct {
 }
 
 func (req *CreateInstanceRequest) Invoke(client *sdk.Client) (resp *CreateInstanceResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "CreateInstance", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "CreateInstance", "vipaegis", "")
 	resp = &CreateInstanceResponse{}
 	err = client.DoAction(req, resp)
 	return

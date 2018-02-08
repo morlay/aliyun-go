@@ -13,7 +13,7 @@ type GetCrackStatisticsRequest struct {
 }
 
 func (req *GetCrackStatisticsRequest) Invoke(client *sdk.Client) (resp *GetCrackStatisticsResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "GetCrackStatistics", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "GetCrackStatistics", "vipaegis", "")
 	resp = &GetCrackStatisticsResponse{}
 	err = client.DoAction(req, resp)
 	return

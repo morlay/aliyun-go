@@ -8,11 +8,14 @@ import (
 
 type CheckDomainRequest struct {
 	requests.RpcRequest
-	DomainName string `position:"Query" name:"DomainName"`
+	FeeCurrency string `position:"Query" name:"FeeCurrency"`
+	FeePeriod   int    `position:"Query" name:"FeePeriod"`
+	DomainName  string `position:"Query" name:"DomainName"`
+	FeeCommand  string `position:"Query" name:"FeeCommand"`
 }
 
 func (req *CheckDomainRequest) Invoke(client *sdk.Client) (resp *CheckDomainResponse, err error) {
-	req.InitWithApiInfo("Domain", "2016-05-11", "CheckDomain", "", "")
+	req.InitWithApiInfo("Domain", "2018-01-29", "CheckDomain", "", "")
 	resp = &CheckDomainResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -20,13 +23,10 @@ func (req *CheckDomainRequest) Invoke(client *sdk.Client) (resp *CheckDomainResp
 
 type CheckDomainResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Name        string
-	Avail       int
-	Reason      string
-	FeeCurrency string
-	FeePeriod   int
-	FeeFee      string
-	RmbFee      string
-	FeeCommand  string
+	RequestId  string
+	DomainName string
+	Avail      string
+	Premium    string
+	Reason     string
+	Price      int64
 }

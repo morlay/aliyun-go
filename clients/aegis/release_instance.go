@@ -13,7 +13,7 @@ type ReleaseInstanceRequest struct {
 }
 
 func (req *ReleaseInstanceRequest) Invoke(client *sdk.Client) (resp *ReleaseInstanceResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "ReleaseInstance", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "ReleaseInstance", "vipaegis", "")
 	resp = &ReleaseInstanceResponse{}
 	err = client.DoAction(req, resp)
 	return

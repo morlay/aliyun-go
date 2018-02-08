@@ -14,7 +14,7 @@ type GetStatisticsByUuidRequest struct {
 }
 
 func (req *GetStatisticsByUuidRequest) Invoke(client *sdk.Client) (resp *GetStatisticsByUuidResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "GetStatisticsByUuid", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "GetStatisticsByUuid", "vipaegis", "")
 	resp = &GetStatisticsByUuidResponse{}
 	err = client.DoAction(req, resp)
 	return

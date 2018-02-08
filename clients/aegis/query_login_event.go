@@ -18,7 +18,7 @@ type QueryLoginEventRequest struct {
 }
 
 func (req *QueryLoginEventRequest) Invoke(client *sdk.Client) (resp *QueryLoginEventResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "QueryLoginEvent", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "QueryLoginEvent", "vipaegis", "")
 	resp = &QueryLoginEventResponse{}
 	err = client.DoAction(req, resp)
 	return

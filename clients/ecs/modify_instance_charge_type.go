@@ -19,6 +19,7 @@ type ModifyInstanceChargeTypeRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	PeriodUnit           string `position:"Query" name:"PeriodUnit"`
 	InstanceIds          string `position:"Query" name:"InstanceIds"`
+	InstanceChargeType   string `position:"Query" name:"InstanceChargeType"`
 }
 
 func (req *ModifyInstanceChargeTypeRequest) Invoke(client *sdk.Client) (resp *ModifyInstanceChargeTypeResponse, err error) {

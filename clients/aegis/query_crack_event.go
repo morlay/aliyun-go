@@ -18,7 +18,7 @@ type QueryCrackEventRequest struct {
 }
 
 func (req *QueryCrackEventRequest) Invoke(client *sdk.Client) (resp *QueryCrackEventResponse, err error) {
-	req.InitWithApiInfo("aegis", "2016-11-11", "QueryCrackEvent", "", "")
+	req.InitWithApiInfo("aegis", "2016-11-11", "QueryCrackEvent", "vipaegis", "")
 	resp = &QueryCrackEventResponse{}
 	err = client.DoAction(req, resp)
 	return
