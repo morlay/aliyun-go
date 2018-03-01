@@ -14,7 +14,7 @@ type ListRolesRequest struct {
 }
 
 func (req *ListRolesRequest) Invoke(client *sdk.Client) (resp *ListRolesResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListRoles", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListRoles", "CCC", "")
 	resp = &ListRolesResponse{}
 	err = client.DoAction(req, resp)
 	return

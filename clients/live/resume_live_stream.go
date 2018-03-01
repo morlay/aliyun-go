@@ -17,7 +17,7 @@ type ResumeLiveStreamRequest struct {
 }
 
 func (req *ResumeLiveStreamRequest) Invoke(client *sdk.Client) (resp *ResumeLiveStreamResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "ResumeLiveStream", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "ResumeLiveStream", "live", "")
 	resp = &ResumeLiveStreamResponse{}
 	err = client.DoAction(req, resp)
 	return

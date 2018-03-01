@@ -22,7 +22,7 @@ type AddCustomLiveStreamTranscodeRequest struct {
 }
 
 func (req *AddCustomLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (resp *AddCustomLiveStreamTranscodeResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddCustomLiveStreamTranscode", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddCustomLiveStreamTranscode", "live", "")
 	resp = &AddCustomLiveStreamTranscodeResponse{}
 	err = client.DoAction(req, resp)
 	return

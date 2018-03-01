@@ -24,25 +24,26 @@ func (req *QueryDomainByInstanceIdRequest) Invoke(client *sdk.Client) (resp *Que
 
 type QueryDomainByInstanceIdResponse struct {
 	responses.BaseResponse
-	UserId                      string
-	DomainName                  string
-	InstanceId                  string
-	RegistrationDate            string
-	ExpirationDate              string
-	RegistrantOrganization      string
-	RegistrantName              string
-	Email                       string
-	UpdateProhibitionLock       string
-	TransferProhibitionLock     string
-	DomainNameProxyService      bool
-	Premium                     bool
-	EmailVerificationStatus     int
-	EmailVerificationClientHold bool
-	RealNameStatus              string
-	RegistrantUpdatingStatus    string
-	TransferOutStatus           string
-	RegistrantType              string
-	DnsList                     QueryDomainByInstanceIdDnsListList
+	UserId                       string
+	DomainName                   string
+	InstanceId                   string
+	RegistrationDate             string
+	ExpirationDate               string
+	RegistrantOrganization       string
+	RegistrantName               string
+	Email                        string
+	UpdateProhibitionLock        string
+	TransferProhibitionLock      string
+	DomainNameProxyService       bool
+	Premium                      bool
+	EmailVerificationStatus      int
+	EmailVerificationClientHold  bool
+	RealNameStatus               string
+	RegistrantUpdatingStatus     string
+	TransferOutStatus            string
+	RegistrantType               string
+	DomainNameVerificationStatus string
+	DnsList                      QueryDomainByInstanceIdDnsListList
 }
 
 type QueryDomainByInstanceIdDnsListList []string

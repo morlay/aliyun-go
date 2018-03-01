@@ -22,7 +22,7 @@ type ModifyCasterLayoutRequest struct {
 }
 
 func (req *ModifyCasterLayoutRequest) Invoke(client *sdk.Client) (resp *ModifyCasterLayoutResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "ModifyCasterLayout", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "ModifyCasterLayout", "live", "")
 	resp = &ModifyCasterLayoutResponse{}
 	err = client.DoAction(req, resp)
 	return

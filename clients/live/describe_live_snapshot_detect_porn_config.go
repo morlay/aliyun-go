@@ -20,7 +20,7 @@ type DescribeLiveSnapshotDetectPornConfigRequest struct {
 }
 
 func (req *DescribeLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLiveSnapshotDetectPornConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveSnapshotDetectPornConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveSnapshotDetectPornConfig", "live", "")
 	resp = &DescribeLiveSnapshotDetectPornConfigResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -44,12 +44,28 @@ type DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfig struct {
 	OssBucket   string
 	OssObject   string
 	Interval    int
+	Scenes      DescribeLiveSnapshotDetectPornConfigSceneList
 }
 
 type DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfigList []DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfig
 
 func (list *DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfigList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfig)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeLiveSnapshotDetectPornConfigSceneList []string
+
+func (list *DescribeLiveSnapshotDetectPornConfigSceneList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -15,7 +15,7 @@ type UpdateLiveMixNotifyConfigRequest struct {
 }
 
 func (req *UpdateLiveMixNotifyConfigRequest) Invoke(client *sdk.Client) (resp *UpdateLiveMixNotifyConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveMixNotifyConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveMixNotifyConfig", "live", "")
 	resp = &UpdateLiveMixNotifyConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

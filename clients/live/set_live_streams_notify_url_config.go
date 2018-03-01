@@ -15,7 +15,7 @@ type SetLiveStreamsNotifyUrlConfigRequest struct {
 }
 
 func (req *SetLiveStreamsNotifyUrlConfigRequest) Invoke(client *sdk.Client) (resp *SetLiveStreamsNotifyUrlConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "SetLiveStreamsNotifyUrlConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "SetLiveStreamsNotifyUrlConfig", "live", "")
 	resp = &SetLiveStreamsNotifyUrlConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

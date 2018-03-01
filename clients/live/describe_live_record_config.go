@@ -20,7 +20,7 @@ type DescribeLiveRecordConfigRequest struct {
 }
 
 func (req *DescribeLiveRecordConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLiveRecordConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveRecordConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveRecordConfig", "live", "")
 	resp = &DescribeLiveRecordConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -20,7 +20,7 @@ type DescribeLiveStreamBitRateDataRequest struct {
 }
 
 func (req *DescribeLiveStreamBitRateDataRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamBitRateDataResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamBitRateData", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamBitRateData", "live", "")
 	resp = &DescribeLiveStreamBitRateDataResponse{}
 	err = client.DoAction(req, resp)
 	return

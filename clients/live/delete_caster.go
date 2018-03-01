@@ -15,7 +15,7 @@ type DeleteCasterRequest struct {
 }
 
 func (req *DeleteCasterRequest) Invoke(client *sdk.Client) (resp *DeleteCasterResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteCaster", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteCaster", "live", "")
 	resp = &DeleteCasterResponse{}
 	err = client.DoAction(req, resp)
 	return

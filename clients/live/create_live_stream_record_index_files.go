@@ -21,7 +21,7 @@ type CreateLiveStreamRecordIndexFilesRequest struct {
 }
 
 func (req *CreateLiveStreamRecordIndexFilesRequest) Invoke(client *sdk.Client) (resp *CreateLiveStreamRecordIndexFilesResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "CreateLiveStreamRecordIndexFiles", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "CreateLiveStreamRecordIndexFiles", "live", "")
 	resp = &CreateLiveStreamRecordIndexFilesResponse{}
 	err = client.DoAction(req, resp)
 	return

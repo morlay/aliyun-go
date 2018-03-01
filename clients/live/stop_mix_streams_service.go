@@ -21,7 +21,7 @@ type StopMixStreamsServiceRequest struct {
 }
 
 func (req *StopMixStreamsServiceRequest) Invoke(client *sdk.Client) (resp *StopMixStreamsServiceResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "StopMixStreamsService", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "StopMixStreamsService", "live", "")
 	resp = &StopMixStreamsServiceResponse{}
 	err = client.DoAction(req, resp)
 	return

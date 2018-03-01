@@ -15,7 +15,7 @@ type ModifyPhoneNumberRequest struct {
 }
 
 func (req *ModifyPhoneNumberRequest) Invoke(client *sdk.Client) (resp *ModifyPhoneNumberResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ModifyPhoneNumber", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ModifyPhoneNumber", "CCC", "")
 	resp = &ModifyPhoneNumberResponse{}
 	err = client.DoAction(req, resp)
 	return

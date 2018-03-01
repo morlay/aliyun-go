@@ -30,8 +30,9 @@ type QueryFailReasonForDomainRealNameVerificationResponse struct {
 }
 
 type QueryFailReasonForDomainRealNameVerificationFailRecord struct {
-	Date       string
-	FailReason string
+	Date                         string
+	FailReason                   string
+	DomainNameVerificationStatus string
 }
 
 type QueryFailReasonForDomainRealNameVerificationFailRecordList []QueryFailReasonForDomainRealNameVerificationFailRecord

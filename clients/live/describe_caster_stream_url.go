@@ -17,7 +17,7 @@ type DescribeCasterStreamUrlRequest struct {
 }
 
 func (req *DescribeCasterStreamUrlRequest) Invoke(client *sdk.Client) (resp *DescribeCasterStreamUrlResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterStreamUrl", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterStreamUrl", "live", "")
 	resp = &DescribeCasterStreamUrlResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -19,7 +19,7 @@ type RemoveMultipleStreamMixServiceRequest struct {
 }
 
 func (req *RemoveMultipleStreamMixServiceRequest) Invoke(client *sdk.Client) (resp *RemoveMultipleStreamMixServiceResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "RemoveMultipleStreamMixService", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "RemoveMultipleStreamMixService", "live", "")
 	resp = &RemoveMultipleStreamMixServiceResponse{}
 	err = client.DoAction(req, resp)
 	return

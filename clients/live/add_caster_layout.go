@@ -21,7 +21,7 @@ type AddCasterLayoutRequest struct {
 }
 
 func (req *AddCasterLayoutRequest) Invoke(client *sdk.Client) (resp *AddCasterLayoutResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddCasterLayout", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddCasterLayout", "live", "")
 	resp = &AddCasterLayoutResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -8,9 +8,10 @@ import (
 
 type DeleteClusterNodeRequest struct {
 	requests.RoaRequest
-	ClusterId string `position:"Path" name:"ClusterId"`
-	Ip        string `position:"Path" name:"Ip"`
-	Force     string `position:"Query" name:"Force"`
+	ReleaseInstance string `position:"Query" name:"ReleaseInstance"`
+	Ip              string `position:"Path" name:"Ip"`
+	Force           string `position:"Query" name:"Force"`
+	ClusterId       string `position:"Path" name:"ClusterId"`
 }
 
 func (req *DeleteClusterNodeRequest) Invoke(client *sdk.Client) (resp *DeleteClusterNodeResponse, err error) {

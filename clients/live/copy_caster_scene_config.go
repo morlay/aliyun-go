@@ -17,7 +17,7 @@ type CopyCasterSceneConfigRequest struct {
 }
 
 func (req *CopyCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *CopyCasterSceneConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "CopyCasterSceneConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "CopyCasterSceneConfig", "live", "")
 	resp = &CopyCasterSceneConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

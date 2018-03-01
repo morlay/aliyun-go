@@ -16,7 +16,7 @@ type EffectCasterUrgentRequest struct {
 }
 
 func (req *EffectCasterUrgentRequest) Invoke(client *sdk.Client) (resp *EffectCasterUrgentResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "EffectCasterUrgent", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "EffectCasterUrgent", "live", "")
 	resp = &EffectCasterUrgentResponse{}
 	err = client.DoAction(req, resp)
 	return

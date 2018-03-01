@@ -8,8 +8,8 @@ import (
 
 type DownloadClusterNodeCertsRequest struct {
 	requests.RoaRequest
-	Token  string `position:"Path" name:"Token"`
 	NodeId string `position:"Path" name:"NodeId"`
+	Token  string `position:"Path" name:"Token"`
 }
 
 func (req *DownloadClusterNodeCertsRequest) Invoke(client *sdk.Client) (resp *DownloadClusterNodeCertsResponse, err error) {

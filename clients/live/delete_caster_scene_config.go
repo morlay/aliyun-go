@@ -17,7 +17,7 @@ type DeleteCasterSceneConfigRequest struct {
 }
 
 func (req *DeleteCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *DeleteCasterSceneConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterSceneConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterSceneConfig", "live", "")
 	resp = &DeleteCasterSceneConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

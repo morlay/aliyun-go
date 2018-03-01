@@ -16,7 +16,7 @@ type DescribeLiveMixConfigRequest struct {
 }
 
 func (req *DescribeLiveMixConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLiveMixConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveMixConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveMixConfig", "live", "")
 	resp = &DescribeLiveMixConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -8,7 +8,8 @@ import (
 
 type DescribeClustersRequest struct {
 	requests.RoaRequest
-	Name string `position:"Query" name:"Name"`
+	ClusterType string `position:"Query" name:"ClusterType"`
+	Name        string `position:"Query" name:"Name"`
 }
 
 func (req *DescribeClustersRequest) Invoke(client *sdk.Client) (resp *DescribeClustersResponse, err error) {

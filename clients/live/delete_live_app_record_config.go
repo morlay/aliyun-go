@@ -15,7 +15,7 @@ type DeleteLiveAppRecordConfigRequest struct {
 }
 
 func (req *DeleteLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveAppRecordConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveAppRecordConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveAppRecordConfig", "live", "")
 	resp = &DeleteLiveAppRecordConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

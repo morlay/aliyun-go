@@ -62,7 +62,10 @@ class Converter {
                                             version = argsForSuper[1].asStringLiteralExpr().asString()
                                         }
                                         if (argsForSuper.size > 2) {
-                                            action = argsForSuper[2].asStringLiteralExpr().asString()
+                                            val arg2 = argsForSuper[2]
+                                            if (arg2.isStringLiteralExpr) {
+                                                action = arg2.asStringLiteralExpr().asString()
+                                            }
                                         }
                                         if (argsForSuper.size > 3) {
                                             serviceCode = argsForSuper[3].asStringLiteralExpr().asString()

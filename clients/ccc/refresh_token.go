@@ -12,7 +12,7 @@ type RefreshTokenRequest struct {
 }
 
 func (req *RefreshTokenRequest) Invoke(client *sdk.Client) (resp *RefreshTokenResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "RefreshToken", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "RefreshToken", "CCC", "")
 	resp = &RefreshTokenResponse{}
 	err = client.DoAction(req, resp)
 	return

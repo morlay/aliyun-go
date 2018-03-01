@@ -14,7 +14,7 @@ type DeleteLiveStreamsNotifyUrlConfigRequest struct {
 }
 
 func (req *DeleteLiveStreamsNotifyUrlConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveStreamsNotifyUrlConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveStreamsNotifyUrlConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveStreamsNotifyUrlConfig", "live", "")
 	resp = &DeleteLiveStreamsNotifyUrlConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

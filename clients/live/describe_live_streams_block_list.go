@@ -12,11 +12,13 @@ type DescribeLiveStreamsBlockListRequest struct {
 	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
+	PageSize      int    `position:"Query" name:"PageSize"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
+	PageNum       int    `position:"Query" name:"PageNum"`
 }
 
 func (req *DescribeLiveStreamsBlockListRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamsBlockListResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamsBlockList", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamsBlockList", "live", "")
 	resp = &DescribeLiveStreamsBlockListResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -26,6 +28,10 @@ type DescribeLiveStreamsBlockListResponse struct {
 	responses.BaseResponse
 	RequestId  string
 	DomainName string
+	PageNum    int
+	PageSize   int
+	TotalNum   int
+	TotalPage  int
 	StreamUrls DescribeLiveStreamsBlockListStreamUrlList
 }
 

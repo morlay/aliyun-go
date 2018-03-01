@@ -20,7 +20,7 @@ type DescribeLiveStreamHistoryUserNumRequest struct {
 }
 
 func (req *DescribeLiveStreamHistoryUserNumRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamHistoryUserNumResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamHistoryUserNum", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamHistoryUserNum", "live", "")
 	resp = &DescribeLiveStreamHistoryUserNumResponse{}
 	err = client.DoAction(req, resp)
 	return

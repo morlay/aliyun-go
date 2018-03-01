@@ -22,7 +22,7 @@ type AddCasterComponentRequest struct {
 }
 
 func (req *AddCasterComponentRequest) Invoke(client *sdk.Client) (resp *AddCasterComponentResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddCasterComponent", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddCasterComponent", "live", "")
 	resp = &AddCasterComponentResponse{}
 	err = client.DoAction(req, resp)
 	return

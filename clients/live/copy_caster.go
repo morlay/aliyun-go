@@ -17,7 +17,7 @@ type CopyCasterRequest struct {
 }
 
 func (req *CopyCasterRequest) Invoke(client *sdk.Client) (resp *CopyCasterResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "CopyCaster", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "CopyCaster", "live", "")
 	resp = &CopyCasterResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -20,7 +20,7 @@ type SetCasterSceneConfigRequest struct {
 }
 
 func (req *SetCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *SetCasterSceneConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "SetCasterSceneConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "SetCasterSceneConfig", "live", "")
 	resp = &SetCasterSceneConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

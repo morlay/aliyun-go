@@ -8,8 +8,8 @@ import (
 
 type CallbackClusterTokenRequest struct {
 	requests.RoaRequest
-	Token   string `position:"Path" name:"Token"`
 	ReqOnce string `position:"Path" name:"ReqOnce"`
+	Token   string `position:"Path" name:"Token"`
 }
 
 func (req *CallbackClusterTokenRequest) Invoke(client *sdk.Client) (resp *CallbackClusterTokenResponse, err error) {

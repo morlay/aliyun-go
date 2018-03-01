@@ -22,7 +22,7 @@ type UpdateLiveSnapshotDetectPornConfigRequest struct {
 }
 
 func (req *UpdateLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (resp *UpdateLiveSnapshotDetectPornConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveSnapshotDetectPornConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveSnapshotDetectPornConfig", "live", "")
 	resp = &UpdateLiveSnapshotDetectPornConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

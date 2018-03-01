@@ -19,7 +19,7 @@ type AddMultipleStreamMixServiceRequest struct {
 }
 
 func (req *AddMultipleStreamMixServiceRequest) Invoke(client *sdk.Client) (resp *AddMultipleStreamMixServiceResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddMultipleStreamMixService", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddMultipleStreamMixService", "live", "")
 	resp = &AddMultipleStreamMixServiceResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -15,7 +15,7 @@ type DeleteLiveAppSnapshotConfigRequest struct {
 }
 
 func (req *DeleteLiveAppSnapshotConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveAppSnapshotConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveAppSnapshotConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveAppSnapshotConfig", "live", "")
 	resp = &DeleteLiveAppSnapshotConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

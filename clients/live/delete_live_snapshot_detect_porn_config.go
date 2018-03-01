@@ -15,7 +15,7 @@ type DeleteLiveSnapshotDetectPornConfigRequest struct {
 }
 
 func (req *DeleteLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveSnapshotDetectPornConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveSnapshotDetectPornConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveSnapshotDetectPornConfig", "live", "")
 	resp = &DeleteLiveSnapshotDetectPornConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

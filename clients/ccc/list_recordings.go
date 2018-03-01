@@ -21,7 +21,7 @@ type ListRecordingsRequest struct {
 }
 
 func (req *ListRecordingsRequest) Invoke(client *sdk.Client) (resp *ListRecordingsResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListRecordings", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListRecordings", "CCC", "")
 	resp = &ListRecordingsResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -16,7 +16,7 @@ type DeleteCasterVideoResourceRequest struct {
 }
 
 func (req *DeleteCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *DeleteCasterVideoResourceResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterVideoResource", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterVideoResource", "live", "")
 	resp = &DeleteCasterVideoResourceResponse{}
 	err = client.DoAction(req, resp)
 	return

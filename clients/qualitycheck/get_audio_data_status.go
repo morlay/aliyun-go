@@ -39,10 +39,16 @@ type GetAudioDataStatusTaskAsrResult struct {
 }
 
 type GetAudioDataStatusAsrResult struct {
-	Asrstatus       string
-	AsrStatusCode   string
-	ErrorMessage    string
-	SentenceResults GetAudioDataStatusSentenceResultList
+	Asrstatus        string
+	AsrStatusCode    string
+	ErrorMessage     string
+	Duration         int64
+	InteractiveCount int
+	SentenceResults  GetAudioDataStatusSentenceResultList
+	ServiceEvStat    GetAudioDataStatusServiceEvStat
+	ClientEvStat     GetAudioDataStatusClientEvStat
+	ServiceSrStat    GetAudioDataStatusServiceSrStat
+	ClientSrStat     GetAudioDataStatusClientSrStat
 }
 
 type GetAudioDataStatusSentenceResult struct {
@@ -56,6 +62,34 @@ type GetAudioDataStatusSentenceResult struct {
 	SpeakerId       string
 	AgentId         string
 	ChannelKey      string
+}
+
+type GetAudioDataStatusServiceEvStat struct {
+	Srole            int
+	SmaxEmotionValue float32
+	SminEmotionValue float32
+	SavgEmotionValue float32
+}
+
+type GetAudioDataStatusClientEvStat struct {
+	Crole            int
+	CmaxEmotionValue float32
+	CminEmotionValue float32
+	CavgEmotionValue float32
+}
+
+type GetAudioDataStatusServiceSrStat struct {
+	Srole          int
+	SmaxSpeechRate float32
+	SminSpeechRate float32
+	SavgSpeechRate float32
+}
+
+type GetAudioDataStatusClientSrStat struct {
+	Crole          int
+	CmaxSpeechRate float32
+	CminSpeechRate float32
+	CavgSpeechRate float32
 }
 
 type GetAudioDataStatusTaskAsrResultList []GetAudioDataStatusTaskAsrResult

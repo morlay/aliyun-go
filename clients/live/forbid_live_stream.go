@@ -18,7 +18,7 @@ type ForbidLiveStreamRequest struct {
 }
 
 func (req *ForbidLiveStreamRequest) Invoke(client *sdk.Client) (resp *ForbidLiveStreamResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "ForbidLiveStream", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "ForbidLiveStream", "live", "")
 	resp = &ForbidLiveStreamResponse{}
 	err = client.DoAction(req, resp)
 	return

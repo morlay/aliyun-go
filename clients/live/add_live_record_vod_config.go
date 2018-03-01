@@ -18,7 +18,7 @@ type AddLiveRecordVodConfigRequest struct {
 }
 
 func (req *AddLiveRecordVodConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveRecordVodConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddLiveRecordVodConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddLiveRecordVodConfig", "live", "")
 	resp = &AddLiveRecordVodConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

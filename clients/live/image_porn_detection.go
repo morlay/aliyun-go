@@ -14,7 +14,7 @@ type ImagePornDetectionRequest struct {
 }
 
 func (req *ImagePornDetectionRequest) Invoke(client *sdk.Client) (resp *ImagePornDetectionResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "ImagePornDetection", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "ImagePornDetection", "live", "")
 	resp = &ImagePornDetectionResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -15,7 +15,7 @@ type UpdateLiveDetectNotifyConfigRequest struct {
 }
 
 func (req *UpdateLiveDetectNotifyConfigRequest) Invoke(client *sdk.Client) (resp *UpdateLiveDetectNotifyConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveDetectNotifyConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "UpdateLiveDetectNotifyConfig", "live", "")
 	resp = &UpdateLiveDetectNotifyConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

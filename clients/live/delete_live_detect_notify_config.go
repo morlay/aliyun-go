@@ -14,7 +14,7 @@ type DeleteLiveDetectNotifyConfigRequest struct {
 }
 
 func (req *DeleteLiveDetectNotifyConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveDetectNotifyConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveDetectNotifyConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveDetectNotifyConfig", "live", "")
 	resp = &DeleteLiveDetectNotifyConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

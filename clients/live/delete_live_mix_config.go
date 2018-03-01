@@ -15,7 +15,7 @@ type DeleteLiveMixConfigRequest struct {
 }
 
 func (req *DeleteLiveMixConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveMixConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveMixConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveMixConfig", "live", "")
 	resp = &DeleteLiveMixConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

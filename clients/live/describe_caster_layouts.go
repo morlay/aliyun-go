@@ -18,7 +18,7 @@ type DescribeCasterLayoutsRequest struct {
 }
 
 func (req *DescribeCasterLayoutsRequest) Invoke(client *sdk.Client) (resp *DescribeCasterLayoutsResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterLayouts", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterLayouts", "live", "")
 	resp = &DescribeCasterLayoutsResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -16,7 +16,7 @@ type StartCasterSceneRequest struct {
 }
 
 func (req *StartCasterSceneRequest) Invoke(client *sdk.Client) (resp *StartCasterSceneResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "StartCasterScene", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "StartCasterScene", "live", "")
 	resp = &StartCasterSceneResponse{}
 	err = client.DoAction(req, resp)
 	return

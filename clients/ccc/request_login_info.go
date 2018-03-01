@@ -12,7 +12,7 @@ type RequestLoginInfoRequest struct {
 }
 
 func (req *RequestLoginInfoRequest) Invoke(client *sdk.Client) (resp *RequestLoginInfoResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "RequestLoginInfo", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "RequestLoginInfo", "CCC", "")
 	resp = &RequestLoginInfoResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -31,6 +31,7 @@ type RequestLoginInfoResponse struct {
 type RequestLoginInfoLoginInfo struct {
 	UserName       string
 	DisplayName    string
+	PhoneNumber    string
 	Region         string
 	WebRtcUrl      string
 	AgentServerUrl string

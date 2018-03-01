@@ -17,7 +17,7 @@ type DescribeCasterConfigRequest struct {
 }
 
 func (req *DescribeCasterConfigRequest) Invoke(client *sdk.Client) (resp *DescribeCasterConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterConfig", "live", "")
 	resp = &DescribeCasterConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

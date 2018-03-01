@@ -16,7 +16,7 @@ type DeleteLiveRecordVodConfigRequest struct {
 }
 
 func (req *DeleteLiveRecordVodConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveRecordVodConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveRecordVodConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveRecordVodConfig", "live", "")
 	resp = &DeleteLiveRecordVodConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -16,7 +16,7 @@ type DeleteCasterLayoutRequest struct {
 }
 
 func (req *DeleteCasterLayoutRequest) Invoke(client *sdk.Client) (resp *DeleteCasterLayoutResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterLayout", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteCasterLayout", "live", "")
 	resp = &DeleteCasterLayoutResponse{}
 	err = client.DoAction(req, resp)
 	return

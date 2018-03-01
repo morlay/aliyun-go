@@ -15,7 +15,7 @@ type GetServiceExtensionsRequest struct {
 }
 
 func (req *GetServiceExtensionsRequest) Invoke(client *sdk.Client) (resp *GetServiceExtensionsResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "GetServiceExtensions", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "GetServiceExtensions", "CCC", "")
 	resp = &GetServiceExtensionsResponse{}
 	err = client.DoAction(req, resp)
 	return

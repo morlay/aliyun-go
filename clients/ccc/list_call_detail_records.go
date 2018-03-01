@@ -10,17 +10,20 @@ import (
 
 type ListCallDetailRecordsRequest struct {
 	requests.RpcRequest
-	InstanceId  string `position:"Query" name:"InstanceId"`
-	Criteria    string `position:"Query" name:"Criteria"`
-	PhoneNumber string `position:"Query" name:"PhoneNumber"`
-	PageSize    int    `position:"Query" name:"PageSize"`
-	StartTime   int64  `position:"Query" name:"StartTime"`
-	StopTime    int64  `position:"Query" name:"StopTime"`
-	PageNumber  int    `position:"Query" name:"PageNumber"`
+	InstanceId         string `position:"Query" name:"InstanceId"`
+	ContactDisposition string `position:"Query" name:"ContactDisposition"`
+	ContactType        string `position:"Query" name:"ContactType"`
+	Criteria           string `position:"Query" name:"Criteria"`
+	PhoneNumber        string `position:"Query" name:"PhoneNumber"`
+	PageSize           int    `position:"Query" name:"PageSize"`
+	StartTime          int64  `position:"Query" name:"StartTime"`
+	StopTime           int64  `position:"Query" name:"StopTime"`
+	PageNumber         int    `position:"Query" name:"PageNumber"`
+	WithRecording      string `position:"Query" name:"WithRecording"`
 }
 
 func (req *ListCallDetailRecordsRequest) Invoke(client *sdk.Client) (resp *ListCallDetailRecordsResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListCallDetailRecords", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListCallDetailRecords", "CCC", "")
 	resp = &ListCallDetailRecordsResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -47,6 +50,7 @@ type ListCallDetailRecordsCallDetailRecord struct {
 	ContactId          string
 	StartTime          int64
 	Duration           int
+	Satisfaction       int
 	ContactType        string
 	ContactDisposition string
 	CallingNumber      string
@@ -54,6 +58,7 @@ type ListCallDetailRecordsCallDetailRecord struct {
 	AgentNames         string
 	SkillGroupNames    string
 	InstanceId         string
+	ExtraAttr          string
 	Agents             ListCallDetailRecordsCallDetailAgentList
 	Recordings         ListCallDetailRecordsRecordingList
 }

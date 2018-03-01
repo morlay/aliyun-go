@@ -15,7 +15,7 @@ type RemoveUsersRequest struct {
 }
 
 func (req *RemoveUsersRequest) Invoke(client *sdk.Client) (resp *RemoveUsersResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "RemoveUsers", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "RemoveUsers", "CCC", "")
 	resp = &RemoveUsersResponse{}
 	err = client.DoAction(req, resp)
 	return

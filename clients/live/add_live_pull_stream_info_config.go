@@ -19,7 +19,7 @@ type AddLivePullStreamInfoConfigRequest struct {
 }
 
 func (req *AddLivePullStreamInfoConfigRequest) Invoke(client *sdk.Client) (resp *AddLivePullStreamInfoConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddLivePullStreamInfoConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddLivePullStreamInfoConfig", "live", "")
 	resp = &AddLivePullStreamInfoConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -15,7 +15,7 @@ type StopCasterRequest struct {
 }
 
 func (req *StopCasterRequest) Invoke(client *sdk.Client) (resp *StopCasterResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "StopCaster", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "StopCaster", "live", "")
 	resp = &StopCasterResponse{}
 	err = client.DoAction(req, resp)
 	return

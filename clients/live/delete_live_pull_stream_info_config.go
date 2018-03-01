@@ -16,7 +16,7 @@ type DeleteLivePullStreamInfoConfigRequest struct {
 }
 
 func (req *DeleteLivePullStreamInfoConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLivePullStreamInfoConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLivePullStreamInfoConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLivePullStreamInfoConfig", "live", "")
 	resp = &DeleteLivePullStreamInfoConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

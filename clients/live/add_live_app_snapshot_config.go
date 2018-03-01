@@ -20,7 +20,7 @@ type AddLiveAppSnapshotConfigRequest struct {
 }
 
 func (req *AddLiveAppSnapshotConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveAppSnapshotConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddLiveAppSnapshotConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddLiveAppSnapshotConfig", "live", "")
 	resp = &AddLiveAppSnapshotConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

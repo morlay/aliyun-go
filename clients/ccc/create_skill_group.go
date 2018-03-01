@@ -19,7 +19,7 @@ type CreateSkillGroupRequest struct {
 }
 
 func (req *CreateSkillGroupRequest) Invoke(client *sdk.Client) (resp *CreateSkillGroupResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "CreateSkillGroup", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "CreateSkillGroup", "CCC", "")
 	resp = &CreateSkillGroupResponse{}
 	err = client.DoAction(req, resp)
 	return

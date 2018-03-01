@@ -16,7 +16,7 @@ type AddLiveStreamTranscodeRequest struct {
 }
 
 func (req *AddLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (resp *AddLiveStreamTranscodeResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddLiveStreamTranscode", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddLiveStreamTranscode", "live", "")
 	resp = &AddLiveStreamTranscodeResponse{}
 	err = client.DoAction(req, resp)
 	return

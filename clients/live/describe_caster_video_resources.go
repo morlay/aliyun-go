@@ -17,7 +17,7 @@ type DescribeCasterVideoResourcesRequest struct {
 }
 
 func (req *DescribeCasterVideoResourcesRequest) Invoke(client *sdk.Client) (resp *DescribeCasterVideoResourcesResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterVideoResources", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeCasterVideoResources", "live", "")
 	resp = &DescribeCasterVideoResourcesResponse{}
 	err = client.DoAction(req, resp)
 	return

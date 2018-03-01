@@ -20,7 +20,7 @@ type AddLiveAppRecordConfigRequest struct {
 }
 
 func (req *AddLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveAppRecordConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddLiveAppRecordConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddLiveAppRecordConfig", "live", "")
 	resp = &AddLiveAppRecordConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

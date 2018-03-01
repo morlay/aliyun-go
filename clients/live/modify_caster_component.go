@@ -22,7 +22,7 @@ type ModifyCasterComponentRequest struct {
 }
 
 func (req *ModifyCasterComponentRequest) Invoke(client *sdk.Client) (resp *ModifyCasterComponentResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "ModifyCasterComponent", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "ModifyCasterComponent", "live", "")
 	resp = &ModifyCasterComponentResponse{}
 	err = client.DoAction(req, resp)
 	return

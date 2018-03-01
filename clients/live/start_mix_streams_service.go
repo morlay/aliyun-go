@@ -23,7 +23,7 @@ type StartMixStreamsServiceRequest struct {
 }
 
 func (req *StartMixStreamsServiceRequest) Invoke(client *sdk.Client) (resp *StartMixStreamsServiceResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "StartMixStreamsService", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "StartMixStreamsService", "live", "")
 	resp = &StartMixStreamsServiceResponse{}
 	err = client.DoAction(req, resp)
 	return

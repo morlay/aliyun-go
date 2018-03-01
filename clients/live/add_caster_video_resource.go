@@ -20,7 +20,7 @@ type AddCasterVideoResourceRequest struct {
 }
 
 func (req *AddCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *AddCasterVideoResourceResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "AddCasterVideoResource", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "AddCasterVideoResource", "live", "")
 	resp = &AddCasterVideoResourceResponse{}
 	err = client.DoAction(req, resp)
 	return

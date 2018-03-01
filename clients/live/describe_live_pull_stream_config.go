@@ -16,7 +16,7 @@ type DescribeLivePullStreamConfigRequest struct {
 }
 
 func (req *DescribeLivePullStreamConfigRequest) Invoke(client *sdk.Client) (resp *DescribeLivePullStreamConfigResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLivePullStreamConfig", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLivePullStreamConfig", "live", "")
 	resp = &DescribeLivePullStreamConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

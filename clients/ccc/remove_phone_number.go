@@ -13,7 +13,7 @@ type RemovePhoneNumberRequest struct {
 }
 
 func (req *RemovePhoneNumberRequest) Invoke(client *sdk.Client) (resp *RemovePhoneNumberResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "RemovePhoneNumber", "ccc", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "RemovePhoneNumber", "CCC", "")
 	resp = &RemovePhoneNumberResponse{}
 	err = client.DoAction(req, resp)
 	return

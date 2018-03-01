@@ -16,7 +16,7 @@ type DeleteLiveStreamTranscodeRequest struct {
 }
 
 func (req *DeleteLiveStreamTranscodeRequest) Invoke(client *sdk.Client) (resp *DeleteLiveStreamTranscodeResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveStreamTranscode", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DeleteLiveStreamTranscode", "live", "")
 	resp = &DeleteLiveStreamTranscodeResponse{}
 	err = client.DoAction(req, resp)
 	return

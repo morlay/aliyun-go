@@ -16,7 +16,7 @@ type DescribeLiveStreamTranscodeInfoRequest struct {
 }
 
 func (req *DescribeLiveStreamTranscodeInfoRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamTranscodeInfoResponse, err error) {
-	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamTranscodeInfo", "", "")
+	req.InitWithApiInfo("live", "2016-11-01", "DescribeLiveStreamTranscodeInfo", "live", "")
 	resp = &DescribeLiveStreamTranscodeInfoResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -29,9 +29,18 @@ type DescribeLiveStreamTranscodeInfoResponse struct {
 }
 
 type DescribeLiveStreamTranscodeInfoDomainTranscodeInfo struct {
-	TranscodeApp      string
-	TranscodeName     string
-	TranscodeTemplate string
+	TranscodeApp              string
+	TranscodeName             string
+	TranscodeTemplate         string
+	CustomTranscodeParameters DescribeLiveStreamTranscodeInfoCustomTranscodeParameters
+}
+
+type DescribeLiveStreamTranscodeInfoCustomTranscodeParameters struct {
+	VideoBitrate int
+	FPS          int
+	Height       int
+	Width        int
+	TemplateType string
 }
 
 type DescribeLiveStreamTranscodeInfoDomainTranscodeInfoList []DescribeLiveStreamTranscodeInfoDomainTranscodeInfo
