@@ -34,6 +34,7 @@ type AddAlbumPhotosResponse struct {
 
 type AddAlbumPhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

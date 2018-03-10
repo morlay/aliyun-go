@@ -14,7 +14,6 @@ type DoLogicalDeleteResourceRequest struct {
 	Interrupt      string `position:"Query" name:"Interrupt"`
 	GmtWakeup      string `position:"Query" name:"GmtWakeup"`
 	Pk             string `position:"Query" name:"Pk"`
-	Invoker        int64  `position:"Query" name:"Invoker"`
 	Bid            string `position:"Query" name:"Bid"`
 	Message        string `position:"Query" name:"Message"`
 	TaskExtraData  string `position:"Query" name:"TaskExtraData"`

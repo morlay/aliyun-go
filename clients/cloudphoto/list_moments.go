@@ -38,6 +38,7 @@ type ListMomentsResponse struct {
 
 type ListMomentsMoment struct {
 	Id           int64
+	IdStr        string
 	LocationName string
 	PhotosCount  int
 	State        string

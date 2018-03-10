@@ -38,8 +38,9 @@ type ListAlbumPhotosResponse struct {
 }
 
 type ListAlbumPhotosResult struct {
-	PhotoId int64
-	State   string
+	PhotoId    int64
+	PhotoIdStr string
+	State      string
 }
 
 type ListAlbumPhotosResultList []ListAlbumPhotosResult

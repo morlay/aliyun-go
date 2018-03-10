@@ -33,6 +33,7 @@ type ListTagsResponse struct {
 
 type ListTagsTag struct {
 	Id        int64
+	IdStr     string
 	Name      string
 	IsSubTag  bool
 	ParentTag string
@@ -41,6 +42,7 @@ type ListTagsTag struct {
 
 type ListTagsCover struct {
 	Id      int64
+	IdStr   string
 	Title   string
 	FileId  string
 	State   string

@@ -40,6 +40,7 @@ type ListTimeLinePhotosResponse struct {
 
 type ListTimeLinePhotosPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	FileId          string
 	Location        string

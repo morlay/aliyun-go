@@ -34,6 +34,7 @@ type ListPhotoTagsResponse struct {
 
 type ListPhotoTagsTag struct {
 	Id        int64
+	IdStr     string
 	IsSubTag  bool
 	Name      string
 	ParentTag string

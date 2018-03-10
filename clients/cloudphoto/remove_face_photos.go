@@ -34,6 +34,7 @@ type RemoveFacePhotosResponse struct {
 
 type RemoveFacePhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

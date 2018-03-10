@@ -33,6 +33,7 @@ type ActivatePhotosResponse struct {
 
 type ActivatePhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

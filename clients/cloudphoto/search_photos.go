@@ -36,6 +36,7 @@ type SearchPhotosResponse struct {
 
 type SearchPhotosPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	FileId          string
 	Location        string

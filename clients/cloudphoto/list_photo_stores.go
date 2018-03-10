@@ -30,6 +30,7 @@ type ListPhotoStoresResponse struct {
 
 type ListPhotoStoresPhotoStore struct {
 	Id               int64
+	IdStr            string
 	Name             string
 	Remark           string
 	AutoCleanEnabled bool

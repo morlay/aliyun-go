@@ -36,6 +36,7 @@ type GetFramedPhotoUrlsResult struct {
 	Code           string
 	Message        string
 	PhotoId        int64
+	PhotoIdStr     string
 	FramedPhotoUrl string
 }
 

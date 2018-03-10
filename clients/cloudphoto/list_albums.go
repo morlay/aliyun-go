@@ -38,6 +38,7 @@ type ListAlbumsResponse struct {
 
 type ListAlbumsAlbum struct {
 	Id          int64
+	IdStr       string
 	Name        string
 	State       string
 	PhotosCount int64
@@ -48,6 +49,7 @@ type ListAlbumsAlbum struct {
 
 type ListAlbumsCover struct {
 	Id      int64
+	IdStr   string
 	Title   string
 	FileId  string
 	State   string

@@ -34,6 +34,7 @@ type RemoveAlbumPhotosResponse struct {
 
 type RemoveAlbumPhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

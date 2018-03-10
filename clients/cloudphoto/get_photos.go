@@ -33,6 +33,7 @@ type GetPhotosResponse struct {
 
 type GetPhotosPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	FileId          string
 	Location        string

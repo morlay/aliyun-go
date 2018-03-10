@@ -43,6 +43,8 @@ type DescribeInstanceTypesInstanceType struct {
 	InitialCredit        int
 	BaselineCredit       int
 	EniQuantity          int
+	InstanceBandwidthRx  int
+	InstanceBandwidthTx  int
 }
 
 type DescribeInstanceTypesInstanceTypeList []DescribeInstanceTypesInstanceType

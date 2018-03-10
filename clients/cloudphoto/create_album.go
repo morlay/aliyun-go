@@ -32,6 +32,7 @@ type CreateAlbumResponse struct {
 
 type CreateAlbumAlbum struct {
 	Id          int64
+	IdStr       string
 	Name        string
 	State       string
 	Remark      string
@@ -43,6 +44,7 @@ type CreateAlbumAlbum struct {
 
 type CreateAlbumCover struct {
 	Id      int64
+	IdStr   string
 	Title   string
 	FileId  string
 	State   string

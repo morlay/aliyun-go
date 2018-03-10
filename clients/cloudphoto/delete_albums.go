@@ -33,6 +33,7 @@ type DeleteAlbumsResponse struct {
 
 type DeleteAlbumsResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

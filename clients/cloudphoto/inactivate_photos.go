@@ -34,6 +34,7 @@ type InactivatePhotosResponse struct {
 
 type InactivatePhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

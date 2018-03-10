@@ -32,9 +32,10 @@ type ListPhotoFacesResponse struct {
 }
 
 type ListPhotoFacesFace struct {
-	FaceId   int64
-	FaceName string
-	Axis     ListPhotoFacesAxiList
+	FaceId    int64
+	FaceIdStr string
+	FaceName  string
+	Axis      ListPhotoFacesAxiList
 }
 
 type ListPhotoFacesFaceList []ListPhotoFacesFace

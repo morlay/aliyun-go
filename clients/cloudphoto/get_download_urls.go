@@ -35,6 +35,7 @@ type GetDownloadUrlsResult struct {
 	Code        string
 	Message     string
 	PhotoId     int64
+	PhotoIdStr  string
 	DownloadUrl string
 }
 

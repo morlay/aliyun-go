@@ -38,6 +38,7 @@ type ListPhotosResponse struct {
 
 type ListPhotosPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	FileId          string
 	Location        string

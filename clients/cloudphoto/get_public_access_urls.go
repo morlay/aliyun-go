@@ -34,10 +34,11 @@ type GetPublicAccessUrlsResponse struct {
 }
 
 type GetPublicAccessUrlsResult struct {
-	Code      string
-	Message   string
-	PhotoId   int64
-	AccessUrl string
+	Code       string
+	Message    string
+	PhotoId    int64
+	PhotoIdStr string
+	AccessUrl  string
 }
 
 type GetPublicAccessUrlsPhotoIdList []int64

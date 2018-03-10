@@ -35,6 +35,7 @@ type MoveAlbumPhotosResponse struct {
 
 type MoveAlbumPhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

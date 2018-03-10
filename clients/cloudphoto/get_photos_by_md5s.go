@@ -34,6 +34,7 @@ type GetPhotosByMd5sResponse struct {
 
 type GetPhotosByMd5sPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	FileId          string
 	Location        string

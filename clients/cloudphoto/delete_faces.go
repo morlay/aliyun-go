@@ -33,6 +33,7 @@ type DeleteFacesResponse struct {
 
 type DeleteFacesResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

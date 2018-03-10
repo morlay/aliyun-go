@@ -48,6 +48,7 @@ type ListTimeLinesTimeLine struct {
 
 type ListTimeLinesPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	Location        string
 	FileId          string

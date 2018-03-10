@@ -39,6 +39,7 @@ type ListFacesResponse struct {
 
 type ListFacesFace struct {
 	Id          int64
+	IdStr       string
 	Name        string
 	PhotosCount int
 	State       string
@@ -51,6 +52,7 @@ type ListFacesFace struct {
 
 type ListFacesCover struct {
 	Id      int64
+	IdStr   string
 	Title   string
 	FileId  string
 	State   string

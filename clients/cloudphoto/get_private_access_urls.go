@@ -33,10 +33,11 @@ type GetPrivateAccessUrlsResponse struct {
 }
 
 type GetPrivateAccessUrlsResult struct {
-	Code      string
-	Message   string
-	PhotoId   int64
-	AccessUrl string
+	Code       string
+	Message    string
+	PhotoId    int64
+	PhotoIdStr string
+	AccessUrl  string
 }
 
 type GetPrivateAccessUrlsPhotoIdList []int64

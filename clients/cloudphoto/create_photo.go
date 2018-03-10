@@ -37,6 +37,7 @@ type CreatePhotoResponse struct {
 
 type CreatePhotoPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	FileId          string
 	Location        string

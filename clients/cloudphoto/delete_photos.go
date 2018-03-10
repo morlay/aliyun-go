@@ -11,8 +11,8 @@ import (
 type DeletePhotosRequest struct {
 	requests.RpcRequest
 	LibraryId string                   `position:"Query" name:"LibraryId"`
-	PhotoIds  *DeletePhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 	StoreName string                   `position:"Query" name:"StoreName"`
+	PhotoIds  *DeletePhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`
 }
 
 func (req *DeletePhotosRequest) Invoke(client *sdk.Client) (resp *DeletePhotosResponse, err error) {
@@ -33,6 +33,7 @@ type DeletePhotosResponse struct {
 
 type DeletePhotosResult struct {
 	Id      int64
+	IdStr   string
 	Code    string
 	Message string
 }

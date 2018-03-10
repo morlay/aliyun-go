@@ -41,6 +41,7 @@ type RegisterPhotoResponse struct {
 
 type RegisterPhotoPhoto struct {
 	Id              int64
+	IdStr           string
 	Title           string
 	Location        string
 	FileId          string

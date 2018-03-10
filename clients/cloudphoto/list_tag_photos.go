@@ -38,8 +38,9 @@ type ListTagPhotosResponse struct {
 }
 
 type ListTagPhotosResult struct {
-	PhotoId int64
-	State   string
+	PhotoId    int64
+	PhotoIdStr string
+	State      string
 }
 
 type ListTagPhotosResultList []ListTagPhotosResult
