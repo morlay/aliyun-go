@@ -12,7 +12,6 @@ type DeleteVirtualBorderRouterRequest struct {
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	UserCidr             string `position:"Query" name:"UserCidr"`
 	VbrId                string `position:"Query" name:"VbrId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }

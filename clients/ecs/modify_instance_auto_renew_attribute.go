@@ -10,6 +10,7 @@ type ModifyInstanceAutoRenewAttributeRequest struct {
 	requests.RpcRequest
 	Duration             int    `position:"Query" name:"Duration"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	PeriodUnit           string `position:"Query" name:"PeriodUnit"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	AutoRenew            string `position:"Query" name:"AutoRenew"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`

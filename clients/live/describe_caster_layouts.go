@@ -10,11 +10,9 @@ import (
 
 type DescribeCasterLayoutsRequest struct {
 	requests.RpcRequest
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
-	LayoutId      string `position:"Query" name:"LayoutId"`
+	CasterId string `position:"Query" name:"CasterId"`
+	OwnerId  int64  `position:"Query" name:"OwnerId"`
+	LayoutId string `position:"Query" name:"LayoutId"`
 }
 
 func (req *DescribeCasterLayoutsRequest) Invoke(client *sdk.Client) (resp *DescribeCasterLayoutsResponse, err error) {
@@ -43,12 +41,14 @@ type DescribeCasterLayoutsVideoLayer struct {
 	HeightNormalized    float32
 	WidthNormalized     float32
 	PositionRefer       string
+	FixedDelayDuration  int
 	PositionNormalizeds DescribeCasterLayoutsPositionNormalizedList
 }
 
 type DescribeCasterLayoutsAudioLayer struct {
-	VolumeRate   float32
-	ValidChannel string
+	VolumeRate         float32
+	ValidChannel       string
+	FixedDelayDuration int
 }
 
 type DescribeCasterLayoutsLayoutList []DescribeCasterLayoutsLayout

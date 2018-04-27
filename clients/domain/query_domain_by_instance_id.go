@@ -43,6 +43,7 @@ type QueryDomainByInstanceIdResponse struct {
 	TransferOutStatus            string
 	RegistrantType               string
 	DomainNameVerificationStatus string
+	RequestId                    string
 	DnsList                      QueryDomainByInstanceIdDnsListList
 }
 

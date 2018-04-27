@@ -37,6 +37,9 @@ type RemoveBackendServersResponse struct {
 type RemoveBackendServersBackendServer struct {
 	ServerId string
 	Weight   int
+	ServerIp string
+	VpcId    string
+	Type     string
 }
 
 type RemoveBackendServersBackendServerList []RemoveBackendServersBackendServer

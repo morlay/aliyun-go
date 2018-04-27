@@ -56,4 +56,10 @@ type DescribeLoadBalancerHTTPSListenerAttributeResponse struct {
 	XForwardedFor_SLBIP    string
 	XForwardedFor_SLBID    string
 	XForwardedFor_proto    string
+	AclId                  string
+	AclType                string
+	AclStatus              string
+	VpcIds                 string
+	RequestTimeout         int
+	IdleTimeout            int
 }

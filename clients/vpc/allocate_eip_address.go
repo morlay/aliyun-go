@@ -17,6 +17,7 @@ type AllocateEipAddressRequest struct {
 	ISP                  string `position:"Query" name:"ISP"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	InternetChargeType   string `position:"Query" name:"InternetChargeType"`
 	Netmode              string `position:"Query" name:"Netmode"`
 	PricingCycle         string `position:"Query" name:"PricingCycle"`
@@ -32,8 +33,9 @@ func (req *AllocateEipAddressRequest) Invoke(client *sdk.Client) (resp *Allocate
 
 type AllocateEipAddressResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	AllocationId string
-	EipAddress   string
-	OrderId      int64
+	RequestId       string
+	AllocationId    string
+	EipAddress      string
+	OrderId         int64
+	ResourceGroupId string
 }

@@ -14,7 +14,7 @@ type NodeProcessesRequest struct {
 }
 
 func (req *NodeProcessesRequest) Invoke(client *sdk.Client) (resp *NodeProcessesResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "NodeProcesses", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "NodeProcesses", "cms", "")
 	resp = &NodeProcessesResponse{}
 	err = client.DoAction(req, resp)
 	return

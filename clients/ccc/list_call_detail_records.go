@@ -16,14 +16,15 @@ type ListCallDetailRecordsRequest struct {
 	Criteria           string `position:"Query" name:"Criteria"`
 	PhoneNumber        string `position:"Query" name:"PhoneNumber"`
 	PageSize           int    `position:"Query" name:"PageSize"`
-	StartTime          int64  `position:"Query" name:"StartTime"`
+	OrderBy            string `position:"Query" name:"OrderBy"`
 	StopTime           int64  `position:"Query" name:"StopTime"`
+	StartTime          int64  `position:"Query" name:"StartTime"`
 	PageNumber         int    `position:"Query" name:"PageNumber"`
 	WithRecording      string `position:"Query" name:"WithRecording"`
 }
 
 func (req *ListCallDetailRecordsRequest) Invoke(client *sdk.Client) (resp *ListCallDetailRecordsResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListCallDetailRecords", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListCallDetailRecords", "ccc", "")
 	resp = &ListCallDetailRecordsResponse{}
 	err = client.DoAction(req, resp)
 	return

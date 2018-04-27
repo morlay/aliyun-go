@@ -21,7 +21,7 @@ type ModifyUserRequest struct {
 }
 
 func (req *ModifyUserRequest) Invoke(client *sdk.Client) (resp *ModifyUserResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ModifyUser", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ModifyUser", "ccc", "")
 	resp = &ModifyUserResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -13,7 +13,7 @@ type QueryMarketCategoriesRequest struct {
 }
 
 func (req *QueryMarketCategoriesRequest) Invoke(client *sdk.Client) (resp *QueryMarketCategoriesResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "QueryMarketCategories", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "QueryMarketCategories", "yunmarket", "")
 	resp = &QueryMarketCategoriesResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -29,6 +29,13 @@ type QueryMarketCategoriesResponse struct {
 }
 
 type QueryMarketCategoriesCategory struct {
+	Id              int64
+	CategoryCode    string
+	CategoryName    string
+	ChildCategories QueryMarketCategoriesChildCategoryList
+}
+
+type QueryMarketCategoriesChildCategory struct {
 	Id           int64
 	CategoryCode string
 	CategoryName string
@@ -38,6 +45,21 @@ type QueryMarketCategoriesCategoryList []QueryMarketCategoriesCategory
 
 func (list *QueryMarketCategoriesCategoryList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]QueryMarketCategoriesCategory)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type QueryMarketCategoriesChildCategoryList []QueryMarketCategoriesChildCategory
+
+func (list *QueryMarketCategoriesChildCategoryList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]QueryMarketCategoriesChildCategory)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

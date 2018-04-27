@@ -13,7 +13,7 @@ type UpdateMyGroupInstancesRequest struct {
 }
 
 func (req *UpdateMyGroupInstancesRequest) Invoke(client *sdk.Client) (resp *UpdateMyGroupInstancesResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "UpdateMyGroupInstances", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "UpdateMyGroupInstances", "cms", "")
 	resp = &UpdateMyGroupInstancesResponse{}
 	err = client.DoAction(req, resp)
 	return

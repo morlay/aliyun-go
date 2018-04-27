@@ -14,7 +14,6 @@ type GetCategoriesRequest struct {
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	CateId               int64  `position:"Query" name:"CateId"`
 	PageNo               int64  `position:"Query" name:"PageNo"`
-	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	PageSize             int64  `position:"Query" name:"PageSize"`
 	OwnerId              string `position:"Query" name:"OwnerId"`
 }

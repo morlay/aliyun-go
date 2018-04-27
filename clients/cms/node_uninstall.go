@@ -12,7 +12,7 @@ type NodeUninstallRequest struct {
 }
 
 func (req *NodeUninstallRequest) Invoke(client *sdk.Client) (resp *NodeUninstallResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "NodeUninstall", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "NodeUninstall", "cms", "")
 	resp = &NodeUninstallResponse{}
 	err = client.DoAction(req, resp)
 	return

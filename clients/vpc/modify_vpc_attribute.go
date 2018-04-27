@@ -14,7 +14,6 @@ type ModifyVpcAttributeRequest struct {
 	VpcId                string `position:"Query" name:"VpcId"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	Description          string `position:"Query" name:"Description"`
-	UserCidr             string `position:"Query" name:"UserCidr"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }
 

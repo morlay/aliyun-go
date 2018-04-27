@@ -11,9 +11,11 @@ import (
 type ListJobsRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
+	PageSize        int    `position:"Query" name:"PageSize"`
+	QueryString     string `position:"Query" name:"QueryString"`
 	IsDesc          string `position:"Query" name:"IsDesc"`
 	PageNumber      int    `position:"Query" name:"PageNumber"`
-	PageSize        int    `position:"Query" name:"PageSize"`
+	QueryType       string `position:"Query" name:"QueryType"`
 }
 
 func (req *ListJobsRequest) Invoke(client *sdk.Client) (resp *ListJobsResponse, err error) {
@@ -33,11 +35,13 @@ type ListJobsResponse struct {
 }
 
 type ListJobsJobInfo struct {
-	Id           string
-	Name         string
-	Type         string
-	RunParameter string
-	FailAct      string
+	Id            string
+	Name          string
+	Type          string
+	RunParameter  string
+	FailAct       string
+	MaxRetry      int
+	RetryInterval int
 }
 
 type ListJobsJobInfoList []ListJobsJobInfo

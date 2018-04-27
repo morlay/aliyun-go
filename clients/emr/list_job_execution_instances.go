@@ -12,9 +12,9 @@ type ListJobExecutionInstancesRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId         int64  `position:"Query" name:"ResourceOwnerId"`
 	ExecutionPlanInstanceId string `position:"Query" name:"ExecutionPlanInstanceId"`
+	PageSize                int    `position:"Query" name:"PageSize"`
 	IsDesc                  string `position:"Query" name:"IsDesc"`
 	PageNumber              int    `position:"Query" name:"PageNumber"`
-	PageSize                int    `position:"Query" name:"PageSize"`
 }
 
 func (req *ListJobExecutionInstancesRequest) Invoke(client *sdk.Client) (resp *ListJobExecutionInstancesResponse, err error) {
@@ -42,6 +42,7 @@ type ListJobExecutionInstancesJobInstance struct {
 	JobId     string
 	ClusterId string
 	Status    string
+	RetryInfo string
 }
 
 type ListJobExecutionInstancesJobInstanceList []ListJobExecutionInstancesJobInstance

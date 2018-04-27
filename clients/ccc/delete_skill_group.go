@@ -13,7 +13,7 @@ type DeleteSkillGroupRequest struct {
 }
 
 func (req *DeleteSkillGroupRequest) Invoke(client *sdk.Client) (resp *DeleteSkillGroupResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "DeleteSkillGroup", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "DeleteSkillGroup", "ccc", "")
 	resp = &DeleteSkillGroupResponse{}
 	err = client.DoAction(req, resp)
 	return

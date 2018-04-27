@@ -22,7 +22,7 @@ type ListAlarmRequest struct {
 }
 
 func (req *ListAlarmRequest) Invoke(client *sdk.Client) (resp *ListAlarmResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ListAlarm", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ListAlarm", "cms", "")
 	resp = &ListAlarmResponse{}
 	err = client.DoAction(req, resp)
 	return

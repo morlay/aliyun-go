@@ -21,10 +21,12 @@ func (req *DescribeJobRequest) Invoke(client *sdk.Client) (resp *DescribeJobResp
 
 type DescribeJobResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	Id           string
-	Name         string
-	FailAct      string
-	Type         string
-	RunParameter string
+	RequestId     string
+	Id            string
+	Name          string
+	FailAct       string
+	Type          string
+	MaxRetry      int
+	RetryInterval int
+	RunParameter  string
 }

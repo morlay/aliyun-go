@@ -127,6 +127,7 @@ type DescribeInstancesInstance struct {
 	RdmaIpAddress           DescribeInstancesRdmaIpAddresList
 	VpcAttributes           DescribeInstancesVpcAttributes
 	EipAddress              DescribeInstancesEipAddress
+	DedicatedHostAttribute  DescribeInstancesDedicatedHostAttribute
 }
 
 type DescribeInstancesNetworkInterface struct {
@@ -158,6 +159,11 @@ type DescribeInstancesEipAddress struct {
 	Bandwidth            int
 	InternetChargeType   string
 	IsSupportUnassociate bool
+}
+
+type DescribeInstancesDedicatedHostAttribute struct {
+	DedicatedHostId   string
+	DedicatedHostName string
 }
 
 type DescribeInstancesInstanceList []DescribeInstancesInstance

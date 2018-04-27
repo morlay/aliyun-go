@@ -11,31 +11,37 @@ import (
 type CreateClusterRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId        int64                                `position:"Query" name:"ResourceOwnerId"`
-	Name                   string                               `position:"Query" name:"Name"`
-	ZoneId                 string                               `position:"Query" name:"ZoneId"`
-	LogEnable              string                               `position:"Query" name:"LogEnable"`
 	LogPath                string                               `position:"Query" name:"LogPath"`
-	SecurityGroupId        string                               `position:"Query" name:"SecurityGroupId"`
-	IsOpenPublicIp         string                               `position:"Query" name:"IsOpenPublicIp"`
-	SecurityGroupName      string                               `position:"Query" name:"SecurityGroupName"`
-	ChargeType             string                               `position:"Query" name:"ChargeType"`
-	Period                 int                                  `position:"Query" name:"Period"`
-	AutoRenew              string                               `position:"Query" name:"AutoRenew"`
-	AutoRenewPeriod        int                                  `position:"Query" name:"AutoRenewPeriod"`
-	VpcId                  string                               `position:"Query" name:"VpcId"`
-	VSwitchId              string                               `position:"Query" name:"VSwitchId"`
-	NetType                string                               `position:"Query" name:"NetType"`
-	EmrVer                 string                               `position:"Query" name:"EmrVer"`
-	ClusterType            string                               `position:"Query" name:"ClusterType"`
-	HighAvailabilityEnable string                               `position:"Query" name:"HighAvailabilityEnable"`
-	IoOptimized            string                               `position:"Query" name:"IoOptimized"`
-	InstanceGeneration     string                               `position:"Query" name:"InstanceGeneration"`
-	MasterPwdEnable        string                               `position:"Query" name:"MasterPwdEnable"`
 	MasterPwd              string                               `position:"Query" name:"MasterPwd"`
 	Configurations         string                               `position:"Query" name:"Configurations"`
-	OptionSoftWareLists    *CreateClusterOptionSoftWareListList `position:"Query" type:"Repeated" name:"OptionSoftWareList"`
-	EcsOrders              *CreateClusterEcsOrderList           `position:"Query" type:"Repeated" name:"EcsOrder"`
+	IoOptimized            string                               `position:"Query" name:"IoOptimized"`
+	SecurityGroupId        string                               `position:"Query" name:"SecurityGroupId"`
+	SshEnable              string                               `position:"Query" name:"SshEnable"`
+	EasEnable              string                               `position:"Query" name:"EasEnable"`
+	SecurityGroupName      string                               `position:"Query" name:"SecurityGroupName"`
+	DepositType            string                               `position:"Query" name:"DepositType"`
+	MachineType            string                               `position:"Query" name:"MachineType"`
 	BootstrapActions       *CreateClusterBootstrapActionList    `position:"Query" type:"Repeated" name:"BootstrapAction"`
+	UseLocalMetaDb         string                               `position:"Query" name:"UseLocalMetaDb"`
+	EmrVer                 string                               `position:"Query" name:"EmrVer"`
+	UserDefinedEmrEcsRole  string                               `position:"Query" name:"UserDefinedEmrEcsRole"`
+	IsOpenPublicIp         string                               `position:"Query" name:"IsOpenPublicIp"`
+	Period                 int                                  `position:"Query" name:"Period"`
+	RelatedClusterId       string                               `position:"Query" name:"RelatedClusterId"`
+	InstanceGeneration     string                               `position:"Query" name:"InstanceGeneration"`
+	VSwitchId              string                               `position:"Query" name:"VSwitchId"`
+	ClusterType            string                               `position:"Query" name:"ClusterType"`
+	AutoRenew              string                               `position:"Query" name:"AutoRenew"`
+	OptionSoftWareLists    *CreateClusterOptionSoftWareListList `position:"Query" type:"Repeated" name:"OptionSoftWareList"`
+	VpcId                  string                               `position:"Query" name:"VpcId"`
+	NetType                string                               `position:"Query" name:"NetType"`
+	EcsOrders              *CreateClusterEcsOrderList           `position:"Query" type:"Repeated" name:"EcsOrder"`
+	Name                   string                               `position:"Query" name:"Name"`
+	ZoneId                 string                               `position:"Query" name:"ZoneId"`
+	ChargeType             string                               `position:"Query" name:"ChargeType"`
+	HighAvailabilityEnable string                               `position:"Query" name:"HighAvailabilityEnable"`
+	MasterPwdEnable        string                               `position:"Query" name:"MasterPwdEnable"`
+	LogEnable              string                               `position:"Query" name:"LogEnable"`
 }
 
 func (req *CreateClusterRequest) Invoke(client *sdk.Client) (resp *CreateClusterResponse, err error) {
@@ -43,6 +49,12 @@ func (req *CreateClusterRequest) Invoke(client *sdk.Client) (resp *CreateCluster
 	resp = &CreateClusterResponse{}
 	err = client.DoAction(req, resp)
 	return
+}
+
+type CreateClusterBootstrapAction struct {
+	Name string `name:"Name"`
+	Path string `name:"Path"`
+	Arg  string `name:"Arg"`
 }
 
 type CreateClusterEcsOrder struct {
@@ -55,12 +67,6 @@ type CreateClusterEcsOrder struct {
 	DiskCount    int    `name:"DiskCount"`
 }
 
-type CreateClusterBootstrapAction struct {
-	Name string `name:"Name"`
-	Path string `name:"Path"`
-	Arg  string `name:"Arg"`
-}
-
 type CreateClusterResponse struct {
 	responses.BaseResponse
 	RequestId     string
@@ -68,6 +74,21 @@ type CreateClusterResponse struct {
 	EmrOrderId    string
 	MasterOrderId string
 	CoreOrderId   string
+}
+
+type CreateClusterBootstrapActionList []CreateClusterBootstrapAction
+
+func (list *CreateClusterBootstrapActionList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]CreateClusterBootstrapAction)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
 }
 
 type CreateClusterOptionSoftWareListList []string
@@ -89,21 +110,6 @@ type CreateClusterEcsOrderList []CreateClusterEcsOrder
 
 func (list *CreateClusterEcsOrderList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]CreateClusterEcsOrder)
-	err := json.Unmarshal(data, &m)
-	if err != nil {
-		return err
-	}
-	for _, v := range m {
-		*list = v
-		break
-	}
-	return nil
-}
-
-type CreateClusterBootstrapActionList []CreateClusterBootstrapAction
-
-func (list *CreateClusterBootstrapActionList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]CreateClusterBootstrapAction)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

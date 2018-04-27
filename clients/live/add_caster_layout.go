@@ -10,14 +10,12 @@ import (
 
 type AddCasterLayoutRequest struct {
 	requests.RpcRequest
-	BlendLists    *AddCasterLayoutBlendListList  `position:"Query" type:"Repeated" name:"BlendList"`
-	AudioLayers   *AddCasterLayoutAudioLayerList `position:"Query" type:"Repeated" name:"AudioLayer"`
-	SecurityToken string                         `position:"Query" name:"SecurityToken"`
-	VideoLayers   *AddCasterLayoutVideoLayerList `position:"Query" type:"Repeated" name:"VideoLayer"`
-	CasterId      string                         `position:"Query" name:"CasterId"`
-	MixLists      *AddCasterLayoutMixListList    `position:"Query" type:"Repeated" name:"MixList"`
-	OwnerId       int64                          `position:"Query" name:"OwnerId"`
-	Version       string                         `position:"Query" name:"Version"`
+	BlendLists  *AddCasterLayoutBlendListList  `position:"Query" type:"Repeated" name:"BlendList"`
+	AudioLayers *AddCasterLayoutAudioLayerList `position:"Query" type:"Repeated" name:"AudioLayer"`
+	VideoLayers *AddCasterLayoutVideoLayerList `position:"Query" type:"Repeated" name:"VideoLayer"`
+	CasterId    string                         `position:"Query" name:"CasterId"`
+	MixLists    *AddCasterLayoutMixListList    `position:"Query" type:"Repeated" name:"MixList"`
+	OwnerId     int64                          `position:"Query" name:"OwnerId"`
 }
 
 func (req *AddCasterLayoutRequest) Invoke(client *sdk.Client) (resp *AddCasterLayoutResponse, err error) {
@@ -28,8 +26,9 @@ func (req *AddCasterLayoutRequest) Invoke(client *sdk.Client) (resp *AddCasterLa
 }
 
 type AddCasterLayoutAudioLayer struct {
-	VolumeRate   float32 `name:"VolumeRate"`
-	ValidChannel string  `name:"ValidChannel"`
+	VolumeRate         float32 `name:"VolumeRate"`
+	ValidChannel       string  `name:"ValidChannel"`
+	FixedDelayDuration int     `name:"FixedDelayDuration"`
 }
 
 type AddCasterLayoutVideoLayer struct {
@@ -37,6 +36,7 @@ type AddCasterLayoutVideoLayer struct {
 	WidthNormalized     float32                                `name:"WidthNormalized"`
 	PositionRefer       string                                 `name:"PositionRefer"`
 	PositionNormalizeds *AddCasterLayoutPositionNormalizedList `type:"Repeated" name:"PositionNormalized"`
+	FixedDelayDuration  int                                    `name:"FixedDelayDuration"`
 }
 
 type AddCasterLayoutResponse struct {

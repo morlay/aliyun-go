@@ -10,8 +10,8 @@ import (
 
 type QueryPushStatByMsgRequest struct {
 	requests.RpcRequest
-	MessageId string `position:"Query" name:"MessageId"`
-	AppKey    int64  `position:"Query" name:"AppKey"`
+	MessageId int64 `position:"Query" name:"MessageId"`
+	AppKey    int64 `position:"Query" name:"AppKey"`
 }
 
 func (req *QueryPushStatByMsgRequest) Invoke(client *sdk.Client) (resp *QueryPushStatByMsgResponse, err error) {

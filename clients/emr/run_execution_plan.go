@@ -9,6 +9,7 @@ import (
 type RunExecutionPlanRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
+	Arguments       string `position:"Query" name:"Arguments"`
 	Id              string `position:"Query" name:"Id"`
 }
 

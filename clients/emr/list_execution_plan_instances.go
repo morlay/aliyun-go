@@ -10,13 +10,13 @@ import (
 
 type ListExecutionPlanInstancesRequest struct {
 	requests.RpcRequest
-	ResourceOwnerId      int64                                              `position:"Query" name:"ResourceOwnerId"`
 	OnlyLastInstance     string                                             `position:"Query" name:"OnlyLastInstance"`
-	IsDesc               string                                             `position:"Query" name:"IsDesc"`
-	PageNumber           int                                                `position:"Query" name:"PageNumber"`
-	PageSize             int                                                `position:"Query" name:"PageSize"`
+	ResourceOwnerId      int64                                              `position:"Query" name:"ResourceOwnerId"`
 	ExecutionPlanIdLists *ListExecutionPlanInstancesExecutionPlanIdListList `position:"Query" type:"Repeated" name:"ExecutionPlanIdList"`
 	StatusLists          *ListExecutionPlanInstancesStatusListList          `position:"Query" type:"Repeated" name:"StatusList"`
+	PageSize             int                                                `position:"Query" name:"PageSize"`
+	IsDesc               string                                             `position:"Query" name:"IsDesc"`
+	PageNumber           int                                                `position:"Query" name:"PageNumber"`
 }
 
 func (req *ListExecutionPlanInstancesRequest) Invoke(client *sdk.Client) (resp *ListExecutionPlanInstancesResponse, err error) {
@@ -47,6 +47,7 @@ type ListExecutionPlanInstancesExecutionPlanInstance struct {
 	Status            string
 	LogEnable         bool
 	LogPath           string
+	WorkflowApp       string
 }
 
 type ListExecutionPlanInstancesExecutionPlanIdListList []string

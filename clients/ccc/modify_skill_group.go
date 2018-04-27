@@ -20,7 +20,7 @@ type ModifySkillGroupRequest struct {
 }
 
 func (req *ModifySkillGroupRequest) Invoke(client *sdk.Client) (resp *ModifySkillGroupResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ModifySkillGroup", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ModifySkillGroup", "ccc", "")
 	resp = &ModifySkillGroupResponse{}
 	err = client.DoAction(req, resp)
 	return

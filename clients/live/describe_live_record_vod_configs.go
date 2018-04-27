@@ -10,13 +10,12 @@ import (
 
 type DescribeLiveRecordVodConfigsRequest struct {
 	requests.RpcRequest
-	AppName       string `position:"Query" name:"AppName"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	DomainName    string `position:"Query" name:"DomainName"`
-	PageSize      int64  `position:"Query" name:"PageSize"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	PageNum       int64  `position:"Query" name:"PageNum"`
-	StreamName    string `position:"Query" name:"StreamName"`
+	AppName    string `position:"Query" name:"AppName"`
+	DomainName string `position:"Query" name:"DomainName"`
+	PageSize   int64  `position:"Query" name:"PageSize"`
+	OwnerId    int64  `position:"Query" name:"OwnerId"`
+	PageNum    int64  `position:"Query" name:"PageNum"`
+	StreamName string `position:"Query" name:"StreamName"`
 }
 
 func (req *DescribeLiveRecordVodConfigsRequest) Invoke(client *sdk.Client) (resp *DescribeLiveRecordVodConfigsResponse, err error) {
@@ -36,12 +35,14 @@ type DescribeLiveRecordVodConfigsResponse struct {
 }
 
 type DescribeLiveRecordVodConfigsLiveRecordVodConfig struct {
-	CreateTime          string
-	DomainName          string
-	AppName             string
-	StreamName          string
-	VodTranscodeGroupId string
-	CycleDuration       int
+	CreateTime                 string
+	DomainName                 string
+	AppName                    string
+	StreamName                 string
+	VodTranscodeGroupId        string
+	CycleDuration              int
+	AutoCompose                string
+	ComposeVodTranscodeGroupId string
 }
 
 type DescribeLiveRecordVodConfigsLiveRecordVodConfigList []DescribeLiveRecordVodConfigsLiveRecordVodConfig

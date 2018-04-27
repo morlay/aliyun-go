@@ -12,7 +12,7 @@ type TextFeedbackRequest struct {
 }
 
 func (req *TextFeedbackRequest) Invoke(client *sdk.Client) (resp *TextFeedbackResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "TextFeedback", "/green/text/feedback", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "TextFeedback", "/green/text/feedback", "green", "")
 	req.Method = "POST"
 
 	resp = &TextFeedbackResponse{}

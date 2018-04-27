@@ -14,7 +14,7 @@ type NodeStatusListRequest struct {
 }
 
 func (req *NodeStatusListRequest) Invoke(client *sdk.Client) (resp *NodeStatusListResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "NodeStatusList", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "NodeStatusList", "cms", "")
 	resp = &NodeStatusListResponse{}
 	err = client.DoAction(req, resp)
 	return

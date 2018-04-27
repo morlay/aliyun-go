@@ -45,6 +45,8 @@ type DescribeInstanceTypesInstanceType struct {
 	EniQuantity          int
 	InstanceBandwidthRx  int
 	InstanceBandwidthTx  int
+	InstancePpsRx        int64
+	InstancePpsTx        int64
 }
 
 type DescribeInstanceTypesInstanceTypeList []DescribeInstanceTypesInstanceType

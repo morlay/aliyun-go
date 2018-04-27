@@ -10,14 +10,16 @@ import (
 
 type ListExecutionPlansRequest struct {
 	requests.RpcRequest
-	ResourceOwnerId int64                             `position:"Query" name:"ResourceOwnerId"`
-	ClusterId       string                            `position:"Query" name:"ClusterId"`
 	JobId           string                            `position:"Query" name:"JobId"`
-	Strategy        string                            `position:"Query" name:"Strategy"`
-	IsDesc          string                            `position:"Query" name:"IsDesc"`
-	PageNumber      int                               `position:"Query" name:"PageNumber"`
-	PageSize        int                               `position:"Query" name:"PageSize"`
+	ResourceOwnerId int64                             `position:"Query" name:"ResourceOwnerId"`
 	StatusLists     *ListExecutionPlansStatusListList `position:"Query" type:"Repeated" name:"StatusList"`
+	PageSize        int                               `position:"Query" name:"PageSize"`
+	QueryString     string                            `position:"Query" name:"QueryString"`
+	ClusterId       string                            `position:"Query" name:"ClusterId"`
+	IsDesc          string                            `position:"Query" name:"IsDesc"`
+	Strategy        string                            `position:"Query" name:"Strategy"`
+	PageNumber      int                               `position:"Query" name:"PageNumber"`
+	QueryType       string                            `position:"Query" name:"QueryType"`
 }
 
 func (req *ListExecutionPlansRequest) Invoke(client *sdk.Client) (resp *ListExecutionPlansResponse, err error) {

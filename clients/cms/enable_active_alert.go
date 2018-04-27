@@ -13,7 +13,7 @@ type EnableActiveAlertRequest struct {
 }
 
 func (req *EnableActiveAlertRequest) Invoke(client *sdk.Client) (resp *EnableActiveAlertResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "EnableActiveAlert", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "EnableActiveAlert", "cms", "")
 	resp = &EnableActiveAlertResponse{}
 	err = client.DoAction(req, resp)
 	return

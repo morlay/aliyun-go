@@ -14,7 +14,7 @@ type DescribeOrderRequest struct {
 }
 
 func (req *DescribeOrderRequest) Invoke(client *sdk.Client) (resp *DescribeOrderResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "DescribeOrder", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "DescribeOrder", "yunmarket", "")
 	resp = &DescribeOrderResponse{}
 	err = client.DoAction(req, resp)
 	return

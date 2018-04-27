@@ -8,11 +8,11 @@ import (
 
 type GenerateDataKeyRequest struct {
 	requests.RpcRequest
+	EncryptionContext string `position:"Query" name:"EncryptionContext"`
 	KeyId             string `position:"Query" name:"KeyId"`
 	KeySpec           string `position:"Query" name:"KeySpec"`
-	NumberOfBytes     int    `position:"Query" name:"NumberOfBytes"`
 	STSToken          string `position:"Query" name:"STSToken"`
-	EncryptionContext string `position:"Query" name:"EncryptionContext"`
+	NumberOfBytes     int    `position:"Query" name:"NumberOfBytes"`
 }
 
 func (req *GenerateDataKeyRequest) Invoke(client *sdk.Client) (resp *GenerateDataKeyResponse, err error) {

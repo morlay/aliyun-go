@@ -13,7 +13,6 @@ type UnassociatePhysicalConnectionFromVirtualBorderRouterRequest struct {
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	PhysicalConnectionId string `position:"Query" name:"PhysicalConnectionId"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	UserCidr             string `position:"Query" name:"UserCidr"`
 	VbrId                string `position:"Query" name:"VbrId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }

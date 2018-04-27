@@ -1,0 +1,30 @@
+package domain
+
+import (
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
+	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+)
+
+type SaveSingleTaskForCreatingOrderTransferRequest struct {
+	requests.RpcRequest
+	PermitPremiumTransfer string `position:"Query" name:"PermitPremiumTransfer"`
+	AuthorizationCode     string `position:"Query" name:"AuthorizationCode"`
+	UserClientIp          string `position:"Query" name:"UserClientIp"`
+	DomainName            string `position:"Query" name:"DomainName"`
+	RegistrantProfileId   int64  `position:"Query" name:"RegistrantProfileId"`
+	Lang                  string `position:"Query" name:"Lang"`
+}
+
+func (req *SaveSingleTaskForCreatingOrderTransferRequest) Invoke(client *sdk.Client) (resp *SaveSingleTaskForCreatingOrderTransferResponse, err error) {
+	req.InitWithApiInfo("Domain", "2018-01-29", "SaveSingleTaskForCreatingOrderTransfer", "", "")
+	resp = &SaveSingleTaskForCreatingOrderTransferResponse{}
+	err = client.DoAction(req, resp)
+	return
+}
+
+type SaveSingleTaskForCreatingOrderTransferResponse struct {
+	responses.BaseResponse
+	RequestId string
+	TaskNo    string
+}

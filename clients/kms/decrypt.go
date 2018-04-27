@@ -8,9 +8,9 @@ import (
 
 type DecryptRequest struct {
 	requests.RpcRequest
-	CiphertextBlob    string `position:"Query" name:"CiphertextBlob"`
-	STSToken          string `position:"Query" name:"STSToken"`
 	EncryptionContext string `position:"Query" name:"EncryptionContext"`
+	STSToken          string `position:"Query" name:"STSToken"`
+	CiphertextBlob    string `position:"Query" name:"CiphertextBlob"`
 }
 
 func (req *DecryptRequest) Invoke(client *sdk.Client) (resp *DecryptResponse, err error) {

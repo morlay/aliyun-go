@@ -9,8 +9,8 @@ import (
 type ReleaseClusterRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
-	Id              string `position:"Query" name:"Id"`
 	ForceRelease    string `position:"Query" name:"ForceRelease"`
+	Id              string `position:"Query" name:"Id"`
 }
 
 func (req *ReleaseClusterRequest) Invoke(client *sdk.Client) (resp *ReleaseClusterResponse, err error) {

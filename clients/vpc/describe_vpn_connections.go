@@ -12,6 +12,7 @@ type DescribeVpnConnectionsRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	VpnConnectionId      string `position:"Query" name:"VpnConnectionId"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	PageSize             int    `position:"Query" name:"PageSize"`
 	VpnGatewayId         string `position:"Query" name:"VpnGatewayId"`

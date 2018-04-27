@@ -19,6 +19,7 @@ type DescribeAvailableResourceRequest struct {
 	InstanceChargeType   string `position:"Query" name:"InstanceChargeType"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	DedicatedHostId      string `position:"Query" name:"DedicatedHostId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	SpotStrategy         string `position:"Query" name:"SpotStrategy"`
 	DestinationResource  string `position:"Query" name:"DestinationResource"`

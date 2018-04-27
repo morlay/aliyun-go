@@ -49,4 +49,8 @@ type DescribeLoadBalancerTCPListenerAttributeResponse struct {
 	MaxConnection             int
 	VServerGroupId            string
 	MasterSlaveServerGroupId  string
+	AclId                     string
+	AclType                   string
+	AclStatus                 string
+	VpcIds                    string
 }

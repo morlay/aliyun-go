@@ -10,13 +10,11 @@ import (
 
 type SetCasterSceneConfigRequest struct {
 	requests.RpcRequest
-	ComponentIds  *SetCasterSceneConfigComponentIdList `position:"Query" type:"Repeated" name:"ComponentId"`
-	SecurityToken string                               `position:"Query" name:"SecurityToken"`
-	CasterId      string                               `position:"Query" name:"CasterId"`
-	SceneId       string                               `position:"Query" name:"SceneId"`
-	OwnerId       int64                                `position:"Query" name:"OwnerId"`
-	Version       string                               `position:"Query" name:"Version"`
-	LayoutId      string                               `position:"Query" name:"LayoutId"`
+	ComponentIds *SetCasterSceneConfigComponentIdList `position:"Query" type:"Repeated" name:"ComponentId"`
+	CasterId     string                               `position:"Query" name:"CasterId"`
+	SceneId      string                               `position:"Query" name:"SceneId"`
+	OwnerId      int64                                `position:"Query" name:"OwnerId"`
+	LayoutId     string                               `position:"Query" name:"LayoutId"`
 }
 
 func (req *SetCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *SetCasterSceneConfigResponse, err error) {

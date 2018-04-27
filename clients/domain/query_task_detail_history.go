@@ -38,59 +38,63 @@ type QueryTaskDetailHistoryResponse struct {
 }
 
 type QueryTaskDetailHistoryTaskDetailHistory struct {
-	TaskNo         string
-	TaskDetailNo   string
-	TaskType       string
-	InstanceId     string
-	DomainName     string
-	TaskStatus     string
-	UpdateTime     string
-	CreateTime     string
-	TryCount       int
-	ErrorMsg       string
-	TaskStatusCode int
+	TaskNo              string
+	TaskDetailNo        string
+	TaskType            string
+	InstanceId          string
+	DomainName          string
+	TaskStatus          string
+	UpdateTime          string
+	CreateTime          string
+	TryCount            int
+	ErrorMsg            string
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskDetailHistoryCurrentPageCursor struct {
-	TaskNo         string
-	TaskDetailNo   string
-	TaskType       string
-	InstanceId     string
-	DomainName     string
-	TaskStatus     string
-	UpdateTime     string
-	CreateTime     string
-	TryCount       int
-	ErrorMsg       string
-	TaskStatusCode int
+	TaskNo              string
+	TaskDetailNo        string
+	TaskType            string
+	InstanceId          string
+	DomainName          string
+	TaskStatus          string
+	UpdateTime          string
+	CreateTime          string
+	TryCount            int
+	ErrorMsg            string
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskDetailHistoryNextPageCursor struct {
-	TaskNo         string
-	TaskDetailNo   string
-	TaskType       string
-	InstanceId     string
-	DomainName     string
-	TaskStatus     string
-	UpdateTime     string
-	CreateTime     string
-	TryCount       int
-	ErrorMsg       string
-	TaskStatusCode int
+	TaskNo              string
+	TaskDetailNo        string
+	TaskType            string
+	InstanceId          string
+	DomainName          string
+	TaskStatus          string
+	UpdateTime          string
+	CreateTime          string
+	TryCount            int
+	ErrorMsg            string
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskDetailHistoryPrePageCursor struct {
-	TaskNo         string
-	TaskDetailNo   string
-	TaskType       string
-	InstanceId     string
-	DomainName     string
-	TaskStatus     string
-	UpdateTime     string
-	CreateTime     string
-	TryCount       int
-	ErrorMsg       string
-	TaskStatusCode int
+	TaskNo              string
+	TaskDetailNo        string
+	TaskType            string
+	InstanceId          string
+	DomainName          string
+	TaskStatus          string
+	UpdateTime          string
+	CreateTime          string
+	TryCount            int
+	ErrorMsg            string
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskDetailHistoryTaskDetailHistoryList []QueryTaskDetailHistoryTaskDetailHistory

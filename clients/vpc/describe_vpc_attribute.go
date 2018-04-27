@@ -38,14 +38,37 @@ type DescribeVpcAttributeResponse struct {
 	Description        string
 	IsDefault          bool
 	ClassicLinkEnabled bool
+	ResourceGroupId    string
+	AssociatedCens     DescribeVpcAttributeAssociatedCenList
 	CloudResources     DescribeVpcAttributeCloudResourceSetTypeList
 	VSwitchIds         DescribeVpcAttributeVSwitchIdList
 	UserCidrs          DescribeVpcAttributeUserCidrList
 }
 
+type DescribeVpcAttributeAssociatedCen struct {
+	CenId      string
+	CenOwnerId int64
+	CenStatus  string
+}
+
 type DescribeVpcAttributeCloudResourceSetType struct {
 	ResourceType  string
 	ResourceCount int
+}
+
+type DescribeVpcAttributeAssociatedCenList []DescribeVpcAttributeAssociatedCen
+
+func (list *DescribeVpcAttributeAssociatedCenList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeVpcAttributeAssociatedCen)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
 }
 
 type DescribeVpcAttributeCloudResourceSetTypeList []DescribeVpcAttributeCloudResourceSetType

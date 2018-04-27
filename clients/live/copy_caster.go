@@ -8,12 +8,10 @@ import (
 
 type CopyCasterRequest struct {
 	requests.RpcRequest
-	SrcCasterId   string `position:"Query" name:"SrcCasterId"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterName    string `position:"Query" name:"CasterName"`
-	ClientToken   string `position:"Query" name:"ClientToken"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	SrcCasterId string `position:"Query" name:"SrcCasterId"`
+	CasterName  string `position:"Query" name:"CasterName"`
+	ClientToken string `position:"Query" name:"ClientToken"`
+	OwnerId     int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *CopyCasterRequest) Invoke(client *sdk.Client) (resp *CopyCasterResponse, err error) {

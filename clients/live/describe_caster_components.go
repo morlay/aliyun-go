@@ -10,11 +10,9 @@ import (
 
 type DescribeCasterComponentsRequest struct {
 	requests.RpcRequest
-	ComponentId   string `position:"Query" name:"ComponentId"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	ComponentId string `position:"Query" name:"ComponentId"`
+	CasterId    string `position:"Query" name:"CasterId"`
+	OwnerId     int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *DescribeCasterComponentsRequest) Invoke(client *sdk.Client) (resp *DescribeCasterComponentsResponse, err error) {
@@ -32,14 +30,15 @@ type DescribeCasterComponentsResponse struct {
 }
 
 type DescribeCasterComponentsComponent struct {
-	ComponentId       string
-	ComponentName     string
-	LocationId        string
-	ComponentType     string
-	Effect            string
-	ComponentLayer    DescribeCasterComponentsComponentLayer
-	TextLayerContent  DescribeCasterComponentsTextLayerContent
-	ImageLayerContent DescribeCasterComponentsImageLayerContent
+	ComponentId         string
+	ComponentName       string
+	LocationId          string
+	ComponentType       string
+	Effect              string
+	ComponentLayer      DescribeCasterComponentsComponentLayer
+	TextLayerContent    DescribeCasterComponentsTextLayerContent
+	ImageLayerContent   DescribeCasterComponentsImageLayerContent
+	CaptionLayerContent DescribeCasterComponentsCaptionLayerContent
 }
 
 type DescribeCasterComponentsComponentLayer struct {
@@ -60,6 +59,17 @@ type DescribeCasterComponentsTextLayerContent struct {
 
 type DescribeCasterComponentsImageLayerContent struct {
 	MaterialId string
+}
+
+type DescribeCasterComponentsCaptionLayerContent struct {
+	LocationId            string
+	PtsOffset             int
+	WordsCount            int
+	Color                 string
+	FontName              string
+	SizeNormalized        float32
+	BorderWidthNormalized float32
+	BorderColor           string
 }
 
 type DescribeCasterComponentsComponentList []DescribeCasterComponentsComponent

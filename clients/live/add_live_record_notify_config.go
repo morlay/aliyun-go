@@ -8,6 +8,7 @@ import (
 
 type AddLiveRecordNotifyConfigRequest struct {
 	requests.RpcRequest
+	OnDemandUrl      string `position:"Query" name:"OnDemandUrl"`
 	SecurityToken    string `position:"Query" name:"SecurityToken"`
 	DomainName       string `position:"Query" name:"DomainName"`
 	NotifyUrl        string `position:"Query" name:"NotifyUrl"`

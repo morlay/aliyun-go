@@ -8,8 +8,9 @@ import (
 
 type CreateKeyRequest struct {
 	requests.RpcRequest
-	Description string `position:"Query" name:"Description"`
 	KeyUsage    string `position:"Query" name:"KeyUsage"`
+	Origin      string `position:"Query" name:"Origin"`
+	Description string `position:"Query" name:"Description"`
 	STSToken    string `position:"Query" name:"STSToken"`
 }
 
@@ -27,12 +28,14 @@ type CreateKeyResponse struct {
 }
 
 type CreateKeyKeyMetadata struct {
-	CreationDate string
-	Description  string
-	KeyId        string
-	KeyState     string
-	KeyUsage     string
-	DeleteDate   string
-	Creator      string
-	Arn          string
+	CreationDate       string
+	Description        string
+	KeyId              string
+	KeyState           string
+	KeyUsage           string
+	DeleteDate         string
+	Creator            string
+	Arn                string
+	Origin             string
+	MaterialExpireTime string
 }

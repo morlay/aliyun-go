@@ -14,7 +14,7 @@ type ListContactFlowsRequest struct {
 }
 
 func (req *ListContactFlowsRequest) Invoke(client *sdk.Client) (resp *ListContactFlowsResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListContactFlows", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListContactFlows", "ccc", "")
 	resp = &ListContactFlowsResponse{}
 	err = client.DoAction(req, resp)
 	return

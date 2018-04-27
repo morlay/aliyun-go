@@ -14,7 +14,7 @@ type NodeInstallRequest struct {
 }
 
 func (req *NodeInstallRequest) Invoke(client *sdk.Client) (resp *NodeInstallResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "NodeInstall", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "NodeInstall", "cms", "")
 	resp = &NodeInstallResponse{}
 	err = client.DoAction(req, resp)
 	return

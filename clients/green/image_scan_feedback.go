@@ -12,7 +12,7 @@ type ImageScanFeedbackRequest struct {
 }
 
 func (req *ImageScanFeedbackRequest) Invoke(client *sdk.Client) (resp *ImageScanFeedbackResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "ImageScanFeedback", "/green/image/feedback", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "ImageScanFeedback", "/green/image/feedback", "green", "")
 	req.Method = "POST"
 
 	resp = &ImageScanFeedbackResponse{}

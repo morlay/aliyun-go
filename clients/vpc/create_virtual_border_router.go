@@ -21,7 +21,6 @@ type CreateVirtualBorderRouterRequest struct {
 	PhysicalConnectionId string `position:"Query" name:"PhysicalConnectionId"`
 	Name                 string `position:"Query" name:"Name"`
 	LocalGatewayIp       string `position:"Query" name:"LocalGatewayIp"`
-	UserCidr             string `position:"Query" name:"UserCidr"`
 	VbrOwnerId           int64  `position:"Query" name:"VbrOwnerId"`
 }
 

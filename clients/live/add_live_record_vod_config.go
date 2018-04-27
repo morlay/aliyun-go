@@ -8,13 +8,14 @@ import (
 
 type AddLiveRecordVodConfigRequest struct {
 	requests.RpcRequest
-	AppName             string `position:"Query" name:"AppName"`
-	SecurityToken       string `position:"Query" name:"SecurityToken"`
-	DomainName          string `position:"Query" name:"DomainName"`
-	CycleDuration       int    `position:"Query" name:"CycleDuration"`
-	OwnerId             int64  `position:"Query" name:"OwnerId"`
-	StreamName          string `position:"Query" name:"StreamName"`
-	VodTranscodeGroupId string `position:"Query" name:"VodTranscodeGroupId"`
+	AppName                    string `position:"Query" name:"AppName"`
+	AutoCompose                string `position:"Query" name:"AutoCompose"`
+	DomainName                 string `position:"Query" name:"DomainName"`
+	CycleDuration              int    `position:"Query" name:"CycleDuration"`
+	OwnerId                    int64  `position:"Query" name:"OwnerId"`
+	ComposeVodTranscodeGroupId string `position:"Query" name:"ComposeVodTranscodeGroupId"`
+	StreamName                 string `position:"Query" name:"StreamName"`
+	VodTranscodeGroupId        string `position:"Query" name:"VodTranscodeGroupId"`
 }
 
 func (req *AddLiveRecordVodConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveRecordVodConfigResponse, err error) {

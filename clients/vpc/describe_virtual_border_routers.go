@@ -61,6 +61,7 @@ type DescribeVirtualBorderRoutersVirtualBorderRouterType struct {
 	Name                             string
 	Description                      string
 	AssociatedPhysicalConnections    DescribeVirtualBorderRoutersAssociatedPhysicalConnectionList
+	AssociatedCens                   DescribeVirtualBorderRoutersAssociatedCenList
 }
 
 type DescribeVirtualBorderRoutersAssociatedPhysicalConnection struct {
@@ -74,6 +75,12 @@ type DescribeVirtualBorderRoutersAssociatedPhysicalConnection struct {
 	PhysicalConnectionBusinessStatus string
 	PhysicalConnectionOwnerUid       string
 	VlanId                           string
+}
+
+type DescribeVirtualBorderRoutersAssociatedCen struct {
+	CenId      string
+	CenOwnerId int64
+	CenStatus  string
 }
 
 type DescribeVirtualBorderRoutersFilterList []DescribeVirtualBorderRoutersFilter
@@ -125,6 +132,21 @@ type DescribeVirtualBorderRoutersAssociatedPhysicalConnectionList []DescribeVirt
 
 func (list *DescribeVirtualBorderRoutersAssociatedPhysicalConnectionList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]DescribeVirtualBorderRoutersAssociatedPhysicalConnection)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeVirtualBorderRoutersAssociatedCenList []DescribeVirtualBorderRoutersAssociatedCen
+
+func (list *DescribeVirtualBorderRoutersAssociatedCenList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeVirtualBorderRoutersAssociatedCen)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

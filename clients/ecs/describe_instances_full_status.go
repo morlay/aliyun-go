@@ -10,21 +10,22 @@ import (
 
 type DescribeInstancesFullStatusRequest struct {
 	requests.RpcRequest
-	EventIds              *DescribeInstancesFullStatusEventIdList    `position:"Query" type:"Repeated" name:"EventId"`
-	ResourceOwnerId       int64                                      `position:"Query" name:"ResourceOwnerId"`
-	PageNumber            int                                        `position:"Query" name:"PageNumber"`
-	PageSize              int                                        `position:"Query" name:"PageSize"`
-	EventPublishTimeEnd   string                                     `position:"Query" name:"EventPublishTimeEnd"`
-	ResourceOwnerAccount  string                                     `position:"Query" name:"ResourceOwnerAccount"`
-	OwnerAccount          string                                     `position:"Query" name:"OwnerAccount"`
-	NotBeforeStart        string                                     `position:"Query" name:"NotBeforeStart"`
-	OwnerId               int64                                      `position:"Query" name:"OwnerId"`
-	EventPublishTimeStart string                                     `position:"Query" name:"EventPublishTimeStart"`
-	InstanceIds           *DescribeInstancesFullStatusInstanceIdList `position:"Query" type:"Repeated" name:"InstanceId"`
-	NotBeforeEnd          string                                     `position:"Query" name:"NotBeforeEnd"`
-	HealthStatus          string                                     `position:"Query" name:"HealthStatus"`
-	EventType             string                                     `position:"Query" name:"EventType"`
-	Status                string                                     `position:"Query" name:"Status"`
+	EventIds              *DescribeInstancesFullStatusEventIdList           `position:"Query" type:"Repeated" name:"EventId"`
+	ResourceOwnerId       int64                                             `position:"Query" name:"ResourceOwnerId"`
+	PageNumber            int                                               `position:"Query" name:"PageNumber"`
+	PageSize              int                                               `position:"Query" name:"PageSize"`
+	EventPublishTimeEnd   string                                            `position:"Query" name:"EventPublishTimeEnd"`
+	InstanceEventTypes    *DescribeInstancesFullStatusInstanceEventTypeList `position:"Query" type:"Repeated" name:"InstanceEventType"`
+	ResourceOwnerAccount  string                                            `position:"Query" name:"ResourceOwnerAccount"`
+	OwnerAccount          string                                            `position:"Query" name:"OwnerAccount"`
+	NotBeforeStart        string                                            `position:"Query" name:"NotBeforeStart"`
+	OwnerId               int64                                             `position:"Query" name:"OwnerId"`
+	EventPublishTimeStart string                                            `position:"Query" name:"EventPublishTimeStart"`
+	InstanceIds           *DescribeInstancesFullStatusInstanceIdList        `position:"Query" type:"Repeated" name:"InstanceId"`
+	NotBeforeEnd          string                                            `position:"Query" name:"NotBeforeEnd"`
+	HealthStatus          string                                            `position:"Query" name:"HealthStatus"`
+	EventType             string                                            `position:"Query" name:"EventType"`
+	Status                string                                            `position:"Query" name:"Status"`
 }
 
 func (req *DescribeInstancesFullStatusRequest) Invoke(client *sdk.Client) (resp *DescribeInstancesFullStatusResponse, err error) {
@@ -81,6 +82,21 @@ type DescribeInstancesFullStatusHealthStatus struct {
 type DescribeInstancesFullStatusEventIdList []string
 
 func (list *DescribeInstancesFullStatusEventIdList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeInstancesFullStatusInstanceEventTypeList []string
+
+func (list *DescribeInstancesFullStatusInstanceEventTypeList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {

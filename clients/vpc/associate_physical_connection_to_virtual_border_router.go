@@ -20,7 +20,6 @@ type AssociatePhysicalConnectionToVirtualBorderRouterRequest struct {
 	PeeringSubnetMask    string `position:"Query" name:"PeeringSubnetMask"`
 	PhysicalConnectionId string `position:"Query" name:"PhysicalConnectionId"`
 	LocalGatewayIp       string `position:"Query" name:"LocalGatewayIp"`
-	UserCidr             string `position:"Query" name:"UserCidr"`
 }
 
 func (req *AssociatePhysicalConnectionToVirtualBorderRouterRequest) Invoke(client *sdk.Client) (resp *AssociatePhysicalConnectionToVirtualBorderRouterResponse, err error) {

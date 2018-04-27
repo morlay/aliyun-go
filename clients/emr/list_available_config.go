@@ -22,12 +22,13 @@ func (req *ListAvailableConfigRequest) Invoke(client *sdk.Client) (resp *ListAva
 
 type ListAvailableConfigResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	SecurityGroupTypes ListAvailableConfigSecurityGroupTypeList
-	InstanceTypes      ListAvailableConfigInstanceTypeList
-	EmrVerTypes        ListAvailableConfigEmrVerTypeList
-	ZoneTypes          ListAvailableConfigZoneTypeList
-	Vpcs               ListAvailableConfigVpcList
+	RequestId                    string
+	SecurityGroupTypes           ListAvailableConfigSecurityGroupTypeList
+	InstanceTypes                ListAvailableConfigInstanceTypeList
+	EmrVerTypes                  ListAvailableConfigEmrVerTypeList
+	ZoneTypes                    ListAvailableConfigZoneTypeList
+	Vpcs                         ListAvailableConfigVpcList
+	EmrSupportedInstanceTypeList ListAvailableConfigEmrSupportInstanceTypeList
 }
 
 type ListAvailableConfigSecurityGroupType struct {
@@ -48,6 +49,7 @@ type ListAvailableConfigInstanceType struct {
 
 type ListAvailableConfigEmrVerType struct {
 	Name       string
+	EcmStack   bool
 	SubModules ListAvailableConfigSubModuleList
 }
 
@@ -93,20 +95,32 @@ type ListAvailableConfigAvailableResource struct {
 
 type ListAvailableConfigVpc struct {
 	Id             string
+	VpcName        string
 	CidrBlock      string
 	VSwitchs       ListAvailableConfigVSwitchList
 	SecurityGroups ListAvailableConfigSecurityGroupList
 }
 
 type ListAvailableConfigVSwitch struct {
-	Id        string
-	CidrBlock string
-	ZoneId    string
+	Id          string
+	VswitchName string
+	CidrBlock   string
+	ZoneId      string
 }
 
 type ListAvailableConfigSecurityGroup struct {
 	Name string
 	Id   string
+}
+
+type ListAvailableConfigEmrSupportInstanceType struct {
+	ClusterType             string
+	NodeTypeSupportInfoList ListAvailableConfigClusterNodeTypeSupportInfoList
+}
+
+type ListAvailableConfigClusterNodeTypeSupportInfo struct {
+	ClusterNodeType         string
+	SupportInstanceTypeList ListAvailableConfigSupportInstanceTypeListList
 }
 
 type ListAvailableConfigSecurityGroupTypeList []ListAvailableConfigSecurityGroupType
@@ -173,6 +187,21 @@ type ListAvailableConfigVpcList []ListAvailableConfigVpc
 
 func (list *ListAvailableConfigVpcList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]ListAvailableConfigVpc)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type ListAvailableConfigEmrSupportInstanceTypeList []ListAvailableConfigEmrSupportInstanceType
+
+func (list *ListAvailableConfigEmrSupportInstanceTypeList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]ListAvailableConfigEmrSupportInstanceType)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -383,6 +412,36 @@ type ListAvailableConfigSecurityGroupList []ListAvailableConfigSecurityGroup
 
 func (list *ListAvailableConfigSecurityGroupList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]ListAvailableConfigSecurityGroup)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type ListAvailableConfigClusterNodeTypeSupportInfoList []ListAvailableConfigClusterNodeTypeSupportInfo
+
+func (list *ListAvailableConfigClusterNodeTypeSupportInfoList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]ListAvailableConfigClusterNodeTypeSupportInfo)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type ListAvailableConfigSupportInstanceTypeListList []string
+
+func (list *ListAvailableConfigSupportInstanceTypeListList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

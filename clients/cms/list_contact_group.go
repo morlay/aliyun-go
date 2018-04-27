@@ -16,7 +16,7 @@ type ListContactGroupRequest struct {
 }
 
 func (req *ListContactGroupRequest) Invoke(client *sdk.Client) (resp *ListContactGroupResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ListContactGroup", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ListContactGroup", "cms", "")
 	resp = &ListContactGroupResponse{}
 	err = client.DoAction(req, resp)
 	return

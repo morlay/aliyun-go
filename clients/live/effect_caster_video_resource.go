@@ -8,12 +8,10 @@ import (
 
 type EffectCasterVideoResourceRequest struct {
 	requests.RpcRequest
-	ResourceId    string `position:"Query" name:"ResourceId"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	SceneId       string `position:"Query" name:"SceneId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	ResourceId string `position:"Query" name:"ResourceId"`
+	CasterId   string `position:"Query" name:"CasterId"`
+	SceneId    string `position:"Query" name:"SceneId"`
+	OwnerId    int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *EffectCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *EffectCasterVideoResourceResponse, err error) {

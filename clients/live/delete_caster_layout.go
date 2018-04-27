@@ -8,11 +8,9 @@ import (
 
 type DeleteCasterLayoutRequest struct {
 	requests.RpcRequest
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
-	LayoutId      string `position:"Query" name:"LayoutId"`
+	CasterId string `position:"Query" name:"CasterId"`
+	OwnerId  int64  `position:"Query" name:"OwnerId"`
+	LayoutId string `position:"Query" name:"LayoutId"`
 }
 
 func (req *DeleteCasterLayoutRequest) Invoke(client *sdk.Client) (resp *DeleteCasterLayoutResponse, err error) {

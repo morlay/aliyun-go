@@ -9,14 +9,15 @@ import (
 type ModifyCasterVideoResourceRequest struct {
 	requests.RpcRequest
 	ResourceId    string `position:"Query" name:"ResourceId"`
+	BeginOffset   int    `position:"Query" name:"BeginOffset"`
+	VodUrl        string `position:"Query" name:"VodUrl"`
 	LiveStreamUrl string `position:"Query" name:"LiveStreamUrl"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
 	CasterId      string `position:"Query" name:"CasterId"`
+	EndOffset     int    `position:"Query" name:"EndOffset"`
 	ResourceName  string `position:"Query" name:"ResourceName"`
 	RepeatNum     int    `position:"Query" name:"RepeatNum"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	MaterialId    string `position:"Query" name:"MaterialId"`
-	Version       string `position:"Query" name:"Version"`
 }
 
 func (req *ModifyCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *ModifyCasterVideoResourceResponse, err error) {

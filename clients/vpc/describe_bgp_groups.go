@@ -41,15 +41,15 @@ type DescribeBgpGroupsBgpGroup struct {
 	Name        string
 	Description string
 	BgpGroupId  string
-	PeerAsn     int
+	PeerAsn     string
 	AuthKey     string
 	RouterId    string
 	Status      string
-	Keepalive   int
-	LocalAsn    int
-	Hold        int
-	IsFake      bool
-	RouteLimit  int
+	Keepalive   string
+	LocalAsn    string
+	Hold        string
+	IsFake      string
+	RouteLimit  string
 	RegionId    string
 }
 

@@ -21,7 +21,7 @@ type CreateUploadVideoRequest struct {
 	UserData             string `position:"Query" name:"UserData"`
 	FileName             string `position:"Query" name:"FileName"`
 	TemplateGroupId      string `position:"Query" name:"TemplateGroupId"`
-	CateId               int    `position:"Query" name:"CateId"`
+	CateId               int64  `position:"Query" name:"CateId"`
 }
 
 func (req *CreateUploadVideoRequest) Invoke(client *sdk.Client) (resp *CreateUploadVideoResponse, err error) {

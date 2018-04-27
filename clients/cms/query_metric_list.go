@@ -23,7 +23,7 @@ type QueryMetricListRequest struct {
 }
 
 func (req *QueryMetricListRequest) Invoke(client *sdk.Client) (resp *QueryMetricListResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "QueryMetricList", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "QueryMetricList", "cms", "")
 	resp = &QueryMetricListResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -33,7 +33,6 @@ type QueryMetricListResponse struct {
 	responses.BaseResponse
 	Code       string
 	Message    string
-	Success    bool
 	RequestId  string
 	Cursor     string
 	Datapoints string

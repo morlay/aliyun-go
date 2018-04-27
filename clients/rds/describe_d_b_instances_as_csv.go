@@ -30,9 +30,7 @@ type DescribeDBInstancesAsCsvResponse struct {
 }
 
 type DescribeDBInstancesAsCsvDBInstanceAttribute struct {
-	InsId                       int
 	DBInstanceId                string
-	DBInstanceName              string
 	PayType                     string
 	DBInstanceClassType         string
 	DBInstanceType              string

@@ -10,16 +10,14 @@ import (
 
 type DescribeCastersRequest struct {
 	requests.RpcRequest
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterName    string `position:"Query" name:"CasterName"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	PageSize      int    `position:"Query" name:"PageSize"`
-	EndTime       string `position:"Query" name:"EndTime"`
-	StartTime     string `position:"Query" name:"StartTime"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	PageNum       int    `position:"Query" name:"PageNum"`
-	Version       string `position:"Query" name:"Version"`
-	Status        int    `position:"Query" name:"Status"`
+	CasterName string `position:"Query" name:"CasterName"`
+	CasterId   string `position:"Query" name:"CasterId"`
+	PageSize   int    `position:"Query" name:"PageSize"`
+	EndTime    string `position:"Query" name:"EndTime"`
+	StartTime  string `position:"Query" name:"StartTime"`
+	OwnerId    int64  `position:"Query" name:"OwnerId"`
+	PageNum    int    `position:"Query" name:"PageNum"`
+	Status     int    `position:"Query" name:"Status"`
 }
 
 func (req *DescribeCastersRequest) Invoke(client *sdk.Client) (resp *DescribeCastersResponse, err error) {

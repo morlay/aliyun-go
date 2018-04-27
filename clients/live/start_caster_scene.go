@@ -8,11 +8,9 @@ import (
 
 type StartCasterSceneRequest struct {
 	requests.RpcRequest
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	SceneId       string `position:"Query" name:"SceneId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	CasterId string `position:"Query" name:"CasterId"`
+	SceneId  string `position:"Query" name:"SceneId"`
+	OwnerId  int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *StartCasterSceneRequest) Invoke(client *sdk.Client) (resp *StartCasterSceneResponse, err error) {

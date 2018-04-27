@@ -11,32 +11,38 @@ import (
 type CreateExecutionPlanRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId        int64                                      `position:"Query" name:"ResourceOwnerId"`
-	Name                   string                                     `position:"Query" name:"Name"`
-	Strategy               string                                     `position:"Query" name:"Strategy"`
 	TimeInterval           int                                        `position:"Query" name:"TimeInterval"`
-	StartTime              int64                                      `position:"Query" name:"StartTime"`
-	TimeUnit               string                                     `position:"Query" name:"TimeUnit"`
-	ClusterId              string                                     `position:"Query" name:"ClusterId"`
-	CreateClusterOnDemand  string                                     `position:"Query" name:"CreateClusterOnDemand"`
-	ClusterName            string                                     `position:"Query" name:"ClusterName"`
-	ZoneId                 string                                     `position:"Query" name:"ZoneId"`
-	LogEnable              string                                     `position:"Query" name:"LogEnable"`
 	LogPath                string                                     `position:"Query" name:"LogPath"`
-	SecurityGroupId        string                                     `position:"Query" name:"SecurityGroupId"`
-	IsOpenPublicIp         string                                     `position:"Query" name:"IsOpenPublicIp"`
-	EmrVer                 string                                     `position:"Query" name:"EmrVer"`
-	ClusterType            string                                     `position:"Query" name:"ClusterType"`
-	HighAvailabilityEnable string                                     `position:"Query" name:"HighAvailabilityEnable"`
-	VpcId                  string                                     `position:"Query" name:"VpcId"`
-	VSwitchId              string                                     `position:"Query" name:"VSwitchId"`
-	NetType                string                                     `position:"Query" name:"NetType"`
-	IoOptimized            string                                     `position:"Query" name:"IoOptimized"`
-	InstanceGeneration     string                                     `position:"Query" name:"InstanceGeneration"`
+	ClusterName            string                                     `position:"Query" name:"ClusterName"`
 	Configurations         string                                     `position:"Query" name:"Configurations"`
+	IoOptimized            string                                     `position:"Query" name:"IoOptimized"`
+	SecurityGroupId        string                                     `position:"Query" name:"SecurityGroupId"`
+	EasEnable              string                                     `position:"Query" name:"EasEnable"`
+	CreateClusterOnDemand  string                                     `position:"Query" name:"CreateClusterOnDemand"`
+	StartTime              int64                                      `position:"Query" name:"StartTime"`
 	JobIdLists             *CreateExecutionPlanJobIdListList          `position:"Query" type:"Repeated" name:"JobIdList"`
-	OptionSoftWareLists    *CreateExecutionPlanOptionSoftWareListList `position:"Query" type:"Repeated" name:"OptionSoftWareList"`
-	EcsOrders              *CreateExecutionPlanEcsOrderList           `position:"Query" type:"Repeated" name:"EcsOrder"`
+	DayOfMonth             string                                     `position:"Query" name:"DayOfMonth"`
 	BootstrapActions       *CreateExecutionPlanBootstrapActionList    `position:"Query" type:"Repeated" name:"BootstrapAction"`
+	UseLocalMetaDb         string                                     `position:"Query" name:"UseLocalMetaDb"`
+	EmrVer                 string                                     `position:"Query" name:"EmrVer"`
+	UserDefinedEmrEcsRole  string                                     `position:"Query" name:"UserDefinedEmrEcsRole"`
+	IsOpenPublicIp         string                                     `position:"Query" name:"IsOpenPublicIp"`
+	ClusterId              string                                     `position:"Query" name:"ClusterId"`
+	TimeUnit               string                                     `position:"Query" name:"TimeUnit"`
+	InstanceGeneration     string                                     `position:"Query" name:"InstanceGeneration"`
+	ClusterType            string                                     `position:"Query" name:"ClusterType"`
+	VSwitchId              string                                     `position:"Query" name:"VSwitchId"`
+	OptionSoftWareLists    *CreateExecutionPlanOptionSoftWareListList `position:"Query" type:"Repeated" name:"OptionSoftWareList"`
+	VpcId                  string                                     `position:"Query" name:"VpcId"`
+	NetType                string                                     `position:"Query" name:"NetType"`
+	EcsOrders              *CreateExecutionPlanEcsOrderList           `position:"Query" type:"Repeated" name:"EcsOrder"`
+	WorkflowDefinition     string                                     `position:"Query" name:"WorkflowDefinition"`
+	Name                   string                                     `position:"Query" name:"Name"`
+	DayOfWeek              string                                     `position:"Query" name:"DayOfWeek"`
+	ZoneId                 string                                     `position:"Query" name:"ZoneId"`
+	Strategy               string                                     `position:"Query" name:"Strategy"`
+	HighAvailabilityEnable string                                     `position:"Query" name:"HighAvailabilityEnable"`
+	LogEnable              string                                     `position:"Query" name:"LogEnable"`
 }
 
 func (req *CreateExecutionPlanRequest) Invoke(client *sdk.Client) (resp *CreateExecutionPlanResponse, err error) {
@@ -44,6 +50,12 @@ func (req *CreateExecutionPlanRequest) Invoke(client *sdk.Client) (resp *CreateE
 	resp = &CreateExecutionPlanResponse{}
 	err = client.DoAction(req, resp)
 	return
+}
+
+type CreateExecutionPlanBootstrapAction struct {
+	Name string `name:"Name"`
+	Path string `name:"Path"`
+	Arg  string `name:"Arg"`
 }
 
 type CreateExecutionPlanEcsOrder struct {
@@ -56,12 +68,6 @@ type CreateExecutionPlanEcsOrder struct {
 	DiskCount    int    `name:"DiskCount"`
 }
 
-type CreateExecutionPlanBootstrapAction struct {
-	Name string `name:"Name"`
-	Path string `name:"Path"`
-	Arg  string `name:"Arg"`
-}
-
 type CreateExecutionPlanResponse struct {
 	responses.BaseResponse
 	RequestId string
@@ -72,6 +78,21 @@ type CreateExecutionPlanJobIdListList []string
 
 func (list *CreateExecutionPlanJobIdListList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type CreateExecutionPlanBootstrapActionList []CreateExecutionPlanBootstrapAction
+
+func (list *CreateExecutionPlanBootstrapActionList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]CreateExecutionPlanBootstrapAction)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -102,21 +123,6 @@ type CreateExecutionPlanEcsOrderList []CreateExecutionPlanEcsOrder
 
 func (list *CreateExecutionPlanEcsOrderList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]CreateExecutionPlanEcsOrder)
-	err := json.Unmarshal(data, &m)
-	if err != nil {
-		return err
-	}
-	for _, v := range m {
-		*list = v
-		break
-	}
-	return nil
-}
-
-type CreateExecutionPlanBootstrapActionList []CreateExecutionPlanBootstrapAction
-
-func (list *CreateExecutionPlanBootstrapActionList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]CreateExecutionPlanBootstrapAction)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

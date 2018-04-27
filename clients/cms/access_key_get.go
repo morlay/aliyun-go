@@ -12,7 +12,7 @@ type AccessKeyGetRequest struct {
 }
 
 func (req *AccessKeyGetRequest) Invoke(client *sdk.Client) (resp *AccessKeyGetResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "AccessKeyGet", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "AccessKeyGet", "cms", "")
 	resp = &AccessKeyGetResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -27,6 +27,7 @@ func (req *GetVideoInfoRequest) Invoke(client *sdk.Client) (resp *GetVideoInfoRe
 type GetVideoInfoResponse struct {
 	responses.BaseResponse
 	RequestId string
+	AI        string
 	Video     GetVideoInfoVideo
 }
 
@@ -42,7 +43,7 @@ type GetVideoInfoVideo struct {
 	CreationTime string
 	ModifyTime   string
 	CoverURL     string
-	CateId       int
+	CateId       int64
 	CateName     string
 	Snapshots    GetVideoInfoSnapshotList
 }

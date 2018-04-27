@@ -38,6 +38,9 @@ type AddVServerGroupBackendServersBackendServer struct {
 	ServerId string
 	Port     int
 	Weight   int
+	Type     string
+	ServerIp string
+	VpcId    string
 }
 
 type AddVServerGroupBackendServersBackendServerList []AddVServerGroupBackendServersBackendServer

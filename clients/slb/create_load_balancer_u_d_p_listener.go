@@ -13,10 +13,14 @@ type CreateLoadBalancerUDPListenerRequest struct {
 	ResourceOwnerId           int64  `position:"Query" name:"ResourceOwnerId"`
 	UnhealthyThreshold        int    `position:"Query" name:"UnhealthyThreshold"`
 	HealthyThreshold          int    `position:"Query" name:"HealthyThreshold"`
+	AclStatus                 string `position:"Query" name:"AclStatus"`
 	Scheduler                 string `position:"Query" name:"Scheduler"`
+	AclType                   string `position:"Query" name:"AclType"`
 	MaxConnection             int    `position:"Query" name:"MaxConnection"`
 	PersistenceTimeout        int    `position:"Query" name:"PersistenceTimeout"`
+	VpcIds                    string `position:"Query" name:"VpcIds"`
 	VServerGroupId            string `position:"Query" name:"VServerGroupId"`
+	AclId                     string `position:"Query" name:"AclId"`
 	ListenerPort              int    `position:"Query" name:"ListenerPort"`
 	ResourceOwnerAccount      string `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth                 int    `position:"Query" name:"Bandwidth"`

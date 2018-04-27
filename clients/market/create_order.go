@@ -8,15 +8,16 @@ import (
 
 type CreateOrderRequest struct {
 	requests.RpcRequest
-	OrderType   string `position:"Query" name:"OrderType"`
-	Commodity   string `position:"Query" name:"Commodity"`
 	OrderSouce  string `position:"Query" name:"OrderSouce"`
-	PaymentType string `position:"Query" name:"PaymentType"`
+	Commodity   string `position:"Query" name:"Commodity"`
 	ClientToken string `position:"Query" name:"ClientToken"`
+	OwnerId     string `position:"Query" name:"OwnerId"`
+	PaymentType string `position:"Query" name:"PaymentType"`
+	OrderType   string `position:"Query" name:"OrderType"`
 }
 
 func (req *CreateOrderRequest) Invoke(client *sdk.Client) (resp *CreateOrderResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "CreateOrder", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "CreateOrder", "yunmarket", "")
 	resp = &CreateOrderResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -10,6 +10,7 @@ import (
 
 type EditPhotosRequest struct {
 	requests.RpcRequest
+	TakenAt         int64                  `position:"Query" name:"TakenAt"`
 	LibraryId       string                 `position:"Query" name:"LibraryId"`
 	ShareExpireTime int64                  `position:"Query" name:"ShareExpireTime"`
 	PhotoIds        *EditPhotosPhotoIdList `position:"Query" type:"Repeated" name:"PhotoId"`

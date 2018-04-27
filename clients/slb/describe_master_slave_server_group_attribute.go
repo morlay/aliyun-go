@@ -39,6 +39,9 @@ type DescribeMasterSlaveServerGroupAttributeMasterSlaveBackendServer struct {
 	Port       int
 	Weight     int
 	ServerType string
+	Type       string
+	ServerIp   string
+	VpcId      string
 }
 
 type DescribeMasterSlaveServerGroupAttributeMasterSlaveBackendServerList []DescribeMasterSlaveServerGroupAttributeMasterSlaveBackendServer

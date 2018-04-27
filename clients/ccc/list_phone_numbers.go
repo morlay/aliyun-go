@@ -15,7 +15,7 @@ type ListPhoneNumbersRequest struct {
 }
 
 func (req *ListPhoneNumbersRequest) Invoke(client *sdk.Client) (resp *ListPhoneNumbersResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListPhoneNumbers", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListPhoneNumbers", "ccc", "")
 	resp = &ListPhoneNumbersResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -41,6 +41,8 @@ type ListPhoneNumbersPhoneNumber struct {
 	AllowOutbound          bool
 	Usage                  string
 	Trunks                 int
+	Province               string
+	City                   string
 	ContactFlow            ListPhoneNumbersContactFlow
 }
 

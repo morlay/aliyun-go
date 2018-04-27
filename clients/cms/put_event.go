@@ -12,7 +12,7 @@ type PutEventRequest struct {
 }
 
 func (req *PutEventRequest) Invoke(client *sdk.Client) (resp *PutEventResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "PutEvent", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "PutEvent", "cms", "")
 	resp = &PutEventResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -11,34 +11,40 @@ import (
 type ModifyExecutionPlanRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId        int64                                      `position:"Query" name:"ResourceOwnerId"`
-	ClusterName            string                                     `position:"Query" name:"ClusterName"`
-	ClusterId              string                                     `position:"Query" name:"ClusterId"`
-	ZoneId                 string                                     `position:"Query" name:"ZoneId"`
-	LogEnable              string                                     `position:"Query" name:"LogEnable"`
 	LogPath                string                                     `position:"Query" name:"LogPath"`
-	SecurityGroupId        string                                     `position:"Query" name:"SecurityGroupId"`
-	IsOpenPublicIp         string                                     `position:"Query" name:"IsOpenPublicIp"`
-	CreateClusterOnDemand  string                                     `position:"Query" name:"CreateClusterOnDemand"`
-	EmrVer                 string                                     `position:"Query" name:"EmrVer"`
-	ClusterType            string                                     `position:"Query" name:"ClusterType"`
-	HighAvailabilityEnable string                                     `position:"Query" name:"HighAvailabilityEnable"`
-	VpcId                  string                                     `position:"Query" name:"VpcId"`
-	VSwitchId              string                                     `position:"Query" name:"VSwitchId"`
-	NetType                string                                     `position:"Query" name:"NetType"`
-	IoOptimized            string                                     `position:"Query" name:"IoOptimized"`
-	InstanceGeneration     string                                     `position:"Query" name:"InstanceGeneration"`
-	Configurations         string                                     `position:"Query" name:"Configurations"`
-	Id                     string                                     `position:"Query" name:"Id"`
-	ExecutionPlanVersion   int64                                      `position:"Query" name:"ExecutionPlanVersion"`
-	Name                   string                                     `position:"Query" name:"Name"`
-	Strategy               string                                     `position:"Query" name:"Strategy"`
 	TimeInterval           int                                        `position:"Query" name:"TimeInterval"`
+	ClusterName            string                                     `position:"Query" name:"ClusterName"`
+	Configurations         string                                     `position:"Query" name:"Configurations"`
+	IoOptimized            string                                     `position:"Query" name:"IoOptimized"`
+	SecurityGroupId        string                                     `position:"Query" name:"SecurityGroupId"`
+	EasEnable              string                                     `position:"Query" name:"EasEnable"`
+	CreateClusterOnDemand  string                                     `position:"Query" name:"CreateClusterOnDemand"`
 	StartTime              int64                                      `position:"Query" name:"StartTime"`
-	TimeUnit               string                                     `position:"Query" name:"TimeUnit"`
-	OptionSoftWareLists    *ModifyExecutionPlanOptionSoftWareListList `position:"Query" type:"Repeated" name:"OptionSoftWareList"`
-	EcsOrders              *ModifyExecutionPlanEcsOrderList           `position:"Query" type:"Repeated" name:"EcsOrder"`
-	BootstrapActions       *ModifyExecutionPlanBootstrapActionList    `position:"Query" type:"Repeated" name:"BootstrapAction"`
 	JobIdLists             *ModifyExecutionPlanJobIdListList          `position:"Query" type:"Repeated" name:"JobIdList"`
+	DayOfMonth             string                                     `position:"Query" name:"DayOfMonth"`
+	BootstrapActions       *ModifyExecutionPlanBootstrapActionList    `position:"Query" type:"Repeated" name:"BootstrapAction"`
+	UseLocalMetaDb         string                                     `position:"Query" name:"UseLocalMetaDb"`
+	EmrVer                 string                                     `position:"Query" name:"EmrVer"`
+	Id                     string                                     `position:"Query" name:"Id"`
+	UserDefinedEmrEcsRole  string                                     `position:"Query" name:"UserDefinedEmrEcsRole"`
+	IsOpenPublicIp         string                                     `position:"Query" name:"IsOpenPublicIp"`
+	ExecutionPlanVersion   int64                                      `position:"Query" name:"ExecutionPlanVersion"`
+	ClusterId              string                                     `position:"Query" name:"ClusterId"`
+	TimeUnit               string                                     `position:"Query" name:"TimeUnit"`
+	InstanceGeneration     string                                     `position:"Query" name:"InstanceGeneration"`
+	ClusterType            string                                     `position:"Query" name:"ClusterType"`
+	VSwitchId              string                                     `position:"Query" name:"VSwitchId"`
+	OptionSoftWareLists    *ModifyExecutionPlanOptionSoftWareListList `position:"Query" type:"Repeated" name:"OptionSoftWareList"`
+	VpcId                  string                                     `position:"Query" name:"VpcId"`
+	NetType                string                                     `position:"Query" name:"NetType"`
+	WorkflowDefinition     string                                     `position:"Query" name:"WorkflowDefinition"`
+	EcsOrders              *ModifyExecutionPlanEcsOrderList           `position:"Query" type:"Repeated" name:"EcsOrder"`
+	Name                   string                                     `position:"Query" name:"Name"`
+	ZoneId                 string                                     `position:"Query" name:"ZoneId"`
+	DayOfWeek              string                                     `position:"Query" name:"DayOfWeek"`
+	Strategy               string                                     `position:"Query" name:"Strategy"`
+	HighAvailabilityEnable string                                     `position:"Query" name:"HighAvailabilityEnable"`
+	LogEnable              string                                     `position:"Query" name:"LogEnable"`
 }
 
 func (req *ModifyExecutionPlanRequest) Invoke(client *sdk.Client) (resp *ModifyExecutionPlanResponse, err error) {
@@ -46,6 +52,12 @@ func (req *ModifyExecutionPlanRequest) Invoke(client *sdk.Client) (resp *ModifyE
 	resp = &ModifyExecutionPlanResponse{}
 	err = client.DoAction(req, resp)
 	return
+}
+
+type ModifyExecutionPlanBootstrapAction struct {
+	Name string `name:"Name"`
+	Path string `name:"Path"`
+	Arg  string `name:"Arg"`
 }
 
 type ModifyExecutionPlanEcsOrder struct {
@@ -58,36 +70,15 @@ type ModifyExecutionPlanEcsOrder struct {
 	DiskCount    int    `name:"DiskCount"`
 }
 
-type ModifyExecutionPlanBootstrapAction struct {
-	Name string `name:"Name"`
-	Path string `name:"Path"`
-	Arg  string `name:"Arg"`
-}
-
 type ModifyExecutionPlanResponse struct {
 	responses.BaseResponse
 	RequestId string
 }
 
-type ModifyExecutionPlanOptionSoftWareListList []string
+type ModifyExecutionPlanJobIdListList []string
 
-func (list *ModifyExecutionPlanOptionSoftWareListList) UnmarshalJSON(data []byte) error {
+func (list *ModifyExecutionPlanJobIdListList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
-	err := json.Unmarshal(data, &m)
-	if err != nil {
-		return err
-	}
-	for _, v := range m {
-		*list = v
-		break
-	}
-	return nil
-}
-
-type ModifyExecutionPlanEcsOrderList []ModifyExecutionPlanEcsOrder
-
-func (list *ModifyExecutionPlanEcsOrderList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]ModifyExecutionPlanEcsOrder)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -114,10 +105,25 @@ func (list *ModifyExecutionPlanBootstrapActionList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type ModifyExecutionPlanJobIdListList []string
+type ModifyExecutionPlanOptionSoftWareListList []string
 
-func (list *ModifyExecutionPlanJobIdListList) UnmarshalJSON(data []byte) error {
+func (list *ModifyExecutionPlanOptionSoftWareListList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type ModifyExecutionPlanEcsOrderList []ModifyExecutionPlanEcsOrder
+
+func (list *ModifyExecutionPlanEcsOrderList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]ModifyExecutionPlanEcsOrder)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

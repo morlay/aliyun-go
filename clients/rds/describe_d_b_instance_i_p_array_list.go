@@ -11,6 +11,7 @@ import (
 type DescribeDBInstanceIPArrayListRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	WhitelistNetworkType string `position:"Query" name:"WhitelistNetworkType"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
@@ -34,6 +35,7 @@ type DescribeDBInstanceIPArrayListDBInstanceIPArray struct {
 	DBInstanceIPArrayName      string
 	DBInstanceIPArrayAttribute string
 	SecurityIPList             string
+	WhitelistNetworkType       string
 }
 
 type DescribeDBInstanceIPArrayListDBInstanceIPArrayList []DescribeDBInstanceIPArrayListDBInstanceIPArray

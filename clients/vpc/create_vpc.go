@@ -9,6 +9,7 @@ import (
 type CreateVpcRequest struct {
 	requests.RpcRequest
 	VpcName              string `position:"Query" name:"VpcName"`
+	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
@@ -28,8 +29,9 @@ func (req *CreateVpcRequest) Invoke(client *sdk.Client) (resp *CreateVpcResponse
 
 type CreateVpcResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	VpcId        string
-	VRouterId    string
-	RouteTableId string
+	RequestId       string
+	VpcId           string
+	VRouterId       string
+	RouteTableId    string
+	ResourceGroupId string
 }

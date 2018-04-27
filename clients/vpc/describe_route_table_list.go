@@ -12,18 +12,14 @@ type DescribeRouteTableListRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-	Bandwidth            string `position:"Query" name:"Bandwidth"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 	RouterType           string `position:"Query" name:"RouterType"`
-	KbpsBandwidth        string `position:"Query" name:"KbpsBandwidth"`
 	RouteTableName       string `position:"Query" name:"RouteTableName"`
 	RouterId             string `position:"Query" name:"RouterId"`
 	VpcId                string `position:"Query" name:"VpcId"`
-	ResourceUid          int64  `position:"Query" name:"ResourceUid"`
 	PageSize             int    `position:"Query" name:"PageSize"`
-	ResourceBid          string `position:"Query" name:"ResourceBid"`
 	RouteTableId         string `position:"Query" name:"RouteTableId"`
 }
 

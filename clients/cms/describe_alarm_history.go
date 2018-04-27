@@ -26,7 +26,7 @@ type DescribeAlarmHistoryRequest struct {
 }
 
 func (req *DescribeAlarmHistoryRequest) Invoke(client *sdk.Client) (resp *DescribeAlarmHistoryResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DescribeAlarmHistory", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DescribeAlarmHistory", "cms", "")
 	resp = &DescribeAlarmHistoryResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -61,6 +61,7 @@ type DescribeAlarmHistoryAlarmHistory struct {
 	Status          int
 	UserId          string
 	Webhooks        string
+	InstanceName    string
 	ContactGroups   DescribeAlarmHistoryContactGroupList
 	Contacts        DescribeAlarmHistoryContactList
 	ContactALIIMs   DescribeAlarmHistoryContactALIIMList

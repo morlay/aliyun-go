@@ -10,11 +10,13 @@ import (
 
 type GetQuotaInstanceRequest struct {
 	requests.RpcRequest
-	Cluster  string `position:"Query" name:"Cluster"`
-	PageSize int    `position:"Query" name:"PageSize"`
-	QuotaId  string `position:"Query" name:"QuotaId"`
-	PageNum  int    `position:"Query" name:"PageNum"`
-	Status   string `position:"Query" name:"Status"`
+	Cluster   string `position:"Query" name:"Cluster"`
+	PageSize  int    `position:"Query" name:"PageSize"`
+	QuotaId   string `position:"Query" name:"QuotaId"`
+	PageNum   int    `position:"Query" name:"PageNum"`
+	Region    string `position:"Query" name:"Region"`
+	QuotaName string `position:"Query" name:"QuotaName"`
+	Status    string `position:"Query" name:"Status"`
 }
 
 func (req *GetQuotaInstanceRequest) Invoke(client *sdk.Client) (resp *GetQuotaInstanceResponse, err error) {

@@ -26,12 +26,14 @@ type DescribeKeyResponse struct {
 }
 
 type DescribeKeyKeyMetadata struct {
-	CreationDate string
-	Description  string
-	KeyId        string
-	KeyState     string
-	KeyUsage     string
-	DeleteDate   string
-	Creator      string
-	Arn          string
+	CreationDate       string
+	Description        string
+	KeyId              string
+	KeyState           string
+	KeyUsage           string
+	DeleteDate         string
+	Creator            string
+	Arn                string
+	Origin             string
+	MaterialExpireTime string
 }

@@ -41,6 +41,7 @@ type ListAlbumsAlbum struct {
 	IdStr       string
 	Name        string
 	State       string
+	Remark      string
 	PhotosCount int64
 	Ctime       int64
 	Mtime       int64

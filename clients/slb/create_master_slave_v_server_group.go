@@ -40,6 +40,9 @@ type CreateMasterSlaveVServerGroupMasterSlaveBackendServer struct {
 	Port     int
 	Weight   int
 	IsBackup int
+	Type     string
+	ServerIp string
+	VpcId    string
 }
 
 type CreateMasterSlaveVServerGroupMasterSlaveBackendServerList []CreateMasterSlaveVServerGroupMasterSlaveBackendServer

@@ -13,7 +13,7 @@ type DisableActiveAlertRequest struct {
 }
 
 func (req *DisableActiveAlertRequest) Invoke(client *sdk.Client) (resp *DisableActiveAlertResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DisableActiveAlert", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DisableActiveAlert", "cms", "")
 	resp = &DisableActiveAlertResponse{}
 	err = client.DoAction(req, resp)
 	return

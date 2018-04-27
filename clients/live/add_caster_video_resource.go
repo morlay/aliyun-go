@@ -8,15 +8,16 @@ import (
 
 type AddCasterVideoResourceRequest struct {
 	requests.RpcRequest
+	BeginOffset   int    `position:"Query" name:"BeginOffset"`
+	VodUrl        string `position:"Query" name:"VodUrl"`
 	LiveStreamUrl string `position:"Query" name:"LiveStreamUrl"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
 	LocationId    string `position:"Query" name:"LocationId"`
 	CasterId      string `position:"Query" name:"CasterId"`
+	EndOffset     int    `position:"Query" name:"EndOffset"`
 	ResourceName  string `position:"Query" name:"ResourceName"`
 	RepeatNum     int    `position:"Query" name:"RepeatNum"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	MaterialId    string `position:"Query" name:"MaterialId"`
-	Version       string `position:"Query" name:"Version"`
 }
 
 func (req *AddCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *AddCasterVideoResourceResponse, err error) {

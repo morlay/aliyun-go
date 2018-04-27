@@ -33,13 +33,15 @@ type DescribeZonesResponse struct {
 }
 
 type DescribeZonesZone struct {
-	ZoneId                    string
-	LocalName                 string
-	AvailableResources        DescribeZonesResourcesInfoList
-	AvailableResourceCreation DescribeZonesAvailableResourceCreationList
-	AvailableDiskCategories   DescribeZonesAvailableDiskCategoryList
-	AvailableInstanceTypes    DescribeZonesAvailableInstanceTypeList
-	AvailableVolumeCategories DescribeZonesAvailableVolumeCategoryList
+	ZoneId                      string
+	LocalName                   string
+	AvailableResources          DescribeZonesResourcesInfoList
+	AvailableResourceCreation   DescribeZonesAvailableResourceCreationList
+	AvailableDiskCategories     DescribeZonesAvailableDiskCategoryList
+	AvailableInstanceTypes      DescribeZonesAvailableInstanceTypeList
+	AvailableVolumeCategories   DescribeZonesAvailableVolumeCategoryList
+	AvailableDedicatedHostTypes DescribeZonesAvailableDedicatedHostTypeList
+	DedicatedHostGenerations    DescribeZonesDedicatedHostGenerationList
 }
 
 type DescribeZonesResourcesInfo struct {
@@ -130,6 +132,36 @@ func (list *DescribeZonesAvailableInstanceTypeList) UnmarshalJSON(data []byte) e
 type DescribeZonesAvailableVolumeCategoryList []string
 
 func (list *DescribeZonesAvailableVolumeCategoryList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeZonesAvailableDedicatedHostTypeList []string
+
+func (list *DescribeZonesAvailableDedicatedHostTypeList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeZonesDedicatedHostGenerationList []string
+
+func (list *DescribeZonesDedicatedHostGenerationList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {

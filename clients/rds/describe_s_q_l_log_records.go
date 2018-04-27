@@ -37,7 +37,7 @@ func (req *DescribeSQLLogRecordsRequest) Invoke(client *sdk.Client) (resp *Descr
 type DescribeSQLLogRecordsResponse struct {
 	responses.BaseResponse
 	RequestId        string
-	TotalRecordCount int
+	TotalRecordCount int64
 	PageNumber       int
 	PageRecordCount  int
 	Items            DescribeSQLLogRecordsSQLRecordList

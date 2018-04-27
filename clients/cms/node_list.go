@@ -15,13 +15,13 @@ type NodeListRequest struct {
 	PageSize      int    `position:"Query" name:"PageSize"`
 	KeyWord       string `position:"Query" name:"KeyWord"`
 	UserId        int64  `position:"Query" name:"UserId"`
-	SerialNumbers string `position:"Query" name:"SerialNumbers"`
 	PageNumber    int    `position:"Query" name:"PageNumber"`
+	SerialNumbers string `position:"Query" name:"SerialNumbers"`
 	Status        string `position:"Query" name:"Status"`
 }
 
 func (req *NodeListRequest) Invoke(client *sdk.Client) (resp *NodeListResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "NodeList", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "NodeList", "cms", "")
 	resp = &NodeListResponse{}
 	err = client.DoAction(req, resp)
 	return

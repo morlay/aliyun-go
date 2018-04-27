@@ -15,13 +15,13 @@ type ListRecordingsRequest struct {
 	Criteria    string `position:"Query" name:"Criteria"`
 	PhoneNumber string `position:"Query" name:"PhoneNumber"`
 	PageSize    int    `position:"Query" name:"PageSize"`
-	StartTime   int64  `position:"Query" name:"StartTime"`
 	StopTime    int64  `position:"Query" name:"StopTime"`
+	StartTime   int64  `position:"Query" name:"StartTime"`
 	PageNumber  int    `position:"Query" name:"PageNumber"`
 }
 
 func (req *ListRecordingsRequest) Invoke(client *sdk.Client) (resp *ListRecordingsResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListRecordings", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListRecordings", "ccc", "")
 	resp = &ListRecordingsResponse{}
 	err = client.DoAction(req, resp)
 	return

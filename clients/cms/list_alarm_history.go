@@ -19,7 +19,7 @@ type ListAlarmHistoryRequest struct {
 }
 
 func (req *ListAlarmHistoryRequest) Invoke(client *sdk.Client) (resp *ListAlarmHistoryResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ListAlarmHistory", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ListAlarmHistory", "cms", "")
 	resp = &ListAlarmHistoryResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -48,6 +48,7 @@ type ListAlarmHistoryAlarmHistory struct {
 	State           string
 	Status          int
 	ContactGroups   string
+	InstanceName    string
 }
 
 type ListAlarmHistoryAlarmHistoryList []ListAlarmHistoryAlarmHistory

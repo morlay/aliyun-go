@@ -12,7 +12,7 @@ type QueryCustomEventCountRequest struct {
 }
 
 func (req *QueryCustomEventCountRequest) Invoke(client *sdk.Client) (resp *QueryCustomEventCountResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "QueryCustomEventCount", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "QueryCustomEventCount", "cms", "")
 	resp = &QueryCustomEventCountResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -20,7 +20,9 @@ func (req *QueryCustomEventCountRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryCustomEventCountResponse struct {
 	responses.BaseResponse
-	Code    string
-	Message string
-	Data    string
+	Code      string
+	Message   string
+	Data      string
+	RequestId string
+	Success   bool
 }

@@ -24,17 +24,20 @@ func (req *DescribeVpnGatewayRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeVpnGatewayResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	VpnGatewayId   string
-	VpcId          string
-	VSwitchId      string
-	InternetIp     string
-	CreateTime     int64
-	EndTime        int64
-	Spec           string
-	Name           string
-	Description    string
-	Status         string
-	BusinessStatus string
-	ChargeType     string
+	RequestId         string
+	VpnGatewayId      string
+	VpcId             string
+	VSwitchId         string
+	InternetIp        string
+	CreateTime        int64
+	EndTime           int64
+	Spec              string
+	Name              string
+	Description       string
+	Status            string
+	BusinessStatus    string
+	ChargeType        string
+	IpsecVpn          string
+	SslVpn            string
+	SslMaxConnections int64
 }

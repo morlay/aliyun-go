@@ -71,6 +71,7 @@ type DescribeDBInstancesDBInstance struct {
 	LockMode              string
 	DBInstanceClass       string
 	InstanceNetworkType   string
+	VpcCloudInstanceId    string
 	LockReason            string
 	ZoneId                string
 	MutriORsignle         bool
@@ -81,6 +82,7 @@ type DescribeDBInstancesDBInstance struct {
 	MasterInstanceId      string
 	VpcId                 string
 	VSwitchId             string
+	ReplicateId           string
 	ResourceGroupId       string
 	ReadOnlyDBInstanceIds DescribeDBInstancesReadOnlyDBInstanceIdList
 }

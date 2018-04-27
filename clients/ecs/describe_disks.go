@@ -121,10 +121,10 @@ type DescribeDisksTag struct {
 	TagValue string
 }
 
-type DescribeDisksAdditionalAttributesList []int64
+type DescribeDisksAdditionalAttributesList []string
 
 func (list *DescribeDisksAdditionalAttributesList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]int64)
+	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

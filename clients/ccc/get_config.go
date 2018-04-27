@@ -15,7 +15,7 @@ type GetConfigRequest struct {
 }
 
 func (req *GetConfigRequest) Invoke(client *sdk.Client) (resp *GetConfigResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "GetConfig", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "GetConfig", "ccc", "")
 	resp = &GetConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

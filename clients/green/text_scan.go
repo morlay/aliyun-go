@@ -12,7 +12,7 @@ type TextScanRequest struct {
 }
 
 func (req *TextScanRequest) Invoke(client *sdk.Client) (resp *TextScanResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "TextScan", "/green/text/scan", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "TextScan", "/green/text/scan", "green", "")
 	req.Method = "POST"
 
 	resp = &TextScanResponse{}

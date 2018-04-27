@@ -39,6 +39,9 @@ type CreateVServerGroupBackendServer struct {
 	ServerId string
 	Port     int
 	Weight   int
+	Type     string
+	ServerIp string
+	VpcId    string
 }
 
 type CreateVServerGroupBackendServerList []CreateVServerGroupBackendServer

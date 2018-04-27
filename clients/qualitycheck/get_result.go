@@ -32,6 +32,7 @@ type GetResultResponse struct {
 
 type GetResultResultInfo struct {
 	Tid             string
+	AsrMsg          string
 	Score           int
 	ReviewStatus    int
 	HitId           string

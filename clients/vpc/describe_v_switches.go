@@ -17,7 +17,7 @@ type DescribeVSwitchesRequest struct {
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 	VSwitchId            string `position:"Query" name:"VSwitchId"`
 	VpcId                string `position:"Query" name:"VpcId"`
-	Name                 string `position:"Query" name:"Name"`
+	VSwitchName          string `position:"Query" name:"VSwitchName"`
 	PageSize             int    `position:"Query" name:"PageSize"`
 	ZoneId               string `position:"Query" name:"ZoneId"`
 	IsDefault            string `position:"Query" name:"IsDefault"`

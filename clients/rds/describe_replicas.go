@@ -40,12 +40,15 @@ type DescribeReplicasItems struct {
 	ReplicaId          string
 	ReplicaDescription string
 	ReplicaStatus      string
+	ReplicaMode        string
+	DomainMode         string
 	DBInstances        DescribeReplicasItems1List
 }
 
 type DescribeReplicasItems1 struct {
-	DBInstanceId string
-	Role         string
+	DBInstanceId  string
+	Role          string
+	ReadWriteType string
 }
 
 type DescribeReplicasItemsList []DescribeReplicasItems

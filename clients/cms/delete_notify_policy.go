@@ -15,7 +15,7 @@ type DeleteNotifyPolicyRequest struct {
 }
 
 func (req *DeleteNotifyPolicyRequest) Invoke(client *sdk.Client) (resp *DeleteNotifyPolicyResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteNotifyPolicy", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DeleteNotifyPolicy", "cms", "")
 	resp = &DeleteNotifyPolicyResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -11,9 +11,9 @@ import (
 type GetClusterStatusRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
-	Id              string `position:"Query" name:"Id"`
 	ItemType        string `position:"Query" name:"ItemType"`
 	Interval        string `position:"Query" name:"Interval"`
+	Id              string `position:"Query" name:"Id"`
 }
 
 func (req *GetClusterStatusRequest) Invoke(client *sdk.Client) (resp *GetClusterStatusResponse, err error) {

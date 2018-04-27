@@ -29,5 +29,6 @@ type DescribeLiveRecordNotifyConfigResponse struct {
 type DescribeLiveRecordNotifyConfigLiveRecordNotifyConfig struct {
 	DomainName       string
 	NotifyUrl        string
+	OnDemandUrl      string
 	NeedStatusNotify bool
 }

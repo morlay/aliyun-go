@@ -9,6 +9,7 @@ import (
 type ModifySQLCollectorPolicyRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	StoragePeriod        int    `position:"Query" name:"StoragePeriod"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	SQLCollectorStatus   string `position:"Query" name:"SQLCollectorStatus"`

@@ -11,13 +11,13 @@ type SetCasterConfigRequest struct {
 	SideOutputUrl    string  `position:"Query" name:"SideOutputUrl"`
 	CasterId         string  `position:"Query" name:"CasterId"`
 	DomainName       string  `position:"Query" name:"DomainName"`
+	ProgramEffect    int     `position:"Query" name:"ProgramEffect"`
+	ProgramName      string  `position:"Query" name:"ProgramName"`
 	OwnerId          int64   `position:"Query" name:"OwnerId"`
-	Version          string  `position:"Query" name:"Version"`
 	RecordConfig     string  `position:"Query" name:"RecordConfig"`
 	UrgentMaterialId string  `position:"Query" name:"UrgentMaterialId"`
 	TranscodeConfig  string  `position:"Query" name:"TranscodeConfig"`
 	Delay            float32 `position:"Query" name:"Delay"`
-	SecurityToken    string  `position:"Query" name:"SecurityToken"`
 	CasterName       string  `position:"Query" name:"CasterName"`
 	CallbackUrl      string  `position:"Query" name:"CallbackUrl"`
 }

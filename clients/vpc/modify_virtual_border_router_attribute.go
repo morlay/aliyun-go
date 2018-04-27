@@ -22,7 +22,6 @@ type ModifyVirtualBorderRouterAttributeRequest struct {
 	PeeringSubnetMask             string `position:"Query" name:"PeeringSubnetMask"`
 	Name                          string `position:"Query" name:"Name"`
 	LocalGatewayIp                string `position:"Query" name:"LocalGatewayIp"`
-	UserCidr                      string `position:"Query" name:"UserCidr"`
 }
 
 func (req *ModifyVirtualBorderRouterAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyVirtualBorderRouterAttributeResponse, err error) {

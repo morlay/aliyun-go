@@ -22,7 +22,6 @@ type ModifyPhysicalConnectionAttributeRequest struct {
 	LineOperator                  string `position:"Query" name:"LineOperator"`
 	PhysicalConnectionId          string `position:"Query" name:"PhysicalConnectionId"`
 	Name                          string `position:"Query" name:"Name"`
-	UserCidr                      string `position:"Query" name:"UserCidr"`
 }
 
 func (req *ModifyPhysicalConnectionAttributeRequest) Invoke(client *sdk.Client) (resp *ModifyPhysicalConnectionAttributeResponse, err error) {

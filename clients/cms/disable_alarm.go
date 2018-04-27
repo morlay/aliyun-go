@@ -13,7 +13,7 @@ type DisableAlarmRequest struct {
 }
 
 func (req *DisableAlarmRequest) Invoke(client *sdk.Client) (resp *DisableAlarmResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DisableAlarm", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DisableAlarm", "cms", "")
 	resp = &DisableAlarmResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -65,11 +65,16 @@ type DescribeLoadBalancerAttributeListenerPortAndProtocal struct {
 type DescribeLoadBalancerAttributeListenerPortAndProtocol struct {
 	ListenerPort     int
 	ListenerProtocol string
+	ListenerForward  string
+	ForwardPort      int
 }
 
 type DescribeLoadBalancerAttributeBackendServer struct {
 	ServerId string
 	Weight   int
+	Type     string
+	ServerIp string
+	VpcId    string
 }
 
 type DescribeLoadBalancerAttributeListenerPortAndProtocalList []DescribeLoadBalancerAttributeListenerPortAndProtocal
@@ -117,10 +122,10 @@ func (list *DescribeLoadBalancerAttributeBackendServerList) UnmarshalJSON(data [
 	return nil
 }
 
-type DescribeLoadBalancerAttributeListenerPortList []int
+type DescribeLoadBalancerAttributeListenerPortList []string
 
 func (list *DescribeLoadBalancerAttributeListenerPortList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]int)
+	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

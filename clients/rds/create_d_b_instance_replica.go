@@ -9,6 +9,7 @@ import (
 type CreateDBInstanceReplicaRequest struct {
 	requests.RpcRequest
 	ConnectionMode        string `position:"Query" name:"ConnectionMode"`
+	DomainMode            string `position:"Query" name:"DomainMode"`
 	ReplicaDescription    string `position:"Query" name:"ReplicaDescription"`
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
 	DBInstanceStorage     int    `position:"Query" name:"DBInstanceStorage"`
@@ -28,6 +29,7 @@ type CreateDBInstanceReplicaRequest struct {
 	VSwitchId             string `position:"Query" name:"VSwitchId"`
 	PrivateIpAddress      string `position:"Query" name:"PrivateIpAddress"`
 	SourceDBInstanceId    string `position:"Query" name:"SourceDBInstanceId"`
+	ReplicaMode           string `position:"Query" name:"ReplicaMode"`
 	VPCId                 string `position:"Query" name:"VPCId"`
 	ZoneId                string `position:"Query" name:"ZoneId"`
 	PayType               string `position:"Query" name:"PayType"`

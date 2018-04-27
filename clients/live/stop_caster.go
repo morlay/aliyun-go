@@ -8,10 +8,8 @@ import (
 
 type StopCasterRequest struct {
 	requests.RpcRequest
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	CasterId string `position:"Query" name:"CasterId"`
+	OwnerId  int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *StopCasterRequest) Invoke(client *sdk.Client) (resp *StopCasterResponse, err error) {

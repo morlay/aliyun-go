@@ -1,6 +1,8 @@
 package emr
 
 import (
+	"encoding/json"
+
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
@@ -8,10 +10,9 @@ import (
 
 type RenewClusterRequest struct {
 	requests.RpcRequest
-	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
-	Id              string `position:"Query" name:"Id"`
-	ECSIds          string `position:"Query" name:"ECSIds"`
-	Period          string `position:"Query" name:"Period"`
+	ResourceOwnerId int64                       `position:"Query" name:"ResourceOwnerId"`
+	RenewEcsDos     *RenewClusterRenewEcsDoList `position:"Query" type:"Repeated" name:"RenewEcsDo"`
+	ClusterId       string                      `position:"Query" name:"ClusterId"`
 }
 
 func (req *RenewClusterRequest) Invoke(client *sdk.Client) (resp *RenewClusterResponse, err error) {
@@ -21,8 +22,30 @@ func (req *RenewClusterRequest) Invoke(client *sdk.Client) (resp *RenewClusterRe
 	return
 }
 
+type RenewClusterRenewEcsDo struct {
+	EcsId     string `name:"EcsId"`
+	EcsPeriod string `name:"EcsPeriod"`
+	EmrPeriod string `name:"EmrPeriod"`
+}
+
 type RenewClusterResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ClusterId string
+	RequestId      string
+	EcsOrderIdList string
+	EmrOrderIdList string
+}
+
+type RenewClusterRenewEcsDoList []RenewClusterRenewEcsDo
+
+func (list *RenewClusterRenewEcsDoList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]RenewClusterRenewEcsDo)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
 }

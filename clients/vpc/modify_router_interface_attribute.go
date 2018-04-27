@@ -11,6 +11,7 @@ type ModifyRouterInterfaceAttributeRequest struct {
 	OppositeRouterId         string `position:"Query" name:"OppositeRouterId"`
 	ResourceOwnerId          int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount     string `position:"Query" name:"ResourceOwnerAccount"`
+	DeleteHealthCheckIp      string `position:"Query" name:"DeleteHealthCheckIp"`
 	Description              string `position:"Query" name:"Description"`
 	HealthCheckTargetIp      string `position:"Query" name:"HealthCheckTargetIp"`
 	OwnerId                  int64  `position:"Query" name:"OwnerId"`

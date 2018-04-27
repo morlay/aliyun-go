@@ -21,7 +21,7 @@ func (req *PublishUnionCasServiceRequest) Invoke(client *sdk.Client) (resp *Publ
 
 type PublishUnionCasServiceResponse struct {
 	responses.BaseResponse
-	Code     int
-	Message  string
-	RegionId string
+	Code      int
+	Message   string
+	RequestId string
 }

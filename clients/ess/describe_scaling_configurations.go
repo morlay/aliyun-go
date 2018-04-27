@@ -78,8 +78,10 @@ type DescribeScalingConfigurationsScalingConfiguration struct {
 	RamRoleName                 string
 	DeploymentSetId             string
 	SecurityEnhancementStrategy string
+	SpotStrategy                string
 	DataDisks                   DescribeScalingConfigurationsDataDiskList
 	Tags                        DescribeScalingConfigurationsTagList
+	SpotPriceLimit              DescribeScalingConfigurationsSpotPriceModelList
 	InstanceTypes               DescribeScalingConfigurationsInstanceTypeList
 }
 
@@ -93,6 +95,11 @@ type DescribeScalingConfigurationsDataDisk struct {
 type DescribeScalingConfigurationsTag struct {
 	Key   string
 	Value string
+}
+
+type DescribeScalingConfigurationsSpotPriceModel struct {
+	InstanceType string
+	PriceLimit   float32
 }
 
 type DescribeScalingConfigurationsScalingConfigurationList []DescribeScalingConfigurationsScalingConfiguration
@@ -129,6 +136,21 @@ type DescribeScalingConfigurationsTagList []DescribeScalingConfigurationsTag
 
 func (list *DescribeScalingConfigurationsTagList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]DescribeScalingConfigurationsTag)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeScalingConfigurationsSpotPriceModelList []DescribeScalingConfigurationsSpotPriceModel
+
+func (list *DescribeScalingConfigurationsSpotPriceModelList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeScalingConfigurationsSpotPriceModel)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

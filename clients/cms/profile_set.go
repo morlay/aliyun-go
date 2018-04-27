@@ -15,7 +15,7 @@ type ProfileSetRequest struct {
 }
 
 func (req *ProfileSetRequest) Invoke(client *sdk.Client) (resp *ProfileSetResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ProfileSet", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ProfileSet", "cms", "")
 	resp = &ProfileSetResponse{}
 	err = client.DoAction(req, resp)
 	return

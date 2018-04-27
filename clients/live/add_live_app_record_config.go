@@ -11,12 +11,16 @@ import (
 type AddLiveAppRecordConfigRequest struct {
 	requests.RpcRequest
 	OssBucket     string                                  `position:"Query" name:"OssBucket"`
+	DomainName    string                                  `position:"Query" name:"DomainName"`
+	OssEndpoint   string                                  `position:"Query" name:"OssEndpoint"`
+	EndTime       string                                  `position:"Query" name:"EndTime"`
+	StartTime     string                                  `position:"Query" name:"StartTime"`
+	OwnerId       int64                                   `position:"Query" name:"OwnerId"`
 	AppName       string                                  `position:"Query" name:"AppName"`
 	SecurityToken string                                  `position:"Query" name:"SecurityToken"`
 	RecordFormats *AddLiveAppRecordConfigRecordFormatList `position:"Query" type:"Repeated" name:"RecordFormat"`
-	DomainName    string                                  `position:"Query" name:"DomainName"`
-	OssEndpoint   string                                  `position:"Query" name:"OssEndpoint"`
-	OwnerId       int64                                   `position:"Query" name:"OwnerId"`
+	OnDemand      int                                     `position:"Query" name:"OnDemand"`
+	StreamName    string                                  `position:"Query" name:"StreamName"`
 }
 
 func (req *AddLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (resp *AddLiveAppRecordConfigResponse, err error) {

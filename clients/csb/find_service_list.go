@@ -11,8 +11,8 @@ import (
 type FindServiceListRequest struct {
 	requests.RpcRequest
 	ProjectName    string `position:"Query" name:"ProjectName"`
-	ShowDelService string `position:"Query" name:"ShowDelService"`
 	CasShowType    int    `position:"Query" name:"CasShowType"`
+	ShowDelService string `position:"Query" name:"ShowDelService"`
 	CsbId          int64  `position:"Query" name:"CsbId"`
 	Alias          string `position:"Query" name:"Alias"`
 	ServiceName    string `position:"Query" name:"ServiceName"`
@@ -62,6 +62,7 @@ type FindServiceListService struct {
 	StatisticName  string
 	Status         int
 	UserId         string
+	CasTargets     string
 }
 
 type FindServiceListServiceList []FindServiceListService

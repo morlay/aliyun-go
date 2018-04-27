@@ -16,7 +16,6 @@ type DescribePhysicalConnectionsRequest struct {
 	ClientToken          string                                 `position:"Query" name:"ClientToken"`
 	OwnerAccount         string                                 `position:"Query" name:"OwnerAccount"`
 	PageSize             int                                    `position:"Query" name:"PageSize"`
-	UserCidr             string                                 `position:"Query" name:"UserCidr"`
 	OwnerId              int64                                  `position:"Query" name:"OwnerId"`
 	PageNumber           int                                    `position:"Query" name:"PageNumber"`
 }

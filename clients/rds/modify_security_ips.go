@@ -15,9 +15,11 @@ type ModifySecurityIpsRequest struct {
 	ClientToken                string `position:"Query" name:"ClientToken"`
 	OwnerAccount               string `position:"Query" name:"OwnerAccount"`
 	SecurityIps                string `position:"Query" name:"SecurityIps"`
+	SecurityGroupId            string `position:"Query" name:"SecurityGroupId"`
+	OwnerId                    int64  `position:"Query" name:"OwnerId"`
+	WhitelistNetworkType       string `position:"Query" name:"WhitelistNetworkType"`
 	DBInstanceIPArrayAttribute string `position:"Query" name:"DBInstanceIPArrayAttribute"`
 	DBInstanceId               string `position:"Query" name:"DBInstanceId"`
-	OwnerId                    int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *ModifySecurityIpsRequest) Invoke(client *sdk.Client) (resp *ModifySecurityIpsResponse, err error) {

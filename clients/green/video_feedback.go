@@ -12,7 +12,7 @@ type VideoFeedbackRequest struct {
 }
 
 func (req *VideoFeedbackRequest) Invoke(client *sdk.Client) (resp *VideoFeedbackResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "VideoFeedback", "/green/video/feedback", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "VideoFeedback", "/green/video/feedback", "green", "")
 	req.Method = "POST"
 
 	resp = &VideoFeedbackResponse{}

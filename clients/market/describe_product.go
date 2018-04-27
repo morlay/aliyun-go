@@ -10,12 +10,13 @@ import (
 
 type DescribeProductRequest struct {
 	requests.RpcRequest
-	AliUid string `position:"Query" name:"AliUid"`
-	Code   string `position:"Query" name:"Code"`
+	Code       string `position:"Query" name:"Code"`
+	QueryDraft string `position:"Query" name:"QueryDraft"`
+	AliUid     string `position:"Query" name:"AliUid"`
 }
 
 func (req *DescribeProductRequest) Invoke(client *sdk.Client) (resp *DescribeProductResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "DescribeProduct", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "DescribeProduct", "yunmarket", "")
 	resp = &DescribeProductResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -29,6 +30,14 @@ type DescribeProductResponse struct {
 	PicUrl           string
 	Description      string
 	ShortDescription string
+	UseCount         int64
+	Score            float32
+	Status           string
+	AuditStatus      string
+	AuditFailMsg     string
+	AuditTime        int64
+	GmtCreated       int64
+	GmtModified      int64
 	ProductSkus      DescribeProductProductSkuList
 	ProductExtras    DescribeProductProductExtraList
 	ShopInfo         DescribeProductShopInfo
@@ -39,6 +48,7 @@ type DescribeProductProductSku struct {
 	Code         string
 	ChargeType   string
 	Constraints  string
+	Hidden       bool
 	OrderPeriods DescribeProductOrderPeriodList
 	Modules      DescribeProductModuleList
 }

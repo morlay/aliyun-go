@@ -37,6 +37,9 @@ type AddBackendServersResponse struct {
 type AddBackendServersBackendServer struct {
 	ServerId string
 	Weight   string
+	ServerIp string
+	VpcId    string
+	Type     string
 }
 
 type AddBackendServersBackendServerList []AddBackendServersBackendServer

@@ -12,6 +12,7 @@ type DeleteLiveAppRecordConfigRequest struct {
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
+	StreamName    string `position:"Query" name:"StreamName"`
 }
 
 func (req *DeleteLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (resp *DeleteLiveAppRecordConfigResponse, err error) {

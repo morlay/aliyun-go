@@ -24,4 +24,5 @@ type AddBusinessCategoryResponse struct {
 	Success   bool
 	Code      string
 	Message   string
+	Data      string
 }

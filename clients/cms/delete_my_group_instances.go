@@ -13,7 +13,7 @@ type DeleteMyGroupInstancesRequest struct {
 }
 
 func (req *DeleteMyGroupInstancesRequest) Invoke(client *sdk.Client) (resp *DeleteMyGroupInstancesResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteMyGroupInstances", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DeleteMyGroupInstances", "cms", "")
 	resp = &DeleteMyGroupInstancesResponse{}
 	err = client.DoAction(req, resp)
 	return

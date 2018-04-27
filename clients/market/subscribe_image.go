@@ -12,7 +12,7 @@ type SubscribeImageRequest struct {
 }
 
 func (req *SubscribeImageRequest) Invoke(client *sdk.Client) (resp *SubscribeImageResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "SubscribeImage", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "SubscribeImage", "yunmarket", "")
 	resp = &SubscribeImageResponse{}
 	err = client.DoAction(req, resp)
 	return

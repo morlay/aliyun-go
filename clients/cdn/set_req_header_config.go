@@ -9,6 +9,7 @@ import (
 type SetReqHeaderConfigRequest struct {
 	requests.RpcRequest
 	SecurityToken string `position:"Query" name:"SecurityToken"`
+	ConfigId      int64  `position:"Query" name:"ConfigId"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	Value         string `position:"Query" name:"Value"`

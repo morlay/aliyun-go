@@ -9,14 +9,15 @@ import (
 type CreateMyGroupsRequest struct {
 	requests.RpcRequest
 	ContactGroups string `position:"Query" name:"ContactGroups"`
-	ServiceId     int64  `position:"Query" name:"ServiceId"`
+	Options       string `position:"Query" name:"Options"`
 	Type          string `position:"Query" name:"Type"`
+	ServiceId     int64  `position:"Query" name:"ServiceId"`
 	GroupName     string `position:"Query" name:"GroupName"`
 	BindUrl       string `position:"Query" name:"BindUrl"`
 }
 
 func (req *CreateMyGroupsRequest) Invoke(client *sdk.Client) (resp *CreateMyGroupsResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "CreateMyGroups", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "CreateMyGroups", "cms", "")
 	resp = &CreateMyGroupsResponse{}
 	err = client.DoAction(req, resp)
 	return

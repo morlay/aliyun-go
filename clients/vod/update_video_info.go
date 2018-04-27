@@ -11,7 +11,7 @@ type UpdateVideoInfoRequest struct {
 	CoverURL             string `position:"Query" name:"CoverURL"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-	CateId               int    `position:"Query" name:"CateId"`
+	CateId               int64  `position:"Query" name:"CateId"`
 	Description          string `position:"Query" name:"Description"`
 	VideoId              string `position:"Query" name:"VideoId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`

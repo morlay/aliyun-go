@@ -12,6 +12,7 @@ type DescribeGlobalAccelerationInstancesRequest struct {
 	requests.RpcRequest
 	IpAddress                    string `position:"Query" name:"IpAddress"`
 	ResourceOwnerId              int64  `position:"Query" name:"ResourceOwnerId"`
+	BandwidthType                string `position:"Query" name:"BandwidthType"`
 	ResourceOwnerAccount         string `position:"Query" name:"ResourceOwnerAccount"`
 	ServiceLocation              string `position:"Query" name:"ServiceLocation"`
 	OwnerAccount                 string `position:"Query" name:"OwnerAccount"`
@@ -48,6 +49,7 @@ type DescribeGlobalAccelerationInstancesGlobalAccelerationInstance struct {
 	Bandwidth                    string
 	InternetChargeType           string
 	ChargeType                   string
+	BandwidthType                string
 	AccelerationLocation         string
 	ServiceLocation              string
 	Name                         string
@@ -56,6 +58,7 @@ type DescribeGlobalAccelerationInstancesGlobalAccelerationInstance struct {
 	CreationTime                 string
 	OperationLocks               DescribeGlobalAccelerationInstancesLockReasonList
 	BackendServers               DescribeGlobalAccelerationInstancesBackendServerList
+	PublicIpAddresses            DescribeGlobalAccelerationInstancesPublicIpAddressList
 }
 
 type DescribeGlobalAccelerationInstancesLockReason struct {
@@ -67,6 +70,11 @@ type DescribeGlobalAccelerationInstancesBackendServer struct {
 	ServerId        string
 	ServerIpAddress string
 	ServerType      string
+}
+
+type DescribeGlobalAccelerationInstancesPublicIpAddress struct {
+	AllocationId string
+	IpAddress    string
 }
 
 type DescribeGlobalAccelerationInstancesGlobalAccelerationInstanceList []DescribeGlobalAccelerationInstancesGlobalAccelerationInstance
@@ -103,6 +111,21 @@ type DescribeGlobalAccelerationInstancesBackendServerList []DescribeGlobalAccele
 
 func (list *DescribeGlobalAccelerationInstancesBackendServerList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]DescribeGlobalAccelerationInstancesBackendServer)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeGlobalAccelerationInstancesPublicIpAddressList []DescribeGlobalAccelerationInstancesPublicIpAddress
+
+func (list *DescribeGlobalAccelerationInstancesPublicIpAddressList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeGlobalAccelerationInstancesPublicIpAddress)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

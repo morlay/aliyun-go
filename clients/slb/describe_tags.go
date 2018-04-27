@@ -12,14 +12,14 @@ type DescribeTagsRequest struct {
 	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	PageSize             int    `position:"Query" name:"PageSize"`
 	DistinctKey          string `position:"Query" name:"DistinctKey"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 	Tags                 string `position:"Query" name:"Tags"`
-	LoadBalancerId       string `position:"Query" name:"LoadBalancerId"`
-	PageSize             int    `position:"Query" name:"PageSize"`
 }
 
 func (req *DescribeTagsRequest) Invoke(client *sdk.Client) (resp *DescribeTagsResponse, err error) {

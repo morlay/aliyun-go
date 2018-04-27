@@ -28,6 +28,7 @@ type CreateDBInstanceRequest struct {
 	VSwitchId             string `position:"Query" name:"VSwitchId"`
 	PrivateIpAddress      string `position:"Query" name:"PrivateIpAddress"`
 	VPCId                 string `position:"Query" name:"VPCId"`
+	TunnelId              string `position:"Query" name:"TunnelId"`
 	ZoneId                string `position:"Query" name:"ZoneId"`
 	PayType               string `position:"Query" name:"PayType"`
 	InstanceNetworkType   string `position:"Query" name:"InstanceNetworkType"`

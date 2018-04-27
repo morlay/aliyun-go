@@ -8,10 +8,10 @@ import (
 
 type EncryptRequest struct {
 	requests.RpcRequest
-	KeyId             string `position:"Query" name:"KeyId"`
-	Plaintext         string `position:"Query" name:"Plaintext"`
-	STSToken          string `position:"Query" name:"STSToken"`
 	EncryptionContext string `position:"Query" name:"EncryptionContext"`
+	KeyId             string `position:"Query" name:"KeyId"`
+	STSToken          string `position:"Query" name:"STSToken"`
+	Plaintext         string `position:"Query" name:"Plaintext"`
 }
 
 func (req *EncryptRequest) Invoke(client *sdk.Client) (resp *EncryptResponse, err error) {

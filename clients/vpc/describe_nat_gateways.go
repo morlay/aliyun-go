@@ -14,6 +14,7 @@ type DescribeNatGatewaysRequest struct {
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	VpcId                string `position:"Query" name:"VpcId"`
+	Name                 string `position:"Query" name:"Name"`
 	PageSize             int    `position:"Query" name:"PageSize"`
 	NatGatewayId         string `position:"Query" name:"NatGatewayId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`

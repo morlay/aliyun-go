@@ -8,10 +8,12 @@ import (
 
 type CreateJobRequest struct {
 	requests.RpcRequest
+	RunParameter    string `position:"Query" name:"RunParameter"`
+	RetryInterval   int    `position:"Query" name:"RetryInterval"`
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Name            string `position:"Query" name:"Name"`
 	Type            string `position:"Query" name:"Type"`
-	RunParameter    string `position:"Query" name:"RunParameter"`
+	MaxRetry        int    `position:"Query" name:"MaxRetry"`
 	FailAct         string `position:"Query" name:"FailAct"`
 }
 

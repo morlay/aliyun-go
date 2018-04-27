@@ -8,12 +8,10 @@ import (
 
 type DeleteCasterSceneConfigRequest struct {
 	requests.RpcRequest
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	SceneId       string `position:"Query" name:"SceneId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Type          string `position:"Query" name:"Type"`
-	Version       string `position:"Query" name:"Version"`
+	CasterId string `position:"Query" name:"CasterId"`
+	SceneId  string `position:"Query" name:"SceneId"`
+	OwnerId  int64  `position:"Query" name:"OwnerId"`
+	Type     string `position:"Query" name:"Type"`
 }
 
 func (req *DeleteCasterSceneConfigRequest) Invoke(client *sdk.Client) (resp *DeleteCasterSceneConfigResponse, err error) {

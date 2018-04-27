@@ -40,6 +40,9 @@ type SetVServerGroupAttributeBackendServer struct {
 	ServerId string
 	Port     int
 	Weight   int
+	Type     string
+	ServerIp string
+	VpcId    string
 }
 
 type SetVServerGroupAttributeBackendServerList []SetVServerGroupAttributeBackendServer

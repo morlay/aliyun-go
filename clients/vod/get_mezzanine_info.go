@@ -11,6 +11,7 @@ type GetMezzanineInfoRequest struct {
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VideoId              string `position:"Query" name:"VideoId"`
+	PreviewSegment       string `position:"Query" name:"PreviewSegment"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	AuthTimeout          int64  `position:"Query" name:"AuthTimeout"`
 }

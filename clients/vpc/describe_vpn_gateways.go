@@ -39,18 +39,21 @@ type DescribeVpnGatewaysResponse struct {
 }
 
 type DescribeVpnGatewaysVpnGateway struct {
-	VpnGatewayId   string
-	VpcId          string
-	VSwitchId      string
-	InternetIp     string
-	CreateTime     int64
-	EndTime        int64
-	Spec           string
-	Name           string
-	Description    string
-	Status         string
-	BusinessStatus string
-	ChargeType     string
+	VpnGatewayId      string
+	VpcId             string
+	VSwitchId         string
+	InternetIp        string
+	CreateTime        int64
+	EndTime           int64
+	Spec              string
+	Name              string
+	Description       string
+	Status            string
+	BusinessStatus    string
+	ChargeType        string
+	IpsecVpn          string
+	SslVpn            string
+	SslMaxConnections int64
 }
 
 type DescribeVpnGatewaysVpnGatewayList []DescribeVpnGatewaysVpnGateway

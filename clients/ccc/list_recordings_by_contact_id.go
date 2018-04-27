@@ -15,7 +15,7 @@ type ListRecordingsByContactIdRequest struct {
 }
 
 func (req *ListRecordingsByContactIdRequest) Invoke(client *sdk.Client) (resp *ListRecordingsByContactIdResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListRecordingsByContactId", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListRecordingsByContactId", "ccc", "")
 	resp = &ListRecordingsByContactIdResponse{}
 	err = client.DoAction(req, resp)
 	return

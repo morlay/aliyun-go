@@ -9,15 +9,16 @@ import (
 type CreateGlobalAccelerationInstanceRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
+	BandwidthType        string `position:"Query" name:"BandwidthType"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ServiceLocation      string `position:"Query" name:"ServiceLocation"`
 	Bandwidth            string `position:"Query" name:"Bandwidth"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
-	InternetChargeType   string `position:"Query" name:"InternetChargeType"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	Name                 string `position:"Query" name:"Name"`
 	Description          string `position:"Query" name:"Description"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	InternetChargeType   string `position:"Query" name:"InternetChargeType"`
+	Name                 string `position:"Query" name:"Name"`
 }
 
 func (req *CreateGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (resp *CreateGlobalAccelerationInstanceResponse, err error) {

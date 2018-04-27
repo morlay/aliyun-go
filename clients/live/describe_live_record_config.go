@@ -16,6 +16,7 @@ type DescribeLiveRecordConfigRequest struct {
 	PageSize      int    `position:"Query" name:"PageSize"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
 	PageNum       int    `position:"Query" name:"PageNum"`
+	StreamName    string `position:"Query" name:"StreamName"`
 	Order         string `position:"Query" name:"Order"`
 }
 
@@ -40,9 +41,13 @@ type DescribeLiveRecordConfigResponse struct {
 type DescribeLiveRecordConfigLiveAppRecord struct {
 	DomainName       string
 	AppName          string
+	StreamName       string
 	OssEndpoint      string
 	OssBucket        string
 	CreateTime       string
+	StartTime        string
+	EndTime          string
+	OnDemond         int
 	RecordFormatList DescribeLiveRecordConfigRecordFormatList
 }
 

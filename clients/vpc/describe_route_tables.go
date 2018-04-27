@@ -10,16 +10,17 @@ import (
 
 type DescribeRouteTablesRequest struct {
 	requests.RpcRequest
-	RouterType           string `position:"Query" name:"RouterType"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	VRouterId            string `position:"Query" name:"VRouterId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-	RouterId             string `position:"Query" name:"RouterId"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	PageSize             int    `position:"Query" name:"PageSize"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	Type                 string `position:"Query" name:"Type"`
 	PageNumber           int    `position:"Query" name:"PageNumber"`
+	RouterType           string `position:"Query" name:"RouterType"`
+	RouteTableName       string `position:"Query" name:"RouteTableName"`
+	RouterId             string `position:"Query" name:"RouterId"`
+	PageSize             int    `position:"Query" name:"PageSize"`
 	RouteTableId         string `position:"Query" name:"RouteTableId"`
 }
 
@@ -54,14 +55,16 @@ type DescribeRouteTablesRouteEntry struct {
 	Status               string
 	InstanceId           string
 	NextHopType          string
+	NextHopRegionId      string
 	NextHops             DescribeRouteTablesNextHopList
 }
 
 type DescribeRouteTablesNextHop struct {
-	NextHopType string
-	NextHopId   string
-	Enabled     int
-	Weight      int
+	NextHopType     string
+	NextHopId       string
+	Enabled         int
+	Weight          int
+	NextHopRegionId string
 }
 
 type DescribeRouteTablesRouteTableList []DescribeRouteTablesRouteTable

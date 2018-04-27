@@ -12,7 +12,7 @@ type ListProductOfActiveAlertRequest struct {
 }
 
 func (req *ListProductOfActiveAlertRequest) Invoke(client *sdk.Client) (resp *ListProductOfActiveAlertResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ListProductOfActiveAlert", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ListProductOfActiveAlert", "cms", "")
 	resp = &ListProductOfActiveAlertResponse{}
 	err = client.DoAction(req, resp)
 	return

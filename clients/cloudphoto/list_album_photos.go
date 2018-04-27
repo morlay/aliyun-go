@@ -40,6 +40,7 @@ type ListAlbumPhotosResponse struct {
 type ListAlbumPhotosResult struct {
 	PhotoId    int64
 	PhotoIdStr string
+	Mtime      int64
 	State      string
 }
 

@@ -21,7 +21,7 @@ type ListMyGroupsRequest struct {
 }
 
 func (req *ListMyGroupsRequest) Invoke(client *sdk.Client) (resp *ListMyGroupsResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ListMyGroups", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ListMyGroups", "cms", "")
 	resp = &ListMyGroupsResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -45,6 +45,8 @@ type ListMyGroupsResource struct {
 	ServiceId     string
 	BindUrls      string
 	Type          string
+	GmtModified   int64
+	GmtCreate     int64
 	ContactGroups ListMyGroupsContactGroupList
 }
 

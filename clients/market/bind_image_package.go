@@ -13,7 +13,7 @@ type BindImagePackageRequest struct {
 }
 
 func (req *BindImagePackageRequest) Invoke(client *sdk.Client) (resp *BindImagePackageResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "BindImagePackage", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "BindImagePackage", "yunmarket", "")
 	resp = &BindImagePackageResponse{}
 	err = client.DoAction(req, resp)
 	return

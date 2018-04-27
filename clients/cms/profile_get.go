@@ -12,7 +12,7 @@ type ProfileGetRequest struct {
 }
 
 func (req *ProfileGetRequest) Invoke(client *sdk.Client) (resp *ProfileGetResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ProfileGet", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ProfileGet", "cms", "")
 	resp = &ProfileGetResponse{}
 	err = client.DoAction(req, resp)
 	return

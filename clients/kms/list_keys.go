@@ -10,9 +10,9 @@ import (
 
 type ListKeysRequest struct {
 	requests.RpcRequest
-	PageNumber int    `position:"Query" name:"PageNumber"`
 	PageSize   int    `position:"Query" name:"PageSize"`
 	STSToken   string `position:"Query" name:"STSToken"`
+	PageNumber int    `position:"Query" name:"PageNumber"`
 }
 
 func (req *ListKeysRequest) Invoke(client *sdk.Client) (resp *ListKeysResponse, err error) {

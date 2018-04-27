@@ -21,7 +21,7 @@ type CreateUserRequest struct {
 }
 
 func (req *CreateUserRequest) Invoke(client *sdk.Client) (resp *CreateUserResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "CreateUser", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "CreateUser", "ccc", "")
 	resp = &CreateUserResponse{}
 	err = client.DoAction(req, resp)
 	return

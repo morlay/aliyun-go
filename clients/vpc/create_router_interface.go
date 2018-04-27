@@ -14,21 +14,24 @@ type CreateRouterInterfaceRequest struct {
 	ResourceOwnerId          int64  `position:"Query" name:"ResourceOwnerId"`
 	Role                     string `position:"Query" name:"Role"`
 	ClientToken              string `position:"Query" name:"ClientToken"`
+	HealthCheckTargetIp      string `position:"Query" name:"HealthCheckTargetIp"`
+	Description              string `position:"Query" name:"Description"`
+	Spec                     string `position:"Query" name:"Spec"`
+	OppositeInterfaceId      string `position:"Query" name:"OppositeInterfaceId"`
+	InstanceChargeType       string `position:"Query" name:"InstanceChargeType"`
+	Period                   int    `position:"Query" name:"Period"`
+	AutoPay                  string `position:"Query" name:"AutoPay"`
 	ResourceOwnerAccount     string `position:"Query" name:"ResourceOwnerAccount"`
 	OppositeRegionId         string `position:"Query" name:"OppositeRegionId"`
 	OwnerAccount             string `position:"Query" name:"OwnerAccount"`
-	HealthCheckTargetIp      string `position:"Query" name:"HealthCheckTargetIp"`
-	Description              string `position:"Query" name:"Description"`
 	OwnerId                  int64  `position:"Query" name:"OwnerId"`
-	Spec                     string `position:"Query" name:"Spec"`
 	OppositeInterfaceOwnerId string `position:"Query" name:"OppositeInterfaceOwnerId"`
 	RouterType               string `position:"Query" name:"RouterType"`
 	HealthCheckSourceIp      string `position:"Query" name:"HealthCheckSourceIp"`
 	RouterId                 string `position:"Query" name:"RouterId"`
 	OppositeRouterType       string `position:"Query" name:"OppositeRouterType"`
 	Name                     string `position:"Query" name:"Name"`
-	UserCidr                 string `position:"Query" name:"UserCidr"`
-	OppositeInterfaceId      string `position:"Query" name:"OppositeInterfaceId"`
+	PricingCycle             string `position:"Query" name:"PricingCycle"`
 }
 
 func (req *CreateRouterInterfaceRequest) Invoke(client *sdk.Client) (resp *CreateRouterInterfaceResponse, err error) {
@@ -42,4 +45,5 @@ type CreateRouterInterfaceResponse struct {
 	responses.BaseResponse
 	RequestId         string
 	RouterInterfaceId string
+	OrderId           int64
 }

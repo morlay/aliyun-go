@@ -11,13 +11,13 @@ import (
 type ListClustersRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId  int64                            `position:"Query" name:"ResourceOwnerId"`
-	CreateType       string                           `position:"Query" name:"CreateType"`
-	IsDesc           string                           `position:"Query" name:"IsDesc"`
-	PageNumber       int                              `position:"Query" name:"PageNumber"`
-	PageSize         int                              `position:"Query" name:"PageSize"`
-	DefaultStatus    string                           `position:"Query" name:"DefaultStatus"`
-	ClusterTypeLists *ListClustersClusterTypeListList `position:"Query" type:"Repeated" name:"ClusterTypeList"`
 	StatusLists      *ListClustersStatusListList      `position:"Query" type:"Repeated" name:"StatusList"`
+	PageSize         int                              `position:"Query" name:"PageSize"`
+	ClusterTypeLists *ListClustersClusterTypeListList `position:"Query" type:"Repeated" name:"ClusterTypeList"`
+	IsDesc           string                           `position:"Query" name:"IsDesc"`
+	CreateType       string                           `position:"Query" name:"CreateType"`
+	DefaultStatus    string                           `position:"Query" name:"DefaultStatus"`
+	PageNumber       int                              `position:"Query" name:"PageNumber"`
 }
 
 func (req *ListClustersRequest) Invoke(client *sdk.Client) (resp *ListClustersResponse, err error) {
@@ -48,7 +48,15 @@ type ListClustersClusterInfo struct {
 	Period              int
 	HasUncompletedOrder bool
 	OrderList           string
+	CreateResource      string
+	OrderTaskInfo       ListClustersOrderTaskInfo
 	FailReason          ListClustersFailReason
+}
+
+type ListClustersOrderTaskInfo struct {
+	TargetCount  int
+	CurrentCount int
+	OrderIdList  string
 }
 
 type ListClustersFailReason struct {
@@ -57,9 +65,9 @@ type ListClustersFailReason struct {
 	RequestId string
 }
 
-type ListClustersClusterTypeListList []string
+type ListClustersStatusListList []string
 
-func (list *ListClustersClusterTypeListList) UnmarshalJSON(data []byte) error {
+func (list *ListClustersStatusListList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
@@ -72,9 +80,9 @@ func (list *ListClustersClusterTypeListList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListClustersStatusListList []string
+type ListClustersClusterTypeListList []string
 
-func (list *ListClustersStatusListList) UnmarshalJSON(data []byte) error {
+func (list *ListClustersClusterTypeListList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {

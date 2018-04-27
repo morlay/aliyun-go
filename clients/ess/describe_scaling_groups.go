@@ -16,6 +16,7 @@ type DescribeScalingGroupsRequest struct {
 	ScalingGroupId13     string `position:"Query" name:"ScalingGroupId.13"`
 	ScalingGroupId14     string `position:"Query" name:"ScalingGroupId.14"`
 	ScalingGroupId15     string `position:"Query" name:"ScalingGroupId.15"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	PageNumber           int    `position:"Query" name:"PageNumber"`
 	PageSize             int    `position:"Query" name:"PageSize"`
 	ScalingGroupName20   string `position:"Query" name:"ScalingGroupName.20"`
@@ -25,8 +26,8 @@ type DescribeScalingGroupsRequest struct {
 	ScalingGroupName17   string `position:"Query" name:"ScalingGroupName.17"`
 	ScalingGroupName16   string `position:"Query" name:"ScalingGroupName.16"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	ScalingGroupName     string `position:"Query" name:"ScalingGroupName"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	ScalingGroupName1    string `position:"Query" name:"ScalingGroupName.1"`
 	ScalingGroupName2    string `position:"Query" name:"ScalingGroupName.2"`
 	ScalingGroupId2      string `position:"Query" name:"ScalingGroupId.2"`
@@ -80,6 +81,7 @@ type DescribeScalingGroupsScalingGroup struct {
 	RemovingCapacity             int
 	ScalingGroupName             string
 	ActiveCapacity               int
+	StandbyCapacity              int
 	ActiveScalingConfigurationId string
 	ScalingGroupId               string
 	RegionId                     string
@@ -87,6 +89,7 @@ type DescribeScalingGroupsScalingGroup struct {
 	MinSize                      int
 	LifecycleState               string
 	CreationTime                 string
+	ModificationTime             string
 	VpcId                        string
 	VSwitchId                    string
 	VSwitchIds                   DescribeScalingGroupsVSwitchIdList

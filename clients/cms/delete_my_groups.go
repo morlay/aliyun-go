@@ -14,7 +14,7 @@ type DeleteMyGroupsRequest struct {
 }
 
 func (req *DeleteMyGroupsRequest) Invoke(client *sdk.Client) (resp *DeleteMyGroupsResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteMyGroups", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DeleteMyGroups", "cms", "")
 	resp = &DeleteMyGroupsResponse{}
 	err = client.DoAction(req, resp)
 	return

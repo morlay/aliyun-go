@@ -29,6 +29,7 @@ type GetLibraryResponse struct {
 }
 
 type GetLibraryLibrary struct {
+	Ctime           int64
 	Quota           GetLibraryQuota
 	AutoCleanConfig GetLibraryAutoCleanConfig
 }

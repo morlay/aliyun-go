@@ -15,7 +15,7 @@ type GetUserRequest struct {
 }
 
 func (req *GetUserRequest) Invoke(client *sdk.Client) (resp *GetUserResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "GetUser", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "GetUser", "ccc", "")
 	resp = &GetUserResponse{}
 	err = client.DoAction(req, resp)
 	return

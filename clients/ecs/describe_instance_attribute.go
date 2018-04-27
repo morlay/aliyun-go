@@ -56,6 +56,7 @@ type DescribeInstanceAttributeResponse struct {
 	InnerIpAddress          DescribeInstanceAttributeInnerIpAddresList
 	VpcAttributes           DescribeInstanceAttributeVpcAttributes
 	EipAddress              DescribeInstanceAttributeEipAddress
+	DedicatedHostAttribute  DescribeInstanceAttributeDedicatedHostAttribute
 }
 
 type DescribeInstanceAttributeLockReason struct {
@@ -74,6 +75,11 @@ type DescribeInstanceAttributeEipAddress struct {
 	IpAddress          string
 	Bandwidth          int
 	InternetChargeType string
+}
+
+type DescribeInstanceAttributeDedicatedHostAttribute struct {
+	DedicatedHostId   string
+	DedicatedHostName string
 }
 
 type DescribeInstanceAttributeLockReasonList []DescribeInstanceAttributeLockReason

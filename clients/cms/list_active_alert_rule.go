@@ -15,7 +15,7 @@ type ListActiveAlertRuleRequest struct {
 }
 
 func (req *ListActiveAlertRuleRequest) Invoke(client *sdk.Client) (resp *ListActiveAlertRuleResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "ListActiveAlertRule", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "ListActiveAlertRule", "cms", "")
 	resp = &ListActiveAlertRuleResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -42,6 +42,7 @@ type CreateInstanceRequest struct {
 	ImageId                     string                      `position:"Query" name:"ImageId"`
 	ClientToken                 string                      `position:"Query" name:"ClientToken"`
 	VlanId                      string                      `position:"Query" name:"VlanId"`
+	SpotInterruptionBehavior    string                      `position:"Query" name:"SpotInterruptionBehavior"`
 	IoOptimized                 string                      `position:"Query" name:"IoOptimized"`
 	SecurityGroupId             string                      `position:"Query" name:"SecurityGroupId"`
 	InternetMaxBandwidthOut     int                         `position:"Query" name:"InternetMaxBandwidthOut"`
@@ -57,6 +58,7 @@ type CreateInstanceRequest struct {
 	OwnerAccount                string                      `position:"Query" name:"OwnerAccount"`
 	SystemDiskDiskName          string                      `position:"Query" name:"SystemDiskDiskName"`
 	RamRoleName                 string                      `position:"Query" name:"RamRoleName"`
+	DedicatedHostId             string                      `position:"Query" name:"DedicatedHostId"`
 	ClusterId                   string                      `position:"Query" name:"ClusterId"`
 	DataDisks                   *CreateInstanceDataDiskList `position:"Query" type:"Repeated" name:"DataDisk"`
 	Tag5Value                   string                      `position:"Query" name:"Tag.5.Value"`

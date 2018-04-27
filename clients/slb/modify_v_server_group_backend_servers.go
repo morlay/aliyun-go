@@ -39,6 +39,9 @@ type ModifyVServerGroupBackendServersBackendServer struct {
 	ServerId string
 	Port     int
 	Weight   int
+	Type     string
+	ServerIp string
+	VpcId    string
 }
 
 type ModifyVServerGroupBackendServersBackendServerList []ModifyVServerGroupBackendServersBackendServer

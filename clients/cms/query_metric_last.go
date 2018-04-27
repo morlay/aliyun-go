@@ -23,7 +23,7 @@ type QueryMetricLastRequest struct {
 }
 
 func (req *QueryMetricLastRequest) Invoke(client *sdk.Client) (resp *QueryMetricLastResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "QueryMetricLast", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "QueryMetricLast", "cms", "")
 	resp = &QueryMetricLastResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -33,7 +33,6 @@ type QueryMetricLastResponse struct {
 	responses.BaseResponse
 	Code       string
 	Message    string
-	Success    bool
 	RequestId  string
 	Cursor     string
 	Datapoints string

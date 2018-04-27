@@ -8,13 +8,14 @@ import (
 
 type SetReqAuthConfigRequest struct {
 	requests.RpcRequest
-	Key1          string `position:"Query" name:"Key.1"`
-	Key2          string `position:"Query" name:"Key.2"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	DomainName    string `position:"Query" name:"DomainName"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	TimeOut       string `position:"Query" name:"TimeOut"`
-	AuthType      string `position:"Query" name:"AuthType"`
+	Key1           string `position:"Query" name:"Key.1"`
+	Key2           string `position:"Query" name:"Key.2"`
+	AuthRemoteDesc string `position:"Query" name:"AuthRemoteDesc"`
+	SecurityToken  string `position:"Query" name:"SecurityToken"`
+	DomainName     string `position:"Query" name:"DomainName"`
+	OwnerId        int64  `position:"Query" name:"OwnerId"`
+	TimeOut        string `position:"Query" name:"TimeOut"`
+	AuthType       string `position:"Query" name:"AuthType"`
 }
 
 func (req *SetReqAuthConfigRequest) Invoke(client *sdk.Client) (resp *SetReqAuthConfigResponse, err error) {

@@ -28,6 +28,20 @@ type SaveBatchTaskForCreatingOrderActivateOrderActivateParam struct {
 	RegistrantProfileId     int64  `name:"RegistrantProfileId"`
 	EnableDomainProxy       string `name:"EnableDomainProxy"`
 	PermitPremiumActivation string `name:"PermitPremiumActivation"`
+	AliyunDns               string `name:"AliyunDns"`
+	Dns1                    string `name:"Dns.1"`
+	Dns2                    string `name:"Dns.2"`
+	Country                 string `name:"Country"`
+	City                    string `name:"City"`
+	RegistrantOrganization  string `name:"RegistrantOrganization"`
+	RegistrantName          string `name:"RegistrantName"`
+	Province                string `name:"Province"`
+	Address                 string `name:"Address"`
+	Email                   string `name:"Email"`
+	PostalCode              string `name:"PostalCode"`
+	TelArea                 string `name:"TelArea"`
+	Telephone               string `name:"Telephone"`
+	TelExt                  string `name:"TelExt"`
 }
 
 type SaveBatchTaskForCreatingOrderActivateResponse struct {

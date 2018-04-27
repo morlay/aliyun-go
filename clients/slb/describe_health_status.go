@@ -38,6 +38,8 @@ type DescribeHealthStatusBackendServer struct {
 	ServerId           string
 	Port               int
 	ServerHealthStatus string
+	ServerIp           string
+	Type               string
 }
 
 type DescribeHealthStatusBackendServerList []DescribeHealthStatusBackendServer

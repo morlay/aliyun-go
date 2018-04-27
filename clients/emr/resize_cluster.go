@@ -8,12 +8,14 @@ import (
 
 type ResizeClusterRequest struct {
 	requests.RpcRequest
-	ClusterId          string `position:"Query" name:"ClusterId"`
 	NewMasterInstances int    `position:"Query" name:"NewMasterInstances"`
+	Period             int    `position:"Query" name:"Period"`
+	AutoRenew          string `position:"Query" name:"AutoRenew"`
+	CoreInstanceType   string `position:"Query" name:"CoreInstanceType"`
 	NewCoreInstances   int    `position:"Query" name:"NewCoreInstances"`
 	NewTaskInstances   int    `position:"Query" name:"NewTaskInstances"`
+	ClusterId          string `position:"Query" name:"ClusterId"`
 	ChargeType         string `position:"Query" name:"ChargeType"`
-	Period             int    `position:"Query" name:"Period"`
 }
 
 func (req *ResizeClusterRequest) Invoke(client *sdk.Client) (resp *ResizeClusterResponse, err error) {

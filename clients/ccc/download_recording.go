@@ -14,7 +14,7 @@ type DownloadRecordingRequest struct {
 }
 
 func (req *DownloadRecordingRequest) Invoke(client *sdk.Client) (resp *DownloadRecordingResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "DownloadRecording", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "DownloadRecording", "ccc", "")
 	resp = &DownloadRecordingResponse{}
 	err = client.DoAction(req, resp)
 	return

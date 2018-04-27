@@ -10,14 +10,12 @@ import (
 
 type BatchDescribeDomainBpsDataRequest struct {
 	requests.RpcRequest
-	StartTime     string `position:"Query" name:"StartTime"`
-	PageNumber    int    `position:"Query" name:"PageNumber"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	PageSize      int    `position:"Query" name:"PageSize"`
-	DomainName    string `position:"Query" name:"DomainName"`
-	EndTime       string `position:"Query" name:"EndTime"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	StartTime  string `position:"Query" name:"StartTime"`
+	PageNumber int    `position:"Query" name:"PageNumber"`
+	PageSize   int    `position:"Query" name:"PageSize"`
+	DomainName string `position:"Query" name:"DomainName"`
+	EndTime    string `position:"Query" name:"EndTime"`
+	OwnerId    int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *BatchDescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (resp *BatchDescribeDomainBpsDataResponse, err error) {
@@ -39,6 +37,8 @@ type BatchDescribeDomainBpsDataResponse struct {
 type BatchDescribeDomainBpsDataDataModule struct {
 	Timestamp  string
 	L1Bps      float32
+	L1InnerBps float32
+	L1OutBps   float32
 	DomainName string
 }
 

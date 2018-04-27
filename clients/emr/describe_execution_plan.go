@@ -26,19 +26,28 @@ type DescribeExecutionPlanResponse struct {
 	RequestId             string
 	Id                    string
 	Name                  string
+	Status                string
 	Strategy              string
 	TimeInterval          int
 	StartTime             int64
 	TimeUnit              string
+	DayOfWeek             string
+	DayOfMonth            string
 	CreateClusterOnDemand bool
 	ClusterId             string
+	ClusterName           string
+	WorkflowApp           string
 	ExecutionPlanVersion  int64
 	JobInfoList           DescribeExecutionPlanJobInfoList
 	ClusterInfo           DescribeExecutionPlanClusterInfo
 }
 
 type DescribeExecutionPlanJobInfo struct {
-	Id string
+	Id           string
+	Name         string
+	Type         string
+	RunParameter string
+	FailAct      string
 }
 
 type DescribeExecutionPlanClusterInfo struct {
@@ -56,6 +65,8 @@ type DescribeExecutionPlanClusterInfo struct {
 	IoOptimized            bool
 	InstanceGeneration     string
 	Configurations         string
+	EasEnable              bool
+	UserDefinedEmrEcsRole  string
 	EcsOrders              DescribeExecutionPlanEcsOrderInfoList
 	BootstrapActionList    DescribeExecutionPlanBootstrapActionList
 	SoftwareInfo           DescribeExecutionPlanSoftwareInfo

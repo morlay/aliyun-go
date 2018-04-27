@@ -11,6 +11,7 @@ import (
 type RunInstancesRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId             int64                             `position:"Query" name:"ResourceOwnerId"`
+	HpcClusterId                string                            `position:"Query" name:"HpcClusterId"`
 	SecurityEnhancementStrategy string                            `position:"Query" name:"SecurityEnhancementStrategy"`
 	KeyPairName                 string                            `position:"Query" name:"KeyPairName"`
 	SpotPriceLimit              float32                           `position:"Query" name:"SpotPriceLimit"`
@@ -26,6 +27,7 @@ type RunInstancesRequest struct {
 	ZoneId                      string                            `position:"Query" name:"ZoneId"`
 	InternetMaxBandwidthIn      int                               `position:"Query" name:"InternetMaxBandwidthIn"`
 	ImageId                     string                            `position:"Query" name:"ImageId"`
+	SpotInterruptionBehavior    string                            `position:"Query" name:"SpotInterruptionBehavior"`
 	ClientToken                 string                            `position:"Query" name:"ClientToken"`
 	IoOptimized                 string                            `position:"Query" name:"IoOptimized"`
 	SecurityGroupId             string                            `position:"Query" name:"SecurityGroupId"`
@@ -41,6 +43,7 @@ type RunInstancesRequest struct {
 	SystemDiskDiskName          string                            `position:"Query" name:"SystemDiskDiskName"`
 	RamRoleName                 string                            `position:"Query" name:"RamRoleName"`
 	AutoReleaseTime             string                            `position:"Query" name:"AutoReleaseTime"`
+	DedicatedHostId             string                            `position:"Query" name:"DedicatedHostId"`
 	DataDisks                   *RunInstancesDataDiskList         `position:"Query" type:"Repeated" name:"DataDisk"`
 	SystemDiskSize              string                            `position:"Query" name:"SystemDiskSize"`
 	SystemDiskDescription       string                            `position:"Query" name:"SystemDiskDescription"`

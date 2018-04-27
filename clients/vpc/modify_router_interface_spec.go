@@ -12,7 +12,6 @@ type ModifyRouterInterfaceSpecRequest struct {
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	UserCidr             string `position:"Query" name:"UserCidr"`
 	RouterInterfaceId    string `position:"Query" name:"RouterInterfaceId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	Spec                 string `position:"Query" name:"Spec"`

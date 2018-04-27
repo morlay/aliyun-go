@@ -13,7 +13,7 @@ type DeleteAlarmRequest struct {
 }
 
 func (req *DeleteAlarmRequest) Invoke(client *sdk.Client) (resp *DeleteAlarmResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteAlarm", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DeleteAlarm", "cms", "")
 	resp = &DeleteAlarmResponse{}
 	err = client.DoAction(req, resp)
 	return

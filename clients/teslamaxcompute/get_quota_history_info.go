@@ -42,30 +42,44 @@ type GetQuotaHistoryInfoPoint struct {
 	CpuMinQuota GetQuotaHistoryInfoCpuMinQuota
 	MemUsed     GetQuotaHistoryInfoMemUsed
 	CpuUsed     GetQuotaHistoryInfoCpuUsed
+	MemMaxQuota GetQuotaHistoryInfoMemMaxQuota
+	MemMinQuota GetQuotaHistoryInfoMemMinQuota
 }
 
 type GetQuotaHistoryInfoCpuMaxQuota struct {
-	Min int
-	Max int
-	Avg int
+	Min float32
+	Max float32
+	Avg float32
 }
 
 type GetQuotaHistoryInfoCpuMinQuota struct {
-	Min int
-	Max int
-	Avg int
+	Min float32
+	Max float32
+	Avg float32
 }
 
 type GetQuotaHistoryInfoMemUsed struct {
-	Min int
-	Max int
-	Avg int
+	Min float32
+	Max float32
+	Avg float32
 }
 
 type GetQuotaHistoryInfoCpuUsed struct {
-	Min int
-	Max int
-	Avg int
+	Min float32
+	Max float32
+	Avg float32
+}
+
+type GetQuotaHistoryInfoMemMaxQuota struct {
+	Min float32
+	Max float32
+	Avg float32
+}
+
+type GetQuotaHistoryInfoMemMinQuota struct {
+	Min float32
+	Max float32
+	Avg float32
 }
 
 type GetQuotaHistoryInfoDataItemList []GetQuotaHistoryInfoDataItem

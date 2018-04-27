@@ -37,43 +37,51 @@ type QueryTaskInfoHistoryResponse struct {
 }
 
 type QueryTaskInfoHistoryTaskInfoHistory struct {
-	TaskType       string
-	TaskNum        int
-	TaskStatus     string
-	CreateTime     string
-	Clientip       string
-	TaskNo         string
-	CreateTimeLong int64
+	TaskType            string
+	TaskNum             int
+	TaskStatus          string
+	CreateTime          string
+	Clientip            string
+	TaskNo              string
+	CreateTimeLong      int64
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskInfoHistoryCurrentPageCursor struct {
-	TaskType       string
-	TaskNum        int
-	TaskStatus     string
-	CreateTime     string
-	Clientip       string
-	TaskNo         string
-	CreateTimeLong int64
+	TaskType            string
+	TaskNum             int
+	TaskStatus          string
+	CreateTime          string
+	Clientip            string
+	TaskNo              string
+	CreateTimeLong      int64
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskInfoHistoryNextPageCursor struct {
-	TaskType       string
-	TaskNum        int
-	TaskStatus     string
-	CreateTime     string
-	Clientip       string
-	TaskNo         string
-	CreateTimeLong int64
+	TaskType            string
+	TaskNum             int
+	TaskStatus          string
+	CreateTime          string
+	Clientip            string
+	TaskNo              string
+	CreateTimeLong      int64
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskInfoHistoryPrePageCursor struct {
-	TaskType       string
-	TaskNum        int
-	TaskStatus     string
-	CreateTime     string
-	Clientip       string
-	TaskNo         string
-	CreateTimeLong int64
+	TaskType            string
+	TaskNum             int
+	TaskStatus          string
+	CreateTime          string
+	Clientip            string
+	TaskNo              string
+	CreateTimeLong      int64
+	TaskStatusCode      int
+	TaskTypeDescription string
 }
 
 type QueryTaskInfoHistoryTaskInfoHistoryList []QueryTaskInfoHistoryTaskInfoHistory

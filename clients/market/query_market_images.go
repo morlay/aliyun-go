@@ -14,7 +14,7 @@ type QueryMarketImagesRequest struct {
 }
 
 func (req *QueryMarketImagesRequest) Invoke(client *sdk.Client) (resp *QueryMarketImagesResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "QueryMarketImages", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "QueryMarketImages", "yunmarket", "")
 	resp = &QueryMarketImagesResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -56,6 +56,7 @@ type QueryMarketImagesImageProduct struct {
 
 type QueryMarketImagesImage struct {
 	Version            string
+	VersionDescription string
 	ImageId            string
 	ImageSize          int
 	Region             string

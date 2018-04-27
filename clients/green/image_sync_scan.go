@@ -12,7 +12,7 @@ type ImageSyncScanRequest struct {
 }
 
 func (req *ImageSyncScanRequest) Invoke(client *sdk.Client) (resp *ImageSyncScanResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "ImageSyncScan", "/green/image/scan", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "ImageSyncScan", "/green/image/scan", "green", "")
 	req.Method = "POST"
 
 	resp = &ImageSyncScanResponse{}

@@ -14,7 +14,7 @@ type NodeProcessDeleteRequest struct {
 }
 
 func (req *NodeProcessDeleteRequest) Invoke(client *sdk.Client) (resp *NodeProcessDeleteResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "NodeProcessDelete", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "NodeProcessDelete", "cms", "")
 	resp = &NodeProcessDeleteResponse{}
 	err = client.DoAction(req, resp)
 	return

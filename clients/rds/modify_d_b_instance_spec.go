@@ -12,6 +12,7 @@ type ModifyDBInstanceSpecRequest struct {
 	DBInstanceStorage    int    `position:"Query" name:"DBInstanceStorage"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
+	EffectiveTime        string `position:"Query" name:"EffectiveTime"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`

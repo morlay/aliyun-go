@@ -12,9 +12,9 @@ type GetVideoListRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
-	CateId               int    `position:"Query" name:"CateId"`
-	PageNo               int    `position:"Query" name:"PageNo"`
-	PageSize             int    `position:"Query" name:"PageSize"`
+	CateId               int64  `position:"Query" name:"CateId"`
+	PageNo               int64  `position:"Query" name:"PageNo"`
+	PageSize             int64  `position:"Query" name:"PageSize"`
 	EndTime              string `position:"Query" name:"EndTime"`
 	SortBy               string `position:"Query" name:"SortBy"`
 	StartTime            string `position:"Query" name:"StartTime"`
@@ -48,7 +48,7 @@ type GetVideoListVideo struct {
 	CreationTime string
 	ModifyTime   string
 	CoverURL     string
-	CateId       int
+	CateId       int64
 	CateName     string
 	Snapshots    GetVideoListSnapshotList
 }

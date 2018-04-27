@@ -38,12 +38,14 @@ type QueryTaskListResponse struct {
 }
 
 type QueryTaskListTaskInfo struct {
-	TaskType   string
-	TaskNum    int
-	TaskStatus string
-	CreateTime string
-	Clientip   string
-	TaskNo     string
+	TaskType            string
+	TaskNum             int
+	TaskStatus          string
+	CreateTime          string
+	Clientip            string
+	TaskNo              string
+	TaskTypeDescription string
+	TaskStatusCode      int
 }
 
 type QueryTaskListTaskInfoList []QueryTaskListTaskInfo

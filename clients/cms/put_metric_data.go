@@ -13,7 +13,7 @@ type PutMetricDataRequest struct {
 }
 
 func (req *PutMetricDataRequest) Invoke(client *sdk.Client) (resp *PutMetricDataResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "PutMetricData", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "PutMetricData", "cms", "")
 	resp = &PutMetricDataResponse{}
 	err = client.DoAction(req, resp)
 	return

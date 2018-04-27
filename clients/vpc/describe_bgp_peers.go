@@ -44,16 +44,16 @@ type DescribeBgpPeersBgpPeer struct {
 	BgpPeerId     string
 	BgpGroupId    string
 	PeerIpAddress string
-	PeerAsn       int
+	PeerAsn       string
 	AuthKey       string
 	RouterId      string
 	BgpStatus     string
 	Status        string
-	Keepalive     int
-	LocalAsn      int
-	Hold          int
-	IsFake        bool
-	RouteLimit    int
+	Keepalive     string
+	LocalAsn      string
+	Hold          string
+	IsFake        string
+	RouteLimit    string
 	RegionId      string
 }
 

@@ -8,12 +8,12 @@ import (
 
 type ActivateLicenseRequest struct {
 	requests.RpcRequest
-	LicenseCode    string `position:"Query" name:"LicenseCode"`
 	Identification string `position:"Query" name:"Identification"`
+	LicenseCode    string `position:"Query" name:"LicenseCode"`
 }
 
 func (req *ActivateLicenseRequest) Invoke(client *sdk.Client) (resp *ActivateLicenseResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "ActivateLicense", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "ActivateLicense", "yunmarket", "")
 	resp = &ActivateLicenseResponse{}
 	err = client.DoAction(req, resp)
 	return

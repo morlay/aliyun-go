@@ -27,4 +27,5 @@ type DescribeSQLCollectorPolicyResponse struct {
 	responses.BaseResponse
 	RequestId          string
 	SQLCollectorStatus string
+	StoragePeriod      int
 }

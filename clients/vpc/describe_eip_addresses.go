@@ -20,6 +20,7 @@ type DescribeEipAddressesRequest struct {
 	OwnerId                int64  `position:"Query" name:"OwnerId"`
 	EipAddress             string `position:"Query" name:"EipAddress"`
 	PageNumber             int    `position:"Query" name:"PageNumber"`
+	ResourceGroupId        string `position:"Query" name:"ResourceGroupId"`
 	LockReason             string `position:"Query" name:"LockReason"`
 	Filter1Key             string `position:"Query" name:"Filter.1.Key"`
 	AssociatedInstanceType string `position:"Query" name:"AssociatedInstanceType"`
@@ -46,21 +47,27 @@ type DescribeEipAddressesResponse struct {
 }
 
 type DescribeEipAddressesEipAddress struct {
-	RegionId           string
-	IpAddress          string
-	AllocationId       string
-	Status             string
-	InstanceId         string
-	Bandwidth          string
-	InternetChargeType string
-	AllocationTime     string
-	InstanceType       string
-	ChargeType         string
-	ExpiredTime        string
-	Name               string
-	Descritpion        string
-	BandwidthPackageId string
-	OperationLocks     DescribeEipAddressesLockReasonList
+	RegionId             string
+	IpAddress            string
+	AllocationId         string
+	Status               string
+	InstanceId           string
+	Bandwidth            string
+	EipBandwidth         string
+	InternetChargeType   string
+	AllocationTime       string
+	InstanceType         string
+	InstanceRegionId     string
+	ChargeType           string
+	ExpiredTime          string
+	Name                 string
+	ISP                  string
+	Descritpion          string
+	BandwidthPackageId   string
+	BandwidthPackageType string
+	ResourceGroupId      string
+	OperationLocks       DescribeEipAddressesLockReasonList
+	AvailableRegions     DescribeEipAddressesAvailableRegionList
 }
 
 type DescribeEipAddressesLockReason struct {
@@ -86,6 +93,21 @@ type DescribeEipAddressesLockReasonList []DescribeEipAddressesLockReason
 
 func (list *DescribeEipAddressesLockReasonList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]DescribeEipAddressesLockReason)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type DescribeEipAddressesAvailableRegionList []string
+
+func (list *DescribeEipAddressesAvailableRegionList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]string)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

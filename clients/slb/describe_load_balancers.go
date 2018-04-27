@@ -12,25 +12,25 @@ type DescribeLoadBalancersRequest struct {
 	requests.RpcRequest
 	Access_key_id         string `position:"Query" name:"Access_key_id"`
 	ResourceOwnerId       int64  `position:"Query" name:"ResourceOwnerId"`
-	NetworkType           string `position:"Query" name:"NetworkType"`
-	MasterZoneId          string `position:"Query" name:"MasterZoneId"`
-	PageNumber            int    `position:"Query" name:"PageNumber"`
-	ResourceGroupId       string `position:"Query" name:"ResourceGroupId"`
-	LoadBalancerName      string `position:"Query" name:"LoadBalancerName"`
-	PageSize              int    `position:"Query" name:"PageSize"`
-	AddressType           string `position:"Query" name:"AddressType"`
-	SlaveZoneId           string `position:"Query" name:"SlaveZoneId"`
 	Address               string `position:"Query" name:"Address"`
 	ResourceOwnerAccount  string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount          string `position:"Query" name:"OwnerAccount"`
+	NetworkType           string `position:"Query" name:"NetworkType"`
 	OwnerId               int64  `position:"Query" name:"OwnerId"`
 	ServerId              string `position:"Query" name:"ServerId"`
+	MasterZoneId          string `position:"Query" name:"MasterZoneId"`
+	PageNumber            int    `position:"Query" name:"PageNumber"`
 	Tags                  string `position:"Query" name:"Tags"`
 	ServerIntranetAddress string `position:"Query" name:"ServerIntranetAddress"`
 	VSwitchId             string `position:"Query" name:"VSwitchId"`
+	ResourceGroupId       string `position:"Query" name:"ResourceGroupId"`
+	LoadBalancerName      string `position:"Query" name:"LoadBalancerName"`
 	LoadBalancerId        string `position:"Query" name:"LoadBalancerId"`
 	InternetChargeType    string `position:"Query" name:"InternetChargeType"`
 	VpcId                 string `position:"Query" name:"VpcId"`
+	PageSize              int    `position:"Query" name:"PageSize"`
+	AddressType           string `position:"Query" name:"AddressType"`
+	SlaveZoneId           string `position:"Query" name:"SlaveZoneId"`
 	PayType               string `position:"Query" name:"PayType"`
 }
 

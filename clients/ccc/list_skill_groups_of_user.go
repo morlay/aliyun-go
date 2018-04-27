@@ -15,7 +15,7 @@ type ListSkillGroupsOfUserRequest struct {
 }
 
 func (req *ListSkillGroupsOfUserRequest) Invoke(client *sdk.Client) (resp *ListSkillGroupsOfUserResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListSkillGroupsOfUser", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListSkillGroupsOfUser", "ccc", "")
 	resp = &ListSkillGroupsOfUserResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -55,6 +55,8 @@ type ListSkillGroupsOfUserPhoneNumber struct {
 	AllowOutbound          bool
 	Usage                  string
 	Trunks                 int
+	Province               string
+	City                   string
 }
 
 type ListSkillGroupsOfUserSkillLevelList []ListSkillGroupsOfUserSkillLevel

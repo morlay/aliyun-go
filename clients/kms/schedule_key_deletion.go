@@ -8,8 +8,8 @@ import (
 
 type ScheduleKeyDeletionRequest struct {
 	requests.RpcRequest
-	KeyId               string `position:"Query" name:"KeyId"`
 	PendingWindowInDays int    `position:"Query" name:"PendingWindowInDays"`
+	KeyId               string `position:"Query" name:"KeyId"`
 	STSToken            string `position:"Query" name:"STSToken"`
 }
 

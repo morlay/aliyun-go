@@ -9,8 +9,8 @@ import (
 type ModifyClusterNameRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
-	Id              string `position:"Query" name:"Id"`
 	Name            string `position:"Query" name:"Name"`
+	Id              string `position:"Query" name:"Id"`
 }
 
 func (req *ModifyClusterNameRequest) Invoke(client *sdk.Client) (resp *ModifyClusterNameResponse, err error) {

@@ -23,7 +23,6 @@ type CreatePhysicalConnectionRequest struct {
 	OwnerId                       int64  `position:"Query" name:"OwnerId"`
 	LineOperator                  string `position:"Query" name:"LineOperator"`
 	Name                          string `position:"Query" name:"Name"`
-	UserCidr                      string `position:"Query" name:"UserCidr"`
 }
 
 func (req *CreatePhysicalConnectionRequest) Invoke(client *sdk.Client) (resp *CreatePhysicalConnectionResponse, err error) {

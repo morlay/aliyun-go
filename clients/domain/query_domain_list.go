@@ -17,6 +17,7 @@ type QueryDomainListRequest struct {
 	StartExpirationDate   int64  `position:"Query" name:"StartExpirationDate"`
 	PageNum               int    `position:"Query" name:"PageNum"`
 	OrderByType           string `position:"Query" name:"OrderByType"`
+	DomainGroupId         string `position:"Query" name:"DomainGroupId"`
 	EndRegistrationDate   int64  `position:"Query" name:"EndRegistrationDate"`
 	UserClientIp          string `position:"Query" name:"UserClientIp"`
 	PageSize              int    `position:"Query" name:"PageSize"`
@@ -45,16 +46,23 @@ type QueryDomainListResponse struct {
 }
 
 type QueryDomainListDomain struct {
-	DomainName           string
-	InstanceId           string
-	ExpirationDate       string
-	RegistrationDate     string
-	DomainType           string
-	DomainStatus         string
-	ProductId            string
-	ExpirationDateLong   int64
-	RegistrationDateLong int64
-	Premium              bool
+	DomainName             string
+	InstanceId             string
+	ExpirationDate         string
+	RegistrationDate       string
+	DomainType             string
+	DomainStatus           string
+	ProductId              string
+	ExpirationDateLong     int64
+	RegistrationDateLong   int64
+	Premium                bool
+	DomainAuditStatus      string
+	ExpirationDateStatus   string
+	RegistrantType         string
+	DomainGroupId          string
+	Remark                 string
+	DomainGroupName        string
+	ExpirationCurrDateDiff int
 }
 
 type QueryDomainListDomainList []QueryDomainListDomain

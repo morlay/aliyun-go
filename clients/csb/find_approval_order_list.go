@@ -13,8 +13,8 @@ type FindApprovalOrderListRequest struct {
 	ProjectName string `position:"Query" name:"ProjectName"`
 	Alias       string `position:"Query" name:"Alias"`
 	ServiceName string `position:"Query" name:"ServiceName"`
-	PageNum     int    `position:"Query" name:"PageNum"`
 	ServiceId   int64  `position:"Query" name:"ServiceId"`
+	PageNum     int    `position:"Query" name:"PageNum"`
 	OnlyPending string `position:"Query" name:"OnlyPending"`
 }
 

@@ -8,6 +8,7 @@ import (
 
 type CreatePhotoRequest struct {
 	requests.RpcRequest
+	TakenAt         int64  `position:"Query" name:"TakenAt"`
 	PhotoTitle      string `position:"Query" name:"PhotoTitle"`
 	LibraryId       string `position:"Query" name:"LibraryId"`
 	ShareExpireTime int64  `position:"Query" name:"ShareExpireTime"`

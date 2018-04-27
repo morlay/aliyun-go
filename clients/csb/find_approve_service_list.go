@@ -10,8 +10,8 @@ import (
 
 type FindApproveServiceListRequest struct {
 	requests.RpcRequest
-	ProjectName    string `position:"Query" name:"ProjectName"`
 	ApproveLevel   string `position:"Query" name:"ApproveLevel"`
+	ProjectName    string `position:"Query" name:"ProjectName"`
 	ShowDelService string `position:"Query" name:"ShowDelService"`
 	CsbId          int64  `position:"Query" name:"CsbId"`
 	Alias          string `position:"Query" name:"Alias"`

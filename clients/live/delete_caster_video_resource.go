@@ -8,11 +8,9 @@ import (
 
 type DeleteCasterVideoResourceRequest struct {
 	requests.RpcRequest
-	ResourceId    string `position:"Query" name:"ResourceId"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	ResourceId string `position:"Query" name:"ResourceId"`
+	CasterId   string `position:"Query" name:"CasterId"`
+	OwnerId    int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *DeleteCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *DeleteCasterVideoResourceResponse, err error) {

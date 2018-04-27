@@ -8,17 +8,16 @@ import (
 
 type ModifyCasterComponentRequest struct {
 	requests.RpcRequest
-	ComponentId       string `position:"Query" name:"ComponentId"`
-	ImageLayerContent string `position:"Query" name:"ImageLayerContent"`
-	CasterId          string `position:"Query" name:"CasterId"`
-	ComponentLayer    string `position:"Query" name:"ComponentLayer"`
-	ComponentName     string `position:"Query" name:"ComponentName"`
-	OwnerId           int64  `position:"Query" name:"OwnerId"`
-	Version           string `position:"Query" name:"Version"`
-	ComponentType     string `position:"Query" name:"ComponentType"`
-	SecurityToken     string `position:"Query" name:"SecurityToken"`
-	Effect            string `position:"Query" name:"Effect"`
-	TextLayerContent  string `position:"Query" name:"TextLayerContent"`
+	ComponentId         string `position:"Query" name:"ComponentId"`
+	ComponentType       string `position:"Query" name:"ComponentType"`
+	ImageLayerContent   string `position:"Query" name:"ImageLayerContent"`
+	CasterId            string `position:"Query" name:"CasterId"`
+	Effect              string `position:"Query" name:"Effect"`
+	ComponentLayer      string `position:"Query" name:"ComponentLayer"`
+	CaptionLayerContent string `position:"Query" name:"CaptionLayerContent"`
+	ComponentName       string `position:"Query" name:"ComponentName"`
+	OwnerId             int64  `position:"Query" name:"OwnerId"`
+	TextLayerContent    string `position:"Query" name:"TextLayerContent"`
 }
 
 func (req *ModifyCasterComponentRequest) Invoke(client *sdk.Client) (resp *ModifyCasterComponentResponse, err error) {

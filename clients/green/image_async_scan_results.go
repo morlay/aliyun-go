@@ -12,7 +12,7 @@ type ImageAsyncScanResultsRequest struct {
 }
 
 func (req *ImageAsyncScanResultsRequest) Invoke(client *sdk.Client) (resp *ImageAsyncScanResultsResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "ImageAsyncScanResults", "/green/image/results", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "ImageAsyncScanResults", "/green/image/results", "green", "")
 	req.Method = "POST"
 
 	resp = &ImageAsyncScanResultsResponse{}

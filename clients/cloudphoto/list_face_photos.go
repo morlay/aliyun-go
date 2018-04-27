@@ -40,6 +40,7 @@ type ListFacePhotosResponse struct {
 type ListFacePhotosResult struct {
 	PhotoId    int64
 	PhotoIdStr string
+	Mtime      int64
 	State      string
 }
 

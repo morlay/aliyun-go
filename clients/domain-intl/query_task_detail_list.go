@@ -40,16 +40,19 @@ type QueryTaskDetailListResponse struct {
 }
 
 type QueryTaskDetailListTaskDetail struct {
-	TaskNo       string
-	TaskDetailNo string
-	TaskType     string
-	InstanceId   string
-	DomainName   string
-	TaskStatus   string
-	UpdateTime   string
-	CreateTime   string
-	TryCount     int
-	ErrorMsg     string
+	TaskNo              string
+	TaskDetailNo        string
+	TaskType            string
+	InstanceId          string
+	DomainName          string
+	TaskStatus          string
+	UpdateTime          string
+	CreateTime          string
+	TryCount            int
+	ErrorMsg            string
+	TaskStatusCode      int
+	TaskResult          string
+	TaskTypeDescription string
 }
 
 type QueryTaskDetailListTaskDetailList []QueryTaskDetailListTaskDetail

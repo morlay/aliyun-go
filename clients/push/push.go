@@ -22,7 +22,6 @@ type PushRequest struct {
 	SendSpeed                      int    `position:"Query" name:"SendSpeed"`
 	AndroidPopupActivity           string `position:"Query" name:"AndroidPopupActivity"`
 	IOSRemindBody                  string `position:"Query" name:"IOSRemindBody"`
-	BatchNumber                    string `position:"Query" name:"BatchNumber"`
 	IOSExtParameters               string `position:"Query" name:"IOSExtParameters"`
 	AndroidNotifyType              string `position:"Query" name:"AndroidNotifyType"`
 	AndroidPopupTitle              string `position:"Query" name:"AndroidPopupTitle"`

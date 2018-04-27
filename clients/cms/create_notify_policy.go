@@ -16,7 +16,7 @@ type CreateNotifyPolicyRequest struct {
 }
 
 func (req *CreateNotifyPolicyRequest) Invoke(client *sdk.Client) (resp *CreateNotifyPolicyResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "CreateNotifyPolicy", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "CreateNotifyPolicy", "cms", "")
 	resp = &CreateNotifyPolicyResponse{}
 	err = client.DoAction(req, resp)
 	return

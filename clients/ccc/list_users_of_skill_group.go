@@ -17,7 +17,7 @@ type ListUsersOfSkillGroupRequest struct {
 }
 
 func (req *ListUsersOfSkillGroupRequest) Invoke(client *sdk.Client) (resp *ListUsersOfSkillGroupResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "ListUsersOfSkillGroup", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "ListUsersOfSkillGroup", "ccc", "")
 	resp = &ListUsersOfSkillGroupResponse{}
 	err = client.DoAction(req, resp)
 	return

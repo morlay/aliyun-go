@@ -12,7 +12,7 @@ type QuerySystemEventHistogramRequest struct {
 }
 
 func (req *QuerySystemEventHistogramRequest) Invoke(client *sdk.Client) (resp *QuerySystemEventHistogramResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "QuerySystemEventHistogram", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "QuerySystemEventHistogram", "cms", "")
 	resp = &QuerySystemEventHistogramResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -20,7 +20,9 @@ func (req *QuerySystemEventHistogramRequest) Invoke(client *sdk.Client) (resp *Q
 
 type QuerySystemEventHistogramResponse struct {
 	responses.BaseResponse
-	Code    string
-	Message string
-	Data    string
+	Code      string
+	Message   string
+	Data      string
+	RequestId string
+	Success   string
 }

@@ -10,11 +10,12 @@ import (
 
 type DescribeVpcsRequest struct {
 	requests.RpcRequest
+	VpcName              string `position:"Query" name:"VpcName"`
+	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	VpcId                string `position:"Query" name:"VpcId"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
-	Name                 string `position:"Query" name:"Name"`
 	PageSize             int    `position:"Query" name:"PageSize"`
 	IsDefault            string `position:"Query" name:"IsDefault"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
@@ -38,19 +39,20 @@ type DescribeVpcsResponse struct {
 }
 
 type DescribeVpcsVpc struct {
-	VpcId          string
-	RegionId       string
-	Status         string
-	VpcName        string
-	CreationTime   string
-	CidrBlock      string
-	VRouterId      string
-	Description    string
-	IsDefault      bool
-	VSwitchIds     DescribeVpcsVSwitchIdList
-	UserCidrs      DescribeVpcsUserCidrList
-	NatGatewayIds  DescribeVpcsNatGatewayIdList
-	RouterTableIds DescribeVpcsRouterTableIdList
+	VpcId           string
+	RegionId        string
+	Status          string
+	VpcName         string
+	CreationTime    string
+	CidrBlock       string
+	VRouterId       string
+	Description     string
+	IsDefault       bool
+	ResourceGroupId string
+	VSwitchIds      DescribeVpcsVSwitchIdList
+	UserCidrs       DescribeVpcsUserCidrList
+	NatGatewayIds   DescribeVpcsNatGatewayIdList
+	RouterTableIds  DescribeVpcsRouterTableIdList
 }
 
 type DescribeVpcsVpcList []DescribeVpcsVpc

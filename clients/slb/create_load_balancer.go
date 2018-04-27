@@ -9,25 +9,25 @@ import (
 type CreateLoadBalancerRequest struct {
 	requests.RpcRequest
 	Access_key_id        string `position:"Query" name:"Access_key_id"`
-	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
-	ClientToken          string `position:"Query" name:"ClientToken"`
-	MasterZoneId         string `position:"Query" name:"MasterZoneId"`
-	Duration             int    `position:"Query" name:"Duration"`
-	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
-	LoadBalancerName     string `position:"Query" name:"LoadBalancerName"`
-	AddressType          string `position:"Query" name:"AddressType"`
-	SlaveZoneId          string `position:"Query" name:"SlaveZoneId"`
 	LoadBalancerSpec     string `position:"Query" name:"LoadBalancerSpec"`
+	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	AutoPay              string `position:"Query" name:"AutoPay"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	Bandwidth            int    `position:"Query" name:"Bandwidth"`
+	ClientToken          string `position:"Query" name:"ClientToken"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	MasterZoneId         string `position:"Query" name:"MasterZoneId"`
 	Tags                 string `position:"Query" name:"Tags"`
 	VSwitchId            string `position:"Query" name:"VSwitchId"`
+	Duration             int    `position:"Query" name:"Duration"`
+	ResourceGroupId      string `position:"Query" name:"ResourceGroupId"`
+	LoadBalancerName     string `position:"Query" name:"LoadBalancerName"`
 	EnableVpcVipFlow     string `position:"Query" name:"EnableVpcVipFlow"`
 	InternetChargeType   string `position:"Query" name:"InternetChargeType"`
 	VpcId                string `position:"Query" name:"VpcId"`
+	AddressType          string `position:"Query" name:"AddressType"`
+	SlaveZoneId          string `position:"Query" name:"SlaveZoneId"`
 	PayType              string `position:"Query" name:"PayType"`
 	PricingCycle         string `position:"Query" name:"PricingCycle"`
 }

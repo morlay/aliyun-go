@@ -19,7 +19,7 @@ type GetMyGroupsRequest struct {
 }
 
 func (req *GetMyGroupsRequest) Invoke(client *sdk.Client) (resp *GetMyGroupsResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "GetMyGroups", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "GetMyGroups", "cms", "")
 	resp = &GetMyGroupsResponse{}
 	err = client.DoAction(req, resp)
 	return

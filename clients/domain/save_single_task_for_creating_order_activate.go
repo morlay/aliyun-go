@@ -32,8 +32,8 @@ type SaveSingleTaskForCreatingOrderActivateRequest struct {
 	Telephone                string `position:"Query" name:"Telephone"`
 	ZhProvince               string `position:"Query" name:"ZhProvince"`
 	RegistrantOrganization   string `position:"Query" name:"RegistrantOrganization"`
-	UserClientIp             string `position:"Query" name:"UserClientIp"`
 	EnableDomainProxy        string `position:"Query" name:"EnableDomainProxy"`
+	UserClientIp             string `position:"Query" name:"UserClientIp"`
 	RegistrantName           string `position:"Query" name:"RegistrantName"`
 }
 

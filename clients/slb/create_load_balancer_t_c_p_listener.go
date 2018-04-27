@@ -14,11 +14,15 @@ type CreateLoadBalancerTCPListenerRequest struct {
 	HealthCheckURI            string `position:"Query" name:"HealthCheckURI"`
 	UnhealthyThreshold        int    `position:"Query" name:"UnhealthyThreshold"`
 	HealthyThreshold          int    `position:"Query" name:"HealthyThreshold"`
+	AclStatus                 string `position:"Query" name:"AclStatus"`
 	Scheduler                 string `position:"Query" name:"Scheduler"`
+	AclType                   string `position:"Query" name:"AclType"`
 	EstablishedTimeout        int    `position:"Query" name:"EstablishedTimeout"`
 	MaxConnection             int    `position:"Query" name:"MaxConnection"`
 	PersistenceTimeout        int    `position:"Query" name:"PersistenceTimeout"`
+	VpcIds                    string `position:"Query" name:"VpcIds"`
 	VServerGroupId            string `position:"Query" name:"VServerGroupId"`
+	AclId                     string `position:"Query" name:"AclId"`
 	ListenerPort              int    `position:"Query" name:"ListenerPort"`
 	HealthCheckType           string `position:"Query" name:"HealthCheckType"`
 	ResourceOwnerAccount      string `position:"Query" name:"ResourceOwnerAccount"`

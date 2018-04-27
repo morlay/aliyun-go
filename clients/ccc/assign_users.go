@@ -18,7 +18,7 @@ type AssignUsersRequest struct {
 }
 
 func (req *AssignUsersRequest) Invoke(client *sdk.Client) (resp *AssignUsersResponse, err error) {
-	req.InitWithApiInfo("CCC", "2017-07-05", "AssignUsers", "CCC", "")
+	req.InitWithApiInfo("CCC", "2017-07-05", "AssignUsers", "ccc", "")
 	resp = &AssignUsersResponse{}
 	err = client.DoAction(req, resp)
 	return

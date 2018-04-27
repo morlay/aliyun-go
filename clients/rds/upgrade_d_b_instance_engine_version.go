@@ -11,6 +11,7 @@ type UpgradeDBInstanceEngineVersionRequest struct {
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	ClientToken          string `position:"Query" name:"ClientToken"`
+	EffectiveTime        string `position:"Query" name:"EffectiveTime"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 	EngineVersion        string `position:"Query" name:"EngineVersion"`

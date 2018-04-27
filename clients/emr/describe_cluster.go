@@ -37,6 +37,7 @@ type DescribeClusterClusterInfo struct {
 	StopTime               int64
 	LogEnable              bool
 	LogPath                string
+	UserId                 string
 	Status                 string
 	HighAvailabilityEnable bool
 	ChargeType             string
@@ -49,9 +50,12 @@ type DescribeClusterClusterInfo struct {
 	CoreNodeInService      int
 	TaskNodeTotal          int
 	TaskNodeInService      int
+	ShowSoftwareInterface  bool
+	CreateResource         string
 	VpcId                  string
 	VSwitchId              string
 	NetType                string
+	UserDefinedEmrEcsRole  string
 	IoOptimized            bool
 	InstanceGeneration     string
 	ImageId                string
@@ -59,6 +63,7 @@ type DescribeClusterClusterInfo struct {
 	SecurityGroupName      string
 	BootstrapFailed        bool
 	Configurations         string
+	EasEnable              bool
 	EcsOrderInfoList       DescribeClusterEcsOrderInfoList
 	BootstrapActionList    DescribeClusterBootstrapActionList
 	FailReason             DescribeClusterFailReason

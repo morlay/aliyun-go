@@ -8,13 +8,27 @@ import (
 
 type SaveSingleTaskForCreatingOrderActivateRequest struct {
 	requests.RpcRequest
+	Country                 string `position:"Query" name:"Country"`
 	SubscriptionDuration    int    `position:"Query" name:"SubscriptionDuration"`
+	Address                 string `position:"Query" name:"Address"`
 	PermitPremiumActivation string `position:"Query" name:"PermitPremiumActivation"`
-	UserClientIp            string `position:"Query" name:"UserClientIp"`
+	TelArea                 string `position:"Query" name:"TelArea"`
+	City                    string `position:"Query" name:"City"`
+	Dns2                    string `position:"Query" name:"Dns.2"`
+	Dns1                    string `position:"Query" name:"Dns.1"`
 	DomainName              string `position:"Query" name:"DomainName"`
 	RegistrantProfileId     int64  `position:"Query" name:"RegistrantProfileId"`
+	Telephone               string `position:"Query" name:"Telephone"`
+	AliyunDns               string `position:"Query" name:"AliyunDns"`
+	RegistrantOrganization  string `position:"Query" name:"RegistrantOrganization"`
+	TelExt                  string `position:"Query" name:"TelExt"`
+	Province                string `position:"Query" name:"Province"`
+	PostalCode              string `position:"Query" name:"PostalCode"`
+	UserClientIp            string `position:"Query" name:"UserClientIp"`
 	EnableDomainProxy       string `position:"Query" name:"EnableDomainProxy"`
 	Lang                    string `position:"Query" name:"Lang"`
+	Email                   string `position:"Query" name:"Email"`
+	RegistrantName          string `position:"Query" name:"RegistrantName"`
 }
 
 func (req *SaveSingleTaskForCreatingOrderActivateRequest) Invoke(client *sdk.Client) (resp *SaveSingleTaskForCreatingOrderActivateResponse, err error) {

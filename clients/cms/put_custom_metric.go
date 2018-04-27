@@ -12,7 +12,7 @@ type PutCustomMetricRequest struct {
 }
 
 func (req *PutCustomMetricRequest) Invoke(client *sdk.Client) (resp *PutCustomMetricResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "PutCustomMetric", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "PutCustomMetric", "cms", "")
 	resp = &PutCustomMetricResponse{}
 	err = client.DoAction(req, resp)
 	return

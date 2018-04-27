@@ -8,11 +8,9 @@ import (
 
 type DeleteCasterComponentRequest struct {
 	requests.RpcRequest
-	ComponentId   string `position:"Query" name:"ComponentId"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	CasterId      string `position:"Query" name:"CasterId"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
-	Version       string `position:"Query" name:"Version"`
+	ComponentId string `position:"Query" name:"ComponentId"`
+	CasterId    string `position:"Query" name:"CasterId"`
+	OwnerId     int64  `position:"Query" name:"OwnerId"`
 }
 
 func (req *DeleteCasterComponentRequest) Invoke(client *sdk.Client) (resp *DeleteCasterComponentResponse, err error) {

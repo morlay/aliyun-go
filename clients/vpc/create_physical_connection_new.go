@@ -25,7 +25,6 @@ type CreatePhysicalConnectionNewRequest struct {
 	LineOperator                  string `position:"Query" name:"LineOperator"`
 	Name                          string `position:"Query" name:"Name"`
 	DeviceName                    string `position:"Query" name:"DeviceName"`
-	UserCidr                      string `position:"Query" name:"UserCidr"`
 }
 
 func (req *CreatePhysicalConnectionNewRequest) Invoke(client *sdk.Client) (resp *CreatePhysicalConnectionNewResponse, err error) {

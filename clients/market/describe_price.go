@@ -10,12 +10,12 @@ import (
 
 type DescribePriceRequest struct {
 	requests.RpcRequest
-	OrderType string `position:"Query" name:"OrderType"`
 	Commodity string `position:"Query" name:"Commodity"`
+	OrderType string `position:"Query" name:"OrderType"`
 }
 
 func (req *DescribePriceRequest) Invoke(client *sdk.Client) (resp *DescribePriceResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "DescribePrice", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "DescribePrice", "yunmarket", "")
 	resp = &DescribePriceResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -26,6 +26,7 @@ type DescribePriceResponse struct {
 	ProductCode    string
 	OriginalPrice  float32
 	TradePrice     float32
+	DiscountPrice  float32
 	PromotionRules DescribePricePromotionRuleList
 }
 

@@ -12,7 +12,7 @@ type VideoAsyncScanRequest struct {
 }
 
 func (req *VideoAsyncScanRequest) Invoke(client *sdk.Client) (resp *VideoAsyncScanResponse, err error) {
-	req.InitWithApiInfo("Green", "2017-01-12", "VideoAsyncScan", "/green/video/asyncscan", "green", "")
+	req.InitWithApiInfo("Green", "2017-08-25", "VideoAsyncScan", "/green/video/asyncscan", "green", "")
 	req.Method = "POST"
 
 	resp = &VideoAsyncScanResponse{}

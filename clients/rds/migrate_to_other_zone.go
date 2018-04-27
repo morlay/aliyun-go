@@ -8,8 +8,10 @@ import (
 
 type MigrateToOtherZoneRequest struct {
 	requests.RpcRequest
+	VSwitchId            string `position:"Query" name:"VSwitchId"`
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	EffectiveTime        string `position:"Query" name:"EffectiveTime"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	ZoneId               string `position:"Query" name:"ZoneId"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`

@@ -15,7 +15,7 @@ type DeleteCustomMetricRequest struct {
 }
 
 func (req *DeleteCustomMetricRequest) Invoke(client *sdk.Client) (resp *DeleteCustomMetricResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "DeleteCustomMetric", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "DeleteCustomMetric", "cms", "")
 	resp = &DeleteCustomMetricResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -13,6 +13,7 @@ type UnassociateEipAddressRequest struct {
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	InstanceType         string `position:"Query" name:"InstanceType"`
+	Force                string `position:"Query" name:"Force"`
 	AllocationId         string `position:"Query" name:"AllocationId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 }

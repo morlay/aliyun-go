@@ -11,6 +11,7 @@ type AssociateEipAddressRequest struct {
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
 	InstanceId           string `position:"Query" name:"InstanceId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
+	InstanceRegionId     string `position:"Query" name:"InstanceRegionId"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
 	InstanceType         string `position:"Query" name:"InstanceType"`
 	AllocationId         string `position:"Query" name:"AllocationId"`

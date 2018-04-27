@@ -10,14 +10,13 @@ import (
 
 type DescribeDomainSrcBpsDataRequest struct {
 	requests.RpcRequest
-	FixTimeGap    string `position:"Query" name:"FixTimeGap"`
-	SecurityToken string `position:"Query" name:"SecurityToken"`
-	TimeMerge     string `position:"Query" name:"TimeMerge"`
-	DomainName    string `position:"Query" name:"DomainName"`
-	EndTime       string `position:"Query" name:"EndTime"`
-	Interval      string `position:"Query" name:"Interval"`
-	StartTime     string `position:"Query" name:"StartTime"`
-	OwnerId       int64  `position:"Query" name:"OwnerId"`
+	StartTime  string `position:"Query" name:"StartTime"`
+	FixTimeGap string `position:"Query" name:"FixTimeGap"`
+	TimeMerge  string `position:"Query" name:"TimeMerge"`
+	DomainName string `position:"Query" name:"DomainName"`
+	EndTime    string `position:"Query" name:"EndTime"`
+	OwnerId    int64  `position:"Query" name:"OwnerId"`
+	Interval   string `position:"Query" name:"Interval"`
 }
 
 func (req *DescribeDomainSrcBpsDataRequest) Invoke(client *sdk.Client) (resp *DescribeDomainSrcBpsDataResponse, err error) {
@@ -31,9 +30,9 @@ type DescribeDomainSrcBpsDataResponse struct {
 	responses.BaseResponse
 	RequestId             string
 	DomainName            string
-	DataInterval          string
 	StartTime             string
 	EndTime               string
+	DataInterval          string
 	SrcBpsDataPerInterval DescribeDomainSrcBpsDataDataModuleList
 }
 

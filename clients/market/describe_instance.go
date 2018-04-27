@@ -12,7 +12,7 @@ type DescribeInstanceRequest struct {
 }
 
 func (req *DescribeInstanceRequest) Invoke(client *sdk.Client) (resp *DescribeInstanceResponse, err error) {
-	req.InitWithApiInfo("Market", "2015-11-01", "DescribeInstance", "", "")
+	req.InitWithApiInfo("Market", "2015-11-01", "DescribeInstance", "yunmarket", "")
 	resp = &DescribeInstanceResponse{}
 	err = client.DoAction(req, resp)
 	return

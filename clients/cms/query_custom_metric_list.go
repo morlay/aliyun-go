@@ -18,7 +18,7 @@ type QueryCustomMetricListRequest struct {
 }
 
 func (req *QueryCustomMetricListRequest) Invoke(client *sdk.Client) (resp *QueryCustomMetricListResponse, err error) {
-	req.InitWithApiInfo("Cms", "2017-03-01", "QueryCustomMetricList", "cms", "")
+	req.InitWithApiInfo("Cms", "2018-03-08", "QueryCustomMetricList", "cms", "")
 	resp = &QueryCustomMetricListResponse{}
 	err = client.DoAction(req, resp)
 	return
