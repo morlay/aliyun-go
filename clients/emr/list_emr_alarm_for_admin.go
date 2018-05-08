@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListEmrAlarmForAdminRequest struct {
@@ -31,25 +32,25 @@ func (req *ListEmrAlarmForAdminRequest) Invoke(client *sdk.Client) (resp *ListEm
 
 type ListEmrAlarmForAdminResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalCount       int
-	PageNumber       int
-	PageSize         int
+	RequestId        common.String
+	TotalCount       common.Integer
+	PageNumber       common.Integer
+	PageSize         common.Integer
 	AlarmHistoryList ListEmrAlarmForAdminAlarmHistoryList
 }
 
 type ListEmrAlarmForAdminAlarmHistory struct {
-	Id           int64
-	EventType    string
-	Topic        string
-	UniqueKey    string
-	EntityId     string
-	Priority     int
-	Body         string
-	Status       string
-	ClusterBizId string
-	GmtCreate    string
-	GmtModified  string
+	Id           common.Long
+	EventType    common.String
+	Topic        common.String
+	UniqueKey    common.String
+	EntityId     common.String
+	Priority     common.Integer
+	Body         common.String
+	Status       common.String
+	ClusterBizId common.String
+	GmtCreate    common.String
+	GmtModified  common.String
 }
 
 type ListEmrAlarmForAdminAlarmHistoryList []ListEmrAlarmForAdminAlarmHistory

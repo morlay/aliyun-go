@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListJobExecutionPlanParamsRequest struct {
@@ -24,20 +25,20 @@ func (req *ListJobExecutionPlanParamsRequest) Invoke(client *sdk.Client) (resp *
 
 type ListJobExecutionPlanParamsResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	Success       string
-	ErrCode       string
-	ErrMsg        string
+	RequestId     common.String
+	Success       common.String
+	ErrCode       common.String
+	ErrMsg        common.String
 	ParamInfoList ListJobExecutionPlanParamsParamInfoList
 }
 
 type ListJobExecutionPlanParamsParamInfo struct {
-	ParamBizType         string
-	RelateId             string
-	ParamName            string
-	ParamValue           string
-	UtcCreateTimestamp   int64
-	UtcModifiedTimestamp int64
+	ParamBizType         common.String
+	RelateId             common.String
+	ParamName            common.String
+	ParamValue           common.String
+	UtcCreateTimestamp   common.Long
+	UtcModifiedTimestamp common.Long
 }
 
 type ListJobExecutionPlanParamsParamInfoList []ListJobExecutionPlanParamsParamInfo

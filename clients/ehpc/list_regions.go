@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListRegionsRequest struct {
@@ -21,13 +22,13 @@ func (req *ListRegionsRequest) Invoke(client *sdk.Client) (resp *ListRegionsResp
 
 type ListRegionsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Regions   ListRegionsRegionInfoList
 }
 
 type ListRegionsRegionInfo struct {
-	RegionId  string
-	LocalName string
+	RegionId  common.String
+	LocalName common.String
 }
 
 type ListRegionsRegionInfoList []ListRegionsRegionInfo

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCommonBandwidthPackagesRequest struct {
@@ -29,32 +30,32 @@ func (req *DescribeCommonBandwidthPackagesRequest) Invoke(client *sdk.Client) (r
 
 type DescribeCommonBandwidthPackagesResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	TotalCount              int
-	PageNumber              int
-	PageSize                int
+	RequestId               common.String
+	TotalCount              common.Integer
+	PageNumber              common.Integer
+	PageSize                common.Integer
 	CommonBandwidthPackages DescribeCommonBandwidthPackagesCommonBandwidthPackageList
 }
 
 type DescribeCommonBandwidthPackagesCommonBandwidthPackage struct {
-	BandwidthPackageId string
-	RegionId           string
-	Name               string
-	Description        string
-	Bandwidth          string
-	InstanceChargeType string
-	InternetChargeType string
-	BusinessStatus     string
-	CreationTime       string
-	ExpiredTime        string
-	Status             string
-	Ratio              int
+	BandwidthPackageId common.String
+	RegionId           common.String
+	Name               common.String
+	Description        common.String
+	Bandwidth          common.String
+	InstanceChargeType common.String
+	InternetChargeType common.String
+	BusinessStatus     common.String
+	CreationTime       common.String
+	ExpiredTime        common.String
+	Status             common.String
+	Ratio              common.Integer
 	PublicIpAddresses  DescribeCommonBandwidthPackagesPublicIpAddresseList
 }
 
 type DescribeCommonBandwidthPackagesPublicIpAddresse struct {
-	AllocationId string
-	IpAddress    string
+	AllocationId common.String
+	IpAddress    common.String
 }
 
 type DescribeCommonBandwidthPackagesCommonBandwidthPackageList []DescribeCommonBandwidthPackagesCommonBandwidthPackage

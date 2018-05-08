@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindApproveServiceListRequest struct {
@@ -27,39 +28,39 @@ func (req *FindApproveServiceListRequest) Invoke(client *sdk.Client) (resp *Find
 
 type FindApproveServiceListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindApproveServiceListData
 }
 
 type FindApproveServiceListData struct {
-	Total       int
-	PageNumber  int
-	CurrentPage int
+	Total       common.Integer
+	PageNumber  common.Integer
+	CurrentPage common.Integer
 	ServiceList FindApproveServiceListServiceList
 }
 
 type FindApproveServiceListService struct {
 	AllVisiable    bool
-	CasTargets     string
-	CreateTime     int64
-	CsbId          int64
-	Id             int64
-	InterfaceName  string
-	ModifiedTime   int64
-	OwnerId        string
-	PrincipalName  string
-	ProjectId      int64
-	ProjectName    string
-	Qps            int
-	Scope          string
-	ServiceName    string
-	ServiceVersion string
+	CasTargets     common.String
+	CreateTime     common.Long
+	CsbId          common.Long
+	Id             common.Long
+	InterfaceName  common.String
+	ModifiedTime   common.Long
+	OwnerId        common.String
+	PrincipalName  common.String
+	ProjectId      common.Long
+	ProjectName    common.String
+	Qps            common.Integer
+	Scope          common.String
+	ServiceName    common.String
+	ServiceVersion common.String
 	SkipAuth       bool
-	StatisticName  string
-	Status         int
-	UserId         string
+	StatisticName  common.String
+	Status         common.Integer
+	UserId         common.String
 }
 
 type FindApproveServiceListServiceList []FindApproveServiceListService

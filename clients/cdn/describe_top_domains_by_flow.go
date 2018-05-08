@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTopDomainsByFlowRequest struct {
@@ -26,22 +27,22 @@ func (req *DescribeTopDomainsByFlowRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeTopDomainsByFlowResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	StartTime         string
-	EndTime           string
-	DomainCount       int64
-	DomainOnlineCount int64
+	RequestId         common.String
+	StartTime         common.String
+	EndTime           common.String
+	DomainCount       common.Long
+	DomainOnlineCount common.Long
 	TopDomains        DescribeTopDomainsByFlowTopDomainList
 }
 
 type DescribeTopDomainsByFlowTopDomain struct {
-	DomainName     string
-	Rank           int64
-	TotalTraffic   string
-	TrafficPercent string
-	MaxBps         int64
-	MaxBpsTime     string
-	TotalAccess    int64
+	DomainName     common.String
+	Rank           common.Long
+	TotalTraffic   common.String
+	TrafficPercent common.String
+	MaxBps         common.Long
+	MaxBpsTime     common.String
+	TotalAccess    common.Long
 }
 
 type DescribeTopDomainsByFlowTopDomainList []DescribeTopDomainsByFlowTopDomain

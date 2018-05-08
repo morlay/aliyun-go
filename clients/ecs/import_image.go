@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ImportImageRequest struct {
@@ -40,10 +41,10 @@ type ImportImageDiskDeviceMapping struct {
 
 type ImportImageResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskId    string
-	RegionId  string
-	ImageId   string
+	RequestId common.String
+	TaskId    common.String
+	RegionId  common.String
+	ImageId   common.String
 }
 
 type ImportImageDiskDeviceMappingList []ImportImageDiskDeviceMapping

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateServiceListStatusRequest struct {
@@ -21,7 +22,7 @@ func (req *UpdateServiceListStatusRequest) Invoke(client *sdk.Client) (resp *Upd
 
 type UpdateServiceListStatusResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 }

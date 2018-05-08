@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetIPSegmentsListRequest struct {
@@ -24,24 +25,24 @@ func (req *GetIPSegmentsListRequest) Invoke(client *sdk.Client) (resp *GetIPSegm
 
 type GetIPSegmentsListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	Data      GetIPSegmentsListIpsegmentInfoList
 	ErrorList GetIPSegmentsListErrorMessageList
 }
 
 type GetIPSegmentsListIpsegmentInfo struct {
-	CreateTimeL int64
-	Ipsegment   string
-	Memo        string
-	ModifyTimeL int64
-	Uuid        string
+	CreateTimeL common.Long
+	Ipsegment   common.String
+	Memo        common.String
+	ModifyTimeL common.Long
+	Uuid        common.String
 }
 
 type GetIPSegmentsListErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type GetIPSegmentsListIpsegmentInfoList []GetIPSegmentsListIpsegmentInfo

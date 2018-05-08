@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDeviceEventDataRequest struct {
@@ -30,24 +31,24 @@ func (req *QueryDeviceEventDataRequest) Invoke(client *sdk.Client) (resp *QueryD
 
 type QueryDeviceEventDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         QueryDeviceEventDataData
 }
 
 type QueryDeviceEventDataData struct {
-	NextTime  int64
+	NextTime  common.Long
 	NextValid bool
 	List      QueryDeviceEventDataEventInfoList
 }
 
 type QueryDeviceEventDataEventInfo struct {
-	Time       string
-	Identifier string
-	Name       string
-	EventType  string
-	OutputData string
+	Time       common.String
+	Identifier common.String
+	Name       common.String
+	EventType  common.String
+	OutputData common.String
 }
 
 type QueryDeviceEventDataEventInfoList []QueryDeviceEventDataEventInfo

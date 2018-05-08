@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyHichinaDomainDNSRequest struct {
@@ -24,15 +25,15 @@ func (req *ModifyHichinaDomainDNSRequest) Invoke(client *sdk.Client) (resp *Modi
 
 type ModifyHichinaDomainDNSResponse struct {
 	responses.BaseResponse
-	RequestId          string
+	RequestId          common.String
 	OriginalDnsServers ModifyHichinaDomainDNSOriginalDnsServerList
 	NewDnsServers      ModifyHichinaDomainDNSNewDnsServerList
 }
 
-type ModifyHichinaDomainDNSOriginalDnsServerList []string
+type ModifyHichinaDomainDNSOriginalDnsServerList []common.String
 
 func (list *ModifyHichinaDomainDNSOriginalDnsServerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -44,10 +45,10 @@ func (list *ModifyHichinaDomainDNSOriginalDnsServerList) UnmarshalJSON(data []by
 	return nil
 }
 
-type ModifyHichinaDomainDNSNewDnsServerList []string
+type ModifyHichinaDomainDNSNewDnsServerList []common.String
 
 func (list *ModifyHichinaDomainDNSNewDnsServerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

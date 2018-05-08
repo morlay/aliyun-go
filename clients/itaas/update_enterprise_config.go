@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateEnterpriseConfigRequest struct {
@@ -27,15 +28,15 @@ func (req *UpdateEnterpriseConfigRequest) Invoke(client *sdk.Client) (resp *Upda
 
 type UpdateEnterpriseConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	ErrorList UpdateEnterpriseConfigErrorMessageList
 }
 
 type UpdateEnterpriseConfigErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type UpdateEnterpriseConfigErrorMessageList []UpdateEnterpriseConfigErrorMessage

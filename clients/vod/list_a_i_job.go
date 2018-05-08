@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAIJobRequest struct {
@@ -26,21 +27,21 @@ func (req *ListAIJobRequest) Invoke(client *sdk.Client) (resp *ListAIJobResponse
 
 type ListAIJobResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	AIJobList        ListAIJobAIJobList
 	NonExistAIJobIds ListAIJobNonExistAIJobIdList
 }
 
 type ListAIJobAIJob struct {
-	JobId        string
-	MediaId      string
-	Type         string
-	Status       string
-	Code         string
-	Message      string
-	CreationTime string
-	CompleteTime string
-	Data         string
+	JobId        common.String
+	MediaId      common.String
+	Type         common.String
+	Status       common.String
+	Code         common.String
+	Message      common.String
+	CreationTime common.String
+	CompleteTime common.String
+	Data         common.String
 }
 
 type ListAIJobAIJobList []ListAIJobAIJob
@@ -58,10 +59,10 @@ func (list *ListAIJobAIJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListAIJobNonExistAIJobIdList []string
+type ListAIJobNonExistAIJobIdList []common.String
 
 func (list *ListAIJobNonExistAIJobIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

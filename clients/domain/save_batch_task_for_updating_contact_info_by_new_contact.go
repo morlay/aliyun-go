@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveBatchTaskForUpdatingContactInfoByNewContactRequest struct {
@@ -43,8 +44,8 @@ func (req *SaveBatchTaskForUpdatingContactInfoByNewContactRequest) Invoke(client
 
 type SaveBatchTaskForUpdatingContactInfoByNewContactResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }
 
 type SaveBatchTaskForUpdatingContactInfoByNewContactDomainNameList []string

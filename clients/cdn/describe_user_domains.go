@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeUserDomainsRequest struct {
@@ -34,25 +35,25 @@ func (req *DescribeUserDomainsRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeUserDomainsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int64
-	PageSize   int64
-	TotalCount int64
+	RequestId  common.String
+	PageNumber common.Long
+	PageSize   common.Long
+	TotalCount common.Long
 	Domains    DescribeUserDomainsPageDataList
 }
 
 type DescribeUserDomainsPageData struct {
-	DomainName      string
-	Cname           string
-	CdnType         string
-	DomainStatus    string
-	GmtCreated      string
-	GmtModified     string
-	Description     string
-	SourceType      string
-	SslProtocol     string
-	ResourceGroupId string
-	Sandbox         string
+	DomainName      common.String
+	Cname           common.String
+	CdnType         common.String
+	DomainStatus    common.String
+	GmtCreated      common.String
+	GmtModified     common.String
+	Description     common.String
+	SourceType      common.String
+	SslProtocol     common.String
+	ResourceGroupId common.String
+	Sandbox         common.String
 	Sources         DescribeUserDomainsSourceList
 }
 
@@ -71,10 +72,10 @@ func (list *DescribeUserDomainsPageDataList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeUserDomainsSourceList []string
+type DescribeUserDomainsSourceList []common.String
 
 func (list *DescribeUserDomainsSourceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

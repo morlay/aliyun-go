@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateDeploymentSetRequest struct {
@@ -30,6 +31,6 @@ func (req *CreateDeploymentSetRequest) Invoke(client *sdk.Client) (resp *CreateD
 
 type CreateDeploymentSetResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	DeploymentSetId string
+	RequestId       common.String
+	DeploymentSetId common.String
 }

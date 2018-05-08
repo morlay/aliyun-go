@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOptimizeAdviceOnExcessIndexRequest struct {
@@ -28,17 +29,17 @@ func (req *DescribeOptimizeAdviceOnExcessIndexRequest) Invoke(client *sdk.Client
 
 type DescribeOptimizeAdviceOnExcessIndexResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalRecordsCount int
-	PageNumber        int
-	PageRecordCount   int
+	RequestId         common.String
+	TotalRecordsCount common.Integer
+	PageNumber        common.Integer
+	PageRecordCount   common.Integer
 	Items             DescribeOptimizeAdviceOnExcessIndexAdviceOnExcessIndexList
 }
 
 type DescribeOptimizeAdviceOnExcessIndexAdviceOnExcessIndex struct {
-	DBName     string
-	TableName  string
-	IndexCount int64
+	DBName     common.String
+	TableName  common.String
+	IndexCount common.Long
 }
 
 type DescribeOptimizeAdviceOnExcessIndexAdviceOnExcessIndexList []DescribeOptimizeAdviceOnExcessIndexAdviceOnExcessIndex

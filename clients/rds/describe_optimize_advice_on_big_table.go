@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOptimizeAdviceOnBigTableRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeOptimizeAdviceOnBigTableRequest) Invoke(client *sdk.Client) (
 
 type DescribeOptimizeAdviceOnBigTableResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalRecordsCount int
-	PageNumber        int
-	PageRecordCount   int
+	RequestId         common.String
+	TotalRecordsCount common.Integer
+	PageNumber        common.Integer
+	PageRecordCount   common.Integer
 	Items             DescribeOptimizeAdviceOnBigTableAdviceOnBigTableList
 }
 
 type DescribeOptimizeAdviceOnBigTableAdviceOnBigTable struct {
-	DBName    string
-	TableName string
-	TableSize int64
-	DataSize  int64
-	IndexSize int64
+	DBName    common.String
+	TableName common.String
+	TableSize common.Long
+	DataSize  common.Long
+	IndexSize common.Long
 }
 
 type DescribeOptimizeAdviceOnBigTableAdviceOnBigTableList []DescribeOptimizeAdviceOnBigTableAdviceOnBigTable

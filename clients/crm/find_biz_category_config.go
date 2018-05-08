@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindBizCategoryConfigRequest struct {
@@ -23,26 +24,26 @@ func (req *FindBizCategoryConfigRequest) Invoke(client *sdk.Client) (resp *FindB
 type FindBizCategoryConfigResponse struct {
 	responses.BaseResponse
 	Success       bool
-	ResultCode    string
-	ResultMessage string
+	ResultCode    common.String
+	ResultMessage common.String
 	Data          FindBizCategoryConfigBizCategoryList
 }
 
 type FindBizCategoryConfigBizCategory struct {
-	Name       string
-	Code       string
+	Name       common.String
+	Code       common.String
 	IsCheck    bool
 	MainBiz    bool
-	Other      string
+	Other      common.String
 	SubConfigs FindBizCategoryConfigBizSubCategoryList
 }
 
 type FindBizCategoryConfigBizSubCategory struct {
-	Name    string
-	Code    string
+	Name    common.String
+	Code    common.String
 	IsCheck bool
 	MainBiz bool
-	Other   string
+	Other   common.String
 }
 
 type FindBizCategoryConfigBizCategoryList []FindBizCategoryConfigBizCategory

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetLoginProfileRequest struct {
@@ -20,13 +21,13 @@ func (req *GetLoginProfileRequest) Invoke(client *sdk.Client) (resp *GetLoginPro
 
 type GetLoginProfileResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	LoginProfile GetLoginProfileLoginProfile
 }
 
 type GetLoginProfileLoginProfile struct {
-	UserName              string
+	UserName              common.String
 	PasswordResetRequired bool
 	MFABindRequired       bool
-	CreateDate            string
+	CreateDate            common.String
 }

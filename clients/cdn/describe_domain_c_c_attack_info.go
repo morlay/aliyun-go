@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainCCAttackInfoRequest struct {
@@ -26,24 +27,24 @@ func (req *DescribeDomainCCAttackInfoRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeDomainCCAttackInfoResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	DomainName          string
-	StartTime           string
-	EndTime             string
+	RequestId           common.String
+	DomainName          common.String
+	StartTime           common.String
+	EndTime             common.String
 	AttackIpDataList    DescribeDomainCCAttackInfoAttackIpDatasList
 	AttackedUrlDataList DescribeDomainCCAttackInfoAttackedUrlDatasList
 }
 
 type DescribeDomainCCAttackInfoAttackIpDatas struct {
-	Ip          string
-	AttackCount string
-	Result      string
+	Ip          common.String
+	AttackCount common.String
+	Result      common.String
 }
 
 type DescribeDomainCCAttackInfoAttackedUrlDatas struct {
-	Url         string
-	AttackCount string
-	Result      string
+	Url         common.String
+	AttackCount common.String
+	Result      common.String
 }
 
 type DescribeDomainCCAttackInfoAttackIpDatasList []DescribeDomainCCAttackInfoAttackIpDatas

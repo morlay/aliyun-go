@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamTranscodeStreamNumRequest struct {
@@ -23,8 +24,8 @@ func (req *DescribeLiveStreamTranscodeStreamNumRequest) Invoke(client *sdk.Clien
 
 type DescribeLiveStreamTranscodeStreamNumResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	Total             int64
-	TranscodedNumber  int64
-	UntranscodeNumber int64
+	RequestId         common.String
+	Total             common.Long
+	TranscodedNumber  common.Long
+	UntranscodeNumber common.Long
 }

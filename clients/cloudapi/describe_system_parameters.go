@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSystemParametersRequest struct {
@@ -21,15 +22,15 @@ func (req *DescribeSystemParametersRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeSystemParametersResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	SystemParams DescribeSystemParametersSystemParamItemList
 }
 
 type DescribeSystemParametersSystemParamItem struct {
-	ParamName   string
-	ParamType   string
-	DemoValue   string
-	Description string
+	ParamName   common.String
+	ParamType   common.String
+	DemoValue   common.String
+	Description common.String
 }
 
 type DescribeSystemParametersSystemParamItemList []DescribeSystemParametersSystemParamItem

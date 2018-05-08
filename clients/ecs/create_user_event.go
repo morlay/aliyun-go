@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateUserEventRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateUserEventRequest) Invoke(client *sdk.Client) (resp *CreateUserE
 
 type CreateUserEventResponse struct {
 	responses.BaseResponse
-	RequestId string
-	EventId   string
+	RequestId common.String
+	EventId   common.String
 }

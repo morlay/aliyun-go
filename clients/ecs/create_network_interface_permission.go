@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateNetworkInterfacePermissionRequest struct {
@@ -26,15 +27,15 @@ func (req *CreateNetworkInterfacePermissionRequest) Invoke(client *sdk.Client) (
 
 type CreateNetworkInterfacePermissionResponse struct {
 	responses.BaseResponse
-	RequestId                  string
+	RequestId                  common.String
 	NetworkInterfacePermission CreateNetworkInterfacePermissionNetworkInterfacePermission
 }
 
 type CreateNetworkInterfacePermissionNetworkInterfacePermission struct {
-	AccountId                    int64
-	ServiceName                  string
-	NetworkInterfaceId           string
-	NetworkInterfacePermissionId string
-	Permission                   string
-	PermissionState              string
+	AccountId                    common.Long
+	ServiceName                  common.String
+	NetworkInterfaceId           common.String
+	NetworkInterfacePermissionId common.String
+	Permission                   common.String
+	PermissionState              common.String
 }

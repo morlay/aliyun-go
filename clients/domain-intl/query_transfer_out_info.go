@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTransferOutInfoRequest struct {
@@ -22,12 +23,12 @@ func (req *QueryTransferOutInfoRequest) Invoke(client *sdk.Client) (resp *QueryT
 
 type QueryTransferOutInfoResponse struct {
 	responses.BaseResponse
-	RequestId                         string
-	Status                            int
-	Email                             string
-	TransferAuthorizationCodeSendDate string
-	ExpirationDate                    string
-	PendingRequestDate                string
-	ResultCode                        string
-	ResultMsg                         string
+	RequestId                         common.String
+	Status                            common.Integer
+	Email                             common.String
+	TransferAuthorizationCodeSendDate common.String
+	ExpirationDate                    common.String
+	PendingRequestDate                common.String
+	ResultCode                        common.String
+	ResultMsg                         common.String
 }

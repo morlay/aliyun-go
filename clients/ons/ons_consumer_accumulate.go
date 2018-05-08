@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsConsumerAccumulateRequest struct {
@@ -26,25 +27,25 @@ func (req *OnsConsumerAccumulateRequest) Invoke(client *sdk.Client) (resp *OnsCo
 
 type OnsConsumerAccumulateResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsConsumerAccumulateData
 }
 
 type OnsConsumerAccumulateData struct {
 	Online            bool
-	TotalDiff         int64
-	ConsumeTps        float32
-	LastTimestamp     int64
-	DelayTime         int64
+	TotalDiff         common.Long
+	ConsumeTps        common.Float
+	LastTimestamp     common.Long
+	DelayTime         common.Long
 	DetailInTopicList OnsConsumerAccumulateDetailInTopicDoList
 }
 
 type OnsConsumerAccumulateDetailInTopicDo struct {
-	Topic         string
-	TotalDiff     int64
-	LastTimestamp int64
-	DelayTime     int64
+	Topic         common.String
+	TotalDiff     common.Long
+	LastTimestamp common.Long
+	DelayTime     common.Long
 }
 
 type OnsConsumerAccumulateDetailInTopicDoList []OnsConsumerAccumulateDetailInTopicDo

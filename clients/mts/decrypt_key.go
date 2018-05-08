@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DecryptKeyRequest struct {
@@ -25,7 +26,7 @@ func (req *DecryptKeyRequest) Invoke(client *sdk.Client) (resp *DecryptKeyRespon
 
 type DecryptKeyResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Plaintext string
-	Rand      string
+	RequestId common.String
+	Plaintext common.String
+	Rand      common.String
 }

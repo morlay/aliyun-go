@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetAccessControlListAttributeRequest struct {
@@ -27,6 +28,6 @@ func (req *SetAccessControlListAttributeRequest) Invoke(client *sdk.Client) (res
 
 type SetAccessControlListAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	AclId     string
+	RequestId common.String
+	AclId     common.String
 }

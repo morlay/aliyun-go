@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetAccountInfoRequest struct {
@@ -19,19 +20,19 @@ func (req *GetAccountInfoRequest) Invoke(client *sdk.Client) (resp *GetAccountIn
 
 type GetAccountInfoResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	AccountInfo GetAccountInfoAccountInfo
 }
 
 type GetAccountInfoAccountInfo struct {
-	AccountId              string
-	MonthFreeCount         int
-	MonthHttpsResolveCount int
-	MonthResolveCount      int
-	PackageCount           int
-	UserStatus             int
-	SignSecret             string
+	AccountId              common.String
+	MonthFreeCount         common.Integer
+	MonthHttpsResolveCount common.Integer
+	MonthResolveCount      common.Integer
+	PackageCount           common.Integer
+	UserStatus             common.Integer
+	SignSecret             common.String
 	UnsignedEnabled        bool
-	SignedCount            int64
-	UnsignedCount          int64
+	SignedCount            common.Long
+	UnsignedCount          common.Long
 }

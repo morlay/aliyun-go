@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EipFillParamsRequest struct {
@@ -26,9 +27,9 @@ func (req *EipFillParamsRequest) Invoke(client *sdk.Client) (resp *EipFillParams
 
 type EipFillParamsResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Data      string
-	Code      string
+	RequestId common.String
+	Data      common.String
+	Code      common.String
 	Success   bool
-	Message   string
+	Message   common.String
 }

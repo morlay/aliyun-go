@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeEipAddressesRequest struct {
@@ -38,31 +39,31 @@ func (req *DescribeEipAddressesRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeEipAddressesResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int
-	PageNumber   int
-	PageSize     int
+	RequestId    common.String
+	TotalCount   common.Integer
+	PageNumber   common.Integer
+	PageSize     common.Integer
 	EipAddresses DescribeEipAddressesEipAddressList
 }
 
 type DescribeEipAddressesEipAddress struct {
-	RegionId           string
-	IpAddress          string
-	AllocationId       string
-	Status             string
-	InstanceId         string
-	Bandwidth          string
-	EipBandwidth       string
-	InternetChargeType string
-	AllocationTime     string
-	InstanceType       string
-	ChargeType         string
-	ExpiredTime        string
+	RegionId           common.String
+	IpAddress          common.String
+	AllocationId       common.String
+	Status             common.String
+	InstanceId         common.String
+	Bandwidth          common.String
+	EipBandwidth       common.String
+	InternetChargeType common.String
+	AllocationTime     common.String
+	InstanceType       common.String
+	ChargeType         common.String
+	ExpiredTime        common.String
 	OperationLocks     DescribeEipAddressesLockReasonList
 }
 
 type DescribeEipAddressesLockReason struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeEipAddressesEipAddressList []DescribeEipAddressesEipAddress

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MetastoreListDatabasesRequest struct {
@@ -22,15 +23,15 @@ func (req *MetastoreListDatabasesRequest) Invoke(client *sdk.Client) (resp *Meta
 
 type MetastoreListDatabasesResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Description string
+	RequestId   common.String
+	Description common.String
 	DbNames     MetastoreListDatabasesDbNameList
 }
 
-type MetastoreListDatabasesDbNameList []string
+type MetastoreListDatabasesDbNameList []common.String
 
 func (list *MetastoreListDatabasesDbNameList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterNodeForAdminRequest struct {
@@ -27,35 +28,35 @@ func (req *ListClusterNodeForAdminRequest) Invoke(client *sdk.Client) (resp *Lis
 
 type ListClusterNodeForAdminResponse struct {
 	responses.BaseResponse
-	RequestId       string
+	RequestId       common.String
 	ClusterNodeList ListClusterNodeForAdminClusterNodeList
 }
 
 type ListClusterNodeForAdminClusterNode struct {
-	ClusterId       string
-	CpuCore         string
-	Daemons         string
-	DiskDevices     string
-	DiskInfo        string
-	DiskType        string
-	GmtCreate       string
-	GmtModified     string
-	HostName        string
-	Id              string
-	ImageId         string
-	InnerIpAddress  string
-	InstanceId      string
-	InstanceType    string
-	IsMaster        string
-	MemCapacity     string
-	Payment         string
-	PublicIpAddress string
-	RegionId        string
-	SecurityGroupId string
-	SerialNumber    string
-	Status          string
-	UserId          string
-	ZoneId          string
+	ClusterId       common.String
+	CpuCore         common.String
+	Daemons         common.String
+	DiskDevices     common.String
+	DiskInfo        common.String
+	DiskType        common.String
+	GmtCreate       common.String
+	GmtModified     common.String
+	HostName        common.String
+	Id              common.String
+	ImageId         common.String
+	InnerIpAddress  common.String
+	InstanceId      common.String
+	InstanceType    common.String
+	IsMaster        common.String
+	MemCapacity     common.String
+	Payment         common.String
+	PublicIpAddress common.String
+	RegionId        common.String
+	SecurityGroupId common.String
+	SerialNumber    common.String
+	Status          common.String
+	UserId          common.String
+	ZoneId          common.String
 }
 
 type ListClusterNodeForAdminStatusListList []string

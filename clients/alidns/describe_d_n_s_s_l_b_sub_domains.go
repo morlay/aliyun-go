@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDNSSLBSubDomainsRequest struct {
@@ -26,16 +27,16 @@ func (req *DescribeDNSSLBSubDomainsRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeDNSSLBSubDomainsResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	TotalCount    int64
-	PageNumber    int64
-	PageSize      int64
+	RequestId     common.String
+	TotalCount    common.Long
+	PageNumber    common.Long
+	PageSize      common.Long
 	SlbSubDomains DescribeDNSSLBSubDomainsSlbSubDomainList
 }
 
 type DescribeDNSSLBSubDomainsSlbSubDomain struct {
-	SubDomain   string
-	RecordCount int64
+	SubDomain   common.String
+	RecordCount common.Long
 	Open        bool
 }
 

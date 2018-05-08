@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCharacterSetNameRequest struct {
@@ -26,15 +27,15 @@ func (req *DescribeCharacterSetNameRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeCharacterSetNameResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	Engine                string
+	RequestId             common.String
+	Engine                common.String
 	CharacterSetNameItems DescribeCharacterSetNameCharacterSetNameItemList
 }
 
-type DescribeCharacterSetNameCharacterSetNameItemList []string
+type DescribeCharacterSetNameCharacterSetNameItemList []common.String
 
 func (list *DescribeCharacterSetNameCharacterSetNameItemList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

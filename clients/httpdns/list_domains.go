@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListDomainsRequest struct {
@@ -23,17 +24,17 @@ func (req *ListDomainsRequest) Invoke(client *sdk.Client) (resp *ListDomainsResp
 
 type ListDomainsResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int64
-	PageNumber  int64
-	PageSize    int64
+	RequestId   common.String
+	TotalCount  common.Long
+	PageNumber  common.Long
+	PageSize    common.Long
 	DomainInfos ListDomainsDomainInfoList
 }
 
 type ListDomainsDomainInfo struct {
-	DomainName    string
-	Resolved      int64
-	ResolvedHttps int64
+	DomainName    common.String
+	Resolved      common.Long
+	ResolvedHttps common.Long
 }
 
 type ListDomainsDomainInfoList []ListDomainsDomainInfo

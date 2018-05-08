@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryProductListRequest struct {
@@ -24,28 +25,28 @@ func (req *QueryProductListRequest) Invoke(client *sdk.Client) (resp *QueryProdu
 
 type QueryProductListResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         QueryProductListData
 }
 
 type QueryProductListData struct {
-	CurrentPage int
-	PageCount   int
-	PageSize    int
-	Total       int
+	CurrentPage common.Integer
+	PageCount   common.Integer
+	PageSize    common.Integer
+	Total       common.Integer
 	List        QueryProductListProductInfoList
 }
 
 type QueryProductListProductInfo struct {
-	GmtCreate   string
-	DataFormat  int
-	Description string
-	DeviceCount int
-	NodeType    int
-	ProductKey  string
-	ProductName string
+	GmtCreate   common.String
+	DataFormat  common.Integer
+	Description common.String
+	DeviceCount common.Integer
+	NodeType    common.Integer
+	ProductKey  common.String
+	ProductName common.String
 }
 
 type QueryProductListProductInfoList []QueryProductListProductInfo

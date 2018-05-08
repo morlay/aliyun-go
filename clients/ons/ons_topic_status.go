@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsTopicStatusRequest struct {
@@ -23,12 +24,12 @@ func (req *OnsTopicStatusRequest) Invoke(client *sdk.Client) (resp *OnsTopicStat
 
 type OnsTopicStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsTopicStatusData
 }
 
 type OnsTopicStatusData struct {
-	TotalCount    int64
-	LastTimeStamp int64
+	TotalCount    common.Long
+	LastTimeStamp common.Long
 }

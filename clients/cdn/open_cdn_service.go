@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OpenCdnServiceRequest struct {
@@ -22,5 +23,5 @@ func (req *OpenCdnServiceRequest) Invoke(client *sdk.Client) (resp *OpenCdnServi
 
 type OpenCdnServiceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

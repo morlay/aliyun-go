@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSQLCollectorPolicyRequest struct {
@@ -25,7 +26,7 @@ func (req *DescribeSQLCollectorPolicyRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeSQLCollectorPolicyResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	SQLCollectorStatus string
-	StoragePeriod      int
+	RequestId          common.String
+	SQLCollectorStatus common.String
+	StoragePeriod      common.Integer
 }

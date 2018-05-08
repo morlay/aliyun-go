@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeUserDataRequest struct {
@@ -23,8 +24,8 @@ func (req *DescribeUserDataRequest) Invoke(client *sdk.Client) (resp *DescribeUs
 
 type DescribeUserDataResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	RegionId   string
-	InstanceId string
-	UserData   string
+	RequestId  common.String
+	RegionId   common.String
+	InstanceId common.String
+	UserData   common.String
 }

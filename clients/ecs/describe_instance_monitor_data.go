@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceMonitorDataRequest struct {
@@ -29,28 +30,28 @@ func (req *DescribeInstanceMonitorDataRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeInstanceMonitorDataResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	MonitorData DescribeInstanceMonitorDataInstanceMonitorDataList
 }
 
 type DescribeInstanceMonitorDataInstanceMonitorData struct {
-	InstanceId                   string
-	CPU                          int
-	IntranetRX                   int
-	IntranetTX                   int
-	IntranetBandwidth            int
-	InternetRX                   int
-	InternetTX                   int
-	InternetBandwidth            int
-	IOPSRead                     int
-	IOPSWrite                    int
-	BPSRead                      int
-	BPSWrite                     int
-	CPUCreditUsage               float32
-	CPUCreditBalance             float32
-	CPUAdvanceCreditBalance      float32
-	CPUNotpaidSurplusCreditUsage float32
-	TimeStamp                    string
+	InstanceId                   common.String
+	CPU                          common.Integer
+	IntranetRX                   common.Integer
+	IntranetTX                   common.Integer
+	IntranetBandwidth            common.Integer
+	InternetRX                   common.Integer
+	InternetTX                   common.Integer
+	InternetBandwidth            common.Integer
+	IOPSRead                     common.Integer
+	IOPSWrite                    common.Integer
+	BPSRead                      common.Integer
+	BPSWrite                     common.Integer
+	CPUCreditUsage               common.Float
+	CPUCreditBalance             common.Float
+	CPUAdvanceCreditBalance      common.Float
+	CPUNotpaidSurplusCreditUsage common.Float
+	TimeStamp                    common.String
 }
 
 type DescribeInstanceMonitorDataInstanceMonitorDataList []DescribeInstanceMonitorDataInstanceMonitorData

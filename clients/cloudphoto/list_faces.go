@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFacesRequest struct {
@@ -28,41 +29,41 @@ func (req *ListFacesRequest) Invoke(client *sdk.Client) (resp *ListFacesResponse
 
 type ListFacesResponse struct {
 	responses.BaseResponse
-	Code       string
-	Message    string
-	NextCursor string
-	TotalCount int
-	RequestId  string
-	Action     string
+	Code       common.String
+	Message    common.String
+	NextCursor common.String
+	TotalCount common.Integer
+	RequestId  common.String
+	Action     common.String
 	Faces      ListFacesFaceList
 }
 
 type ListFacesFace struct {
-	Id          int64
-	IdStr       string
-	Name        string
-	PhotosCount int
-	State       string
+	Id          common.Long
+	IdStr       common.String
+	Name        common.String
+	PhotosCount common.Integer
+	State       common.String
 	IsMe        bool
-	Ctime       int64
-	Mtime       int64
+	Ctime       common.Long
+	Mtime       common.Long
 	Axis        ListFacesAxiList
 	Cover       ListFacesCover
 }
 
 type ListFacesCover struct {
-	Id      int64
-	IdStr   string
-	Title   string
-	FileId  string
-	State   string
-	Md5     string
+	Id      common.Long
+	IdStr   common.String
+	Title   common.String
+	FileId  common.String
+	State   common.String
+	Md5     common.String
 	IsVideo bool
-	Width   int64
-	Height  int64
-	Ctime   int64
-	Mtime   int64
-	Remark  string
+	Width   common.Long
+	Height  common.Long
+	Ctime   common.Long
+	Mtime   common.Long
+	Remark  common.String
 }
 
 type ListFacesFaceList []ListFacesFace
@@ -80,10 +81,10 @@ func (list *ListFacesFaceList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListFacesAxiList []string
+type ListFacesAxiList []common.String
 
 func (list *ListFacesAxiList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

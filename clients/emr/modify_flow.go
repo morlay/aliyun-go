@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyFlowRequest struct {
@@ -33,6 +34,6 @@ func (req *ModifyFlowRequest) Invoke(client *sdk.Client) (resp *ModifyFlowRespon
 
 type ModifyFlowResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      bool
 }

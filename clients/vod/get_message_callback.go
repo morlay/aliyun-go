@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetMessageCallbackRequest struct {
@@ -23,12 +24,12 @@ func (req *GetMessageCallbackRequest) Invoke(client *sdk.Client) (resp *GetMessa
 
 type GetMessageCallbackResponse struct {
 	responses.BaseResponse
-	RequestId       string
+	RequestId       common.String
 	MessageCallback GetMessageCallbackMessageCallback
 }
 
 type GetMessageCallbackMessageCallback struct {
-	CallbackSwitch string
-	CallbackURL    string
-	EventTypeList  string
+	CallbackSwitch common.String
+	CallbackURL    common.String
+	EventTypeList  common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPreferredEcsTypesRequest struct {
@@ -22,13 +23,13 @@ func (req *ListPreferredEcsTypesRequest) Invoke(client *sdk.Client) (resp *ListP
 
 type ListPreferredEcsTypesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Series    ListPreferredEcsTypesSeriesInfoList
 }
 
 type ListPreferredEcsTypesSeriesInfo struct {
-	SeriesId   string
-	SeriesName string
+	SeriesId   common.String
+	SeriesName common.String
 	Roles      ListPreferredEcsTypesRoles
 }
 
@@ -53,10 +54,10 @@ func (list *ListPreferredEcsTypesSeriesInfoList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type ListPreferredEcsTypesManagerList []string
+type ListPreferredEcsTypesManagerList []common.String
 
 func (list *ListPreferredEcsTypesManagerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -68,10 +69,10 @@ func (list *ListPreferredEcsTypesManagerList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListPreferredEcsTypesComputeList []string
+type ListPreferredEcsTypesComputeList []common.String
 
 func (list *ListPreferredEcsTypesComputeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -83,10 +84,10 @@ func (list *ListPreferredEcsTypesComputeList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListPreferredEcsTypesLoginList []string
+type ListPreferredEcsTypesLoginList []common.String
 
 func (list *ListPreferredEcsTypesLoginList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

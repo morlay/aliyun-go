@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCasterProgramRequest struct {
@@ -30,23 +31,23 @@ func (req *DescribeCasterProgramRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeCasterProgramResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	CasterId      string
-	ProgramName   string
-	ProgramEffect int
-	Total         int
+	RequestId     common.String
+	CasterId      common.String
+	ProgramName   common.String
+	ProgramEffect common.Integer
+	Total         common.Integer
 	Episodes      DescribeCasterProgramEpisodeList
 }
 
 type DescribeCasterProgramEpisode struct {
-	EpisodeId    string
-	EpisodeType  string
-	EpisodeName  string
-	ResourceId   string
-	StartTime    string
-	EndTime      string
-	SwitchType   string
-	Status       int
+	EpisodeId    common.String
+	EpisodeType  common.String
+	EpisodeName  common.String
+	ResourceId   common.String
+	StartTime    common.String
+	EndTime      common.String
+	SwitchType   common.String
+	Status       common.Integer
 	ComponentIds DescribeCasterProgramComponentIdList
 }
 
@@ -65,10 +66,10 @@ func (list *DescribeCasterProgramEpisodeList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeCasterProgramComponentIdList []string
+type DescribeCasterProgramComponentIdList []common.String
 
 func (list *DescribeCasterProgramComponentIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

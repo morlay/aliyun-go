@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateAutoSnapshotPolicyRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *Cr
 
 type CreateAutoSnapshotPolicyResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	AutoSnapshotPolicyId string
+	RequestId            common.String
+	AutoSnapshotPolicyId common.String
 }

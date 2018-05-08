@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SearchEditingProjectRequest struct {
@@ -32,19 +33,19 @@ func (req *SearchEditingProjectRequest) Invoke(client *sdk.Client) (resp *Search
 
 type SearchEditingProjectResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Total       int
+	RequestId   common.String
+	Total       common.Integer
 	ProjectList SearchEditingProjectProjectList
 }
 
 type SearchEditingProjectProject struct {
-	ProjectId    string
-	CreationTime string
-	ModifiedTime string
-	Status       string
-	Description  string
-	Title        string
-	CoverURL     string
+	ProjectId    common.String
+	CreationTime common.String
+	ModifiedTime common.String
+	Status       common.String
+	Description  common.String
+	Title        common.String
+	CoverURL     common.String
 }
 
 type SearchEditingProjectProjectList []SearchEditingProjectProject

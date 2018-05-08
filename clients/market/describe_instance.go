@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceRequest struct {
@@ -20,18 +21,18 @@ func (req *DescribeInstanceRequest) Invoke(client *sdk.Client) (resp *DescribeIn
 
 type DescribeInstanceResponse struct {
 	responses.BaseResponse
-	InstanceId     int64
-	OrderId        int64
-	SupplierName   string
-	ProductCode    string
-	ProductSkuCode string
-	ProductName    string
-	ProductType    string
-	Status         string
-	BeganOn        int64
-	EndOn          int64
-	CreatedOn      int64
-	ExtendJson     string
-	HostJson       string
-	AppJson        string
+	InstanceId     common.Long
+	OrderId        common.Long
+	SupplierName   common.String
+	ProductCode    common.String
+	ProductSkuCode common.String
+	ProductName    common.String
+	ProductType    common.String
+	Status         common.String
+	BeganOn        common.Long
+	EndOn          common.Long
+	CreatedOn      common.Long
+	ExtendJson     common.String
+	HostJson       common.String
+	AppJson        common.String
 }

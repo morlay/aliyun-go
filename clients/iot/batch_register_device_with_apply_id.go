@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type BatchRegisterDeviceWithApplyIdRequest struct {
@@ -21,12 +22,12 @@ func (req *BatchRegisterDeviceWithApplyIdRequest) Invoke(client *sdk.Client) (re
 
 type BatchRegisterDeviceWithApplyIdResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         BatchRegisterDeviceWithApplyIdData
 }
 
 type BatchRegisterDeviceWithApplyIdData struct {
-	ApplyId int64
+	ApplyId common.Long
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckUserBalanceRequest struct {
@@ -19,7 +20,7 @@ func (req *CheckUserBalanceRequest) Invoke(client *sdk.Client) (resp *CheckUserB
 
 type CheckUserBalanceResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Balance   string
-	Enough    string
+	RequestId common.String
+	Balance   common.String
+	Enough    common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetVideoConfigRequest struct {
@@ -24,6 +25,6 @@ func (req *GetVideoConfigRequest) Invoke(client *sdk.Client) (resp *GetVideoConf
 
 type GetVideoConfigResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DownloadSwitch string
+	RequestId      common.String
+	DownloadSwitch common.String
 }

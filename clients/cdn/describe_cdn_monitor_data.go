@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnMonitorDataRequest struct {
@@ -27,21 +28,21 @@ func (req *DescribeCdnMonitorDataRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeCdnMonitorDataResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	DomainName      string
-	MonitorInterval int64
-	StartTime       string
-	EndTime         string
+	RequestId       common.String
+	DomainName      common.String
+	MonitorInterval common.Long
+	StartTime       common.String
+	EndTime         common.String
 	MonitorDatas    DescribeCdnMonitorDataCDNMonitorDataList
 }
 
 type DescribeCdnMonitorDataCDNMonitorData struct {
-	TimeStamp         string
-	QueryPerSecond    string
-	BytesPerSecond    string
-	BytesHitRate      string
-	RequestHitRate    string
-	AverageObjectSize string
+	TimeStamp         common.String
+	QueryPerSecond    common.String
+	BytesPerSecond    common.String
+	BytesHitRate      common.String
+	RequestHitRate    common.String
+	AverageObjectSize common.String
 }
 
 type DescribeCdnMonitorDataCDNMonitorDataList []DescribeCdnMonitorDataCDNMonitorData

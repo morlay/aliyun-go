@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateNoteRequest struct {
@@ -23,7 +24,7 @@ func (req *CreateNoteRequest) Invoke(client *sdk.Client) (resp *CreateNoteRespon
 
 type CreateNoteResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Id        string
-	Paragraph string
+	RequestId common.String
+	Id        common.String
+	Paragraph common.String
 }

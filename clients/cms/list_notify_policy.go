@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListNotifyPolicyRequest struct {
@@ -26,21 +27,21 @@ func (req *ListNotifyPolicyRequest) Invoke(client *sdk.Client) (resp *ListNotify
 
 type ListNotifyPolicyResponse struct {
 	responses.BaseResponse
-	Code             string
-	Message          string
-	Success          string
-	TraceId          string
-	Total            int
+	Code             common.String
+	Message          common.String
+	Success          common.String
+	TraceId          common.String
+	Total            common.Integer
 	NotifyPolicyList ListNotifyPolicyNotifyPolicyList
 }
 
 type ListNotifyPolicyNotifyPolicy struct {
-	AlertName  string
-	Dimensions string
-	Type       string
-	Id         string
-	StartTime  int64
-	EndTime    int64
+	AlertName  common.String
+	Dimensions common.String
+	Type       common.String
+	Id         common.String
+	StartTime  common.Long
+	EndTime    common.Long
 }
 
 type ListNotifyPolicyNotifyPolicyList []ListNotifyPolicyNotifyPolicy

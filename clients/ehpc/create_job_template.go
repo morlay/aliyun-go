@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateJobTemplateRequest struct {
@@ -29,6 +30,6 @@ func (req *CreateJobTemplateRequest) Invoke(client *sdk.Client) (resp *CreateJob
 
 type CreateJobTemplateResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TemplateId string
+	RequestId  common.String
+	TemplateId common.String
 }

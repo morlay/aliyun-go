@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstancesByExpireTimeRequest struct {
@@ -31,19 +32,19 @@ func (req *DescribeDBInstancesByExpireTimeRequest) Invoke(client *sdk.Client) (r
 
 type DescribeDBInstancesByExpireTimeResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageNumber       int
-	TotalRecordCount int
-	PageRecordCount  int
+	RequestId        common.String
+	PageNumber       common.Integer
+	TotalRecordCount common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeDBInstancesByExpireTimeDBInstanceExpireTimeList
 }
 
 type DescribeDBInstancesByExpireTimeDBInstanceExpireTime struct {
-	DBInstanceId          string
-	DBInstanceDescription string
-	ExpireTime            string
-	DBInstanceStatus      string
-	LockMode              string
+	DBInstanceId          common.String
+	DBInstanceDescription common.String
+	ExpireTime            common.String
+	DBInstanceStatus      common.String
+	LockMode              common.String
 }
 
 type DescribeDBInstancesByExpireTimeDBInstanceExpireTimeList []DescribeDBInstancesByExpireTimeDBInstanceExpireTime

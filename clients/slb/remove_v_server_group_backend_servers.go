@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RemoveVServerGroupBackendServersRequest struct {
@@ -29,18 +30,18 @@ func (req *RemoveVServerGroupBackendServersRequest) Invoke(client *sdk.Client) (
 
 type RemoveVServerGroupBackendServersResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	VServerGroupId string
+	RequestId      common.String
+	VServerGroupId common.String
 	BackendServers RemoveVServerGroupBackendServersBackendServerList
 }
 
 type RemoveVServerGroupBackendServersBackendServer struct {
-	ServerId string
-	Port     int
-	Weight   int
-	Type     string
-	ServerIp string
-	VpcId    string
+	ServerId common.String
+	Port     common.Integer
+	Weight   common.Integer
+	Type     common.String
+	ServerIp common.String
+	VpcId    common.String
 }
 
 type RemoveVServerGroupBackendServersBackendServerList []RemoveVServerGroupBackendServersBackendServer

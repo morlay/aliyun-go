@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeImageSupportInstanceTypesRequest struct {
@@ -32,17 +33,17 @@ type DescribeImageSupportInstanceTypesFilter struct {
 
 type DescribeImageSupportInstanceTypesResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	RegionId      string
-	ImageId       string
+	RequestId     common.String
+	RegionId      common.String
+	ImageId       common.String
 	InstanceTypes DescribeImageSupportInstanceTypesInstanceTypeList
 }
 
 type DescribeImageSupportInstanceTypesInstanceType struct {
-	InstanceTypeId     string
-	CpuCoreCount       int
-	MemorySize         float32
-	InstanceTypeFamily string
+	InstanceTypeId     common.String
+	CpuCoreCount       common.Integer
+	MemorySize         common.Float
+	InstanceTypeFamily common.String
 }
 
 type DescribeImageSupportInstanceTypesFilterList []DescribeImageSupportInstanceTypesFilter

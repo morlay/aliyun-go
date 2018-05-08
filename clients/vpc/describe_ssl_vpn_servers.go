@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSslVpnServersRequest struct {
@@ -30,28 +31,28 @@ func (req *DescribeSslVpnServersRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeSslVpnServersResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	TotalCount    int
-	PageNumber    int
-	PageSize      int
+	RequestId     common.String
+	TotalCount    common.Integer
+	PageNumber    common.Integer
+	PageSize      common.Integer
 	SslVpnServers DescribeSslVpnServersSslVpnServerList
 }
 
 type DescribeSslVpnServersSslVpnServer struct {
-	RegionId       string
-	SslVpnServerId string
-	VpnGatewayId   string
-	Name           string
-	LocalSubnet    string
-	ClientIpPool   string
-	CreateTime     int64
-	Cipher         string
-	Proto          string
-	Port           int
+	RegionId       common.String
+	SslVpnServerId common.String
+	VpnGatewayId   common.String
+	Name           common.String
+	LocalSubnet    common.String
+	ClientIpPool   common.String
+	CreateTime     common.Long
+	Cipher         common.String
+	Proto          common.String
+	Port           common.Integer
 	Compress       bool
-	Connections    int
-	MaxConnections int
-	InternetIp     string
+	Connections    common.Integer
+	MaxConnections common.Integer
+	InternetIp     common.String
 }
 
 type DescribeSslVpnServersSslVpnServerList []DescribeSslVpnServersSslVpnServer

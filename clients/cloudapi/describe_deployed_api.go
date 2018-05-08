@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDeployedApiRequest struct {
@@ -24,21 +25,21 @@ func (req *DescribeDeployedApiRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeDeployedApiResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	RegionId               string
-	GroupId                string
-	GroupName              string
-	StageName              string
-	ApiId                  string
-	ApiName                string
-	Description            string
-	Visibility             string
-	AuthType               string
-	ResultType             string
-	ResultSample           string
-	FailResultSample       string
-	DeployedTime           string
-	AllowSignatureMethod   string
+	RequestId              common.String
+	RegionId               common.String
+	GroupId                common.String
+	GroupName              common.String
+	StageName              common.String
+	ApiId                  common.String
+	ApiName                common.String
+	Description            common.String
+	Visibility             common.String
+	AuthType               common.String
+	ResultType             common.String
+	ResultSample           common.String
+	FailResultSample       common.String
+	DeployedTime           common.String
+	AllowSignatureMethod   common.String
 	ErrorCodeSamples       DescribeDeployedApiErrorCodeSampleList
 	SystemParameters       DescribeDeployedApiSystemParameterList
 	CustomSystemParameters DescribeDeployedApiSystemParameterList

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryFpShotJobListRequest struct {
@@ -26,27 +27,27 @@ func (req *QueryFpShotJobListRequest) Invoke(client *sdk.Client) (resp *QueryFpS
 
 type QueryFpShotJobListResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	FpShotJobList QueryFpShotJobListFpShotJobList
 	NonExistIds   QueryFpShotJobListNonExistIdList
 }
 
 type QueryFpShotJobListFpShotJob struct {
-	Id           string
-	UserData     string
-	PipelineId   string
-	State        string
-	Code         string
-	Message      string
-	CreationTime string
+	Id           common.String
+	UserData     common.String
+	PipelineId   common.String
+	State        common.String
+	Code         common.String
+	Message      common.String
+	CreationTime common.String
 	InputFile    QueryFpShotJobListInputFile
 	FpShotResult QueryFpShotJobListFpShotResult
 }
 
 type QueryFpShotJobListInputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryFpShotJobListFpShotResult struct {
@@ -54,8 +55,8 @@ type QueryFpShotJobListFpShotResult struct {
 }
 
 type QueryFpShotJobListFpShot struct {
-	PrimaryKey   string
-	Similarity   string
+	PrimaryKey   common.String
+	Similarity   common.String
 	FpShotSlices QueryFpShotJobListFpShotSliceList
 }
 
@@ -65,13 +66,13 @@ type QueryFpShotJobListFpShotSlice struct {
 }
 
 type QueryFpShotJobListInput struct {
-	Start    string
-	Duration string
+	Start    common.String
+	Duration common.String
 }
 
 type QueryFpShotJobListDuplication struct {
-	Start    string
-	Duration string
+	Start    common.String
+	Duration common.String
 }
 
 type QueryFpShotJobListFpShotJobList []QueryFpShotJobListFpShotJob
@@ -89,10 +90,10 @@ func (list *QueryFpShotJobListFpShotJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryFpShotJobListNonExistIdList []string
+type QueryFpShotJobListNonExistIdList []common.String
 
 func (list *QueryFpShotJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

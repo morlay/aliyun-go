@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetFaceGroupPhotosRequest struct {
@@ -24,7 +25,7 @@ func (req *GetFaceGroupPhotosRequest) Invoke(client *sdk.Client) (resp *GetFaceG
 
 type GetFaceGroupPhotosResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	Photos     string
-	NextMarker string
+	RequestId  common.String
+	Photos     common.String
+	NextMarker common.String
 }

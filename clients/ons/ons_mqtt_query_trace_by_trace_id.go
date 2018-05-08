@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttQueryTraceByTraceIdRequest struct {
@@ -24,7 +25,7 @@ func (req *OnsMqttQueryTraceByTraceIdRequest) Invoke(client *sdk.Client) (resp *
 
 type OnsMqttQueryTraceByTraceIdResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
-	PushCount int64
+	RequestId common.String
+	HelpUrl   common.String
+	PushCount common.Long
 }

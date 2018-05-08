@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAlbumsRequest struct {
@@ -27,40 +28,40 @@ func (req *ListAlbumsRequest) Invoke(client *sdk.Client) (resp *ListAlbumsRespon
 
 type ListAlbumsResponse struct {
 	responses.BaseResponse
-	Code       string
-	Message    string
-	NextCursor string
-	TotalCount int
-	RequestId  string
-	Action     string
+	Code       common.String
+	Message    common.String
+	NextCursor common.String
+	TotalCount common.Integer
+	RequestId  common.String
+	Action     common.String
 	Albums     ListAlbumsAlbumList
 }
 
 type ListAlbumsAlbum struct {
-	Id          int64
-	IdStr       string
-	Name        string
-	State       string
-	Remark      string
-	PhotosCount int64
-	Ctime       int64
-	Mtime       int64
+	Id          common.Long
+	IdStr       common.String
+	Name        common.String
+	State       common.String
+	Remark      common.String
+	PhotosCount common.Long
+	Ctime       common.Long
+	Mtime       common.Long
 	Cover       ListAlbumsCover
 }
 
 type ListAlbumsCover struct {
-	Id      int64
-	IdStr   string
-	Title   string
-	FileId  string
-	State   string
-	Md5     string
+	Id      common.Long
+	IdStr   common.String
+	Title   common.String
+	FileId  common.String
+	State   common.String
+	Md5     common.String
 	IsVideo bool
-	Remark  string
-	Width   int64
-	Height  int64
-	Ctime   int64
-	Mtime   int64
+	Remark  common.String
+	Width   common.Long
+	Height  common.Long
+	Ctime   common.Long
+	Mtime   common.Long
 }
 
 type ListAlbumsAlbumList []ListAlbumsAlbum

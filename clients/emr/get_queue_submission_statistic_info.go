@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetQueueSubmissionStatisticInfoRequest struct {
@@ -27,13 +28,13 @@ func (req *GetQueueSubmissionStatisticInfoRequest) Invoke(client *sdk.Client) (r
 
 type GetQueueSubmissionStatisticInfoResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	QueueSubmissionList GetQueueSubmissionStatisticInfoClusterStatQueueSubmissionList
 }
 
 type GetQueueSubmissionStatisticInfoClusterStatQueueSubmission struct {
-	Queue      string
-	Submission int64
+	Queue      common.String
+	Submission common.Long
 }
 
 type GetQueueSubmissionStatisticInfoClusterStatQueueSubmissionList []GetQueueSubmissionStatisticInfoClusterStatQueueSubmission

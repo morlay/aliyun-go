@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetLibraryRequest struct {
@@ -21,31 +22,31 @@ func (req *GetLibraryRequest) Invoke(client *sdk.Client) (resp *GetLibraryRespon
 
 type GetLibraryResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Library   GetLibraryLibrary
 }
 
 type GetLibraryLibrary struct {
-	Ctime           int64
+	Ctime           common.Long
 	Quota           GetLibraryQuota
 	AutoCleanConfig GetLibraryAutoCleanConfig
 }
 
 type GetLibraryQuota struct {
-	TotalQuota      int64
-	TotalTrashQuota int64
-	FacesCount      int
-	PhotosCount     int
-	UsedQuota       int64
-	VideosCount     int
-	ActiveSize      int64
-	InactiveSize    int64
+	TotalQuota      common.Long
+	TotalTrashQuota common.Long
+	FacesCount      common.Integer
+	PhotosCount     common.Integer
+	UsedQuota       common.Long
+	VideosCount     common.Integer
+	ActiveSize      common.Long
+	InactiveSize    common.Long
 }
 
 type GetLibraryAutoCleanConfig struct {
 	AutoCleanEnabled bool
-	AutoCleanDays    int
+	AutoCleanDays    common.Integer
 }

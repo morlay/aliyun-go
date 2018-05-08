@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitAnnotationJobRequest struct {
@@ -27,6 +28,6 @@ func (req *SubmitAnnotationJobRequest) Invoke(client *sdk.Client) (resp *SubmitA
 
 type SubmitAnnotationJobResponse struct {
 	responses.BaseResponse
-	RequestId string
-	JobId     string
+	RequestId common.String
+	JobId     common.String
 }

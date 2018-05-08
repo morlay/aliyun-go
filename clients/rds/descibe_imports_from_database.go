@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescibeImportsFromDatabaseRequest struct {
@@ -33,19 +34,19 @@ func (req *DescibeImportsFromDatabaseRequest) Invoke(client *sdk.Client) (resp *
 
 type DescibeImportsFromDatabaseResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescibeImportsFromDatabaseImportResultFromDBList
 }
 
 type DescibeImportsFromDatabaseImportResultFromDB struct {
-	ImportId                    int
-	ImportDataType              string
-	ImportDataStatus            string
-	ImportDataStatusDescription string
-	IncrementalImportingTime    string
+	ImportId                    common.Integer
+	ImportDataType              common.String
+	ImportDataStatus            common.String
+	ImportDataStatusDescription common.String
+	IncrementalImportingTime    common.String
 }
 
 type DescibeImportsFromDatabaseImportResultFromDBList []DescibeImportsFromDatabaseImportResultFromDB

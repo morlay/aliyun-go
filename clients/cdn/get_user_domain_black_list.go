@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserDomainBlackListRequest struct {
@@ -23,6 +24,6 @@ func (req *GetUserDomainBlackListRequest) Invoke(client *sdk.Client) (resp *GetU
 
 type GetUserDomainBlackListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Bind      string
+	RequestId common.String
+	Bind      common.String
 }

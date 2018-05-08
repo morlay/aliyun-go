@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsConsumerTimeSpanRequest struct {
@@ -24,14 +25,14 @@ func (req *OnsConsumerTimeSpanRequest) Invoke(client *sdk.Client) (resp *OnsCons
 
 type OnsConsumerTimeSpanResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsConsumerTimeSpanData
 }
 
 type OnsConsumerTimeSpanData struct {
-	Topic            string
-	MinTimeStamp     int64
-	MaxTimeStamp     int64
-	ConsumeTimeStamp int64
+	Topic            common.String
+	MinTimeStamp     common.Long
+	MaxTimeStamp     common.Long
+	ConsumeTimeStamp common.Long
 }

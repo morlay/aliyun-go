@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVirtualMFADeviceRequest struct {
@@ -20,12 +21,12 @@ func (req *CreateVirtualMFADeviceRequest) Invoke(client *sdk.Client) (resp *Crea
 
 type CreateVirtualMFADeviceResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	VirtualMFADevice CreateVirtualMFADeviceVirtualMFADevice
 }
 
 type CreateVirtualMFADeviceVirtualMFADevice struct {
-	SerialNumber     string
-	Base32StringSeed string
-	QRCodePNG        string
+	SerialNumber     common.String
+	Base32StringSeed common.String
+	QRCodePNG        common.String
 }

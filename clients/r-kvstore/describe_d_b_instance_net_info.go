@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceNetInfoRequest struct {
@@ -27,20 +28,20 @@ func (req *DescribeDBInstanceNetInfoRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDBInstanceNetInfoResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	InstanceNetworkType string
+	RequestId           common.String
+	InstanceNetworkType common.String
 	NetInfoItems        DescribeDBInstanceNetInfoInstanceNetInfoList
 }
 
 type DescribeDBInstanceNetInfoInstanceNetInfo struct {
-	ConnectionString  string
-	IPAddress         string
-	Port              string
-	VPCId             string
-	VSwitchId         string
-	DBInstanceNetType string
-	ExpiredTime       string
-	Upgradeable       string
+	ConnectionString  common.String
+	IPAddress         common.String
+	Port              common.String
+	VPCId             common.String
+	VSwitchId         common.String
+	DBInstanceNetType common.String
+	ExpiredTime       common.String
+	Upgradeable       common.String
 }
 
 type DescribeDBInstanceNetInfoInstanceNetInfoList []DescribeDBInstanceNetInfoInstanceNetInfo

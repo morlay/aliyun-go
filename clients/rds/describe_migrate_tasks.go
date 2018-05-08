@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeMigrateTasksRequest struct {
@@ -29,23 +30,23 @@ func (req *DescribeMigrateTasksRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeMigrateTasksResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DBInstanceId     string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	DBInstanceId     common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeMigrateTasksMigrateTaskList
 }
 
 type DescribeMigrateTasksMigrateTask struct {
-	DBName        string
-	MigrateTaskId string
-	CreateTime    string
-	EndTime       string
-	BackupMode    string
-	Status        string
-	IsDBReplaced  string
-	Description   string
+	DBName        common.String
+	MigrateTaskId common.String
+	CreateTime    common.String
+	EndTime       common.String
+	BackupMode    common.String
+	Status        common.String
+	IsDBReplaced  common.String
+	Description   common.String
 }
 
 type DescribeMigrateTasksMigrateTaskList []DescribeMigrateTasksMigrateTask

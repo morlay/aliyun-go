@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPriceRequest struct {
@@ -61,27 +62,27 @@ type QueryPriceHostGroup struct {
 
 type QueryPriceResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	EmrPrice   string
-	EcsPrice   string
+	RequestId  common.String
+	EmrPrice   common.String
+	EcsPrice   common.String
 	EmrPriceDO QueryPriceEmrPriceDO
 	EcsPriceDO QueryPriceEcsPriceDO
 }
 
 type QueryPriceEmrPriceDO struct {
-	OriginalPrice string
-	DiscountPrice string
-	TradePrice    string
-	TaxPrice      string
-	Currency      string
+	OriginalPrice common.String
+	DiscountPrice common.String
+	TradePrice    common.String
+	TaxPrice      common.String
+	Currency      common.String
 }
 
 type QueryPriceEcsPriceDO struct {
-	OriginalPrice string
-	DiscountPrice string
-	TradePrice    string
-	TaxPrice      string
-	Currency      string
+	OriginalPrice common.String
+	DiscountPrice common.String
+	TradePrice    common.String
+	TaxPrice      common.String
+	Currency      common.String
 }
 
 type QueryPriceHostGroupList []QueryPriceHostGroup

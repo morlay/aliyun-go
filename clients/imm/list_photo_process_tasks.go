@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPhotoProcessTasksRequest struct {
@@ -24,23 +25,23 @@ func (req *ListPhotoProcessTasksRequest) Invoke(client *sdk.Client) (resp *ListP
 
 type ListPhotoProcessTasksResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextMarker string
+	RequestId  common.String
+	NextMarker common.String
 	Tasks      ListPhotoProcessTasksTasksItemList
 }
 
 type ListPhotoProcessTasksTasksItem struct {
-	TaskId          string
-	Status          string
-	SrcUri          string
-	TgtUri          string
-	Style           string
-	NotifyTopicName string
-	NotifyEndpoint  string
-	ExternalID      string
-	CreateTime      string
-	FinishTime      string
-	Percent         int
+	TaskId          common.String
+	Status          common.String
+	SrcUri          common.String
+	TgtUri          common.String
+	Style           common.String
+	NotifyTopicName common.String
+	NotifyEndpoint  common.String
+	ExternalID      common.String
+	CreateTime      common.String
+	FinishTime      common.String
+	Percent         common.Integer
 }
 
 type ListPhotoProcessTasksTasksItemList []ListPhotoProcessTasksTasksItem

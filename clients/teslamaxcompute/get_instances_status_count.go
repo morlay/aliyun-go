@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetInstancesStatusCountRequest struct {
@@ -23,15 +24,15 @@ func (req *GetInstancesStatusCountRequest) Invoke(client *sdk.Client) (resp *Get
 
 type GetInstancesStatusCountResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetInstancesStatusCountDataItemList
 }
 
 type GetInstancesStatusCountDataItem struct {
-	Status string
-	Size   int
+	Status common.String
+	Size   common.Integer
 }
 
 type GetInstancesStatusCountDataItemList []GetInstancesStatusCountDataItem

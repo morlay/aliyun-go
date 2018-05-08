@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVirtualBorderRouterRequest struct {
@@ -33,6 +34,6 @@ func (req *CreateVirtualBorderRouterRequest) Invoke(client *sdk.Client) (resp *C
 
 type CreateVirtualBorderRouterResponse struct {
 	responses.BaseResponse
-	RequestId string
-	VbrId     string
+	RequestId common.String
+	VbrId     common.String
 }

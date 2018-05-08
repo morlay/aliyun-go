@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCasterComponentsRequest struct {
@@ -24,17 +25,17 @@ func (req *DescribeCasterComponentsRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeCasterComponentsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	Total      int
+	RequestId  common.String
+	Total      common.Integer
 	Components DescribeCasterComponentsComponentList
 }
 
 type DescribeCasterComponentsComponent struct {
-	ComponentId         string
-	ComponentName       string
-	LocationId          string
-	ComponentType       string
-	Effect              string
+	ComponentId         common.String
+	ComponentName       common.String
+	LocationId          common.String
+	ComponentType       common.String
+	Effect              common.String
 	ComponentLayer      DescribeCasterComponentsComponentLayer
 	TextLayerContent    DescribeCasterComponentsTextLayerContent
 	ImageLayerContent   DescribeCasterComponentsImageLayerContent
@@ -42,34 +43,34 @@ type DescribeCasterComponentsComponent struct {
 }
 
 type DescribeCasterComponentsComponentLayer struct {
-	HeightNormalized    float32
-	WidthNormalized     float32
-	PositionRefer       string
+	HeightNormalized    common.Float
+	WidthNormalized     common.Float
+	PositionRefer       common.String
 	PositionNormalizeds DescribeCasterComponentsPositionNormalizedList
 }
 
 type DescribeCasterComponentsTextLayerContent struct {
-	Text                  string
-	Color                 string
-	FontName              string
-	SizeNormalized        float32
-	BorderWidthNormalized float32
-	BorderColor           string
+	Text                  common.String
+	Color                 common.String
+	FontName              common.String
+	SizeNormalized        common.Float
+	BorderWidthNormalized common.Float
+	BorderColor           common.String
 }
 
 type DescribeCasterComponentsImageLayerContent struct {
-	MaterialId string
+	MaterialId common.String
 }
 
 type DescribeCasterComponentsCaptionLayerContent struct {
-	LocationId            string
-	PtsOffset             int
-	WordsCount            int
-	Color                 string
-	FontName              string
-	SizeNormalized        float32
-	BorderWidthNormalized float32
-	BorderColor           string
+	LocationId            common.String
+	PtsOffset             common.Integer
+	WordsCount            common.Integer
+	Color                 common.String
+	FontName              common.String
+	SizeNormalized        common.Float
+	BorderWidthNormalized common.Float
+	BorderColor           common.String
 }
 
 type DescribeCasterComponentsComponentList []DescribeCasterComponentsComponent
@@ -87,10 +88,10 @@ func (list *DescribeCasterComponentsComponentList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeCasterComponentsPositionNormalizedList []string
+type DescribeCasterComponentsPositionNormalizedList []common.String
 
 func (list *DescribeCasterComponentsPositionNormalizedList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateBoxCodeRequest struct {
@@ -24,24 +25,24 @@ func (req *CreateBoxCodeRequest) Invoke(client *sdk.Client) (resp *CreateBoxCode
 
 type CreateBoxCodeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	ErrorList CreateBoxCodeErrorMessageList
 	Data      CreateBoxCodeData
 }
 
 type CreateBoxCodeErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type CreateBoxCodeData struct {
-	ClientAppid       string
-	Code              string
-	CurrentTimeMillis int64
-	ExpiresIn         int
-	ExpiresInUnit     string
+	ClientAppid       common.String
+	Code              common.String
+	CurrentTimeMillis common.Long
+	ExpiresIn         common.Integer
+	ExpiresInUnit     common.String
 }
 
 type CreateBoxCodeErrorMessageList []CreateBoxCodeErrorMessage

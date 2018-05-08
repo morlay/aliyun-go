@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateCatalogRequest struct {
@@ -22,6 +23,6 @@ func (req *CreateCatalogRequest) Invoke(client *sdk.Client) (resp *CreateCatalog
 
 type CreateCatalogResponse struct {
 	responses.BaseResponse
-	RequestId string
-	CatalogId string
+	RequestId common.String
+	CatalogId common.String
 }

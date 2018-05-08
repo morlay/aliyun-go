@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveMixConfigRequest struct {
@@ -24,14 +25,14 @@ func (req *DescribeLiveMixConfigRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeLiveMixConfigResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	MixConfigList DescribeLiveMixConfigMixConfigList
 }
 
 type DescribeLiveMixConfigMixConfig struct {
-	DomainName string
-	AppName    string
-	Template   string
+	DomainName common.String
+	AppName    common.String
+	Template   common.String
 }
 
 type DescribeLiveMixConfigMixConfigList []DescribeLiveMixConfigMixConfig

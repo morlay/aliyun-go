@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRouterInterfacesForGlobalRequest struct {
@@ -28,45 +29,45 @@ func (req *DescribeRouterInterfacesForGlobalRequest) Invoke(client *sdk.Client) 
 
 type DescribeRouterInterfacesForGlobalResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	Code               string
-	Message            string
-	Desc               string
+	RequestId          common.String
+	Code               common.String
+	Message            common.String
+	Desc               common.String
 	Success            bool
-	PageSize           int
-	PageNumber         int
-	TotalCount         int
+	PageSize           common.Integer
+	PageNumber         common.Integer
+	TotalCount         common.Integer
 	RouterInterfaceSet DescribeRouterInterfacesForGlobalRouterInterfaceTypeList
 }
 
 type DescribeRouterInterfacesForGlobalRouterInterfaceType struct {
-	BusinessStatus                  string
-	AccessPointId                   string
-	ChargeType                      string
-	ConnectedTime                   string
-	CreationTime                    string
-	RouterInterfaceId               string
-	OppositeInterfaceBusinessStatus string
-	OppositeInterfaceId             string
-	OppositeInterfaceOwnerId        int64
-	OppositeInterfaceSpec           string
-	OppositeInterfaceStatus         string
-	OppositeRegionId                string
-	OppositeAccessPointId           string
-	OppositeRouterId                string
-	OppositeRouterType              string
-	OppositeVpcInstanceId           string
-	RegionId                        string
-	Role                            string
-	RouterId                        string
-	RouterType                      string
-	Spec                            string
-	Status                          string
-	VpcInstanceId                   string
-	Name                            string
-	Description                     string
-	HealthCheckSourceIp             string
-	HealthCheckTargetIp             string
+	BusinessStatus                  common.String
+	AccessPointId                   common.String
+	ChargeType                      common.String
+	ConnectedTime                   common.String
+	CreationTime                    common.String
+	RouterInterfaceId               common.String
+	OppositeInterfaceBusinessStatus common.String
+	OppositeInterfaceId             common.String
+	OppositeInterfaceOwnerId        common.Long
+	OppositeInterfaceSpec           common.String
+	OppositeInterfaceStatus         common.String
+	OppositeRegionId                common.String
+	OppositeAccessPointId           common.String
+	OppositeRouterId                common.String
+	OppositeRouterType              common.String
+	OppositeVpcInstanceId           common.String
+	RegionId                        common.String
+	Role                            common.String
+	RouterId                        common.String
+	RouterType                      common.String
+	Spec                            common.String
+	Status                          common.String
+	VpcInstanceId                   common.String
+	Name                            common.String
+	Description                     common.String
+	HealthCheckSourceIp             common.String
+	HealthCheckTargetIp             common.String
 }
 
 type DescribeRouterInterfacesForGlobalRouterInterfaceTypeList []DescribeRouterInterfacesForGlobalRouterInterfaceType

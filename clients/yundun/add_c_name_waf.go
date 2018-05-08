@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCNameWafRequest struct {
@@ -24,15 +25,15 @@ func (req *AddCNameWafRequest) Invoke(client *sdk.Client) (resp *AddCNameWafResp
 
 type AddCNameWafResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	WafInfoList AddCNameWafWafInfoList
 }
 
 type AddCNameWafWafInfo struct {
-	Id     int
-	Domain string
-	Cname  string
-	Status int
+	Id     common.Integer
+	Domain common.String
+	Cname  common.String
+	Status common.Integer
 }
 
 type AddCNameWafWafInfoList []AddCNameWafWafInfo

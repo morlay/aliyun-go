@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVRoutersRequest struct {
@@ -28,20 +29,20 @@ func (req *DescribeVRoutersRequest) Invoke(client *sdk.Client) (resp *DescribeVR
 
 type DescribeVRoutersResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	VRouters   DescribeVRoutersVRouterList
 }
 
 type DescribeVRoutersVRouter struct {
-	RegionId      string
-	VpcId         string
-	VRouterName   string
-	Description   string
-	VRouterId     string
-	CreationTime  string
+	RegionId      common.String
+	VpcId         common.String
+	VRouterName   common.String
+	Description   common.String
+	VRouterId     common.String
+	CreationTime  common.String
 	RouteTableIds DescribeVRoutersRouteTableIdList
 }
 
@@ -60,10 +61,10 @@ func (list *DescribeVRoutersVRouterList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeVRoutersRouteTableIdList []string
+type DescribeVRoutersRouteTableIdList []common.String
 
 func (list *DescribeVRoutersRouteTableIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

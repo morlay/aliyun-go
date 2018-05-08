@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFlowInstanceRequest struct {
@@ -29,24 +30,24 @@ func (req *ListFlowInstanceRequest) Invoke(client *sdk.Client) (resp *ListFlowIn
 
 type ListFlowInstanceResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	PageNumber    int
-	PageSize      int
-	Total         int
+	RequestId     common.String
+	PageNumber    common.Integer
+	PageSize      common.Integer
+	Total         common.Integer
 	FlowInstances ListFlowInstanceFlowInstanceList
 }
 
 type ListFlowInstanceFlowInstance struct {
-	Id          string
-	GmtCreate   int64
-	GmtModified int64
-	FlowId      string
-	FlowName    string
-	ProjectId   string
-	Status      string
-	ClusterId   string
-	StartTime   int64
-	EndTime     int64
+	Id          common.String
+	GmtCreate   common.Long
+	GmtModified common.Long
+	FlowId      common.String
+	FlowName    common.String
+	ProjectId   common.String
+	Status      common.String
+	ClusterId   common.String
+	StartTime   common.Long
+	EndTime     common.Long
 }
 
 type ListFlowInstanceStatusListList []string

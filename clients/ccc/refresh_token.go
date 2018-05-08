@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RefreshTokenRequest struct {
@@ -20,15 +21,15 @@ func (req *RefreshTokenRequest) Invoke(client *sdk.Client) (resp *RefreshTokenRe
 
 type RefreshTokenResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Token          RefreshTokenToken
 }
 
 type RefreshTokenToken struct {
-	Signature string
-	SignData  string
+	Signature common.String
+	SignData  common.String
 }

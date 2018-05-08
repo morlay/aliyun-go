@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainSlowRatioRequest struct {
@@ -29,24 +30,24 @@ func (req *DescribeDomainSlowRatioRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDomainSlowRatioResponse struct {
 	responses.BaseResponse
-	EndTime                  string
-	DataInterval             int
-	PageNumber               int
-	PageSize                 int
-	TotalCount               int
-	StartTime                string
+	EndTime                  common.String
+	DataInterval             common.Integer
+	PageNumber               common.Integer
+	PageSize                 common.Integer
+	TotalCount               common.Integer
+	StartTime                common.String
 	SlowRatioDataPerInterval DescribeDomainSlowRatioSlowRatioDataList
 }
 
 type DescribeDomainSlowRatioSlowRatioData struct {
-	TotalUsers   int
-	SlowUsers    int
-	SlowRatio    float32
-	RegionNameZh string
-	RegionNameEn string
-	IspNameZh    string
-	IspNameEn    string
-	Time         string
+	TotalUsers   common.Integer
+	SlowUsers    common.Integer
+	SlowRatio    common.Float
+	RegionNameZh common.String
+	RegionNameEn common.String
+	IspNameZh    common.String
+	IspNameEn    common.String
+	Time         common.String
 }
 
 type DescribeDomainSlowRatioSlowRatioDataList []DescribeDomainSlowRatioSlowRatioData

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeServerCertificatesRequest struct {
@@ -29,22 +30,22 @@ func (req *DescribeServerCertificatesRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeServerCertificatesResponse struct {
 	responses.BaseResponse
-	RequestId          string
+	RequestId          common.String
 	ServerCertificates DescribeServerCertificatesServerCertificateList
 }
 
 type DescribeServerCertificatesServerCertificate struct {
-	ServerCertificateId     string
-	Fingerprint             string
-	ServerCertificateName   string
-	RegionId                string
-	RegionIdAlias           string
-	AliCloudCertificateId   string
-	AliCloudCertificateName string
-	IsAliCloudCertificate   int
-	ResourceGroupId         string
-	CreateTime              string
-	CreateTimeStamp         int64
+	ServerCertificateId     common.String
+	Fingerprint             common.String
+	ServerCertificateName   common.String
+	RegionId                common.String
+	RegionIdAlias           common.String
+	AliCloudCertificateId   common.String
+	AliCloudCertificateName common.String
+	IsAliCloudCertificate   common.Integer
+	ResourceGroupId         common.String
+	CreateTime              common.String
+	CreateTimeStamp         common.Long
 }
 
 type DescribeServerCertificatesServerCertificateList []DescribeServerCertificatesServerCertificate

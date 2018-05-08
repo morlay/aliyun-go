@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePlayUserTotalRequest struct {
@@ -24,30 +25,30 @@ func (req *DescribePlayUserTotalRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribePlayUserTotalResponse struct {
 	responses.BaseResponse
-	RequestId            string
+	RequestId            common.String
 	UserPlayStatisTotals DescribePlayUserTotalUserPlayStatisTotalList
 }
 
 type DescribePlayUserTotalUserPlayStatisTotal struct {
-	Date         string
-	PlayDuration string
-	PlayRange    string
+	Date         common.String
+	PlayDuration common.String
+	PlayRange    common.String
 	VV           DescribePlayUserTotalVV
 	UV           DescribePlayUserTotalUV
 }
 
 type DescribePlayUserTotalVV struct {
-	Android string
-	IOS     string
-	Flash   string
-	HTML5   string
+	Android common.String
+	IOS     common.String
+	Flash   common.String
+	HTML5   common.String
 }
 
 type DescribePlayUserTotalUV struct {
-	Android string
-	IOS     string
-	Flash   string
-	HTML5   string
+	Android common.String
+	IOS     common.String
+	Flash   common.String
+	HTML5   common.String
 }
 
 type DescribePlayUserTotalUserPlayStatisTotalList []DescribePlayUserTotalUserPlayStatisTotal

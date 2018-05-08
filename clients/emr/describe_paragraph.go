@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeParagraphRequest struct {
@@ -22,6 +23,6 @@ func (req *DescribeParagraphRequest) Invoke(client *sdk.Client) (resp *DescribeP
 
 type DescribeParagraphResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Paragraph string
+	RequestId common.String
+	Paragraph common.String
 }

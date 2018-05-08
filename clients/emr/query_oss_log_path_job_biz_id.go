@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryOssLogPathJobBizIdRequest struct {
@@ -21,6 +22,6 @@ func (req *QueryOssLogPathJobBizIdRequest) Invoke(client *sdk.Client) (resp *Que
 
 type QueryOssLogPathJobBizIdResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	OssLogPathJobBizId string
+	RequestId          common.String
+	OssLogPathJobBizId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpnConnectionLogsRequest struct {
@@ -31,18 +32,18 @@ func (req *DescribeVpnConnectionLogsRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeVpnConnectionLogsResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Count       int
+	RequestId   common.String
+	Count       common.Integer
 	IsCompleted bool
-	PageNumber  int
-	PageSize    int
+	PageNumber  common.Integer
+	PageSize    common.Integer
 	Data        DescribeVpnConnectionLogsDatumList
 }
 
-type DescribeVpnConnectionLogsDatumList []string
+type DescribeVpnConnectionLogsDatumList []common.String
 
 func (list *DescribeVpnConnectionLogsDatumList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

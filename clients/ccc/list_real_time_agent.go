@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListRealTimeAgentRequest struct {
@@ -22,35 +23,35 @@ func (req *ListRealTimeAgentRequest) Invoke(client *sdk.Client) (resp *ListRealT
 
 type ListRealTimeAgentResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Data           ListRealTimeAgentUserList
 }
 
 type ListRealTimeAgentUser struct {
-	RamId       string
-	DisplayName string
-	Phone       string
-	Dn          string
-	State       string
-	StateDesc   string
+	RamId       common.String
+	DisplayName common.String
+	Phone       common.String
+	Dn          common.String
+	State       common.String
+	StateDesc   common.String
 	SkillLevels ListRealTimeAgentSkillLevelList
 }
 
 type ListRealTimeAgentSkillLevel struct {
-	SkillLevelId string
-	Level        int
+	SkillLevelId common.String
+	Level        common.Integer
 	Skill        ListRealTimeAgentSkill
 }
 
 type ListRealTimeAgentSkill struct {
-	SkillGroupId          string
-	InstanceId            string
-	SkillGroupName        string
-	SkillGroupDescription string
+	SkillGroupId          common.String
+	InstanceId            common.String
+	SkillGroupName        common.String
+	SkillGroupDescription common.String
 }
 
 type ListRealTimeAgentUserList []ListRealTimeAgentUser

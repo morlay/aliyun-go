@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListEmailVerificationRequest struct {
@@ -28,27 +29,27 @@ func (req *ListEmailVerificationRequest) Invoke(client *sdk.Client) (resp *ListE
 
 type ListEmailVerificationResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalItemNum   int
-	CurrentPageNum int
-	TotalPageNum   int
-	PageSize       int
+	RequestId      common.String
+	TotalItemNum   common.Integer
+	CurrentPageNum common.Integer
+	TotalPageNum   common.Integer
+	PageSize       common.Integer
 	PrePage        bool
 	NextPage       bool
 	Data           ListEmailVerificationEmailVerificationList
 }
 
 type ListEmailVerificationEmailVerification struct {
-	GmtCreate           string
-	GmtModified         string
-	Email               string
-	UserId              string
-	EmailVerificationNo string
-	TokenSendTime       string
-	VerificationStatus  int
-	VerificationTime    string
-	SendIp              string
-	ConfirmIp           string
+	GmtCreate           common.String
+	GmtModified         common.String
+	Email               common.String
+	UserId              common.String
+	EmailVerificationNo common.String
+	TokenSendTime       common.String
+	VerificationStatus  common.Integer
+	VerificationTime    common.String
+	SendIp              common.String
+	ConfirmIp           common.String
 }
 
 type ListEmailVerificationEmailVerificationList []ListEmailVerificationEmailVerification

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAlarmHistoryRequest struct {
@@ -35,33 +36,33 @@ func (req *DescribeAlarmHistoryRequest) Invoke(client *sdk.Client) (resp *Descri
 type DescribeAlarmHistoryResponse struct {
 	responses.BaseResponse
 	Success          bool
-	Code             string
-	Message          string
-	Total            string
-	RequestId        string
+	Code             common.String
+	Message          common.String
+	Total            common.String
+	RequestId        common.String
 	AlarmHistoryList DescribeAlarmHistoryAlarmHistoryList
 }
 
 type DescribeAlarmHistoryAlarmHistory struct {
-	Id              string
-	AlertName       string
-	GroupId         string
-	Namespace       string
-	MetricName      string
-	Dimensions      string
-	Expression      string
-	EvaluationCount int
-	Value           string
-	AlertTime       int64
-	LastTime        int64
-	Level           string
-	PreLevel        string
-	RuleName        string
-	State           string
-	Status          int
-	UserId          string
-	Webhooks        string
-	InstanceName    string
+	Id              common.String
+	AlertName       common.String
+	GroupId         common.String
+	Namespace       common.String
+	MetricName      common.String
+	Dimensions      common.String
+	Expression      common.String
+	EvaluationCount common.Integer
+	Value           common.String
+	AlertTime       common.Long
+	LastTime        common.Long
+	Level           common.String
+	PreLevel        common.String
+	RuleName        common.String
+	State           common.String
+	Status          common.Integer
+	UserId          common.String
+	Webhooks        common.String
+	InstanceName    common.String
 	ContactGroups   DescribeAlarmHistoryContactGroupList
 	Contacts        DescribeAlarmHistoryContactList
 	ContactALIIMs   DescribeAlarmHistoryContactALIIMList
@@ -84,10 +85,10 @@ func (list *DescribeAlarmHistoryAlarmHistoryList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type DescribeAlarmHistoryContactGroupList []string
+type DescribeAlarmHistoryContactGroupList []common.String
 
 func (list *DescribeAlarmHistoryContactGroupList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -99,10 +100,10 @@ func (list *DescribeAlarmHistoryContactGroupList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type DescribeAlarmHistoryContactList []string
+type DescribeAlarmHistoryContactList []common.String
 
 func (list *DescribeAlarmHistoryContactList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -114,10 +115,10 @@ func (list *DescribeAlarmHistoryContactList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeAlarmHistoryContactALIIMList []string
+type DescribeAlarmHistoryContactALIIMList []common.String
 
 func (list *DescribeAlarmHistoryContactALIIMList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -129,10 +130,10 @@ func (list *DescribeAlarmHistoryContactALIIMList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type DescribeAlarmHistoryContactSmseList []string
+type DescribeAlarmHistoryContactSmseList []common.String
 
 func (list *DescribeAlarmHistoryContactSmseList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -144,10 +145,10 @@ func (list *DescribeAlarmHistoryContactSmseList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type DescribeAlarmHistoryContactMailList []string
+type DescribeAlarmHistoryContactMailList []common.String
 
 func (list *DescribeAlarmHistoryContactMailList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

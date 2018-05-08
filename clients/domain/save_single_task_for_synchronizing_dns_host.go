@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveSingleTaskForSynchronizingDnsHostRequest struct {
@@ -21,6 +22,6 @@ func (req *SaveSingleTaskForSynchronizingDnsHostRequest) Invoke(client *sdk.Clie
 
 type SaveSingleTaskForSynchronizingDnsHostResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }

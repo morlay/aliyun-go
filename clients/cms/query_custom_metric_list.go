@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryCustomMetricListRequest struct {
@@ -26,8 +27,8 @@ func (req *QueryCustomMetricListRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryCustomMetricListResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Result    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Result    common.String
 }

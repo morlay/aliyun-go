@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetVideoInfoRequest struct {
@@ -26,32 +27,32 @@ func (req *GetVideoInfoRequest) Invoke(client *sdk.Client) (resp *GetVideoInfoRe
 
 type GetVideoInfoResponse struct {
 	responses.BaseResponse
-	RequestId string
-	AI        string
+	RequestId common.String
+	AI        common.String
 	Video     GetVideoInfoVideo
 }
 
 type GetVideoInfoVideo struct {
-	VideoId      string
-	Title        string
-	Tags         string
-	Status       string
-	Size         int64
-	Duration     float32
-	Description  string
-	CreateTime   string
-	CreationTime string
-	ModifyTime   string
-	CoverURL     string
-	CateId       int64
-	CateName     string
+	VideoId      common.String
+	Title        common.String
+	Tags         common.String
+	Status       common.String
+	Size         common.Long
+	Duration     common.Float
+	Description  common.String
+	CreateTime   common.String
+	CreationTime common.String
+	ModifyTime   common.String
+	CoverURL     common.String
+	CateId       common.Long
+	CateName     common.String
 	Snapshots    GetVideoInfoSnapshotList
 }
 
-type GetVideoInfoSnapshotList []string
+type GetVideoInfoSnapshotList []common.String
 
 func (list *GetVideoInfoSnapshotList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

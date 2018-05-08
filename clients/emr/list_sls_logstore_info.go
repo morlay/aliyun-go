@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListSlsLogstoreInfoRequest struct {
@@ -25,16 +26,16 @@ func (req *ListSlsLogstoreInfoRequest) Invoke(client *sdk.Client) (resp *ListSls
 
 type ListSlsLogstoreInfoResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	SlsLogstoreInfoList ListSlsLogstoreInfoSlsLogstoreInfoList
 }
 
 type ListSlsLogstoreInfoSlsLogstoreInfo struct {
-	Id            int64
-	ServiceName   string
-	ComponentName string
-	LogstoreName  string
-	LogType       string
+	Id            common.Long
+	ServiceName   common.String
+	ComponentName common.String
+	LogstoreName  common.String
+	LogType       common.String
 }
 
 type ListSlsLogstoreInfoSlsLogstoreInfoList []ListSlsLogstoreInfoSlsLogstoreInfo

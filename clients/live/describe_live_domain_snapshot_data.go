@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveDomainSnapshotDataRequest struct {
@@ -25,13 +26,13 @@ func (req *DescribeLiveDomainSnapshotDataRequest) Invoke(client *sdk.Client) (re
 
 type DescribeLiveDomainSnapshotDataResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	SnapshotDataInfos DescribeLiveDomainSnapshotDataSnapshotDataInfoList
 }
 
 type DescribeLiveDomainSnapshotDataSnapshotDataInfo struct {
-	Date  string
-	Total int
+	Date  common.String
+	Total common.Integer
 }
 
 type DescribeLiveDomainSnapshotDataSnapshotDataInfoList []DescribeLiveDomainSnapshotDataSnapshotDataInfo

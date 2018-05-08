@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryClusterNumberIdRequest struct {
@@ -21,6 +22,6 @@ func (req *QueryClusterNumberIdRequest) Invoke(client *sdk.Client) (resp *QueryC
 
 type QueryClusterNumberIdResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	ClusterNumberId string
+	RequestId       common.String
+	ClusterNumberId common.String
 }

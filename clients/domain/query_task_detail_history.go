@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTaskDetailHistoryRequest struct {
@@ -29,8 +30,8 @@ func (req *QueryTaskDetailHistoryRequest) Invoke(client *sdk.Client) (resp *Quer
 
 type QueryTaskDetailHistoryResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	PageSize          int
+	RequestId         common.String
+	PageSize          common.Integer
 	Objects           QueryTaskDetailHistoryTaskDetailHistoryList
 	CurrentPageCursor QueryTaskDetailHistoryCurrentPageCursor
 	NextPageCursor    QueryTaskDetailHistoryNextPageCursor
@@ -38,63 +39,63 @@ type QueryTaskDetailHistoryResponse struct {
 }
 
 type QueryTaskDetailHistoryTaskDetailHistory struct {
-	TaskNo              string
-	TaskDetailNo        string
-	TaskType            string
-	InstanceId          string
-	DomainName          string
-	TaskStatus          string
-	UpdateTime          string
-	CreateTime          string
-	TryCount            int
-	ErrorMsg            string
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskNo              common.String
+	TaskDetailNo        common.String
+	TaskType            common.String
+	InstanceId          common.String
+	DomainName          common.String
+	TaskStatus          common.String
+	UpdateTime          common.String
+	CreateTime          common.String
+	TryCount            common.Integer
+	ErrorMsg            common.String
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskDetailHistoryCurrentPageCursor struct {
-	TaskNo              string
-	TaskDetailNo        string
-	TaskType            string
-	InstanceId          string
-	DomainName          string
-	TaskStatus          string
-	UpdateTime          string
-	CreateTime          string
-	TryCount            int
-	ErrorMsg            string
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskNo              common.String
+	TaskDetailNo        common.String
+	TaskType            common.String
+	InstanceId          common.String
+	DomainName          common.String
+	TaskStatus          common.String
+	UpdateTime          common.String
+	CreateTime          common.String
+	TryCount            common.Integer
+	ErrorMsg            common.String
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskDetailHistoryNextPageCursor struct {
-	TaskNo              string
-	TaskDetailNo        string
-	TaskType            string
-	InstanceId          string
-	DomainName          string
-	TaskStatus          string
-	UpdateTime          string
-	CreateTime          string
-	TryCount            int
-	ErrorMsg            string
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskNo              common.String
+	TaskDetailNo        common.String
+	TaskType            common.String
+	InstanceId          common.String
+	DomainName          common.String
+	TaskStatus          common.String
+	UpdateTime          common.String
+	CreateTime          common.String
+	TryCount            common.Integer
+	ErrorMsg            common.String
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskDetailHistoryPrePageCursor struct {
-	TaskNo              string
-	TaskDetailNo        string
-	TaskType            string
-	InstanceId          string
-	DomainName          string
-	TaskStatus          string
-	UpdateTime          string
-	CreateTime          string
-	TryCount            int
-	ErrorMsg            string
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskNo              common.String
+	TaskDetailNo        common.String
+	TaskType            common.String
+	InstanceId          common.String
+	DomainName          common.String
+	TaskStatus          common.String
+	UpdateTime          common.String
+	CreateTime          common.String
+	TryCount            common.Integer
+	ErrorMsg            common.String
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskDetailHistoryTaskDetailHistoryList []QueryTaskDetailHistoryTaskDetailHistory

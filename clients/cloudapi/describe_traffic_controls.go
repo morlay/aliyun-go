@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTrafficControlsRequest struct {
@@ -28,34 +29,34 @@ func (req *DescribeTrafficControlsRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeTrafficControlsResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	TotalCount      int
-	PageSize        int
-	PageNumber      int
+	RequestId       common.String
+	TotalCount      common.Integer
+	PageSize        common.Integer
+	PageNumber      common.Integer
 	TrafficControls DescribeTrafficControlsTrafficControlList
 }
 
 type DescribeTrafficControlsTrafficControl struct {
-	TrafficControlId   string
-	TrafficControlName string
-	Description        string
-	TrafficControlUnit string
-	ApiDefault         int
-	UserDefault        int
-	AppDefault         int
-	CreatedTime        string
-	ModifiedTime       string
+	TrafficControlId   common.String
+	TrafficControlName common.String
+	Description        common.String
+	TrafficControlUnit common.String
+	ApiDefault         common.Integer
+	UserDefault        common.Integer
+	AppDefault         common.Integer
+	CreatedTime        common.String
+	ModifiedTime       common.String
 	SpecialPolicies    DescribeTrafficControlsSpecialPolicyList
 }
 
 type DescribeTrafficControlsSpecialPolicy struct {
-	SpecialType string
+	SpecialType common.String
 	Specials    DescribeTrafficControlsSpecialList
 }
 
 type DescribeTrafficControlsSpecial struct {
-	SpecialKey   string
-	TrafficValue int
+	SpecialKey   common.String
+	TrafficValue common.Integer
 }
 
 type DescribeTrafficControlsTrafficControlList []DescribeTrafficControlsTrafficControl

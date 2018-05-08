@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnCertificateDetailRequest struct {
@@ -22,9 +23,9 @@ func (req *DescribeDcdnCertificateDetailRequest) Invoke(client *sdk.Client) (res
 
 type DescribeDcdnCertificateDetailResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Cert      string
-	Key       string
-	CertId    int64
-	CertName  string
+	RequestId common.String
+	Cert      common.String
+	Key       common.String
+	CertId    common.Long
+	CertName  common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryContactInfoRequest struct {
@@ -23,22 +24,22 @@ func (req *QueryContactInfoRequest) Invoke(client *sdk.Client) (resp *QueryConta
 
 type QueryContactInfoResponse struct {
 	responses.BaseResponse
-	RequestId                string
-	CreateDate               string
-	RegistrantName           string
-	RegistrantOrganization   string
-	Country                  string
-	Province                 string
-	City                     string
-	Address                  string
-	Email                    string
-	PostalCode               string
-	TelArea                  string
-	Telephone                string
-	TelExt                   string
-	ZhRegistrantName         string
-	ZhRegistrantOrganization string
-	ZhProvince               string
-	ZhCity                   string
-	ZhAddress                string
+	RequestId                common.String
+	CreateDate               common.String
+	RegistrantName           common.String
+	RegistrantOrganization   common.String
+	Country                  common.String
+	Province                 common.String
+	City                     common.String
+	Address                  common.String
+	Email                    common.String
+	PostalCode               common.String
+	TelArea                  common.String
+	Telephone                common.String
+	TelExt                   common.String
+	ZhRegistrantName         common.String
+	ZhRegistrantOrganization common.String
+	ZhProvince               common.String
+	ZhCity                   common.String
+	ZhAddress                common.String
 }

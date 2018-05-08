@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveSnapshotDetectPornConfigRequest struct {
@@ -28,22 +29,22 @@ func (req *DescribeLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Clien
 
 type DescribeLiveSnapshotDetectPornConfigResponse struct {
 	responses.BaseResponse
-	RequestId                        string
-	PageNum                          int
-	PageSize                         int
-	Order                            string
-	TotalNum                         int
-	TotalPage                        int
+	RequestId                        common.String
+	PageNum                          common.Integer
+	PageSize                         common.Integer
+	Order                            common.String
+	TotalNum                         common.Integer
+	TotalPage                        common.Integer
 	LiveSnapshotDetectPornConfigList DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfigList
 }
 
 type DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfig struct {
-	DomainName  string
-	AppName     string
-	OssEndpoint string
-	OssBucket   string
-	OssObject   string
-	Interval    int
+	DomainName  common.String
+	AppName     common.String
+	OssEndpoint common.String
+	OssBucket   common.String
+	OssObject   common.String
+	Interval    common.Integer
 	Scenes      DescribeLiveSnapshotDetectPornConfigSceneList
 }
 
@@ -62,10 +63,10 @@ func (list *DescribeLiveSnapshotDetectPornConfigLiveSnapshotDetectPornConfigList
 	return nil
 }
 
-type DescribeLiveSnapshotDetectPornConfigSceneList []string
+type DescribeLiveSnapshotDetectPornConfigSceneList []common.String
 
 func (list *DescribeLiveSnapshotDetectPornConfigSceneList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckAccountAndPasswordRiskRequest struct {
@@ -22,17 +23,17 @@ func (req *CheckAccountAndPasswordRiskRequest) Invoke(client *sdk.Client) (resp 
 
 type CheckAccountAndPasswordRiskResponse struct {
 	responses.BaseResponse
-	ErrorCode int
-	ErrorMsg  string
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Data      CheckAccountAndPasswordRiskData
 }
 
 type CheckAccountAndPasswordRiskData struct {
-	FnalDecision     int
-	EventId          string
-	UserId           string
-	FinalScore       int
-	FinalDesc        string
-	Detail           string
-	CaptchaCheckData string
+	FnalDecision     common.Integer
+	EventId          common.String
+	UserId           common.String
+	FinalScore       common.Integer
+	FinalDesc        common.String
+	Detail           common.String
+	CaptchaCheckData common.String
 }

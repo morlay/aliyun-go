@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDeploymentSetsRequest struct {
@@ -33,23 +34,23 @@ func (req *DescribeDeploymentSetsRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeDeploymentSetsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	RegionId       string
-	TotalCount     int
-	PageNumber     int
-	PageSize       int
+	RequestId      common.String
+	RegionId       common.String
+	TotalCount     common.Integer
+	PageNumber     common.Integer
+	PageSize       common.Integer
 	DeploymentSets DescribeDeploymentSetsDeploymentSetList
 }
 
 type DescribeDeploymentSetsDeploymentSet struct {
-	DeploymentSetId          string
-	DeploymentSetDescription string
-	DeploymentSetName        string
-	Strategy                 string
-	Domain                   string
-	Granularity              string
-	InstanceAmount           int
-	CreationTime             string
+	DeploymentSetId          common.String
+	DeploymentSetDescription common.String
+	DeploymentSetName        common.String
+	Strategy                 common.String
+	Domain                   common.String
+	Granularity              common.String
+	InstanceAmount           common.Integer
+	CreationTime             common.String
 }
 
 type DescribeDeploymentSetsDeploymentSetList []DescribeDeploymentSetsDeploymentSet

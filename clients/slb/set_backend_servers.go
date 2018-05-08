@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetBackendServersRequest struct {
@@ -29,17 +30,17 @@ func (req *SetBackendServersRequest) Invoke(client *sdk.Client) (resp *SetBacken
 
 type SetBackendServersResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	LoadBalancerId string
+	RequestId      common.String
+	LoadBalancerId common.String
 	BackendServers SetBackendServersBackendServerList
 }
 
 type SetBackendServersBackendServer struct {
-	ServerId string
-	Weight   string
-	ServerIp string
-	VpcId    string
-	Type     string
+	ServerId common.String
+	Weight   common.String
+	ServerIp common.String
+	VpcId    common.String
+	Type     common.String
 }
 
 type SetBackendServersBackendServerList []SetBackendServersBackendServer

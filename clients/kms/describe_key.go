@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeKeyRequest struct {
@@ -21,19 +22,19 @@ func (req *DescribeKeyRequest) Invoke(client *sdk.Client) (resp *DescribeKeyResp
 
 type DescribeKeyResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	KeyMetadata DescribeKeyKeyMetadata
 }
 
 type DescribeKeyKeyMetadata struct {
-	CreationDate       string
-	Description        string
-	KeyId              string
-	KeyState           string
-	KeyUsage           string
-	DeleteDate         string
-	Creator            string
-	Arn                string
-	Origin             string
-	MaterialExpireTime string
+	CreationDate       common.String
+	Description        common.String
+	KeyId              common.String
+	KeyState           common.String
+	KeyUsage           common.String
+	DeleteDate         common.String
+	Creator            common.String
+	Arn                common.String
+	Origin             common.String
+	MaterialExpireTime common.String
 }

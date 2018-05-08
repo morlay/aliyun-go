@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainsUsageByDayRequest struct {
@@ -26,37 +27,37 @@ func (req *DescribeDomainsUsageByDayRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDomainsUsageByDayResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DomainName   string
-	DataInterval string
-	StartTime    string
-	EndTime      string
+	RequestId    common.String
+	DomainName   common.String
+	DataInterval common.String
+	StartTime    common.String
+	EndTime      common.String
 	UsageByDays  DescribeDomainsUsageByDayUsageByDayList
 	UsageTotal   DescribeDomainsUsageByDayUsageTotal
 }
 
 type DescribeDomainsUsageByDayUsageByDay struct {
-	TimeStamp      string
-	Qps            string
-	BytesHitRate   string
-	RequestHitRate string
-	MaxBps         string
-	MaxBpsTime     string
-	MaxSrcBps      string
-	MaxSrcBpsTime  string
-	TotalAccess    string
-	TotalTraffic   string
+	TimeStamp      common.String
+	Qps            common.String
+	BytesHitRate   common.String
+	RequestHitRate common.String
+	MaxBps         common.String
+	MaxBpsTime     common.String
+	MaxSrcBps      common.String
+	MaxSrcBpsTime  common.String
+	TotalAccess    common.String
+	TotalTraffic   common.String
 }
 
 type DescribeDomainsUsageByDayUsageTotal struct {
-	BytesHitRate   string
-	RequestHitRate string
-	MaxBps         string
-	MaxBpsTime     string
-	MaxSrcBps      string
-	MaxSrcBpsTime  string
-	TotalAccess    string
-	TotalTraffic   string
+	BytesHitRate   common.String
+	RequestHitRate common.String
+	MaxBps         common.String
+	MaxBpsTime     common.String
+	MaxSrcBps      common.String
+	MaxSrcBpsTime  common.String
+	TotalAccess    common.String
+	TotalTraffic   common.String
 }
 
 type DescribeDomainsUsageByDayUsageByDayList []DescribeDomainsUsageByDayUsageByDay

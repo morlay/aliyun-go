@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCasterVideoResourceRequest struct {
@@ -29,6 +30,6 @@ func (req *AddCasterVideoResourceRequest) Invoke(client *sdk.Client) (resp *AddC
 
 type AddCasterVideoResourceResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	ResourceId string
+	RequestId  common.String
+	ResourceId common.String
 }

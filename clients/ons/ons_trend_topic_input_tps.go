@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsTrendTopicInputTpsRequest struct {
@@ -29,21 +30,21 @@ func (req *OnsTrendTopicInputTpsRequest) Invoke(client *sdk.Client) (resp *OnsTr
 
 type OnsTrendTopicInputTpsResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsTrendTopicInputTpsData
 }
 
 type OnsTrendTopicInputTpsData struct {
-	Title   string
-	XUnit   string
-	YUnit   string
+	Title   common.String
+	XUnit   common.String
+	YUnit   common.String
 	Records OnsTrendTopicInputTpsStatsDataDoList
 }
 
 type OnsTrendTopicInputTpsStatsDataDo struct {
-	X int64
-	Y float32
+	X common.Long
+	Y common.Float
 }
 
 type OnsTrendTopicInputTpsStatsDataDoList []OnsTrendTopicInputTpsStatsDataDo

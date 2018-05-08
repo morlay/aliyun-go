@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainISPDataRequest struct {
@@ -26,29 +27,29 @@ func (req *DescribeDomainISPDataRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeDomainISPDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DomainName   string
-	DataInterval string
-	StartTime    string
-	EndTime      string
+	RequestId    common.String
+	DomainName   common.String
+	DataInterval common.String
+	StartTime    common.String
+	EndTime      common.String
 	Value        DescribeDomainISPDataISPProportionDataList
 }
 
 type DescribeDomainISPDataISPProportionData struct {
-	ISP             string
-	Proportion      string
-	IspEname        string
-	AvgObjectSize   string
-	AvgResponseTime string
-	Bps             string
-	ByteHitRate     string
-	Qps             string
-	ReqErrRate      string
-	ReqHitRate      string
-	AvgResponseRate string
-	TotalBytes      string
-	BytesProportion string
-	TotalQuery      string
+	ISP             common.String
+	Proportion      common.String
+	IspEname        common.String
+	AvgObjectSize   common.String
+	AvgResponseTime common.String
+	Bps             common.String
+	ByteHitRate     common.String
+	Qps             common.String
+	ReqErrRate      common.String
+	ReqHitRate      common.String
+	AvgResponseRate common.String
+	TotalBytes      common.String
+	BytesProportion common.String
+	TotalQuery      common.String
 }
 
 type DescribeDomainISPDataISPProportionDataList []DescribeDomainISPDataISPProportionData

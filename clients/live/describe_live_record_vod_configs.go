@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveRecordVodConfigsRequest struct {
@@ -27,22 +28,22 @@ func (req *DescribeLiveRecordVodConfigsRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeLiveRecordVodConfigsResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	PageNum              int
-	PageSize             int
-	Total                string
+	RequestId            common.String
+	PageNum              common.Integer
+	PageSize             common.Integer
+	Total                common.String
 	LiveRecordVodConfigs DescribeLiveRecordVodConfigsLiveRecordVodConfigList
 }
 
 type DescribeLiveRecordVodConfigsLiveRecordVodConfig struct {
-	CreateTime                 string
-	DomainName                 string
-	AppName                    string
-	StreamName                 string
-	VodTranscodeGroupId        string
-	CycleDuration              int
-	AutoCompose                string
-	ComposeVodTranscodeGroupId string
+	CreateTime                 common.String
+	DomainName                 common.String
+	AppName                    common.String
+	StreamName                 common.String
+	VodTranscodeGroupId        common.String
+	CycleDuration              common.Integer
+	AutoCompose                common.String
+	ComposeVodTranscodeGroupId common.String
 }
 
 type DescribeLiveRecordVodConfigsLiveRecordVodConfigList []DescribeLiveRecordVodConfigsLiveRecordVodConfig

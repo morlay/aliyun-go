@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListMyGroupInstancesDetailsRequest struct {
@@ -26,41 +27,41 @@ func (req *ListMyGroupInstancesDetailsRequest) Invoke(client *sdk.Client) (resp 
 
 type ListMyGroupInstancesDetailsResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorCode    int
-	ErrorMessage string
-	PageNumber   int
-	PageSize     int
-	Total        int
+	ErrorCode    common.Integer
+	ErrorMessage common.String
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	Total        common.Integer
 	Resources    ListMyGroupInstancesDetailsResourceList
 }
 
 type ListMyGroupInstancesDetailsResource struct {
-	AliUid       int64
-	InstanceName string
-	InstanceId   string
-	Desc         string
-	NetworkType  string
-	Category     string
+	AliUid       common.Long
+	InstanceName common.String
+	InstanceId   common.String
+	Desc         common.String
+	NetworkType  common.String
+	Category     common.String
 	Tags         ListMyGroupInstancesDetailsTagList
 	Region       ListMyGroupInstancesDetailsRegion
 	Vpc          ListMyGroupInstancesDetailsVpc
 }
 
 type ListMyGroupInstancesDetailsTag struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type ListMyGroupInstancesDetailsRegion struct {
-	RegionId         string
-	AvailabilityZone string
+	RegionId         common.String
+	AvailabilityZone common.String
 }
 
 type ListMyGroupInstancesDetailsVpc struct {
-	VpcInstanceId     string
-	VswitchInstanceId string
+	VpcInstanceId     common.String
+	VswitchInstanceId common.String
 }
 
 type ListMyGroupInstancesDetailsResourceList []ListMyGroupInstancesDetailsResource

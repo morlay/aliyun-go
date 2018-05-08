@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCaptchaDayRequest struct {
@@ -24,20 +25,20 @@ func (req *DescribeCaptchaDayRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeCaptchaDayResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	BizCode    string
+	RequestId  common.String
+	BizCode    common.String
 	HasData    bool
 	CaptchaDay DescribeCaptchaDayCaptchaDay
 }
 
 type DescribeCaptchaDayCaptchaDay struct {
-	Init                        int
-	AskForVerify                int
-	DirecetStrategyInterception int
-	TwiceVerify                 int
-	Pass                        int
-	CheckTested                 int
-	UncheckTested               int
-	LegalSign                   int
-	MaliciousFlow               int
+	Init                        common.Integer
+	AskForVerify                common.Integer
+	DirecetStrategyInterception common.Integer
+	TwiceVerify                 common.Integer
+	Pass                        common.Integer
+	CheckTested                 common.Integer
+	UncheckTested               common.Integer
+	LegalSign                   common.Integer
+	MaliciousFlow               common.Integer
 }

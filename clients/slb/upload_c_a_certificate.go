@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UploadCACertificateRequest struct {
@@ -27,11 +28,11 @@ func (req *UploadCACertificateRequest) Invoke(client *sdk.Client) (resp *UploadC
 
 type UploadCACertificateResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	CACertificateId   string
-	CACertificateName string
-	Fingerprint       string
-	ResourceGroupId   string
-	CreateTime        string
-	CreateTimeStamp   int64
+	RequestId         common.String
+	CACertificateId   common.String
+	CACertificateName common.String
+	Fingerprint       common.String
+	ResourceGroupId   common.String
+	CreateTime        common.String
+	CreateTimeStamp   common.Long
 }

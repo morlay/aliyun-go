@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryUniqueDeviceStatRequest struct {
@@ -25,13 +26,13 @@ func (req *QueryUniqueDeviceStatRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryUniqueDeviceStatResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	AppDeviceStats QueryUniqueDeviceStatAppDeviceStatList
 }
 
 type QueryUniqueDeviceStatAppDeviceStat struct {
-	Time  string
-	Count int64
+	Time  common.String
+	Count common.Long
 }
 
 type QueryUniqueDeviceStatAppDeviceStatList []QueryUniqueDeviceStatAppDeviceStat

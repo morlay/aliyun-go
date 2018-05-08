@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ActionDiskMaskRequest struct {
@@ -23,6 +24,6 @@ func (req *ActionDiskMaskRequest) Invoke(client *sdk.Client) (resp *ActionDiskMa
 type ActionDiskMaskResponse struct {
 	responses.BaseResponse
 	Status  bool
-	Message string
-	Result  string
+	Message common.String
+	Result  common.String
 }

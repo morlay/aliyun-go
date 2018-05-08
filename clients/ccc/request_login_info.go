@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RequestLoginInfoRequest struct {
@@ -20,23 +21,23 @@ func (req *RequestLoginInfoRequest) Invoke(client *sdk.Client) (resp *RequestLog
 
 type RequestLoginInfoResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	LoginInfo      RequestLoginInfoLoginInfo
 }
 
 type RequestLoginInfoLoginInfo struct {
-	UserName       string
-	DisplayName    string
-	PhoneNumber    string
-	Region         string
-	WebRtcUrl      string
-	AgentServerUrl string
-	Extension      string
-	TenantId       string
-	Signature      string
-	SignData       string
+	UserName       common.String
+	DisplayName    common.String
+	PhoneNumber    common.String
+	Region         common.String
+	WebRtcUrl      common.String
+	AgentServerUrl common.String
+	Extension      common.String
+	TenantId       common.String
+	Signature      common.String
+	SignData       common.String
 }

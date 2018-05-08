@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type NodeProcessesRequest struct {
@@ -22,20 +23,20 @@ func (req *NodeProcessesRequest) Invoke(client *sdk.Client) (resp *NodeProcesses
 
 type NodeProcessesResponse struct {
 	responses.BaseResponse
-	ErrorCode     int
-	ErrorMessage  string
+	ErrorCode     common.Integer
+	ErrorMessage  common.String
 	Success       bool
-	RequestId     string
+	RequestId     common.String
 	NodeProcesses NodeProcessesNodeProcessList
 }
 
 type NodeProcessesNodeProcess struct {
-	Id          int64
-	Name        string
-	InstanceId  string
-	ProcessName string
-	ProcessUser string
-	Command     string
+	Id          common.Long
+	Name        common.String
+	InstanceId  common.String
+	ProcessName common.String
+	ProcessUser common.String
+	Command     common.String
 }
 
 type NodeProcessesNodeProcessList []NodeProcessesNodeProcess

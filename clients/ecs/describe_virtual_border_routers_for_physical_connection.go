@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVirtualBorderRoutersForPhysicalConnectionRequest struct {
@@ -33,22 +34,22 @@ type DescribeVirtualBorderRoutersForPhysicalConnectionFilter struct {
 
 type DescribeVirtualBorderRoutersForPhysicalConnectionResponse struct {
 	responses.BaseResponse
-	RequestId                                   string
-	PageNumber                                  int
-	PageSize                                    int
-	TotalCount                                  int
+	RequestId                                   common.String
+	PageNumber                                  common.Integer
+	PageSize                                    common.Integer
+	TotalCount                                  common.Integer
 	VirtualBorderRouterForPhysicalConnectionSet DescribeVirtualBorderRoutersForPhysicalConnectionVirtualBorderRouterForPhysicalConnectionTypeList
 }
 
 type DescribeVirtualBorderRoutersForPhysicalConnectionVirtualBorderRouterForPhysicalConnectionType struct {
-	VbrId           string
-	VbrOwnerUid     int64
-	CreationTime    string
-	ActivationTime  string
-	TerminationTime string
-	RecoveryTime    string
-	VlanId          int
-	CircuitCode     string
+	VbrId           common.String
+	VbrOwnerUid     common.Long
+	CreationTime    common.String
+	ActivationTime  common.String
+	TerminationTime common.String
+	RecoveryTime    common.String
+	VlanId          common.Integer
+	CircuitCode     common.String
 }
 
 type DescribeVirtualBorderRoutersForPhysicalConnectionFilterList []DescribeVirtualBorderRoutersForPhysicalConnectionFilter

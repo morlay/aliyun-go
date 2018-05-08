@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RegisterDeviceRequest struct {
@@ -21,15 +22,15 @@ func (req *RegisterDeviceRequest) Invoke(client *sdk.Client) (resp *RegisterDevi
 
 type RegisterDeviceResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         RegisterDeviceData
 }
 
 type RegisterDeviceData struct {
-	IotId        string
-	ProductKey   string
-	DeviceName   string
-	DeviceSecret string
+	IotId        common.String
+	ProductKey   common.String
+	DeviceName   common.String
+	DeviceSecret common.String
 }

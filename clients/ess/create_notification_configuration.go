@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateNotificationConfigurationRequest struct {
@@ -26,7 +27,7 @@ func (req *CreateNotificationConfigurationRequest) Invoke(client *sdk.Client) (r
 
 type CreateNotificationConfigurationResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type CreateNotificationConfigurationNotificationTypeList []string

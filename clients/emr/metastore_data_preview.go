@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MetastoreDataPreviewRequest struct {
@@ -22,6 +23,6 @@ func (req *MetastoreDataPreviewRequest) Invoke(client *sdk.Client) (resp *Metast
 
 type MetastoreDataPreviewResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Samples   string
+	RequestId common.String
+	Samples   common.String
 }

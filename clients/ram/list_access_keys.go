@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAccessKeysRequest struct {
@@ -22,14 +23,14 @@ func (req *ListAccessKeysRequest) Invoke(client *sdk.Client) (resp *ListAccessKe
 
 type ListAccessKeysResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	AccessKeys ListAccessKeysAccessKeyList
 }
 
 type ListAccessKeysAccessKey struct {
-	AccessKeyId string
-	Status      string
-	CreateDate  string
+	AccessKeyId common.String
+	Status      common.String
+	CreateDate  common.String
 }
 
 type ListAccessKeysAccessKeyList []ListAccessKeysAccessKey

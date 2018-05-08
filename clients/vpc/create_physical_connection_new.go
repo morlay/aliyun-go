@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreatePhysicalConnectionNewRequest struct {
@@ -36,6 +37,6 @@ func (req *CreatePhysicalConnectionNewRequest) Invoke(client *sdk.Client) (resp 
 
 type CreatePhysicalConnectionNewResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	PhysicalConnectionId string
+	RequestId            common.String
+	PhysicalConnectionId common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeIpInfoRequest struct {
@@ -22,10 +23,10 @@ func (req *DescribeIpInfoRequest) Invoke(client *sdk.Client) (resp *DescribeIpIn
 
 type DescribeIpInfoResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	CdnIp       string
-	ISP         string
-	IspEname    string
-	Region      string
-	RegionEname string
+	RequestId   common.String
+	CdnIp       common.String
+	ISP         common.String
+	IspEname    common.String
+	Region      common.String
+	RegionEname common.String
 }

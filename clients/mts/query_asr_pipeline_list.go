@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryAsrPipelineListRequest struct {
@@ -26,22 +27,22 @@ func (req *QueryAsrPipelineListRequest) Invoke(client *sdk.Client) (resp *QueryA
 
 type QueryAsrPipelineListResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	PipelineList QueryAsrPipelineListPipelineList
 	NonExistIds  QueryAsrPipelineListNonExistIdList
 }
 
 type QueryAsrPipelineListPipeline struct {
-	Id           string
-	Name         string
-	State        string
-	Priority     string
+	Id           common.String
+	Name         common.String
+	State        common.String
+	Priority     common.String
 	NotifyConfig QueryAsrPipelineListNotifyConfig
 }
 
 type QueryAsrPipelineListNotifyConfig struct {
-	Topic     string
-	QueueName string
+	Topic     common.String
+	QueueName common.String
 }
 
 type QueryAsrPipelineListPipelineList []QueryAsrPipelineListPipeline
@@ -59,10 +60,10 @@ func (list *QueryAsrPipelineListPipelineList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryAsrPipelineListNonExistIdList []string
+type QueryAsrPipelineListNonExistIdList []common.String
 
 func (list *QueryAsrPipelineListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifySslVpnClientCertRequest struct {
@@ -26,7 +27,7 @@ func (req *ModifySslVpnClientCertRequest) Invoke(client *sdk.Client) (resp *Modi
 
 type ModifySslVpnClientCertResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	Name               string
-	SslVpnClientCertId string
+	RequestId          common.String
+	Name               common.String
+	SslVpnClientCertId common.String
 }

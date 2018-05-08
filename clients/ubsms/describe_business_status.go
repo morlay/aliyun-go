@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBusinessStatusRequest struct {
@@ -23,20 +24,20 @@ func (req *DescribeBusinessStatusRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeBusinessStatusResponse struct {
 	responses.BaseResponse
-	RequestId              string
+	RequestId              common.String
 	Success                bool
 	UserBusinessStatusList DescribeBusinessStatusUserBusinessStatusList
 }
 
 type DescribeBusinessStatusUserBusinessStatus struct {
-	Uid         string
-	ServiceCode string
+	Uid         common.String
+	ServiceCode common.String
 	Statuses    DescribeBusinessStatusStatusList
 }
 
 type DescribeBusinessStatusStatus struct {
-	StatusKey   string
-	StatusValue string
+	StatusKey   common.String
+	StatusValue common.String
 }
 
 type DescribeBusinessStatusUserBusinessStatusList []DescribeBusinessStatusUserBusinessStatus

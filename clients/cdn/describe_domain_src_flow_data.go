@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainSrcFlowDataRequest struct {
@@ -28,17 +29,17 @@ func (req *DescribeDomainSrcFlowDataRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDomainSrcFlowDataResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	DomainName             string
-	StartTime              string
-	EndTime                string
-	DataInterval           string
+	RequestId              common.String
+	DomainName             common.String
+	StartTime              common.String
+	EndTime                common.String
+	DataInterval           common.String
 	SrcFlowDataPerInterval DescribeDomainSrcFlowDataDataModuleList
 }
 
 type DescribeDomainSrcFlowDataDataModule struct {
-	TimeStamp string
-	Value     string
+	TimeStamp common.String
+	Value     common.String
 }
 
 type DescribeDomainSrcFlowDataDataModuleList []DescribeDomainSrcFlowDataDataModule

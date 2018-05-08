@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCashDetailRequest struct {
@@ -19,14 +20,14 @@ func (req *DescribeCashDetailRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeCashDetailResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	BalanceAmount        string
-	AmountOwed           string
-	EnableThresholdAlert string
-	MiniAlertThreshold   int64
-	FrozenAmount         string
-	CreditCardAmount     string
-	RemmitanceAmount     string
-	CreditLimit          string
-	AvailableCredit      string
+	RequestId            common.String
+	BalanceAmount        common.String
+	AmountOwed           common.String
+	EnableThresholdAlert common.String
+	MiniAlertThreshold   common.Long
+	FrozenAmount         common.String
+	CreditCardAmount     common.String
+	RemmitanceAmount     common.String
+	CreditLimit          common.String
+	AvailableCredit      common.String
 }

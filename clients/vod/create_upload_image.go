@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateUploadImageRequest struct {
@@ -27,9 +28,9 @@ func (req *CreateUploadImageRequest) Invoke(client *sdk.Client) (resp *CreateUpl
 
 type CreateUploadImageResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	ImageId       string
-	ImageURL      string
-	UploadAddress string
-	UploadAuth    string
+	RequestId     common.String
+	ImageId       common.String
+	ImageURL      common.String
+	UploadAddress common.String
+	UploadAuth    common.String
 }

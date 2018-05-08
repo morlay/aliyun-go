@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetTagPhotosRequest struct {
@@ -26,14 +27,14 @@ func (req *GetTagPhotosRequest) Invoke(client *sdk.Client) (resp *GetTagPhotosRe
 
 type GetTagPhotosResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextMarker string
+	RequestId  common.String
+	NextMarker common.String
 	Photos     GetTagPhotosPhotosItemList
 }
 
 type GetTagPhotosPhotosItem struct {
-	SrcUri   string
-	TagScore float32
+	SrcUri   common.String
+	TagScore common.Float
 }
 
 type GetTagPhotosPhotosItemList []GetTagPhotosPhotosItem

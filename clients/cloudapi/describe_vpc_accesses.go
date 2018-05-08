@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpcAccessesRequest struct {
@@ -21,19 +22,19 @@ func (req *DescribeVpcAccessesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeVpcAccessesResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	TotalCount          int
-	PageSize            int
-	PageNumber          int
+	RequestId           common.String
+	TotalCount          common.Integer
+	PageSize            common.Integer
+	PageNumber          common.Integer
 	VpcAccessAttributes DescribeVpcAccessesVpcAccessAttributeList
 }
 
 type DescribeVpcAccessesVpcAccessAttribute struct {
-	VpcId       string
-	InstanceId  string
-	Port        int
-	Name        string
-	CreatedTime string
+	VpcId       common.String
+	InstanceId  common.String
+	Port        common.Integer
+	Name        common.String
+	CreatedTime common.String
 }
 
 type DescribeVpcAccessesVpcAccessAttributeList []DescribeVpcAccessesVpcAccessAttribute

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVulListRequest struct {
@@ -42,18 +43,18 @@ func (req *DescribeVulListRequest) Invoke(client *sdk.Client) (resp *DescribeVul
 
 type DescribeVulListResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Count       int
-	PageSize    int
-	CurrentPage int
-	TotalCount  int
+	RequestId   common.String
+	Count       common.Integer
+	PageSize    common.Integer
+	CurrentPage common.Integer
+	TotalCount  common.Integer
 	VulRecords  DescribeVulListVulRecordList
 }
 
-type DescribeVulListVulRecordList []string
+type DescribeVulListVulRecordList []common.String
 
 func (list *DescribeVulListVulRecordList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

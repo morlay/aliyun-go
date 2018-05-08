@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetPasswordPolicyRequest struct {
@@ -28,18 +29,18 @@ func (req *SetPasswordPolicyRequest) Invoke(client *sdk.Client) (resp *SetPasswo
 
 type SetPasswordPolicyResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	PasswordPolicy SetPasswordPolicyPasswordPolicy
 }
 
 type SetPasswordPolicyPasswordPolicy struct {
-	MinimumPasswordLength      int
+	MinimumPasswordLength      common.Integer
 	RequireLowercaseCharacters bool
 	RequireUppercaseCharacters bool
 	RequireNumbers             bool
 	RequireSymbols             bool
 	HardExpiry                 bool
-	MaxPasswordAge             int
-	PasswordReusePrevention    int
-	MaxLoginAttemps            int
+	MaxPasswordAge             common.Integer
+	PasswordReusePrevention    common.Integer
+	MaxLoginAttemps            common.Integer
 }

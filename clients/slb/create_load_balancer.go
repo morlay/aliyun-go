@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateLoadBalancerRequest struct {
@@ -41,13 +42,13 @@ func (req *CreateLoadBalancerRequest) Invoke(client *sdk.Client) (resp *CreateLo
 
 type CreateLoadBalancerResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	LoadBalancerId   string
-	ResourceGroupId  string
-	Address          string
-	LoadBalancerName string
-	VpcId            string
-	VSwitchId        string
-	NetworkType      string
-	OrderId          int64
+	RequestId        common.String
+	LoadBalancerId   common.String
+	ResourceGroupId  common.String
+	Address          common.String
+	LoadBalancerName common.String
+	VpcId            common.String
+	VSwitchId        common.String
+	NetworkType      common.String
+	OrderId          common.Long
 }

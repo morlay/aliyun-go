@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiDocRequest struct {
@@ -24,20 +25,20 @@ func (req *DescribeApiDocRequest) Invoke(client *sdk.Client) (resp *DescribeApiD
 
 type DescribeApiDocResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	RegionId          string
-	GroupId           string
-	GroupName         string
-	StageName         string
-	ApiId             string
-	ApiName           string
-	Description       string
-	Visibility        string
-	AuthType          string
-	ResultType        string
-	ResultSample      string
-	FailResultSample  string
-	DeployedTime      string
+	RequestId         common.String
+	RegionId          common.String
+	GroupId           common.String
+	GroupName         common.String
+	StageName         common.String
+	ApiId             common.String
+	ApiName           common.String
+	Description       common.String
+	Visibility        common.String
+	AuthType          common.String
+	ResultType        common.String
+	ResultSample      common.String
+	FailResultSample  common.String
+	DeployedTime      common.String
 	ErrorCodeSamples  DescribeApiDocErrorCodeSampleList
 	RequestParameters DescribeApiDocRequestParameterList
 	RequestConfig     DescribeApiRequestConfig

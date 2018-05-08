@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type IndexFaceRequest struct {
@@ -25,30 +26,30 @@ func (req *IndexFaceRequest) Invoke(client *sdk.Client) (resp *IndexFaceResponse
 
 type IndexFaceResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	SetId          string
+	RequestId      common.String
+	SetId          common.String
 	SuccessDetails IndexFaceSuccessDetailsItemList
 	FailDetails    IndexFaceFailDetailsItemList
 	SrcUris        IndexFaceSrcUriList
 }
 
 type IndexFaceSuccessDetailsItem struct {
-	SrcUri  string
-	PhotoId string
+	SrcUri  common.String
+	PhotoId common.String
 	Faces   IndexFaceFacesItemList
 }
 
 type IndexFaceFacesItem struct {
-	FaceId        string
+	FaceId        common.String
 	FaceRectangle IndexFaceFaceRectangle
 	FaceAttribute IndexFaceFaceAttribute
 }
 
 type IndexFaceFaceRectangle struct {
-	Top    string
-	Left   string
-	Width  string
-	Height string
+	Top    common.String
+	Left   common.String
+	Width  common.String
+	Height common.String
 }
 
 type IndexFaceFaceAttribute struct {
@@ -61,17 +62,17 @@ type IndexFaceFaceAttribute struct {
 }
 
 type IndexFaceGender struct {
-	Value string
+	Value common.String
 }
 
 type IndexFaceAge struct {
-	Value int
+	Value common.Integer
 }
 
 type IndexFaceHeadpose struct {
-	Pitch_angle float32
-	Roll_angle  float32
-	Yaw_angle   float32
+	Pitch_angle common.Float
+	Roll_angle  common.Float
+	Yaw_angle   common.Float
 }
 
 type IndexFaceEyestatus struct {
@@ -80,21 +81,21 @@ type IndexFaceEyestatus struct {
 }
 
 type IndexFaceLeft_eye_status struct {
-	Normal_glass_eye_open  float32
-	No_glass_eye_close     float32
-	Occlusion              float32
-	No_glass_eye_open      float32
-	Normal_glass_eye_close float32
-	Dark_glasses           float32
+	Normal_glass_eye_open  common.Float
+	No_glass_eye_close     common.Float
+	Occlusion              common.Float
+	No_glass_eye_open      common.Float
+	Normal_glass_eye_close common.Float
+	Dark_glasses           common.Float
 }
 
 type IndexFaceRight_eye_status struct {
-	Normal_glass_eye_open  float32
-	No_glass_eye_close     float32
-	Occlusion              float32
-	No_glass_eye_open      float32
-	Normal_glass_eye_close float32
-	Dark_glasses           float32
+	Normal_glass_eye_open  common.Float
+	No_glass_eye_close     common.Float
+	Occlusion              common.Float
+	No_glass_eye_open      common.Float
+	Normal_glass_eye_close common.Float
+	Dark_glasses           common.Float
 }
 
 type IndexFaceBlur struct {
@@ -102,18 +103,18 @@ type IndexFaceBlur struct {
 }
 
 type IndexFaceBlurness struct {
-	Value     float32
-	Threshold float32
+	Value     common.Float
+	Threshold common.Float
 }
 
 type IndexFaceFacequality struct {
-	Value     float32
-	Threshold float32
+	Value     common.Float
+	Threshold common.Float
 }
 
 type IndexFaceFailDetailsItem struct {
-	SrcUri string
-	Reason string
+	SrcUri common.String
+	Reason common.String
 }
 
 type IndexFaceSuccessDetailsItemList []IndexFaceSuccessDetailsItem
@@ -146,10 +147,10 @@ func (list *IndexFaceFailDetailsItemList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type IndexFaceSrcUriList []string
+type IndexFaceSrcUriList []common.String
 
 func (list *IndexFaceSrcUriList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

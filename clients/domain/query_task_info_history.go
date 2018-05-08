@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTaskInfoHistoryRequest struct {
@@ -28,8 +29,8 @@ func (req *QueryTaskInfoHistoryRequest) Invoke(client *sdk.Client) (resp *QueryT
 
 type QueryTaskInfoHistoryResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	PageSize          int
+	RequestId         common.String
+	PageSize          common.Integer
 	Objects           QueryTaskInfoHistoryTaskInfoHistoryList
 	CurrentPageCursor QueryTaskInfoHistoryCurrentPageCursor
 	NextPageCursor    QueryTaskInfoHistoryNextPageCursor
@@ -37,51 +38,51 @@ type QueryTaskInfoHistoryResponse struct {
 }
 
 type QueryTaskInfoHistoryTaskInfoHistory struct {
-	TaskType            string
-	TaskNum             int
-	TaskStatus          string
-	CreateTime          string
-	Clientip            string
-	TaskNo              string
-	CreateTimeLong      int64
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskType            common.String
+	TaskNum             common.Integer
+	TaskStatus          common.String
+	CreateTime          common.String
+	Clientip            common.String
+	TaskNo              common.String
+	CreateTimeLong      common.Long
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskInfoHistoryCurrentPageCursor struct {
-	TaskType            string
-	TaskNum             int
-	TaskStatus          string
-	CreateTime          string
-	Clientip            string
-	TaskNo              string
-	CreateTimeLong      int64
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskType            common.String
+	TaskNum             common.Integer
+	TaskStatus          common.String
+	CreateTime          common.String
+	Clientip            common.String
+	TaskNo              common.String
+	CreateTimeLong      common.Long
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskInfoHistoryNextPageCursor struct {
-	TaskType            string
-	TaskNum             int
-	TaskStatus          string
-	CreateTime          string
-	Clientip            string
-	TaskNo              string
-	CreateTimeLong      int64
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskType            common.String
+	TaskNum             common.Integer
+	TaskStatus          common.String
+	CreateTime          common.String
+	Clientip            common.String
+	TaskNo              common.String
+	CreateTimeLong      common.Long
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskInfoHistoryPrePageCursor struct {
-	TaskType            string
-	TaskNum             int
-	TaskStatus          string
-	CreateTime          string
-	Clientip            string
-	TaskNo              string
-	CreateTimeLong      int64
-	TaskStatusCode      int
-	TaskTypeDescription string
+	TaskType            common.String
+	TaskNum             common.Integer
+	TaskStatus          common.String
+	CreateTime          common.String
+	Clientip            common.String
+	TaskNo              common.String
+	CreateTimeLong      common.Long
+	TaskStatusCode      common.Integer
+	TaskTypeDescription common.String
 }
 
 type QueryTaskInfoHistoryTaskInfoHistoryList []QueryTaskInfoHistoryTaskInfoHistory

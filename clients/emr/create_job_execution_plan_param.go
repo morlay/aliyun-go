@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateJobExecutionPlanParamRequest struct {
@@ -30,10 +31,10 @@ type CreateJobExecutionPlanParamWorkParamPair struct {
 
 type CreateJobExecutionPlanParamResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Success   string
-	ErrCode   string
-	ErrMsg    string
+	RequestId common.String
+	Success   common.String
+	ErrCode   common.String
+	ErrMsg    common.String
 	Ids       CreateJobExecutionPlanParamIdList
 }
 
@@ -52,10 +53,10 @@ func (list *CreateJobExecutionPlanParamWorkParamPairList) UnmarshalJSON(data []b
 	return nil
 }
 
-type CreateJobExecutionPlanParamIdList []string
+type CreateJobExecutionPlanParamIdList []common.String
 
 func (list *CreateJobExecutionPlanParamIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

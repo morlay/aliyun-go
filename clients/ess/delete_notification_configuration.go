@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteNotificationConfigurationRequest struct {
@@ -23,5 +24,5 @@ func (req *DeleteNotificationConfigurationRequest) Invoke(client *sdk.Client) (r
 
 type DeleteNotificationConfigurationResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

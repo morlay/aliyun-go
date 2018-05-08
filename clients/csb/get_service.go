@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetServiceRequest struct {
@@ -23,9 +24,9 @@ func (req *GetServiceRequest) Invoke(client *sdk.Client) (resp *GetServiceRespon
 
 type GetServiceResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetServiceData
 }
 
@@ -34,42 +35,42 @@ type GetServiceData struct {
 }
 
 type GetServiceService struct {
-	AccessParamsJSON       string
+	AccessParamsJSON       common.String
 	Active                 bool
-	Alias                  string
+	Alias                  common.String
 	AllVisiable            bool
-	ApproveUserId          string
-	CasTargets             string
-	ConsumeTypesJSON       string
-	CreateTime             int64
-	CsbId                  int64
-	ErrDefJSON             string
-	Id                     int64
-	InterfaceName          string
-	IpBlackStr             string
-	IpWhiteStr             string
-	ModelVersion           string
-	ModifiedTime           int64
-	OldVersion             string
-	OpenRestfulPath        string
+	ApproveUserId          common.String
+	CasTargets             common.String
+	ConsumeTypesJSON       common.String
+	CreateTime             common.Long
+	CsbId                  common.Long
+	ErrDefJSON             common.String
+	Id                     common.Long
+	InterfaceName          common.String
+	IpBlackStr             common.String
+	IpWhiteStr             common.String
+	ModelVersion           common.String
+	ModifiedTime           common.Long
+	OldVersion             common.String
+	OpenRestfulPath        common.String
 	OttFlag                bool
-	OwnerId                string
-	PolicyHandler          string
-	PrincipalName          string
-	ProjectId              int64
-	ProjectName            string
-	ProvideType            string
-	RouteConfJson          string
+	OwnerId                common.String
+	PolicyHandler          common.String
+	PrincipalName          common.String
+	ProjectId              common.Long
+	ProjectName            common.String
+	ProvideType            common.String
+	RouteConfJson          common.String
 	SSL                    bool
-	Scope                  string
-	ServiceName            string
-	ServiceOpenRestfulPath string
-	ServiceProviderType    string
-	ServiceVersion         string
+	Scope                  common.String
+	ServiceName            common.String
+	ServiceOpenRestfulPath common.String
+	ServiceProviderType    common.String
+	ServiceVersion         common.String
 	SkipAuth               bool
-	StatisticName          string
-	Status                 int
-	UserId                 string
+	StatisticName          common.String
+	Status                 common.Integer
+	UserId                 common.String
 	ValidConsumeTypes      bool
 	ValidProvideType       bool
 	ServiceVersionsList    GetServiceServiceVersionList
@@ -82,95 +83,95 @@ type GetServiceService struct {
 type GetServiceServiceVersion struct {
 	Active            bool
 	AllVisiable       bool
-	Id                int64
-	OldVersion        string
+	Id                common.Long
+	OldVersion        common.String
 	OttFlag           bool
 	SSL               bool
-	Scope             string
-	ServiceVersion    string
+	Scope             common.String
+	ServiceVersion    common.String
 	SkipAuth          bool
-	StatisticName     string
-	Status            int
+	StatisticName     common.String
+	Status            common.Integer
 	ValidConsumeTypes bool
 	ValidProvideType  bool
 }
 
 type GetServiceVisiableGroup struct {
-	Id           int64
-	GroupId      int64
-	UserId       string
-	ServiceId    int64
-	CreateTime   int64
-	ModifiedTime int64
-	Status       int
+	Id           common.Long
+	GroupId      common.Long
+	UserId       common.String
+	ServiceId    common.Long
+	CreateTime   common.Long
+	ModifiedTime common.Long
+	Status       common.Integer
 }
 
 type GetServiceRouteConf struct {
-	ServiceRouteStrategy string
+	ServiceRouteStrategy common.String
 	ImportConf           GetServiceImportConf
 	ImportConfs          GetServiceImportConfs
 }
 
 type GetServiceImportConf struct {
-	AccessEndpointJSON string
-	ProvideType        string
+	AccessEndpointJSON common.String
+	ProvideType        common.String
 	InputParameterMap  GetServiceInputParameterList
 	OutputParameterMap GetServiceOutputParameterList
 }
 
 type GetServiceInputParameter struct {
-	CatType      int
-	Depth        int
-	ExtType      int
-	MapStyle     int
+	CatType      common.Integer
+	Depth        common.Integer
+	ExtType      common.Integer
+	MapStyle     common.Integer
 	Optional     bool
-	OriginalName string
-	ParamType    string
-	PassMethod   string
-	TargetName   string
+	OriginalName common.String
+	ParamType    common.String
+	PassMethod   common.String
+	TargetName   common.String
 }
 
 type GetServiceOutputParameter struct {
-	CatType      int
-	Depth        int
-	ExtType      int
-	MapStyle     int
+	CatType      common.Integer
+	Depth        common.Integer
+	ExtType      common.Integer
+	MapStyle     common.Integer
 	Optional     bool
-	OriginalName string
-	ParamType    string
-	PassMethod   string
-	TargetName   string
+	OriginalName common.String
+	ParamType    common.String
+	PassMethod   common.String
+	TargetName   common.String
 }
 
 type GetServiceImportConfs struct {
-	AccessEndpointJSON  string
-	ProvideType         string
+	AccessEndpointJSON  common.String
+	ProvideType         common.String
 	InputParameterMap1  GetServiceInputParameter3List
 	OutputParameterMap2 GetServiceOutputParameter4List
 }
 
 type GetServiceInputParameter3 struct {
-	CatType      int
-	Depth        int
-	ExtType      int
-	MapStyle     int
+	CatType      common.Integer
+	Depth        common.Integer
+	ExtType      common.Integer
+	MapStyle     common.Integer
 	Optional     bool
-	OriginalName string
-	ParamType    string
-	PassMethod   string
-	TargetName   string
+	OriginalName common.String
+	ParamType    common.String
+	PassMethod   common.String
+	TargetName   common.String
 }
 
 type GetServiceOutputParameter4 struct {
-	CatType      int
-	Depth        int
-	ExtType      int
-	MapStyle     int
+	CatType      common.Integer
+	Depth        common.Integer
+	ExtType      common.Integer
+	MapStyle     common.Integer
 	Optional     bool
-	OriginalName string
-	ParamType    string
-	PassMethod   string
-	TargetName   string
+	OriginalName common.String
+	ParamType    common.String
+	PassMethod   common.String
+	TargetName   common.String
 }
 
 type GetServiceServiceVersionList []GetServiceServiceVersion
@@ -203,10 +204,10 @@ func (list *GetServiceVisiableGroupList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetServiceCasServTargetList []string
+type GetServiceCasServTargetList []common.String
 
 func (list *GetServiceCasServTargetList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -218,10 +219,10 @@ func (list *GetServiceCasServTargetList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetServiceConsumeTypeList []string
+type GetServiceConsumeTypeList []common.String
 
 func (list *GetServiceConsumeTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

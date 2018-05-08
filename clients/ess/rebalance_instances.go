@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RebalanceInstancesRequest struct {
@@ -24,6 +25,6 @@ func (req *RebalanceInstancesRequest) Invoke(client *sdk.Client) (resp *Rebalanc
 
 type RebalanceInstancesResponse struct {
 	responses.BaseResponse
-	ScalingActivityId string
-	RequestId         string
+	ScalingActivityId common.String
+	RequestId         common.String
 }

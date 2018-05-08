@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SearchPipelineRequest struct {
@@ -28,26 +29,26 @@ func (req *SearchPipelineRequest) Invoke(client *sdk.Client) (resp *SearchPipeli
 
 type SearchPipelineResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int64
-	PageNumber   int64
-	PageSize     int64
+	RequestId    common.String
+	TotalCount   common.Long
+	PageNumber   common.Long
+	PageSize     common.Long
 	PipelineList SearchPipelinePipelineList
 }
 
 type SearchPipelinePipeline struct {
-	Id           string
-	Name         string
-	State        string
-	Speed        string
-	SpeedLevel   int64
-	Role         string
+	Id           common.String
+	Name         common.String
+	State        common.String
+	Speed        common.String
+	SpeedLevel   common.Long
+	Role         common.String
 	NotifyConfig SearchPipelineNotifyConfig
 }
 
 type SearchPipelineNotifyConfig struct {
-	Topic     string
-	QueueName string
+	Topic     common.String
+	QueueName common.String
 }
 
 type SearchPipelinePipelineList []SearchPipelinePipeline

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RestartClusterRequest struct {
@@ -23,6 +24,6 @@ func (req *RestartClusterRequest) Invoke(client *sdk.Client) (resp *RestartClust
 
 type RestartClusterResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ClusterId string
+	RequestId common.String
+	ClusterId common.String
 }

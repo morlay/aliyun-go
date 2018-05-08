@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListJobExecutionPlanHierarchyRequest struct {
@@ -25,56 +26,56 @@ func (req *ListJobExecutionPlanHierarchyRequest) Invoke(client *sdk.Client) (res
 
 type ListJobExecutionPlanHierarchyResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	Success        string
-	ErrCode        string
-	ErrMsg         string
-	TotalCount     int
-	PageSize       int
-	PageNumber     int
+	RequestId      common.String
+	Success        common.String
+	ErrCode        common.String
+	ErrMsg         common.String
+	TotalCount     common.Integer
+	PageSize       common.Integer
+	PageNumber     common.Integer
 	HierarchyInfos ListJobExecutionPlanHierarchyHierarchyInfoList
 }
 
 type ListJobExecutionPlanHierarchyHierarchyInfo struct {
-	Id                   int64
-	NodeBizType          string
-	NodeType             string
-	RelateId             string
-	Name                 string
-	ParentId             string
-	ResourceOwnerId      string
-	UtcCreateTimestamp   int64
-	UtcModifiedTimestamp int64
-	NodeStatus           int
+	Id                   common.Long
+	NodeBizType          common.String
+	NodeType             common.String
+	RelateId             common.String
+	Name                 common.String
+	ParentId             common.String
+	ResourceOwnerId      common.String
+	UtcCreateTimestamp   common.Long
+	UtcModifiedTimestamp common.Long
+	NodeStatus           common.Integer
 	ExecutionPlan        ListJobExecutionPlanHierarchyExecutionPlan
 	Job                  ListJobExecutionPlanHierarchyJob
 }
 
 type ListJobExecutionPlanHierarchyExecutionPlan struct {
-	BizId                string
-	Name                 string
-	Status               int
-	LastExeStatus        int
+	BizId                common.String
+	Name                 common.String
+	Status               common.Integer
+	LastExeStatus        common.Integer
 	IsCreateCluster      bool
 	IsInterruptWhenError bool
 	IsCycle              bool
-	ScheduleCycle        string
-	RegionId             string
-	CronExpr             string
-	UtcCreateTimestamp   int64
-	UtcModifiedTimestamp int64
-	Version              string
-	ClusterTemplateId    string
+	ScheduleCycle        common.String
+	RegionId             common.String
+	CronExpr             common.String
+	UtcCreateTimestamp   common.Long
+	UtcModifiedTimestamp common.Long
+	Version              common.String
+	ClusterTemplateId    common.String
 }
 
 type ListJobExecutionPlanHierarchyJob struct {
-	BizId         string
-	Name          string
-	JobFailAct    int
-	JobType       int
-	EnvParam      string
-	MaxRetry      int
-	RetryInterval int
+	BizId         common.String
+	Name          common.String
+	JobFailAct    common.Integer
+	JobType       common.Integer
+	EnvParam      common.String
+	MaxRetry      common.Integer
+	RetryInterval common.Integer
 }
 
 type ListJobExecutionPlanHierarchyHierarchyInfoList []ListJobExecutionPlanHierarchyHierarchyInfo

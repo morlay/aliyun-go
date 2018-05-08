@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRenewalPriceRequest struct {
@@ -36,38 +37,38 @@ func (req *DescribeRenewalPriceRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeRenewalPriceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Rules     DescribeRenewalPriceRuleList
 	PriceInfo DescribeRenewalPricePriceInfo
 }
 
 type DescribeRenewalPriceRule struct {
-	RuleId      int64
-	Name        string
-	Description string
+	RuleId      common.Long
+	Name        common.String
+	Description common.String
 }
 
 type DescribeRenewalPricePriceInfo struct {
-	Currency      string
-	OriginalPrice float32
-	TradePrice    float32
-	DiscountPrice float32
+	Currency      common.String
+	OriginalPrice common.Float
+	TradePrice    common.Float
+	DiscountPrice common.Float
 	Coupons       DescribeRenewalPriceCouponList
 	RuleIds       DescribeRenewalPriceRuleIdList
 	ActivityInfo  DescribeRenewalPriceActivityInfo
 }
 
 type DescribeRenewalPriceCoupon struct {
-	CouponNo    string
-	Name        string
-	Description string
-	IsSelected  string
+	CouponNo    common.String
+	Name        common.String
+	Description common.String
+	IsSelected  common.String
 }
 
 type DescribeRenewalPriceActivityInfo struct {
-	CheckErrMsg string
-	ErrorCode   string
-	Success     string
+	CheckErrMsg common.String
+	ErrorCode   common.String
+	Success     common.String
 }
 
 type DescribeRenewalPriceRuleList []DescribeRenewalPriceRule
@@ -100,10 +101,10 @@ func (list *DescribeRenewalPriceCouponList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeRenewalPriceRuleIdList []string
+type DescribeRenewalPriceRuleIdList []common.String
 
 func (list *DescribeRenewalPriceRuleIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

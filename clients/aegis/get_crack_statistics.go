@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetCrackStatisticsRequest struct {
@@ -21,13 +22,13 @@ func (req *GetCrackStatisticsRequest) Invoke(client *sdk.Client) (resp *GetCrack
 
 type GetCrackStatisticsResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
+	RequestId common.String
+	Code      common.String
 	Success   bool
-	Message   string
+	Message   common.String
 	Data      GetCrackStatisticsData
 }
 
 type GetCrackStatisticsData struct {
-	Intercepted int
+	Intercepted common.Integer
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetSnapshotSettingsRequest struct {
@@ -24,13 +25,13 @@ func (req *GetSnapshotSettingsRequest) Invoke(client *sdk.Client) (resp *GetSnap
 
 type GetSnapshotSettingsResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	InstanceId         string
-	BeginHour          int
-	EndHour            int
-	RetentionDay       int
-	MaxAutoSnapshots   int
-	MaxManualSnapshots int
-	DayList            int
-	NextTime           string
+	RequestId          common.String
+	InstanceId         common.String
+	BeginHour          common.Integer
+	EndHour            common.Integer
+	RetentionDay       common.Integer
+	MaxAutoSnapshots   common.Integer
+	MaxManualSnapshots common.Integer
+	DayList            common.Integer
+	NextTime           common.String
 }

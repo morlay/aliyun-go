@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDiagnosticReportListRequest struct {
@@ -22,16 +23,16 @@ func (req *DescribeDiagnosticReportListRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeDiagnosticReportListResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	ReportList DescribeDiagnosticReportListReportList
 }
 
 type DescribeDiagnosticReportListReport struct {
-	DiagnosticTime string
-	Score          int
-	StartTime      string
-	EndTime        string
-	DownloadURL    string
+	DiagnosticTime common.String
+	Score          common.Integer
+	StartTime      common.String
+	EndTime        common.String
+	DownloadURL    common.String
 }
 
 type DescribeDiagnosticReportListReportList []DescribeDiagnosticReportListReport

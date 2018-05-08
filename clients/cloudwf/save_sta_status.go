@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveStaStatusRequest struct {
@@ -21,9 +22,9 @@ func (req *SaveStaStatusRequest) Invoke(client *sdk.Client) (resp *SaveStaStatus
 
 type SaveStaStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Message   string
-	ErrorCode int
-	ErrorMsg  string
+	Message   common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 }

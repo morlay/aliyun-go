@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetResolveStatisticsRequest struct {
@@ -25,13 +26,13 @@ func (req *GetResolveStatisticsRequest) Invoke(client *sdk.Client) (resp *GetRes
 
 type GetResolveStatisticsResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	DataPoints GetResolveStatisticsDataPointList
 }
 
 type GetResolveStatisticsDataPoint struct {
-	Time  int
-	Count int
+	Time  common.Integer
+	Count common.Integer
 }
 
 type GetResolveStatisticsDataPointList []GetResolveStatisticsDataPoint

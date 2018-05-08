@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type NodeStatusRequest struct {
@@ -20,11 +21,11 @@ func (req *NodeStatusRequest) Invoke(client *sdk.Client) (resp *NodeStatusRespon
 
 type NodeStatusResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Success      bool
-	RequestId    string
-	InstanceId   string
+	RequestId    common.String
+	InstanceId   common.String
 	AutoInstall  bool
-	Status       string
+	Status       common.String
 }

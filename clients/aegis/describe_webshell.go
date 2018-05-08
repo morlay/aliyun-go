@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeWebshellRequest struct {
@@ -23,8 +24,8 @@ func (req *DescribeWebshellRequest) Invoke(client *sdk.Client) (resp *DescribeWe
 
 type DescribeWebshellResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageSize    int
-	CurrentPage int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageSize    common.Integer
+	CurrentPage common.Integer
 }

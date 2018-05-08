@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnDomainBaseDetailRequest struct {
@@ -24,27 +25,27 @@ func (req *DescribeCdnDomainBaseDetailRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeCdnDomainBaseDetailResponse struct {
 	responses.BaseResponse
-	RequestId             string
+	RequestId             common.String
 	DomainBaseDetailModel DescribeCdnDomainBaseDetailDomainBaseDetailModel
 }
 
 type DescribeCdnDomainBaseDetailDomainBaseDetailModel struct {
-	Cname        string
-	CdnType      string
-	DomainStatus string
-	SourceType   string
-	Region       string
-	DomainName   string
-	Remark       string
-	GmtModified  string
-	GmtCreated   string
+	Cname        common.String
+	CdnType      common.String
+	DomainStatus common.String
+	SourceType   common.String
+	Region       common.String
+	DomainName   common.String
+	Remark       common.String
+	GmtModified  common.String
+	GmtCreated   common.String
 	Sources      DescribeCdnDomainBaseDetailSourceList
 }
 
-type DescribeCdnDomainBaseDetailSourceList []string
+type DescribeCdnDomainBaseDetailSourceList []common.String
 
 func (list *DescribeCdnDomainBaseDetailSourceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

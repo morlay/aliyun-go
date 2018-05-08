@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type TaskConfigCreateRequest struct {
@@ -29,11 +30,11 @@ func (req *TaskConfigCreateRequest) Invoke(client *sdk.Client) (resp *TaskConfig
 
 type TaskConfigCreateResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Success      bool
-	RequestId    string
-	TaskId       int64
+	RequestId    common.String
+	TaskId       common.Long
 }
 
 type TaskConfigCreateInstanceListList []string

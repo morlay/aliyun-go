@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceAttributeRequest struct {
@@ -26,41 +27,41 @@ func (req *DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeDBInstanceAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeDBInstanceAttributeDBInstanceAttributeList
 }
 
 type DescribeDBInstanceAttributeDBInstanceAttribute struct {
-	DBInstanceId          string
-	DBClusterDescription  string
-	DBClusterId           string
-	PayType               string
-	DBInstanceType        string
-	RegionId              string
-	ZoneId                string
-	Engine                string
-	DBType                string
-	DBVersion             string
-	DBInstanceClass       string
-	DBInstanceStorage     int64
-	DBInstanceStatus      string
-	DBInstanceDescription string
-	ConnectionString      int64
-	Port                  int64
-	DBInstanceNetType     string
-	LockMode              string
-	LockReason            string
-	CreationTime          string
-	ExpireTime            string
-	MaintainStartTime     string
-	MaintainEndTime       string
-	MaxConnections        int
-	MaxIOPS               int
-	SecurityIPList        string
-	InstanceNetworkType   string
-	VpcId                 string
-	VSwitchId             string
-	DBInstanceType1       string
+	DBInstanceId          common.String
+	DBClusterDescription  common.String
+	DBClusterId           common.String
+	PayType               common.String
+	DBInstanceType        common.String
+	RegionId              common.String
+	ZoneId                common.String
+	Engine                common.String
+	DBType                common.String
+	DBVersion             common.String
+	DBInstanceClass       common.String
+	DBInstanceStorage     common.Long
+	DBInstanceStatus      common.String
+	DBInstanceDescription common.String
+	ConnectionString      common.Long
+	Port                  common.Long
+	DBInstanceNetType     common.String
+	LockMode              common.String
+	LockReason            common.String
+	CreationTime          common.String
+	ExpireTime            common.String
+	MaintainStartTime     common.String
+	MaintainEndTime       common.String
+	MaxConnections        common.Integer
+	MaxIOPS               common.Integer
+	SecurityIPList        common.String
+	InstanceNetworkType   common.String
+	VpcId                 common.String
+	VSwitchId             common.String
+	DBInstanceType1       common.String
 }
 
 type DescribeDBInstanceAttributeDBInstanceAttributeList []DescribeDBInstanceAttributeDBInstanceAttribute

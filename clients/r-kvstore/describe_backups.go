@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBackupsRequest struct {
@@ -32,24 +33,24 @@ func (req *DescribeBackupsRequest) Invoke(client *sdk.Client) (resp *DescribeBac
 
 type DescribeBackupsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int
-	PageSize   int
-	TotalCount int
+	RequestId  common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
 	Backups    DescribeBackupsBackupList
 }
 
 type DescribeBackupsBackup struct {
-	BackupId          int
-	BackupDBNames     string
-	BackupStatus      string
-	BackupStartTime   string
-	BackupEndTime     string
-	BackupType        string
-	BackupMode        string
-	BackupMethod      string
-	BackupDownloadURL string
-	BackupSize        int64
+	BackupId          common.Integer
+	BackupDBNames     common.String
+	BackupStatus      common.String
+	BackupStartTime   common.String
+	BackupEndTime     common.String
+	BackupType        common.String
+	BackupMode        common.String
+	BackupMethod      common.String
+	BackupDownloadURL common.String
+	BackupSize        common.Long
 }
 
 type DescribeBackupsBackupList []DescribeBackupsBackup

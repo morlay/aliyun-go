@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeParameterTemplatesRequest struct {
@@ -28,20 +29,20 @@ func (req *DescribeParameterTemplatesRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeParameterTemplatesResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	Engine         string
-	EngineVersion  string
-	ParameterCount string
+	RequestId      common.String
+	Engine         common.String
+	EngineVersion  common.String
+	ParameterCount common.String
 	Parameters     DescribeParameterTemplatesTemplateRecordList
 }
 
 type DescribeParameterTemplatesTemplateRecord struct {
-	ParameterName        string
-	ParameterValue       string
-	ForceModify          string
-	ForceRestart         string
-	CheckingCode         string
-	ParameterDescription string
+	ParameterName        common.String
+	ParameterValue       common.String
+	ForceModify          common.String
+	ForceRestart         common.String
+	CheckingCode         common.String
+	ParameterDescription common.String
 }
 
 type DescribeParameterTemplatesTemplateRecordList []DescribeParameterTemplatesTemplateRecord

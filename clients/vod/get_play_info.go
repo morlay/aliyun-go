@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetPlayInfoRequest struct {
@@ -34,37 +35,37 @@ func (req *GetPlayInfoRequest) Invoke(client *sdk.Client) (resp *GetPlayInfoResp
 
 type GetPlayInfoResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	PlayInfoList GetPlayInfoPlayInfoList
 	VideoBase    GetPlayInfoVideoBase
 }
 
 type GetPlayInfoPlayInfo struct {
-	Width      int64
-	Height     int64
-	Size       int64
-	PlayURL    string
-	Bitrate    string
-	Definition string
-	Duration   string
-	Format     string
-	Fps        string
-	Encrypt    int64
-	Plaintext  string
-	Complexity string
-	StreamType string
-	Rand       string
-	JobId      string
+	Width      common.Long
+	Height     common.Long
+	Size       common.Long
+	PlayURL    common.String
+	Bitrate    common.String
+	Definition common.String
+	Duration   common.String
+	Format     common.String
+	Fps        common.String
+	Encrypt    common.Long
+	Plaintext  common.String
+	Complexity common.String
+	StreamType common.String
+	Rand       common.String
+	JobId      common.String
 }
 
 type GetPlayInfoVideoBase struct {
-	CoverURL     string
-	Duration     string
-	Status       string
-	Title        string
-	VideoId      string
-	MediaType    string
-	CreationTime string
+	CoverURL     common.String
+	Duration     common.String
+	Status       common.String
+	Title        common.String
+	VideoId      common.String
+	MediaType    common.String
+	CreationTime common.String
 }
 
 type GetPlayInfoPlayInfoList []GetPlayInfoPlayInfo

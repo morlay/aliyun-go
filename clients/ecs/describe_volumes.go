@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVolumesRequest struct {
@@ -46,29 +47,29 @@ func (req *DescribeVolumesRequest) Invoke(client *sdk.Client) (resp *DescribeVol
 
 type DescribeVolumesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Volumes    DescribeVolumesVolumeList
 }
 
 type DescribeVolumesVolume struct {
-	VolumeId                      string
-	RegionId                      string
-	ZoneId                        string
-	VolumeName                    string
-	Description                   string
-	Category                      string
-	Size                          int
-	SourceSnapshotId              string
-	AutoSnapshotPolicyId          string
-	SnapshotLinkId                string
-	Status                        string
+	VolumeId                      common.String
+	RegionId                      common.String
+	ZoneId                        common.String
+	VolumeName                    common.String
+	Description                   common.String
+	Category                      common.String
+	Size                          common.Integer
+	SourceSnapshotId              common.String
+	AutoSnapshotPolicyId          common.String
+	SnapshotLinkId                common.String
+	Status                        common.String
 	EnableAutomatedSnapshotPolicy bool
-	CreationTime                  string
-	VolumeChargeType              string
-	MountInstanceNum              int
+	CreationTime                  common.String
+	VolumeChargeType              common.String
+	MountInstanceNum              common.Integer
 	Encrypted                     bool
 	OperationLocks                DescribeVolumesOperationLockList
 	MountInstances                DescribeVolumesMountInstanceList
@@ -76,18 +77,18 @@ type DescribeVolumesVolume struct {
 }
 
 type DescribeVolumesOperationLock struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeVolumesMountInstance struct {
-	InstanceId   string
-	Device       string
-	AttachedTime string
+	InstanceId   common.String
+	Device       common.String
+	AttachedTime common.String
 }
 
 type DescribeVolumesTag struct {
-	TagKey   string
-	TagValue string
+	TagKey   common.String
+	TagValue common.String
 }
 
 type DescribeVolumesVolumeList []DescribeVolumesVolume

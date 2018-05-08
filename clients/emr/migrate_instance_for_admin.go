@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MigrateInstanceForAdminRequest struct {
@@ -22,6 +23,6 @@ func (req *MigrateInstanceForAdminRequest) Invoke(client *sdk.Client) (resp *Mig
 
 type MigrateInstanceForAdminResponse struct {
 	responses.BaseResponse
-	RequestId string
-	WfId      string
+	RequestId common.String
+	WfId      common.String
 }

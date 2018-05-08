@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeImportsForSQLServerRequest struct {
@@ -31,19 +32,19 @@ func (req *DescribeImportsForSQLServerRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeImportsForSQLServerResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalRecordCounts int
-	PageNumber        int
-	SQLItemsCounts    int
+	RequestId         common.String
+	TotalRecordCounts common.Integer
+	PageNumber        common.Integer
+	SQLItemsCounts    common.Integer
 	Items             DescribeImportsForSQLServerSQLServerImportList
 }
 
 type DescribeImportsForSQLServerSQLServerImport struct {
-	ImportId     int
-	FileName     string
-	DBName       string
-	ImportStatus string
-	StartTime    string
+	ImportId     common.Integer
+	FileName     common.String
+	DBName       common.String
+	ImportStatus common.String
+	StartTime    common.String
 }
 
 type DescribeImportsForSQLServerSQLServerImportList []DescribeImportsForSQLServerSQLServerImport

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSnapshotsRequest struct {
@@ -52,34 +53,34 @@ func (req *DescribeSnapshotsRequest) Invoke(client *sdk.Client) (resp *DescribeS
 
 type DescribeSnapshotsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Snapshots  DescribeSnapshotsSnapshotList
 }
 
 type DescribeSnapshotsSnapshot struct {
-	SnapshotId        string
-	SnapshotName      string
-	Progress          string
-	ProductCode       string
-	SourceDiskId      string
-	SourceDiskType    string
-	RetentionDays     int
+	SnapshotId        common.String
+	SnapshotName      common.String
+	Progress          common.String
+	ProductCode       common.String
+	SourceDiskId      common.String
+	SourceDiskType    common.String
+	RetentionDays     common.Integer
 	Encrypted         bool
-	SourceDiskSize    string
-	Description       string
-	CreationTime      string
-	Status            string
-	Usage             string
-	SourceStorageType string
+	SourceDiskSize    common.String
+	Description       common.String
+	CreationTime      common.String
+	Status            common.String
+	Usage             common.String
+	SourceStorageType common.String
 	Tags              DescribeSnapshotsTagList
 }
 
 type DescribeSnapshotsTag struct {
-	TagKey   string
-	TagValue string
+	TagKey   common.String
+	TagValue common.String
 }
 
 type DescribeSnapshotsSnapshotList []DescribeSnapshotsSnapshot

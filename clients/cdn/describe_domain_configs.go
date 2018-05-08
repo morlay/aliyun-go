@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainConfigsRequest struct {
@@ -25,7 +26,7 @@ func (req *DescribeDomainConfigsRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeDomainConfigsResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	DomainConfigs DescribeDomainConfigsDomainConfigs
 }
 
@@ -60,194 +61,194 @@ type DescribeDomainConfigsDomainConfigs struct {
 }
 
 type DescribeDomainConfigsCacheExpiredConfig struct {
-	ConfigId     string
-	CacheType    string
-	CacheContent string
-	TTL          string
-	Weight       string
-	Status       string
+	ConfigId     common.String
+	CacheType    common.String
+	CacheContent common.String
+	TTL          common.String
+	Weight       common.String
+	Status       common.String
 }
 
 type DescribeDomainConfigsHttpErrorPageConfig struct {
-	ConfigId  string
-	ErrorCode string
-	PageUrl   string
-	Status    string
+	ConfigId  common.String
+	ErrorCode common.String
+	PageUrl   common.String
+	Status    common.String
 }
 
 type DescribeDomainConfigsHttpHeaderConfig struct {
-	ConfigId    string
-	HeaderKey   string
-	HeaderValue string
-	Status      string
+	ConfigId    common.String
+	HeaderKey   common.String
+	HeaderValue common.String
+	Status      common.String
 }
 
 type DescribeDomainConfigsDynamicConfig struct {
-	ConfigId            string
-	DynamicOrigin       string
-	StaticType          string
-	StaticUri           string
-	StaticPath          string
-	DynamicCacheControl string
-	Status              string
+	ConfigId            common.String
+	DynamicOrigin       common.String
+	StaticType          common.String
+	StaticUri           common.String
+	StaticPath          common.String
+	DynamicCacheControl common.String
+	Status              common.String
 }
 
 type DescribeDomainConfigsReqHeaderConfig struct {
-	ConfigId string
-	Key      string
-	Value    string
-	Status   string
+	ConfigId common.String
+	Key      common.String
+	Value    common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsSetVarsConfig struct {
-	ConfigId string
-	VarName  string
-	VarValue string
-	Status   string
+	ConfigId common.String
+	VarName  common.String
+	VarValue common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsCcConfig struct {
-	ConfigId string
-	Enable   string
-	AllowIps string
-	BlockIps string
-	Status   string
+	ConfigId common.String
+	Enable   common.String
+	AllowIps common.String
+	BlockIps common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsErrorPageConfig struct {
-	ConfigId      string
-	ErrorCode     string
-	PageType      string
-	CustomPageUrl string
-	Status        string
+	ConfigId      common.String
+	ErrorCode     common.String
+	PageType      common.String
+	CustomPageUrl common.String
+	Status        common.String
 }
 
 type DescribeDomainConfigsOptimizeConfig struct {
-	ConfigId string
-	Enable   string
-	Status   string
+	ConfigId common.String
+	Enable   common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsPageCompressConfig struct {
-	ConfigId string
-	Enable   string
-	Status   string
+	ConfigId common.String
+	Enable   common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsIgnoreQueryStringConfig struct {
-	ConfigId    string
-	HashKeyArgs string
-	Enable      string
-	Status      string
+	ConfigId    common.String
+	HashKeyArgs common.String
+	Enable      common.String
+	Status      common.String
 }
 
 type DescribeDomainConfigsRangeConfig struct {
-	ConfigId string
-	Enable   string
-	Status   string
+	ConfigId common.String
+	Enable   common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsRefererConfig struct {
-	ConfigId   string
-	ReferType  string
-	ReferList  string
-	AllowEmpty string
-	DisableAst string
-	Status     string
+	ConfigId   common.String
+	ReferType  common.String
+	ReferList  common.String
+	AllowEmpty common.String
+	DisableAst common.String
+	Status     common.String
 }
 
 type DescribeDomainConfigsReqAuthConfig struct {
-	ConfigId         string
-	AuthType         string
-	Key1             string
-	Key2             string
-	Status           string
-	AliAuthWhiteList string
-	AuthM3u8         string
-	AuthAddr         string
-	AuthRemoteDesc   string
-	TimeOut          string
+	ConfigId         common.String
+	AuthType         common.String
+	Key1             common.String
+	Key2             common.String
+	Status           common.String
+	AliAuthWhiteList common.String
+	AuthM3u8         common.String
+	AuthAddr         common.String
+	AuthRemoteDesc   common.String
+	TimeOut          common.String
 }
 
 type DescribeDomainConfigsSrcHostConfig struct {
-	ConfigId   string
-	DomainName string
-	Status     string
+	ConfigId   common.String
+	DomainName common.String
+	Status     common.String
 }
 
 type DescribeDomainConfigsVideoSeekConfig struct {
-	ConfigId string
-	Enable   string
-	Status   string
+	ConfigId common.String
+	Enable   common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsWafConfig struct {
-	ConfigId string
-	Enable   string
-	Status   string
+	ConfigId common.String
+	Enable   common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsNotifyUrlConfig struct {
-	Enable    string
-	NotifyUrl string
+	Enable    common.String
+	NotifyUrl common.String
 }
 
 type DescribeDomainConfigsRedirectTypeConfig struct {
-	RedirectType string
+	RedirectType common.String
 }
 
 type DescribeDomainConfigsForwardSchemeConfig struct {
-	ConfigId         string
-	Enable           string
-	SchemeOrigin     string
-	SchemeOriginPort string
-	Status           string
+	ConfigId         common.String
+	Enable           common.String
+	SchemeOrigin     common.String
+	SchemeOriginPort common.String
+	Status           common.String
 }
 
 type DescribeDomainConfigsRemoveQueryStringConfig struct {
-	AliRemoveArgs string
-	ConfigId      string
-	Status        string
+	AliRemoveArgs common.String
+	ConfigId      common.String
+	Status        common.String
 }
 
 type DescribeDomainConfigsL2OssKeyConfig struct {
-	PrivateOssAuth string
-	ConfigId       string
-	Status         string
+	PrivateOssAuth common.String
+	ConfigId       common.String
+	Status         common.String
 }
 
 type DescribeDomainConfigsMacServiceConfig struct {
-	AppList       string
-	Enabled       string
-	ProcessResult string
-	ConfigId      string
-	Status        string
+	AppList       common.String
+	Enabled       common.String
+	ProcessResult common.String
+	ConfigId      common.String
+	Status        common.String
 }
 
 type DescribeDomainConfigsGreenManagerConfig struct {
-	Enabled  string
-	ConfigId string
-	Status   string
+	Enabled  common.String
+	ConfigId common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsHttpsOptionConfig struct {
-	Http2    string
-	ConfigId string
-	Status   string
+	Http2    common.String
+	ConfigId common.String
+	Status   common.String
 }
 
 type DescribeDomainConfigsAliBusinessConfig struct {
-	AliBusinessTable string
-	AliBusinessType  string
-	ConfigId         string
-	Status           string
+	AliBusinessTable common.String
+	AliBusinessType  common.String
+	ConfigId         common.String
+	Status           common.String
 }
 
 type DescribeDomainConfigsIpAllowListConfig struct {
-	ConfigId  string
-	IpList    string
-	IpAclXfwd string
-	Status    string
+	ConfigId  common.String
+	IpList    common.String
+	IpAclXfwd common.String
+	Status    common.String
 }
 
 type DescribeDomainConfigsCacheExpiredConfigList []DescribeDomainConfigsCacheExpiredConfig

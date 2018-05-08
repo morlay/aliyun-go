@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RemoveFaceByUrlRequest struct {
@@ -22,5 +23,5 @@ func (req *RemoveFaceByUrlRequest) Invoke(client *sdk.Client) (resp *RemoveFaceB
 
 type RemoveFaceByUrlResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

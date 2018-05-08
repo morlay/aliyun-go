@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateReadOnlyAccountRequest struct {
@@ -22,13 +23,13 @@ func (req *CreateReadOnlyAccountRequest) Invoke(client *sdk.Client) (resp *Creat
 
 type CreateReadOnlyAccountResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 	Data      CreateReadOnlyAccountData
 }
 
 type CreateReadOnlyAccountData struct {
-	DbName         string
-	DrdsInstanceId string
-	AccountName    string
+	DbName         common.String
+	DrdsInstanceId common.String
+	AccountName    common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamOnlineBpsRequest struct {
@@ -28,18 +29,18 @@ func (req *DescribeLiveStreamOnlineBpsRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeLiveStreamOnlineBpsResponse struct {
 	responses.BaseResponse
-	RequestId                string
-	TotalUserNumber          int64
-	FlvBps                   float32
-	HlsBps                   float32
+	RequestId                common.String
+	TotalUserNumber          common.Long
+	FlvBps                   common.Float
+	HlsBps                   common.Float
 	LiveStreamOnlineBpsInfos DescribeLiveStreamOnlineBpsLiveStreamOnlineBpsInfoList
 }
 
 type DescribeLiveStreamOnlineBpsLiveStreamOnlineBpsInfo struct {
-	StreamUrl string
-	UpBps     float32
-	DownBps   float32
-	Time      string
+	StreamUrl common.String
+	UpBps     common.Float
+	DownBps   common.Float
+	Time      common.String
 }
 
 type DescribeLiveStreamOnlineBpsLiveStreamOnlineBpsInfoList []DescribeLiveStreamOnlineBpsLiveStreamOnlineBpsInfo

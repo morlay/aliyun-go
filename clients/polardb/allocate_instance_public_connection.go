@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AllocateInstancePublicConnectionRequest struct {
@@ -26,9 +27,9 @@ func (req *AllocateInstancePublicConnectionRequest) Invoke(client *sdk.Client) (
 
 type AllocateInstancePublicConnectionResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DBInstanceId     string
-	ConnectionString string
-	IPType           string
-	Port             string
+	RequestId        common.String
+	DBInstanceId     common.String
+	ConnectionString common.String
+	IPType           common.String
+	Port             common.String
 }

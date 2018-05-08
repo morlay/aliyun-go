@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateSecurityGroupRequest struct {
@@ -37,6 +38,6 @@ func (req *CreateSecurityGroupRequest) Invoke(client *sdk.Client) (resp *CreateS
 
 type CreateSecurityGroupResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	SecurityGroupId string
+	RequestId       common.String
+	SecurityGroupId common.String
 }

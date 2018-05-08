@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterServiceConfigVersionRequest struct {
@@ -26,19 +27,19 @@ func (req *ListClusterServiceConfigVersionRequest) Invoke(client *sdk.Client) (r
 
 type ListClusterServiceConfigVersionResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	PageNumber        int
-	PageSize          int
-	TotalCount        int
+	RequestId         common.String
+	PageNumber        common.Integer
+	PageSize          common.Integer
+	TotalCount        common.Integer
 	ConfigVersionList ListClusterServiceConfigVersionConfigVersionList
 }
 
 type ListClusterServiceConfigVersionConfigVersion struct {
-	ConfigVersion string
+	ConfigVersion common.String
 	Applied       bool
-	CreateTime    int64
-	Author        string
-	Comment       string
+	CreateTime    common.Long
+	Author        common.String
+	Comment       common.String
 }
 
 type ListClusterServiceConfigVersionConfigVersionList []ListClusterServiceConfigVersionConfigVersion

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyPrepayInstanceSpecRequest struct {
@@ -29,8 +30,8 @@ type ModifyPrepayInstanceSpecInstanceTypeConfig struct {
 
 type ModifyPrepayInstanceSpecResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ClusterId string
+	RequestId common.String
+	ClusterId common.String
 }
 
 type ModifyPrepayInstanceSpecInstanceTypeConfigList []ModifyPrepayInstanceSpecInstanceTypeConfig

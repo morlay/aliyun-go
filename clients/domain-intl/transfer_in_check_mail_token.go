@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type TransferInCheckMailTokenRequest struct {
@@ -24,15 +25,15 @@ func (req *TransferInCheckMailTokenRequest) Invoke(client *sdk.Client) (resp *Tr
 
 type TransferInCheckMailTokenResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	SuccessList TransferInCheckMailTokenSuccessListList
 	FailList    TransferInCheckMailTokenFailListList
 }
 
-type TransferInCheckMailTokenSuccessListList []string
+type TransferInCheckMailTokenSuccessListList []common.String
 
 func (list *TransferInCheckMailTokenSuccessListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -44,10 +45,10 @@ func (list *TransferInCheckMailTokenSuccessListList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type TransferInCheckMailTokenFailListList []string
+type TransferInCheckMailTokenFailListList []common.String
 
 func (list *TransferInCheckMailTokenFailListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

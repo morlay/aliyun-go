@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCenVbrHealthCheckRequest struct {
@@ -31,21 +32,21 @@ func (req *DescribeCenVbrHealthCheckRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeCenVbrHealthCheckResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	TotalCount      int
-	PageNumber      int
-	PageSize        int
+	RequestId       common.String
+	TotalCount      common.Integer
+	PageNumber      common.Integer
+	PageSize        common.Integer
 	VbrHealthChecks DescribeCenVbrHealthCheckVbrHealthCheckList
 }
 
 type DescribeCenVbrHealthCheckVbrHealthCheck struct {
-	CenId               string
-	VbrInstanceId       string
-	LinkStatus          string
-	PacketLoss          int64
-	HealthCheckSourceIp string
-	HealthCheckTargetIp string
-	Delay               int64
+	CenId               common.String
+	VbrInstanceId       common.String
+	LinkStatus          common.String
+	PacketLoss          common.Long
+	HealthCheckSourceIp common.String
+	HealthCheckTargetIp common.String
+	Delay               common.Long
 }
 
 type DescribeCenVbrHealthCheckVbrHealthCheckList []DescribeCenVbrHealthCheckVbrHealthCheck

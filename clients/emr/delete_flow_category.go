@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteFlowCategoryRequest struct {
@@ -22,6 +23,6 @@ func (req *DeleteFlowCategoryRequest) Invoke(client *sdk.Client) (resp *DeleteFl
 
 type DeleteFlowCategoryResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      bool
 }

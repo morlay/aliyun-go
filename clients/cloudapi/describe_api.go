@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiRequest struct {
@@ -23,21 +24,21 @@ func (req *DescribeApiRequest) Invoke(client *sdk.Client) (resp *DescribeApiResp
 
 type DescribeApiResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	RegionId               string
-	ApiId                  string
-	ApiName                string
-	GroupId                string
-	GroupName              string
-	Visibility             string
-	AuthType               string
-	ResultType             string
-	ResultSample           string
-	FailResultSample       string
-	CreatedTime            string
-	ModifiedTime           string
-	Description            string
-	AllowSignatureMethod   string
+	RequestId              common.String
+	RegionId               common.String
+	ApiId                  common.String
+	ApiName                common.String
+	GroupId                common.String
+	GroupName              common.String
+	Visibility             common.String
+	AuthType               common.String
+	ResultType             common.String
+	ResultSample           common.String
+	FailResultSample       common.String
+	CreatedTime            common.String
+	ModifiedTime           common.String
+	Description            common.String
+	AllowSignatureMethod   common.String
 	SystemParameters       DescribeApiSystemParameterList
 	CustomSystemParameters DescribeApiSystemParameterList
 	ConstantParameters     DescribeApiConstantParameterList
@@ -52,97 +53,97 @@ type DescribeApiResponse struct {
 }
 
 type DescribeApiSystemParameter struct {
-	ParameterName        string
-	ServiceParameterName string
-	Location             string
-	DemoValue            string
-	Description          string
+	ParameterName        common.String
+	ServiceParameterName common.String
+	Location             common.String
+	DemoValue            common.String
+	Description          common.String
 }
 
 type DescribeApiConstantParameter struct {
-	ServiceParameterName string
-	ConstantValue        string
-	Location             string
-	Description          string
+	ServiceParameterName common.String
+	ConstantValue        common.String
+	Location             common.String
+	Description          common.String
 }
 
 type DescribeApiRequestParameter struct {
-	ApiParameterName  string
-	Location          string
-	ParameterType     string
-	Required          string
-	DefaultValue      string
-	DemoValue         string
-	MaxValue          int64
-	MinValue          int64
-	MaxLength         int64
-	MinLength         int64
-	RegularExpression string
-	JsonScheme        string
-	EnumValue         string
-	DocShow           string
-	DocOrder          int
-	Description       string
+	ApiParameterName  common.String
+	Location          common.String
+	ParameterType     common.String
+	Required          common.String
+	DefaultValue      common.String
+	DemoValue         common.String
+	MaxValue          common.Long
+	MinValue          common.Long
+	MaxLength         common.Long
+	MinLength         common.Long
+	RegularExpression common.String
+	JsonScheme        common.String
+	EnumValue         common.String
+	DocShow           common.String
+	DocOrder          common.Integer
+	Description       common.String
 }
 
 type DescribeApiServiceParameter struct {
-	ServiceParameterName string
-	Location             string
-	ParameterType        string
+	ServiceParameterName common.String
+	Location             common.String
+	ParameterType        common.String
 }
 
 type DescribeApiServiceParameterMap struct {
-	ServiceParameterName string
-	RequestParameterName string
+	ServiceParameterName common.String
+	RequestParameterName common.String
 }
 
 type DescribeApiDeployedInfo struct {
-	StageName        string
-	EffectiveVersion string
-	DeployedStatus   string
+	StageName        common.String
+	EffectiveVersion common.String
+	DeployedStatus   common.String
 }
 
 type DescribeApiErrorCodeSample struct {
-	Code        string
-	Message     string
-	Description string
+	Code        common.String
+	Message     common.String
+	Description common.String
 }
 
 type DescribeApiRequestConfig struct {
-	RequestProtocol     string
-	RequestHttpMethod   string
-	RequestPath         string
-	BodyFormat          string
-	PostBodyDescription string
-	RequestMode         string
+	RequestProtocol     common.String
+	RequestHttpMethod   common.String
+	RequestPath         common.String
+	BodyFormat          common.String
+	PostBodyDescription common.String
+	RequestMode         common.String
 }
 
 type DescribeApiServiceConfig struct {
-	ServiceProtocol     string
-	ServiceAddress      string
-	ServiceHttpMethod   string
-	ServicePath         string
-	ServiceTimeout      int
-	Mock                string
-	MockResult          string
+	ServiceProtocol     common.String
+	ServiceAddress      common.String
+	ServiceHttpMethod   common.String
+	ServicePath         common.String
+	ServiceTimeout      common.Integer
+	Mock                common.String
+	MockResult          common.String
 	ServiceVpcEnable    bool
 	VpcConfig           DescribeApiVpcConfig
-	ContentTypeCatagory string
-	ContentTypeValue    string
-	AoneAppName         string
+	ContentTypeCatagory common.String
+	ContentTypeValue    common.String
+	AoneAppName         common.String
 }
 
 type DescribeApiOpenIdConnectConfig struct {
-	OpenIdApiType    string
-	IdTokenParamName string
-	PublicKeyId      string
-	PublicKey        string
+	OpenIdApiType    common.String
+	IdTokenParamName common.String
+	PublicKeyId      common.String
+	PublicKey        common.String
 }
 
 type DescribeApiVpcConfig struct {
-	VpcId      string
-	InstanceId string
-	Port       int
+	VpcId      common.String
+	InstanceId common.String
+	Port       common.Integer
 }
 
 type DescribeApiSystemParameterList []DescribeApiSystemParameter

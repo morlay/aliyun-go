@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateScalingConfigurationRequest struct {
@@ -65,8 +66,8 @@ func (req *CreateScalingConfigurationRequest) Invoke(client *sdk.Client) (resp *
 
 type CreateScalingConfigurationResponse struct {
 	responses.BaseResponse
-	ScalingConfigurationId string
-	RequestId              string
+	ScalingConfigurationId common.String
+	RequestId              common.String
 }
 
 type CreateScalingConfigurationInstanceTypeList []string

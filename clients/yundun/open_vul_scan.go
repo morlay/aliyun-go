@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OpenVulScanRequest struct {
@@ -20,5 +21,5 @@ func (req *OpenVulScanRequest) Invoke(client *sdk.Client) (resp *OpenVulScanResp
 
 type OpenVulScanResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckDevicesRequest struct {
@@ -23,12 +24,12 @@ func (req *CheckDevicesRequest) Invoke(client *sdk.Client) (resp *CheckDevicesRe
 
 type CheckDevicesResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	DeviceCheckInfos CheckDevicesDeviceCheckInfoList
 }
 
 type CheckDevicesDeviceCheckInfo struct {
-	DeviceId  string
+	DeviceId  common.String
 	Available bool
 }
 

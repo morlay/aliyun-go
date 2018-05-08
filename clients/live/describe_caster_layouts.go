@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCasterLayoutsRequest struct {
@@ -24,13 +25,13 @@ func (req *DescribeCasterLayoutsRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeCasterLayoutsResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Total     int
+	RequestId common.String
+	Total     common.Integer
 	Layouts   DescribeCasterLayoutsLayoutList
 }
 
 type DescribeCasterLayoutsLayout struct {
-	LayoutId    string
+	LayoutId    common.String
 	VideoLayers DescribeCasterLayoutsVideoLayerList
 	AudioLayers DescribeCasterLayoutsAudioLayerList
 	BlendList   DescribeCasterLayoutsBlendListList
@@ -38,17 +39,17 @@ type DescribeCasterLayoutsLayout struct {
 }
 
 type DescribeCasterLayoutsVideoLayer struct {
-	HeightNormalized    float32
-	WidthNormalized     float32
-	PositionRefer       string
-	FixedDelayDuration  int
+	HeightNormalized    common.Float
+	WidthNormalized     common.Float
+	PositionRefer       common.String
+	FixedDelayDuration  common.Integer
 	PositionNormalizeds DescribeCasterLayoutsPositionNormalizedList
 }
 
 type DescribeCasterLayoutsAudioLayer struct {
-	VolumeRate         float32
-	ValidChannel       string
-	FixedDelayDuration int
+	VolumeRate         common.Float
+	ValidChannel       common.String
+	FixedDelayDuration common.Integer
 }
 
 type DescribeCasterLayoutsLayoutList []DescribeCasterLayoutsLayout
@@ -96,10 +97,10 @@ func (list *DescribeCasterLayoutsAudioLayerList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type DescribeCasterLayoutsBlendListList []string
+type DescribeCasterLayoutsBlendListList []common.String
 
 func (list *DescribeCasterLayoutsBlendListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -111,10 +112,10 @@ func (list *DescribeCasterLayoutsBlendListList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type DescribeCasterLayoutsMixListList []string
+type DescribeCasterLayoutsMixListList []common.String
 
 func (list *DescribeCasterLayoutsMixListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -126,10 +127,10 @@ func (list *DescribeCasterLayoutsMixListList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeCasterLayoutsPositionNormalizedList []string
+type DescribeCasterLayoutsPositionNormalizedList []common.String
 
 func (list *DescribeCasterLayoutsPositionNormalizedList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

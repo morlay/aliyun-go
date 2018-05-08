@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamStreamStatusRequest struct {
@@ -24,6 +25,6 @@ func (req *DescribeLiveStreamStreamStatusRequest) Invoke(client *sdk.Client) (re
 
 type DescribeLiveStreamStreamStatusResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	StreamStatus string
+	RequestId    common.String
+	StreamStatus common.String
 }

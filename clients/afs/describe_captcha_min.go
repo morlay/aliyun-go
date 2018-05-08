@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCaptchaMinRequest struct {
@@ -26,16 +27,16 @@ func (req *DescribeCaptchaMinRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeCaptchaMinResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	BizCode     string
+	RequestId   common.String
+	BizCode     common.String
 	HasData     bool
 	CaptchaMins DescribeCaptchaMinCaptchaMinList
 }
 
 type DescribeCaptchaMinCaptchaMin struct {
-	Time         string
-	Pass         string
-	Interception string
+	Time         common.String
+	Pass         common.String
+	Interception common.String
 }
 
 type DescribeCaptchaMinCaptchaMinList []DescribeCaptchaMinCaptchaMin

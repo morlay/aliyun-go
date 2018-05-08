@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DetectPornRequest struct {
@@ -23,6 +24,6 @@ func (req *DetectPornRequest) Invoke(client *sdk.Client) (resp *DetectPornRespon
 
 type DetectPornResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Score     float32
+	RequestId common.String
+	Score     common.Float
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryMediaWorkflowListRequest struct {
@@ -26,18 +27,18 @@ func (req *QueryMediaWorkflowListRequest) Invoke(client *sdk.Client) (resp *Quer
 
 type QueryMediaWorkflowListResponse struct {
 	responses.BaseResponse
-	RequestId                string
+	RequestId                common.String
 	MediaWorkflowList        QueryMediaWorkflowListMediaWorkflowList
 	NonExistMediaWorkflowIds QueryMediaWorkflowListNonExistMediaWorkflowIdList
 }
 
 type QueryMediaWorkflowListMediaWorkflow struct {
-	MediaWorkflowId string
-	Name            string
-	Topology        string
-	TriggerMode     string
-	State           string
-	CreationTime    string
+	MediaWorkflowId common.String
+	Name            common.String
+	Topology        common.String
+	TriggerMode     common.String
+	State           common.String
+	CreationTime    common.String
 }
 
 type QueryMediaWorkflowListMediaWorkflowList []QueryMediaWorkflowListMediaWorkflow
@@ -55,10 +56,10 @@ func (list *QueryMediaWorkflowListMediaWorkflowList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type QueryMediaWorkflowListNonExistMediaWorkflowIdList []string
+type QueryMediaWorkflowListNonExistMediaWorkflowIdList []common.String
 
 func (list *QueryMediaWorkflowListNonExistMediaWorkflowIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

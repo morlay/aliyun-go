@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetRuleRequest struct {
@@ -22,10 +23,10 @@ func (req *GetRuleRequest) Invoke(client *sdk.Client) (resp *GetRuleResponse, er
 
 type GetRuleResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      GetRuleData
 }
 
@@ -34,25 +35,25 @@ type GetRuleData struct {
 }
 
 type GetRuleRuleInfo struct {
-	Rid                      string
-	RuleLambda               string
-	Name                     string
-	Type                     int
-	Status                   int
-	IsDelete                 int
-	StartTime                string
-	EndTime                  string
-	Weight                   string
-	IsOnline                 int
-	CreateEmpid              string
-	CreateTime               string
-	LastUpdateTime           string
-	LastUpdateEmpid          string
-	Comments                 string
-	AutoReview               int
-	RuleScoreType            int
-	ScoreName                string
-	ScoreSubName             string
+	Rid                      common.String
+	RuleLambda               common.String
+	Name                     common.String
+	Type                     common.Integer
+	Status                   common.Integer
+	IsDelete                 common.Integer
+	StartTime                common.String
+	EndTime                  common.String
+	Weight                   common.String
+	IsOnline                 common.Integer
+	CreateEmpid              common.String
+	CreateTime               common.String
+	LastUpdateTime           common.String
+	LastUpdateEmpid          common.String
+	Comments                 common.String
+	AutoReview               common.Integer
+	RuleScoreType            common.Integer
+	ScoreName                common.String
+	ScoreSubName             common.String
 	BusinessCategoryNameList GetRuleBusinessCategoryNameListList
 }
 
@@ -71,10 +72,10 @@ func (list *GetRuleRuleInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetRuleBusinessCategoryNameListList []string
+type GetRuleBusinessCategoryNameListList []common.String
 
 func (list *GetRuleBusinessCategoryNameListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

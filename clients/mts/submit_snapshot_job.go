@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitSnapshotJobRequest struct {
@@ -27,71 +28,71 @@ func (req *SubmitSnapshotJobRequest) Invoke(client *sdk.Client) (resp *SubmitSna
 
 type SubmitSnapshotJobResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	SnapshotJob SubmitSnapshotJobSnapshotJob
 }
 
 type SubmitSnapshotJobSnapshotJob struct {
-	Id               string
-	UserData         string
-	PipelineId       string
-	State            string
-	Code             string
-	Count            string
-	TileCount        string
-	Message          string
-	CreationTime     string
+	Id               common.String
+	UserData         common.String
+	PipelineId       common.String
+	State            common.String
+	Code             common.String
+	Count            common.String
+	TileCount        common.String
+	Message          common.String
+	CreationTime     common.String
 	Input            SubmitSnapshotJobInput
 	SnapshotConfig   SubmitSnapshotJobSnapshotConfig
 	MNSMessageResult SubmitSnapshotJobMNSMessageResult
 }
 
 type SubmitSnapshotJobInput struct {
-	Bucket   string
-	Location string
-	Object   string
-	RoleArn  string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
+	RoleArn  common.String
 }
 
 type SubmitSnapshotJobSnapshotConfig struct {
-	Time           string
-	Interval       string
-	Num            string
-	Width          string
-	Height         string
-	FrameType      string
+	Time           common.String
+	Interval       common.String
+	Num            common.String
+	Width          common.String
+	Height         common.String
+	FrameType      common.String
 	OutputFile     SubmitSnapshotJobOutputFile
 	TileOutputFile SubmitSnapshotJobTileOutputFile
 	TileOut        SubmitSnapshotJobTileOut
 }
 
 type SubmitSnapshotJobOutputFile struct {
-	Bucket   string
-	Location string
-	Object   string
-	RoleArn  string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
+	RoleArn  common.String
 }
 
 type SubmitSnapshotJobTileOutputFile struct {
-	Bucket   string
-	Location string
-	Object   string
-	RoleArn  string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
+	RoleArn  common.String
 }
 
 type SubmitSnapshotJobTileOut struct {
-	Lines         string
-	Columns       string
-	CellWidth     string
-	CellHeight    string
-	Margin        string
-	Padding       string
-	Color         string
-	IsKeepCellPic string
+	Lines         common.String
+	Columns       common.String
+	CellWidth     common.String
+	CellHeight    common.String
+	Margin        common.String
+	Padding       common.String
+	Color         common.String
+	IsKeepCellPic common.String
 }
 
 type SubmitSnapshotJobMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }

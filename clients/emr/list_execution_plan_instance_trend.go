@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListExecutionPlanInstanceTrendRequest struct {
@@ -22,14 +23,14 @@ func (req *ListExecutionPlanInstanceTrendRequest) Invoke(client *sdk.Client) (re
 
 type ListExecutionPlanInstanceTrendResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Trends    ListExecutionPlanInstanceTrendTrendList
 }
 
 type ListExecutionPlanInstanceTrendTrend struct {
-	Day    string
-	Count  int
-	Status string
+	Day    common.String
+	Count  common.Integer
+	Status common.String
 }
 
 type ListExecutionPlanInstanceTrendTrendList []ListExecutionPlanInstanceTrendTrend

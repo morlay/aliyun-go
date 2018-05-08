@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBandwidthPackagesRequest struct {
@@ -29,35 +30,35 @@ func (req *DescribeBandwidthPackagesRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeBandwidthPackagesResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalCount        int
-	PageNumber        int
-	PageSize          int
+	RequestId         common.String
+	TotalCount        common.Integer
+	PageNumber        common.Integer
+	PageSize          common.Integer
 	BandwidthPackages DescribeBandwidthPackagesBandwidthPackageList
 }
 
 type DescribeBandwidthPackagesBandwidthPackage struct {
-	BandwidthPackageId string
-	RegionId           string
-	Name               string
-	Description        string
-	ZoneId             string
-	NatGatewayId       string
-	Bandwidth          string
-	InstanceChargeType string
-	InternetChargeType string
-	BusinessStatus     string
-	IpCount            string
-	CreationTime       string
-	Status             string
-	ISP                string
+	BandwidthPackageId common.String
+	RegionId           common.String
+	Name               common.String
+	Description        common.String
+	ZoneId             common.String
+	NatGatewayId       common.String
+	Bandwidth          common.String
+	InstanceChargeType common.String
+	InternetChargeType common.String
+	BusinessStatus     common.String
+	IpCount            common.String
+	CreationTime       common.String
+	Status             common.String
+	ISP                common.String
 	PublicIpAddresses  DescribeBandwidthPackagesPublicIpAddresseList
 }
 
 type DescribeBandwidthPackagesPublicIpAddresse struct {
-	AllocationId    string
-	IpAddress       string
-	UsingStatus     string
+	AllocationId    common.String
+	IpAddress       common.String
+	UsingStatus     common.String
 	ApAccessEnabled bool
 }
 

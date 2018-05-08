@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVpcRequest struct {
@@ -29,9 +30,9 @@ func (req *CreateVpcRequest) Invoke(client *sdk.Client) (resp *CreateVpcResponse
 
 type CreateVpcResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	VpcId           string
-	VRouterId       string
-	RouteTableId    string
-	ResourceGroupId string
+	RequestId       common.String
+	VpcId           common.String
+	VRouterId       common.String
+	RouteTableId    common.String
+	ResourceGroupId common.String
 }

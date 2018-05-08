@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamsBlockListRequest struct {
@@ -26,19 +27,19 @@ func (req *DescribeLiveStreamsBlockListRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeLiveStreamsBlockListResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	DomainName string
-	PageNum    int
-	PageSize   int
-	TotalNum   int
-	TotalPage  int
+	RequestId  common.String
+	DomainName common.String
+	PageNum    common.Integer
+	PageSize   common.Integer
+	TotalNum   common.Integer
+	TotalPage  common.Integer
 	StreamUrls DescribeLiveStreamsBlockListStreamUrlList
 }
 
-type DescribeLiveStreamsBlockListStreamUrlList []string
+type DescribeLiveStreamsBlockListStreamUrlList []common.String
 
 func (list *DescribeLiveStreamsBlockListStreamUrlList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

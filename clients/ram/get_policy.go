@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetPolicyRequest struct {
@@ -21,17 +22,17 @@ func (req *GetPolicyRequest) Invoke(client *sdk.Client) (resp *GetPolicyResponse
 
 type GetPolicyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Policy    GetPolicyPolicy
 }
 
 type GetPolicyPolicy struct {
-	PolicyName      string
-	PolicyType      string
-	Description     string
-	DefaultVersion  string
-	PolicyDocument  string
-	CreateDate      string
-	UpdateDate      string
-	AttachmentCount int
+	PolicyName      common.String
+	PolicyType      common.String
+	Description     common.String
+	DefaultVersion  common.String
+	PolicyDocument  common.String
+	CreateDate      common.String
+	UpdateDate      common.String
+	AttachmentCount common.Integer
 }

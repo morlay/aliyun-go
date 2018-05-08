@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckTransferInFeasibilityRequest struct {
@@ -23,9 +24,9 @@ func (req *CheckTransferInFeasibilityRequest) Invoke(client *sdk.Client) (resp *
 
 type CheckTransferInFeasibilityResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	CanTransfer bool
-	Code        string
-	Message     string
-	ProductId   string
+	Code        common.String
+	Message     common.String
+	ProductId   common.String
 }

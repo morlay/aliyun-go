@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTagsRequest struct {
@@ -31,17 +32,17 @@ func (req *DescribeTagsRequest) Invoke(client *sdk.Client) (resp *DescribeTagsRe
 
 type DescribeTagsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageSize   int
-	PageNumber int
-	TotalCount int
+	RequestId  common.String
+	PageSize   common.Integer
+	PageNumber common.Integer
+	TotalCount common.Integer
 	TagSets    DescribeTagsTagSetList
 }
 
 type DescribeTagsTagSet struct {
-	TagKey        string
-	TagValue      string
-	InstanceCount int
+	TagKey        common.String
+	TagValue      common.String
+	InstanceCount common.Integer
 }
 
 type DescribeTagsTagSetList []DescribeTagsTagSet

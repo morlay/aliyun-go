@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateContacterRequest struct {
@@ -25,11 +26,11 @@ func (req *CreateContacterRequest) Invoke(client *sdk.Client) (resp *CreateConta
 type CreateContacterResponse struct {
 	responses.BaseResponse
 	Success       bool
-	ResultCode    string
-	ResultMessage string
+	ResultCode    common.String
+	ResultMessage common.String
 	Data          CreateContacterData
 }
 
 type CreateContacterData struct {
-	ContacterId int64
+	ContacterId common.Long
 }

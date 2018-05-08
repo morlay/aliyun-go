@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttBuyCheckRequest struct {
@@ -24,8 +25,8 @@ func (req *OnsMqttBuyCheckRequest) Invoke(client *sdk.Client) (resp *OnsMqttBuyC
 type OnsMqttBuyCheckResponse struct {
 	responses.BaseResponse
 	Success   bool
-	RequestId string
-	Code      string
-	Message   string
-	Data      string
+	RequestId common.String
+	Code      common.String
+	Message   common.String
+	Data      common.String
 }

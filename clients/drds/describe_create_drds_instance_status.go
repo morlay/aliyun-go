@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCreateDrdsInstanceStatusRequest struct {
@@ -20,11 +21,11 @@ func (req *DescribeCreateDrdsInstanceStatusRequest) Invoke(client *sdk.Client) (
 
 type DescribeCreateDrdsInstanceStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 	Data      DescribeCreateDrdsInstanceStatusData
 }
 
 type DescribeCreateDrdsInstanceStatusData struct {
-	Status string
+	Status common.String
 }

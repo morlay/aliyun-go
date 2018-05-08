@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsPublishDeleteRequest struct {
@@ -24,6 +25,6 @@ func (req *OnsPublishDeleteRequest) Invoke(client *sdk.Client) (resp *OnsPublish
 
 type OnsPublishDeleteResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 }

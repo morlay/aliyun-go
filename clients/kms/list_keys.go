@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListKeysRequest struct {
@@ -24,16 +25,16 @@ func (req *ListKeysRequest) Invoke(client *sdk.Client) (resp *ListKeysResponse, 
 
 type ListKeysResponse struct {
 	responses.BaseResponse
-	TotalCount int
-	PageNumber int
-	PageSize   int
-	RequestId  string
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
+	RequestId  common.String
 	Keys       ListKeysKeyList
 }
 
 type ListKeysKey struct {
-	KeyId  string
-	KeyArn string
+	KeyId  common.String
+	KeyArn common.String
 }
 
 type ListKeysKeyList []ListKeysKey

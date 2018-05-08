@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRealtimeDiagnosesRequest struct {
@@ -30,19 +31,19 @@ func (req *DescribeRealtimeDiagnosesRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeRealtimeDiagnosesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Engine           string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	Engine           common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Tasks            DescribeRealtimeDiagnosesRealtimeDiagnoseTasksList
 }
 
 type DescribeRealtimeDiagnosesRealtimeDiagnoseTasks struct {
-	CreateTime  string
-	TaskId      string
-	HealthScore string
-	Status      string
+	CreateTime  common.String
+	TaskId      common.String
+	HealthScore common.String
+	Status      common.String
 }
 
 type DescribeRealtimeDiagnosesRealtimeDiagnoseTasksList []DescribeRealtimeDiagnosesRealtimeDiagnoseTasks

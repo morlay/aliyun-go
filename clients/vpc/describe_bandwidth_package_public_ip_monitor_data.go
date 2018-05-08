@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBandwidthPackagePublicIpMonitorDataRequest struct {
@@ -29,19 +30,19 @@ func (req *DescribeBandwidthPackagePublicIpMonitorDataRequest) Invoke(client *sd
 
 type DescribeBandwidthPackagePublicIpMonitorDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	MonitorDatas DescribeBandwidthPackagePublicIpMonitorDataMonitorDataList
 }
 
 type DescribeBandwidthPackagePublicIpMonitorDataMonitorData struct {
-	RX                   int64
-	TX                   int64
-	ReceivedBandwidth    int64
-	TransportedBandwidth int64
-	Flow                 int64
-	Bandwidth            int64
-	Packets              int64
-	TimeStamp            string
+	RX                   common.Long
+	TX                   common.Long
+	ReceivedBandwidth    common.Long
+	TransportedBandwidth common.Long
+	Flow                 common.Long
+	Bandwidth            common.Long
+	Packets              common.Long
+	TimeStamp            common.String
 }
 
 type DescribeBandwidthPackagePublicIpMonitorDataMonitorDataList []DescribeBandwidthPackagePublicIpMonitorDataMonitorData

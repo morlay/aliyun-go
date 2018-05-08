@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamFrameInfoRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeLiveStreamFrameInfoRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeLiveStreamFrameInfoResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	FrameDataInfos DescribeLiveStreamFrameInfoFrameDataModelList
 }
 
 type DescribeLiveStreamFrameInfoFrameDataModel struct {
-	Time       string
-	Stream     string
-	ClientAddr string
-	Server     string
-	AudioRate  float32
-	AudioByte  float32
-	FrameRate  float32
-	FrameByte  float32
+	Time       common.String
+	Stream     common.String
+	ClientAddr common.String
+	Server     common.String
+	AudioRate  common.Float
+	AudioByte  common.Float
+	FrameRate  common.Float
+	FrameByte  common.Float
 }
 
 type DescribeLiveStreamFrameInfoFrameDataModelList []DescribeLiveStreamFrameInfoFrameDataModel

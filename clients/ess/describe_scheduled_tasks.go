@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeScheduledTasksRequest struct {
@@ -87,23 +88,23 @@ func (req *DescribeScheduledTasksRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeScheduledTasksResponse struct {
 	responses.BaseResponse
-	TotalCount     int
-	PageNumber     int
-	PageSize       int
-	RequestId      string
+	TotalCount     common.Integer
+	PageNumber     common.Integer
+	PageSize       common.Integer
+	RequestId      common.String
 	ScheduledTasks DescribeScheduledTasksScheduledTaskList
 }
 
 type DescribeScheduledTasksScheduledTask struct {
-	ScheduledTaskId      string
-	ScheduledTaskName    string
-	Description          string
-	ScheduledAction      string
-	RecurrenceEndTime    string
-	LaunchTime           string
-	RecurrenceType       string
-	RecurrenceValue      string
-	LaunchExpirationTime int
+	ScheduledTaskId      common.String
+	ScheduledTaskName    common.String
+	Description          common.String
+	ScheduledAction      common.String
+	RecurrenceEndTime    common.String
+	LaunchTime           common.String
+	RecurrenceType       common.String
+	RecurrenceValue      common.String
+	LaunchExpirationTime common.Integer
 	TaskEnabled          bool
 }
 

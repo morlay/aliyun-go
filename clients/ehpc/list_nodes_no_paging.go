@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListNodesNoPagingRequest struct {
@@ -25,40 +26,40 @@ func (req *ListNodesNoPagingRequest) Invoke(client *sdk.Client) (resp *ListNodes
 
 type ListNodesNoPagingResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Nodes      ListNodesNoPagingNodeInfoList
 }
 
 type ListNodesNoPagingNodeInfo struct {
-	Id              string
-	RegionId        string
-	Status          string
+	Id              common.String
+	RegionId        common.String
+	Status          common.String
 	CreatedByEhpc   bool
-	Role            string
-	AddTime         string
+	Role            common.String
+	AddTime         common.String
 	Expired         bool
-	ExpiredTime     string
-	SpotStrategy    string
-	LockReason      string
-	ImageOwnerAlias string
-	ImageId         string
+	ExpiredTime     common.String
+	SpotStrategy    common.String
+	LockReason      common.String
+	ImageOwnerAlias common.String
+	ImageId         common.String
 	TotalResources  ListNodesNoPagingTotalResources
 	UsedResources   ListNodesNoPagingUsedResources
 }
 
 type ListNodesNoPagingTotalResources struct {
-	Cpu    int
-	Memory int
-	Gpu    int
+	Cpu    common.Integer
+	Memory common.Integer
+	Gpu    common.Integer
 }
 
 type ListNodesNoPagingUsedResources struct {
-	Cpu    int
-	Memory int
-	Gpu    int
+	Cpu    common.Integer
+	Memory common.Integer
+	Gpu    common.Integer
 }
 
 type ListNodesNoPagingNodeInfoList []ListNodesNoPagingNodeInfo

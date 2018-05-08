@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCenGeographicSpanRemainingBandwidthRequest struct {
@@ -28,6 +29,6 @@ func (req *DescribeCenGeographicSpanRemainingBandwidthRequest) Invoke(client *sd
 
 type DescribeCenGeographicSpanRemainingBandwidthResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	RemainingBandwidth int64
+	RequestId          common.String
+	RemainingBandwidth common.Long
 }

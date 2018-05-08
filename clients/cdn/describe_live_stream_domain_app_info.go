@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamDomainAppInfoRequest struct {
@@ -24,19 +25,19 @@ func (req *DescribeLiveStreamDomainAppInfoRequest) Invoke(client *sdk.Client) (r
 
 type DescribeLiveStreamDomainAppInfoResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	DomainAppList DescribeLiveStreamDomainAppInfoDomainAppInfoList
 }
 
 type DescribeLiveStreamDomainAppInfoDomainAppInfo struct {
-	AppDomain    string
-	AppId        string
-	AppKey       string
-	AppOssBucket string
-	AppOssHost   string
-	AppOwnerId   string
-	AppSecret    string
-	UpdateTime   string
+	AppDomain    common.String
+	AppId        common.String
+	AppKey       common.String
+	AppOssBucket common.String
+	AppOssHost   common.String
+	AppOwnerId   common.String
+	AppSecret    common.String
+	UpdateTime   common.String
 }
 
 type DescribeLiveStreamDomainAppInfoDomainAppInfoList []DescribeLiveStreamDomainAppInfoDomainAppInfo

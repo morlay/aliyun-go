@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type TaskConfigListRequest struct {
@@ -26,27 +27,27 @@ func (req *TaskConfigListRequest) Invoke(client *sdk.Client) (resp *TaskConfigLi
 
 type TaskConfigListResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Success      bool
-	RequestId    string
-	PageNumber   int
-	PageSize     int
-	PageTotal    int
-	Total        int
+	RequestId    common.String
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	PageTotal    common.Integer
+	Total        common.Integer
 	TaskList     TaskConfigListNodeTaskConfigList
 }
 
 type TaskConfigListNodeTaskConfig struct {
-	Id           int64
-	TaskName     string
-	TaskType     string
-	TaskScope    string
+	Id           common.Long
+	TaskName     common.String
+	TaskType     common.String
+	TaskScope    common.String
 	Disabled     bool
-	GroupId      int64
-	GroupName    string
-	JsonData     string
-	AlertConfig  string
+	GroupId      common.Long
+	GroupName    common.String
+	JsonData     common.String
+	AlertConfig  common.String
 	InstanceList TaskConfigListInstanceListList
 }
 
@@ -65,10 +66,10 @@ func (list *TaskConfigListNodeTaskConfigList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type TaskConfigListInstanceListList []string
+type TaskConfigListInstanceListList []common.String
 
 func (list *TaskConfigListInstanceListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpcZoneNosRequest struct {
@@ -28,14 +29,14 @@ func (req *DescribeVpcZoneNosRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeVpcZoneNosResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeVpcZoneNosVpcZoneIdList
 }
 
 type DescribeVpcZoneNosVpcZoneId struct {
-	ZoneId    string
-	Region    string
-	SubDomain string
+	ZoneId    common.String
+	Region    common.String
+	SubDomain common.String
 }
 
 type DescribeVpcZoneNosVpcZoneIdList []DescribeVpcZoneNosVpcZoneId

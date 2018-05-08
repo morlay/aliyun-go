@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type InvokeCommandRequest struct {
@@ -29,8 +30,8 @@ func (req *InvokeCommandRequest) Invoke(client *sdk.Client) (resp *InvokeCommand
 
 type InvokeCommandResponse struct {
 	responses.BaseResponse
-	RequestId string
-	InvokeId  string
+	RequestId common.String
+	InvokeId  common.String
 }
 
 type InvokeCommandInstanceIdList []string

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetVerifyTokenRequest struct {
@@ -24,10 +25,10 @@ func (req *GetVerifyTokenRequest) Invoke(client *sdk.Client) (resp *GetVerifyTok
 
 type GetVerifyTokenResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      GetVerifyTokenData
 }
 
@@ -37,16 +38,16 @@ type GetVerifyTokenData struct {
 }
 
 type GetVerifyTokenVerifyToken struct {
-	Token           string
-	DurationSeconds int
+	Token           common.String
+	DurationSeconds common.Integer
 }
 
 type GetVerifyTokenStsToken struct {
-	AccessKeyId     string
-	AccessKeySecret string
-	Expiration      string
-	EndPoint        string
-	BucketName      string
-	Path            string
-	Token           string
+	AccessKeyId     common.String
+	AccessKeySecret common.String
+	Expiration      common.String
+	EndPoint        common.String
+	BucketName      common.String
+	Path            common.String
+	Token           common.String
 }

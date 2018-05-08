@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateBackupRequest struct {
@@ -25,6 +26,6 @@ func (req *CreateBackupRequest) Invoke(client *sdk.Client) (resp *CreateBackupRe
 
 type CreateBackupResponse struct {
 	responses.BaseResponse
-	RequestId string
-	BackupId  string
+	RequestId common.String
+	BackupId  common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainConfigsRequest struct {
@@ -25,20 +26,20 @@ func (req *DescribeDcdnDomainConfigsRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDcdnDomainConfigsResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	DomainConfigs DescribeDcdnDomainConfigsDomainConfigList
 }
 
 type DescribeDcdnDomainConfigsDomainConfig struct {
-	FunctionName string
-	ConfigId     string
-	Status       string
+	FunctionName common.String
+	ConfigId     common.String
+	Status       common.String
 	FunctionArgs DescribeDcdnDomainConfigsFunctionArgList
 }
 
 type DescribeDcdnDomainConfigsFunctionArg struct {
-	ArgName  string
-	ArgValue string
+	ArgName  common.String
+	ArgValue common.String
 }
 
 type DescribeDcdnDomainConfigsDomainConfigList []DescribeDcdnDomainConfigsDomainConfig

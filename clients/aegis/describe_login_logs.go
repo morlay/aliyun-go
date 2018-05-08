@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLoginLogsRequest struct {
@@ -25,18 +26,18 @@ func (req *DescribeLoginLogsRequest) Invoke(client *sdk.Client) (resp *DescribeL
 
 type DescribeLoginLogsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	PageSize       int
-	CurrentPage    int
-	TotalCount     int
-	HttpStatusCode int
+	RequestId      common.String
+	PageSize       common.Integer
+	CurrentPage    common.Integer
+	TotalCount     common.Integer
+	HttpStatusCode common.Integer
 	LoginLogs      DescribeLoginLogsLoginLogList
 }
 
-type DescribeLoginLogsLoginLogList []string
+type DescribeLoginLogsLoginLogList []common.String
 
 func (list *DescribeLoginLogsLoginLogList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBackupPolicyRequest struct {
@@ -25,9 +26,9 @@ func (req *DescribeBackupPolicyRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeBackupPolicyResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	BackupRetentionPeriod   string
-	PreferredBackupTime     string
-	PreferredBackupPeriod   string
-	PreferredNextBackupTime string
+	RequestId               common.String
+	BackupRetentionPeriod   common.String
+	PreferredBackupTime     common.String
+	PreferredBackupPeriod   common.String
+	PreferredNextBackupTime common.String
 }

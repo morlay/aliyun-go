@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainHitRateDataRequest struct {
@@ -26,18 +27,18 @@ func (req *DescribeDcdnDomainHitRateDataRequest) Invoke(client *sdk.Client) (res
 
 type DescribeDcdnDomainHitRateDataResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	DomainName         string
-	StartTime          string
-	EndTime            string
-	DataInterval       string
+	RequestId          common.String
+	DomainName         common.String
+	StartTime          common.String
+	EndTime            common.String
+	DataInterval       common.String
 	HitRatePerInterval DescribeDcdnDomainHitRateDataDataModuleList
 }
 
 type DescribeDcdnDomainHitRateDataDataModule struct {
-	TimeStamp   string
-	ReqHitRate  float32
-	ByteHitRate float32
+	TimeStamp   common.String
+	ReqHitRate  common.Float
+	ByteHitRate common.Float
 }
 
 type DescribeDcdnDomainHitRateDataDataModuleList []DescribeDcdnDomainHitRateDataDataModule

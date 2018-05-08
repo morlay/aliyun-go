@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsConsumerStatusRequest struct {
@@ -27,18 +28,18 @@ func (req *OnsConsumerStatusRequest) Invoke(client *sdk.Client) (resp *OnsConsum
 
 type OnsConsumerStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsConsumerStatusData
 }
 
 type OnsConsumerStatusData struct {
 	Online                     bool
-	TotalDiff                  int64
-	ConsumeTps                 float32
-	LastTimestamp              int64
-	DelayTime                  int64
-	ConsumeModel               string
+	TotalDiff                  common.Long
+	ConsumeTps                 common.Float
+	LastTimestamp              common.Long
+	DelayTime                  common.Long
+	ConsumeModel               common.String
 	SubscriptionSame           bool
 	RebalanceOK                bool
 	ConnectionSet              OnsConsumerStatusConnectionDoList
@@ -47,52 +48,52 @@ type OnsConsumerStatusData struct {
 }
 
 type OnsConsumerStatusConnectionDo struct {
-	ClientId   string
-	ClientAddr string
-	Language   string
-	Version    string
+	ClientId   common.String
+	ClientAddr common.String
+	Language   common.String
+	Version    common.String
 }
 
 type OnsConsumerStatusDetailInTopicDo struct {
-	Topic         string
-	TotalDiff     int64
-	LastTimestamp int64
-	DelayTime     int64
+	Topic         common.String
+	TotalDiff     common.Long
+	LastTimestamp common.Long
+	DelayTime     common.Long
 }
 
 type OnsConsumerStatusConsumerConnectionInfoDo struct {
-	ClientId        string
-	Connection      string
-	Language        string
-	Version         string
-	ConsumeModel    string
-	ConsumeType     string
-	ThreadCount     int
-	StartTimeStamp  int64
-	LastTimeStamp   int64
+	ClientId        common.String
+	Connection      common.String
+	Language        common.String
+	Version         common.String
+	ConsumeModel    common.String
+	ConsumeType     common.String
+	ThreadCount     common.Integer
+	StartTimeStamp  common.Long
+	LastTimeStamp   common.Long
 	SubscriptionSet OnsConsumerStatusSubscriptionDataList
 	RunningDataList OnsConsumerStatusConsumerRunningDataDoList
 	Jstack          OnsConsumerStatusThreadTrackDoList
 }
 
 type OnsConsumerStatusSubscriptionData struct {
-	Topic      string
-	SubString  string
-	SubVersion int64
+	Topic      common.String
+	SubString  common.String
+	SubVersion common.Long
 	TagsSet    OnsConsumerStatusTagsSetList
 }
 
 type OnsConsumerStatusConsumerRunningDataDo struct {
-	ConsumerId         string
-	Topic              string
-	Rt                 float32
-	OkTps              float32
-	FailedTps          float32
-	FailedCountPerHour int64
+	ConsumerId         common.String
+	Topic              common.String
+	Rt                 common.Float
+	OkTps              common.Float
+	FailedTps          common.Float
+	FailedCountPerHour common.Long
 }
 
 type OnsConsumerStatusThreadTrackDo struct {
-	Thread    string
+	Thread    common.String
 	TrackList OnsConsumerStatusTrackListList
 }
 
@@ -186,10 +187,10 @@ func (list *OnsConsumerStatusThreadTrackDoList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type OnsConsumerStatusTagsSetList []string
+type OnsConsumerStatusTagsSetList []common.String
 
 func (list *OnsConsumerStatusTagsSetList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -201,10 +202,10 @@ func (list *OnsConsumerStatusTagsSetList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type OnsConsumerStatusTrackListList []string
+type OnsConsumerStatusTrackListList []common.String
 
 func (list *OnsConsumerStatusTrackListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateLiveStreamRecordIndexFilesRequest struct {
@@ -29,23 +30,23 @@ func (req *CreateLiveStreamRecordIndexFilesRequest) Invoke(client *sdk.Client) (
 
 type CreateLiveStreamRecordIndexFilesResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	RecordInfo CreateLiveStreamRecordIndexFilesRecordInfo
 }
 
 type CreateLiveStreamRecordIndexFilesRecordInfo struct {
-	RecordId    string
-	RecordUrl   string
-	DomainName  string
-	AppName     string
-	StreamName  string
-	OssBucket   string
-	OssEndpoint string
-	OssObject   string
-	StartTime   string
-	EndTime     string
-	Duration    float32
-	Height      int
-	Width       int
-	CreateTime  string
+	RecordId    common.String
+	RecordUrl   common.String
+	DomainName  common.String
+	AppName     common.String
+	StreamName  common.String
+	OssBucket   common.String
+	OssEndpoint common.String
+	OssObject   common.String
+	StartTime   common.String
+	EndTime     common.String
+	Duration    common.Float
+	Height      common.Integer
+	Width       common.Integer
+	CreateTime  common.String
 }

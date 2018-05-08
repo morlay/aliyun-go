@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListInstanceInfosRequest struct {
@@ -29,31 +30,31 @@ func (req *ListInstanceInfosRequest) Invoke(client *sdk.Client) (resp *ListInsta
 
 type ListInstanceInfosResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int
-	PageSize   int
-	TotalCount int
+	RequestId  common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
 	InfosList  ListInstanceInfosInstanceInfoList
 }
 
 type ListInstanceInfosInstanceInfo struct {
-	Region       string
-	RegionName   string
-	RegionEnName string
-	InstanceName string
-	InstanceId   string
-	Ip           string
-	InternetIp   string
-	IntranetIp   string
-	Ddos         int
-	HostEvent    int
-	SecureCheck  int
-	AegisStatus  int
-	Waf          int
+	Region       common.String
+	RegionName   common.String
+	RegionEnName common.String
+	InstanceName common.String
+	InstanceId   common.String
+	Ip           common.String
+	InternetIp   common.String
+	IntranetIp   common.String
+	Ddos         common.Integer
+	HostEvent    common.Integer
+	SecureCheck  common.Integer
+	AegisStatus  common.Integer
+	Waf          common.Integer
 	IsLock       bool
-	LockType     string
-	UnLockTimes  int
-	TriggerTime  string
+	LockType     common.String
+	UnLockTimes  common.Integer
+	TriggerTime  common.String
 }
 
 type ListInstanceInfosInstanceInfoList []ListInstanceInfosInstanceInfo

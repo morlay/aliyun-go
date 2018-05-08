@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckRecoveryConditionsRequest struct {
@@ -27,7 +28,7 @@ func (req *CheckRecoveryConditionsRequest) Invoke(client *sdk.Client) (resp *Che
 
 type CheckRecoveryConditionsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DBInstanceId   string
-	RecoveryStatus string
+	RequestId      common.String
+	DBInstanceId   common.String
+	RecoveryStatus common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteSubDomainRecordsRequest struct {
@@ -24,7 +25,7 @@ func (req *DeleteSubDomainRecordsRequest) Invoke(client *sdk.Client) (resp *Dele
 
 type DeleteSubDomainRecordsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	RR         string
-	TotalCount string
+	RequestId  common.String
+	RR         common.String
+	TotalCount common.String
 }

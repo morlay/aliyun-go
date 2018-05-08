@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetAccountAliasRequest struct {
@@ -19,6 +20,6 @@ func (req *GetAccountAliasRequest) Invoke(client *sdk.Client) (resp *GetAccountA
 
 type GetAccountAliasResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	AccountAlias string
+	RequestId    common.String
+	AccountAlias common.String
 }

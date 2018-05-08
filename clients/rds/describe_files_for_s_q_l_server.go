@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFilesForSQLServerRequest struct {
@@ -30,27 +31,27 @@ func (req *DescribeFilesForSQLServerRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeFilesForSQLServerResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DBInstanceId     string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	DBInstanceId     common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeFilesForSQLServerSQLServerUploadFileList
 }
 
 type DescribeFilesForSQLServerSQLServerUploadFile struct {
-	DBName            string
-	FileName          string
-	FileSize          int64
-	InternetFtpServer string
-	InternetPort      int
-	IntranetFtpserver string
-	Intranetport      int
-	UserName          string
-	Password          string
-	FileStatus        string
-	Description       string
-	CreationTime      string
+	DBName            common.String
+	FileName          common.String
+	FileSize          common.Long
+	InternetFtpServer common.String
+	InternetPort      common.Integer
+	IntranetFtpserver common.String
+	Intranetport      common.Integer
+	UserName          common.String
+	Password          common.String
+	FileStatus        common.String
+	Description       common.String
+	CreationTime      common.String
 }
 
 type DescribeFilesForSQLServerSQLServerUploadFileList []DescribeFilesForSQLServerSQLServerUploadFile

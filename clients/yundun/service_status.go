@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ServiceStatusRequest struct {
@@ -20,7 +21,7 @@ func (req *ServiceStatusRequest) Invoke(client *sdk.Client) (resp *ServiceStatus
 
 type ServiceStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	PortScan  bool
 	VulScan   bool
 }

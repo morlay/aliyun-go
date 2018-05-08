@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnCertificateListRequest struct {
@@ -24,22 +25,22 @@ func (req *DescribeDcdnCertificateListRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeDcdnCertificateListResponse struct {
 	responses.BaseResponse
-	RequestId            string
+	RequestId            common.String
 	CertificateListModel DescribeDcdnCertificateListCertificateListModel
 }
 
 type DescribeDcdnCertificateListCertificateListModel struct {
-	Count    int
+	Count    common.Integer
 	CertList DescribeDcdnCertificateListCertList
 }
 
 type DescribeDcdnCertificateListCert struct {
-	CertName    string
-	CertId      int64
-	Fingerprint string
-	Common      string
-	Issuer      string
-	LastTime    int64
+	CertName    common.String
+	CertId      common.Long
+	Fingerprint common.String
+	Common      common.String
+	Issuer      common.String
+	LastTime    common.Long
 }
 
 type DescribeDcdnCertificateListCertList []DescribeDcdnCertificateListCert

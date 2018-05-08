@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EnableActiveAlertRequest struct {
@@ -22,6 +23,6 @@ func (req *EnableActiveAlertRequest) Invoke(client *sdk.Client) (resp *EnableAct
 type EnableActiveAlertResponse struct {
 	responses.BaseResponse
 	Success bool
-	Code    string
-	Message string
+	Code    common.String
+	Message common.String
 }

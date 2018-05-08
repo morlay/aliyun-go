@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSecurityGroupsRequest struct {
@@ -45,28 +46,28 @@ func (req *DescribeSecurityGroupsRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeSecurityGroupsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	RegionId       string
-	TotalCount     int
-	PageNumber     int
-	PageSize       int
+	RequestId      common.String
+	RegionId       common.String
+	TotalCount     common.Integer
+	PageNumber     common.Integer
+	PageSize       common.Integer
 	SecurityGroups DescribeSecurityGroupsSecurityGroupList
 }
 
 type DescribeSecurityGroupsSecurityGroup struct {
-	SecurityGroupId         string
-	Description             string
-	SecurityGroupName       string
-	VpcId                   string
-	CreationTime            string
-	AvailableInstanceAmount int
-	EcsCount                int
+	SecurityGroupId         common.String
+	Description             common.String
+	SecurityGroupName       common.String
+	VpcId                   common.String
+	CreationTime            common.String
+	AvailableInstanceAmount common.Integer
+	EcsCount                common.Integer
 	Tags                    DescribeSecurityGroupsTagList
 }
 
 type DescribeSecurityGroupsTag struct {
-	TagKey   string
-	TagValue string
+	TagKey   common.String
+	TagValue common.String
 }
 
 type DescribeSecurityGroupsSecurityGroupList []DescribeSecurityGroupsSecurityGroup

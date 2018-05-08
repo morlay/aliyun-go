@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCasterComponentRequest struct {
@@ -29,6 +30,6 @@ func (req *AddCasterComponentRequest) Invoke(client *sdk.Client) (resp *AddCaste
 
 type AddCasterComponentResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	ComponentId string
+	RequestId   common.String
+	ComponentId common.String
 }

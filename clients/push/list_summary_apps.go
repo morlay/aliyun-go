@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListSummaryAppsRequest struct {
@@ -21,13 +22,13 @@ func (req *ListSummaryAppsRequest) Invoke(client *sdk.Client) (resp *ListSummary
 
 type ListSummaryAppsResponse struct {
 	responses.BaseResponse
-	RequestId       string
+	RequestId       common.String
 	SummaryAppInfos ListSummaryAppsSummaryAppInfoList
 }
 
 type ListSummaryAppsSummaryAppInfo struct {
-	AppName string
-	AppKey  int64
+	AppName common.String
+	AppKey  common.Long
 }
 
 type ListSummaryAppsSummaryAppInfoList []ListSummaryAppsSummaryAppInfo

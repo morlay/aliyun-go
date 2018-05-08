@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterScriptsRequest struct {
@@ -23,18 +24,18 @@ func (req *ListClusterScriptsRequest) Invoke(client *sdk.Client) (resp *ListClus
 
 type ListClusterScriptsResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	ClusterScripts ListClusterScriptsClusterScriptList
 }
 
 type ListClusterScriptsClusterScript struct {
-	Id        string
-	Name      string
-	StartTime int64
-	EndTime   int64
-	Path      string
-	Args      string
-	Status    string
+	Id        common.String
+	Name      common.String
+	StartTime common.Long
+	EndTime   common.Long
+	Path      common.String
+	Args      common.String
+	Status    common.String
 }
 
 type ListClusterScriptsClusterScriptList []ListClusterScriptsClusterScript

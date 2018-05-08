@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SecureCheckRequest struct {
@@ -23,8 +24,8 @@ func (req *SecureCheckRequest) Invoke(client *sdk.Client) (resp *SecureCheckResp
 
 type SecureCheckResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	RecentInstanceId string
+	RequestId        common.String
+	RecentInstanceId common.String
 	ProblemList      SecureCheckInfoList
 	NoProblemList    SecureCheckInfoList
 	NoScanList       SecureCheckInfoList
@@ -33,10 +34,10 @@ type SecureCheckResponse struct {
 }
 
 type SecureCheckInfo struct {
-	Ip         string
-	Status     string
-	VulNum     string
-	InstanceId string
+	Ip         common.String
+	Status     common.String
+	VulNum     common.String
+	InstanceId common.String
 }
 
 type SecureCheckInfoList []SecureCheckInfo

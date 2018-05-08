@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryMediaWorkflowExecutionListRequest struct {
@@ -26,49 +27,49 @@ func (req *QueryMediaWorkflowExecutionListRequest) Invoke(client *sdk.Client) (r
 
 type QueryMediaWorkflowExecutionListResponse struct {
 	responses.BaseResponse
-	RequestId                  string
+	RequestId                  common.String
 	MediaWorkflowExecutionList QueryMediaWorkflowExecutionListMediaWorkflowExecutionList
 	NonExistRunIds             QueryMediaWorkflowExecutionListNonExistRunIdList
 }
 
 type QueryMediaWorkflowExecutionListMediaWorkflowExecution struct {
-	RunId           string
-	MediaWorkflowId string
-	Name            string
-	State           string
-	MediaId         string
-	CreationTime    string
+	RunId           common.String
+	MediaWorkflowId common.String
+	Name            common.String
+	State           common.String
+	MediaId         common.String
+	CreationTime    common.String
 	ActivityList    QueryMediaWorkflowExecutionListActivityList
 	Input           QueryMediaWorkflowExecutionListInput
 }
 
 type QueryMediaWorkflowExecutionListActivity struct {
-	Name             string
-	Type             string
-	JobId            string
-	State            string
-	Code             string
-	Message          string
-	StartTime        string
-	EndTime          string
+	Name             common.String
+	Type             common.String
+	JobId            common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	StartTime        common.String
+	EndTime          common.String
 	MNSMessageResult QueryMediaWorkflowExecutionListMNSMessageResult
 }
 
 type QueryMediaWorkflowExecutionListMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }
 
 type QueryMediaWorkflowExecutionListInput struct {
-	UserData  string
+	UserData  common.String
 	InputFile QueryMediaWorkflowExecutionListInputFile
 }
 
 type QueryMediaWorkflowExecutionListInputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryMediaWorkflowExecutionListMediaWorkflowExecutionList []QueryMediaWorkflowExecutionListMediaWorkflowExecution
@@ -86,10 +87,10 @@ func (list *QueryMediaWorkflowExecutionListMediaWorkflowExecutionList) Unmarshal
 	return nil
 }
 
-type QueryMediaWorkflowExecutionListNonExistRunIdList []string
+type QueryMediaWorkflowExecutionListNonExistRunIdList []common.String
 
 func (list *QueryMediaWorkflowExecutionListNonExistRunIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

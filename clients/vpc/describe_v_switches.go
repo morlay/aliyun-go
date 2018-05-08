@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVSwitchesRequest struct {
@@ -32,23 +33,23 @@ func (req *DescribeVSwitchesRequest) Invoke(client *sdk.Client) (resp *DescribeV
 
 type DescribeVSwitchesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	VSwitches  DescribeVSwitchesVSwitchList
 }
 
 type DescribeVSwitchesVSwitch struct {
-	VSwitchId               string
-	VpcId                   string
-	Status                  string
-	CidrBlock               string
-	ZoneId                  string
-	AvailableIpAddressCount int64
-	Description             string
-	VSwitchName             string
-	CreationTime            string
+	VSwitchId               common.String
+	VpcId                   common.String
+	Status                  common.String
+	CidrBlock               common.String
+	ZoneId                  common.String
+	AvailableIpAddressCount common.Long
+	Description             common.String
+	VSwitchName             common.String
+	CreationTime            common.String
 	IsDefault               bool
 }
 

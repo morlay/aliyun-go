@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnUserResourcePackageRequest struct {
@@ -23,17 +24,17 @@ func (req *DescribeDcdnUserResourcePackageRequest) Invoke(client *sdk.Client) (r
 
 type DescribeDcdnUserResourcePackageResponse struct {
 	responses.BaseResponse
-	RequestId            string
+	RequestId            common.String
 	ResourcePackageInfos DescribeDcdnUserResourcePackageResourcePackageInfoList
 }
 
 type DescribeDcdnUserResourcePackageResourcePackageInfo struct {
-	CurrCapacity  string
-	InitCapacity  string
-	CommodityCode string
-	DisplayName   string
-	InstanceId    string
-	Status        string
+	CurrCapacity  common.String
+	InitCapacity  common.String
+	CommodityCode common.String
+	DisplayName   common.String
+	InstanceId    common.String
+	Status        common.String
 }
 
 type DescribeDcdnUserResourcePackageResourcePackageInfoList []DescribeDcdnUserResourcePackageResourcePackageInfo

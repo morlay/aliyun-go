@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFlowNodeInstanceRequest struct {
@@ -22,32 +23,32 @@ func (req *DescribeFlowNodeInstanceRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeFlowNodeInstanceResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	Id             string
-	GmtCreate      int64
-	GmtModified    int64
-	Type           string
-	Status         string
-	JobId          string
-	JobName        string
-	JobType        string
-	JobParams      string
-	FailAct        string
-	MaxRetry       string
-	RetryInterval  string
-	NodeName       string
-	FlowId         string
-	ClusterId      string
-	HostName       string
-	ProjectId      string
-	StartTime      int64
-	EndTime        int64
-	Retries        int
-	ExternalId     string
-	ExternalStatus string
-	ExternalInfo   string
-	ParamConf      string
-	EnvConf        string
-	RunConf        string
-	ClusterName    string
+	RequestId      common.String
+	Id             common.String
+	GmtCreate      common.Long
+	GmtModified    common.Long
+	Type           common.String
+	Status         common.String
+	JobId          common.String
+	JobName        common.String
+	JobType        common.String
+	JobParams      common.String
+	FailAct        common.String
+	MaxRetry       common.String
+	RetryInterval  common.String
+	NodeName       common.String
+	FlowId         common.String
+	ClusterId      common.String
+	HostName       common.String
+	ProjectId      common.String
+	StartTime      common.Long
+	EndTime        common.Long
+	Retries        common.Integer
+	ExternalId     common.String
+	ExternalStatus common.String
+	ExternalInfo   common.String
+	ParamConf      common.String
+	EnvConf        common.String
+	RunConf        common.String
+	ClusterName    common.String
 }

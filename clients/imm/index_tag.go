@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type IndexTagRequest struct {
@@ -25,30 +26,30 @@ func (req *IndexTagRequest) Invoke(client *sdk.Client) (resp *IndexTagResponse, 
 
 type IndexTagResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	SetId           string
-	SuccessIndexNum string
+	RequestId       common.String
+	SetId           common.String
+	SuccessIndexNum common.String
 	FailDetails     IndexTagFailDetailsItemList
 	SuccessDetails  IndexTagSuccessDetailsItemList
 }
 
 type IndexTagFailDetailsItem struct {
-	SrcUri string
-	Reason string
+	SrcUri common.String
+	Reason common.String
 }
 
 type IndexTagSuccessDetailsItem struct {
-	SrcUri string
+	SrcUri common.String
 	Tags   IndexTagTagsItemList
 }
 
 type IndexTagTagsItem struct {
-	TagId         string
-	TagLevel      string
-	TagName       string
-	ParentTagId   string
-	ParentTagName string
-	TagScore      string
+	TagId         common.String
+	TagLevel      common.String
+	TagName       common.String
+	ParentTagId   common.String
+	ParentTagName common.String
+	TagScore      common.String
 }
 
 type IndexTagFailDetailsItemList []IndexTagFailDetailsItem

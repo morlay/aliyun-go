@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainRequest struct {
@@ -21,16 +22,16 @@ func (req *DescribeDomainRequest) Invoke(client *sdk.Client) (resp *DescribeDoma
 
 type DescribeDomainResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	GroupId               string
-	DomainName            string
-	SubDomain             string
-	CertificateId         string
-	CertificateName       string
-	CertificateBody       string
-	CertificatePrivateKey string
-	DomainBindingStatus   string
-	DomainCNAMEStatus     string
-	DomainLegalStatus     string
-	DomainRemark          string
+	RequestId             common.String
+	GroupId               common.String
+	DomainName            common.String
+	SubDomain             common.String
+	CertificateId         common.String
+	CertificateName       common.String
+	CertificateBody       common.String
+	CertificatePrivateKey common.String
+	DomainBindingStatus   common.String
+	DomainCNAMEStatus     common.String
+	DomainLegalStatus     common.String
+	DomainRemark          common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCenRegionDomainRouteEntriesRequest struct {
@@ -29,19 +30,19 @@ func (req *DescribeCenRegionDomainRouteEntriesRequest) Invoke(client *sdk.Client
 
 type DescribeCenRegionDomainRouteEntriesResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	PageNumber      int
-	TotalCount      int
-	PageSize        int
+	RequestId       common.String
+	PageNumber      common.Integer
+	TotalCount      common.Integer
+	PageSize        common.Integer
 	CenRouteEntries DescribeCenRegionDomainRouteEntriesCenRouteEntryList
 }
 
 type DescribeCenRegionDomainRouteEntriesCenRouteEntry struct {
-	DestinationCidrBlock string
-	Type                 string
-	NextHopInstanceId    string
-	NextHopType          string
-	NextHopRegionId      string
+	DestinationCidrBlock common.String
+	Type                 common.String
+	NextHopInstanceId    common.String
+	NextHopType          common.String
+	NextHopRegionId      common.String
 }
 
 type DescribeCenRegionDomainRouteEntriesCenRouteEntryList []DescribeCenRegionDomainRouteEntriesCenRouteEntry

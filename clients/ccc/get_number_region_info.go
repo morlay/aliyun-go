@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetNumberRegionInfoRequest struct {
@@ -21,15 +22,15 @@ func (req *GetNumberRegionInfoRequest) Invoke(client *sdk.Client) (resp *GetNumb
 
 type GetNumberRegionInfoResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	Success     bool
-	Code        string
-	Message     string
+	Code        common.String
+	Message     common.String
 	PhoneNumber GetNumberRegionInfoPhoneNumber
 }
 
 type GetNumberRegionInfoPhoneNumber struct {
-	Number   string
-	Province string
-	City     string
+	Number   common.String
+	Province common.String
+	City     common.String
 }

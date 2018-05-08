@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitAIJobRequest struct {
@@ -29,19 +30,19 @@ func (req *SubmitAIJobRequest) Invoke(client *sdk.Client) (resp *SubmitAIJobResp
 
 type SubmitAIJobResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	AIJobList SubmitAIJobAIJobList
 }
 
 type SubmitAIJobAIJob struct {
-	JobId        string
-	Type         string
-	MediaId      string
-	Status       string
-	Code         string
-	Message      string
-	CreationTime string
-	Data         string
+	JobId        common.String
+	Type         common.String
+	MediaId      common.String
+	Status       common.String
+	Code         common.String
+	Message      common.String
+	CreationTime common.String
+	Data         common.String
 }
 
 type SubmitAIJobAIJobList []SubmitAIJobAIJob

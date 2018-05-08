@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetErrorPageConfigRequest struct {
@@ -24,5 +25,5 @@ func (req *SetErrorPageConfigRequest) Invoke(client *sdk.Client) (resp *SetError
 
 type SetErrorPageConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

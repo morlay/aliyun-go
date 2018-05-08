@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type TaskConfigUnhealthyRequest struct {
@@ -22,15 +23,15 @@ func (req *TaskConfigUnhealthyRequest) Invoke(client *sdk.Client) (resp *TaskCon
 
 type TaskConfigUnhealthyResponse struct {
 	responses.BaseResponse
-	ErrorCode     int
-	ErrorMessage  string
+	ErrorCode     common.Integer
+	ErrorMessage  common.String
 	Success       bool
-	RequestId     string
+	RequestId     common.String
 	UnhealthyList TaskConfigUnhealthyNodeTaskInstanceList
 }
 
 type TaskConfigUnhealthyNodeTaskInstance struct {
-	TaskId       int64
+	TaskId       common.Long
 	InstanceList TaskConfigUnhealthyInstanceListList
 }
 
@@ -64,10 +65,10 @@ func (list *TaskConfigUnhealthyNodeTaskInstanceList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type TaskConfigUnhealthyInstanceListList []string
+type TaskConfigUnhealthyInstanceListList []common.String
 
 func (list *TaskConfigUnhealthyInstanceListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

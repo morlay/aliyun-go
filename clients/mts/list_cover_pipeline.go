@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListCoverPipelineRequest struct {
@@ -28,24 +29,24 @@ func (req *ListCoverPipelineRequest) Invoke(client *sdk.Client) (resp *ListCover
 
 type ListCoverPipelineResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int64
-	PageNumber   int64
-	PageSize     int64
+	RequestId    common.String
+	TotalCount   common.Long
+	PageNumber   common.Long
+	PageSize     common.Long
 	PipelineList ListCoverPipelinePipelineList
 }
 
 type ListCoverPipelinePipeline struct {
-	UserId       int64
-	PipelineId   string
-	Name         string
-	State        string
-	Priority     string
-	QuotaNum     int
-	QuotaUsed    int
-	NotifyConfig string
-	Role         string
-	ExtendConfig string
+	UserId       common.Long
+	PipelineId   common.String
+	Name         common.String
+	State        common.String
+	Priority     common.String
+	QuotaNum     common.Integer
+	QuotaUsed    common.Integer
+	NotifyConfig common.String
+	Role         common.String
+	ExtendConfig common.String
 }
 
 type ListCoverPipelinePipelineList []ListCoverPipelinePipeline

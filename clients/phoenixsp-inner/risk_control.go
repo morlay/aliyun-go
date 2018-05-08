@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RiskControlRequest struct {
@@ -24,8 +25,8 @@ func (req *RiskControlRequest) Invoke(client *sdk.Client) (resp *RiskControlResp
 
 type RiskControlResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Message   string
+	RequestId common.String
+	Code      common.String
+	Message   common.String
 	Success   bool
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateIpControlRequest struct {
@@ -30,8 +31,8 @@ type CreateIpControlIpControlPolicys struct {
 
 type CreateIpControlResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	IpControlId string
+	RequestId   common.String
+	IpControlId common.String
 }
 
 type CreateIpControlIpControlPolicysList []CreateIpControlIpControlPolicys

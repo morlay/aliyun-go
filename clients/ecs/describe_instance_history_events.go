@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceHistoryEventsRequest struct {
@@ -37,31 +38,31 @@ func (req *DescribeInstanceHistoryEventsRequest) Invoke(client *sdk.Client) (res
 
 type DescribeInstanceHistoryEventsResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	TotalCount             int
-	PageNumber             int
-	PageSize               int
+	RequestId              common.String
+	TotalCount             common.Integer
+	PageNumber             common.Integer
+	PageSize               common.Integer
 	InstanceSystemEventSet DescribeInstanceHistoryEventsInstanceSystemEventTypeList
 }
 
 type DescribeInstanceHistoryEventsInstanceSystemEventType struct {
-	InstanceId       string
-	EventId          string
-	EventPublishTime string
-	NotBefore        string
-	EventFinishTime  string
+	InstanceId       common.String
+	EventId          common.String
+	EventPublishTime common.String
+	NotBefore        common.String
+	EventFinishTime  common.String
 	EventType        DescribeInstanceHistoryEventsEventType
 	EventCycleStatus DescribeInstanceHistoryEventsEventCycleStatus
 }
 
 type DescribeInstanceHistoryEventsEventType struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeInstanceHistoryEventsEventCycleStatus struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeInstanceHistoryEventsEventIdList []string

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAccessControlListsRequest struct {
@@ -30,13 +31,13 @@ func (req *DescribeAccessControlListsRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeAccessControlListsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Acls      DescribeAccessControlListsAclList
 }
 
 type DescribeAccessControlListsAcl struct {
-	AclId   string
-	AclName string
+	AclId   common.String
+	AclName common.String
 }
 
 type DescribeAccessControlListsAclList []DescribeAccessControlListsAcl

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainRealTimeReqHitRateDataRequest struct {
@@ -25,13 +26,13 @@ func (req *DescribeDomainRealTimeReqHitRateDataRequest) Invoke(client *sdk.Clien
 
 type DescribeDomainRealTimeReqHitRateDataResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      DescribeDomainRealTimeReqHitRateDataReqHitRateDataModelList
 }
 
 type DescribeDomainRealTimeReqHitRateDataReqHitRateDataModel struct {
-	ReqHitRate float32
-	TimeStamp  string
+	ReqHitRate common.Float
+	TimeStamp  common.String
 }
 
 type DescribeDomainRealTimeReqHitRateDataReqHitRateDataModelList []DescribeDomainRealTimeReqHitRateDataReqHitRateDataModel

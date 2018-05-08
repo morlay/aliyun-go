@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeHealthStatusRequest struct {
@@ -29,17 +30,17 @@ func (req *DescribeHealthStatusRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeHealthStatusResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	BackendServers DescribeHealthStatusBackendServerList
 }
 
 type DescribeHealthStatusBackendServer struct {
-	ListenerPort       int
-	ServerId           string
-	Port               int
-	ServerHealthStatus string
-	ServerIp           string
-	Type               string
+	ListenerPort       common.Integer
+	ServerId           common.String
+	Port               common.Integer
+	ServerHealthStatus common.String
+	ServerIp           common.String
+	Type               common.String
 }
 
 type DescribeHealthStatusBackendServerList []DescribeHealthStatusBackendServer

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteCasServiceRequest struct {
@@ -23,7 +24,7 @@ func (req *DeleteCasServiceRequest) Invoke(client *sdk.Client) (resp *DeleteCasS
 
 type DeleteCasServiceResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 }

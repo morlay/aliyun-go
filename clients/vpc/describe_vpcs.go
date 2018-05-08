@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpcsRequest struct {
@@ -31,24 +32,24 @@ func (req *DescribeVpcsRequest) Invoke(client *sdk.Client) (resp *DescribeVpcsRe
 
 type DescribeVpcsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Vpcs       DescribeVpcsVpcList
 }
 
 type DescribeVpcsVpc struct {
-	VpcId           string
-	RegionId        string
-	Status          string
-	VpcName         string
-	CreationTime    string
-	CidrBlock       string
-	VRouterId       string
-	Description     string
+	VpcId           common.String
+	RegionId        common.String
+	Status          common.String
+	VpcName         common.String
+	CreationTime    common.String
+	CidrBlock       common.String
+	VRouterId       common.String
+	Description     common.String
 	IsDefault       bool
-	ResourceGroupId string
+	ResourceGroupId common.String
 	VSwitchIds      DescribeVpcsVSwitchIdList
 	UserCidrs       DescribeVpcsUserCidrList
 	NatGatewayIds   DescribeVpcsNatGatewayIdList
@@ -70,10 +71,10 @@ func (list *DescribeVpcsVpcList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeVpcsVSwitchIdList []string
+type DescribeVpcsVSwitchIdList []common.String
 
 func (list *DescribeVpcsVSwitchIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -85,10 +86,10 @@ func (list *DescribeVpcsVSwitchIdList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeVpcsUserCidrList []string
+type DescribeVpcsUserCidrList []common.String
 
 func (list *DescribeVpcsUserCidrList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -100,10 +101,10 @@ func (list *DescribeVpcsUserCidrList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeVpcsNatGatewayIdList []string
+type DescribeVpcsNatGatewayIdList []common.String
 
 func (list *DescribeVpcsNatGatewayIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -115,10 +116,10 @@ func (list *DescribeVpcsNatGatewayIdList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeVpcsRouterTableIdList []string
+type DescribeVpcsRouterTableIdList []common.String
 
 func (list *DescribeVpcsRouterTableIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

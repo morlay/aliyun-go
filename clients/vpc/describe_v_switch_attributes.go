@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVSwitchAttributesRequest struct {
@@ -26,23 +27,23 @@ func (req *DescribeVSwitchAttributesRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeVSwitchAttributesResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	VSwitchId               string
-	VpcId                   string
-	Status                  string
-	CidrBlock               string
-	ZoneId                  string
-	AvailableIpAddressCount int64
-	Description             string
-	VSwitchName             string
-	CreationTime            string
+	RequestId               common.String
+	VSwitchId               common.String
+	VpcId                   common.String
+	Status                  common.String
+	CidrBlock               common.String
+	ZoneId                  common.String
+	AvailableIpAddressCount common.Long
+	Description             common.String
+	VSwitchName             common.String
+	CreationTime            common.String
 	IsDefault               bool
 	CloudResources          DescribeVSwitchAttributesCloudResourceSetTypeList
 }
 
 type DescribeVSwitchAttributesCloudResourceSetType struct {
-	ResourceType  string
-	ResourceCount int
+	ResourceType  common.String
+	ResourceCount common.Integer
 }
 
 type DescribeVSwitchAttributesCloudResourceSetTypeList []DescribeVSwitchAttributesCloudResourceSetType

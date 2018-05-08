@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSlowLogsRequest struct {
@@ -32,37 +33,37 @@ func (req *DescribeSlowLogsRequest) Invoke(client *sdk.Client) (resp *DescribeSl
 
 type DescribeSlowLogsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Engine           string
-	StartTime        string
-	EndTime          string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	Engine           common.String
+	StartTime        common.String
+	EndTime          common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeSlowLogsSQLSlowLogList
 }
 
 type DescribeSlowLogsSQLSlowLog struct {
-	SlowLogId                     int64
-	SQLId                         int64
-	DBName                        string
-	SQLText                       string
-	MySQLTotalExecutionCounts     int64
-	MySQLTotalExecutionTimes      int64
-	TotalLockTimes                int64
-	MaxLockTime                   int64
-	ParseTotalRowCounts           int64
-	ParseMaxRowCount              int64
-	ReturnTotalRowCounts          int64
-	ReturnMaxRowCount             int64
-	CreateTime                    string
-	SQLServerTotalExecutionCounts int64
-	SQLServerTotalExecutionTimes  int64
-	TotalLogicalReadCounts        int64
-	TotalPhysicalReadCounts       int64
-	ReportTime                    string
-	MaxExecutionTime              int64
-	AvgExecutionTime              int64
+	SlowLogId                     common.Long
+	SQLId                         common.Long
+	DBName                        common.String
+	SQLText                       common.String
+	MySQLTotalExecutionCounts     common.Long
+	MySQLTotalExecutionTimes      common.Long
+	TotalLockTimes                common.Long
+	MaxLockTime                   common.Long
+	ParseTotalRowCounts           common.Long
+	ParseMaxRowCount              common.Long
+	ReturnTotalRowCounts          common.Long
+	ReturnMaxRowCount             common.Long
+	CreateTime                    common.String
+	SQLServerTotalExecutionCounts common.Long
+	SQLServerTotalExecutionTimes  common.Long
+	TotalLogicalReadCounts        common.Long
+	TotalPhysicalReadCounts       common.Long
+	ReportTime                    common.String
+	MaxExecutionTime              common.Long
+	AvgExecutionTime              common.Long
 }
 
 type DescribeSlowLogsSQLSlowLogList []DescribeSlowLogsSQLSlowLog

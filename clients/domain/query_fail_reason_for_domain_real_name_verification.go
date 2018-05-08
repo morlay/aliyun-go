@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryFailReasonForDomainRealNameVerificationRequest struct {
@@ -25,14 +26,14 @@ func (req *QueryFailReasonForDomainRealNameVerificationRequest) Invoke(client *s
 
 type QueryFailReasonForDomainRealNameVerificationResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      QueryFailReasonForDomainRealNameVerificationFailRecordList
 }
 
 type QueryFailReasonForDomainRealNameVerificationFailRecord struct {
-	Date                         string
-	FailReason                   string
-	DomainNameVerificationStatus string
+	Date                         common.String
+	FailReason                   common.String
+	DomainNameVerificationStatus common.String
 }
 
 type QueryFailReasonForDomainRealNameVerificationFailRecordList []QueryFailReasonForDomainRealNameVerificationFailRecord

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListProductOfActiveAlertRequest struct {
@@ -20,9 +21,9 @@ func (req *ListProductOfActiveAlertRequest) Invoke(client *sdk.Client) (resp *Li
 
 type ListProductOfActiveAlertResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	Success    bool
-	Code       int
-	Message    string
-	Datapoints string
+	Code       common.Integer
+	Message    common.String
+	Datapoints common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindApprovalOrderListRequest struct {
@@ -27,48 +28,48 @@ func (req *FindApprovalOrderListRequest) Invoke(client *sdk.Client) (resp *FindA
 
 type FindApprovalOrderListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindApprovalOrderListData
 }
 
 type FindApprovalOrderListData struct {
-	CurrentPage int
-	PageNumber  int
+	CurrentPage common.Integer
+	PageNumber  common.Integer
 	OrderList   FindApprovalOrderListOrderList
 }
 
 type FindApprovalOrderListOrder struct {
-	Alias               string
-	CredentialGroupId   int64
-	CsbId               int64
-	GmtCreate           int64
-	GmtModified         int64
-	GroupName           string
-	Id                  int64
-	ProjectName         string
-	ServiceId           int64
-	ServiceName         string
-	ServiceStatus       int
-	ServiceVersion      string
-	StatisticName       string
-	Status              int
-	StrictWhiteListJson string
-	UserId              string
-	UserName            string
+	Alias               common.String
+	CredentialGroupId   common.Long
+	CsbId               common.Long
+	GmtCreate           common.Long
+	GmtModified         common.Long
+	GroupName           common.String
+	Id                  common.Long
+	ProjectName         common.String
+	ServiceId           common.Long
+	ServiceName         common.String
+	ServiceStatus       common.Integer
+	ServiceVersion      common.String
+	StatisticName       common.String
+	Status              common.Integer
+	StrictWhiteListJson common.String
+	UserId              common.String
+	UserName            common.String
 	SlaInfo             FindApprovalOrderListSlaInfo
 	Total               FindApprovalOrderListTotal
 }
 
 type FindApprovalOrderListSlaInfo struct {
-	Qph int
-	Qps int
+	Qph common.Integer
+	Qps common.Integer
 }
 
 type FindApprovalOrderListTotal struct {
-	ErrorNum int
-	Total    int
+	ErrorNum common.Integer
+	Total    common.Integer
 }
 
 type FindApprovalOrderListOrderList []FindApprovalOrderListOrder

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterServiceStatusOverviewRequest struct {
@@ -22,14 +23,14 @@ func (req *ListClusterServiceStatusOverviewRequest) Invoke(client *sdk.Client) (
 
 type ListClusterServiceStatusOverviewResponse struct {
 	responses.BaseResponse
-	RequestId                string
+	RequestId                common.String
 	ClusterServiceStatusList ListClusterServiceStatusOverviewClusterServiceStatusOverviewList
 }
 
 type ListClusterServiceStatusOverviewClusterServiceStatusOverview struct {
-	ClusterId   string
-	ServiceName string
-	Status      string
+	ClusterId   common.String
+	ServiceName common.String
+	Status      common.String
 }
 
 type ListClusterServiceStatusOverviewClusterServiceStatusOverviewList []ListClusterServiceStatusOverviewClusterServiceStatusOverview

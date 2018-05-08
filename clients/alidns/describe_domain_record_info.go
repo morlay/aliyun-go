@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainRecordInfoRequest struct {
@@ -22,19 +23,19 @@ func (req *DescribeDomainRecordInfoRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeDomainRecordInfoResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	DomainId   string
-	DomainName string
-	PunyCode   string
-	GroupId    string
-	GroupName  string
-	RecordId   string
-	RR         string
-	Type       string
-	Value      string
-	TTL        int64
-	Priority   int64
-	Line       string
-	Status     string
+	RequestId  common.String
+	DomainId   common.String
+	DomainName common.String
+	PunyCode   common.String
+	GroupId    common.String
+	GroupName  common.String
+	RecordId   common.String
+	RR         common.String
+	Type       common.String
+	Value      common.String
+	TTL        common.Long
+	Priority   common.Long
+	Line       common.String
+	Status     common.String
 	Locked     bool
 }

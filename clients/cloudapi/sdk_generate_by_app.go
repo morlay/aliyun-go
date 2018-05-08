@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SdkGenerateByAppRequest struct {
@@ -21,6 +22,6 @@ func (req *SdkGenerateByAppRequest) Invoke(client *sdk.Client) (resp *SdkGenerat
 
 type SdkGenerateByAppResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DownloadLink string
+	RequestId    common.String
+	DownloadLink common.String
 }

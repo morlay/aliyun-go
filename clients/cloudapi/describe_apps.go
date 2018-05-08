@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAppsRequest struct {
@@ -25,17 +26,17 @@ func (req *DescribeAppsRequest) Invoke(client *sdk.Client) (resp *DescribeAppsRe
 
 type DescribeAppsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageSize   int
-	PageNumber int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageSize   common.Integer
+	PageNumber common.Integer
 	Apps       DescribeAppsAppItemList
 }
 
 type DescribeAppsAppItem struct {
-	AppId       int64
-	AppName     string
-	Description string
+	AppId       common.Long
+	AppName     common.String
+	Description common.String
 }
 
 type DescribeAppsAppItemList []DescribeAppsAppItem

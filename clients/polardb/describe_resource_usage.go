@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeResourceUsageRequest struct {
@@ -24,13 +25,13 @@ func (req *DescribeResourceUsageRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeResourceUsageResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DBInstanceId string
-	Engine       string
-	DBType       string
-	DBVersion    string
-	DiskUsed     int64
-	DataSize     int64
-	LogSize      int64
-	BackupSize   int64
+	RequestId    common.String
+	DBInstanceId common.String
+	Engine       common.String
+	DBType       common.String
+	DBVersion    common.String
+	DiskUsed     common.Long
+	DataSize     common.Long
+	LogSize      common.Long
+	BackupSize   common.Long
 }

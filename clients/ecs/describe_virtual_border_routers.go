@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVirtualBorderRoutersRequest struct {
@@ -32,34 +33,34 @@ type DescribeVirtualBorderRoutersFilter struct {
 
 type DescribeVirtualBorderRoutersResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	PageNumber             int
-	PageSize               int
-	TotalCount             int
+	RequestId              common.String
+	PageNumber             common.Integer
+	PageSize               common.Integer
+	TotalCount             common.Integer
 	VirtualBorderRouterSet DescribeVirtualBorderRoutersVirtualBorderRouterTypeList
 }
 
 type DescribeVirtualBorderRoutersVirtualBorderRouterType struct {
-	VbrId                            string
-	CreationTime                     string
-	ActivationTime                   string
-	TerminationTime                  string
-	RecoveryTime                     string
-	Status                           string
-	VlanId                           int
-	CircuitCode                      string
-	RouteTableId                     string
-	VlanInterfaceId                  string
-	LocalGatewayIp                   string
-	PeerGatewayIp                    string
-	PeeringSubnetMask                string
-	PhysicalConnectionId             string
-	PhysicalConnectionStatus         string
-	PhysicalConnectionBusinessStatus string
-	PhysicalConnectionOwnerUid       string
-	AccessPointId                    string
-	Name                             string
-	Description                      string
+	VbrId                            common.String
+	CreationTime                     common.String
+	ActivationTime                   common.String
+	TerminationTime                  common.String
+	RecoveryTime                     common.String
+	Status                           common.String
+	VlanId                           common.Integer
+	CircuitCode                      common.String
+	RouteTableId                     common.String
+	VlanInterfaceId                  common.String
+	LocalGatewayIp                   common.String
+	PeerGatewayIp                    common.String
+	PeeringSubnetMask                common.String
+	PhysicalConnectionId             common.String
+	PhysicalConnectionStatus         common.String
+	PhysicalConnectionBusinessStatus common.String
+	PhysicalConnectionOwnerUid       common.String
+	AccessPointId                    common.String
+	Name                             common.String
+	Description                      common.String
 }
 
 type DescribeVirtualBorderRoutersFilterList []DescribeVirtualBorderRoutersFilter

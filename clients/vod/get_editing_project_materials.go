@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetEditingProjectMaterialsRequest struct {
@@ -27,24 +28,24 @@ func (req *GetEditingProjectMaterialsRequest) Invoke(client *sdk.Client) (resp *
 
 type GetEditingProjectMaterialsResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	MaterialList GetEditingProjectMaterialsMaterialList
 }
 
 type GetEditingProjectMaterialsMaterial struct {
-	MaterialId   string
-	Title        string
-	Tags         string
-	Status       string
-	Size         int64
-	Duration     float32
-	Description  string
-	CreationTime string
-	ModifiedTime string
-	CoverURL     string
-	CateId       int
-	CateName     string
-	Source       string
+	MaterialId   common.String
+	Title        common.String
+	Tags         common.String
+	Status       common.String
+	Size         common.Long
+	Duration     common.Float
+	Description  common.String
+	CreationTime common.String
+	ModifiedTime common.String
+	CoverURL     common.String
+	CateId       common.Integer
+	CateName     common.String
+	Source       common.String
 	Snapshots    GetEditingProjectMaterialsSnapshotList
 	Sprites      GetEditingProjectMaterialsSpriteList
 }
@@ -64,10 +65,10 @@ func (list *GetEditingProjectMaterialsMaterialList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type GetEditingProjectMaterialsSnapshotList []string
+type GetEditingProjectMaterialsSnapshotList []common.String
 
 func (list *GetEditingProjectMaterialsSnapshotList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -79,10 +80,10 @@ func (list *GetEditingProjectMaterialsSnapshotList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type GetEditingProjectMaterialsSpriteList []string
+type GetEditingProjectMaterialsSpriteList []common.String
 
 func (list *GetEditingProjectMaterialsSpriteList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

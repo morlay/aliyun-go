@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetFaceSetRequest struct {
@@ -21,10 +22,10 @@ func (req *GetFaceSetRequest) Invoke(client *sdk.Client) (resp *GetFaceSetRespon
 
 type GetFaceSetResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	SetId      string
-	Status     string
-	Photos     int64
-	CreateTime string
-	ModifyTime string
+	RequestId  common.String
+	SetId      common.String
+	Status     common.String
+	Photos     common.Long
+	CreateTime common.String
+	ModifyTime common.String
 }

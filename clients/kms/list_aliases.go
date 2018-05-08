@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAliasesRequest struct {
@@ -24,17 +25,17 @@ func (req *ListAliasesRequest) Invoke(client *sdk.Client) (resp *ListAliasesResp
 
 type ListAliasesResponse struct {
 	responses.BaseResponse
-	TotalCount int
-	PageNumber int
-	PageSize   int
-	RequestId  string
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
+	RequestId  common.String
 	Aliases    ListAliasesAliasList
 }
 
 type ListAliasesAlias struct {
-	KeyId     string
-	AliasName string
-	AliasArn  string
+	KeyId     common.String
+	AliasName common.String
+	AliasArn  common.String
 }
 
 type ListAliasesAliasList []ListAliasesAlias

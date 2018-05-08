@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ImportDatabaseBetweenInstancesRequest struct {
@@ -26,6 +27,6 @@ func (req *ImportDatabaseBetweenInstancesRequest) Invoke(client *sdk.Client) (re
 
 type ImportDatabaseBetweenInstancesResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ImportId  string
+	RequestId common.String
+	ImportId  common.String
 }

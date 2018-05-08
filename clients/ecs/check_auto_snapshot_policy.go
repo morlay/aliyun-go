@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckAutoSnapshotPolicyRequest struct {
@@ -31,7 +32,7 @@ func (req *CheckAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *Che
 
 type CheckAutoSnapshotPolicyResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	AutoSnapshotOccupation int
-	IsPermittedModify      string
+	RequestId              common.String
+	AutoSnapshotOccupation common.Integer
+	IsPermittedModify      common.String
 }

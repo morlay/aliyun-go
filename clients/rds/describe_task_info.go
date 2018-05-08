@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTaskInfoRequest struct {
@@ -26,17 +27,17 @@ func (req *DescribeTaskInfoRequest) Invoke(client *sdk.Client) (resp *DescribeTa
 
 type DescribeTaskInfoResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	TaskId             string
-	BeginTime          string
-	FinishTime         string
-	CreateTime         string
-	TaskAction         string
-	DBName             string
-	TaskErrorCode      string
-	Progress           string
-	ExpectedFinishTime string
-	TaskErrorMessage   string
-	ProgressInfo       string
-	Status             string
+	RequestId          common.String
+	TaskId             common.String
+	BeginTime          common.String
+	FinishTime         common.String
+	CreateTime         common.String
+	TaskAction         common.String
+	DBName             common.String
+	TaskErrorCode      common.String
+	Progress           common.String
+	ExpectedFinishTime common.String
+	TaskErrorMessage   common.String
+	ProgressInfo       common.String
+	Status             common.String
 }

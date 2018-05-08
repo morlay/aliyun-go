@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteWaterMarkTemplateRequest struct {
@@ -24,6 +25,6 @@ func (req *DeleteWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *Del
 
 type DeleteWaterMarkTemplateResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	WaterMarkTemplateId string
+	RequestId           common.String
+	WaterMarkTemplateId common.String
 }

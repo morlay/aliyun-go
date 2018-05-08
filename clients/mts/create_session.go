@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateSessionRequest struct {
@@ -25,6 +26,6 @@ func (req *CreateSessionRequest) Invoke(client *sdk.Client) (resp *CreateSession
 
 type CreateSessionResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Session   string
+	RequestId common.String
+	Session   common.String
 }

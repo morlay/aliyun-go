@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyCdnServiceRequest struct {
@@ -22,5 +23,5 @@ func (req *ModifyCdnServiceRequest) Invoke(client *sdk.Client) (resp *ModifyCdnS
 
 type ModifyCdnServiceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

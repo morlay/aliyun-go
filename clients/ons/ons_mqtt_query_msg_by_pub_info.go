@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttQueryMsgByPubInfoRequest struct {
@@ -28,14 +29,14 @@ func (req *OnsMqttQueryMsgByPubInfoRequest) Invoke(client *sdk.Client) (resp *On
 
 type OnsMqttQueryMsgByPubInfoResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	HelpUrl        string
+	RequestId      common.String
+	HelpUrl        common.String
 	MqttMessageDos OnsMqttQueryMsgByPubInfoMqttMessageDoList
 }
 
 type OnsMqttQueryMsgByPubInfoMqttMessageDo struct {
-	TraceId string
-	PubTime int64
+	TraceId common.String
+	PubTime common.Long
 }
 
 type OnsMqttQueryMsgByPubInfoMqttMessageDoList []OnsMqttQueryMsgByPubInfoMqttMessageDo

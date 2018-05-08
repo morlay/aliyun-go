@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetRegisterBoxListRequest struct {
@@ -24,35 +25,35 @@ func (req *GetRegisterBoxListRequest) Invoke(client *sdk.Client) (resp *GetRegis
 
 type GetRegisterBoxListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	ErrorList GetRegisterBoxListErrorMessageList
 	Data      GetRegisterBoxListData
 }
 
 type GetRegisterBoxListErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type GetRegisterBoxListData struct {
-	ActivedNumber int
-	BuyNumber     int
+	ActivedNumber common.Integer
+	BuyNumber     common.Integer
 	BoxesList     GetRegisterBoxListBoxInfoList
 }
 
 type GetRegisterBoxListBoxInfo struct {
-	CurVersion      string
-	DrName          string
-	DrSessionId     string
-	DrStatus        string
-	DrStatusTxt     string
-	Ipaddress       string
-	LastReportTimeL int64
-	OnlineTimeL     int64
-	Screencode      string
-	SysVersion      string
+	CurVersion      common.String
+	DrName          common.String
+	DrSessionId     common.String
+	DrStatus        common.String
+	DrStatusTxt     common.String
+	Ipaddress       common.String
+	LastReportTimeL common.Long
+	OnlineTimeL     common.Long
+	Screencode      common.String
+	SysVersion      common.String
 }
 
 type GetRegisterBoxListErrorMessageList []GetRegisterBoxListErrorMessage

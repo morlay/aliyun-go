@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckResourceRequest struct {
@@ -32,15 +33,15 @@ func (req *CheckResourceRequest) Invoke(client *sdk.Client) (resp *CheckResource
 
 type CheckResourceResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	SpecifyCount string
+	RequestId    common.String
+	SpecifyCount common.String
 	Resources    CheckResourceResourceList
 }
 
 type CheckResourceResource struct {
-	DBInstanceAvailable string
-	Engine              string
-	EngineVersion       string
+	DBInstanceAvailable common.String
+	Engine              common.String
+	EngineVersion       common.String
 }
 
 type CheckResourceResourceList []CheckResourceResource

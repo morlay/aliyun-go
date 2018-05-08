@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeWarningRequest struct {
@@ -32,18 +33,18 @@ func (req *DescribeWarningRequest) Invoke(client *sdk.Client) (resp *DescribeWar
 
 type DescribeWarningResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Count       int
-	PageSize    int
-	TotalCount  int
-	CurrentPage int
+	RequestId   common.String
+	Count       common.Integer
+	PageSize    common.Integer
+	TotalCount  common.Integer
+	CurrentPage common.Integer
 	Warnings    DescribeWarningWarningList
 }
 
-type DescribeWarningWarningList []string
+type DescribeWarningWarningList []common.String
 
 func (list *DescribeWarningWarningList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type HostGetsRequest struct {
@@ -26,19 +27,19 @@ func (req *HostGetsRequest) Invoke(client *sdk.Client) (resp *HostGetsResponse, 
 type HostGetsResponse struct {
 	responses.BaseResponse
 	Status  bool
-	Message string
+	Message common.String
 	Data    HostGetsDataItemList
 }
 
 type HostGetsDataItem struct {
-	Hostname         string
-	Ip               string
-	AppCode          string
-	ClusterCode      string
-	SshStatus        int
-	HeartStatus      int
-	HealthScoreLast  int
-	HealthReasonLast string
+	Hostname         common.String
+	Ip               common.String
+	AppCode          common.String
+	ClusterCode      common.String
+	SshStatus        common.Integer
+	HeartStatus      common.Integer
+	HealthScoreLast  common.Integer
+	HealthReasonLast common.String
 }
 
 type HostGetsDataItemList []HostGetsDataItem

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceTypesRequest struct {
@@ -26,27 +27,27 @@ func (req *DescribeInstanceTypesRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeInstanceTypesResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	InstanceTypes DescribeInstanceTypesInstanceTypeList
 }
 
 type DescribeInstanceTypesInstanceType struct {
-	InstanceTypeId       string
-	CpuCoreCount         int
-	MemorySize           float32
-	InstanceTypeFamily   string
-	LocalStorageCapacity int64
-	LocalStorageAmount   int
-	LocalStorageCategory string
-	GPUAmount            int
-	GPUSpec              string
-	InitialCredit        int
-	BaselineCredit       int
-	EniQuantity          int
-	InstanceBandwidthRx  int
-	InstanceBandwidthTx  int
-	InstancePpsRx        int64
-	InstancePpsTx        int64
+	InstanceTypeId       common.String
+	CpuCoreCount         common.Integer
+	MemorySize           common.Float
+	InstanceTypeFamily   common.String
+	LocalStorageCapacity common.Long
+	LocalStorageAmount   common.Integer
+	LocalStorageCategory common.String
+	GPUAmount            common.Integer
+	GPUSpec              common.String
+	InitialCredit        common.Integer
+	BaselineCredit       common.Integer
+	EniQuantity          common.Integer
+	InstanceBandwidthRx  common.Integer
+	InstanceBandwidthTx  common.Integer
+	InstancePpsRx        common.Long
+	InstancePpsTx        common.Long
 }
 
 type DescribeInstanceTypesInstanceTypeList []DescribeInstanceTypesInstanceType

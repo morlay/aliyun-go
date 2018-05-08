@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnDomainDetailRequest struct {
@@ -24,37 +25,37 @@ func (req *DescribeCdnDomainDetailRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeCdnDomainDetailResponse struct {
 	responses.BaseResponse
-	RequestId            string
+	RequestId            common.String
 	GetDomainDetailModel DescribeCdnDomainDetailGetDomainDetailModel
 }
 
 type DescribeCdnDomainDetailGetDomainDetailModel struct {
-	GmtCreated              string
-	GmtModified             string
-	SourceType              string
-	DomainStatus            string
-	SourcePort              int
-	CdnType                 string
-	Cname                   string
-	HttpsCname              string
-	DomainName              string
-	Description             string
-	ServerCertificateStatus string
-	ServerCertificate       string
-	Region                  string
-	Scope                   string
-	CertificateName         string
-	ResourceGroupId         string
+	GmtCreated              common.String
+	GmtModified             common.String
+	SourceType              common.String
+	DomainStatus            common.String
+	SourcePort              common.Integer
+	CdnType                 common.String
+	Cname                   common.String
+	HttpsCname              common.String
+	DomainName              common.String
+	Description             common.String
+	ServerCertificateStatus common.String
+	ServerCertificate       common.String
+	Region                  common.String
+	Scope                   common.String
+	CertificateName         common.String
+	ResourceGroupId         common.String
 	SourceModels            DescribeCdnDomainDetailSourceModelList
 	Sources                 DescribeCdnDomainDetailSourceList
 }
 
 type DescribeCdnDomainDetailSourceModel struct {
-	Content  string
-	Type     string
-	Port     int
-	Enabled  string
-	Priority string
+	Content  common.String
+	Type     common.String
+	Port     common.Integer
+	Enabled  common.String
+	Priority common.String
 }
 
 type DescribeCdnDomainDetailSourceModelList []DescribeCdnDomainDetailSourceModel
@@ -72,10 +73,10 @@ func (list *DescribeCdnDomainDetailSourceModelList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeCdnDomainDetailSourceList []string
+type DescribeCdnDomainDetailSourceList []common.String
 
 func (list *DescribeCdnDomainDetailSourceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

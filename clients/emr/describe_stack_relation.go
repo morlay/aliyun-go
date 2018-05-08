@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeStackRelationRequest struct {
@@ -27,14 +28,14 @@ func (req *DescribeStackRelationRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeStackRelationResponse struct {
 	responses.BaseResponse
-	RequestId            string
+	RequestId            common.String
 	Success              bool
 	EmrStackRelationList DescribeStackRelationEmrStackRelationList
 }
 
 type DescribeStackRelationEmrStackRelation struct {
-	EmrVersion   string
-	StackVersion string
+	EmrVersion   common.String
+	StackVersion common.String
 }
 
 type DescribeStackRelationStackVersionListList []string

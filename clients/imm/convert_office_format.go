@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ConvertOfficeFormatRequest struct {
@@ -35,10 +36,10 @@ func (req *ConvertOfficeFormatRequest) Invoke(client *sdk.Client) (resp *Convert
 
 type ConvertOfficeFormatResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TaskId     string
-	TgtLoc     string
-	Status     string
-	CreateTime string
-	Percent    int
+	RequestId  common.String
+	TaskId     common.String
+	TgtLoc     common.String
+	Status     common.String
+	CreateTime common.String
+	Percent    common.Integer
 }

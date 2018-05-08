@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDampPoliciesByCidRequest struct {
@@ -27,13 +28,13 @@ func (req *DescribeDampPoliciesByCidRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDampPoliciesByCidResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Policies  DescribeDampPoliciesByCidPolicyList
 }
 
 type DescribeDampPoliciesByCidPolicy struct {
-	PolicyName string
-	Comment    string
+	PolicyName common.String
+	Comment    common.String
 }
 
 type DescribeDampPoliciesByCidPolicyList []DescribeDampPoliciesByCidPolicy

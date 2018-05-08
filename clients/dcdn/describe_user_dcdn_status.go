@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeUserDcdnStatusRequest struct {
@@ -21,7 +22,7 @@ func (req *DescribeUserDcdnStatusRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeUserDcdnStatusResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	Enabled       bool
 	OnService     bool
 	InDebt        bool

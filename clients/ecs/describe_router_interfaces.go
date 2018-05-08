@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRouterInterfacesRequest struct {
@@ -32,39 +33,39 @@ type DescribeRouterInterfacesFilter struct {
 
 type DescribeRouterInterfacesResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	PageNumber         int
-	PageSize           int
-	TotalCount         int
+	RequestId          common.String
+	PageNumber         common.Integer
+	PageSize           common.Integer
+	TotalCount         common.Integer
 	RouterInterfaceSet DescribeRouterInterfacesRouterInterfaceTypeList
 }
 
 type DescribeRouterInterfacesRouterInterfaceType struct {
-	RouterInterfaceId               string
-	OppositeRegionId                string
-	Role                            string
-	Spec                            string
-	Name                            string
-	Description                     string
-	RouterId                        string
-	RouterType                      string
-	CreationTime                    string
-	EndTime                         string
-	ChargeType                      string
-	Status                          string
-	BusinessStatus                  string
-	ConnectedTime                   string
-	OppositeInterfaceId             string
-	OppositeInterfaceSpec           string
-	OppositeInterfaceStatus         string
-	OppositeInterfaceBusinessStatus string
-	OppositeRouterId                string
-	OppositeRouterType              string
-	OppositeInterfaceOwnerId        string
-	AccessPointId                   string
-	OppositeAccessPointId           string
-	HealthCheckSourceIp             string
-	HealthCheckTargetIp             string
+	RouterInterfaceId               common.String
+	OppositeRegionId                common.String
+	Role                            common.String
+	Spec                            common.String
+	Name                            common.String
+	Description                     common.String
+	RouterId                        common.String
+	RouterType                      common.String
+	CreationTime                    common.String
+	EndTime                         common.String
+	ChargeType                      common.String
+	Status                          common.String
+	BusinessStatus                  common.String
+	ConnectedTime                   common.String
+	OppositeInterfaceId             common.String
+	OppositeInterfaceSpec           common.String
+	OppositeInterfaceStatus         common.String
+	OppositeInterfaceBusinessStatus common.String
+	OppositeRouterId                common.String
+	OppositeRouterType              common.String
+	OppositeInterfaceOwnerId        common.String
+	AccessPointId                   common.String
+	OppositeAccessPointId           common.String
+	HealthCheckSourceIp             common.String
+	HealthCheckTargetIp             common.String
 }
 
 type DescribeRouterInterfacesFilterList []DescribeRouterInterfacesFilter

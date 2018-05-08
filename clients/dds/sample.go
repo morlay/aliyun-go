@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SampleRequest struct {
@@ -27,15 +28,15 @@ func (req *SampleRequest) Invoke(client *sdk.Client) (resp *SampleResponse, err 
 
 type SampleResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	SecurityIps      string
+	RequestId        common.String
+	SecurityIps      common.String
 	SecurityIpGroups SampleSecurityIpGroupList
 }
 
 type SampleSecurityIpGroup struct {
-	SecurityIpGroupName      string
-	SecurityIpGroupAttribute string
-	SecurityIpList           string
+	SecurityIpGroupName      common.String
+	SecurityIpGroupAttribute common.String
+	SecurityIpList           common.String
 }
 
 type SampleSecurityIpGroupList []SampleSecurityIpGroup

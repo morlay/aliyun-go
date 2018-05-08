@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CategoryTreeRequest struct {
@@ -23,6 +24,6 @@ func (req *CategoryTreeRequest) Invoke(client *sdk.Client) (resp *CategoryTreeRe
 
 type CategoryTreeResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	CategoryTree string
+	RequestId    common.String
+	CategoryTree common.String
 }

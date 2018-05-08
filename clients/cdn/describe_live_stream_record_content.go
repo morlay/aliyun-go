@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamRecordContentRequest struct {
@@ -28,17 +29,17 @@ func (req *DescribeLiveStreamRecordContentRequest) Invoke(client *sdk.Client) (r
 
 type DescribeLiveStreamRecordContentResponse struct {
 	responses.BaseResponse
-	RequestId             string
+	RequestId             common.String
 	RecordContentInfoList DescribeLiveStreamRecordContentRecordContentInfoList
 }
 
 type DescribeLiveStreamRecordContentRecordContentInfo struct {
-	OssEndpoint     string
-	OssBucket       string
-	OssObjectPrefix string
-	StartTime       string
-	EndTime         string
-	Duration        float32
+	OssEndpoint     common.String
+	OssBucket       common.String
+	OssObjectPrefix common.String
+	StartTime       common.String
+	EndTime         common.String
+	Duration        common.Float
 }
 
 type DescribeLiveStreamRecordContentRecordContentInfoList []DescribeLiveStreamRecordContentRecordContentInfo

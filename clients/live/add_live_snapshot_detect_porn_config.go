@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddLiveSnapshotDetectPornConfigRequest struct {
@@ -30,7 +31,7 @@ func (req *AddLiveSnapshotDetectPornConfigRequest) Invoke(client *sdk.Client) (r
 
 type AddLiveSnapshotDetectPornConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type AddLiveSnapshotDetectPornConfigSceneList []string

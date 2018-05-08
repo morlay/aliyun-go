@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeMasterSlaveVServerGroupAttributeRequest struct {
@@ -28,20 +29,20 @@ func (req *DescribeMasterSlaveVServerGroupAttributeRequest) Invoke(client *sdk.C
 
 type DescribeMasterSlaveVServerGroupAttributeResponse struct {
 	responses.BaseResponse
-	RequestId                   string
-	MasterSlaveVServerGroupId   string
-	MasterSlaveVServerGroupName string
+	RequestId                   common.String
+	MasterSlaveVServerGroupId   common.String
+	MasterSlaveVServerGroupName common.String
 	MasterSlaveBackendServers   DescribeMasterSlaveVServerGroupAttributeMasterSlaveBackendServerList
 }
 
 type DescribeMasterSlaveVServerGroupAttributeMasterSlaveBackendServer struct {
-	ServerId string
-	Port     int
-	Weight   int
-	IsBackup int
-	Type     string
-	ServerIp string
-	VpcId    string
+	ServerId common.String
+	Port     common.Integer
+	Weight   common.Integer
+	IsBackup common.Integer
+	Type     common.String
+	ServerIp common.String
+	VpcId    common.String
 }
 
 type DescribeMasterSlaveVServerGroupAttributeMasterSlaveBackendServerList []DescribeMasterSlaveVServerGroupAttributeMasterSlaveBackendServer

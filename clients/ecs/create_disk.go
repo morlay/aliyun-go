@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateDiskRequest struct {
@@ -42,6 +43,6 @@ func (req *CreateDiskRequest) Invoke(client *sdk.Client) (resp *CreateDiskRespon
 
 type CreateDiskResponse struct {
 	responses.BaseResponse
-	RequestId string
-	DiskId    string
+	RequestId common.String
+	DiskId    common.String
 }

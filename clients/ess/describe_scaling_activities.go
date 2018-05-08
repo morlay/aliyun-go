@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeScalingActivitiesRequest struct {
@@ -49,26 +50,26 @@ func (req *DescribeScalingActivitiesRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeScalingActivitiesResponse struct {
 	responses.BaseResponse
-	TotalCount        int
-	PageNumber        int
-	PageSize          int
-	RequestId         string
+	TotalCount        common.Integer
+	PageNumber        common.Integer
+	PageSize          common.Integer
+	RequestId         common.String
 	ScalingActivities DescribeScalingActivitiesScalingActivityList
 }
 
 type DescribeScalingActivitiesScalingActivity struct {
-	ScalingActivityId   string
-	ScalingGroupId      string
-	Description         string
-	Cause               string
-	StartTime           string
-	EndTime             string
-	Progress            int
-	StatusCode          string
-	StatusMessage       string
-	TotalCapacity       string
-	AttachedCapacity    string
-	AutoCreatedCapacity string
+	ScalingActivityId   common.String
+	ScalingGroupId      common.String
+	Description         common.String
+	Cause               common.String
+	StartTime           common.String
+	EndTime             common.String
+	Progress            common.Integer
+	StatusCode          common.String
+	StatusMessage       common.String
+	TotalCapacity       common.String
+	AttachedCapacity    common.String
+	AutoCreatedCapacity common.String
 }
 
 type DescribeScalingActivitiesScalingActivityList []DescribeScalingActivitiesScalingActivity

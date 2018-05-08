@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListLiveRecordVideoRequest struct {
@@ -33,57 +34,57 @@ func (req *ListLiveRecordVideoRequest) Invoke(client *sdk.Client) (resp *ListLiv
 
 type ListLiveRecordVideoResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	Total               int
+	RequestId           common.String
+	Total               common.Integer
 	LiveRecordVideoList ListLiveRecordVideoLiveRecordVideoList
 }
 
 type ListLiveRecordVideoLiveRecordVideo struct {
-	StreamName      string
-	DomainName      string
-	AppName         string
-	PlaylistId      string
-	RecordStartTime string
-	RecordEndTime   string
+	StreamName      common.String
+	DomainName      common.String
+	AppName         common.String
+	PlaylistId      common.String
+	RecordStartTime common.String
+	RecordEndTime   common.String
 	PlayInfoList    ListLiveRecordVideoPlayInfoList
 	Video           ListLiveRecordVideoVideo
 }
 
 type ListLiveRecordVideoPlayInfo struct {
-	Width      int64
-	Height     int64
-	Size       int64
-	PlayURL    string
-	Bitrate    string
-	Definition string
-	Duration   string
-	Format     string
-	Fps        string
-	Encrypt    int64
-	Plaintext  string
-	Complexity string
-	StreamType string
-	Rand       string
-	JobId      string
+	Width      common.Long
+	Height     common.Long
+	Size       common.Long
+	PlayURL    common.String
+	Bitrate    common.String
+	Definition common.String
+	Duration   common.String
+	Format     common.String
+	Fps        common.String
+	Encrypt    common.Long
+	Plaintext  common.String
+	Complexity common.String
+	StreamType common.String
+	Rand       common.String
+	JobId      common.String
 }
 
 type ListLiveRecordVideoVideo struct {
-	VideoId         string
-	Title           string
-	Tags            string
-	Status          string
-	Size            int64
-	Privilege       int
-	Duration        float32
-	Description     string
-	CustomerId      int64
-	CreateTime      string
-	ModifyTime      string
-	CoverURL        string
-	CateId          int
-	CateName        string
-	DownloadSwitch  string
-	TemplateGroupId string
+	VideoId         common.String
+	Title           common.String
+	Tags            common.String
+	Status          common.String
+	Size            common.Long
+	Privilege       common.Integer
+	Duration        common.Float
+	Description     common.String
+	CustomerId      common.Long
+	CreateTime      common.String
+	ModifyTime      common.String
+	CoverURL        common.String
+	CateId          common.Integer
+	CateName        common.String
+	DownloadSwitch  common.String
+	TemplateGroupId common.String
 	Snapshots       ListLiveRecordVideoSnapshotList
 }
 
@@ -117,10 +118,10 @@ func (list *ListLiveRecordVideoPlayInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListLiveRecordVideoSnapshotList []string
+type ListLiveRecordVideoSnapshotList []common.String
 
 func (list *ListLiveRecordVideoSnapshotList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

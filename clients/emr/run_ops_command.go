@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RunOpsCommandRequest struct {
@@ -28,8 +29,8 @@ func (req *RunOpsCommandRequest) Invoke(client *sdk.Client) (resp *RunOpsCommand
 
 type RunOpsCommandResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	OperationId int64
+	RequestId   common.String
+	OperationId common.Long
 }
 
 type RunOpsCommandHostIdListList []int64

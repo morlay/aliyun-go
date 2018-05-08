@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterOpLogRequest struct {
@@ -23,19 +24,19 @@ func (req *DescribeClusterOpLogRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeClusterOpLogResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	ChangeLogList DescribeClusterOpLogChangeLogList
 }
 
 type DescribeClusterOpLogChangeLog struct {
-	Id          int64
-	GmtCreate   string
-	GmtModified string
-	TargetKey   string
-	Status      string
-	ChangeType  string
-	Message     string
-	TargetType  string
+	Id          common.Long
+	GmtCreate   common.String
+	GmtModified common.String
+	TargetKey   common.String
+	Status      common.String
+	ChangeType  common.String
+	Message     common.String
+	TargetType  common.String
 }
 
 type DescribeClusterOpLogChangeLogList []DescribeClusterOpLogChangeLog

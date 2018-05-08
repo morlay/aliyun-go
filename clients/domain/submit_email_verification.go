@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitEmailVerificationRequest struct {
@@ -25,16 +26,16 @@ func (req *SubmitEmailVerificationRequest) Invoke(client *sdk.Client) (resp *Sub
 
 type SubmitEmailVerificationResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	SuccessList SubmitEmailVerificationSendResultList
 	FailList    SubmitEmailVerificationSendResultList
 	ExistList   SubmitEmailVerificationSendResultList
 }
 
 type SubmitEmailVerificationSendResult struct {
-	Email   string
-	Code    string
-	Message string
+	Email   common.String
+	Code    common.String
+	Message common.String
 }
 
 type SubmitEmailVerificationSendResultList []SubmitEmailVerificationSendResult

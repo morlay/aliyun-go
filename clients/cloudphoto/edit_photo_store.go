@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EditPhotoStoreRequest struct {
@@ -25,8 +26,8 @@ func (req *EditPhotoStoreRequest) Invoke(client *sdk.Client) (resp *EditPhotoSto
 
 type EditPhotoStoreResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DisableAlarmRequest struct {
@@ -22,7 +23,7 @@ func (req *DisableAlarmRequest) Invoke(client *sdk.Client) (resp *DisableAlarmRe
 type DisableAlarmResponse struct {
 	responses.BaseResponse
 	Success   bool
-	Code      string
-	Message   string
-	RequestId string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
 }

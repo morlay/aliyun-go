@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePersonMachineListRequest struct {
@@ -23,23 +24,23 @@ func (req *DescribePersonMachineListRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribePersonMachineListResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	BizCode          string
+	RequestId        common.String
+	BizCode          common.String
 	PersonMachineRes DescribePersonMachineListPersonMachineRes
 }
 
 type DescribePersonMachineListPersonMachineRes struct {
-	HasConfiguration string
+	HasConfiguration common.String
 	PersonMachines   DescribePersonMachineListPersonMachineList
 }
 
 type DescribePersonMachineListPersonMachine struct {
-	ConfigurationName   string
-	Appkey              string
-	ConfigurationMethod string
-	ApplyType           string
-	Scene               string
-	LastUpdate          string
+	ConfigurationName   common.String
+	Appkey              common.String
+	ConfigurationMethod common.String
+	ApplyType           common.String
+	Scene               common.String
+	LastUpdate          common.String
 }
 
 type DescribePersonMachineListPersonMachineList []DescribePersonMachineListPersonMachine

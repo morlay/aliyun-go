@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMessageTraceRequest struct {
@@ -26,15 +27,15 @@ func (req *OnsMessageTraceRequest) Invoke(client *sdk.Client) (resp *OnsMessageT
 
 type OnsMessageTraceResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsMessageTraceMessageTrackList
 }
 
 type OnsMessageTraceMessageTrack struct {
-	ConsumerGroup string
-	TrackType     string
-	ExceptionDesc string
+	ConsumerGroup common.String
+	TrackType     common.String
+	ExceptionDesc common.String
 }
 
 type OnsMessageTraceMessageTrackList []OnsMessageTraceMessageTrack

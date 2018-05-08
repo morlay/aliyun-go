@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOperatorPermissionRequest struct {
@@ -24,8 +25,8 @@ func (req *DescribeOperatorPermissionRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeOperatorPermissionResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Privileges  string
-	CreatedTime string
-	ExpiredTime string
+	RequestId   common.String
+	Privileges  common.String
+	CreatedTime common.String
+	ExpiredTime common.String
 }

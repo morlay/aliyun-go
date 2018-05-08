@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateSslVpnServerRequest struct {
@@ -32,7 +33,7 @@ func (req *CreateSslVpnServerRequest) Invoke(client *sdk.Client) (resp *CreateSs
 
 type CreateSslVpnServerResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	SslVpnServerId string
-	Name           string
+	RequestId      common.String
+	SslVpnServerId common.String
+	Name           common.String
 }

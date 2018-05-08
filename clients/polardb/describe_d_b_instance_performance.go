@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstancePerformanceRequest struct {
@@ -29,25 +30,25 @@ func (req *DescribeDBInstancePerformanceRequest) Invoke(client *sdk.Client) (res
 
 type DescribeDBInstancePerformanceResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	DBInstanceId    string
-	Engine          string
-	DBType          string
-	DBVersion       string
-	StartTime       string
-	EndTime         string
+	RequestId       common.String
+	DBInstanceId    common.String
+	Engine          common.String
+	DBType          common.String
+	DBVersion       common.String
+	StartTime       common.String
+	EndTime         common.String
 	PerformanceKeys DescribeDBInstancePerformancePerformanceItemList
 }
 
 type DescribeDBInstancePerformancePerformanceItem struct {
-	MetricName  string
-	Measurement string
+	MetricName  common.String
+	Measurement common.String
 	Points      DescribeDBInstancePerformancePerformanceItemValueList
 }
 
 type DescribeDBInstancePerformancePerformanceItemValue struct {
-	Value     float32
-	Timestamp int64
+	Value     common.Float
+	Timestamp common.Long
 }
 
 type DescribeDBInstancePerformancePerformanceItemList []DescribeDBInstancePerformancePerformanceItem

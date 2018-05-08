@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamsOnlineListRequest struct {
@@ -28,21 +29,21 @@ func (req *DescribeLiveStreamsOnlineListRequest) Invoke(client *sdk.Client) (res
 
 type DescribeLiveStreamsOnlineListResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNum    int
-	PageSize   int
-	TotalNum   int
-	TotalPage  int
+	RequestId  common.String
+	PageNum    common.Integer
+	PageSize   common.Integer
+	TotalNum   common.Integer
+	TotalPage  common.Integer
 	OnlineInfo DescribeLiveStreamsOnlineListLiveStreamOnlineInfoList
 }
 
 type DescribeLiveStreamsOnlineListLiveStreamOnlineInfo struct {
-	DomainName    string
-	AppName       string
-	StreamName    string
-	PublishTime   string
-	PublishUrl    string
-	PublishDomain string
+	DomainName    common.String
+	AppName       common.String
+	StreamName    common.String
+	PublishTime   common.String
+	PublishUrl    common.String
+	PublishDomain common.String
 }
 
 type DescribeLiveStreamsOnlineListLiveStreamOnlineInfoList []DescribeLiveStreamsOnlineListLiveStreamOnlineInfo

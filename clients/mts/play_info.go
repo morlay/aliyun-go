@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PlayInfoRequest struct {
@@ -32,28 +33,28 @@ func (req *PlayInfoRequest) Invoke(client *sdk.Client) (resp *PlayInfoResponse, 
 
 type PlayInfoResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	PlayInfoList      PlayInfoPlayInfoList
 	NotFoundCDNDomain PlayInfoNotFoundCDNDomainList
 }
 
 type PlayInfoPlayInfo struct {
-	Url            string
-	Duration       string
-	Size           string
-	Width          string
-	Height         string
-	Bitrate        string
-	Fps            string
-	Format         string
-	Definition     string
-	Encryption     string
-	Rand           string
-	Plaintext      string
-	Complexity     string
-	ActivityName   string
-	EncryptionType string
-	DownloadType   string
+	Url            common.String
+	Duration       common.String
+	Size           common.String
+	Width          common.String
+	Height         common.String
+	Bitrate        common.String
+	Fps            common.String
+	Format         common.String
+	Definition     common.String
+	Encryption     common.String
+	Rand           common.String
+	Plaintext      common.String
+	Complexity     common.String
+	ActivityName   common.String
+	EncryptionType common.String
+	DownloadType   common.String
 }
 
 type PlayInfoPlayInfoList []PlayInfoPlayInfo
@@ -71,10 +72,10 @@ func (list *PlayInfoPlayInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type PlayInfoNotFoundCDNDomainList []string
+type PlayInfoNotFoundCDNDomainList []common.String
 
 func (list *PlayInfoNotFoundCDNDomainList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

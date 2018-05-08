@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDevicePropertyDataRequest struct {
@@ -29,21 +30,21 @@ func (req *QueryDevicePropertyDataRequest) Invoke(client *sdk.Client) (resp *Que
 
 type QueryDevicePropertyDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         QueryDevicePropertyDataData
 }
 
 type QueryDevicePropertyDataData struct {
 	NextValid bool
-	NextTime  int64
+	NextTime  common.Long
 	List      QueryDevicePropertyDataPropertyInfoList
 }
 
 type QueryDevicePropertyDataPropertyInfo struct {
-	Time  string
-	Value string
+	Time  common.String
+	Value common.String
 }
 
 type QueryDevicePropertyDataPropertyInfoList []QueryDevicePropertyDataPropertyInfo

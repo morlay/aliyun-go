@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetQuotaInstanceRequest struct {
@@ -28,39 +29,39 @@ func (req *GetQuotaInstanceRequest) Invoke(client *sdk.Client) (resp *GetQuotaIn
 
 type GetQuotaInstanceResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetQuotaInstanceData
 }
 
 type GetQuotaInstanceData struct {
-	Total  int
+	Total  common.Integer
 	Detail GetQuotaInstanceInstanceList
 }
 
 type GetQuotaInstanceInstance struct {
-	Project         string
-	InstanceId      string
-	Status          string
-	UserAccount     string
-	NickName        string
-	Cluster         string
-	RunTime         string
-	CpuUsed         int64
-	CpuRequest      int64
-	CpuUsedTotal    int64
-	CpuUsedRatioMax float32
-	CpuUsedRatioMin float32
-	MemUsed         int64
-	MemRequest      int64
-	MemUsedTotal    int64
-	MemUsedRatioMax float32
-	MemUsedRatioMin float32
-	TaskType        string
-	SkynetId        string
-	QuotaName       string
-	QuotaId         int
+	Project         common.String
+	InstanceId      common.String
+	Status          common.String
+	UserAccount     common.String
+	NickName        common.String
+	Cluster         common.String
+	RunTime         common.String
+	CpuUsed         common.Long
+	CpuRequest      common.Long
+	CpuUsedTotal    common.Long
+	CpuUsedRatioMax common.Float
+	CpuUsedRatioMin common.Float
+	MemUsed         common.Long
+	MemRequest      common.Long
+	MemUsedTotal    common.Long
+	MemUsedRatioMax common.Float
+	MemUsedRatioMin common.Float
+	TaskType        common.String
+	SkynetId        common.String
+	QuotaName       common.String
+	QuotaId         common.Integer
 }
 
 type GetQuotaInstanceInstanceList []GetQuotaInstanceInstance

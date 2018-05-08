@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiGroupsRequest struct {
@@ -25,32 +26,32 @@ func (req *DescribeApiGroupsRequest) Invoke(client *sdk.Client) (resp *DescribeA
 
 type DescribeApiGroupsResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	TotalCount         int
-	PageSize           int
-	PageNumber         int
+	RequestId          common.String
+	TotalCount         common.Integer
+	PageSize           common.Integer
+	PageNumber         common.Integer
 	ApiGroupAttributes DescribeApiGroupsApiGroupAttributeList
 }
 
 type DescribeApiGroupsApiGroupAttribute struct {
-	GroupId       string
-	GroupName     string
-	SubDomain     string
-	Description   string
-	CreatedTime   string
-	ModifiedTime  string
-	RegionId      string
-	TrafficLimit  int
+	GroupId       common.String
+	GroupName     common.String
+	SubDomain     common.String
+	Description   common.String
+	CreatedTime   common.String
+	ModifiedTime  common.String
+	RegionId      common.String
+	TrafficLimit  common.Integer
 	BillingStatus DescribeApiGroupsBillingStatus
 	IllegalStatus DescribeApiGroupsIllegalStatus
 }
 
 type DescribeApiGroupsBillingStatus struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeApiGroupsIllegalStatus struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeApiGroupsApiGroupAttributeList []DescribeApiGroupsApiGroupAttribute

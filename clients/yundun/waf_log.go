@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type WafLogRequest struct {
@@ -26,26 +27,26 @@ func (req *WafLogRequest) Invoke(client *sdk.Client) (resp *WafLogResponse, err 
 
 type WafLogResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	WebAttack   int
+	RequestId   common.String
+	WebAttack   common.Integer
 	NewWafUser  bool
 	WafOpened   bool
 	InWhiteList bool
-	DomainCount int
-	StartTime   string
-	EndTime     string
-	PageNumber  int
-	PageSize    int
-	TotalCount  int
+	DomainCount common.Integer
+	StartTime   common.String
+	EndTime     common.String
+	PageNumber  common.Integer
+	PageSize    common.Integer
+	TotalCount  common.Integer
 	LogList     WafLogWafLogList
 }
 
 type WafLogWafLog struct {
-	SourceIp string
-	Time     string
-	Url      string
-	Type     string
-	Status   int
+	SourceIp common.String
+	Time     common.String
+	Url      common.String
+	Type     common.String
+	Status   common.Integer
 }
 
 type WafLogWafLogList []WafLogWafLog

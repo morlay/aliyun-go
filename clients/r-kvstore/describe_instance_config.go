@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceConfigRequest struct {
@@ -25,6 +26,6 @@ func (req *DescribeInstanceConfigRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeInstanceConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Config    string
+	RequestId common.String
+	Config    common.String
 }

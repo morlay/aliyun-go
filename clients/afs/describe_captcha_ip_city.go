@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCaptchaIpCityRequest struct {
@@ -26,23 +27,23 @@ func (req *DescribeCaptchaIpCityRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeCaptchaIpCityResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	BizCode       string
+	RequestId     common.String
+	BizCode       common.String
 	HasData       bool
 	CaptchaCities DescribeCaptchaIpCityCaptchaCitieList
 	CaptchaIps    DescribeCaptchaIpCityCaptchaIpList
 }
 
 type DescribeCaptchaIpCityCaptchaCitie struct {
-	Location string
-	Lat      string
-	Lng      string
-	Pv       int
+	Location common.String
+	Lat      common.String
+	Lng      common.String
+	Pv       common.Integer
 }
 
 type DescribeCaptchaIpCityCaptchaIp struct {
-	Ip    string
-	Value int
+	Ip    common.String
+	Value common.Integer
 }
 
 type DescribeCaptchaIpCityCaptchaCitieList []DescribeCaptchaIpCityCaptchaCitie

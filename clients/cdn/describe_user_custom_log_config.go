@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeUserCustomLogConfigRequest struct {
@@ -24,14 +25,14 @@ func (req *DescribeUserCustomLogConfigRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeUserCustomLogConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	ConfigIds DescribeUserCustomLogConfigConfigIdList
 }
 
-type DescribeUserCustomLogConfigConfigIdList []string
+type DescribeUserCustomLogConfigConfigIdList []common.String
 
 func (list *DescribeUserCustomLogConfigConfigIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

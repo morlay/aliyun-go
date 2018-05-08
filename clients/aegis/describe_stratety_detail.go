@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeStratetyDetailRequest struct {
@@ -24,29 +25,29 @@ func (req *DescribeStratetyDetailRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeStratetyDetailResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Strategy  DescribeStratetyDetailStrategy
 }
 
 type DescribeStratetyDetailStrategy struct {
-	CycleDays                        int
-	Name                             string
-	Id                               int
-	CycleStartTime                   int
-	Type                             int
+	CycleDays                        common.Integer
+	Name                             common.String
+	Id                               common.Integer
+	CycleStartTime                   common.Integer
+	Type                             common.Integer
 	RiskTypeWhiteListQueryResultList DescribeStratetyDetailRiskTypeWhiteListQueryResultList
 }
 
 type DescribeStratetyDetailRiskTypeWhiteListQueryResult struct {
-	TypeName string
-	Alias    string
+	TypeName common.String
+	Alias    common.String
 	On       bool
 	SubTypes DescribeStratetyDetailSubTypList
 }
 
 type DescribeStratetyDetailSubTyp struct {
-	TypeName string
-	Alias    string
+	TypeName common.String
+	Alias    common.String
 	On       bool
 }
 

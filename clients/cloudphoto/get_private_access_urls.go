@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetPrivateAccessUrlsRequest struct {
@@ -25,19 +26,19 @@ func (req *GetPrivateAccessUrlsRequest) Invoke(client *sdk.Client) (resp *GetPri
 
 type GetPrivateAccessUrlsResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Results   GetPrivateAccessUrlsResultList
 }
 
 type GetPrivateAccessUrlsResult struct {
-	Code       string
-	Message    string
-	PhotoId    int64
-	PhotoIdStr string
-	AccessUrl  string
+	Code       common.String
+	Message    common.String
+	PhotoId    common.Long
+	PhotoIdStr common.String
+	AccessUrl  common.String
 }
 
 type GetPrivateAccessUrlsPhotoIdList []int64

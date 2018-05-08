@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPriceForRenewEcsRequest struct {
@@ -25,26 +26,26 @@ func (req *QueryPriceForRenewEcsRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryPriceForRenewEcsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	EcsId      string
-	EmrPrice   string
-	EcsPrice   string
+	RequestId  common.String
+	EcsId      common.String
+	EmrPrice   common.String
+	EcsPrice   common.String
 	EmrPriceDO QueryPriceForRenewEcsEmrPriceDO
 	EcsPriceDO QueryPriceForRenewEcsEcsPriceDO
 }
 
 type QueryPriceForRenewEcsEmrPriceDO struct {
-	OriginalPrice string
-	DiscountPrice string
-	TradePrice    string
-	TaxPrice      string
-	Currency      string
+	OriginalPrice common.String
+	DiscountPrice common.String
+	TradePrice    common.String
+	TaxPrice      common.String
+	Currency      common.String
 }
 
 type QueryPriceForRenewEcsEcsPriceDO struct {
-	OriginalPrice string
-	DiscountPrice string
-	TradePrice    string
-	TaxPrice      string
-	Currency      string
+	OriginalPrice common.String
+	DiscountPrice common.String
+	TradePrice    common.String
+	TaxPrice      common.String
+	Currency      common.String
 }

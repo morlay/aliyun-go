@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveBatchTaskForCreatingOrderActivateRequest struct {
@@ -46,8 +47,8 @@ type SaveBatchTaskForCreatingOrderActivateOrderActivateParam struct {
 
 type SaveBatchTaskForCreatingOrderActivateResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }
 
 type SaveBatchTaskForCreatingOrderActivateOrderActivateParamList []SaveBatchTaskForCreatingOrderActivateOrderActivateParam

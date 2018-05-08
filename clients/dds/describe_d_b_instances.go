@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstancesRequest struct {
@@ -31,47 +32,47 @@ func (req *DescribeDBInstancesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeDBInstancesResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	PageNumber  int
-	PageSize    int
-	TotalCount  int
+	RequestId   common.String
+	PageNumber  common.Integer
+	PageSize    common.Integer
+	TotalCount  common.Integer
 	DBInstances DescribeDBInstancesDBInstanceList
 }
 
 type DescribeDBInstancesDBInstance struct {
-	DBInstanceId          string
-	DBInstanceDescription string
-	RegionId              string
-	ZoneId                string
-	Engine                string
-	EngineVersion         string
-	DBInstanceClass       string
-	DBInstanceStorage     int
-	DBInstanceStatus      string
-	LockMode              string
-	ChargeType            string
-	NetworkType           string
-	CreationTime          string
-	ExpireTime            string
-	DBInstanceType        string
-	LastDowngradeTime     int
+	DBInstanceId          common.String
+	DBInstanceDescription common.String
+	RegionId              common.String
+	ZoneId                common.String
+	Engine                common.String
+	EngineVersion         common.String
+	DBInstanceClass       common.String
+	DBInstanceStorage     common.Integer
+	DBInstanceStatus      common.String
+	LockMode              common.String
+	ChargeType            common.String
+	NetworkType           common.String
+	CreationTime          common.String
+	ExpireTime            common.String
+	DBInstanceType        common.String
+	LastDowngradeTime     common.Integer
 	MongosList            DescribeDBInstancesMongosAttributeList
 	ShardList             DescribeDBInstancesShardAttributeList
 }
 
 type DescribeDBInstancesMongosAttribute struct {
-	NodeId          string
-	NodeDescription string
-	NodeClass       string
-	ConnectSting    string
-	Port            int
+	NodeId          common.String
+	NodeDescription common.String
+	NodeClass       common.String
+	ConnectSting    common.String
+	Port            common.Integer
 }
 
 type DescribeDBInstancesShardAttribute struct {
-	NodeId          string
-	NodeDescription string
-	NodeClass       string
-	NodeStorage     int
+	NodeId          common.String
+	NodeDescription common.String
+	NodeClass       common.String
+	NodeStorage     common.Integer
 }
 
 type DescribeDBInstancesDBInstanceList []DescribeDBInstancesDBInstance

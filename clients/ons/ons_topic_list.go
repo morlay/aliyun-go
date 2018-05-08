@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsTopicListRequest struct {
@@ -25,27 +26,27 @@ func (req *OnsTopicListRequest) Invoke(client *sdk.Client) (resp *OnsTopicListRe
 
 type OnsTopicListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsTopicListPublishInfoDoList
 }
 
 type OnsTopicListPublishInfoDo struct {
-	Id           int64
-	ChannelId    int
-	ChannelName  string
-	OnsRegionId  string
-	RegionName   string
-	Topic        string
-	Owner        string
-	Relation     int
-	RelationName string
-	Status       int
-	StatusName   string
-	Appkey       string
-	CreateTime   int64
-	UpdateTime   int64
-	Remark       string
+	Id           common.Long
+	ChannelId    common.Integer
+	ChannelName  common.String
+	OnsRegionId  common.String
+	RegionName   common.String
+	Topic        common.String
+	Owner        common.String
+	Relation     common.Integer
+	RelationName common.String
+	Status       common.Integer
+	StatusName   common.String
+	Appkey       common.String
+	CreateTime   common.Long
+	UpdateTime   common.Long
+	Remark       common.String
 }
 
 type OnsTopicListPublishInfoDoList []OnsTopicListPublishInfoDo

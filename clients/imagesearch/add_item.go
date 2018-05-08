@@ -28,9 +28,9 @@ func (req *AddItemRequest) Invoke(client *sdk.Client) (resp *AddItemResponse, er
 
 type AddItemResponse struct {
 responses.BaseResponse
-RequestId string
+RequestId common.String
 Success bool
-Message string
-Code int
+Message common.String
+Code common.Integer
 }
 

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeScalingGroupsRequest struct {
@@ -67,33 +68,33 @@ func (req *DescribeScalingGroupsRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeScalingGroupsResponse struct {
 	responses.BaseResponse
-	TotalCount    int
-	PageNumber    int
-	PageSize      int
-	RequestId     string
+	TotalCount    common.Integer
+	PageNumber    common.Integer
+	PageSize      common.Integer
+	RequestId     common.String
 	ScalingGroups DescribeScalingGroupsScalingGroupList
 }
 
 type DescribeScalingGroupsScalingGroup struct {
-	DefaultCooldown              int
-	MaxSize                      int
-	PendingCapacity              int
-	RemovingCapacity             int
-	ScalingGroupName             string
-	ActiveCapacity               int
-	StandbyCapacity              int
-	ProtectedCapacity            int
-	ActiveScalingConfigurationId string
-	ScalingGroupId               string
-	RegionId                     string
-	TotalCapacity                int
-	MinSize                      int
-	LifecycleState               string
-	CreationTime                 string
-	ModificationTime             string
-	VpcId                        string
-	VSwitchId                    string
-	MultiAZPolicy                string
+	DefaultCooldown              common.Integer
+	MaxSize                      common.Integer
+	PendingCapacity              common.Integer
+	RemovingCapacity             common.Integer
+	ScalingGroupName             common.String
+	ActiveCapacity               common.Integer
+	StandbyCapacity              common.Integer
+	ProtectedCapacity            common.Integer
+	ActiveScalingConfigurationId common.String
+	ScalingGroupId               common.String
+	RegionId                     common.String
+	TotalCapacity                common.Integer
+	MinSize                      common.Integer
+	LifecycleState               common.String
+	CreationTime                 common.String
+	ModificationTime             common.String
+	VpcId                        common.String
+	VSwitchId                    common.String
+	MultiAZPolicy                common.String
 	VSwitchIds                   DescribeScalingGroupsVSwitchIdList
 	RemovalPolicies              DescribeScalingGroupsRemovalPolicyList
 	DBInstanceIds                DescribeScalingGroupsDBInstanceIdList
@@ -115,10 +116,10 @@ func (list *DescribeScalingGroupsScalingGroupList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeScalingGroupsVSwitchIdList []string
+type DescribeScalingGroupsVSwitchIdList []common.String
 
 func (list *DescribeScalingGroupsVSwitchIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -130,10 +131,10 @@ func (list *DescribeScalingGroupsVSwitchIdList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type DescribeScalingGroupsRemovalPolicyList []string
+type DescribeScalingGroupsRemovalPolicyList []common.String
 
 func (list *DescribeScalingGroupsRemovalPolicyList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -145,10 +146,10 @@ func (list *DescribeScalingGroupsRemovalPolicyList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeScalingGroupsDBInstanceIdList []string
+type DescribeScalingGroupsDBInstanceIdList []common.String
 
 func (list *DescribeScalingGroupsDBInstanceIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -160,10 +161,10 @@ func (list *DescribeScalingGroupsDBInstanceIdList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeScalingGroupsLoadBalancerIdList []string
+type DescribeScalingGroupsLoadBalancerIdList []common.String
 
 func (list *DescribeScalingGroupsLoadBalancerIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

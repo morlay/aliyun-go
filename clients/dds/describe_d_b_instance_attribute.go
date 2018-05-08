@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceAttributeRequest struct {
@@ -28,48 +29,48 @@ func (req *DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeDBInstanceAttributeResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	DBInstances DescribeDBInstanceAttributeDBInstanceList
 }
 
 type DescribeDBInstanceAttributeDBInstance struct {
-	DBInstanceId          string
-	DBInstanceDescription string
-	RegionId              string
-	ZoneId                string
-	Engine                string
-	EngineVersion         string
-	StorageEngine         string
-	DBInstanceClass       string
-	DBInstanceStorage     int
-	DBInstanceStatus      string
-	LockMode              string
-	ChargeType            string
-	CreationTime          string
-	ReplicaSetName        string
-	NetworkType           string
-	ExpireTime            string
-	MaintainStartTime     string
-	MaintainEndTime       string
-	DBInstanceType        string
-	LastDowngradeTime     int
+	DBInstanceId          common.String
+	DBInstanceDescription common.String
+	RegionId              common.String
+	ZoneId                common.String
+	Engine                common.String
+	EngineVersion         common.String
+	StorageEngine         common.String
+	DBInstanceClass       common.String
+	DBInstanceStorage     common.Integer
+	DBInstanceStatus      common.String
+	LockMode              common.String
+	ChargeType            common.String
+	CreationTime          common.String
+	ReplicaSetName        common.String
+	NetworkType           common.String
+	ExpireTime            common.String
+	MaintainStartTime     common.String
+	MaintainEndTime       common.String
+	DBInstanceType        common.String
+	LastDowngradeTime     common.Integer
 	MongosList            DescribeDBInstanceAttributeMongosAttributeList
 	ShardList             DescribeDBInstanceAttributeShardAttributeList
 }
 
 type DescribeDBInstanceAttributeMongosAttribute struct {
-	NodeId          string
-	NodeDescription string
-	NodeClass       string
-	ConnectSting    string
-	Port            int
+	NodeId          common.String
+	NodeDescription common.String
+	NodeClass       common.String
+	ConnectSting    common.String
+	Port            common.Integer
 }
 
 type DescribeDBInstanceAttributeShardAttribute struct {
-	NodeId          string
-	NodeDescription string
-	NodeClass       string
-	NodeStorage     int
+	NodeId          common.String
+	NodeDescription common.String
+	NodeClass       common.String
+	NodeStorage     common.Integer
 }
 
 type DescribeDBInstanceAttributeDBInstanceList []DescribeDBInstanceAttributeDBInstance

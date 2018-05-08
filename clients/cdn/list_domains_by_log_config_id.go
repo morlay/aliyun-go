@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListDomainsByLogConfigIdRequest struct {
@@ -25,14 +26,14 @@ func (req *ListDomainsByLogConfigIdRequest) Invoke(client *sdk.Client) (resp *Li
 
 type ListDomainsByLogConfigIdResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Domains   ListDomainsByLogConfigIdDomainList
 }
 
-type ListDomainsByLogConfigIdDomainList []string
+type ListDomainsByLogConfigIdDomainList []common.String
 
 func (list *ListDomainsByLogConfigIdDomainList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

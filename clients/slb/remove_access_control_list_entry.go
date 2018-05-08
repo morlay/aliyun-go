@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RemoveAccessControlListEntryRequest struct {
@@ -27,5 +28,5 @@ func (req *RemoveAccessControlListEntryRequest) Invoke(client *sdk.Client) (resp
 
 type RemoveAccessControlListEntryResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

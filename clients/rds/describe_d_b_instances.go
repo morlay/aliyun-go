@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstancesRequest struct {
@@ -49,46 +50,46 @@ func (req *DescribeDBInstancesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeDBInstancesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageNumber       int
-	TotalRecordCount int
-	PageRecordCount  int
+	RequestId        common.String
+	PageNumber       common.Integer
+	TotalRecordCount common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeDBInstancesDBInstanceList
 }
 
 type DescribeDBInstancesDBInstance struct {
-	InsId                 int
-	DBInstanceId          string
-	DBInstanceDescription string
-	PayType               string
-	DBInstanceType        string
-	RegionId              string
-	ExpireTime            string
-	DBInstanceStatus      string
-	Engine                string
-	DBInstanceNetType     string
-	ConnectionMode        string
-	LockMode              string
-	DBInstanceClass       string
-	InstanceNetworkType   string
-	VpcCloudInstanceId    string
-	LockReason            string
-	ZoneId                string
+	InsId                 common.Integer
+	DBInstanceId          common.String
+	DBInstanceDescription common.String
+	PayType               common.String
+	DBInstanceType        common.String
+	RegionId              common.String
+	ExpireTime            common.String
+	DBInstanceStatus      common.String
+	Engine                common.String
+	DBInstanceNetType     common.String
+	ConnectionMode        common.String
+	LockMode              common.String
+	DBInstanceClass       common.String
+	InstanceNetworkType   common.String
+	VpcCloudInstanceId    common.String
+	LockReason            common.String
+	ZoneId                common.String
 	MutriORsignle         bool
-	CreateTime            string
-	EngineVersion         string
-	GuardDBInstanceId     string
-	TempDBInstanceId      string
-	MasterInstanceId      string
-	VpcId                 string
-	VSwitchId             string
-	ReplicateId           string
-	ResourceGroupId       string
+	CreateTime            common.String
+	EngineVersion         common.String
+	GuardDBInstanceId     common.String
+	TempDBInstanceId      common.String
+	MasterInstanceId      common.String
+	VpcId                 common.String
+	VSwitchId             common.String
+	ReplicateId           common.String
+	ResourceGroupId       common.String
 	ReadOnlyDBInstanceIds DescribeDBInstancesReadOnlyDBInstanceIdList
 }
 
 type DescribeDBInstancesReadOnlyDBInstanceId struct {
-	DBInstanceId string
+	DBInstanceId common.String
 }
 
 type DescribeDBInstancesDBInstanceList []DescribeDBInstancesDBInstance

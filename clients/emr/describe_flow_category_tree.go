@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFlowCategoryTreeRequest struct {
@@ -22,6 +23,6 @@ func (req *DescribeFlowCategoryTreeRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeFlowCategoryTreeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Data      string
+	RequestId common.String
+	Data      common.String
 }

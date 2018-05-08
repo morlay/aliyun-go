@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListOpsOperationRequest struct {
@@ -24,29 +25,29 @@ func (req *ListOpsOperationRequest) Invoke(client *sdk.Client) (resp *ListOpsOpe
 
 type ListOpsOperationResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Total            int
-	PageNumber       int
-	PageSize         int
+	RequestId        common.String
+	Total            common.Integer
+	PageNumber       common.Integer
+	PageSize         common.Integer
 	OpsOperationList ListOpsOperationOpsOperationListItemList
 }
 
 type ListOpsOperationOpsOperationListItem struct {
-	Id              int64
-	StartTime       string
-	EndTime         string
-	OpsCommandId    int64
-	OpsCommandName  string
-	Status          string
-	TotalTaskNum    int64
-	FailedTaskNum   int64
-	FinishedTaskNum int64
-	ClusterId       string
-	RegionId        string
-	Params          string
-	Remark          string
-	RunningTime     int64
-	Category        string
+	Id              common.Long
+	StartTime       common.String
+	EndTime         common.String
+	OpsCommandId    common.Long
+	OpsCommandName  common.String
+	Status          common.String
+	TotalTaskNum    common.Long
+	FailedTaskNum   common.Long
+	FinishedTaskNum common.Long
+	ClusterId       common.String
+	RegionId        common.String
+	Params          common.String
+	Remark          common.String
+	RunningTime     common.Long
+	Category        common.String
 }
 
 type ListOpsOperationOpsOperationListItemList []ListOpsOperationOpsOperationListItem

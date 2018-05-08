@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRuleAttributeRequest struct {
@@ -26,11 +27,11 @@ func (req *DescribeRuleAttributeRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeRuleAttributeResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	RuleName       string
-	LoadBalancerId string
-	ListenerPort   string
-	Domain         string
-	Url            string
-	VServerGroupId string
+	RequestId      common.String
+	RuleName       common.String
+	LoadBalancerId common.String
+	ListenerPort   common.String
+	Domain         common.String
+	Url            common.String
+	VServerGroupId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListUsersOfSkillGroupRequest struct {
@@ -25,64 +26,64 @@ func (req *ListUsersOfSkillGroupRequest) Invoke(client *sdk.Client) (resp *ListU
 
 type ListUsersOfSkillGroupResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Users          ListUsersOfSkillGroupUsers
 }
 
 type ListUsersOfSkillGroupUsers struct {
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	List       ListUsersOfSkillGroupUserList
 }
 
 type ListUsersOfSkillGroupUser struct {
-	UserId      string
-	RamId       string
-	InstanceId  string
+	UserId      common.String
+	RamId       common.String
+	InstanceId  common.String
 	Roles       ListUsersOfSkillGroupRoleList
 	SkillLevels ListUsersOfSkillGroupSkillLevelList
 	Detail      ListUsersOfSkillGroupDetail
 }
 
 type ListUsersOfSkillGroupRole struct {
-	RoleId          string
-	InstanceId      string
-	RoleName        string
-	RoleDescription string
-	UserCount       int
+	RoleId          common.String
+	InstanceId      common.String
+	RoleName        common.String
+	RoleDescription common.String
+	UserCount       common.Integer
 	Privileges      ListUsersOfSkillGroupPrivilegeList
 }
 
 type ListUsersOfSkillGroupPrivilege struct {
-	PrivilegeId          string
-	PrivilegeName        string
-	PrivilegeDescription string
+	PrivilegeId          common.String
+	PrivilegeName        common.String
+	PrivilegeDescription common.String
 }
 
 type ListUsersOfSkillGroupSkillLevel struct {
-	SkillLevelId string
-	Level        int
+	SkillLevelId common.String
+	Level        common.Integer
 	Skill        ListUsersOfSkillGroupSkill
 }
 
 type ListUsersOfSkillGroupSkill struct {
-	SkillGroupId          string
-	InstanceId            string
-	SkillGroupName        string
-	SkillGroupDescription string
+	SkillGroupId          common.String
+	InstanceId            common.String
+	SkillGroupName        common.String
+	SkillGroupDescription common.String
 }
 
 type ListUsersOfSkillGroupDetail struct {
-	LoginName   string
-	DisplayName string
-	Phone       string
-	Email       string
-	Department  string
+	LoginName   common.String
+	DisplayName common.String
+	Phone       common.String
+	Email       common.String
+	Department  common.String
 }
 
 type ListUsersOfSkillGroupUserList []ListUsersOfSkillGroupUser

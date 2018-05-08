@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetAutoScaleConfigRequest struct {
@@ -20,18 +21,18 @@ func (req *GetAutoScaleConfigRequest) Invoke(client *sdk.Client) (resp *GetAutoS
 
 type GetAutoScaleConfigResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	Uid                     string
-	ClusterId               string
-	ClusterType             string
+	RequestId               common.String
+	Uid                     common.String
+	ClusterId               common.String
+	ClusterType             common.String
 	EnableAutoGrow          bool
 	EnableAutoShrink        bool
-	GrowIntervalInMinutes   int
-	ShrinkIntervalInMinutes int
-	ShrinkIdleTimes         int
-	GrowTimeoutInMinutes    int
-	ExtraNodesGrowRatio     int
-	GrowRatio               int
-	MaxNodesInCluster       int
-	ExcludeNodes            string
+	GrowIntervalInMinutes   common.Integer
+	ShrinkIntervalInMinutes common.Integer
+	ShrinkIdleTimes         common.Integer
+	GrowTimeoutInMinutes    common.Integer
+	ExtraNodesGrowRatio     common.Integer
+	GrowRatio               common.Integer
+	MaxNodesInCluster       common.Integer
+	ExcludeNodes            common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceTDERequest struct {
@@ -26,14 +27,14 @@ func (req *DescribeDBInstanceTDERequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeDBInstanceTDEResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TDEStatus string
+	RequestId common.String
+	TDEStatus common.String
 	Databases DescribeDBInstanceTDEDatabaseList
 }
 
 type DescribeDBInstanceTDEDatabase struct {
-	DBName    string
-	TDEStatus string
+	DBName    common.String
+	TDEStatus common.String
 }
 
 type DescribeDBInstanceTDEDatabaseList []DescribeDBInstanceTDEDatabase

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetResultRequest struct {
@@ -22,27 +23,27 @@ func (req *GetResultRequest) Invoke(client *sdk.Client) (resp *GetResultResponse
 
 type GetResultResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
-	Count     int
+	Code      common.String
+	Message   common.String
+	Count     common.Integer
 	Data      GetResultResultInfoList
 }
 
 type GetResultResultInfo struct {
-	Tid             string
-	AsrMsg          string
-	Score           int
-	ReviewStatus    int
-	HitId           string
+	Tid             common.String
+	AsrMsg          common.String
+	Score           common.Integer
+	ReviewStatus    common.Integer
+	HitId           common.String
 	Rules           GetResultRuleHitInfoList
 	HandScoreIdList GetResultHandScoreIdListList
 }
 
 type GetResultRuleHitInfo struct {
-	HitStatus     int
-	Rid           string
+	HitStatus     common.Integer
+	Rid           common.String
 	Hit           GetResultConditionHitInfoList
 	ConditionInfo GetResultConditionBasicInfoList
 }
@@ -54,66 +55,66 @@ type GetResultConditionHitInfo struct {
 }
 
 type GetResultHitKeyWord struct {
-	Val  string
-	Pid  int
-	From int
-	To   int
-	Tid  string
+	Val  common.String
+	Pid  common.Integer
+	From common.Integer
+	To   common.Integer
+	Tid  common.String
 }
 
 type GetResultPhrase struct {
-	Role       string
-	Identity   string
-	Words      string
-	Begin      int64
-	End        int64
-	BeginTime  string
-	HourMinSec string
+	Role       common.String
+	Identity   common.String
+	Words      common.String
+	Begin      common.Long
+	End        common.Long
+	BeginTime  common.String
+	HourMinSec common.String
 }
 
 type GetResultConditionBasicInfo struct {
-	ConditionInfoCid string
-	Lambda           string
+	ConditionInfoCid common.String
+	Lambda           common.String
 	Operators        GetResultOperatorBasicInfoList
 	CheckRange       GetResultCheckRange
 }
 
 type GetResultOperatorBasicInfo struct {
-	Oid   string
-	Type  string
-	Name  string
+	Oid   common.String
+	Type  common.String
+	Name  common.String
 	Param GetResultParam
 }
 
 type GetResultParam struct {
-	Regex         string
-	Phrase        string
-	Interval      int
-	Threshold     float32
+	Regex         common.String
+	Phrase        common.String
+	Interval      common.Integer
+	Threshold     common.Float
 	InSentence    bool
-	Target        int
+	Target        common.Integer
 	FromEnd       bool
 	DifferentRole bool
-	TargetRole    string
+	TargetRole    common.String
 	OperKeyWords  GetResultOperKeyWordList
 	References    GetResultReferenceList
 }
 
 type GetResultCheckRange struct {
-	Role   string
+	Role   common.String
 	Anchor GetResultAnchor
 	Range  GetResultRange
 }
 
 type GetResultAnchor struct {
-	AnchorCid string
-	Location  string
-	HitTime   int
+	AnchorCid common.String
+	Location  common.String
+	HitTime   common.Integer
 }
 
 type GetResultRange struct {
-	From int
-	To   int
+	From common.Integer
+	To   common.Integer
 }
 
 type GetResultResultInfoList []GetResultResultInfo
@@ -146,10 +147,10 @@ func (list *GetResultRuleHitInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetResultHandScoreIdListList []string
+type GetResultHandScoreIdListList []common.String
 
 func (list *GetResultHandScoreIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -206,10 +207,10 @@ func (list *GetResultHitKeyWordList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetResultHitCidList []string
+type GetResultHitCidList []common.String
 
 func (list *GetResultHitCidList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -236,10 +237,10 @@ func (list *GetResultOperatorBasicInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetResultOperKeyWordList []string
+type GetResultOperKeyWordList []common.String
 
 func (list *GetResultOperKeyWordList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -251,10 +252,10 @@ func (list *GetResultOperKeyWordList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetResultReferenceList []string
+type GetResultReferenceList []common.String
 
 func (list *GetResultReferenceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

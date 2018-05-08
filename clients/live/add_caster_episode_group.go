@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCasterEpisodeGroupRequest struct {
@@ -34,8 +35,8 @@ type AddCasterEpisodeGroupItem struct {
 
 type AddCasterEpisodeGroupResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ProgramId string
+	RequestId common.String
+	ProgramId common.String
 	ItemIds   AddCasterEpisodeGroupItemIdList
 }
 
@@ -54,10 +55,10 @@ func (list *AddCasterEpisodeGroupItemList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type AddCasterEpisodeGroupItemIdList []string
+type AddCasterEpisodeGroupItemIdList []common.String
 
 func (list *AddCasterEpisodeGroupItemIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

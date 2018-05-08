@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateGlobalAccelerationInstanceRequest struct {
@@ -30,7 +31,7 @@ func (req *CreateGlobalAccelerationInstanceRequest) Invoke(client *sdk.Client) (
 
 type CreateGlobalAccelerationInstanceResponse struct {
 	responses.BaseResponse
-	RequestId                    string
-	GlobalAccelerationInstanceId string
-	IpAddress                    string
+	RequestId                    common.String
+	GlobalAccelerationInstanceId common.String
+	IpAddress                    common.String
 }

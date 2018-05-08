@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListVolumesRequest struct {
@@ -23,22 +24,22 @@ func (req *ListVolumesRequest) Invoke(client *sdk.Client) (resp *ListVolumesResp
 
 type ListVolumesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Volumes    ListVolumesVolumeInfoList
 }
 
 type ListVolumesVolumeInfo struct {
-	RegionId         string
-	ClusterId        string
-	ClusterName      string
-	VolumeId         string
-	VolumeType       string
-	VolumeProtocol   string
-	VolumeMountpoint string
-	RemoteDirectory  string
+	RegionId         common.String
+	ClusterId        common.String
+	ClusterName      common.String
+	VolumeId         common.String
+	VolumeType       common.String
+	VolumeProtocol   common.String
+	VolumeMountpoint common.String
+	RemoteDirectory  common.String
 }
 
 type ListVolumesVolumeInfoList []ListVolumesVolumeInfo

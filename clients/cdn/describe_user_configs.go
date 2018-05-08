@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeUserConfigsRequest struct {
@@ -22,7 +23,7 @@ func (req *DescribeUserConfigsRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeUserConfigsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Configs   DescribeUserConfigsConfigs
 }
 
@@ -32,12 +33,12 @@ type DescribeUserConfigsConfigs struct {
 }
 
 type DescribeUserConfigsOssLogConfig struct {
-	Enable string
-	Bucket string
-	Prefix string
+	Enable common.String
+	Bucket common.String
+	Prefix common.String
 }
 
 type DescribeUserConfigsGreenManagerConfig struct {
-	Quota string
-	Ratio string
+	Quota common.String
+	Ratio common.String
 }

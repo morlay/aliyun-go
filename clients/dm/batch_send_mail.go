@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type BatchSendMailRequest struct {
@@ -30,6 +31,6 @@ func (req *BatchSendMailRequest) Invoke(client *sdk.Client) (resp *BatchSendMail
 
 type BatchSendMailResponse struct {
 	responses.BaseResponse
-	RequestId string
-	EnvId     string
+	RequestId common.String
+	EnvId     common.String
 }

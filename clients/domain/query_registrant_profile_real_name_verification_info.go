@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryRegistrantProfileRealNameVerificationInfoRequest struct {
@@ -23,11 +24,11 @@ func (req *QueryRegistrantProfileRealNameVerificationInfoRequest) Invoke(client 
 
 type QueryRegistrantProfileRealNameVerificationInfoResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	SubmissionDate         string
-	ModificationDate       string
-	IdentityCredential     string
-	RegistrantProfileId    int64
-	IdentityCredentialNo   string
-	IdentityCredentialType string
+	RequestId              common.String
+	SubmissionDate         common.String
+	ModificationDate       common.String
+	IdentityCredential     common.String
+	RegistrantProfileId    common.Long
+	IdentityCredentialNo   common.String
+	IdentityCredentialType common.String
 }

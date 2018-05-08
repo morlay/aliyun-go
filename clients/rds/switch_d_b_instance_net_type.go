@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SwitchDBInstanceNetTypeRequest struct {
@@ -28,5 +29,5 @@ func (req *SwitchDBInstanceNetTypeRequest) Invoke(client *sdk.Client) (resp *Swi
 
 type SwitchDBInstanceNetTypeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

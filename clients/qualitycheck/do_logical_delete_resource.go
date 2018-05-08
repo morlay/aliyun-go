@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DoLogicalDeleteResourceRequest struct {
@@ -29,15 +30,15 @@ func (req *DoLogicalDeleteResourceRequest) Invoke(client *sdk.Client) (resp *DoL
 
 type DoLogicalDeleteResourceResponse struct {
 	responses.BaseResponse
-	Interrupt       string
-	Invoker         int64
-	Pk              string
-	Bid             string
-	Hid             int64
-	Country         string
-	TaskIdentifier  string
-	TaskIdentifier1 string
-	GmtWakeup       string
+	Interrupt       common.String
+	Invoker         common.Long
+	Pk              common.String
+	Bid             common.String
+	Hid             common.Long
+	Country         common.String
+	TaskIdentifier  common.String
+	TaskIdentifier1 common.String
+	GmtWakeup       common.String
 	Success         bool
-	Message         string
+	Message         common.String
 }

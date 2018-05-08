@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserInstanceRequest struct {
@@ -26,39 +27,39 @@ func (req *GetUserInstanceRequest) Invoke(client *sdk.Client) (resp *GetUserInst
 
 type GetUserInstanceResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetUserInstanceData
 }
 
 type GetUserInstanceData struct {
-	Total  int
+	Total  common.Integer
 	Detail GetUserInstanceInstanceList
 }
 
 type GetUserInstanceInstance struct {
-	Project         string
-	InstanceId      string
-	Status          string
-	UserAccount     string
-	NickName        string
-	Cluster         string
-	RunTime         string
-	CpuUsed         int64
-	CpuRequest      int64
-	CpuUsedTotal    int64
-	CpuUsedRatioMax float32
-	CpuUsedRatioMin float32
-	MemUsed         int64
-	MemRequest      int64
-	MemUsedTotal    int64
-	MemUsedRatioMax float32
-	MemUsedRatioMin float32
-	TaskType        string
-	SkynetId        string
-	QuotaName       string
-	QuotaId         int
+	Project         common.String
+	InstanceId      common.String
+	Status          common.String
+	UserAccount     common.String
+	NickName        common.String
+	Cluster         common.String
+	RunTime         common.String
+	CpuUsed         common.Long
+	CpuRequest      common.Long
+	CpuUsedTotal    common.Long
+	CpuUsedRatioMax common.Float
+	CpuUsedRatioMin common.Float
+	MemUsed         common.Long
+	MemRequest      common.Long
+	MemUsedTotal    common.Long
+	MemUsedRatioMax common.Float
+	MemUsedRatioMin common.Float
+	TaskType        common.String
+	SkynetId        common.String
+	QuotaName       common.String
+	QuotaId         common.Integer
 }
 
 type GetUserInstanceInstanceList []GetUserInstanceInstance

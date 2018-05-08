@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateScalingRuleRequest struct {
@@ -27,7 +28,7 @@ func (req *CreateScalingRuleRequest) Invoke(client *sdk.Client) (resp *CreateSca
 
 type CreateScalingRuleResponse struct {
 	responses.BaseResponse
-	ScalingRuleId  string
-	ScalingRuleAri string
-	RequestId      string
+	ScalingRuleId  common.String
+	ScalingRuleAri common.String
+	RequestId      common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAccessRulesRequest struct {
@@ -25,19 +26,19 @@ func (req *DescribeAccessRulesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeAccessRulesResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageSize    int
-	PageNumber  int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageSize    common.Integer
+	PageNumber  common.Integer
 	AccessRules DescribeAccessRulesAccessRuleList
 }
 
 type DescribeAccessRulesAccessRule struct {
-	SourceCidrIp string
-	Priority     int
-	AccessRuleId string
-	RWAccess     string
-	UserAccess   string
+	SourceCidrIp common.String
+	Priority     common.Integer
+	AccessRuleId common.String
+	RWAccess     common.String
+	UserAccess   common.String
 }
 
 type DescribeAccessRulesAccessRuleList []DescribeAccessRulesAccessRule

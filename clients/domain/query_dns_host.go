@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDnsHostRequest struct {
@@ -23,12 +24,12 @@ func (req *QueryDnsHostRequest) Invoke(client *sdk.Client) (resp *QueryDnsHostRe
 
 type QueryDnsHostResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	DnsHostList QueryDnsHostDnsHostList
 }
 
 type QueryDnsHostDnsHost struct {
-	DnsName string
+	DnsName common.String
 	IpList  QueryDnsHostIpListList
 }
 
@@ -47,10 +48,10 @@ func (list *QueryDnsHostDnsHostList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryDnsHostIpListList []string
+type QueryDnsHostIpListList []common.String
 
 func (list *QueryDnsHostIpListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

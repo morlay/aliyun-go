@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddDomainRecordRequest struct {
@@ -28,6 +29,6 @@ func (req *AddDomainRecordRequest) Invoke(client *sdk.Client) (resp *AddDomainRe
 
 type AddDomainRecordResponse struct {
 	responses.BaseResponse
-	RequestId string
-	RecordId  string
+	RequestId common.String
+	RecordId  common.String
 }

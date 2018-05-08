@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBandwidthLimitationRequest struct {
@@ -30,15 +31,15 @@ func (req *DescribeBandwidthLimitationRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeBandwidthLimitationResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	Bandwidths DescribeBandwidthLimitationBandwidthList
 }
 
 type DescribeBandwidthLimitationBandwidth struct {
-	InternetChargeType string
-	Min                int
-	Max                int
-	Unit               string
+	InternetChargeType common.String
+	Min                common.Integer
+	Max                common.Integer
+	Unit               common.String
 }
 
 type DescribeBandwidthLimitationBandwidthList []DescribeBandwidthLimitationBandwidth

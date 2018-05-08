@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFileSystemsRequest struct {
@@ -24,31 +25,31 @@ func (req *DescribeFileSystemsRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeFileSystemsResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageSize    int
-	PageNumber  int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageSize    common.Integer
+	PageNumber  common.Integer
 	FileSystems DescribeFileSystemsFileSystemList
 }
 
 type DescribeFileSystemsFileSystem struct {
-	FileSystemId string
-	Destription  string
-	CreateTime   string
-	RegionId     string
-	ProtocolType string
-	StorageType  string
-	MeteredSize  int64
+	FileSystemId common.String
+	Destription  common.String
+	CreateTime   common.String
+	RegionId     common.String
+	ProtocolType common.String
+	StorageType  common.String
+	MeteredSize  common.Long
 	MountTargets DescribeFileSystemsMountTargetList
 	Packages     DescribeFileSystems_PackageList
 }
 
 type DescribeFileSystemsMountTarget struct {
-	MountTargetDomain string
+	MountTargetDomain common.String
 }
 
 type DescribeFileSystems_Package struct {
-	PackageId string
+	PackageId common.String
 }
 
 type DescribeFileSystemsFileSystemList []DescribeFileSystemsFileSystem

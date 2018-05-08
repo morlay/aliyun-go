@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyPhoneNumberRequest struct {
@@ -23,31 +24,31 @@ func (req *ModifyPhoneNumberRequest) Invoke(client *sdk.Client) (resp *ModifyPho
 
 type ModifyPhoneNumberResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	PhoneNumber    ModifyPhoneNumberPhoneNumber
 }
 
 type ModifyPhoneNumberPhoneNumber struct {
-	PhoneNumberId          string
-	InstanceId             string
-	Number                 string
-	PhoneNumberDescription string
+	PhoneNumberId          common.String
+	InstanceId             common.String
+	Number                 common.String
+	PhoneNumberDescription common.String
 	TestOnly               bool
-	RemainingTime          int
+	RemainingTime          common.Integer
 	AllowOutbound          bool
-	Usage                  string
-	Trunks                 int
+	Usage                  common.String
+	Trunks                 common.Integer
 	ContactFlow            ModifyPhoneNumberContactFlow
 }
 
 type ModifyPhoneNumberContactFlow struct {
-	ContactFlowId          string
-	InstanceId             string
-	ContactFlowName        string
-	ContactFlowDescription string
-	Type                   string
+	ContactFlowId          common.String
+	InstanceId             common.String
+	ContactFlowName        common.String
+	ContactFlowDescription common.String
+	Type                   common.String
 }

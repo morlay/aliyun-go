@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetMaterialsRequest struct {
@@ -22,21 +23,21 @@ func (req *GetMaterialsRequest) Invoke(client *sdk.Client) (resp *GetMaterialsRe
 
 type GetMaterialsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      GetMaterialsData
 }
 
 type GetMaterialsData struct {
-	Name                 string
-	IdentificationNumber string
-	IdCardType           string
-	IdCardExpiry         string
-	Address              string
-	Sex                  string
-	IdCardFrontPic       string
-	IdCardBackPic        string
-	FacePic              string
+	Name                 common.String
+	IdentificationNumber common.String
+	IdCardType           common.String
+	IdCardExpiry         common.String
+	Address              common.String
+	Sex                  common.String
+	IdCardFrontPic       common.String
+	IdCardBackPic        common.String
+	FacePic              common.String
 }

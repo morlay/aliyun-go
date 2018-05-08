@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryMetricDataRequest struct {
@@ -29,9 +30,9 @@ func (req *QueryMetricDataRequest) Invoke(client *sdk.Client) (resp *QueryMetric
 
 type QueryMetricDataResponse struct {
 	responses.BaseResponse
-	Code       string
-	Message    string
-	RequestId  string
-	Datapoints string
-	Period     string
+	Code       common.String
+	Message    common.String
+	RequestId  common.String
+	Datapoints common.String
+	Period     common.String
 }

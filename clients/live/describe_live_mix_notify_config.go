@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveMixNotifyConfigRequest struct {
@@ -22,6 +23,6 @@ func (req *DescribeLiveMixNotifyConfigRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeLiveMixNotifyConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	NotifyUrl string
+	RequestId common.String
+	NotifyUrl common.String
 }

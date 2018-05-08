@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateClusterTemplateRequest struct {
@@ -72,11 +73,11 @@ type CreateClusterTemplateHostGroup struct {
 
 type CreateClusterTemplateResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	Success           string
-	ErrCode           string
-	ErrMsg            string
-	ClusterTemplateId string
+	RequestId         common.String
+	Success           common.String
+	ErrCode           common.String
+	ErrMsg            common.String
+	ClusterTemplateId common.String
 }
 
 type CreateClusterTemplateBootstrapActionList []CreateClusterTemplateBootstrapAction

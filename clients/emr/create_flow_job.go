@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateFlowJobRequest struct {
@@ -33,6 +34,6 @@ func (req *CreateFlowJobRequest) Invoke(client *sdk.Client) (resp *CreateFlowJob
 
 type CreateFlowJobResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Id        string
+	RequestId common.String
+	Id        common.String
 }

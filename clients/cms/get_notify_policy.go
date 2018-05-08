@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetNotifyPolicyRequest struct {
@@ -23,18 +24,18 @@ func (req *GetNotifyPolicyRequest) Invoke(client *sdk.Client) (resp *GetNotifyPo
 
 type GetNotifyPolicyResponse struct {
 	responses.BaseResponse
-	Code    string
-	Message string
-	Success string
-	TraceId string
+	Code    common.String
+	Message common.String
+	Success common.String
+	TraceId common.String
 	Result  GetNotifyPolicyResult
 }
 
 type GetNotifyPolicyResult struct {
-	AlertName  string
-	Dimensions string
-	Type       string
-	Id         string
-	StartTime  int64
-	EndTime    int64
+	AlertName  common.String
+	Dimensions common.String
+	Type       common.String
+	Id         common.String
+	StartTime  common.Long
+	EndTime    common.Long
 }

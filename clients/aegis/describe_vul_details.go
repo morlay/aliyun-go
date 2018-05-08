@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVulDetailsRequest struct {
@@ -42,29 +43,29 @@ func (req *DescribeVulDetailsRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeVulDetailsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	Name           string
-	AliasName      string
-	Level          string
-	VulPublishTs   int64
-	Type           string
-	Product        string
+	RequestId      common.String
+	Name           common.String
+	AliasName      common.String
+	Level          common.String
+	VulPublishTs   common.Long
+	Type           common.String
+	Product        common.String
 	HasPatch       bool
-	PatchPublishTs int64
-	PatchSource    string
-	Cvss           string
-	CveIds         string
-	Advice         string
-	Description    string
-	PendingCount   int
-	HandledCount   int
+	PatchPublishTs common.Long
+	PatchSource    common.String
+	Cvss           common.String
+	CveIds         common.String
+	Advice         common.String
+	Description    common.String
+	PendingCount   common.Integer
+	HandledCount   common.Integer
 	CveLists       DescribeVulDetailsCveListList
 }
 
-type DescribeVulDetailsCveListList []string
+type DescribeVulDetailsCveListList []common.String
 
 func (list *DescribeVulDetailsCveListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

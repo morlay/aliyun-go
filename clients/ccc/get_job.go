@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetJobRequest struct {
@@ -23,24 +24,24 @@ func (req *GetJobRequest) Invoke(client *sdk.Client) (resp *GetJobResponse, err 
 
 type GetJobResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Job            GetJobJob
 }
 
 type GetJobJob struct {
-	JobId          string
-	GroupId        string
-	ScenarioId     string
-	StrategyId     string
-	Priority       int
-	SystemPriority int
-	Status         string
-	ReferenceId    string
-	FailureReason  string
+	JobId          common.String
+	GroupId        common.String
+	ScenarioId     common.String
+	StrategyId     common.String
+	Priority       common.Integer
+	SystemPriority common.Integer
+	Status         common.String
+	ReferenceId    common.String
+	FailureReason  common.String
 	Contacts       GetJobContactList
 	Extras         GetJobKeyValuePairList
 	Tasks          GetJobTaskList
@@ -49,64 +50,64 @@ type GetJobJob struct {
 }
 
 type GetJobContact struct {
-	ContactId   string
-	ContactName string
-	Honorific   string
-	Role        string
-	PhoneNumber string
-	State       string
-	ReferenceId string
+	ContactId   common.String
+	ContactName common.String
+	Honorific   common.String
+	Role        common.String
+	PhoneNumber common.String
+	State       common.String
+	ReferenceId common.String
 }
 
 type GetJobKeyValuePair struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type GetJobTask struct {
-	TaskId        string
-	JobId         string
-	ScenarioId    string
-	ChatbotId     string
-	PlanedTime    int64
-	ActualTime    int64
-	CallingNumber string
-	CalledNumber  string
-	CallId        string
-	Status        string
-	Brief         string
-	Duration      int
+	TaskId        common.String
+	JobId         common.String
+	ScenarioId    common.String
+	ChatbotId     common.String
+	PlanedTime    common.Long
+	ActualTime    common.Long
+	CallingNumber common.String
+	CalledNumber  common.String
+	CallId        common.String
+	Status        common.String
+	Brief         common.String
+	Duration      common.Integer
 	Conversation  GetJobConversationDetailList
 	Contact2      GetJobContact2
 }
 
 type GetJobConversationDetail struct {
-	Timestamp int64
-	Speaker   string
-	Script    string
+	Timestamp common.Long
+	Speaker   common.String
+	Script    common.String
 	Summary1  GetJobSummaryItemList
 }
 
 type GetJobSummaryItem struct {
-	Category    string
-	SummaryName string
-	Content     string
+	Category    common.String
+	SummaryName common.String
+	Content     common.String
 }
 
 type GetJobContact2 struct {
-	ContactId   string
-	ContactName string
-	Honorific   string
-	Role        string
-	PhoneNumber string
-	State       string
-	ReferenceId string
+	ContactId   common.String
+	ContactName common.String
+	Honorific   common.String
+	Role        common.String
+	PhoneNumber common.String
+	State       common.String
+	ReferenceId common.String
 }
 
 type GetJobSummaryItem3 struct {
-	Category    string
-	SummaryName string
-	Content     string
+	Category    common.String
+	SummaryName common.String
+	Content     common.String
 }
 
 type GetJobContactList []GetJobContact
@@ -169,10 +170,10 @@ func (list *GetJobSummaryItem3List) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetJobCallingNumberList []string
+type GetJobCallingNumberList []common.String
 
 func (list *GetJobCallingNumberList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyInstanceSpecRequest struct {
@@ -30,6 +31,6 @@ func (req *ModifyInstanceSpecRequest) Invoke(client *sdk.Client) (resp *ModifyIn
 
 type ModifyInstanceSpecResponse struct {
 	responses.BaseResponse
-	RequestId string
-	OrderId   string
+	RequestId common.String
+	OrderId   common.String
 }

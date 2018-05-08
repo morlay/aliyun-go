@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCasterProgramRequest struct {
@@ -34,12 +35,12 @@ type AddCasterProgramEpisode struct {
 
 type AddCasterProgramResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	EpisodeIds AddCasterProgramEpisodeIdList
 }
 
 type AddCasterProgramEpisodeId struct {
-	EpisodeId string
+	EpisodeId common.String
 }
 
 type AddCasterProgramEpisodeList []AddCasterProgramEpisode

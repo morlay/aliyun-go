@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamRelayPushDataRequest struct {
@@ -26,18 +27,18 @@ func (req *DescribeLiveStreamRelayPushDataRequest) Invoke(client *sdk.Client) (r
 
 type DescribeLiveStreamRelayPushDataResponse struct {
 	responses.BaseResponse
-	RequestId                string
+	RequestId                common.String
 	RelayPushDetailModelList DescribeLiveStreamRelayPushDataRelayPushDetailModelList
 }
 
 type DescribeLiveStreamRelayPushDataRelayPushDetailModel struct {
-	Time          string
-	Stream        string
-	FrameRate     float32
-	BitRate       float32
-	FrameLossRate float32
-	ServerAddr    string
-	ClientAddr    string
+	Time          common.String
+	Stream        common.String
+	FrameRate     common.Float
+	BitRate       common.Float
+	FrameLossRate common.Float
+	ServerAddr    common.String
+	ClientAddr    common.String
 }
 
 type DescribeLiveStreamRelayPushDataRelayPushDetailModelList []DescribeLiveStreamRelayPushDataRelayPushDetailModel

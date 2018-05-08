@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ImportKeyPairRequest struct {
@@ -24,7 +25,7 @@ func (req *ImportKeyPairRequest) Invoke(client *sdk.Client) (resp *ImportKeyPair
 
 type ImportKeyPairResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	KeyPairName        string
-	KeyPairFingerPrint string
+	RequestId          common.String
+	KeyPairName        common.String
+	KeyPairFingerPrint common.String
 }

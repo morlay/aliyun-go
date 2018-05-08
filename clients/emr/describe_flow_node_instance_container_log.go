@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFlowNodeInstanceContainerLogRequest struct {
@@ -28,7 +29,7 @@ func (req *DescribeFlowNodeInstanceContainerLogRequest) Invoke(client *sdk.Clien
 
 type DescribeFlowNodeInstanceContainerLogResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Logs      DescribeFlowNodeInstanceContainerLogLogList
 }
 
@@ -37,7 +38,7 @@ type DescribeFlowNodeInstanceContainerLogLog struct {
 }
 
 type DescribeFlowNodeInstanceContainerLogLogEntry struct {
-	Content string
+	Content common.String
 }
 
 type DescribeFlowNodeInstanceContainerLogLogList []DescribeFlowNodeInstanceContainerLogLog

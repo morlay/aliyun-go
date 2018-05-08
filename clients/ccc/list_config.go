@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListConfigRequest struct {
@@ -23,17 +24,17 @@ func (req *ListConfigRequest) Invoke(client *sdk.Client) (resp *ListConfigRespon
 
 type ListConfigResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	ConfigItems    ListConfigConfigItemList
 }
 
 type ListConfigConfigItem struct {
-	Name  string
-	Value string
+	Name  common.String
+	Value common.String
 }
 
 type ListConfigConfigItemList []ListConfigConfigItem

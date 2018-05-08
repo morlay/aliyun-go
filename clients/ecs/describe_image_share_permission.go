@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeImageSharePermissionRequest struct {
@@ -28,22 +29,22 @@ func (req *DescribeImageSharePermissionRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeImageSharePermissionResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	RegionId    string
-	TotalCount  int
-	PageNumber  int
-	PageSize    int
-	ImageId     string
+	RequestId   common.String
+	RegionId    common.String
+	TotalCount  common.Integer
+	PageNumber  common.Integer
+	PageSize    common.Integer
+	ImageId     common.String
 	ShareGroups DescribeImageSharePermissionShareGroupList
 	Accounts    DescribeImageSharePermissionAccountList
 }
 
 type DescribeImageSharePermissionShareGroup struct {
-	Group string
+	Group common.String
 }
 
 type DescribeImageSharePermissionAccount struct {
-	AliyunId string
+	AliyunId common.String
 }
 
 type DescribeImageSharePermissionShareGroupList []DescribeImageSharePermissionShareGroup

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveDomainTranscodeDataRequest struct {
@@ -25,14 +26,14 @@ func (req *DescribeLiveDomainTranscodeDataRequest) Invoke(client *sdk.Client) (r
 
 type DescribeLiveDomainTranscodeDataResponse struct {
 	responses.BaseResponse
-	RequestId          string
+	RequestId          common.String
 	TranscodeDataInfos DescribeLiveDomainTranscodeDataTranscodeDataInfoList
 }
 
 type DescribeLiveDomainTranscodeDataTranscodeDataInfo struct {
-	Date   string
-	Total  int
-	Detail string
+	Date   common.String
+	Total  common.Integer
+	Detail common.String
 }
 
 type DescribeLiveDomainTranscodeDataTranscodeDataInfoList []DescribeLiveDomainTranscodeDataTranscodeDataInfo

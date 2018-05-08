@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamPushErrorsRequest struct {
@@ -26,12 +27,12 @@ func (req *DescribeLiveStreamPushErrorsRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeLiveStreamPushErrorsResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	PushErrorsModelList DescribeLiveStreamPushErrorsPushErrorsModelList
 }
 
 type DescribeLiveStreamPushErrorsPushErrorsModel struct {
-	ErrorCode string
+	ErrorCode common.String
 }
 
 type DescribeLiveStreamPushErrorsPushErrorsModelList []DescribeLiveStreamPushErrorsPushErrorsModel

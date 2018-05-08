@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type StartDBInstanceDiagnoseRequest struct {
@@ -26,7 +27,7 @@ func (req *StartDBInstanceDiagnoseRequest) Invoke(client *sdk.Client) (resp *Sta
 
 type StartDBInstanceDiagnoseResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DBInstanceName string
-	DBInstanceId   string
+	RequestId      common.String
+	DBInstanceName common.String
+	DBInstanceId   common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateTempDBInstanceRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateTempDBInstanceRequest) Invoke(client *sdk.Client) (resp *Create
 
 type CreateTempDBInstanceResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TempDBInstanceId string
+	RequestId        common.String
+	TempDBInstanceId common.String
 }

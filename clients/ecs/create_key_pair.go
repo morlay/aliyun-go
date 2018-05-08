@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateKeyPairRequest struct {
@@ -23,8 +24,8 @@ func (req *CreateKeyPairRequest) Invoke(client *sdk.Client) (resp *CreateKeyPair
 
 type CreateKeyPairResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	KeyPairName        string
-	KeyPairFingerPrint string
-	PrivateKeyBody     string
+	RequestId          common.String
+	KeyPairName        common.String
+	KeyPairFingerPrint common.String
+	PrivateKeyBody     common.String
 }

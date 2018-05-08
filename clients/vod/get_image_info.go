@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetImageInfoRequest struct {
@@ -24,20 +25,20 @@ func (req *GetImageInfoRequest) Invoke(client *sdk.Client) (resp *GetImageInfoRe
 
 type GetImageInfoResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	ImageInfo GetImageInfoImageInfo
 }
 
 type GetImageInfoImageInfo struct {
-	ImageId      string
-	Title        string
-	CreationTime string
-	ImageType    string
-	Tags         string
-	URL          string
+	ImageId      common.String
+	Title        common.String
+	CreationTime common.String
+	ImageType    common.String
+	Tags         common.String
+	URL          common.String
 	Mezzanine    GetImageInfoMezzanine
 }
 
 type GetImageInfoMezzanine struct {
-	OriginalFileName string
+	OriginalFileName common.String
 }

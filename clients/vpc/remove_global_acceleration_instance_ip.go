@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RemoveGlobalAccelerationInstanceIpRequest struct {
@@ -25,5 +26,5 @@ func (req *RemoveGlobalAccelerationInstanceIpRequest) Invoke(client *sdk.Client)
 
 type RemoveGlobalAccelerationInstanceIpResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

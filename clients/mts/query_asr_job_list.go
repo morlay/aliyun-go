@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryAsrJobListRequest struct {
@@ -26,45 +27,45 @@ func (req *QueryAsrJobListRequest) Invoke(client *sdk.Client) (resp *QueryAsrJob
 
 type QueryAsrJobListResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	JobList     QueryAsrJobListJobList
 	NonExistIds QueryAsrJobListNonExistIdList
 }
 
 type QueryAsrJobListJob struct {
-	Id           string
-	UserData     string
-	PipelineId   string
-	State        string
-	Code         string
-	Message      string
-	CreationTime string
+	Id           common.String
+	UserData     common.String
+	PipelineId   common.String
+	State        common.String
+	Code         common.String
+	Message      common.String
+	CreationTime common.String
 	Input        QueryAsrJobListInput
 	AsrConfig    QueryAsrJobListAsrConfig
 	AsrResult    QueryAsrJobListAsrResult
 }
 
 type QueryAsrJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryAsrJobListAsrConfig struct {
-	Scene string
+	Scene common.String
 }
 
 type QueryAsrJobListAsrResult struct {
-	Duration    string
+	Duration    common.String
 	AsrTextList QueryAsrJobListAsrTextList
 }
 
 type QueryAsrJobListAsrText struct {
-	StartTime  int
-	EndTime    string
-	ChannelId  string
-	SpeechRate string
-	Text       string
+	StartTime  common.Integer
+	EndTime    common.String
+	ChannelId  common.String
+	SpeechRate common.String
+	Text       common.String
 }
 
 type QueryAsrJobListJobList []QueryAsrJobListJob
@@ -82,10 +83,10 @@ func (list *QueryAsrJobListJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryAsrJobListNonExistIdList []string
+type QueryAsrJobListNonExistIdList []common.String
 
 func (list *QueryAsrJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

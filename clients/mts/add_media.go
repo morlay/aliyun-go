@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddMediaRequest struct {
@@ -33,39 +34,39 @@ func (req *AddMediaRequest) Invoke(client *sdk.Client) (resp *AddMediaResponse, 
 
 type AddMediaResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Media     AddMediaMedia
 }
 
 type AddMediaMedia struct {
-	MediaId      string
-	Title        string
-	Description  string
-	CoverURL     string
-	CateId       int64
-	Duration     string
-	Format       string
-	Size         string
-	Bitrate      string
-	Width        string
-	Height       string
-	Fps          string
-	PublishState string
-	CreationTime string
+	MediaId      common.String
+	Title        common.String
+	Description  common.String
+	CoverURL     common.String
+	CateId       common.Long
+	Duration     common.String
+	Format       common.String
+	Size         common.String
+	Bitrate      common.String
+	Width        common.String
+	Height       common.String
+	Fps          common.String
+	PublishState common.String
+	CreationTime common.String
 	Tags         AddMediaTagList
 	RunIdList    AddMediaRunIdListList
 	File         AddMediaFile
 }
 
 type AddMediaFile struct {
-	URL   string
-	State string
+	URL   common.String
+	State common.String
 }
 
-type AddMediaTagList []string
+type AddMediaTagList []common.String
 
 func (list *AddMediaTagList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -77,10 +78,10 @@ func (list *AddMediaTagList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type AddMediaRunIdListList []string
+type AddMediaRunIdListList []common.String
 
 func (list *AddMediaRunIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

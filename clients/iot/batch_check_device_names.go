@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type BatchCheckDeviceNamesRequest struct {
@@ -23,14 +24,14 @@ func (req *BatchCheckDeviceNamesRequest) Invoke(client *sdk.Client) (resp *Batch
 
 type BatchCheckDeviceNamesResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         BatchCheckDeviceNamesData
 }
 
 type BatchCheckDeviceNamesData struct {
-	ApplyId int64
+	ApplyId common.Long
 }
 
 type BatchCheckDeviceNamesDeviceNameList []string

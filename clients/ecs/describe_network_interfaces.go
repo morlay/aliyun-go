@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeNetworkInterfacesRequest struct {
@@ -34,45 +35,45 @@ func (req *DescribeNetworkInterfacesRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeNetworkInterfacesResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	TotalCount           int
-	PageNumber           int
-	PageSize             int
+	RequestId            common.String
+	TotalCount           common.Integer
+	PageNumber           common.Integer
+	PageSize             common.Integer
 	NetworkInterfaceSets DescribeNetworkInterfacesNetworkInterfaceSetList
 }
 
 type DescribeNetworkInterfacesNetworkInterfaceSet struct {
-	NetworkInterfaceId   string
-	Status               string
-	Type                 string
-	VpcId                string
-	VSwitchId            string
-	ZoneId               string
-	PrivateIpAddress     string
-	MacAddress           string
-	NetworkInterfaceName string
-	Description          string
-	InstanceId           string
-	CreationTime         string
+	NetworkInterfaceId   common.String
+	Status               common.String
+	Type                 common.String
+	VpcId                common.String
+	VSwitchId            common.String
+	ZoneId               common.String
+	PrivateIpAddress     common.String
+	MacAddress           common.String
+	NetworkInterfaceName common.String
+	Description          common.String
+	InstanceId           common.String
+	CreationTime         common.String
 	PrivateIpSets        DescribeNetworkInterfacesPrivateIpSetList
 	SecurityGroupIds     DescribeNetworkInterfacesSecurityGroupIdList
 	AssociatedPublicIp   DescribeNetworkInterfacesAssociatedPublicIp
 }
 
 type DescribeNetworkInterfacesPrivateIpSet struct {
-	PrivateIpAddress    string
+	PrivateIpAddress    common.String
 	Primary             bool
 	AssociatedPublicIp1 DescribeNetworkInterfacesAssociatedPublicIp1
 }
 
 type DescribeNetworkInterfacesAssociatedPublicIp1 struct {
-	PublicIpAddress string
-	AllocationId    string
+	PublicIpAddress common.String
+	AllocationId    common.String
 }
 
 type DescribeNetworkInterfacesAssociatedPublicIp struct {
-	PublicIpAddress string
-	AllocationId    string
+	PublicIpAddress common.String
+	AllocationId    common.String
 }
 
 type DescribeNetworkInterfacesNetworkInterfaceIdList []string
@@ -120,10 +121,10 @@ func (list *DescribeNetworkInterfacesPrivateIpSetList) UnmarshalJSON(data []byte
 	return nil
 }
 
-type DescribeNetworkInterfacesSecurityGroupIdList []string
+type DescribeNetworkInterfacesSecurityGroupIdList []common.String
 
 func (list *DescribeNetworkInterfacesSecurityGroupIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

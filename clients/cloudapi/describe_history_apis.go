@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeHistoryApisRequest struct {
@@ -27,28 +28,28 @@ func (req *DescribeHistoryApisRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeHistoryApisResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageSize    int
-	PageNumber  int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageSize    common.Integer
+	PageNumber  common.Integer
 	ApiHisItems DescribeHistoryApisApiHisItemList
 }
 
 type DescribeHistoryApisApiHisItem struct {
-	RegionId       string
-	ApiId          string
-	ApiName        string
-	GroupId        string
-	GroupName      string
-	StageName      string
-	HistoryVersion string
+	RegionId       common.String
+	ApiId          common.String
+	ApiName        common.String
+	GroupId        common.String
+	GroupName      common.String
+	StageName      common.String
+	HistoryVersion common.String
 	Status         DescribeHistoryApisStatus
-	Description    string
-	DeployedTime   string
+	Description    common.String
+	DeployedTime   common.String
 }
 
 type DescribeHistoryApisStatus struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeHistoryApisApiHisItemList []DescribeHistoryApisApiHisItem

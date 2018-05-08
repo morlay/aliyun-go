@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamsControlHistoryRequest struct {
@@ -27,15 +28,15 @@ func (req *DescribeLiveStreamsControlHistoryRequest) Invoke(client *sdk.Client) 
 
 type DescribeLiveStreamsControlHistoryResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	ControlInfo DescribeLiveStreamsControlHistoryLiveStreamControlInfoList
 }
 
 type DescribeLiveStreamsControlHistoryLiveStreamControlInfo struct {
-	StreamName string
-	ClientIP   string
-	Action     string
-	TimeStamp  string
+	StreamName common.String
+	ClientIP   common.String
+	Action     common.String
+	TimeStamp  common.String
 }
 
 type DescribeLiveStreamsControlHistoryLiveStreamControlInfoList []DescribeLiveStreamsControlHistoryLiveStreamControlInfo

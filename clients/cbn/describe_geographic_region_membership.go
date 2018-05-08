@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeGeographicRegionMembershipRequest struct {
@@ -28,15 +29,15 @@ func (req *DescribeGeographicRegionMembershipRequest) Invoke(client *sdk.Client)
 
 type DescribeGeographicRegionMembershipResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	RegionIds  DescribeGeographicRegionMembershipRegionIdList
 }
 
 type DescribeGeographicRegionMembershipRegionId struct {
-	RegionId string
+	RegionId common.String
 }
 
 type DescribeGeographicRegionMembershipRegionIdList []DescribeGeographicRegionMembershipRegionId

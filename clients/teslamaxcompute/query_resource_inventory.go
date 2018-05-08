@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryResourceInventoryRequest struct {
@@ -21,36 +22,36 @@ func (req *QueryResourceInventoryRequest) Invoke(client *sdk.Client) (resp *Quer
 
 type QueryResourceInventoryResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      QueryResourceInventoryData
 }
 
 type QueryResourceInventoryData struct {
-	LastUpdate string
+	LastUpdate common.String
 	Clusters   QueryResourceInventoryClusterList
 }
 
 type QueryResourceInventoryCluster struct {
-	Status              string
-	Cluster             string
-	MachineRoom         string
-	Region              string
+	Status              common.String
+	Cluster             common.String
+	MachineRoom         common.String
+	Region              common.String
 	ResourceParameters  QueryResourceInventoryResourceParameterList
 	ResourceInventories QueryResourceInventoryResourceInventoryList
 }
 
 type QueryResourceInventoryResourceParameter struct {
-	ParaName  string
-	ParaValue string
+	ParaName  common.String
+	ParaValue common.String
 }
 
 type QueryResourceInventoryResourceInventory struct {
-	Total        int64
-	Available    int64
-	Used         int64
-	ResourceType string
+	Total        common.Long
+	Available    common.Long
+	Used         common.Long
+	ResourceType common.String
 }
 
 type QueryResourceInventoryClusterList []QueryResourceInventoryCluster

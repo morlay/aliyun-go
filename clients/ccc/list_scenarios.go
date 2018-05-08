@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListScenariosRequest struct {
@@ -22,19 +23,19 @@ func (req *ListScenariosRequest) Invoke(client *sdk.Client) (resp *ListScenarios
 
 type ListScenariosResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Scenarios      ListScenariosScenarioList
 }
 
 type ListScenariosScenario struct {
-	ScenarioId          string
-	ScenarioName        string
-	ScenarioDescription string
-	Type                string
+	ScenarioId          common.String
+	ScenarioName        common.String
+	ScenarioDescription common.String
+	Type                common.String
 	IsTemplate          bool
 	Surveys             ListScenariosSurveyList
 	Variables           ListScenariosKeyValuePairList
@@ -42,46 +43,46 @@ type ListScenariosScenario struct {
 }
 
 type ListScenariosSurvey struct {
-	SurveyId          string
-	SurveyName        string
-	SurveyDescription string
-	Role              string
-	Round             int
-	BeebotId          string
+	SurveyId          common.String
+	SurveyName        common.String
+	SurveyDescription common.String
+	Role              common.String
+	Round             common.Integer
+	BeebotId          common.String
 	Intents           ListScenariosIntentNodeList
 }
 
 type ListScenariosIntentNode struct {
-	NodeId   string
-	IntentId string
+	NodeId   common.String
+	IntentId common.String
 }
 
 type ListScenariosKeyValuePair struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type ListScenariosStrategy struct {
-	StrategyId          string
-	StrategyName        string
-	StrategyDescription string
-	Type                string
-	StartTime           int64
-	EndTime             int64
-	RepeatBy            string
-	MaxAttemptsPerDay   int
-	MinAttemptInterval  int
-	Customized          string
-	RoutingStrategy     string
-	FollowUpStrategy    string
+	StrategyId          common.String
+	StrategyName        common.String
+	StrategyDescription common.String
+	Type                common.String
+	StartTime           common.Long
+	EndTime             common.Long
+	RepeatBy            common.String
+	MaxAttemptsPerDay   common.Integer
+	MinAttemptInterval  common.Integer
+	Customized          common.String
+	RoutingStrategy     common.String
+	FollowUpStrategy    common.String
 	IsTemplate          bool
 	WorkingTime         ListScenariosTimeFrameList
 	RepeatDays          ListScenariosRepeatDayList
 }
 
 type ListScenariosTimeFrame struct {
-	BeginTime string
-	EndTime   string
+	BeginTime common.String
+	EndTime   common.String
 }
 
 type ListScenariosScenarioList []ListScenariosScenario
@@ -159,10 +160,10 @@ func (list *ListScenariosTimeFrameList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListScenariosRepeatDayList []string
+type ListScenariosRepeatDayList []common.String
 
 func (list *ListScenariosRepeatDayList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

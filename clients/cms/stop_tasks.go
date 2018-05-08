@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type StopTasksRequest struct {
@@ -20,8 +21,8 @@ func (req *StopTasksRequest) Invoke(client *sdk.Client) (resp *StopTasksResponse
 
 type StopTasksResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	Success   string
-	RequestId string
+	Code      common.String
+	Message   common.String
+	Success   common.String
+	RequestId common.String
 }

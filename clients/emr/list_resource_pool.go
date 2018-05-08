@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListResourcePoolRequest struct {
@@ -24,10 +25,10 @@ func (req *ListResourcePoolRequest) Invoke(client *sdk.Client) (resp *ListResour
 
 type ListResourcePoolResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	PageNumber   int
-	PageSize     int
-	Total        int
+	RequestId    common.String
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	Total        common.Integer
 	PoolInfoList ListResourcePoolPoolInfoList
 }
 
@@ -43,45 +44,45 @@ type ListResourcePoolQueue struct {
 }
 
 type ListResourcePoolEcmResourcePoolConfig struct {
-	Id          int64
-	ConfigKey   string
-	ConfigValue string
-	ConfigType  string
-	Category    string
-	Status      string
-	Note        string
+	Id          common.Long
+	ConfigKey   common.String
+	ConfigValue common.String
+	ConfigType  common.String
+	Category    common.String
+	Status      common.String
+	Note        common.String
 }
 
 type ListResourcePoolEcmResourceQueue struct {
-	Id             int64
-	Name           string
-	QualifiedName  string
-	QueueType      string
-	ParentQueueId  int64
+	Id             common.Long
+	Name           common.String
+	QualifiedName  common.String
+	QueueType      common.String
+	ParentQueueId  common.Long
 	Leaf           bool
-	Status         string
-	UserId         string
-	ResourcePoolId int64
+	Status         common.String
+	UserId         common.String
+	ResourcePoolId common.Long
 }
 
 type ListResourcePoolEcmResourcePoolConfig2 struct {
-	Id          int64
-	ConfigKey   string
-	ConfigValue string
-	ConfigType  string
-	Category    string
-	Status      string
-	Note        string
+	Id          common.Long
+	ConfigKey   common.String
+	ConfigValue common.String
+	ConfigType  common.String
+	Category    common.String
+	Status      common.String
+	Note        common.String
 }
 
 type ListResourcePoolEcmResourcePool struct {
-	Id             int64
-	Name           string
-	PoolType       string
+	Id             common.Long
+	Name           common.String
+	PoolType       common.String
 	Active         bool
-	Note           string
-	UserId         string
-	YarnSiteConfig string
+	Note           common.String
+	UserId         common.String
+	YarnSiteConfig common.String
 }
 
 type ListResourcePoolPoolInfoList []ListResourcePoolPoolInfo

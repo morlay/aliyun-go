@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeScalingRulesRequest struct {
@@ -58,23 +59,23 @@ func (req *DescribeScalingRulesRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeScalingRulesResponse struct {
 	responses.BaseResponse
-	TotalCount   int
-	PageNumber   int
-	PageSize     int
-	RequestId    string
+	TotalCount   common.Integer
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	RequestId    common.String
 	ScalingRules DescribeScalingRulesScalingRuleList
 }
 
 type DescribeScalingRulesScalingRule struct {
-	ScalingRuleId   string
-	ScalingGroupId  string
-	ScalingRuleName string
-	Cooldown        int
-	AdjustmentType  string
-	AdjustmentValue int
-	MinSize         int
-	MaxSize         int
-	ScalingRuleAri  string
+	ScalingRuleId   common.String
+	ScalingGroupId  common.String
+	ScalingRuleName common.String
+	Cooldown        common.Integer
+	AdjustmentType  common.String
+	AdjustmentValue common.Integer
+	MinSize         common.Integer
+	MaxSize         common.Integer
+	ScalingRuleAri  common.String
 }
 
 type DescribeScalingRulesScalingRuleList []DescribeScalingRulesScalingRule

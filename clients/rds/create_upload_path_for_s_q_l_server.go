@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateUploadPathForSQLServerRequest struct {
@@ -25,12 +26,12 @@ func (req *CreateUploadPathForSQLServerRequest) Invoke(client *sdk.Client) (resp
 
 type CreateUploadPathForSQLServerResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	InternetFtpServer string
-	InternetPort      int
-	IntranetFtpserver string
-	Intranetport      int
-	UserName          string
-	Password          string
-	FileName          string
+	RequestId         common.String
+	InternetFtpServer common.String
+	InternetPort      common.Integer
+	IntranetFtpserver common.String
+	Intranetport      common.Integer
+	UserName          common.String
+	Password          common.String
+	FileName          common.String
 }

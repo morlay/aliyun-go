@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBClusterAttributeRequest struct {
@@ -26,49 +27,49 @@ func (req *DescribeDBClusterAttributeRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeDBClusterAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeDBClusterAttributeDBClusterAttributeList
 }
 
 type DescribeDBClusterAttributeDBClusterAttribute struct {
-	RegionId             string
-	DBClusterNetworkType string
-	VPCId                string
-	VSwitchId            string
-	PayType              string
-	DBClusterId          string
-	DBClusterStatus      string
-	DBClusterDescription string
-	Engine               string
-	DBType               string
-	DBVersion            string
-	Storage              int64
-	ConnectionString     int64
-	Port                 int64
-	DBClusterNetType     string
-	LockMode             string
-	LockReason           string
-	CreationTime         string
-	ExpireTime           string
+	RegionId             common.String
+	DBClusterNetworkType common.String
+	VPCId                common.String
+	VSwitchId            common.String
+	PayType              common.String
+	DBClusterId          common.String
+	DBClusterStatus      common.String
+	DBClusterDescription common.String
+	Engine               common.String
+	DBType               common.String
+	DBVersion            common.String
+	Storage              common.Long
+	ConnectionString     common.Long
+	Port                 common.Long
+	DBClusterNetType     common.String
+	LockMode             common.String
+	LockReason           common.String
+	CreationTime         common.String
+	ExpireTime           common.String
 	DbInstances          DescribeDBClusterAttributeDbInstanceList
 }
 
 type DescribeDBClusterAttributeDbInstance struct {
-	DBInstanceId          string
-	DBInstanceStatus      string
-	DBInstanceDescription string
-	Engine                string
-	DBType                string
-	DBVersion             string
-	DBInstanceStorage     string
-	LockMode              string
-	LockReason            string
-	MaintainStartTime     string
-	MaintainEndTime       string
-	CreationTime          string
-	DBInstanceClass       string
-	SecurityIPList        string
-	DBInstanceType        string
+	DBInstanceId          common.String
+	DBInstanceStatus      common.String
+	DBInstanceDescription common.String
+	Engine                common.String
+	DBType                common.String
+	DBVersion             common.String
+	DBInstanceStorage     common.String
+	LockMode              common.String
+	LockReason            common.String
+	MaintainStartTime     common.String
+	MaintainEndTime       common.String
+	CreationTime          common.String
+	DBInstanceClass       common.String
+	SecurityIPList        common.String
+	DBInstanceType        common.String
 }
 
 type DescribeDBClusterAttributeDBClusterAttributeList []DescribeDBClusterAttributeDBClusterAttribute

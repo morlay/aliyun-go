@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateCenRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateCenRequest) Invoke(client *sdk.Client) (resp *CreateCenResponse
 
 type CreateCenResponse struct {
 	responses.BaseResponse
-	RequestId string
-	CenId     string
+	RequestId common.String
+	CenId     common.String
 }

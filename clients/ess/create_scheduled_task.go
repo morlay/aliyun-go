@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateScheduledTaskRequest struct {
@@ -31,6 +32,6 @@ func (req *CreateScheduledTaskRequest) Invoke(client *sdk.Client) (resp *CreateS
 
 type CreateScheduledTaskResponse struct {
 	responses.BaseResponse
-	ScheduledTaskId string
-	RequestId       string
+	ScheduledTaskId common.String
+	RequestId       common.String
 }

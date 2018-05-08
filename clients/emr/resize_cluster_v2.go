@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ResizeClusterV2Request struct {
@@ -43,8 +44,8 @@ type ResizeClusterV2HostGroup struct {
 
 type ResizeClusterV2Response struct {
 	responses.BaseResponse
-	RequestId string
-	ClusterId string
+	RequestId common.String
+	ClusterId common.String
 }
 
 type ResizeClusterV2HostGroupList []ResizeClusterV2HostGroup

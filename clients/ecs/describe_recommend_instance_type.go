@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRecommendInstanceTypeRequest struct {
@@ -32,30 +33,30 @@ func (req *DescribeRecommendInstanceTypeRequest) Invoke(client *sdk.Client) (res
 
 type DescribeRecommendInstanceTypeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      DescribeRecommendInstanceTypeRecommendInstanceTypeList
 }
 
 type DescribeRecommendInstanceTypeRecommendInstanceType struct {
-	RegionNo      string
-	CommodityCode string
-	Scene         string
+	RegionNo      common.String
+	CommodityCode common.String
+	Scene         common.String
 	Zones         DescribeRecommendInstanceTypeZoneList
 	InstanceType  DescribeRecommendInstanceTypeInstanceType
 }
 
 type DescribeRecommendInstanceTypeZone struct {
-	ZoneNo       string
+	ZoneNo       common.String
 	NetworkTypes DescribeRecommendInstanceTypeNetworkTypeList
 }
 
 type DescribeRecommendInstanceTypeInstanceType struct {
-	Generation         string
-	InstanceTypeFamily string
-	InstanceType       string
-	SupportIoOptimized string
-	Cores              int
-	Memory             int
+	Generation         common.String
+	InstanceTypeFamily common.String
+	InstanceType       common.String
+	SupportIoOptimized common.String
+	Cores              common.Integer
+	Memory             common.Integer
 }
 
 type DescribeRecommendInstanceTypeRecommendInstanceTypeList []DescribeRecommendInstanceTypeRecommendInstanceType
@@ -88,10 +89,10 @@ func (list *DescribeRecommendInstanceTypeZoneList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeRecommendInstanceTypeNetworkTypeList []string
+type DescribeRecommendInstanceTypeNetworkTypeList []common.String
 
 func (list *DescribeRecommendInstanceTypeNetworkTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PlayerAuthRequest struct {
@@ -25,16 +26,16 @@ func (req *PlayerAuthRequest) Invoke(client *sdk.Client) (resp *PlayerAuthRespon
 
 type PlayerAuthResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	LogURL     string
+	RequestId  common.String
+	LogURL     common.String
 	SwitchList PlayerAuth_SwitchList
 }
 
 type PlayerAuth_Switch struct {
-	State        string
-	FunctionId   string
-	SwitchId     string
-	FunctionName string
+	State        common.String
+	FunctionId   common.String
+	SwitchId     common.String
+	FunctionName common.String
 }
 
 type PlayerAuth_SwitchList []PlayerAuth_Switch

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DetectTagRequest struct {
@@ -23,29 +24,29 @@ func (req *DetectTagRequest) Invoke(client *sdk.Client) (resp *DetectTagResponse
 
 type DetectTagResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	SuccessNum     string
+	RequestId      common.String
+	SuccessNum     common.String
 	SuccessDetails DetectTagSuccessDetailsItemList
 	FailDetails    DetectTagFailDetailsItemList
 }
 
 type DetectTagSuccessDetailsItem struct {
-	SrcUri string
+	SrcUri common.String
 	Tags   DetectTagTagsItemList
 }
 
 type DetectTagTagsItem struct {
-	TagId         string
-	TagLevel      string
-	TagName       string
-	ParentTagId   string
-	ParentTagName string
-	TagScore      string
+	TagId         common.String
+	TagLevel      common.String
+	TagName       common.String
+	ParentTagId   common.String
+	ParentTagName common.String
+	TagScore      common.String
 }
 
 type DetectTagFailDetailsItem struct {
-	SrcUri string
-	Reason string
+	SrcUri common.String
+	Reason common.String
 }
 
 type DetectTagSuccessDetailsItemList []DetectTagSuccessDetailsItem

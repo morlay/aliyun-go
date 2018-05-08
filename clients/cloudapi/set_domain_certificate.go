@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetDomainCertificateRequest struct {
@@ -24,5 +25,5 @@ func (req *SetDomainCertificateRequest) Invoke(client *sdk.Client) (resp *SetDom
 
 type SetDomainCertificateResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

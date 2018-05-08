@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetPublicKeyRequest struct {
@@ -21,13 +22,13 @@ func (req *GetPublicKeyRequest) Invoke(client *sdk.Client) (resp *GetPublicKeyRe
 
 type GetPublicKeyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	PublicKey GetPublicKeyPublicKey
 }
 
 type GetPublicKeyPublicKey struct {
-	PublicKeyId   string
-	PublicKeySpec string
-	Status        string
-	CreateDate    string
+	PublicKeyId   common.String
+	PublicKeySpec common.String
+	Status        common.String
+	CreateDate    common.String
 }

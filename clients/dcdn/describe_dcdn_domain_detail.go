@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainDetailRequest struct {
@@ -24,31 +25,31 @@ func (req *DescribeDcdnDomainDetailRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeDcdnDomainDetailResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	DomainDetail DescribeDcdnDomainDetailDomainDetail
 }
 
 type DescribeDcdnDomainDetailDomainDetail struct {
-	GmtCreated      string
-	GmtModified     string
-	DomainStatus    string
-	Cname           string
-	DomainName      string
-	Description     string
-	SSLProtocol     string
-	SSLPub          string
-	Scope           string
-	CertName        string
-	ResourceGroupId string
+	GmtCreated      common.String
+	GmtModified     common.String
+	DomainStatus    common.String
+	Cname           common.String
+	DomainName      common.String
+	Description     common.String
+	SSLProtocol     common.String
+	SSLPub          common.String
+	Scope           common.String
+	CertName        common.String
+	ResourceGroupId common.String
 	Sources         DescribeDcdnDomainDetailSourceList
 }
 
 type DescribeDcdnDomainDetailSource struct {
-	Content  string
-	Type     string
-	Port     int
-	Enabled  string
-	Priority string
+	Content  common.String
+	Type     common.String
+	Port     common.Integer
+	Enabled  common.String
+	Priority common.String
 }
 
 type DescribeDcdnDomainDetailSourceList []DescribeDcdnDomainDetailSource

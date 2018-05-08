@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetBoxCodeListRequest struct {
@@ -24,28 +25,28 @@ func (req *GetBoxCodeListRequest) Invoke(client *sdk.Client) (resp *GetBoxCodeLi
 
 type GetBoxCodeListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	Data      GetBoxCodeListBoxCodeInfoList
 	ErrorList GetBoxCodeListErrorMessageList
 }
 
 type GetBoxCodeListBoxCodeInfo struct {
-	BeginTime  int64
-	BoxInfo    string
-	Code       string
-	EndTime    int64
-	ModifyTime int64
-	Operator   string
-	Screencode string
-	Status     int
-	StatusTxt  string
+	BeginTime  common.Long
+	BoxInfo    common.String
+	Code       common.String
+	EndTime    common.Long
+	ModifyTime common.Long
+	Operator   common.String
+	Screencode common.String
+	Status     common.Integer
+	StatusTxt  common.String
 }
 
 type GetBoxCodeListErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type GetBoxCodeListBoxCodeInfoList []GetBoxCodeListBoxCodeInfo

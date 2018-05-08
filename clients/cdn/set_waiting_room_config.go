@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetWaitingRoomConfigRequest struct {
@@ -29,5 +30,5 @@ func (req *SetWaitingRoomConfigRequest) Invoke(client *sdk.Client) (resp *SetWai
 
 type SetWaitingRoomConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreatePornBatchDetectJobRequest struct {
@@ -25,10 +26,10 @@ func (req *CreatePornBatchDetectJobRequest) Invoke(client *sdk.Client) (resp *Cr
 
 type CreatePornBatchDetectJobResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	JobId      string
-	TgtLoc     string
-	Status     string
-	CreateTime string
-	Percent    int
+	RequestId  common.String
+	JobId      common.String
+	TgtLoc     common.String
+	Status     common.String
+	CreateTime common.String
+	Percent    common.Integer
 }

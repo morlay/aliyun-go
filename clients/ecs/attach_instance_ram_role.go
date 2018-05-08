@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AttachInstanceRamRoleRequest struct {
@@ -26,18 +27,18 @@ func (req *AttachInstanceRamRoleRequest) Invoke(client *sdk.Client) (resp *Attac
 
 type AttachInstanceRamRoleResponse struct {
 	responses.BaseResponse
-	RequestId                    string
-	TotalCount                   int
-	FailCount                    int
-	RamRoleName                  string
+	RequestId                    common.String
+	TotalCount                   common.Integer
+	FailCount                    common.Integer
+	RamRoleName                  common.String
 	AttachInstanceRamRoleResults AttachInstanceRamRoleAttachInstanceRamRoleResultList
 }
 
 type AttachInstanceRamRoleAttachInstanceRamRoleResult struct {
-	InstanceId string
+	InstanceId common.String
 	Success    bool
-	Code       string
-	Message    string
+	Code       common.String
+	Message    common.String
 }
 
 type AttachInstanceRamRoleAttachInstanceRamRoleResultList []AttachInstanceRamRoleAttachInstanceRamRoleResult

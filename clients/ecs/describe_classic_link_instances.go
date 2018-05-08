@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClassicLinkInstancesRequest struct {
@@ -28,16 +29,16 @@ func (req *DescribeClassicLinkInstancesRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeClassicLinkInstancesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Links      DescribeClassicLinkInstancesLinkList
 }
 
 type DescribeClassicLinkInstancesLink struct {
-	InstanceId string
-	VpcId      string
+	InstanceId common.String
+	VpcId      common.String
 }
 
 type DescribeClassicLinkInstancesLinkList []DescribeClassicLinkInstancesLink

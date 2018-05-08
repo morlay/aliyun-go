@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeScalingActivityDetailRequest struct {
@@ -23,6 +24,6 @@ func (req *DescribeScalingActivityDetailRequest) Invoke(client *sdk.Client) (res
 
 type DescribeScalingActivityDetailResponse struct {
 	responses.BaseResponse
-	ScalingActivityId string
-	Detail            string
+	ScalingActivityId common.String
+	Detail            common.String
 }

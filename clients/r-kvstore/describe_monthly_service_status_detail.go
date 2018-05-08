@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeMonthlyServiceStatusDetailRequest struct {
@@ -28,16 +29,16 @@ func (req *DescribeMonthlyServiceStatusDetailRequest) Invoke(client *sdk.Client)
 
 type DescribeMonthlyServiceStatusDetailResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	InstanceId    string
-	UptimePct     float32
+	RequestId     common.String
+	InstanceId    common.String
+	UptimePct     common.Float
 	AffectedInfos DescribeMonthlyServiceStatusDetailAffectedInfoList
 }
 
 type DescribeMonthlyServiceStatusDetailAffectedInfo struct {
-	StartTime   string
-	EndTime     string
-	Description string
+	StartTime   common.String
+	EndTime     common.String
+	Description common.String
 }
 
 type DescribeMonthlyServiceStatusDetailAffectedInfoList []DescribeMonthlyServiceStatusDetailAffectedInfo

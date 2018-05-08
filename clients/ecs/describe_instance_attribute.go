@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceAttributeRequest struct {
@@ -26,30 +27,30 @@ func (req *DescribeInstanceAttributeRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeInstanceAttributeResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	InstanceId              string
-	InstanceName            string
-	ImageId                 string
-	RegionId                string
-	ZoneId                  string
-	ClusterId               string
-	InstanceType            string
-	Cpu                     int
-	Memory                  int
-	HostName                string
-	Status                  string
-	InternetChargeType      string
-	InternetMaxBandwidthIn  int
-	InternetMaxBandwidthOut int
-	VlanId                  string
-	SerialNumber            string
-	CreationTime            string
-	Description             string
-	InstanceNetworkType     string
-	IoOptimized             string
-	InstanceChargeType      string
-	ExpiredTime             string
-	StoppedMode             string
+	RequestId               common.String
+	InstanceId              common.String
+	InstanceName            common.String
+	ImageId                 common.String
+	RegionId                common.String
+	ZoneId                  common.String
+	ClusterId               common.String
+	InstanceType            common.String
+	Cpu                     common.Integer
+	Memory                  common.Integer
+	HostName                common.String
+	Status                  common.String
+	InternetChargeType      common.String
+	InternetMaxBandwidthIn  common.Integer
+	InternetMaxBandwidthOut common.Integer
+	VlanId                  common.String
+	SerialNumber            common.String
+	CreationTime            common.String
+	Description             common.String
+	InstanceNetworkType     common.String
+	IoOptimized             common.String
+	InstanceChargeType      common.String
+	ExpiredTime             common.String
+	StoppedMode             common.String
 	OperationLocks          DescribeInstanceAttributeLockReasonList
 	SecurityGroupIds        DescribeInstanceAttributeSecurityGroupIdList
 	PublicIpAddress         DescribeInstanceAttributePublicIpAddresList
@@ -60,26 +61,26 @@ type DescribeInstanceAttributeResponse struct {
 }
 
 type DescribeInstanceAttributeLockReason struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeInstanceAttributeVpcAttributes struct {
-	VpcId            string
-	VSwitchId        string
-	NatIpAddress     string
+	VpcId            common.String
+	VSwitchId        common.String
+	NatIpAddress     common.String
 	PrivateIpAddress DescribeInstanceAttributePrivateIpAddresList
 }
 
 type DescribeInstanceAttributeEipAddress struct {
-	AllocationId       string
-	IpAddress          string
-	Bandwidth          int
-	InternetChargeType string
+	AllocationId       common.String
+	IpAddress          common.String
+	Bandwidth          common.Integer
+	InternetChargeType common.String
 }
 
 type DescribeInstanceAttributeDedicatedHostAttribute struct {
-	DedicatedHostId   string
-	DedicatedHostName string
+	DedicatedHostId   common.String
+	DedicatedHostName common.String
 }
 
 type DescribeInstanceAttributeLockReasonList []DescribeInstanceAttributeLockReason
@@ -97,10 +98,10 @@ func (list *DescribeInstanceAttributeLockReasonList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type DescribeInstanceAttributeSecurityGroupIdList []string
+type DescribeInstanceAttributeSecurityGroupIdList []common.String
 
 func (list *DescribeInstanceAttributeSecurityGroupIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -112,10 +113,10 @@ func (list *DescribeInstanceAttributeSecurityGroupIdList) UnmarshalJSON(data []b
 	return nil
 }
 
-type DescribeInstanceAttributePublicIpAddresList []string
+type DescribeInstanceAttributePublicIpAddresList []common.String
 
 func (list *DescribeInstanceAttributePublicIpAddresList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -127,10 +128,10 @@ func (list *DescribeInstanceAttributePublicIpAddresList) UnmarshalJSON(data []by
 	return nil
 }
 
-type DescribeInstanceAttributeInnerIpAddresList []string
+type DescribeInstanceAttributeInnerIpAddresList []common.String
 
 func (list *DescribeInstanceAttributeInnerIpAddresList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -142,10 +143,10 @@ func (list *DescribeInstanceAttributeInnerIpAddresList) UnmarshalJSON(data []byt
 	return nil
 }
 
-type DescribeInstanceAttributePrivateIpAddresList []string
+type DescribeInstanceAttributePrivateIpAddresList []common.String
 
 func (list *DescribeInstanceAttributePrivateIpAddresList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

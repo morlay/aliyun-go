@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyDBInstanceNetworkTypeRequest struct {
@@ -32,6 +33,6 @@ func (req *ModifyDBInstanceNetworkTypeRequest) Invoke(client *sdk.Client) (resp 
 
 type ModifyDBInstanceNetworkTypeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskId    string
+	RequestId common.String
+	TaskId    common.String
 }

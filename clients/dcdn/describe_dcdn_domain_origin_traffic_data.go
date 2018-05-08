@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainOriginTrafficDataRequest struct {
@@ -28,21 +29,21 @@ func (req *DescribeDcdnDomainOriginTrafficDataRequest) Invoke(client *sdk.Client
 
 type DescribeDcdnDomainOriginTrafficDataResponse struct {
 	responses.BaseResponse
-	RequestId                    string
-	DomainName                   string
-	StartTime                    string
-	EndTime                      string
-	DataInterval                 string
+	RequestId                    common.String
+	DomainName                   common.String
+	StartTime                    common.String
+	EndTime                      common.String
+	DataInterval                 common.String
 	OriginTrafficDataPerInterval DescribeDcdnDomainOriginTrafficDataDataModuleList
 }
 
 type DescribeDcdnDomainOriginTrafficDataDataModule struct {
-	TimeStamp                 string
-	OriginTraffic             float32
-	DynamicHttpOriginTraffic  float32
-	DynamicHttpsOriginTraffic float32
-	StaticHttpOriginTraffic   float32
-	StaticHttpsOriginTraffic  float32
+	TimeStamp                 common.String
+	OriginTraffic             common.Float
+	DynamicHttpOriginTraffic  common.Float
+	DynamicHttpsOriginTraffic common.Float
+	StaticHttpOriginTraffic   common.Float
+	StaticHttpsOriginTraffic  common.Float
 }
 
 type DescribeDcdnDomainOriginTrafficDataDataModuleList []DescribeDcdnDomainOriginTrafficDataDataModule

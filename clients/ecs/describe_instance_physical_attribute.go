@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstancePhysicalAttributeRequest struct {
@@ -24,9 +25,9 @@ func (req *DescribeInstancePhysicalAttributeRequest) Invoke(client *sdk.Client) 
 
 type DescribeInstancePhysicalAttributeResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	InstanceId       string
-	VlanId           string
-	NodeControllerId string
-	RackId           string
+	RequestId        common.String
+	InstanceId       common.String
+	VlanId           common.String
+	NodeControllerId common.String
+	RackId           common.String
 }

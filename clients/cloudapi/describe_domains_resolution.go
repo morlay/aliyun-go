@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainsResolutionRequest struct {
@@ -23,14 +24,14 @@ func (req *DescribeDomainsResolutionRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDomainsResolutionResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	GroupId           string
+	RequestId         common.String
+	GroupId           common.String
 	DomainResolutions DescribeDomainsResolutionDomainResolutionList
 }
 
 type DescribeDomainsResolutionDomainResolution struct {
-	DomainName             string
-	DomainResolutionStatus string
+	DomainName             common.String
+	DomainResolutionStatus common.String
 }
 
 type DescribeDomainsResolutionDomainResolutionList []DescribeDomainsResolutionDomainResolution

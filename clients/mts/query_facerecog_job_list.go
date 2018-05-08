@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryFacerecogJobListRequest struct {
@@ -26,27 +27,27 @@ func (req *QueryFacerecogJobListRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryFacerecogJobListResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	FacerecogJobList QueryFacerecogJobListFacerecogJobList
 	NonExistIds      QueryFacerecogJobListNonExistIdList
 }
 
 type QueryFacerecogJobListFacerecogJob struct {
-	Id                   string
-	UserData             string
-	PipelineId           string
-	State                string
-	Code                 string
-	Message              string
-	CreationTime         string
+	Id                   common.String
+	UserData             common.String
+	PipelineId           common.String
+	State                common.String
+	Code                 common.String
+	Message              common.String
+	CreationTime         common.String
 	Input                QueryFacerecogJobListInput
 	VideoFacerecogResult QueryFacerecogJobListVideoFacerecogResult
 }
 
 type QueryFacerecogJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryFacerecogJobListVideoFacerecogResult struct {
@@ -54,14 +55,14 @@ type QueryFacerecogJobListVideoFacerecogResult struct {
 }
 
 type QueryFacerecogJobListFacerecog struct {
-	Time  string
+	Time  common.String
 	Faces QueryFacerecogJobListFaceList
 }
 
 type QueryFacerecogJobListFace struct {
-	Name   string
-	Score  string
-	Target string
+	Name   common.String
+	Score  common.String
+	Target common.String
 }
 
 type QueryFacerecogJobListFacerecogJobList []QueryFacerecogJobListFacerecogJob
@@ -79,10 +80,10 @@ func (list *QueryFacerecogJobListFacerecogJobList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type QueryFacerecogJobListNonExistIdList []string
+type QueryFacerecogJobListNonExistIdList []common.String
 
 func (list *QueryFacerecogJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

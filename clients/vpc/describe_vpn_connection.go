@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpnConnectionRequest struct {
@@ -24,35 +25,35 @@ func (req *DescribeVpnConnectionRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeVpnConnectionResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	VpnConnectionId   string
-	CustomerGatewayId string
-	VpnGatewayId      string
-	Name              string
-	LocalSubnet       string
-	RemoteSubnet      string
-	CreateTime        int64
+	RequestId         common.String
+	VpnConnectionId   common.String
+	CustomerGatewayId common.String
+	VpnGatewayId      common.String
+	Name              common.String
+	LocalSubnet       common.String
+	RemoteSubnet      common.String
+	CreateTime        common.Long
 	EffectImmediately bool
-	Status            string
+	Status            common.String
 	IkeConfig         DescribeVpnConnectionIkeConfig
 	IpsecConfig       DescribeVpnConnectionIpsecConfig
 }
 
 type DescribeVpnConnectionIkeConfig struct {
-	Psk         string
-	IkeVersion  string
-	IkeMode     string
-	IkeEncAlg   string
-	IkeAuthAlg  string
-	IkePfs      string
-	IkeLifetime int64
-	LocalId     string
-	RemoteId    string
+	Psk         common.String
+	IkeVersion  common.String
+	IkeMode     common.String
+	IkeEncAlg   common.String
+	IkeAuthAlg  common.String
+	IkePfs      common.String
+	IkeLifetime common.Long
+	LocalId     common.String
+	RemoteId    common.String
 }
 
 type DescribeVpnConnectionIpsecConfig struct {
-	IpsecEncAlg   string
-	IpsecAuthAlg  string
-	IpsecPfs      string
-	IpsecLifetime int64
+	IpsecEncAlg   common.String
+	IpsecAuthAlg  common.String
+	IpsecPfs      common.String
+	IpsecLifetime common.Long
 }

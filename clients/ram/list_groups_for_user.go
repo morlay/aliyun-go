@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListGroupsForUserRequest struct {
@@ -22,14 +23,14 @@ func (req *ListGroupsForUserRequest) Invoke(client *sdk.Client) (resp *ListGroup
 
 type ListGroupsForUserResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Groups    ListGroupsForUserGroupList
 }
 
 type ListGroupsForUserGroup struct {
-	GroupName string
-	Comments  string
-	JoinDate  string
+	GroupName common.String
+	Comments  common.String
+	JoinDate  common.String
 }
 
 type ListGroupsForUserGroupList []ListGroupsForUserGroup

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetJobStatusByCallIdRequest struct {
@@ -23,23 +24,23 @@ func (req *GetJobStatusByCallIdRequest) Invoke(client *sdk.Client) (resp *GetJob
 
 type GetJobStatusByCallIdResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Job            GetJobStatusByCallIdJob
 }
 
 type GetJobStatusByCallIdJob struct {
-	JobId          string
-	GroupId        string
-	ScenarioId     string
-	StrategyId     string
-	Priority       int
-	Status         string
-	ReferenceId    string
-	FailureReason  string
+	JobId          common.String
+	GroupId        common.String
+	ScenarioId     common.String
+	StrategyId     common.String
+	Priority       common.Integer
+	Status         common.String
+	ReferenceId    common.String
+	FailureReason  common.String
 	Contacts       GetJobStatusByCallIdContactList
 	Extras         GetJobStatusByCallIdKeyValuePairList
 	Tasks          GetJobStatusByCallIdTaskList
@@ -48,70 +49,70 @@ type GetJobStatusByCallIdJob struct {
 }
 
 type GetJobStatusByCallIdContact struct {
-	ContactId   string
-	ContactName string
-	Honorific   string
-	Role        string
-	PhoneNumber string
-	State       string
-	ReferenceId string
-	JobId       string
+	ContactId   common.String
+	ContactName common.String
+	Honorific   common.String
+	Role        common.String
+	PhoneNumber common.String
+	State       common.String
+	ReferenceId common.String
+	JobId       common.String
 }
 
 type GetJobStatusByCallIdKeyValuePair struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type GetJobStatusByCallIdTask struct {
-	TaskId        string
-	JobId         string
-	ScenarioId    string
-	ChatbotId     string
-	PlanedTime    int64
-	ActualTime    int64
-	CallingNumber string
-	CalledNumber  string
-	CallId        string
-	Status        string
-	Brief         string
-	Duration      int
+	TaskId        common.String
+	JobId         common.String
+	ScenarioId    common.String
+	ChatbotId     common.String
+	PlanedTime    common.Long
+	ActualTime    common.Long
+	CallingNumber common.String
+	CalledNumber  common.String
+	CallId        common.String
+	Status        common.String
+	Brief         common.String
+	Duration      common.Integer
 	Conversation  GetJobStatusByCallIdConversationDetailList
 	Contact2      GetJobStatusByCallIdContact2
 }
 
 type GetJobStatusByCallIdConversationDetail struct {
-	ConversationDetailId string
-	TaskId               string
-	Timestamp            int64
-	Speaker              string
-	Script               string
+	ConversationDetailId common.String
+	TaskId               common.String
+	Timestamp            common.Long
+	Speaker              common.String
+	Script               common.String
 	Summary1             GetJobStatusByCallIdSummaryItemList
 }
 
 type GetJobStatusByCallIdSummaryItem struct {
-	SummaryId   string
-	Category    string
-	SummaryName string
-	Content     string
+	SummaryId   common.String
+	Category    common.String
+	SummaryName common.String
+	Content     common.String
 }
 
 type GetJobStatusByCallIdContact2 struct {
-	ContactId   string
-	ContactName string
-	Honorific   string
-	Role        string
-	PhoneNumber string
-	State       string
-	ReferenceId string
-	JobId       string
+	ContactId   common.String
+	ContactName common.String
+	Honorific   common.String
+	Role        common.String
+	PhoneNumber common.String
+	State       common.String
+	ReferenceId common.String
+	JobId       common.String
 }
 
 type GetJobStatusByCallIdSummaryItem3 struct {
-	SummaryId   string
-	Category    string
-	SummaryName string
-	Content     string
+	SummaryId   common.String
+	Category    common.String
+	SummaryName common.String
+	Content     common.String
 }
 
 type GetJobStatusByCallIdContactList []GetJobStatusByCallIdContact
@@ -174,10 +175,10 @@ func (list *GetJobStatusByCallIdSummaryItem3List) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type GetJobStatusByCallIdCallingNumberList []string
+type GetJobStatusByCallIdCallingNumberList []common.String
 
 func (list *GetJobStatusByCallIdCallingNumberList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

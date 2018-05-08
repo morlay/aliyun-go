@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserOutputStatisticInfoRequest struct {
@@ -25,13 +26,13 @@ func (req *GetUserOutputStatisticInfoRequest) Invoke(client *sdk.Client) (resp *
 
 type GetUserOutputStatisticInfoResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	UserOutputList GetUserOutputStatisticInfoClusterStatUserOutputList
 }
 
 type GetUserOutputStatisticInfoClusterStatUserOutput struct {
-	User        string
-	BytesOutput int64
+	User        common.String
+	BytesOutput common.Long
 }
 
 type GetUserOutputStatisticInfoClusterStatUserOutputList []GetUserOutputStatisticInfoClusterStatUserOutput

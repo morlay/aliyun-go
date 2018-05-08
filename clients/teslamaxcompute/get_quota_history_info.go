@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetQuotaHistoryInfoRequest struct {
@@ -26,14 +27,14 @@ func (req *GetQuotaHistoryInfoRequest) Invoke(client *sdk.Client) (resp *GetQuot
 
 type GetQuotaHistoryInfoResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetQuotaHistoryInfoDataItemList
 }
 
 type GetQuotaHistoryInfoDataItem struct {
-	Times int
+	Times common.Integer
 	Point GetQuotaHistoryInfoPoint
 }
 
@@ -47,39 +48,39 @@ type GetQuotaHistoryInfoPoint struct {
 }
 
 type GetQuotaHistoryInfoCpuMaxQuota struct {
-	Min float32
-	Max float32
-	Avg float32
+	Min common.Float
+	Max common.Float
+	Avg common.Float
 }
 
 type GetQuotaHistoryInfoCpuMinQuota struct {
-	Min float32
-	Max float32
-	Avg float32
+	Min common.Float
+	Max common.Float
+	Avg common.Float
 }
 
 type GetQuotaHistoryInfoMemUsed struct {
-	Min float32
-	Max float32
-	Avg float32
+	Min common.Float
+	Max common.Float
+	Avg common.Float
 }
 
 type GetQuotaHistoryInfoCpuUsed struct {
-	Min float32
-	Max float32
-	Avg float32
+	Min common.Float
+	Max common.Float
+	Avg common.Float
 }
 
 type GetQuotaHistoryInfoMemMaxQuota struct {
-	Min float32
-	Max float32
-	Avg float32
+	Min common.Float
+	Max common.Float
+	Avg common.Float
 }
 
 type GetQuotaHistoryInfoMemMinQuota struct {
-	Min float32
-	Max float32
-	Avg float32
+	Min common.Float
+	Max common.Float
+	Avg common.Float
 }
 
 type GetQuotaHistoryInfoDataItemList []GetQuotaHistoryInfoDataItem

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstancesRequest struct {
@@ -35,41 +36,41 @@ func (req *DescribeInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeI
 
 type DescribeInstancesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int
-	PageSize   int
-	TotalCount int
+	RequestId  common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
 	Instances  DescribeInstancesKVStoreInstanceList
 }
 
 type DescribeInstancesKVStoreInstance struct {
-	InstanceId          string
-	InstanceName        string
-	ConnectionDomain    string
-	Port                int64
-	UserName            string
-	InstanceStatus      string
-	RegionId            string
-	Capacity            int64
-	InstanceClass       string
-	QPS                 int64
-	Bandwidth           int64
-	Connections         int64
-	ZoneId              string
-	Config              string
-	ChargeType          string
-	NetworkType         string
-	VpcId               string
-	VSwitchId           string
-	PrivateIp           string
-	CreateTime          string
-	EndTime             string
-	HasRenewChangeOrder string
+	InstanceId          common.String
+	InstanceName        common.String
+	ConnectionDomain    common.String
+	Port                common.Long
+	UserName            common.String
+	InstanceStatus      common.String
+	RegionId            common.String
+	Capacity            common.Long
+	InstanceClass       common.String
+	QPS                 common.Long
+	Bandwidth           common.Long
+	Connections         common.Long
+	ZoneId              common.String
+	Config              common.String
+	ChargeType          common.String
+	NetworkType         common.String
+	VpcId               common.String
+	VSwitchId           common.String
+	PrivateIp           common.String
+	CreateTime          common.String
+	EndTime             common.String
+	HasRenewChangeOrder common.String
 	IsRds               bool
-	InstanceType        string
-	ArchitectureType    string
-	NodeType            string
-	PackageType         string
+	InstanceType        common.String
+	ArchitectureType    common.String
+	NodeType            common.String
+	PackageType         common.String
 }
 
 type DescribeInstancesKVStoreInstanceList []DescribeInstancesKVStoreInstance

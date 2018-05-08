@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetAudioDataStatusRequest struct {
@@ -22,28 +23,28 @@ func (req *GetAudioDataStatusRequest) Invoke(client *sdk.Client) (resp *GetAudio
 
 type GetAudioDataStatusResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	Success       bool
-	Code          string
-	Message       string
-	Count         int
-	OverallStatus int
+	Code          common.String
+	Message       common.String
+	Count         common.Integer
+	OverallStatus common.Integer
 	Data          GetAudioDataStatusTaskAsrResultList
 }
 
 type GetAudioDataStatusTaskAsrResult struct {
-	Tid        string
-	StatusCode int
-	StatusMsg  string
+	Tid        common.String
+	StatusCode common.Integer
+	StatusMsg  common.String
 	AsrResult  GetAudioDataStatusAsrResult
 }
 
 type GetAudioDataStatusAsrResult struct {
-	Asrstatus        string
-	AsrStatusCode    string
-	ErrorMessage     string
-	Duration         int64
-	InteractiveCount int
+	Asrstatus        common.String
+	AsrStatusCode    common.String
+	ErrorMessage     common.String
+	Duration         common.Long
+	InteractiveCount common.Integer
 	SentenceResults  GetAudioDataStatusSentenceResultList
 	ServiceEvStat    GetAudioDataStatusServiceEvStat
 	ClientEvStat     GetAudioDataStatusClientEvStat
@@ -52,44 +53,44 @@ type GetAudioDataStatusAsrResult struct {
 }
 
 type GetAudioDataStatusSentenceResult struct {
-	BeginTime       int
-	EndTime         int
-	ChannelId       int
-	Text            string
-	EmotionValue    int
-	SilenceDuration int
-	SpeechRate      int
-	SpeakerId       string
-	AgentId         string
-	ChannelKey      string
+	BeginTime       common.Integer
+	EndTime         common.Integer
+	ChannelId       common.Integer
+	Text            common.String
+	EmotionValue    common.Integer
+	SilenceDuration common.Integer
+	SpeechRate      common.Integer
+	SpeakerId       common.String
+	AgentId         common.String
+	ChannelKey      common.String
 }
 
 type GetAudioDataStatusServiceEvStat struct {
-	Srole            int
-	SmaxEmotionValue float32
-	SminEmotionValue float32
-	SavgEmotionValue float32
+	Srole            common.Integer
+	SmaxEmotionValue common.Float
+	SminEmotionValue common.Float
+	SavgEmotionValue common.Float
 }
 
 type GetAudioDataStatusClientEvStat struct {
-	Crole            int
-	CmaxEmotionValue float32
-	CminEmotionValue float32
-	CavgEmotionValue float32
+	Crole            common.Integer
+	CmaxEmotionValue common.Float
+	CminEmotionValue common.Float
+	CavgEmotionValue common.Float
 }
 
 type GetAudioDataStatusServiceSrStat struct {
-	Srole          int
-	SmaxSpeechRate float32
-	SminSpeechRate float32
-	SavgSpeechRate float32
+	Srole          common.Integer
+	SmaxSpeechRate common.Float
+	SminSpeechRate common.Float
+	SavgSpeechRate common.Float
 }
 
 type GetAudioDataStatusClientSrStat struct {
-	Crole          int
-	CmaxSpeechRate float32
-	CminSpeechRate float32
-	CavgSpeechRate float32
+	Crole          common.Integer
+	CmaxSpeechRate common.Float
+	CminSpeechRate common.Float
+	CavgSpeechRate common.Float
 }
 
 type GetAudioDataStatusTaskAsrResultList []GetAudioDataStatusTaskAsrResult

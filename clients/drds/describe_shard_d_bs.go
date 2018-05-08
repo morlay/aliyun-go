@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeShardDBsRequest struct {
@@ -23,14 +24,14 @@ func (req *DescribeShardDBsRequest) Invoke(client *sdk.Client) (resp *DescribeSh
 
 type DescribeShardDBsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 	Data      DescribeShardDBsDbIntancePairList
 }
 
 type DescribeShardDBsDbIntancePair struct {
-	SubDbName    string
-	InstanceName string
+	SubDbName    common.String
+	InstanceName common.String
 }
 
 type DescribeShardDBsDbIntancePairList []DescribeShardDBsDbIntancePair

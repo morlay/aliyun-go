@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClustersRequest struct {
@@ -25,12 +26,12 @@ func (req *DescribeClustersRequest) Invoke(client *sdk.Client) (resp *DescribeCl
 
 type DescribeClustersResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Clusters  DescribeClustersClusterList
 }
 
 type DescribeClustersCluster struct {
-	ClusterId string
+	ClusterId common.String
 }
 
 type DescribeClustersClusterList []DescribeClustersCluster

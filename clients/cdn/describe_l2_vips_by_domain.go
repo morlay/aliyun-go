@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeL2VipsByDomainRequest struct {
@@ -24,15 +25,15 @@ func (req *DescribeL2VipsByDomainRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeL2VipsByDomainResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	DomainName string
+	RequestId  common.String
+	DomainName common.String
 	Vips       DescribeL2VipsByDomainVipList
 }
 
-type DescribeL2VipsByDomainVipList []string
+type DescribeL2VipsByDomainVipList []common.String
 
 func (list *DescribeL2VipsByDomainVipList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

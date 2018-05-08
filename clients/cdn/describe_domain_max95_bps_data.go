@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainMax95BpsDataRequest struct {
@@ -24,11 +25,11 @@ func (req *DescribeDomainMax95BpsDataRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeDomainMax95BpsDataResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DomainName       string
-	StartTime        string
-	EndTime          string
-	Max95Bps         string
-	DomesticMax95Bps string
-	OverseasMax95Bps string
+	RequestId        common.String
+	DomainName       common.String
+	StartTime        common.String
+	EndTime          common.String
+	Max95Bps         common.String
+	DomesticMax95Bps common.String
+	OverseasMax95Bps common.String
 }

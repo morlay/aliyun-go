@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterForInternalRequest struct {
@@ -24,30 +25,30 @@ func (req *ListClusterForInternalRequest) Invoke(client *sdk.Client) (resp *List
 
 type ListClusterForInternalResponse struct {
 	responses.BaseResponse
-	RequestId                   string
+	RequestId                   common.String
 	DescribeClusterResponseList ListClusterForInternalDescribeClusterResponseList
 }
 
 type ListClusterForInternalDescribeClusterResponse struct {
-	RequestId   string
-	Id          string
-	BizId       string
-	Name        string
-	StartTime   int64
-	StopTime    int64
+	RequestId   common.String
+	Id          common.String
+	BizId       common.String
+	Name        common.String
+	StartTime   common.Long
+	StopTime    common.Long
 	LogEnable   bool
-	LogPath     string
-	UserId      string
-	RunningTime int
-	Status      string
-	ExpiredTime int64
+	LogPath     common.String
+	UserId      common.String
+	RunningTime common.Integer
+	Status      common.String
+	ExpiredTime common.Long
 	FailReason  ListClusterForInternalFailReason
 }
 
 type ListClusterForInternalFailReason struct {
-	ErrorCode string
-	ErrorMsg  string
-	RequestId string
+	ErrorCode common.String
+	ErrorMsg  common.String
+	RequestId common.String
 }
 
 type ListClusterForInternalClusterIdListList []string

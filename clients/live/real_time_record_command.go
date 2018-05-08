@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RealTimeRecordCommandRequest struct {
@@ -24,5 +25,5 @@ func (req *RealTimeRecordCommandRequest) Invoke(client *sdk.Client) (resp *RealT
 
 type RealTimeRecordCommandResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

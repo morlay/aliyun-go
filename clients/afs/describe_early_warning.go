@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeEarlyWarningRequest struct {
@@ -23,21 +24,21 @@ func (req *DescribeEarlyWarningRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeEarlyWarningResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	HasWarning    bool
-	BizCode       string
+	BizCode       common.String
 	EarlyWarnings DescribeEarlyWarningEarlyWarningList
 }
 
 type DescribeEarlyWarningEarlyWarning struct {
 	WarnOpen  bool
-	Title     string
-	Content   string
-	Frequency string
+	Title     common.String
+	Content   common.String
+	Frequency common.String
 	TimeOpen  bool
-	TimeBegin string
-	TimeEnd   string
-	Channel   string
+	TimeBegin common.String
+	TimeEnd   common.String
+	Channel   common.String
 }
 
 type DescribeEarlyWarningEarlyWarningList []DescribeEarlyWarningEarlyWarning

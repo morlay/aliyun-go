@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveSpecificDomainMappingRequest struct {
@@ -25,13 +26,13 @@ func (req *DescribeLiveSpecificDomainMappingRequest) Invoke(client *sdk.Client) 
 
 type DescribeLiveSpecificDomainMappingResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	DomainMappingModels DescribeLiveSpecificDomainMappingDomainMappingModelList
 }
 
 type DescribeLiveSpecificDomainMappingDomainMappingModel struct {
-	PushDomain string
-	PullDomain string
+	PushDomain common.String
+	PullDomain common.String
 }
 
 type DescribeLiveSpecificDomainMappingDomainMappingModelList []DescribeLiveSpecificDomainMappingDomainMappingModel

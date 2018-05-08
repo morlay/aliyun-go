@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceVncPasswdRequest struct {
@@ -24,6 +25,6 @@ func (req *DescribeInstanceVncPasswdRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeInstanceVncPasswdResponse struct {
 	responses.BaseResponse
-	RequestId string
-	VncPasswd string
+	RequestId common.String
+	VncPasswd common.String
 }

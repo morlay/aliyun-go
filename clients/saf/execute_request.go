@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ExecuteRequestRequest struct {
@@ -21,8 +22,8 @@ func (req *ExecuteRequestRequest) Invoke(client *sdk.Client) (resp *ExecuteReque
 
 type ExecuteRequestResponse struct {
 	responses.BaseResponse
-	Code      int
-	Data      string
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Data      common.String
+	Message   common.String
+	RequestId common.String
 }

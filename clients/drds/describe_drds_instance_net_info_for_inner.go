@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDrdsInstanceNetInfoForInnerRequest struct {
@@ -22,17 +23,17 @@ func (req *DescribeDrdsInstanceNetInfoForInnerRequest) Invoke(client *sdk.Client
 
 type DescribeDrdsInstanceNetInfoForInnerResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	DrdsInstanceId string
-	NetworkType    string
+	DrdsInstanceId common.String
+	NetworkType    common.String
 	NetInfos       DescribeDrdsInstanceNetInfoForInnerNetInfoList
 }
 
 type DescribeDrdsInstanceNetInfoForInnerNetInfo struct {
-	IP       string
-	Port     string
-	Type     string
+	IP       common.String
+	Port     common.String
+	Type     common.String
 	IsForVpc bool
 }
 

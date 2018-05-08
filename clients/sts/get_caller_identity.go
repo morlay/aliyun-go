@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetCallerIdentityRequest struct {
@@ -19,8 +20,8 @@ func (req *GetCallerIdentityRequest) Invoke(client *sdk.Client) (resp *GetCaller
 
 type GetCallerIdentityResponse struct {
 	responses.BaseResponse
-	AccountId string
-	UserId    string
-	Arn       string
-	RequestId string
+	AccountId common.String
+	UserId    common.String
+	Arn       common.String
+	RequestId common.String
 }

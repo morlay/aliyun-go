@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ChatRequest struct {
@@ -28,37 +29,37 @@ func (req *ChatRequest) Invoke(client *sdk.Client) (resp *ChatResponse, err erro
 
 type ChatResponse struct {
 	responses.BaseResponse
-	RequestId string
-	SessionId string
-	MessageId string
-	Tag       string
+	RequestId common.String
+	SessionId common.String
+	MessageId common.String
+	Tag       common.String
 	Messages  ChatMessageList
 }
 
 type ChatMessage struct {
-	Type       string
+	Type       common.String
 	Recommends ChatRecommendList
 	Text       ChatText
 	Knowledge  ChatKnowledge
 }
 
 type ChatRecommend struct {
-	KnowledgeId  string
-	Title        string
-	AnswerSource string
+	KnowledgeId  common.String
+	Title        common.String
+	AnswerSource common.String
 }
 
 type ChatText struct {
-	Content      string
-	AnswerSource string
+	Content      common.String
+	AnswerSource common.String
 }
 
 type ChatKnowledge struct {
-	Id           string
-	Title        string
-	Summary      string
-	Content      string
-	AnswerSource string
+	Id           common.String
+	Title        common.String
+	Summary      common.String
+	Content      common.String
+	AnswerSource common.String
 }
 
 type ChatMessageList []ChatMessage

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AuthenticateRequest struct {
@@ -25,16 +26,16 @@ func (req *AuthenticateRequest) Invoke(client *sdk.Client) (resp *AuthenticateRe
 
 type AuthenticateResponse struct {
 	responses.BaseResponse
-	RequestId             string
+	RequestId             common.String
 	Success               bool
-	Msg                   string
-	Code                  int
+	Msg                   common.String
+	Code                  common.Integer
 	SigAuthenticateResult AuthenticateSigAuthenticateResult
 }
 
 type AuthenticateSigAuthenticateResult struct {
-	Timestamp int64
-	Code      int
-	Msg       string
-	Risklevel string
+	Timestamp common.Long
+	Code      common.Integer
+	Msg       common.String
+	Risklevel common.String
 }

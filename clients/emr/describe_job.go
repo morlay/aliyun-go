@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeJobRequest struct {
@@ -21,12 +22,12 @@ func (req *DescribeJobRequest) Invoke(client *sdk.Client) (resp *DescribeJobResp
 
 type DescribeJobResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	Id            string
-	Name          string
-	FailAct       string
-	Type          string
-	MaxRetry      int
-	RetryInterval int
-	RunParameter  string
+	RequestId     common.String
+	Id            common.String
+	Name          common.String
+	FailAct       common.String
+	Type          common.String
+	MaxRetry      common.Integer
+	RetryInterval common.Integer
+	RunParameter  common.String
 }

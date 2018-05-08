@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetEnterpriseConfigRequest struct {
@@ -24,23 +25,23 @@ func (req *GetEnterpriseConfigRequest) Invoke(client *sdk.Client) (resp *GetEnte
 
 type GetEnterpriseConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	ErrorList GetEnterpriseConfigErrorMessageList
 	Data      GetEnterpriseConfigData
 }
 
 type GetEnterpriseConfigErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type GetEnterpriseConfigData struct {
 	AuthorizationNeedAccessToken bool
-	DrMeetingQrUrl               string
-	DrWelcomeUrl                 string
-	ShareMboxNubmer              int
+	DrMeetingQrUrl               common.String
+	DrWelcomeUrl                 common.String
+	ShareMboxNubmer              common.Integer
 	ShareNeedInternet            bool
 	ShareServiceFlag             bool
 }

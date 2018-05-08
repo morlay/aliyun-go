@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDevicesByAliasRequest struct {
@@ -23,14 +24,14 @@ func (req *QueryDevicesByAliasRequest) Invoke(client *sdk.Client) (resp *QueryDe
 
 type QueryDevicesByAliasResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	DeviceIds QueryDevicesByAliasDeviceIdList
 }
 
-type QueryDevicesByAliasDeviceIdList []string
+type QueryDevicesByAliasDeviceIdList []common.String
 
 func (list *QueryDevicesByAliasDeviceIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

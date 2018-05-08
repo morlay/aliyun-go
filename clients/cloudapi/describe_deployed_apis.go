@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDeployedApisRequest struct {
@@ -27,23 +28,23 @@ func (req *DescribeDeployedApisRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeDeployedApisResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int
-	PageSize     int
-	PageNumber   int
+	RequestId    common.String
+	TotalCount   common.Integer
+	PageSize     common.Integer
+	PageNumber   common.Integer
 	DeployedApis DescribeDeployedApisDeployedApiItemList
 }
 
 type DescribeDeployedApisDeployedApiItem struct {
-	RegionId     string
-	ApiId        string
-	ApiName      string
-	GroupId      string
-	GroupName    string
-	StageName    string
-	Visibility   string
-	Description  string
-	DeployedTime string
+	RegionId     common.String
+	ApiId        common.String
+	ApiName      common.String
+	GroupId      common.String
+	GroupName    common.String
+	StageName    common.String
+	Visibility   common.String
+	Description  common.String
+	DeployedTime common.String
 }
 
 type DescribeDeployedApisDeployedApiItemList []DescribeDeployedApisDeployedApiItem

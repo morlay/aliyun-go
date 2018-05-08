@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetOpsCommandDetailRequest struct {
@@ -21,12 +22,12 @@ func (req *GetOpsCommandDetailRequest) Invoke(client *sdk.Client) (resp *GetOpsC
 
 type GetOpsCommandDetailResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Id          int64
-	Name        string
-	Description string
-	TargetType  string
-	ServiceName string
-	Category    string
-	Params      string
+	RequestId   common.String
+	Id          common.Long
+	Name        common.String
+	Description common.String
+	TargetType  common.String
+	ServiceName common.String
+	Category    common.String
+	Params      common.String
 }

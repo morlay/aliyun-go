@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyInstanceNetExpireTimeRequest struct {
@@ -29,17 +30,17 @@ func (req *ModifyInstanceNetExpireTimeRequest) Invoke(client *sdk.Client) (resp 
 
 type ModifyInstanceNetExpireTimeResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	InstanceId   string
+	RequestId    common.String
+	InstanceId   common.String
 	NetInfoItems ModifyInstanceNetExpireTimeNetInfoItemList
 }
 
 type ModifyInstanceNetExpireTimeNetInfoItem struct {
-	DBInstanceNetType string
-	Port              string
-	ExpiredTime       string
-	ConnectionString  string
-	IPAddress         string
+	DBInstanceNetType common.String
+	Port              common.String
+	ExpiredTime       common.String
+	ConnectionString  common.String
+	IPAddress         common.String
 }
 
 type ModifyInstanceNetExpireTimeNetInfoItemList []ModifyInstanceNetExpireTimeNetInfoItem

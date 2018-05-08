@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListMyGroupCategoriesRequest struct {
@@ -22,21 +23,21 @@ func (req *ListMyGroupCategoriesRequest) Invoke(client *sdk.Client) (resp *ListM
 
 type ListMyGroupCategoriesResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Category     ListMyGroupCategoriesCategory
 }
 
 type ListMyGroupCategoriesCategory struct {
-	GroupId       int64
+	GroupId       common.Long
 	CategoryItems ListMyGroupCategoriesCategoryItemList
 }
 
 type ListMyGroupCategoriesCategoryItem struct {
-	Category string
-	Count    int
+	Category common.String
+	Count    common.Integer
 }
 
 type ListMyGroupCategoriesCategoryItemList []ListMyGroupCategoriesCategoryItem

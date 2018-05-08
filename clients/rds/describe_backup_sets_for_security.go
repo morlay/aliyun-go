@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBackupSetsForSecurityRequest struct {
@@ -36,33 +37,33 @@ func (req *DescribeBackupSetsForSecurityRequest) Invoke(client *sdk.Client) (res
 
 type DescribeBackupSetsForSecurityResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount string
-	PageNumber       string
-	PageRecordCount  string
-	TotalBackupSize  int64
+	RequestId        common.String
+	TotalRecordCount common.String
+	PageNumber       common.String
+	PageRecordCount  common.String
+	TotalBackupSize  common.Long
 	Items            DescribeBackupSetsForSecurityBackupList
 }
 
 type DescribeBackupSetsForSecurityBackup struct {
-	BackupId                  string
-	DBInstanceId              string
-	BackupStatus              string
-	BackupStartTime           string
-	BackupEndTime             string
-	BackupType                string
-	BackupMode                string
-	BackupMethod              string
-	BackupDownloadURL         string
-	BackupIntranetDownloadURL string
-	BackupLocation            string
-	BackupExtractionStatus    string
-	BackupScale               string
-	BackupDBNames             string
-	TotalBackupSize           int64
-	BackupSize                int64
-	HostInstanceID            string
-	StoreStatus               string
+	BackupId                  common.String
+	DBInstanceId              common.String
+	BackupStatus              common.String
+	BackupStartTime           common.String
+	BackupEndTime             common.String
+	BackupType                common.String
+	BackupMode                common.String
+	BackupMethod              common.String
+	BackupDownloadURL         common.String
+	BackupIntranetDownloadURL common.String
+	BackupLocation            common.String
+	BackupExtractionStatus    common.String
+	BackupScale               common.String
+	BackupDBNames             common.String
+	TotalBackupSize           common.Long
+	BackupSize                common.Long
+	HostInstanceID            common.String
+	StoreStatus               common.String
 }
 
 type DescribeBackupSetsForSecurityBackupList []DescribeBackupSetsForSecurityBackup

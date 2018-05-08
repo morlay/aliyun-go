@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type InvokeThingServiceRequest struct {
@@ -24,12 +25,12 @@ func (req *InvokeThingServiceRequest) Invoke(client *sdk.Client) (resp *InvokeTh
 
 type InvokeThingServiceResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         InvokeThingServiceData
 }
 
 type InvokeThingServiceData struct {
-	Result string
+	Result common.String
 }

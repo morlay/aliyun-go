@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PutCustomMetricRequest struct {
@@ -20,7 +21,7 @@ func (req *PutCustomMetricRequest) Invoke(client *sdk.Client) (resp *PutCustomMe
 
 type PutCustomMetricResponse struct {
 	responses.BaseResponse
-	Code    string
-	Message string
-	Data    string
+	Code    common.String
+	Message common.String
+	Data    common.String
 }

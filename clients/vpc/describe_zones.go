@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeZonesRequest struct {
@@ -25,13 +26,13 @@ func (req *DescribeZonesRequest) Invoke(client *sdk.Client) (resp *DescribeZones
 
 type DescribeZonesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Zones     DescribeZonesZoneList
 }
 
 type DescribeZonesZone struct {
-	ZoneId    string
-	LocalName string
+	ZoneId    common.String
+	LocalName common.String
 }
 
 type DescribeZonesZoneList []DescribeZonesZone

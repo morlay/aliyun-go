@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainWhoisInfoRequest struct {
@@ -25,20 +26,20 @@ func (req *DescribeDomainWhoisInfoRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDomainWhoisInfoResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	RegistrantName   string
-	RegistrantEmail  string
-	Registrar        string
-	RegistrationDate string
-	ExpirationDate   string
+	RequestId        common.String
+	RegistrantName   common.String
+	RegistrantEmail  common.String
+	Registrar        common.String
+	RegistrationDate common.String
+	ExpirationDate   common.String
 	StatusList       DescribeDomainWhoisInfoStatusListList
 	DnsServers       DescribeDomainWhoisInfoDnsServerList
 }
 
-type DescribeDomainWhoisInfoStatusListList []string
+type DescribeDomainWhoisInfoStatusListList []common.String
 
 func (list *DescribeDomainWhoisInfoStatusListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -50,10 +51,10 @@ func (list *DescribeDomainWhoisInfoStatusListList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeDomainWhoisInfoDnsServerList []string
+type DescribeDomainWhoisInfoDnsServerList []common.String
 
 func (list *DescribeDomainWhoisInfoDnsServerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetVideoPlayAuthRequest struct {
@@ -25,15 +26,15 @@ func (req *GetVideoPlayAuthRequest) Invoke(client *sdk.Client) (resp *GetVideoPl
 
 type GetVideoPlayAuthResponse struct {
 	responses.BaseResponse
-	RequestId string
-	PlayAuth  string
+	RequestId common.String
+	PlayAuth  common.String
 	VideoMeta GetVideoPlayAuthVideoMeta
 }
 
 type GetVideoPlayAuthVideoMeta struct {
-	CoverURL string
-	Duration float32
-	Status   string
-	Title    string
-	VideoId  string
+	CoverURL common.String
+	Duration common.Float
+	Status   common.String
+	Title    common.String
+	VideoId  common.String
 }

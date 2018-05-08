@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceExtendAttributeRequest struct {
@@ -23,14 +24,14 @@ func (req *DescribeDBInstanceExtendAttributeRequest) Invoke(client *sdk.Client) 
 
 type DescribeDBInstanceExtendAttributeResponse struct {
 	responses.BaseResponse
-	RequestId                         string
+	RequestId                         common.String
 	CanTempUpgrade                    bool
-	TempUpgradeTimeStart              string
-	TempUpgradeTimeEnd                string
-	TempUpgradeRecoveryTime           string
-	TempUpgradeRecoveryClass          string
-	TempUpgradeRecoveryCpu            int
-	TempUpgradeRecoveryMemory         int
-	TempUpgradeRecoveryMaxIOPS        string
-	TempUpgradeRecoveryMaxConnections string
+	TempUpgradeTimeStart              common.String
+	TempUpgradeTimeEnd                common.String
+	TempUpgradeRecoveryTime           common.String
+	TempUpgradeRecoveryClass          common.String
+	TempUpgradeRecoveryCpu            common.Integer
+	TempUpgradeRecoveryMemory         common.Integer
+	TempUpgradeRecoveryMaxIOPS        common.String
+	TempUpgradeRecoveryMaxConnections common.String
 }

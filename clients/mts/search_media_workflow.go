@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SearchMediaWorkflowRequest struct {
@@ -28,20 +29,20 @@ func (req *SearchMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *SearchM
 
 type SearchMediaWorkflowResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalCount        int64
-	PageNumber        int64
-	PageSize          int64
+	RequestId         common.String
+	TotalCount        common.Long
+	PageNumber        common.Long
+	PageSize          common.Long
 	MediaWorkflowList SearchMediaWorkflowMediaWorkflowList
 }
 
 type SearchMediaWorkflowMediaWorkflow struct {
-	MediaWorkflowId string
-	Name            string
-	Topology        string
-	TriggerMode     string
-	State           string
-	CreationTime    string
+	MediaWorkflowId common.String
+	Name            common.String
+	Topology        common.String
+	TriggerMode     common.String
+	State           common.String
+	CreationTime    common.String
 }
 
 type SearchMediaWorkflowMediaWorkflowList []SearchMediaWorkflowMediaWorkflow

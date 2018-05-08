@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ImportKeyMaterialRequest struct {
@@ -24,5 +25,5 @@ func (req *ImportKeyMaterialRequest) Invoke(client *sdk.Client) (resp *ImportKey
 
 type ImportKeyMaterialResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

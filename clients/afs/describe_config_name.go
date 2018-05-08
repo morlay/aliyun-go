@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeConfigNameRequest struct {
@@ -21,8 +22,8 @@ func (req *DescribeConfigNameRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeConfigNameResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	HasConfig   bool
-	ConfigNames string
-	BizCode     string
+	ConfigNames common.String
+	BizCode     common.String
 }

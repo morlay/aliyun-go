@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateTrafficControlRequest struct {
@@ -25,6 +26,6 @@ func (req *CreateTrafficControlRequest) Invoke(client *sdk.Client) (resp *Create
 
 type CreateTrafficControlResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TrafficControlId string
+	RequestId        common.String
+	TrafficControlId common.String
 }

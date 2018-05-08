@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type StartMixStreamsServiceRequest struct {
@@ -31,14 +32,14 @@ func (req *StartMixStreamsServiceRequest) Invoke(client *sdk.Client) (resp *Star
 
 type StartMixStreamsServiceResponse struct {
 	responses.BaseResponse
-	RequestId          string
+	RequestId          common.String
 	MixStreamsInfoList StartMixStreamsServiceMixStreamsInfoList
 }
 
 type StartMixStreamsServiceMixStreamsInfo struct {
-	DomainName string
-	AppName    string
-	StreamName string
+	DomainName common.String
+	AppName    common.String
+	StreamName common.String
 }
 
 type StartMixStreamsServiceMixStreamsInfoList []StartMixStreamsServiceMixStreamsInfo

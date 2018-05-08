@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateCenBandwidthPackageRequest struct {
@@ -33,7 +34,7 @@ func (req *CreateCenBandwidthPackageRequest) Invoke(client *sdk.Client) (resp *C
 
 type CreateCenBandwidthPackageResponse struct {
 	responses.BaseResponse
-	RequestId                  string
-	CenBandwidthPackageId      string
-	CenBandwidthPackageOrderId string
+	RequestId                  common.String
+	CenBandwidthPackageId      common.String
+	CenBandwidthPackageOrderId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitMediaInfoJobRequest struct {
@@ -28,37 +29,37 @@ func (req *SubmitMediaInfoJobRequest) Invoke(client *sdk.Client) (resp *SubmitMe
 
 type SubmitMediaInfoJobResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	MediaInfoJob SubmitMediaInfoJobMediaInfoJob
 }
 
 type SubmitMediaInfoJobMediaInfoJob struct {
-	JobId            string
-	UserData         string
-	PipelineId       string
-	State            string
-	Code             string
-	Message          string
-	CreationTime     string
+	JobId            common.String
+	UserData         common.String
+	PipelineId       common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	CreationTime     common.String
 	Input            SubmitMediaInfoJobInput
 	Properties       SubmitMediaInfoJobProperties
 	MNSMessageResult SubmitMediaInfoJobMNSMessageResult
 }
 
 type SubmitMediaInfoJobInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type SubmitMediaInfoJobProperties struct {
-	Width      string
-	Height     string
-	Bitrate    string
-	Duration   string
-	Fps        string
-	FileSize   string
-	FileFormat string
+	Width      common.String
+	Height     common.String
+	Bitrate    common.String
+	Duration   common.String
+	Fps        common.String
+	FileSize   common.String
+	FileFormat common.String
 	Streams    SubmitMediaInfoJobStreams
 	Format     SubmitMediaInfoJobFormat
 }
@@ -70,77 +71,77 @@ type SubmitMediaInfoJobStreams struct {
 }
 
 type SubmitMediaInfoJobVideoStream struct {
-	Index          string
-	CodecName      string
-	CodecLongName  string
-	Profile        string
-	CodecTimeBase  string
-	CodecTagString string
-	CodecTag       string
-	Width          string
-	Height         string
-	HasBFrames     string
-	Sar            string
-	Dar            string
-	PixFmt         string
-	Level          string
-	Fps            string
-	AvgFPS         string
-	Timebase       string
-	StartTime      string
-	Duration       string
-	Bitrate        string
-	NumFrames      string
-	Lang           string
-	Rotate         string
+	Index          common.String
+	CodecName      common.String
+	CodecLongName  common.String
+	Profile        common.String
+	CodecTimeBase  common.String
+	CodecTagString common.String
+	CodecTag       common.String
+	Width          common.String
+	Height         common.String
+	HasBFrames     common.String
+	Sar            common.String
+	Dar            common.String
+	PixFmt         common.String
+	Level          common.String
+	Fps            common.String
+	AvgFPS         common.String
+	Timebase       common.String
+	StartTime      common.String
+	Duration       common.String
+	Bitrate        common.String
+	NumFrames      common.String
+	Lang           common.String
+	Rotate         common.String
 	NetworkCost    SubmitMediaInfoJobNetworkCost
 }
 
 type SubmitMediaInfoJobNetworkCost struct {
-	PreloadTime   string
-	CostBandwidth string
-	AvgBitrate    string
+	PreloadTime   common.String
+	CostBandwidth common.String
+	AvgBitrate    common.String
 }
 
 type SubmitMediaInfoJobAudioStream struct {
-	Index          string
-	CodecName      string
-	CodecTimeBase  string
-	CodecLongName  string
-	CodecTagString string
-	CodecTag       string
-	SampleFmt      string
-	Samplerate     string
-	Channels       string
-	ChannelLayout  string
-	Timebase       string
-	StartTime      string
-	Duration       string
-	Bitrate        string
-	NumFrames      string
-	Lang           string
+	Index          common.String
+	CodecName      common.String
+	CodecTimeBase  common.String
+	CodecLongName  common.String
+	CodecTagString common.String
+	CodecTag       common.String
+	SampleFmt      common.String
+	Samplerate     common.String
+	Channels       common.String
+	ChannelLayout  common.String
+	Timebase       common.String
+	StartTime      common.String
+	Duration       common.String
+	Bitrate        common.String
+	NumFrames      common.String
+	Lang           common.String
 }
 
 type SubmitMediaInfoJobSubtitleStream struct {
-	Index string
-	Lang  string
+	Index common.String
+	Lang  common.String
 }
 
 type SubmitMediaInfoJobFormat struct {
-	NumStreams     string
-	NumPrograms    string
-	FormatName     string
-	FormatLongName string
-	StartTime      string
-	Duration       string
-	Size           string
-	Bitrate        string
+	NumStreams     common.String
+	NumPrograms    common.String
+	FormatName     common.String
+	FormatLongName common.String
+	StartTime      common.String
+	Duration       common.String
+	Size           common.String
+	Bitrate        common.String
 }
 
 type SubmitMediaInfoJobMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }
 
 type SubmitMediaInfoJobVideoStreamList []SubmitMediaInfoJobVideoStream

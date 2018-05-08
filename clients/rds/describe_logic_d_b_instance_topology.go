@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLogicDBInstanceTopologyRequest struct {
@@ -24,27 +25,27 @@ func (req *DescribeLogicDBInstanceTopologyRequest) Invoke(client *sdk.Client) (r
 
 type DescribeLogicDBInstanceTopologyResponse struct {
 	responses.BaseResponse
-	DBInstanceId          int
-	DBInstanceName        string
-	DBInstanceStatus      int
-	DBInstanceStatusDesc  string
-	DBInstanceConnType    string
-	DBInstanceDescription string
-	Engine                string
-	EngineVersion         string
+	DBInstanceId          common.Integer
+	DBInstanceName        common.String
+	DBInstanceStatus      common.Integer
+	DBInstanceStatusDesc  common.String
+	DBInstanceConnType    common.String
+	DBInstanceDescription common.String
+	Engine                common.String
+	EngineVersion         common.String
 	Items                 DescribeLogicDBInstanceTopologyLogicDBInstanceParameterList
 }
 
 type DescribeLogicDBInstanceTopologyLogicDBInstanceParameter struct {
-	DBInstanceID          int
-	DBInstanceName        string
-	DBInstanceStatus      int
-	DBInstanceStatusDesc  string
-	DBInstanceConnType    string
-	DBInstanceDescription string
-	Engine                string
-	EngineVersion         string
-	CharacterType         string
+	DBInstanceID          common.Integer
+	DBInstanceName        common.String
+	DBInstanceStatus      common.Integer
+	DBInstanceStatusDesc  common.String
+	DBInstanceConnType    common.String
+	DBInstanceDescription common.String
+	Engine                common.String
+	EngineVersion         common.String
+	CharacterType         common.String
 }
 
 type DescribeLogicDBInstanceTopologyLogicDBInstanceParameterList []DescribeLogicDBInstanceTopologyLogicDBInstanceParameter

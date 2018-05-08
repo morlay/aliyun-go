@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSpotPriceHistoryRequest struct {
@@ -33,20 +34,20 @@ func (req *DescribeSpotPriceHistoryRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeSpotPriceHistoryResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextOffset int
-	Currency   string
+	RequestId  common.String
+	NextOffset common.Integer
+	Currency   common.String
 	SpotPrices DescribeSpotPriceHistorySpotPriceTypeList
 }
 
 type DescribeSpotPriceHistorySpotPriceType struct {
-	ZoneId       string
-	InstanceType string
-	IoOptimized  string
-	Timestamp    string
-	NetworkType  string
-	SpotPrice    float32
-	OriginPrice  float32
+	ZoneId       common.String
+	InstanceType common.String
+	IoOptimized  common.String
+	Timestamp    common.String
+	NetworkType  common.String
+	SpotPrice    common.Float
+	OriginPrice  common.Float
 }
 
 type DescribeSpotPriceHistorySpotPriceTypeList []DescribeSpotPriceHistorySpotPriceType

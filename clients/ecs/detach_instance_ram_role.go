@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DetachInstanceRamRoleRequest struct {
@@ -26,24 +27,24 @@ func (req *DetachInstanceRamRoleRequest) Invoke(client *sdk.Client) (resp *Detac
 
 type DetachInstanceRamRoleResponse struct {
 	responses.BaseResponse
-	RequestId                    string
-	TotalCount                   int
-	FailCount                    int
-	RamRoleName                  string
+	RequestId                    common.String
+	TotalCount                   common.Integer
+	FailCount                    common.Integer
+	RamRoleName                  common.String
 	DetachInstanceRamRoleResults DetachInstanceRamRoleDetachInstanceRamRoleResultList
 }
 
 type DetachInstanceRamRoleDetachInstanceRamRoleResult struct {
-	InstanceId          string
+	InstanceId          common.String
 	Success             bool
-	Code                string
-	Message             string
+	Code                common.String
+	Message             common.String
 	InstanceRamRoleSets DetachInstanceRamRoleInstanceRamRoleSetList
 }
 
 type DetachInstanceRamRoleInstanceRamRoleSet struct {
-	InstanceId  string
-	RamRoleName string
+	InstanceId  common.String
+	RamRoleName common.String
 }
 
 type DetachInstanceRamRoleDetachInstanceRamRoleResultList []DetachInstanceRamRoleDetachInstanceRamRoleResult

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPushStatByMsgRequest struct {
@@ -23,22 +24,22 @@ func (req *QueryPushStatByMsgRequest) Invoke(client *sdk.Client) (resp *QueryPus
 
 type QueryPushStatByMsgResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	PushStats QueryPushStatByMsgPushStatList
 }
 
 type QueryPushStatByMsgPushStat struct {
-	MessageId              string
-	AcceptCount            int64
-	SentCount              int64
-	ReceivedCount          int64
-	OpenedCount            int64
-	DeletedCount           int64
-	SmsSentCount           int64
-	SmsSkipCount           int64
-	SmsFailedCount         int64
-	SmsReceiveSuccessCount int64
-	SmsReceiveFailedCount  int64
+	MessageId              common.String
+	AcceptCount            common.Long
+	SentCount              common.Long
+	ReceivedCount          common.Long
+	OpenedCount            common.Long
+	DeletedCount           common.Long
+	SmsSentCount           common.Long
+	SmsSkipCount           common.Long
+	SmsFailedCount         common.Long
+	SmsReceiveSuccessCount common.Long
+	SmsReceiveFailedCount  common.Long
 }
 
 type QueryPushStatByMsgPushStatList []QueryPushStatByMsgPushStat

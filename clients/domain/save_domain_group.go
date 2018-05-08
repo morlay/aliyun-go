@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveDomainGroupRequest struct {
@@ -23,12 +24,12 @@ func (req *SaveDomainGroupRequest) Invoke(client *sdk.Client) (resp *SaveDomainG
 
 type SaveDomainGroupResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	DomainGroupId     int64
-	DomainGroupName   string
-	TotalNumber       int
-	CreationDate      string
-	ModificationDate  string
-	DomainGroupStatus string
+	RequestId         common.String
+	DomainGroupId     common.Long
+	DomainGroupName   common.String
+	TotalNumber       common.Integer
+	CreationDate      common.String
+	ModificationDate  common.String
+	DomainGroupStatus common.String
 	BeingDeleted      bool
 }

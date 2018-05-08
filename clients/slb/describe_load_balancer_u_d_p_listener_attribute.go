@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLoadBalancerUDPListenerAttributeRequest struct {
@@ -27,26 +28,26 @@ func (req *DescribeLoadBalancerUDPListenerAttributeRequest) Invoke(client *sdk.C
 
 type DescribeLoadBalancerUDPListenerAttributeResponse struct {
 	responses.BaseResponse
-	RequestId                 string
-	ListenerPort              int
-	BackendServerPort         int
-	Status                    string
-	Bandwidth                 int
-	Scheduler                 string
-	PersistenceTimeout        int
-	HealthCheck               string
-	HealthyThreshold          int
-	UnhealthyThreshold        int
-	HealthCheckConnectTimeout int
-	HealthCheckConnectPort    int
-	HealthCheckInterval       int
-	HealthCheckReq            string
-	HealthCheckExp            string
-	MaxConnection             int
-	VServerGroupId            string
-	MasterSlaveServerGroupId  string
-	AclId                     string
-	AclType                   string
-	AclStatus                 string
-	VpcIds                    string
+	RequestId                 common.String
+	ListenerPort              common.Integer
+	BackendServerPort         common.Integer
+	Status                    common.String
+	Bandwidth                 common.Integer
+	Scheduler                 common.String
+	PersistenceTimeout        common.Integer
+	HealthCheck               common.String
+	HealthyThreshold          common.Integer
+	UnhealthyThreshold        common.Integer
+	HealthCheckConnectTimeout common.Integer
+	HealthCheckConnectPort    common.Integer
+	HealthCheckInterval       common.Integer
+	HealthCheckReq            common.String
+	HealthCheckExp            common.String
+	MaxConnection             common.Integer
+	VServerGroupId            common.String
+	MasterSlaveServerGroupId  common.String
+	AclId                     common.String
+	AclType                   common.String
+	AclStatus                 common.String
+	VpcIds                    common.String
 }

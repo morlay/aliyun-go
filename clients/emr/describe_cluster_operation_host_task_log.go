@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterOperationHostTaskLogRequest struct {
@@ -25,7 +26,7 @@ func (req *DescribeClusterOperationHostTaskLogRequest) Invoke(client *sdk.Client
 
 type DescribeClusterOperationHostTaskLogResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Stdout    string
-	Stderr    string
+	RequestId common.String
+	Stdout    common.String
+	Stderr    common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeShardingNetworkAddressRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeShardingNetworkAddressRequest) Invoke(client *sdk.Client) (re
 
 type DescribeShardingNetworkAddressResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	NetworkAddresses DescribeShardingNetworkAddressNetworkAddressList
 }
 
 type DescribeShardingNetworkAddressNetworkAddress struct {
-	NetworkAddress string
-	IPAddress      string
-	NetworkType    string
-	Port           string
-	VPCId          string
-	VswitchId      string
-	NodeId         string
-	ExpiredTime    string
+	NetworkAddress common.String
+	IPAddress      common.String
+	NetworkType    common.String
+	Port           common.String
+	VPCId          common.String
+	VswitchId      common.String
+	NodeId         common.String
+	ExpiredTime    common.String
 }
 
 type DescribeShardingNetworkAddressNetworkAddressList []DescribeShardingNetworkAddressNetworkAddress

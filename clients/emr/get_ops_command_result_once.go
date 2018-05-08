@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetOpsCommandResultOnceRequest struct {
@@ -22,6 +23,6 @@ func (req *GetOpsCommandResultOnceRequest) Invoke(client *sdk.Client) (resp *Get
 
 type GetOpsCommandResultOnceResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Content   string
+	RequestId common.String
+	Content   common.String
 }

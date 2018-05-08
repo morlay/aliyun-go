@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSQLLogRecordsRequest struct {
@@ -36,22 +37,22 @@ func (req *DescribeSQLLogRecordsRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeSQLLogRecordsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int64
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	TotalRecordCount common.Long
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeSQLLogRecordsSQLRecordList
 }
 
 type DescribeSQLLogRecordsSQLRecord struct {
-	DBName              string
-	AccountName         string
-	HostAddress         string
-	SQLText             string
-	TotalExecutionTimes int64
-	ReturnRowCounts     int64
-	ExecuteTime         string
-	ThreadID            string
+	DBName              common.String
+	AccountName         common.String
+	HostAddress         common.String
+	SQLText             common.String
+	TotalExecutionTimes common.Long
+	ReturnRowCounts     common.Long
+	ExecuteTime         common.String
+	ThreadID            common.String
 }
 
 type DescribeSQLLogRecordsSQLRecordList []DescribeSQLLogRecordsSQLRecord

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateJobExecutionPlanFolderRequest struct {
@@ -22,10 +23,10 @@ func (req *CreateJobExecutionPlanFolderRequest) Invoke(client *sdk.Client) (resp
 
 type CreateJobExecutionPlanFolderResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Success   string
-	ErrCode   string
-	ErrMsg    string
-	FolderId  string
-	FolderId1 string
+	RequestId common.String
+	Success   common.String
+	ErrCode   common.String
+	ErrMsg    common.String
+	FolderId  common.String
+	FolderId1 common.String
 }

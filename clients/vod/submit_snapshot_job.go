@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitSnapshotJobRequest struct {
@@ -29,10 +30,10 @@ func (req *SubmitSnapshotJobRequest) Invoke(client *sdk.Client) (resp *SubmitSna
 
 type SubmitSnapshotJobResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	SnapshotJob SubmitSnapshotJobSnapshotJob
 }
 
 type SubmitSnapshotJobSnapshotJob struct {
-	JobId string
+	JobId common.String
 }

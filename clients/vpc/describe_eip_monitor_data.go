@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeEipMonitorDataRequest struct {
@@ -29,17 +30,17 @@ func (req *DescribeEipMonitorDataRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeEipMonitorDataResponse struct {
 	responses.BaseResponse
-	RequestId       string
+	RequestId       common.String
 	EipMonitorDatas DescribeEipMonitorDataEipMonitorDataList
 }
 
 type DescribeEipMonitorDataEipMonitorData struct {
-	EipRX        int
-	EipTX        int
-	EipFlow      int
-	EipBandwidth int
-	EipPackets   int
-	TimeStamp    string
+	EipRX        common.Integer
+	EipTX        common.Integer
+	EipFlow      common.Integer
+	EipBandwidth common.Integer
+	EipPackets   common.Integer
+	TimeStamp    common.String
 }
 
 type DescribeEipMonitorDataEipMonitorDataList []DescribeEipMonitorDataEipMonitorData

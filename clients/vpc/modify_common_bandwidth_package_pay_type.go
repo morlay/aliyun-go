@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyCommonBandwidthPackagePayTypeRequest struct {
@@ -32,8 +33,8 @@ func (req *ModifyCommonBandwidthPackagePayTypeRequest) Invoke(client *sdk.Client
 
 type ModifyCommonBandwidthPackagePayTypeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	OrderId   int64
-	Code      string
-	Message   string
+	RequestId common.String
+	OrderId   common.Long
+	Code      common.String
+	Message   common.String
 }

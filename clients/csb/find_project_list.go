@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindProjectListRequest struct {
@@ -24,37 +25,37 @@ func (req *FindProjectListRequest) Invoke(client *sdk.Client) (resp *FindProject
 
 type FindProjectListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindProjectListData
 }
 
 type FindProjectListData struct {
-	CurrentPage int
-	PageNumber  int
-	Total       int
+	CurrentPage common.Integer
+	PageNumber  common.Integer
+	Total       common.Integer
 	ProjectList FindProjectListProjectList
 }
 
 type FindProjectListProject struct {
-	ApiNum               int
-	CsbId                int64
-	DeleteFlag           int
-	Description          string
-	GmtCreate            int64
-	GmtModified          int64
-	Id                   int64
-	InterfaceJarLocation string
-	InterfaceJarName     string
-	JarFileKey           string
-	OwnerId              string
-	ProjectName          string
-	ProjectOwnerEmail    string
-	ProjectOwnerName     string
-	ProjectOwnerPhoneNum string
-	Status               int
-	UserId               string
+	ApiNum               common.Integer
+	CsbId                common.Long
+	DeleteFlag           common.Integer
+	Description          common.String
+	GmtCreate            common.Long
+	GmtModified          common.Long
+	Id                   common.Long
+	InterfaceJarLocation common.String
+	InterfaceJarName     common.String
+	JarFileKey           common.String
+	OwnerId              common.String
+	ProjectName          common.String
+	ProjectOwnerEmail    common.String
+	ProjectOwnerName     common.String
+	ProjectOwnerPhoneNum common.String
+	Status               common.Integer
+	UserId               common.String
 }
 
 type FindProjectListProjectList []FindProjectListProject

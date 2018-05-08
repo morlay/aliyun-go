@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EncryptRequest struct {
@@ -23,7 +24,7 @@ func (req *EncryptRequest) Invoke(client *sdk.Client) (resp *EncryptResponse, er
 
 type EncryptResponse struct {
 	responses.BaseResponse
-	CiphertextBlob string
-	KeyId          string
-	RequestId      string
+	CiphertextBlob common.String
+	KeyId          common.String
+	RequestId      common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetAuthConfigRequest struct {
@@ -25,7 +26,7 @@ func (req *SetAuthConfigRequest) Invoke(client *sdk.Client) (resp *SetAuthConfig
 
 type SetAuthConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Key1      string
-	Key2      string
+	RequestId common.String
+	Key1      common.String
+	Key2      common.String
 }

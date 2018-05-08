@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CountUserAvailableResourcesByRequest struct {
@@ -35,9 +36,9 @@ func (req *CountUserAvailableResourcesByRequest) Invoke(client *sdk.Client) (res
 
 type CountUserAvailableResourcesByResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Message   string
+	RequestId common.String
+	Code      common.String
+	Message   common.String
 	Success   bool
-	Data      int
+	Data      common.Integer
 }

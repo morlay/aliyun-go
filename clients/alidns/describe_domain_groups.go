@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainGroupsRequest struct {
@@ -26,16 +27,16 @@ func (req *DescribeDomainGroupsRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeDomainGroupsResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int64
-	PageNumber   int64
-	PageSize     int64
+	RequestId    common.String
+	TotalCount   common.Long
+	PageNumber   common.Long
+	PageSize     common.Long
 	DomainGroups DescribeDomainGroupsDomainGroupList
 }
 
 type DescribeDomainGroupsDomainGroup struct {
-	GroupId   string
-	GroupName string
+	GroupId   common.String
+	GroupName common.String
 }
 
 type DescribeDomainGroupsDomainGroupList []DescribeDomainGroupsDomainGroup

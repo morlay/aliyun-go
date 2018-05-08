@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBgpPeersRequest struct {
@@ -31,30 +32,30 @@ func (req *DescribeBgpPeersRequest) Invoke(client *sdk.Client) (resp *DescribeBg
 
 type DescribeBgpPeersResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	BgpPeers   DescribeBgpPeersBgpPeerList
 }
 
 type DescribeBgpPeersBgpPeer struct {
-	Name          string
-	Description   string
-	BgpPeerId     string
-	BgpGroupId    string
-	PeerIpAddress string
-	PeerAsn       string
-	AuthKey       string
-	RouterId      string
-	BgpStatus     string
-	Status        string
-	Keepalive     string
-	LocalAsn      string
-	Hold          string
-	IsFake        string
-	RouteLimit    string
-	RegionId      string
+	Name          common.String
+	Description   common.String
+	BgpPeerId     common.String
+	BgpGroupId    common.String
+	PeerIpAddress common.String
+	PeerAsn       common.String
+	AuthKey       common.String
+	RouterId      common.String
+	BgpStatus     common.String
+	Status        common.String
+	Keepalive     common.String
+	LocalAsn      common.String
+	Hold          common.String
+	IsFake        common.String
+	RouteLimit    common.String
+	RegionId      common.String
 }
 
 type DescribeBgpPeersBgpPeerList []DescribeBgpPeersBgpPeer

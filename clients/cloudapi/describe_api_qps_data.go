@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiQpsDataRequest struct {
@@ -25,14 +26,14 @@ func (req *DescribeApiQpsDataRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeApiQpsDataResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	CallSuccesses DescribeApiQpsDataMonitorItemList
 	CallFails     DescribeApiQpsDataMonitorItemList
 }
 
 type DescribeApiQpsDataMonitorItem struct {
-	ItemTime  string
-	ItemValue string
+	ItemTime  common.String
+	ItemValue common.String
 }
 
 type DescribeApiQpsDataMonitorItemList []DescribeApiQpsDataMonitorItem

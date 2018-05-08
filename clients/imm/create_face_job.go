@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateFaceJobRequest struct {
@@ -21,12 +22,12 @@ func (req *CreateFaceJobRequest) Invoke(client *sdk.Client) (resp *CreateFaceJob
 
 type CreateFaceJobResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	JobId      string
-	SetId      string
-	SrcUri     string
-	Percent    int
-	CreateTime string
-	FinishTime string
-	Status     string
+	RequestId  common.String
+	JobId      common.String
+	SetId      common.String
+	SrcUri     common.String
+	Percent    common.Integer
+	CreateTime common.String
+	FinishTime common.String
+	Status     common.String
 }

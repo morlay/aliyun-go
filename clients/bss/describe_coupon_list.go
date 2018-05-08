@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCouponListRequest struct {
@@ -26,25 +27,25 @@ func (req *DescribeCouponListRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeCouponListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Coupons   DescribeCouponListCouponList
 }
 
 type DescribeCouponListCoupon struct {
-	CouponTemplateId int64
-	TotalAmount      string
-	BalanceAmount    string
-	FrozenAmount     string
-	ExpiredAmount    string
-	DeliveryTime     string
-	ExpiredTime      string
-	CouponNumber     string
-	Status           string
-	Description      string
-	CreationTime     string
-	ModificationTime string
-	PriceLimit       string
-	Application      string
+	CouponTemplateId common.Long
+	TotalAmount      common.String
+	BalanceAmount    common.String
+	FrozenAmount     common.String
+	ExpiredAmount    common.String
+	DeliveryTime     common.String
+	ExpiredTime      common.String
+	CouponNumber     common.String
+	Status           common.String
+	Description      common.String
+	CreationTime     common.String
+	ModificationTime common.String
+	PriceLimit       common.String
+	Application      common.String
 	ProductCodes     DescribeCouponListProductCodeList
 	TradeTypes       DescribeCouponListTradeTypeList
 }
@@ -64,10 +65,10 @@ func (list *DescribeCouponListCouponList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeCouponListProductCodeList []string
+type DescribeCouponListProductCodeList []common.String
 
 func (list *DescribeCouponListProductCodeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -79,10 +80,10 @@ func (list *DescribeCouponListProductCodeList) UnmarshalJSON(data []byte) error 
 	return nil
 }
 
-type DescribeCouponListTradeTypeList []string
+type DescribeCouponListTradeTypeList []common.String
 
 func (list *DescribeCouponListTradeTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

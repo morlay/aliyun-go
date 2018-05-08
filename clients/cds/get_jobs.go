@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetJobsRequest struct {
@@ -25,32 +26,32 @@ func (req *GetJobsRequest) Invoke(client *sdk.Client) (resp *GetJobsResponse, er
 
 type GetJobsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Jobs      GetJobsJobList
 }
 
 type GetJobsJob struct {
-	JobName             string
-	SuccessRate         float32
-	TotalBuilds         int
+	JobName             common.String
+	SuccessRate         common.Float
+	TotalBuilds         common.Integer
 	LastFailedBuild     GetJobsLastFailedBuild
 	LastSuccessfulBuild GetJobsLastSuccessfulBuild
 }
 
 type GetJobsLastFailedBuild struct {
-	BuildNumber string
-	Duration    int64
-	StartTime   int64
-	Log         string
-	BuildEnv    string
+	BuildNumber common.String
+	Duration    common.Long
+	StartTime   common.Long
+	Log         common.String
+	BuildEnv    common.String
 }
 
 type GetJobsLastSuccessfulBuild struct {
-	BuildNumber int
-	Duration    int
-	StartTime   int64
-	Log         string
-	BuildEnv    string
+	BuildNumber common.Integer
+	Duration    common.Integer
+	StartTime   common.Long
+	Log         common.String
+	BuildEnv    common.String
 }
 
 type GetJobsJobList []GetJobsJob

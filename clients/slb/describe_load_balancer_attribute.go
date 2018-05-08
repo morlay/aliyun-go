@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLoadBalancerAttributeRequest struct {
@@ -28,29 +29,29 @@ func (req *DescribeLoadBalancerAttributeRequest) Invoke(client *sdk.Client) (res
 
 type DescribeLoadBalancerAttributeResponse struct {
 	responses.BaseResponse
-	RequestId                string
-	LoadBalancerId           string
-	ResourceGroupId          string
-	LoadBalancerName         string
-	LoadBalancerStatus       string
-	RegionId                 string
-	RegionIdAlias            string
-	Address                  string
-	AddressType              string
-	VpcId                    string
-	VSwitchId                string
-	NetworkType              string
-	InternetChargeType       string
-	AutoReleaseTime          int64
-	Bandwidth                int
-	LoadBalancerSpec         string
-	CreateTime               string
-	CreateTimeStamp          int64
-	EndTime                  string
-	EndTimeStamp             int64
-	PayType                  string
-	MasterZoneId             string
-	SlaveZoneId              string
+	RequestId                common.String
+	LoadBalancerId           common.String
+	ResourceGroupId          common.String
+	LoadBalancerName         common.String
+	LoadBalancerStatus       common.String
+	RegionId                 common.String
+	RegionIdAlias            common.String
+	Address                  common.String
+	AddressType              common.String
+	VpcId                    common.String
+	VSwitchId                common.String
+	NetworkType              common.String
+	InternetChargeType       common.String
+	AutoReleaseTime          common.Long
+	Bandwidth                common.Integer
+	LoadBalancerSpec         common.String
+	CreateTime               common.String
+	CreateTimeStamp          common.Long
+	EndTime                  common.String
+	EndTimeStamp             common.Long
+	PayType                  common.String
+	MasterZoneId             common.String
+	SlaveZoneId              common.String
 	ListenerPortsAndProtocal DescribeLoadBalancerAttributeListenerPortAndProtocalList
 	ListenerPortsAndProtocol DescribeLoadBalancerAttributeListenerPortAndProtocolList
 	BackendServers           DescribeLoadBalancerAttributeBackendServerList
@@ -58,23 +59,23 @@ type DescribeLoadBalancerAttributeResponse struct {
 }
 
 type DescribeLoadBalancerAttributeListenerPortAndProtocal struct {
-	ListenerPort     int
-	ListenerProtocal string
+	ListenerPort     common.Integer
+	ListenerProtocal common.String
 }
 
 type DescribeLoadBalancerAttributeListenerPortAndProtocol struct {
-	ListenerPort     int
-	ListenerProtocol string
-	ListenerForward  string
-	ForwardPort      int
+	ListenerPort     common.Integer
+	ListenerProtocol common.String
+	ListenerForward  common.String
+	ForwardPort      common.Integer
 }
 
 type DescribeLoadBalancerAttributeBackendServer struct {
-	ServerId string
-	Weight   int
-	Type     string
-	ServerIp string
-	VpcId    string
+	ServerId common.String
+	Weight   common.Integer
+	Type     common.String
+	ServerIp common.String
+	VpcId    common.String
 }
 
 type DescribeLoadBalancerAttributeListenerPortAndProtocalList []DescribeLoadBalancerAttributeListenerPortAndProtocal
@@ -122,10 +123,10 @@ func (list *DescribeLoadBalancerAttributeBackendServerList) UnmarshalJSON(data [
 	return nil
 }
 
-type DescribeLoadBalancerAttributeListenerPortList []string
+type DescribeLoadBalancerAttributeListenerPortList []common.String
 
 func (list *DescribeLoadBalancerAttributeListenerPortList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

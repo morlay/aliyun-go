@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetWelcomePageURIRequest struct {
@@ -24,16 +25,16 @@ func (req *GetWelcomePageURIRequest) Invoke(client *sdk.Client) (resp *GetWelcom
 
 type GetWelcomePageURIResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Data      string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	Data      common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	ErrorList GetWelcomePageURIErrorMessageList
 }
 
 type GetWelcomePageURIErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type GetWelcomePageURIErrorMessageList []GetWelcomePageURIErrorMessage

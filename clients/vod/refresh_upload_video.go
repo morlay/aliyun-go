@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RefreshUploadVideoRequest struct {
@@ -23,7 +24,7 @@ func (req *RefreshUploadVideoRequest) Invoke(client *sdk.Client) (resp *RefreshU
 
 type RefreshUploadVideoResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	UploadAuth    string
-	UploadAddress string
+	RequestId     common.String
+	UploadAuth    common.String
+	UploadAddress common.String
 }

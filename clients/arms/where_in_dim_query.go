@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type WhereInDimQueryRequest struct {
@@ -40,7 +41,7 @@ type WhereInDimQueryDimensions struct {
 
 type WhereInDimQueryResponse struct {
 	responses.BaseResponse
-	Data string
+	Data common.String
 }
 
 type WhereInDimQueryMeasuresList []string

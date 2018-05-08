@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetCasterConfigRequest struct {
@@ -31,6 +32,6 @@ func (req *SetCasterConfigRequest) Invoke(client *sdk.Client) (resp *SetCasterCo
 
 type SetCasterConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	CasterId  string
+	RequestId common.String
+	CasterId  common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ClosePortScanRequest struct {
@@ -20,5 +21,5 @@ func (req *ClosePortScanRequest) Invoke(client *sdk.Client) (resp *ClosePortScan
 
 type ClosePortScanResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamFrameLossRatioRequest struct {
@@ -28,14 +29,14 @@ func (req *DescribeLiveStreamFrameLossRatioRequest) Invoke(client *sdk.Client) (
 
 type DescribeLiveStreamFrameLossRatioResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	FrameLossRatioInfos DescribeLiveStreamFrameLossRatioFrameLossRatioInfoList
 }
 
 type DescribeLiveStreamFrameLossRatioFrameLossRatioInfo struct {
-	StreamUrl      string
-	FrameLossRatio float32
-	Time           string
+	StreamUrl      common.String
+	FrameLossRatio common.Float
+	Time           common.String
 }
 
 type DescribeLiveStreamFrameLossRatioFrameLossRatioInfoList []DescribeLiveStreamFrameLossRatioFrameLossRatioInfo

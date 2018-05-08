@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAlarmRequest struct {
@@ -31,33 +32,33 @@ func (req *ListAlarmRequest) Invoke(client *sdk.Client) (resp *ListAlarmResponse
 type ListAlarmResponse struct {
 	responses.BaseResponse
 	Success   bool
-	Code      string
-	Message   string
-	NextToken int
-	Total     int
-	RequestId string
+	Code      common.String
+	Message   common.String
+	NextToken common.Integer
+	Total     common.Integer
+	RequestId common.String
 	AlarmList ListAlarmAlarmList
 }
 
 type ListAlarmAlarm struct {
-	Id                 string
-	Name               string
-	Namespace          string
-	MetricName         string
-	Dimensions         string
-	Period             int
-	Statistics         string
-	ComparisonOperator string
-	Threshold          string
-	EvaluationCount    int
-	StartTime          int
-	EndTime            int
-	SilenceTime        int
-	NotifyType         int
+	Id                 common.String
+	Name               common.String
+	Namespace          common.String
+	MetricName         common.String
+	Dimensions         common.String
+	Period             common.Integer
+	Statistics         common.String
+	ComparisonOperator common.String
+	Threshold          common.String
+	EvaluationCount    common.Integer
+	StartTime          common.Integer
+	EndTime            common.Integer
+	SilenceTime        common.Integer
+	NotifyType         common.Integer
 	Enable             bool
-	State              string
-	ContactGroups      string
-	Webhook            string
+	State              common.String
+	ContactGroups      common.String
+	Webhook            common.String
 }
 
 type ListAlarmAlarmList []ListAlarmAlarm

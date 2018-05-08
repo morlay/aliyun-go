@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetThingTopoRequest struct {
@@ -26,24 +27,24 @@ func (req *GetThingTopoRequest) Invoke(client *sdk.Client) (resp *GetThingTopoRe
 
 type GetThingTopoResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         GetThingTopoData
 }
 
 type GetThingTopoData struct {
-	Total       int64
-	CurrentPage int
-	PageSize    int
-	PageCount   int64
+	Total       common.Long
+	CurrentPage common.Integer
+	PageSize    common.Integer
+	PageCount   common.Long
 	List        GetThingTopoDeviceInfoList
 }
 
 type GetThingTopoDeviceInfo struct {
-	IotId      string
-	ProductKey string
-	DeviceName string
+	IotId      common.String
+	ProductKey common.String
+	DeviceName common.String
 }
 
 type GetThingTopoDeviceInfoList []GetThingTopoDeviceInfo

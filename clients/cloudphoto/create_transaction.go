@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateTransactionRequest struct {
@@ -25,10 +26,10 @@ func (req *CreateTransactionRequest) Invoke(client *sdk.Client) (resp *CreateTra
 
 type CreateTransactionResponse struct {
 	responses.BaseResponse
-	Code        string
-	Message     string
-	RequestId   string
-	Action      string
+	Code        common.String
+	Message     common.String
+	RequestId   common.String
+	Action      common.String
 	Transaction CreateTransactionTransaction
 }
 
@@ -37,12 +38,12 @@ type CreateTransactionTransaction struct {
 }
 
 type CreateTransactionUpload struct {
-	Bucket          string
-	FileId          string
-	OssEndpoint     string
-	ObjectKey       string
-	SessionId       string
-	AccessKeyId     string
-	AccessKeySecret string
-	StsToken        string
+	Bucket          common.String
+	FileId          common.String
+	OssEndpoint     common.String
+	ObjectKey       common.String
+	SessionId       common.String
+	AccessKeyId     common.String
+	AccessKeySecret common.String
+	StsToken        common.String
 }

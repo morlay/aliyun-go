@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnRegionAndIspRequest struct {
@@ -23,19 +24,19 @@ func (req *DescribeCdnRegionAndIspRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeCdnRegionAndIspResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Regions   DescribeCdnRegionAndIspRegionList
 	Isps      DescribeCdnRegionAndIspIspList
 }
 
 type DescribeCdnRegionAndIspRegion struct {
-	NameZh string
-	NameEn string
+	NameZh common.String
+	NameEn common.String
 }
 
 type DescribeCdnRegionAndIspIsp struct {
-	NameZh string
-	NameEn string
+	NameZh common.String
+	NameEn common.String
 }
 
 type DescribeCdnRegionAndIspRegionList []DescribeCdnRegionAndIspRegion

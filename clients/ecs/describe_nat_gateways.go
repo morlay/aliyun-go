@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeNatGatewaysRequest struct {
@@ -29,24 +30,24 @@ func (req *DescribeNatGatewaysRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeNatGatewaysResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageNumber  int
-	PageSize    int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageNumber  common.Integer
+	PageSize    common.Integer
 	NatGateways DescribeNatGatewaysNatGatewayList
 }
 
 type DescribeNatGatewaysNatGateway struct {
-	NatGatewayId        string
-	RegionId            string
-	Name                string
-	Description         string
-	VpcId               string
-	Spec                string
-	InstanceChargeType  string
-	BusinessStatus      string
-	CreationTime        string
-	Status              string
+	NatGatewayId        common.String
+	RegionId            common.String
+	Name                common.String
+	Description         common.String
+	VpcId               common.String
+	Spec                common.String
+	InstanceChargeType  common.String
+	BusinessStatus      common.String
+	CreationTime        common.String
+	Status              common.String
 	ForwardTableIds     DescribeNatGatewaysForwardTableIdList
 	BandwidthPackageIds DescribeNatGatewaysBandwidthPackageIdList
 }
@@ -66,10 +67,10 @@ func (list *DescribeNatGatewaysNatGatewayList) UnmarshalJSON(data []byte) error 
 	return nil
 }
 
-type DescribeNatGatewaysForwardTableIdList []string
+type DescribeNatGatewaysForwardTableIdList []common.String
 
 func (list *DescribeNatGatewaysForwardTableIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -81,10 +82,10 @@ func (list *DescribeNatGatewaysForwardTableIdList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeNatGatewaysBandwidthPackageIdList []string
+type DescribeNatGatewaysBandwidthPackageIdList []common.String
 
 func (list *DescribeNatGatewaysBandwidthPackageIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListNotesRequest struct {
@@ -22,14 +23,14 @@ func (req *ListNotesRequest) Invoke(client *sdk.Client) (resp *ListNotesResponse
 
 type ListNotesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Notes     ListNotesNoteInfoList
 }
 
 type ListNotesNoteInfo struct {
-	Id   string
-	Name string
-	Type string
+	Id   common.String
+	Name common.String
+	Type common.String
 }
 
 type ListNotesNoteInfoList []ListNotesNoteInfo

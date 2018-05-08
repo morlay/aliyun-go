@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPriceForBuyRequest struct {
@@ -38,38 +39,38 @@ func (req *QueryPriceForBuyRequest) Invoke(client *sdk.Client) (resp *QueryPrice
 
 type QueryPriceForBuyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Rules     QueryPriceForBuyRuleList
 	PriceInfo QueryPriceForBuyPriceInfo
 }
 
 type QueryPriceForBuyRule struct {
-	RuleId      int64
-	Name        string
-	Description string
+	RuleId      common.Long
+	Name        common.String
+	Description common.String
 }
 
 type QueryPriceForBuyPriceInfo struct {
-	Currency      string
-	OriginalPrice float32
-	TradePrice    float32
-	DiscountPrice float32
+	Currency      common.String
+	OriginalPrice common.Float
+	TradePrice    common.Float
+	DiscountPrice common.Float
 	Coupons       QueryPriceForBuyCouponList
 	RuleIds       QueryPriceForBuyRuleIdList
 	ActivityInfo  QueryPriceForBuyActivityInfo
 }
 
 type QueryPriceForBuyCoupon struct {
-	CouponNo    string
-	Name        string
-	Description string
-	IsSelected  string
+	CouponNo    common.String
+	Name        common.String
+	Description common.String
+	IsSelected  common.String
 }
 
 type QueryPriceForBuyActivityInfo struct {
-	CheckErrMsg string
-	ErrorCode   string
-	Success     string
+	CheckErrMsg common.String
+	ErrorCode   common.String
+	Success     common.String
 }
 
 type QueryPriceForBuyRuleList []QueryPriceForBuyRule
@@ -102,10 +103,10 @@ func (list *QueryPriceForBuyCouponList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryPriceForBuyRuleIdList []string
+type QueryPriceForBuyRuleIdList []common.String
 
 func (list *QueryPriceForBuyRuleIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

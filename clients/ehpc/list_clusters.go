@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClustersRequest struct {
@@ -23,29 +24,29 @@ func (req *ListClustersRequest) Invoke(client *sdk.Client) (resp *ListClustersRe
 
 type ListClustersResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Clusters   ListClustersClusterInfoSimpleList
 }
 
 type ListClustersClusterInfoSimple struct {
-	Id              string
-	RegionId        string
-	ZoneId          string
-	Name            string
-	Description     string
-	Status          string
-	OsTag           string
-	AccountType     string
-	SchedulerType   string
-	Count           int
-	InstanceType    string
-	LoginNodes      string
-	CreateTime      string
-	ImageOwnerAlias string
-	ImageId         string
+	Id              common.String
+	RegionId        common.String
+	ZoneId          common.String
+	Name            common.String
+	Description     common.String
+	Status          common.String
+	OsTag           common.String
+	AccountType     common.String
+	SchedulerType   common.String
+	Count           common.Integer
+	InstanceType    common.String
+	LoginNodes      common.String
+	CreateTime      common.String
+	ImageOwnerAlias common.String
+	ImageId         common.String
 	Managers        ListClustersManagers
 	Computes        ListClustersComputes
 	TotalResources  ListClustersTotalResources
@@ -53,27 +54,27 @@ type ListClustersClusterInfoSimple struct {
 }
 
 type ListClustersManagers struct {
-	Toatal         int
-	NormalCount    int
-	ExceptionCount int
+	Toatal         common.Integer
+	NormalCount    common.Integer
+	ExceptionCount common.Integer
 }
 
 type ListClustersComputes struct {
-	Toatal         int
-	NormalCount    int
-	ExceptionCount int
+	Toatal         common.Integer
+	NormalCount    common.Integer
+	ExceptionCount common.Integer
 }
 
 type ListClustersTotalResources struct {
-	Cpu    int
-	Memory int
-	Gpu    int
+	Cpu    common.Integer
+	Memory common.Integer
+	Gpu    common.Integer
 }
 
 type ListClustersUsedResources struct {
-	Cpu    int
-	Memory int
-	Gpu    int
+	Cpu    common.Integer
+	Memory common.Integer
+	Gpu    common.Integer
 }
 
 type ListClustersClusterInfoSimpleList []ListClustersClusterInfoSimple

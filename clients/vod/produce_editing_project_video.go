@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ProduceEditingProjectVideoRequest struct {
@@ -29,7 +30,7 @@ func (req *ProduceEditingProjectVideoRequest) Invoke(client *sdk.Client) (resp *
 
 type ProduceEditingProjectVideoResponse struct {
 	responses.BaseResponse
-	RequestId string
-	MediaId   string
-	ProjectId string
+	RequestId common.String
+	MediaId   common.String
+	ProjectId common.String
 }

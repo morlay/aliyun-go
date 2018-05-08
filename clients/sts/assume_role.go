@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AssumeRoleRequest struct {
@@ -23,19 +24,19 @@ func (req *AssumeRoleRequest) Invoke(client *sdk.Client) (resp *AssumeRoleRespon
 
 type AssumeRoleResponse struct {
 	responses.BaseResponse
-	RequestId       string
+	RequestId       common.String
 	Credentials     AssumeRoleCredentials
 	AssumedRoleUser AssumeRoleAssumedRoleUser
 }
 
 type AssumeRoleCredentials struct {
-	SecurityToken   string
-	AccessKeySecret string
-	AccessKeyId     string
-	Expiration      string
+	SecurityToken   common.String
+	AccessKeySecret common.String
+	AccessKeyId     common.String
+	Expiration      common.String
 }
 
 type AssumeRoleAssumedRoleUser struct {
-	Arn           string
-	AssumedRoleId string
+	Arn           common.String
+	AssumedRoleId common.String
 }

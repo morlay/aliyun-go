@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMessageGetByMsgIdRequest struct {
@@ -26,30 +27,30 @@ func (req *OnsMessageGetByMsgIdRequest) Invoke(client *sdk.Client) (resp *OnsMes
 
 type OnsMessageGetByMsgIdResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsMessageGetByMsgIdData
 }
 
 type OnsMessageGetByMsgIdData struct {
-	Topic          string
-	Flag           int
-	Body           string
-	StoreSize      int
-	BornTimestamp  int64
-	BornHost       string
-	StoreTimestamp int64
-	StoreHost      string
-	MsgId          string
-	OffsetId       string
-	BodyCRC        int
-	ReconsumeTimes int
+	Topic          common.String
+	Flag           common.Integer
+	Body           common.String
+	StoreSize      common.Integer
+	BornTimestamp  common.Long
+	BornHost       common.String
+	StoreTimestamp common.Long
+	StoreHost      common.String
+	MsgId          common.String
+	OffsetId       common.String
+	BodyCRC        common.Integer
+	ReconsumeTimes common.Integer
 	PropertyList   OnsMessageGetByMsgIdMessagePropertyList
 }
 
 type OnsMessageGetByMsgIdMessageProperty struct {
-	Name  string
-	Value string
+	Name  common.String
+	Value common.String
 }
 
 type OnsMessageGetByMsgIdMessagePropertyList []OnsMessageGetByMsgIdMessageProperty

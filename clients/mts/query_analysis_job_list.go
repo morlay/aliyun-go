@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryAnalysisJobListRequest struct {
@@ -26,21 +27,21 @@ func (req *QueryAnalysisJobListRequest) Invoke(client *sdk.Client) (resp *QueryA
 
 type QueryAnalysisJobListResponse struct {
 	responses.BaseResponse
-	RequestId              string
+	RequestId              common.String
 	AnalysisJobList        QueryAnalysisJobListAnalysisJobList
 	NonExistAnalysisJobIds QueryAnalysisJobListNonExistAnalysisJobIdList
 }
 
 type QueryAnalysisJobListAnalysisJob struct {
-	Id               string
-	UserData         string
-	State            string
-	Code             string
-	Message          string
-	Percent          int64
-	CreationTime     string
-	PipelineId       string
-	Priority         string
+	Id               common.String
+	UserData         common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	Percent          common.Long
+	CreationTime     common.String
+	PipelineId       common.String
+	Priority         common.String
 	TemplateList     QueryAnalysisJobListTemplateList
 	InputFile        QueryAnalysisJobListInputFile
 	AnalysisConfig   QueryAnalysisJobListAnalysisConfig
@@ -48,9 +49,9 @@ type QueryAnalysisJobListAnalysisJob struct {
 }
 
 type QueryAnalysisJobListTemplate struct {
-	Id          string
-	Name        string
-	State       string
+	Id          common.String
+	Name        common.String
+	State       common.String
 	Container   QueryAnalysisJobListContainer
 	Video       QueryAnalysisJobListVideo
 	Audio       QueryAnalysisJobListAudio
@@ -59,44 +60,44 @@ type QueryAnalysisJobListTemplate struct {
 }
 
 type QueryAnalysisJobListContainer struct {
-	Format string
+	Format common.String
 }
 
 type QueryAnalysisJobListVideo struct {
-	Codec      string
-	Profile    string
-	Bitrate    string
-	Crf        string
-	Width      string
-	Height     string
-	Fps        string
-	Gop        string
-	Preset     string
-	ScanMode   string
-	Bufsize    string
-	Maxrate    string
-	PixFmt     string
-	Degrain    string
-	Qscale     string
+	Codec      common.String
+	Profile    common.String
+	Bitrate    common.String
+	Crf        common.String
+	Width      common.String
+	Height     common.String
+	Fps        common.String
+	Gop        common.String
+	Preset     common.String
+	ScanMode   common.String
+	Bufsize    common.String
+	Maxrate    common.String
+	PixFmt     common.String
+	Degrain    common.String
+	Qscale     common.String
 	BitrateBnd QueryAnalysisJobListBitrateBnd
 }
 
 type QueryAnalysisJobListBitrateBnd struct {
-	Max string
-	Min string
+	Max common.String
+	Min common.String
 }
 
 type QueryAnalysisJobListAudio struct {
-	Codec      string
-	Profile    string
-	Samplerate string
-	Bitrate    string
-	Channels   string
-	Qscale     string
+	Codec      common.String
+	Profile    common.String
+	Samplerate common.String
+	Bitrate    common.String
+	Channels   common.String
+	Qscale     common.String
 }
 
 type QueryAnalysisJobListTransConfig struct {
-	TransMode string
+	TransMode common.String
 }
 
 type QueryAnalysisJobListMuxConfig struct {
@@ -105,18 +106,18 @@ type QueryAnalysisJobListMuxConfig struct {
 }
 
 type QueryAnalysisJobListSegment struct {
-	Duration string
+	Duration common.String
 }
 
 type QueryAnalysisJobListGif struct {
-	Loop       string
-	FinalDelay string
+	Loop       common.String
+	FinalDelay common.String
 }
 
 type QueryAnalysisJobListInputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryAnalysisJobListAnalysisConfig struct {
@@ -125,27 +126,27 @@ type QueryAnalysisJobListAnalysisConfig struct {
 }
 
 type QueryAnalysisJobListQualityControl struct {
-	RateQuality     string
-	MethodStreaming string
+	RateQuality     common.String
+	MethodStreaming common.String
 }
 
 type QueryAnalysisJobListPropertiesControl struct {
-	Deinterlace string
+	Deinterlace common.String
 	Crop        QueryAnalysisJobListCrop
 }
 
 type QueryAnalysisJobListCrop struct {
-	Mode   string
-	Width  string
-	Height string
-	Top    string
-	Left   string
+	Mode   common.String
+	Width  common.String
+	Height common.String
+	Top    common.String
+	Left   common.String
 }
 
 type QueryAnalysisJobListMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }
 
 type QueryAnalysisJobListAnalysisJobList []QueryAnalysisJobListAnalysisJob
@@ -163,10 +164,10 @@ func (list *QueryAnalysisJobListAnalysisJobList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type QueryAnalysisJobListNonExistAnalysisJobIdList []string
+type QueryAnalysisJobListNonExistAnalysisJobIdList []common.String
 
 func (list *QueryAnalysisJobListNonExistAnalysisJobIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryJobListRequest struct {
@@ -26,41 +27,41 @@ func (req *QueryJobListRequest) Invoke(client *sdk.Client) (resp *QueryJobListRe
 
 type QueryJobListResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	JobList        QueryJobListJobList
 	NonExistJobIds QueryJobListNonExistJobIdList
 }
 
 type QueryJobListJob struct {
-	JobId            string
-	State            string
-	Code             string
-	Message          string
-	Percent          int64
-	PipelineId       string
-	CreationTime     string
-	FinishTime       string
+	JobId            common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	Percent          common.Long
+	PipelineId       common.String
+	CreationTime     common.String
+	FinishTime       common.String
 	Input            QueryJobListInput
 	Output           QueryJobListOutput
 	MNSMessageResult QueryJobListMNSMessageResult
 }
 
 type QueryJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryJobListOutput struct {
-	TemplateId             string
-	UserData               string
-	Rotate                 string
-	VideoStreamMap         string
-	AudioStreamMap         string
-	DeWatermark            string
-	Priority               string
-	WaterMarkConfigUrl     string
-	MergeConfigUrl         string
+	TemplateId             common.String
+	UserData               common.String
+	Rotate                 common.String
+	VideoStreamMap         common.String
+	AudioStreamMap         common.String
+	DeWatermark            common.String
+	Priority               common.String
+	WaterMarkConfigUrl     common.String
+	MergeConfigUrl         common.String
 	WaterMarkList          QueryJobListWaterMarkList
 	MergeList              QueryJobListMergeList
 	OpeningList            QueryJobListOpeningList
@@ -80,51 +81,51 @@ type QueryJobListOutput struct {
 }
 
 type QueryJobListWaterMark struct {
-	WaterMarkTemplateId string
-	Width               string
-	Height              string
-	Dx                  string
-	Dy                  string
-	ReferPos            string
-	Type                string
+	WaterMarkTemplateId common.String
+	Width               common.String
+	Height              common.String
+	Dx                  common.String
+	Dy                  common.String
+	ReferPos            common.String
+	Type                common.String
 	InputFile           QueryJobListInputFile
 }
 
 type QueryJobListInputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryJobListMerge struct {
-	MergeURL string
-	Start    string
-	Duration string
-	RoleArn  string
+	MergeURL common.String
+	Start    common.String
+	Duration common.String
+	RoleArn  common.String
 }
 
 type QueryJobListOpening struct {
-	OpenUrl string
-	Start   string
-	Width   string
-	Height  string
+	OpenUrl common.String
+	Start   common.String
+	Width   common.String
+	Height  common.String
 }
 
 type QueryJobListTailSlate struct {
-	TailUrl       string
-	Start         string
-	BlendDuration string
-	Width         string
-	Height        string
+	TailUrl       common.String
+	Start         common.String
+	BlendDuration common.String
+	Width         common.String
+	Height        common.String
 	IsMergeAudio  bool
-	BgColor       string
+	BgColor       common.String
 }
 
 type QueryJobListOutputFile struct {
-	Bucket   string
-	Location string
-	Object   string
-	RoleArn  string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
+	RoleArn  common.String
 }
 
 type QueryJobListM3U8NonStandardSupport struct {
@@ -137,20 +138,20 @@ type QueryJobListTS struct {
 }
 
 type QueryJobListProperties struct {
-	Width       string
-	Height      string
-	Bitrate     string
-	Duration    string
-	Fps         string
-	FileSize    string
-	FileFormat  string
+	Width       common.String
+	Height      common.String
+	Bitrate     common.String
+	Duration    common.String
+	Fps         common.String
+	FileSize    common.String
+	FileFormat  common.String
 	SourceLogos QueryJobListSourceLogoList
 	Streams     QueryJobListStreams
 	Format      QueryJobListFormat
 }
 
 type QueryJobListSourceLogo struct {
-	Source string
+	Source common.String
 }
 
 type QueryJobListStreams struct {
@@ -160,70 +161,70 @@ type QueryJobListStreams struct {
 }
 
 type QueryJobListVideoStream struct {
-	Index          string
-	CodecName      string
-	CodecLongName  string
-	Profile        string
-	CodecTimeBase  string
-	CodecTagString string
-	CodecTag       string
-	Width          string
-	Height         string
-	HasBFrames     string
-	Sar            string
-	Dar            string
-	PixFmt         string
-	Level          string
-	Fps            string
-	AvgFPS         string
-	Timebase       string
-	StartTime      string
-	Duration       string
-	Bitrate        string
-	NumFrames      string
-	Lang           string
+	Index          common.String
+	CodecName      common.String
+	CodecLongName  common.String
+	Profile        common.String
+	CodecTimeBase  common.String
+	CodecTagString common.String
+	CodecTag       common.String
+	Width          common.String
+	Height         common.String
+	HasBFrames     common.String
+	Sar            common.String
+	Dar            common.String
+	PixFmt         common.String
+	Level          common.String
+	Fps            common.String
+	AvgFPS         common.String
+	Timebase       common.String
+	StartTime      common.String
+	Duration       common.String
+	Bitrate        common.String
+	NumFrames      common.String
+	Lang           common.String
 	NetworkCost    QueryJobListNetworkCost
 }
 
 type QueryJobListNetworkCost struct {
-	PreloadTime   string
-	CostBandwidth string
-	AvgBitrate    string
+	PreloadTime   common.String
+	CostBandwidth common.String
+	AvgBitrate    common.String
 }
 
 type QueryJobListAudioStream struct {
-	Index          string
-	CodecName      string
-	CodecTimeBase  string
-	CodecLongName  string
-	CodecTagString string
-	CodecTag       string
-	SampleFmt      string
-	Samplerate     string
-	Channels       string
-	ChannelLayout  string
-	Timebase       string
-	StartTime      string
-	Duration       string
-	Bitrate        string
-	NumFrames      string
-	Lang           string
+	Index          common.String
+	CodecName      common.String
+	CodecTimeBase  common.String
+	CodecLongName  common.String
+	CodecTagString common.String
+	CodecTag       common.String
+	SampleFmt      common.String
+	Samplerate     common.String
+	Channels       common.String
+	ChannelLayout  common.String
+	Timebase       common.String
+	StartTime      common.String
+	Duration       common.String
+	Bitrate        common.String
+	NumFrames      common.String
+	Lang           common.String
 }
 
 type QueryJobListSubtitleStream struct {
-	Index string
-	Lang  string
+	Index common.String
+	Lang  common.String
 }
 
 type QueryJobListFormat struct {
-	NumStreams     string
-	NumPrograms    string
-	FormatName     string
-	FormatLongName string
-	StartTime      string
-	Duration       string
-	Size           string
-	Bitrate        string
+	NumStreams     common.String
+	NumPrograms    common.String
+	FormatName     common.String
+	FormatLongName common.String
+	StartTime      common.String
+	Duration       common.String
+	Size           common.String
+	Bitrate        common.String
 }
 
 type QueryJobListClip struct {
@@ -231,12 +232,12 @@ type QueryJobListClip struct {
 }
 
 type QueryJobListTimeSpan struct {
-	Seek     string
-	Duration string
+	Seek     common.String
+	Duration common.String
 }
 
 type QueryJobListSuperReso struct {
-	IsHalfSample string
+	IsHalfSample common.String
 }
 
 type QueryJobListSubtitleConfig struct {
@@ -245,30 +246,30 @@ type QueryJobListSubtitleConfig struct {
 }
 
 type QueryJobListSubtitle struct {
-	Map string
+	Map common.String
 }
 
 type QueryJobListExtSubtitle struct {
-	FontName string
-	CharEnc  string
+	FontName common.String
+	CharEnc  common.String
 	Input1   QueryJobListInput1
 }
 
 type QueryJobListInput1 struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryJobListTransConfig struct {
-	TransMode               string
-	IsCheckReso             string
-	IsCheckResoFail         string
-	IsCheckVideoBitrate     string
-	IsCheckAudioBitrate     string
-	AdjDarMethod            string
-	IsCheckVideoBitrateFail string
-	IsCheckAudioBitrateFail string
+	TransMode               common.String
+	IsCheckReso             common.String
+	IsCheckResoFail         common.String
+	IsCheckVideoBitrate     common.String
+	IsCheckAudioBitrate     common.String
+	AdjDarMethod            common.String
+	IsCheckVideoBitrateFail common.String
+	IsCheckAudioBitrateFail common.String
 }
 
 type QueryJobListMuxConfig struct {
@@ -277,75 +278,75 @@ type QueryJobListMuxConfig struct {
 }
 
 type QueryJobListSegment struct {
-	Duration string
+	Duration common.String
 }
 
 type QueryJobListGif struct {
-	Loop            string
-	FinalDelay      string
-	IsCustomPalette string
-	DitherMode      string
+	Loop            common.String
+	FinalDelay      common.String
+	IsCustomPalette common.String
+	DitherMode      common.String
 }
 
 type QueryJobListAudio struct {
-	Codec      string
-	Profile    string
-	Samplerate string
-	Bitrate    string
-	Channels   string
-	Qscale     string
+	Codec      common.String
+	Profile    common.String
+	Samplerate common.String
+	Bitrate    common.String
+	Channels   common.String
+	Qscale     common.String
 	Volume     QueryJobListVolume
 }
 
 type QueryJobListVolume struct {
-	Level  string
-	Method string
+	Level  common.String
+	Method common.String
 }
 
 type QueryJobListVideo struct {
-	Codec      string
-	Profile    string
-	Bitrate    string
-	Crf        string
-	Width      string
-	Height     string
-	Fps        string
-	Gop        string
-	Preset     string
-	ScanMode   string
-	Bufsize    string
-	Maxrate    string
-	PixFmt     string
-	Degrain    string
-	Qscale     string
-	Crop       string
-	Pad        string
-	MaxFps     string
+	Codec      common.String
+	Profile    common.String
+	Bitrate    common.String
+	Crf        common.String
+	Width      common.String
+	Height     common.String
+	Fps        common.String
+	Gop        common.String
+	Preset     common.String
+	ScanMode   common.String
+	Bufsize    common.String
+	Maxrate    common.String
+	PixFmt     common.String
+	Degrain    common.String
+	Qscale     common.String
+	Crop       common.String
+	Pad        common.String
+	MaxFps     common.String
 	BitrateBnd QueryJobListBitrateBnd
 }
 
 type QueryJobListBitrateBnd struct {
-	Max string
-	Min string
+	Max common.String
+	Min common.String
 }
 
 type QueryJobListContainer struct {
-	Format string
+	Format common.String
 }
 
 type QueryJobListEncryption struct {
-	Type    string
-	Id      string
-	Key     string
-	KeyUri  string
-	KeyType string
-	SkipCnt string
+	Type    common.String
+	Id      common.String
+	Key     common.String
+	KeyUri  common.String
+	KeyType common.String
+	SkipCnt common.String
 }
 
 type QueryJobListMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }
 
 type QueryJobListJobList []QueryJobListJob
@@ -363,10 +364,10 @@ func (list *QueryJobListJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryJobListNonExistJobIdList []string
+type QueryJobListNonExistJobIdList []common.String
 
 func (list *QueryJobListNonExistJobIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceAttributeRequest struct {
@@ -27,44 +28,44 @@ func (req *DescribeInstanceAttributeRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeInstanceAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Instances DescribeInstanceAttributeDBInstanceAttributeList
 }
 
 type DescribeInstanceAttributeDBInstanceAttribute struct {
-	InstanceId          string
-	InstanceName        string
-	ConnectionDomain    string
-	Port                int64
-	InstanceStatus      string
-	RegionId            string
-	Capacity            int64
-	InstanceClass       string
-	QPS                 int64
-	Bandwidth           int64
-	Connections         int64
-	ZoneId              string
-	Config              string
-	ChargeType          string
-	NodeType            string
-	NetworkType         string
-	VpcId               string
-	VSwitchId           string
-	PrivateIp           string
-	CreateTime          string
-	EndTime             string
-	HasRenewChangeOrder string
+	InstanceId          common.String
+	InstanceName        common.String
+	ConnectionDomain    common.String
+	Port                common.Long
+	InstanceStatus      common.String
+	RegionId            common.String
+	Capacity            common.Long
+	InstanceClass       common.String
+	QPS                 common.Long
+	Bandwidth           common.Long
+	Connections         common.Long
+	ZoneId              common.String
+	Config              common.String
+	ChargeType          common.String
+	NodeType            common.String
+	NetworkType         common.String
+	VpcId               common.String
+	VSwitchId           common.String
+	PrivateIp           common.String
+	CreateTime          common.String
+	EndTime             common.String
+	HasRenewChangeOrder common.String
 	IsRds               bool
-	Engine              string
-	EngineVersion       string
-	MaintainStartTime   string
-	MaintainEndTime     string
-	AvailabilityValue   string
-	SecurityIPList      string
-	InstanceType        string
-	ArchitectureType    string
-	NodeType1           string
-	PackageType         string
+	Engine              common.String
+	EngineVersion       common.String
+	MaintainStartTime   common.String
+	MaintainEndTime     common.String
+	AvailabilityValue   common.String
+	SecurityIPList      common.String
+	InstanceType        common.String
+	ArchitectureType    common.String
+	NodeType1           common.String
+	PackageType         common.String
 }
 
 type DescribeInstanceAttributeDBInstanceAttributeList []DescribeInstanceAttributeDBInstanceAttribute

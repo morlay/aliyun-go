@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiStageRequest struct {
@@ -23,19 +24,19 @@ func (req *DescribeApiStageRequest) Invoke(client *sdk.Client) (resp *DescribeAp
 
 type DescribeApiStageResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	GroupId      string
-	StageId      string
-	StageName    string
-	Description  string
-	CreatedTime  string
-	ModifiedTime string
+	RequestId    common.String
+	GroupId      common.String
+	StageId      common.String
+	StageName    common.String
+	Description  common.String
+	CreatedTime  common.String
+	ModifiedTime common.String
 	Variables    DescribeApiStageVariableItemList
 }
 
 type DescribeApiStageVariableItem struct {
-	VariableName  string
-	VariableValue string
+	VariableName  common.String
+	VariableValue common.String
 }
 
 type DescribeApiStageVariableItemList []DescribeApiStageVariableItem

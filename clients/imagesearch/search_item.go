@@ -28,38 +28,38 @@ func (req *SearchItemRequest) Invoke(client *sdk.Client) (resp *SearchItemRespon
 
 type SearchItemResponse struct {
 responses.BaseResponse
-RequestId string
+RequestId common.String
 Success bool
-Message string
-Code int
+Message common.String
+Code common.Integer
 Auctions SearchItemAuctionList
 Head SearchItemHead
 PicInfo SearchItemPicInfo
 }
 
 type SearchItemAuction struct {
-CustContent string
-ProductId string
-SortExprValues string
-CatId string
-PicName string
+CustContent common.String
+ProductId common.String
+SortExprValues common.String
+CatId common.String
+PicName common.String
 }
 
 type SearchItemHead struct {
-SearchTime int
-DocsFound int
-DocsReturn int
+SearchTime common.Integer
+DocsFound common.Integer
+DocsReturn common.Integer
 }
 
 type SearchItemPicInfo struct {
-Category string
-Region string
+Category common.String
+Region common.String
 AllCategory SearchItemCategoryList
 }
 
 type SearchItemCategory struct {
-Name string
-Id string
+Name common.String
+Id common.String
 }
 
                     type SearchItemAuctionList []SearchItemAuction

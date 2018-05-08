@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ActionDiskCheckRequest struct {
@@ -22,6 +23,6 @@ func (req *ActionDiskCheckRequest) Invoke(client *sdk.Client) (resp *ActionDiskC
 type ActionDiskCheckResponse struct {
 	responses.BaseResponse
 	Status  bool
-	Message string
-	Result  string
+	Message common.String
+	Result  common.String
 }

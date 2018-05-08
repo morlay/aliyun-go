@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetOrderRequest struct {
@@ -23,9 +24,9 @@ func (req *GetOrderRequest) Invoke(client *sdk.Client) (resp *GetOrderResponse, 
 
 type GetOrderResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetOrderData
 }
 
@@ -34,23 +35,23 @@ type GetOrderData struct {
 }
 
 type GetOrderOrder struct {
-	Alias                 string
-	CredentialGroupId     int64
-	CsbId                 int64
-	DauthGroupName        string
-	GmtCreate             int64
-	GmtModified           int64
-	GroupName             string
-	Id                    int64
-	ProjectName           string
-	ServiceId             int64
-	ServiceName           string
-	ServiceStatus         int
-	ServiceVersion        string
-	StatisticName         string
-	Status                int
-	StrictWhiteListJson   string
-	UserId                string
+	Alias                 common.String
+	CredentialGroupId     common.Long
+	CsbId                 common.Long
+	DauthGroupName        common.String
+	GmtCreate             common.Long
+	GmtModified           common.Long
+	GroupName             common.String
+	Id                    common.Long
+	ProjectName           common.String
+	ServiceId             common.Long
+	ServiceName           common.String
+	ServiceStatus         common.Integer
+	ServiceVersion        common.String
+	StatisticName         common.String
+	Status                common.Integer
+	StrictWhiteListJson   common.String
+	UserId                common.String
 	ErrorTypeCatagoryList GetOrderErrorTypeCatagoryList
 	StrictWhiteList       GetOrderStrictWhiteListList
 	Service               GetOrderService
@@ -59,50 +60,50 @@ type GetOrderOrder struct {
 }
 
 type GetOrderErrorTypeCatagory struct {
-	Total    int
-	ErrorNum int
-	Name     string
+	Total    common.Integer
+	ErrorNum common.Integer
+	Name     common.String
 }
 
 type GetOrderService struct {
-	AccessParamsJSON    string
+	AccessParamsJSON    common.String
 	Active              bool
-	Alias               string
+	Alias               common.String
 	AllVisiable         bool
-	ConsumeTypesJSON    string
-	CreateTime          int64
-	CsbId               int64
-	ErrDefJSON          string
-	Id                  int64
-	InterfaceName       string
-	OldVersion          string
+	ConsumeTypesJSON    common.String
+	CreateTime          common.Long
+	CsbId               common.Long
+	ErrDefJSON          common.String
+	Id                  common.Long
+	InterfaceName       common.String
+	OldVersion          common.String
 	OttFlag             bool
-	OwnerId             string
-	PrincipalName       string
-	ProjectId           string
-	ProjectName         string
-	ProvideType         string
+	OwnerId             common.String
+	PrincipalName       common.String
+	ProjectId           common.String
+	ProjectName         common.String
+	ProvideType         common.String
 	SSL                 bool
-	Scope               string
-	ServiceName         string
-	ServiceProviderType string
-	ServiceVersion      string
+	Scope               common.String
+	ServiceName         common.String
+	ServiceProviderType common.String
+	ServiceVersion      common.String
 	SkipAuth            bool
-	StatisticName       string
-	Status              int
-	UserId              int64
+	StatisticName       common.String
+	Status              common.Integer
+	UserId              common.Long
 	ValidConsumeTypes   bool
 	ValidProvideType    bool
 }
 
 type GetOrderSlaInfo struct {
-	Qph string
-	Qps string
+	Qph common.String
+	Qps common.String
 }
 
 type GetOrderTotal struct {
-	ErrorNum int
-	Total    int
+	ErrorNum common.Integer
+	Total    common.Integer
 }
 
 type GetOrderErrorTypeCatagoryList []GetOrderErrorTypeCatagory
@@ -120,10 +121,10 @@ func (list *GetOrderErrorTypeCatagoryList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetOrderStrictWhiteListList []string
+type GetOrderStrictWhiteListList []common.String
 
 func (list *GetOrderStrictWhiteListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryCrackEventRequest struct {
@@ -26,10 +27,10 @@ func (req *QueryCrackEventRequest) Invoke(client *sdk.Client) (resp *QueryCrackE
 
 type QueryCrackEventResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
+	RequestId common.String
+	Code      common.String
 	Success   bool
-	Message   string
+	Message   common.String
 	Data      QueryCrackEventData
 }
 
@@ -39,30 +40,30 @@ type QueryCrackEventData struct {
 }
 
 type QueryCrackEventEntity struct {
-	Uuid           string
-	AttackTime     string
-	AttackType     int
-	AttackTypeName string
-	BuyVersion     string
-	CrackSourceIp  string
-	CrackTimes     int
-	GroupId        int
-	InstanceName   string
-	InstanceId     string
-	Ip             string
-	Region         string
-	Status         int
-	StatusName     string
-	Location       string
-	InWhite        int
-	UserName       string
+	Uuid           common.String
+	AttackTime     common.String
+	AttackType     common.Integer
+	AttackTypeName common.String
+	BuyVersion     common.String
+	CrackSourceIp  common.String
+	CrackTimes     common.Integer
+	GroupId        common.Integer
+	InstanceName   common.String
+	InstanceId     common.String
+	Ip             common.String
+	Region         common.String
+	Status         common.Integer
+	StatusName     common.String
+	Location       common.String
+	InWhite        common.Integer
+	UserName       common.String
 }
 
 type QueryCrackEventPageInfo struct {
-	CurrentPage int
-	PageSize    int
-	TotalCount  int
-	Count       int
+	CurrentPage common.Integer
+	PageSize    common.Integer
+	TotalCount  common.Integer
+	Count       common.Integer
 }
 
 type QueryCrackEventEntityList []QueryCrackEventEntity

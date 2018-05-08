@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRefreshTasksRequest struct {
@@ -34,21 +35,21 @@ func (req *DescribeRefreshTasksRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeRefreshTasksResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageSize   int
-	PageNumber int
-	TotalCount int
+	RequestId  common.String
+	PageSize   common.Integer
+	PageNumber common.Integer
+	TotalCount common.Integer
 	Tasks      DescribeRefreshTasksTaskList
 }
 
 type DescribeRefreshTasksTask struct {
-	TaskId       string
-	ObjectPath   string
-	Status       string
-	Process      string
-	ObjectType   string
-	CreationTime string
-	Description  string
+	TaskId       common.String
+	ObjectPath   common.String
+	Status       common.String
+	Process      common.String
+	ObjectType   common.String
+	CreationTime common.String
+	Description  common.String
 }
 
 type DescribeRefreshTasksTaskList []DescribeRefreshTasksTask

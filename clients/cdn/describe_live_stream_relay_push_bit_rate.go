@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamRelayPushBitRateRequest struct {
@@ -26,17 +27,17 @@ func (req *DescribeLiveStreamRelayPushBitRateRequest) Invoke(client *sdk.Client)
 
 type DescribeLiveStreamRelayPushBitRateResponse struct {
 	responses.BaseResponse
-	RequestId                 string
+	RequestId                 common.String
 	RelayPushBitRateModelList DescribeLiveStreamRelayPushBitRateRelayPushBitRateModelList
 }
 
 type DescribeLiveStreamRelayPushBitRateRelayPushBitRateModel struct {
-	Time          string
-	VedioFrame    string
-	VedioTimstamp string
-	AudioFrame    string
-	AudioTimstamp string
-	RelayDomain   string
+	Time          common.String
+	VedioFrame    common.String
+	VedioTimstamp common.String
+	AudioFrame    common.String
+	AudioTimstamp common.String
+	RelayDomain   common.String
 }
 
 type DescribeLiveStreamRelayPushBitRateRelayPushBitRateModelList []DescribeLiveStreamRelayPushBitRateRelayPushBitRateModel

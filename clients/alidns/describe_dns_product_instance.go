@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDnsProductInstanceRequest struct {
@@ -24,38 +25,38 @@ func (req *DescribeDnsProductInstanceRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeDnsProductInstanceResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	InstanceId            string
-	VersionCode           string
-	VersionName           string
-	StartTime             string
-	StartTimestamp        int64
-	EndTime               string
-	EndTimestamp          int64
-	Domain                string
-	BindCount             int64
-	BindUsedCount         int64
-	TTLMinValue           int64
-	SubDomainLevel        int64
-	DnsSLBCount           int64
-	URLForwardCount       int64
-	DDosDefendFlow        int64
-	DDosDefendQuery       int64
-	OverseaDDosDefendFlow int64
-	SearchEngineLines     string
-	ISPLines              string
-	ISPRegionLines        string
-	OverseaLine           string
-	MonitorNodeCount      int64
-	MonitorFrequency      int64
-	MonitorTaskCount      int64
+	RequestId             common.String
+	InstanceId            common.String
+	VersionCode           common.String
+	VersionName           common.String
+	StartTime             common.String
+	StartTimestamp        common.Long
+	EndTime               common.String
+	EndTimestamp          common.Long
+	Domain                common.String
+	BindCount             common.Long
+	BindUsedCount         common.Long
+	TTLMinValue           common.Long
+	SubDomainLevel        common.Long
+	DnsSLBCount           common.Long
+	URLForwardCount       common.Long
+	DDosDefendFlow        common.Long
+	DDosDefendQuery       common.Long
+	OverseaDDosDefendFlow common.Long
+	SearchEngineLines     common.String
+	ISPLines              common.String
+	ISPRegionLines        common.String
+	OverseaLine           common.String
+	MonitorNodeCount      common.Long
+	MonitorFrequency      common.Long
+	MonitorTaskCount      common.Long
 	DnsServers            DescribeDnsProductInstanceDnsServerList
 }
 
-type DescribeDnsProductInstanceDnsServerList []string
+type DescribeDnsProductInstanceDnsServerList []common.String
 
 func (list *DescribeDnsProductInstanceDnsServerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

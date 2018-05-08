@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpgradeDBInstanceNetworkRequest struct {
@@ -25,6 +26,6 @@ func (req *UpgradeDBInstanceNetworkRequest) Invoke(client *sdk.Client) (resp *Up
 
 type UpgradeDBInstanceNetworkResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DBInstanceName string
+	RequestId      common.String
+	DBInstanceName common.String
 }

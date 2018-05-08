@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteLoginProfileRequest struct {
@@ -20,5 +21,5 @@ func (req *DeleteLoginProfileRequest) Invoke(client *sdk.Client) (resp *DeleteLo
 
 type DeleteLoginProfileResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

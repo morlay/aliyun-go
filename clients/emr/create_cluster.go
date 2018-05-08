@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateClusterRequest struct {
@@ -69,11 +70,11 @@ type CreateClusterEcsOrder struct {
 
 type CreateClusterResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	ClusterId     string
-	EmrOrderId    string
-	MasterOrderId string
-	CoreOrderId   string
+	RequestId     common.String
+	ClusterId     common.String
+	EmrOrderId    common.String
+	MasterOrderId common.String
+	CoreOrderId   common.String
 }
 
 type CreateClusterBootstrapActionList []CreateClusterBootstrapAction

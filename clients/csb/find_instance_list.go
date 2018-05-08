@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindInstanceListRequest struct {
@@ -25,29 +26,29 @@ func (req *FindInstanceListRequest) Invoke(client *sdk.Client) (resp *FindInstan
 
 type FindInstanceListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindInstanceListData
 }
 
 type FindInstanceListData struct {
-	CurrentPage int
-	PageNumber  int
+	CurrentPage common.Integer
+	PageNumber  common.Integer
 	ItemList    FindInstanceListItemList
 }
 
 type FindInstanceListItem struct {
-	Description      string
-	FrontStatus      string
-	GmtCreate        int64
-	GmtModified      int64
-	Id               int64
-	InstanceCategory int
-	Name             string
-	StatusCode       int
+	Description      common.String
+	FrontStatus      common.String
+	GmtCreate        common.Long
+	GmtModified      common.Long
+	Id               common.Long
+	InstanceCategory common.Integer
+	Name             common.String
+	StatusCode       common.Integer
 	Visible          bool
-	VpcName          string
+	VpcName          common.String
 }
 
 type FindInstanceListItemList []FindInstanceListItem

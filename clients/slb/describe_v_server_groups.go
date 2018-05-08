@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVServerGroupsRequest struct {
@@ -28,13 +29,13 @@ func (req *DescribeVServerGroupsRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeVServerGroupsResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	VServerGroups DescribeVServerGroupsVServerGroupList
 }
 
 type DescribeVServerGroupsVServerGroup struct {
-	VServerGroupId   string
-	VServerGroupName string
+	VServerGroupId   common.String
+	VServerGroupName common.String
 }
 
 type DescribeVServerGroupsVServerGroupList []DescribeVServerGroupsVServerGroup

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRegionsRequest struct {
@@ -28,7 +29,7 @@ type DescribeRegionsResponse struct {
 }
 
 type DescribeRegionsRegion struct {
-	RegionId           string
+	RegionId           common.String
 	ClassicUnavailable bool
 	VpcUnavailable     bool
 }

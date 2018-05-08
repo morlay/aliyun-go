@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ActivatePhotosRequest struct {
@@ -24,18 +25,18 @@ func (req *ActivatePhotosRequest) Invoke(client *sdk.Client) (resp *ActivatePhot
 
 type ActivatePhotosResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Results   ActivatePhotosResultList
 }
 
 type ActivatePhotosResult struct {
-	Id      int64
-	IdStr   string
-	Code    string
-	Message string
+	Id      common.Long
+	IdStr   common.String
+	Code    common.String
+	Message common.String
 }
 
 type ActivatePhotosPhotoIdList []int64

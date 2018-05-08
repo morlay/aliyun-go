@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterResourcePoolSchedulerTypeRequest struct {
@@ -21,7 +22,7 @@ func (req *DescribeClusterResourcePoolSchedulerTypeRequest) Invoke(client *sdk.C
 
 type DescribeClusterResourcePoolSchedulerTypeResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	CurrentSchedulerType string
-	SupportSchedulerType string
+	RequestId            common.String
+	CurrentSchedulerType common.String
+	SupportSchedulerType common.String
 }

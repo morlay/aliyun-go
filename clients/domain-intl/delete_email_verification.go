@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteEmailVerificationRequest struct {
@@ -24,15 +25,15 @@ func (req *DeleteEmailVerificationRequest) Invoke(client *sdk.Client) (resp *Del
 
 type DeleteEmailVerificationResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	SuccessList DeleteEmailVerificationSendResultList
 	FailList    DeleteEmailVerificationSendResultList
 }
 
 type DeleteEmailVerificationSendResult struct {
-	Email   string
-	Code    string
-	Message string
+	Email   common.String
+	Code    common.String
+	Message common.String
 }
 
 type DeleteEmailVerificationSendResultList []DeleteEmailVerificationSendResult

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateNetworkInterfaceRequest struct {
@@ -29,6 +30,6 @@ func (req *CreateNetworkInterfaceRequest) Invoke(client *sdk.Client) (resp *Crea
 
 type CreateNetworkInterfaceResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	NetworkInterfaceId string
+	RequestId          common.String
+	NetworkInterfaceId common.String
 }

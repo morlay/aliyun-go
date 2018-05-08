@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLimitationRequest struct {
@@ -24,7 +25,7 @@ func (req *DescribeLimitationRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeLimitationResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	Limitation string
-	Value      string
+	RequestId  common.String
+	Limitation common.String
+	Value      common.String
 }

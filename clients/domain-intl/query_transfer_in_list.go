@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTransferInListRequest struct {
@@ -29,38 +30,38 @@ func (req *QueryTransferInListRequest) Invoke(client *sdk.Client) (resp *QueryTr
 
 type QueryTransferInListResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalItemNum   int
-	CurrentPageNum int
-	TotalPageNum   int
-	PageSize       int
+	RequestId      common.String
+	TotalItemNum   common.Integer
+	CurrentPageNum common.Integer
+	TotalPageNum   common.Integer
+	PageSize       common.Integer
 	PrePage        bool
 	NextPage       bool
 	Data           QueryTransferInListTransferInInfoList
 }
 
 type QueryTransferInListTransferInInfo struct {
-	SubmissionDate                              string
-	ModificationDate                            string
-	UserId                                      string
-	InstanceId                                  string
-	DomainName                                  string
-	Status                                      int
-	SimpleTransferInStatus                      string
-	ResultCode                                  string
-	ResultDate                                  string
-	ResultMsg                                   string
-	TransferAuthorizationCodeSubmissionDate     string
+	SubmissionDate                              common.String
+	ModificationDate                            common.String
+	UserId                                      common.String
+	InstanceId                                  common.String
+	DomainName                                  common.String
+	Status                                      common.Integer
+	SimpleTransferInStatus                      common.String
+	ResultCode                                  common.String
+	ResultDate                                  common.String
+	ResultMsg                                   common.String
+	TransferAuthorizationCodeSubmissionDate     common.String
 	NeedMailCheck                               bool
-	Email                                       string
+	Email                                       common.String
 	WhoisMailStatus                             bool
-	ExpirationDate                              string
-	ProgressBarType                             int
-	SubmissionDateLong                          int64
-	ModificationDateLong                        int64
-	ResultDateLong                              int64
-	ExpirationDateLong                          int64
-	TransferAuthorizationCodeSubmissionDateLong int64
+	ExpirationDate                              common.String
+	ProgressBarType                             common.Integer
+	SubmissionDateLong                          common.Long
+	ModificationDateLong                        common.Long
+	ResultDateLong                              common.Long
+	ExpirationDateLong                          common.Long
+	TransferAuthorizationCodeSubmissionDateLong common.Long
 }
 
 type QueryTransferInListTransferInInfoList []QueryTransferInListTransferInInfo

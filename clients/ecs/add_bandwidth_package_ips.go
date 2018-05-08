@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddBandwidthPackageIpsRequest struct {
@@ -26,5 +27,5 @@ func (req *AddBandwidthPackageIpsRequest) Invoke(client *sdk.Client) (resp *AddB
 
 type AddBandwidthPackageIpsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateDBClusterRequest struct {
@@ -39,9 +40,9 @@ func (req *CreateDBClusterRequest) Invoke(client *sdk.Client) (resp *CreateDBClu
 
 type CreateDBClusterResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DBClusterId      string
-	OrderId          string
-	ConnectionString string
-	Port             string
+	RequestId        common.String
+	DBClusterId      common.String
+	OrderId          common.String
+	ConnectionString common.String
+	Port             common.String
 }

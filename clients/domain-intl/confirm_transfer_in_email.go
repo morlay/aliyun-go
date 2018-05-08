@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ConfirmTransferInEmailRequest struct {
@@ -25,7 +26,7 @@ func (req *ConfirmTransferInEmailRequest) Invoke(client *sdk.Client) (resp *Conf
 
 type ConfirmTransferInEmailResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	SuccessList ConfirmTransferInEmailSuccessListList
 	FailList    ConfirmTransferInEmailFailListList
 }
@@ -45,10 +46,10 @@ func (list *ConfirmTransferInEmailDomainNameList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type ConfirmTransferInEmailSuccessListList []string
+type ConfirmTransferInEmailSuccessListList []common.String
 
 func (list *ConfirmTransferInEmailSuccessListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -60,10 +61,10 @@ func (list *ConfirmTransferInEmailSuccessListList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type ConfirmTransferInEmailFailListList []string
+type ConfirmTransferInEmailFailListList []common.String
 
 func (list *ConfirmTransferInEmailFailListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

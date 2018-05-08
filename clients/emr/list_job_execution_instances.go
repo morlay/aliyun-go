@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListJobExecutionInstancesRequest struct {
@@ -26,23 +27,23 @@ func (req *ListJobExecutionInstancesRequest) Invoke(client *sdk.Client) (resp *L
 
 type ListJobExecutionInstancesResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int
-	PageNumber   int
-	PageSize     int
+	RequestId    common.String
+	TotalCount   common.Integer
+	PageNumber   common.Integer
+	PageSize     common.Integer
 	JobInstances ListJobExecutionInstancesJobInstanceList
 }
 
 type ListJobExecutionInstancesJobInstance struct {
-	Id        string
-	JobName   string
-	StartTime int64
-	RunTime   int
-	JobType   string
-	JobId     string
-	ClusterId string
-	Status    string
-	RetryInfo string
+	Id        common.String
+	JobName   common.String
+	StartTime common.Long
+	RunTime   common.Integer
+	JobType   common.String
+	JobId     common.String
+	ClusterId common.String
+	Status    common.String
+	RetryInfo common.String
 }
 
 type ListJobExecutionInstancesJobInstanceList []ListJobExecutionInstancesJobInstance

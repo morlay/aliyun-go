@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCasterStreamUrlRequest struct {
@@ -23,23 +24,23 @@ func (req *DescribeCasterStreamUrlRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeCasterStreamUrlResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	CasterId      string
-	Total         int
+	RequestId     common.String
+	CasterId      common.String
+	Total         common.Integer
 	CasterStreams DescribeCasterStreamUrlCasterStreamList
 }
 
 type DescribeCasterStreamUrlCasterStream struct {
-	SceneId     string
-	StreamUrl   string
-	OutputType  int
+	SceneId     common.String
+	StreamUrl   common.String
+	OutputType  common.Integer
 	StreamInfos DescribeCasterStreamUrlStreamInfoList
 }
 
 type DescribeCasterStreamUrlStreamInfo struct {
-	TranscodeConfig string
-	VideoFormat     string
-	OutputStreamUrl string
+	TranscodeConfig common.String
+	VideoFormat     common.String
+	OutputStreamUrl common.String
 }
 
 type DescribeCasterStreamUrlCasterStreamList []DescribeCasterStreamUrlCasterStream

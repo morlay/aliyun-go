@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceAutoRenewalAttributeRequest struct {
@@ -30,19 +31,19 @@ func (req *DescribeInstanceAutoRenewalAttributeRequest) Invoke(client *sdk.Clien
 
 type DescribeInstanceAutoRenewalAttributeResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageNumber       int
-	TotalRecordCount int
-	PageRecordCount  int
+	RequestId        common.String
+	PageNumber       common.Integer
+	TotalRecordCount common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeInstanceAutoRenewalAttributeItemList
 }
 
 type DescribeInstanceAutoRenewalAttributeItem struct {
-	DBInstanceId string
-	RegionId     string
-	Duration     int
-	Status       string
-	AutoRenew    string
+	DBInstanceId common.String
+	RegionId     common.String
+	Duration     common.Integer
+	Status       common.String
+	AutoRenew    common.String
 }
 
 type DescribeInstanceAutoRenewalAttributeItemList []DescribeInstanceAutoRenewalAttributeItem

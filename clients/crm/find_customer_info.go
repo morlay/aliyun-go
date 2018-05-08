@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindCustomerInfoRequest struct {
@@ -21,12 +22,12 @@ func (req *FindCustomerInfoRequest) Invoke(client *sdk.Client) (resp *FindCustom
 type FindCustomerInfoResponse struct {
 	responses.BaseResponse
 	Success       bool
-	ResultCode    string
-	ResultMessage string
+	ResultCode    common.String
+	ResultMessage common.String
 	Data          FindCustomerInfoData
 }
 
 type FindCustomerInfoData struct {
-	Website string
-	Biz     string
+	Website common.String
+	Biz     common.String
 }

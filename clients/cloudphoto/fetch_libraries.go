@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FetchLibrariesRequest struct {
@@ -24,17 +25,17 @@ func (req *FetchLibrariesRequest) Invoke(client *sdk.Client) (resp *FetchLibrari
 
 type FetchLibrariesResponse struct {
 	responses.BaseResponse
-	Code       string
-	Message    string
-	TotalCount int
-	RequestId  string
-	Action     string
+	Code       common.String
+	Message    common.String
+	TotalCount common.Integer
+	RequestId  common.String
+	Action     common.String
 	Libraries  FetchLibrariesLibraryList
 }
 
 type FetchLibrariesLibrary struct {
-	LibraryId string
-	Ctime     int64
+	LibraryId common.String
+	Ctime     common.Long
 }
 
 type FetchLibrariesLibraryList []FetchLibrariesLibrary

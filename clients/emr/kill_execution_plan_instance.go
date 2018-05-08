@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type KillExecutionPlanInstanceRequest struct {
@@ -21,5 +22,5 @@ func (req *KillExecutionPlanInstanceRequest) Invoke(client *sdk.Client) (resp *K
 
 type KillExecutionPlanInstanceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

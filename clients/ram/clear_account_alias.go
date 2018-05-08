@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ClearAccountAliasRequest struct {
@@ -19,5 +20,5 @@ func (req *ClearAccountAliasRequest) Invoke(client *sdk.Client) (resp *ClearAcco
 
 type ClearAccountAliasResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

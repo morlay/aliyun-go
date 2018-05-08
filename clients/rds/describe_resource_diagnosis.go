@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeResourceDiagnosisRequest struct {
@@ -24,9 +25,9 @@ func (req *DescribeResourceDiagnosisRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeResourceDiagnosisResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	StartTime  string
-	EndTime    string
+	RequestId  common.String
+	StartTime  common.String
+	EndTime    common.String
 	CPU        DescribeResourceDiagnosisCPUList
 	Memory     DescribeResourceDiagnosisMemoryList
 	Storage    DescribeResourceDiagnosisStorageList
@@ -34,10 +35,10 @@ type DescribeResourceDiagnosisResponse struct {
 	Connection DescribeResourceDiagnosisConnectionList
 }
 
-type DescribeResourceDiagnosisCPUList []string
+type DescribeResourceDiagnosisCPUList []common.String
 
 func (list *DescribeResourceDiagnosisCPUList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -49,10 +50,10 @@ func (list *DescribeResourceDiagnosisCPUList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeResourceDiagnosisMemoryList []string
+type DescribeResourceDiagnosisMemoryList []common.String
 
 func (list *DescribeResourceDiagnosisMemoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -64,10 +65,10 @@ func (list *DescribeResourceDiagnosisMemoryList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type DescribeResourceDiagnosisStorageList []string
+type DescribeResourceDiagnosisStorageList []common.String
 
 func (list *DescribeResourceDiagnosisStorageList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -79,10 +80,10 @@ func (list *DescribeResourceDiagnosisStorageList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type DescribeResourceDiagnosisIOPList []string
+type DescribeResourceDiagnosisIOPList []common.String
 
 func (list *DescribeResourceDiagnosisIOPList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -94,10 +95,10 @@ func (list *DescribeResourceDiagnosisIOPList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeResourceDiagnosisConnectionList []string
+type DescribeResourceDiagnosisConnectionList []common.String
 
 func (list *DescribeResourceDiagnosisConnectionList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

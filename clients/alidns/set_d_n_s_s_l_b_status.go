@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetDNSSLBStatusRequest struct {
@@ -23,7 +24,7 @@ func (req *SetDNSSLBStatusRequest) Invoke(client *sdk.Client) (resp *SetDNSSLBSt
 
 type SetDNSSLBStatusResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	RecordCount int64
+	RequestId   common.String
+	RecordCount common.Long
 	Open        bool
 }

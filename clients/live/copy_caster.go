@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CopyCasterRequest struct {
@@ -23,6 +24,6 @@ func (req *CopyCasterRequest) Invoke(client *sdk.Client) (resp *CopyCasterRespon
 
 type CopyCasterResponse struct {
 	responses.BaseResponse
-	RequestId string
-	CasterId  string
+	RequestId common.String
+	CasterId  common.String
 }

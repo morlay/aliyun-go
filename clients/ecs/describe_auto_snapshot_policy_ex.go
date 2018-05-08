@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAutoSnapshotPolicyExRequest struct {
@@ -28,24 +29,24 @@ func (req *DescribeAutoSnapshotPolicyExRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeAutoSnapshotPolicyExResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	TotalCount           int
-	PageNumber           int
-	PageSize             int
+	RequestId            common.String
+	TotalCount           common.Integer
+	PageNumber           common.Integer
+	PageSize             common.Integer
 	AutoSnapshotPolicies DescribeAutoSnapshotPolicyExAutoSnapshotPolicyList
 }
 
 type DescribeAutoSnapshotPolicyExAutoSnapshotPolicy struct {
-	AutoSnapshotPolicyId   string
-	RegionId               string
-	AutoSnapshotPolicyName string
-	TimePoints             string
-	RepeatWeekdays         string
-	RetentionDays          int
-	DiskNums               int
-	VolumeNums             int
-	CreationTime           string
-	Status                 string
+	AutoSnapshotPolicyId   common.String
+	RegionId               common.String
+	AutoSnapshotPolicyName common.String
+	TimePoints             common.String
+	RepeatWeekdays         common.String
+	RetentionDays          common.Integer
+	DiskNums               common.Integer
+	VolumeNums             common.Integer
+	CreationTime           common.String
+	Status                 common.String
 }
 
 type DescribeAutoSnapshotPolicyExAutoSnapshotPolicyList []DescribeAutoSnapshotPolicyExAutoSnapshotPolicy

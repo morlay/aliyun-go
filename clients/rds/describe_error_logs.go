@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeErrorLogsRequest struct {
@@ -30,16 +31,16 @@ func (req *DescribeErrorLogsRequest) Invoke(client *sdk.Client) (resp *DescribeE
 
 type DescribeErrorLogsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeErrorLogsErrorLogList
 }
 
 type DescribeErrorLogsErrorLog struct {
-	ErrorInfo  string
-	CreateTime string
+	ErrorInfo  common.String
+	CreateTime common.String
 }
 
 type DescribeErrorLogsErrorLogList []DescribeErrorLogsErrorLog

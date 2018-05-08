@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RestartDBInstanceRequest struct {
@@ -25,5 +26,5 @@ func (req *RestartDBInstanceRequest) Invoke(client *sdk.Client) (resp *RestartDB
 
 type RestartDBInstanceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

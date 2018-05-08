@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRouteConflictRequest struct {
@@ -32,19 +33,19 @@ func (req *DescribeRouteConflictRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeRouteConflictResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	PageNumber     int
-	TotalCount     int
-	PageSize       int
+	RequestId      common.String
+	PageNumber     common.Integer
+	TotalCount     common.Integer
+	PageSize       common.Integer
 	RouteConflicts DescribeRouteConflictRouteConflictList
 }
 
 type DescribeRouteConflictRouteConflict struct {
-	DestinationCidrBlock string
-	RegionId             string
-	InstanceId           string
-	InstanceType         string
-	Status               string
+	DestinationCidrBlock common.String
+	RegionId             common.String
+	InstanceId           common.String
+	InstanceType         common.String
+	Status               common.String
 }
 
 type DescribeRouteConflictRouteConflictList []DescribeRouteConflictRouteConflict

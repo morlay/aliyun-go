@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTaskListRequest struct {
@@ -27,25 +28,25 @@ func (req *QueryTaskListRequest) Invoke(client *sdk.Client) (resp *QueryTaskList
 
 type QueryTaskListResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalItemNum   int
-	CurrentPageNum int
-	TotalPageNum   int
-	PageSize       int
+	RequestId      common.String
+	TotalItemNum   common.Integer
+	CurrentPageNum common.Integer
+	TotalPageNum   common.Integer
+	PageSize       common.Integer
 	PrePage        bool
 	NextPage       bool
 	Data           QueryTaskListTaskInfoList
 }
 
 type QueryTaskListTaskInfo struct {
-	TaskType            string
-	TaskNum             int
-	TaskStatus          string
-	CreateTime          string
-	Clientip            string
-	TaskNo              string
-	TaskTypeDescription string
-	TaskStatusCode      int
+	TaskType            common.String
+	TaskNum             common.Integer
+	TaskStatus          common.String
+	CreateTime          common.String
+	Clientip            common.String
+	TaskNo              common.String
+	TaskTypeDescription common.String
+	TaskStatusCode      common.Integer
 }
 
 type QueryTaskListTaskInfoList []QueryTaskListTaskInfo

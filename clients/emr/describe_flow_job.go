@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFlowJobRequest struct {
@@ -24,28 +25,28 @@ func (req *DescribeFlowJobRequest) Invoke(client *sdk.Client) (resp *DescribeFlo
 
 type DescribeFlowJobResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	Id            string
-	GmtCreate     int64
-	GmtModified   int64
-	Name          string
-	Description   string
-	FailAct       string
-	MaxRetry      int
-	RetryInterval int64
-	Params        string
-	ParamConf     string
-	EnvConf       string
-	RunConf       string
-	CategoryId    string
-	Mode          string
+	RequestId     common.String
+	Id            common.String
+	GmtCreate     common.Long
+	GmtModified   common.Long
+	Name          common.String
+	Description   common.String
+	FailAct       common.String
+	MaxRetry      common.Integer
+	RetryInterval common.Long
+	Params        common.String
+	ParamConf     common.String
+	EnvConf       common.String
+	RunConf       common.String
+	CategoryId    common.String
+	Mode          common.String
 	Resource      DescribeFlowJobResourceList
 }
 
-type DescribeFlowJobResourceList []string
+type DescribeFlowJobResourceList []common.String
 
 func (list *DescribeFlowJobResourceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateUserRequest struct {
@@ -29,12 +30,12 @@ func (req *CreateUserRequest) Invoke(client *sdk.Client) (resp *CreateUserRespon
 
 type CreateUserResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
-	UserId         string
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
+	UserId         common.String
 }
 
 type CreateUserSkillLevelList []int

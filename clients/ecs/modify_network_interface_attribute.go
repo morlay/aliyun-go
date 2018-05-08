@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyNetworkInterfaceAttributeRequest struct {
@@ -29,7 +30,7 @@ func (req *ModifyNetworkInterfaceAttributeRequest) Invoke(client *sdk.Client) (r
 
 type ModifyNetworkInterfaceAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type ModifyNetworkInterfaceAttributeSecurityGroupIdList []string

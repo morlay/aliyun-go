@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SearchMediaRequest struct {
@@ -35,36 +36,36 @@ func (req *SearchMediaRequest) Invoke(client *sdk.Client) (resp *SearchMediaResp
 
 type SearchMediaResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalNum   int64
-	PageNumber int64
-	PageSize   int64
+	RequestId  common.String
+	TotalNum   common.Long
+	PageNumber common.Long
+	PageSize   common.Long
 	MediaList  SearchMediaMediaList
 }
 
 type SearchMediaMedia struct {
-	MediaId      string
-	Title        string
-	Description  string
-	CoverURL     string
-	CateId       int64
-	Duration     string
-	Format       string
-	Size         string
-	Bitrate      string
-	Width        string
-	Height       string
-	Fps          string
-	PublishState string
-	CreationTime string
+	MediaId      common.String
+	Title        common.String
+	Description  common.String
+	CoverURL     common.String
+	CateId       common.Long
+	Duration     common.String
+	Format       common.String
+	Size         common.String
+	Bitrate      common.String
+	Width        common.String
+	Height       common.String
+	Fps          common.String
+	PublishState common.String
+	CreationTime common.String
 	Tags         SearchMediaTagList
 	RunIdList    SearchMediaRunIdListList
 	File         SearchMediaFile
 }
 
 type SearchMediaFile struct {
-	URL   string
-	State string
+	URL   common.String
+	State common.String
 }
 
 type SearchMediaMediaList []SearchMediaMedia
@@ -82,10 +83,10 @@ func (list *SearchMediaMediaList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type SearchMediaTagList []string
+type SearchMediaTagList []common.String
 
 func (list *SearchMediaTagList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -97,10 +98,10 @@ func (list *SearchMediaTagList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type SearchMediaRunIdListList []string
+type SearchMediaRunIdListList []common.String
 
 func (list *SearchMediaRunIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

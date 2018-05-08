@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsTraceGetResultRequest struct {
@@ -25,50 +26,50 @@ func (req *OnsTraceGetResultRequest) Invoke(client *sdk.Client) (resp *OnsTraceG
 
 type OnsTraceGetResultResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	TraceData OnsTraceGetResultTraceData
 }
 
 type OnsTraceGetResultTraceData struct {
-	QueryId    string
-	UserId     string
-	Topic      string
-	MsgId      string
-	MsgKey     string
-	Status     string
-	CreateTime int64
-	UpdateTime int64
+	QueryId    common.String
+	UserId     common.String
+	Topic      common.String
+	MsgId      common.String
+	MsgKey     common.String
+	Status     common.String
+	CreateTime common.Long
+	UpdateTime common.Long
 	TraceList  OnsTraceGetResultTraceMapDoList
 }
 
 type OnsTraceGetResultTraceMapDo struct {
-	PubTime      int64
-	Topic        string
-	PubGroupName string
-	MsgId        string
-	Tag          string
-	MsgKey       string
-	BornHost     string
-	CostTime     int
-	Status       string
+	PubTime      common.Long
+	Topic        common.String
+	PubGroupName common.String
+	MsgId        common.String
+	Tag          common.String
+	MsgKey       common.String
+	BornHost     common.String
+	CostTime     common.Integer
+	Status       common.String
 	SubList      OnsTraceGetResultSubMapDoList
 }
 
 type OnsTraceGetResultSubMapDo struct {
-	SubGroupName string
-	SuccessCount int
-	FailCount    int
+	SubGroupName common.String
+	SuccessCount common.Integer
+	FailCount    common.Integer
 	ClientList   OnsTraceGetResultSubClientInfoDoList
 }
 
 type OnsTraceGetResultSubClientInfoDo struct {
-	SubGroupName   string
-	SubTime        int64
-	ClientHost     string
-	ReconsumeTimes int
-	CostTime       int
-	Status         string
+	SubGroupName   common.String
+	SubTime        common.Long
+	ClientHost     common.String
+	ReconsumeTimes common.Integer
+	CostTime       common.Integer
+	Status         common.String
 }
 
 type OnsTraceGetResultTraceMapDoList []OnsTraceGetResultTraceMapDo

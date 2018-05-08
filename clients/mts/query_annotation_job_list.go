@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryAnnotationJobListRequest struct {
@@ -26,37 +27,37 @@ func (req *QueryAnnotationJobListRequest) Invoke(client *sdk.Client) (resp *Quer
 
 type QueryAnnotationJobListResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	AnnotationJobList QueryAnnotationJobListAnnotationJobList
 	NonExistIds       QueryAnnotationJobListNonExistIdList
 }
 
 type QueryAnnotationJobListAnnotationJob struct {
-	Id                    string
-	UserData              string
-	PipelineId            string
-	State                 string
-	Code                  string
-	Message               string
-	CreationTime          string
+	Id                    common.String
+	UserData              common.String
+	PipelineId            common.String
+	State                 common.String
+	Code                  common.String
+	Message               common.String
+	CreationTime          common.String
 	Input                 QueryAnnotationJobListInput
 	VideoAnnotationResult QueryAnnotationJobListVideoAnnotationResult
 }
 
 type QueryAnnotationJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryAnnotationJobListVideoAnnotationResult struct {
-	Details     string
+	Details     common.String
 	Annotations QueryAnnotationJobListAnnotationList
 }
 
 type QueryAnnotationJobListAnnotation struct {
-	Label string
-	Score string
+	Label common.String
+	Score common.String
 }
 
 type QueryAnnotationJobListAnnotationJobList []QueryAnnotationJobListAnnotationJob
@@ -74,10 +75,10 @@ func (list *QueryAnnotationJobListAnnotationJobList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type QueryAnnotationJobListNonExistIdList []string
+type QueryAnnotationJobListNonExistIdList []common.String
 
 func (list *QueryAnnotationJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

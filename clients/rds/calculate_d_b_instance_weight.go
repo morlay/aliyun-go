@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CalculateDBInstanceWeightRequest struct {
@@ -26,15 +27,15 @@ func (req *CalculateDBInstanceWeightRequest) Invoke(client *sdk.Client) (resp *C
 
 type CalculateDBInstanceWeightResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     CalculateDBInstanceWeightDBInstanceWeightList
 }
 
 type CalculateDBInstanceWeightDBInstanceWeight struct {
-	DBInstanceId   string
-	DBInstanceType string
-	Availability   string
-	Weight         string
+	DBInstanceId   common.String
+	DBInstanceType common.String
+	Availability   common.String
+	Weight         common.String
 }
 
 type CalculateDBInstanceWeightDBInstanceWeightList []CalculateDBInstanceWeightDBInstanceWeight

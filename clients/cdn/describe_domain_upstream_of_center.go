@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainUpstreamOfCenterRequest struct {
@@ -26,13 +27,13 @@ func (req *DescribeDomainUpstreamOfCenterRequest) Invoke(client *sdk.Client) (re
 
 type DescribeDomainUpstreamOfCenterResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	BpsDatas  DescribeDomainUpstreamOfCenterDomainBpsModelList
 }
 
 type DescribeDomainUpstreamOfCenterDomainBpsModel struct {
-	Time string
-	Bps  float32
+	Time common.String
+	Bps  common.Float
 }
 
 type DescribeDomainUpstreamOfCenterDomainBpsModelList []DescribeDomainUpstreamOfCenterDomainBpsModel

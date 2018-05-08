@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PollTaskResultRequest struct {
@@ -29,30 +30,30 @@ func (req *PollTaskResultRequest) Invoke(client *sdk.Client) (resp *PollTaskResu
 
 type PollTaskResultResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalItemNum   int
-	CurrentPageNum int
-	TotalPageNum   int
-	PageSize       int
+	RequestId      common.String
+	TotalItemNum   common.Integer
+	CurrentPageNum common.Integer
+	TotalPageNum   common.Integer
+	PageSize       common.Integer
 	PrePage        bool
 	NextPage       bool
 	Data           PollTaskResultTaskDetailList
 }
 
 type PollTaskResultTaskDetail struct {
-	TaskNo              string
-	TaskDetailNo        string
-	TaskType            string
-	InstanceId          string
-	DomainName          string
-	TaskStatus          string
-	UpdateTime          string
-	CreateTime          string
-	TryCount            int
-	ErrorMsg            string
-	TaskStatusCode      int
-	TaskResult          string
-	TaskTypeDescription string
+	TaskNo              common.String
+	TaskDetailNo        common.String
+	TaskType            common.String
+	InstanceId          common.String
+	DomainName          common.String
+	TaskStatus          common.String
+	UpdateTime          common.String
+	CreateTime          common.String
+	TryCount            common.Integer
+	ErrorMsg            common.String
+	TaskStatusCode      common.Integer
+	TaskResult          common.String
+	TaskTypeDescription common.String
 }
 
 type PollTaskResultTaskDetailList []PollTaskResultTaskDetail

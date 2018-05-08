@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPhotoFacesRequest struct {
@@ -24,17 +25,17 @@ func (req *ListPhotoFacesRequest) Invoke(client *sdk.Client) (resp *ListPhotoFac
 
 type ListPhotoFacesResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Faces     ListPhotoFacesFaceList
 }
 
 type ListPhotoFacesFace struct {
-	FaceId    int64
-	FaceIdStr string
-	FaceName  string
+	FaceId    common.Long
+	FaceIdStr common.String
+	FaceName  common.String
 	Axis      ListPhotoFacesAxiList
 }
 
@@ -53,10 +54,10 @@ func (list *ListPhotoFacesFaceList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type ListPhotoFacesAxiList []string
+type ListPhotoFacesAxiList []common.String
 
 func (list *ListPhotoFacesAxiList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

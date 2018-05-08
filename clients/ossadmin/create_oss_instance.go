@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateOssInstanceRequest struct {
@@ -24,11 +25,11 @@ func (req *CreateOssInstanceRequest) Invoke(client *sdk.Client) (resp *CreateOss
 
 type CreateOssInstanceResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	AliUid         int64
-	InstanceId     string
-	InstacneStatus string
-	InstanceName   string
-	StartTime      string
-	EndTime        string
+	RequestId      common.String
+	AliUid         common.Long
+	InstanceId     common.String
+	InstacneStatus common.String
+	InstanceName   common.String
+	StartTime      common.String
+	EndTime        common.String
 }

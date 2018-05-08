@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainFileSizeProportionDataRequest struct {
@@ -26,22 +27,22 @@ func (req *DescribeDomainFileSizeProportionDataRequest) Invoke(client *sdk.Clien
 
 type DescribeDomainFileSizeProportionDataResponse struct {
 	responses.BaseResponse
-	RequestId                      string
-	DomainName                     string
-	DataInterval                   string
-	StartTime                      string
-	EndTime                        string
+	RequestId                      common.String
+	DomainName                     common.String
+	DataInterval                   common.String
+	StartTime                      common.String
+	EndTime                        common.String
 	FileSizeProportionDataInterval DescribeDomainFileSizeProportionDataUsageDataList
 }
 
 type DescribeDomainFileSizeProportionDataUsageData struct {
-	TimeStamp string
+	TimeStamp common.String
 	Value     DescribeDomainFileSizeProportionDataFileSizeProportionDataList
 }
 
 type DescribeDomainFileSizeProportionDataFileSizeProportionData struct {
-	FileSize   string
-	Proportion string
+	FileSize   common.String
+	Proportion common.String
 }
 
 type DescribeDomainFileSizeProportionDataUsageDataList []DescribeDomainFileSizeProportionDataUsageData

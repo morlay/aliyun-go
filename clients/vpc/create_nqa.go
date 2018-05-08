@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateNqaRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateNqaRequest) Invoke(client *sdk.Client) (resp *CreateNqaResponse
 
 type CreateNqaResponse struct {
 	responses.BaseResponse
-	RequestId string
-	NqaId     string
+	RequestId common.String
+	NqaId     common.String
 }

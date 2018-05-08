@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetOSSStatisRequest struct {
@@ -28,14 +29,14 @@ func (req *GetOSSStatisRequest) Invoke(client *sdk.Client) (resp *GetOSSStatisRe
 
 type GetOSSStatisResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	MaxStorageUtilization int64
+	RequestId             common.String
+	MaxStorageUtilization common.Long
 	OssStatisList         GetOSSStatisOSSMetricList
 }
 
 type GetOSSStatisOSSMetric struct {
-	StatTime           string
-	StorageUtilization int64
+	StatTime           common.String
+	StorageUtilization common.Long
 }
 
 type GetOSSStatisOSSMetricList []GetOSSStatisOSSMetric

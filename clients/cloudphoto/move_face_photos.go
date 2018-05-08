@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MoveFacePhotosRequest struct {
@@ -26,18 +27,18 @@ func (req *MoveFacePhotosRequest) Invoke(client *sdk.Client) (resp *MoveFacePhot
 
 type MoveFacePhotosResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Results   MoveFacePhotosResultList
 }
 
 type MoveFacePhotosResult struct {
-	Id      int64
-	IdStr   string
-	Code    string
-	Message string
+	Id      common.Long
+	IdStr   common.String
+	Code    common.String
+	Message common.String
 }
 
 type MoveFacePhotosPhotoIdList []int64

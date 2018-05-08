@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBinlogFilesRequest struct {
@@ -30,23 +31,23 @@ func (req *DescribeBinlogFilesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeBinlogFilesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
-	TotalFileSize    int64
+	RequestId        common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
+	TotalFileSize    common.Long
 	Items            DescribeBinlogFilesBinLogFileList
 }
 
 type DescribeBinlogFilesBinLogFile struct {
-	FileSize             int64
-	LogBeginTime         string
-	LogEndTime           string
-	DownloadLink         string
-	IntranetDownloadLink string
-	LinkExpiredTime      string
-	Checksum             string
-	HostInstanceID       string
+	FileSize             common.Long
+	LogBeginTime         common.String
+	LogEndTime           common.String
+	DownloadLink         common.String
+	IntranetDownloadLink common.String
+	LinkExpiredTime      common.String
+	Checksum             common.String
+	HostInstanceID       common.String
 }
 
 type DescribeBinlogFilesBinLogFileList []DescribeBinlogFilesBinLogFile

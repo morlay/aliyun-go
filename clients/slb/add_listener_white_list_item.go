@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddListenerWhiteListItemRequest struct {
@@ -28,5 +29,5 @@ func (req *AddListenerWhiteListItemRequest) Invoke(client *sdk.Client) (resp *Ad
 
 type AddListenerWhiteListItemResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

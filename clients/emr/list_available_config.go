@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAvailableConfigRequest struct {
@@ -22,7 +23,7 @@ func (req *ListAvailableConfigRequest) Invoke(client *sdk.Client) (resp *ListAva
 
 type ListAvailableConfigResponse struct {
 	responses.BaseResponse
-	RequestId                    string
+	RequestId                    common.String
 	SecurityGroupTypes           ListAvailableConfigSecurityGroupTypeList
 	InstanceTypes                ListAvailableConfigInstanceTypeList
 	EmrVerTypes                  ListAvailableConfigEmrVerTypeList
@@ -32,52 +33,52 @@ type ListAvailableConfigResponse struct {
 }
 
 type ListAvailableConfigSecurityGroupType struct {
-	Name  string
-	State string
-	Id    string
+	Name  common.String
+	State common.String
+	Id    common.String
 }
 
 type ListAvailableConfigInstanceType struct {
-	Classify               string
-	Type                   string
-	CpuCore                int
-	MemSize                int
+	Classify               common.String
+	Type                   common.String
+	CpuCore                common.Integer
+	MemSize                common.Integer
 	HasCloudDisk           bool
 	HasEfficiencyCloudDisk bool
 	HasSSDCloudDisk        bool
 }
 
 type ListAvailableConfigEmrVerType struct {
-	Name       string
+	Name       common.String
 	EcmStack   bool
 	SubModules ListAvailableConfigSubModuleList
 }
 
 type ListAvailableConfigSubModule struct {
-	Name         string
+	Name         common.String
 	RequiredList ListAvailableConfigRequiredList
 	OptionalList ListAvailableConfigOptionalList
 }
 
 type ListAvailableConfigRequired struct {
-	DisplayName string
-	Name        string
+	DisplayName common.String
+	Name        common.String
 	OnlyDisplay bool
-	StartTpe    int
-	Version     string
+	StartTpe    common.Integer
+	Version     common.String
 }
 
 type ListAvailableConfigOptional struct {
-	DisplayName string
-	Name        string
+	DisplayName common.String
+	Name        common.String
 	OnlyDisplay bool
-	StartTpe    int
-	Version     string
+	StartTpe    common.Integer
+	Version     common.String
 }
 
 type ListAvailableConfigZoneType struct {
-	Name                          string
-	Id                            string
+	Name                          common.String
+	Id                            common.String
 	AvailableResources            ListAvailableConfigAvailableResourceList
 	AvailableResourceCreationList ListAvailableConfigAvailableResourceCreationListList
 	AvailableDiskCategoryList     ListAvailableConfigAvailableDiskCategoryListList
@@ -94,32 +95,32 @@ type ListAvailableConfigAvailableResource struct {
 }
 
 type ListAvailableConfigVpc struct {
-	Id             string
-	VpcName        string
-	CidrBlock      string
+	Id             common.String
+	VpcName        common.String
+	CidrBlock      common.String
 	VSwitchs       ListAvailableConfigVSwitchList
 	SecurityGroups ListAvailableConfigSecurityGroupList
 }
 
 type ListAvailableConfigVSwitch struct {
-	Id          string
-	VswitchName string
-	CidrBlock   string
-	ZoneId      string
+	Id          common.String
+	VswitchName common.String
+	CidrBlock   common.String
+	ZoneId      common.String
 }
 
 type ListAvailableConfigSecurityGroup struct {
-	Name string
-	Id   string
+	Name common.String
+	Id   common.String
 }
 
 type ListAvailableConfigEmrSupportInstanceType struct {
-	ClusterType             string
+	ClusterType             common.String
 	NodeTypeSupportInfoList ListAvailableConfigClusterNodeTypeSupportInfoList
 }
 
 type ListAvailableConfigClusterNodeTypeSupportInfo struct {
-	ClusterNodeType         string
+	ClusterNodeType         common.String
 	SupportInstanceTypeList ListAvailableConfigSupportInstanceTypeListList
 }
 
@@ -273,10 +274,10 @@ func (list *ListAvailableConfigAvailableResourceList) UnmarshalJSON(data []byte)
 	return nil
 }
 
-type ListAvailableConfigAvailableResourceCreationListList []string
+type ListAvailableConfigAvailableResourceCreationListList []common.String
 
 func (list *ListAvailableConfigAvailableResourceCreationListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -288,10 +289,10 @@ func (list *ListAvailableConfigAvailableResourceCreationListList) UnmarshalJSON(
 	return nil
 }
 
-type ListAvailableConfigAvailableDiskCategoryListList []string
+type ListAvailableConfigAvailableDiskCategoryListList []common.String
 
 func (list *ListAvailableConfigAvailableDiskCategoryListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -303,10 +304,10 @@ func (list *ListAvailableConfigAvailableDiskCategoryListList) UnmarshalJSON(data
 	return nil
 }
 
-type ListAvailableConfigSystemDiskCategoryList []string
+type ListAvailableConfigSystemDiskCategoryList []common.String
 
 func (list *ListAvailableConfigSystemDiskCategoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -318,10 +319,10 @@ func (list *ListAvailableConfigSystemDiskCategoryList) UnmarshalJSON(data []byte
 	return nil
 }
 
-type ListAvailableConfigDataDiskCategoryList []string
+type ListAvailableConfigDataDiskCategoryList []common.String
 
 func (list *ListAvailableConfigDataDiskCategoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -333,10 +334,10 @@ func (list *ListAvailableConfigDataDiskCategoryList) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-type ListAvailableConfigNetworkTypeList []string
+type ListAvailableConfigNetworkTypeList []common.String
 
 func (list *ListAvailableConfigNetworkTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -348,10 +349,10 @@ func (list *ListAvailableConfigNetworkTypeList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type ListAvailableConfigSupportedInstanceTypeList []string
+type ListAvailableConfigSupportedInstanceTypeList []common.String
 
 func (list *ListAvailableConfigSupportedInstanceTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -363,10 +364,10 @@ func (list *ListAvailableConfigSupportedInstanceTypeList) UnmarshalJSON(data []b
 	return nil
 }
 
-type ListAvailableConfigInstanceTypeFamilyList []string
+type ListAvailableConfigInstanceTypeFamilyList []common.String
 
 func (list *ListAvailableConfigInstanceTypeFamilyList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -378,10 +379,10 @@ func (list *ListAvailableConfigInstanceTypeFamilyList) UnmarshalJSON(data []byte
 	return nil
 }
 
-type ListAvailableConfigInstanceGenerationList []string
+type ListAvailableConfigInstanceGenerationList []common.String
 
 func (list *ListAvailableConfigInstanceGenerationList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -438,10 +439,10 @@ func (list *ListAvailableConfigClusterNodeTypeSupportInfoList) UnmarshalJSON(dat
 	return nil
 }
 
-type ListAvailableConfigSupportInstanceTypeListList []string
+type ListAvailableConfigSupportInstanceTypeListList []common.String
 
 func (list *ListAvailableConfigSupportInstanceTypeListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

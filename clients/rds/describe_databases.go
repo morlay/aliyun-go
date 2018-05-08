@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDatabasesRequest struct {
@@ -28,23 +29,23 @@ func (req *DescribeDatabasesRequest) Invoke(client *sdk.Client) (resp *DescribeD
 
 type DescribeDatabasesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Databases DescribeDatabasesDatabaseList
 }
 
 type DescribeDatabasesDatabase struct {
-	DBName           string
-	DBInstanceId     string
-	Engine           string
-	DBStatus         string
-	CharacterSetName string
-	DBDescription    string
+	DBName           common.String
+	DBInstanceId     common.String
+	Engine           common.String
+	DBStatus         common.String
+	CharacterSetName common.String
+	DBDescription    common.String
 	Accounts         DescribeDatabasesAccountPrivilegeInfoList
 }
 
 type DescribeDatabasesAccountPrivilegeInfo struct {
-	Account          string
-	AccountPrivilege string
+	Account          common.String
+	AccountPrivilege common.String
 }
 
 type DescribeDatabasesDatabaseList []DescribeDatabasesDatabase

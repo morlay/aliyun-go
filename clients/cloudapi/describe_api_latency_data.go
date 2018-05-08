@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiLatencyDataRequest struct {
@@ -25,13 +26,13 @@ func (req *DescribeApiLatencyDataRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeApiLatencyDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	CallLatencys DescribeApiLatencyDataMonitorItemList
 }
 
 type DescribeApiLatencyDataMonitorItem struct {
-	ItemTime  string
-	ItemValue string
+	ItemTime  common.String
+	ItemValue common.String
 }
 
 type DescribeApiLatencyDataMonitorItemList []DescribeApiLatencyDataMonitorItem

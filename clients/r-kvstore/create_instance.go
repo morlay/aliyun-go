@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateInstanceRequest struct {
@@ -42,25 +43,25 @@ func (req *CreateInstanceRequest) Invoke(client *sdk.Client) (resp *CreateInstan
 
 type CreateInstanceResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	InstanceId       string
-	InstanceName     string
-	ConnectionDomain string
-	Port             int
-	UserName         string
-	InstanceStatus   string
-	RegionId         string
-	Capacity         int64
-	QPS              int64
-	Bandwidth        int64
-	Connections      int64
-	ZoneId           string
-	Config           string
-	ChargeType       string
-	EndTime          string
-	NodeType         string
-	NetworkType      string
-	VpcId            string
-	VSwitchId        string
-	PrivateIpAddr    string
+	RequestId        common.String
+	InstanceId       common.String
+	InstanceName     common.String
+	ConnectionDomain common.String
+	Port             common.Integer
+	UserName         common.String
+	InstanceStatus   common.String
+	RegionId         common.String
+	Capacity         common.Long
+	QPS              common.Long
+	Bandwidth        common.Long
+	Connections      common.Long
+	ZoneId           common.String
+	Config           common.String
+	ChargeType       common.String
+	EndTime          common.String
+	NodeType         common.String
+	NetworkType      common.String
+	VpcId            common.String
+	VSwitchId        common.String
+	PrivateIpAddr    common.String
 }

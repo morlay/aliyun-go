@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type NodeListRequest struct {
@@ -30,31 +31,31 @@ func (req *NodeListRequest) Invoke(client *sdk.Client) (resp *NodeListResponse, 
 
 type NodeListResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Success      bool
-	RequestId    string
-	PageNumber   int
-	PageSize     int
-	PageTotal    int
-	Total        int
+	RequestId    common.String
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	PageTotal    common.Integer
+	Total        common.Integer
 	Nodes        NodeListNodeList
 }
 
 type NodeListNode struct {
-	InstanceId       string
-	SerialNumber     string
-	HostName         string
-	AliUid           int64
-	OperatingSystem  string
-	IpGroup          string
-	Region           string
-	TianjimonVersion string
-	EipAddress       string
-	EipId            string
+	InstanceId       common.String
+	SerialNumber     common.String
+	HostName         common.String
+	AliUid           common.Long
+	OperatingSystem  common.String
+	IpGroup          common.String
+	Region           common.String
+	TianjimonVersion common.String
+	EipAddress       common.String
+	EipId            common.String
 	AliyunHost       bool
-	NatIp            string
-	NetworkType      string
+	NatIp            common.String
+	NetworkType      common.String
 }
 
 type NodeListNodeList []NodeListNode

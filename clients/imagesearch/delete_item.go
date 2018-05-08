@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteItemRequest struct {
@@ -26,10 +27,10 @@ func (req *DeleteItemRequest) Invoke(client *sdk.Client) (resp *DeleteItemRespon
 
 type DeleteItemResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Message   string
-	Code      int
+	Message   common.String
+	Code      common.Integer
 }
 
 type DeleteItemPictureListList []string

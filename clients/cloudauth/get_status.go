@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetStatusRequest struct {
@@ -22,16 +23,16 @@ func (req *GetStatusRequest) Invoke(client *sdk.Client) (resp *GetStatusResponse
 
 type GetStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      GetStatusData
 }
 
 type GetStatusData struct {
-	StatusCode       int
-	TrustedScore     float32
-	SimilarityScore  float32
-	AuditConclusions string
+	StatusCode       common.Integer
+	TrustedScore     common.Float
+	SimilarityScore  common.Float
+	AuditConclusions common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryClusterOrdersRequest struct {
@@ -24,13 +25,13 @@ func (req *QueryClusterOrdersRequest) Invoke(client *sdk.Client) (resp *QueryClu
 
 type QueryClusterOrdersResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	OrderList QueryClusterOrdersOrderList
 }
 
 type QueryClusterOrdersOrder struct {
-	OrderId         string
-	CreateTimestamp int64
+	OrderId         common.String
+	CreateTimestamp common.Long
 }
 
 type QueryClusterOrdersOrderList []QueryClusterOrdersOrder

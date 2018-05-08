@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSnatTableEntriesRequest struct {
@@ -29,20 +30,20 @@ func (req *DescribeSnatTableEntriesRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeSnatTableEntriesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalCount       int
-	PageNumber       int
-	PageSize         int
+	RequestId        common.String
+	TotalCount       common.Integer
+	PageNumber       common.Integer
+	PageSize         common.Integer
 	SnatTableEntries DescribeSnatTableEntriesSnatTableEntryList
 }
 
 type DescribeSnatTableEntriesSnatTableEntry struct {
-	SnatTableId     string
-	SnatEntryId     string
-	SourceVSwitchId string
-	SourceCIDR      string
-	SnatIp          string
-	Status          string
+	SnatTableId     common.String
+	SnatEntryId     common.String
+	SourceVSwitchId common.String
+	SourceCIDR      common.String
+	SnatIp          common.String
+	Status          common.String
 }
 
 type DescribeSnatTableEntriesSnatTableEntryList []DescribeSnatTableEntriesSnatTableEntry

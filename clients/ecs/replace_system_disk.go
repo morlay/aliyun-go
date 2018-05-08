@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ReplaceSystemDiskRequest struct {
@@ -34,6 +35,6 @@ func (req *ReplaceSystemDiskRequest) Invoke(client *sdk.Client) (resp *ReplaceSy
 
 type ReplaceSystemDiskResponse struct {
 	responses.BaseResponse
-	RequestId string
-	DiskId    string
+	RequestId common.String
+	DiskId    common.String
 }

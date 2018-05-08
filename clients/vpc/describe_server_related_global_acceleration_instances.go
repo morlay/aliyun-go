@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeServerRelatedGlobalAccelerationInstancesRequest struct {
@@ -27,15 +28,15 @@ func (req *DescribeServerRelatedGlobalAccelerationInstancesRequest) Invoke(clien
 
 type DescribeServerRelatedGlobalAccelerationInstancesResponse struct {
 	responses.BaseResponse
-	RequestId                   string
+	RequestId                   common.String
 	GlobalAccelerationInstances DescribeServerRelatedGlobalAccelerationInstancesGlobalAccelerationInstanceList
 }
 
 type DescribeServerRelatedGlobalAccelerationInstancesGlobalAccelerationInstance struct {
-	RegionId                     string
-	GlobalAccelerationInstanceId string
-	IpAddress                    string
-	ServerIpAddress              string
+	RegionId                     common.String
+	GlobalAccelerationInstanceId common.String
+	IpAddress                    common.String
+	ServerIpAddress              common.String
 }
 
 type DescribeServerRelatedGlobalAccelerationInstancesGlobalAccelerationInstanceList []DescribeServerRelatedGlobalAccelerationInstancesGlobalAccelerationInstance

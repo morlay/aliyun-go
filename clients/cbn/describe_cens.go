@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCensRequest struct {
@@ -33,19 +34,19 @@ type DescribeCensFilter struct {
 
 type DescribeCensResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Cens       DescribeCensCenList
 }
 
 type DescribeCensCen struct {
-	CenId                  string
-	Name                   string
-	Description            string
-	Status                 string
-	CreationTime           string
+	CenId                  common.String
+	Name                   common.String
+	Description            common.String
+	Status                 common.String
+	CreationTime           common.String
 	CenBandwidthPackageIds DescribeCensCenBandwidthPackageIdList
 }
 
@@ -94,10 +95,10 @@ func (list *DescribeCensCenList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeCensCenBandwidthPackageIdList []string
+type DescribeCensCenBandwidthPackageIdList []common.String
 
 func (list *DescribeCensCenBandwidthPackageIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

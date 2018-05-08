@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeNotificationConfigurationsRequest struct {
@@ -24,13 +25,13 @@ func (req *DescribeNotificationConfigurationsRequest) Invoke(client *sdk.Client)
 
 type DescribeNotificationConfigurationsResponse struct {
 	responses.BaseResponse
-	RequestId                       string
+	RequestId                       common.String
 	NotificationConfigurationModels DescribeNotificationConfigurationsNotificationConfigurationModelList
 }
 
 type DescribeNotificationConfigurationsNotificationConfigurationModel struct {
-	ScalingGroupId    string
-	NotificationArn   string
+	ScalingGroupId    common.String
+	NotificationArn   common.String
 	NotificationTypes DescribeNotificationConfigurationsNotificationTypeList
 }
 
@@ -49,10 +50,10 @@ func (list *DescribeNotificationConfigurationsNotificationConfigurationModelList
 	return nil
 }
 
-type DescribeNotificationConfigurationsNotificationTypeList []string
+type DescribeNotificationConfigurationsNotificationTypeList []common.String
 
 func (list *DescribeNotificationConfigurationsNotificationTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

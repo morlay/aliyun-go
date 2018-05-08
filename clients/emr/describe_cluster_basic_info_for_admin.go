@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterBasicInfoForAdminRequest struct {
@@ -23,49 +24,49 @@ func (req *DescribeClusterBasicInfoForAdminRequest) Invoke(client *sdk.Client) (
 
 type DescribeClusterBasicInfoForAdminResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	ClusterInfo DescribeClusterBasicInfoForAdminClusterInfo
 }
 
 type DescribeClusterBasicInfoForAdminClusterInfo struct {
-	Id                     string
-	BizId                  string
-	RegionId               string
-	ZoneId                 string
-	Name                   string
-	CreateType             string
-	ClusterType            string
-	StartTime              int64
-	StopTime               int64
+	Id                     common.String
+	BizId                  common.String
+	RegionId               common.String
+	ZoneId                 common.String
+	Name                   common.String
+	CreateType             common.String
+	ClusterType            common.String
+	StartTime              common.Long
+	StopTime               common.Long
 	LogEnable              bool
-	LogPath                string
-	UserId                 string
-	Status                 string
+	LogPath                common.String
+	UserId                 common.String
+	Status                 common.String
 	HighAvailabilityEnable bool
-	PayType                string
-	ExpiredTime            int64
-	Period                 int
-	RunningTime            int
-	MasterNodeTotal        int
-	MasterNodeInService    int
-	CoreNodeTotal          int
-	CoreNodeInService      int
-	TaskNodeTotal          int
-	TaskNodeInService      int
+	PayType                common.String
+	ExpiredTime            common.Long
+	Period                 common.Integer
+	RunningTime            common.Integer
+	MasterNodeTotal        common.Integer
+	MasterNodeInService    common.Integer
+	CoreNodeTotal          common.Integer
+	CoreNodeInService      common.Integer
+	TaskNodeTotal          common.Integer
+	TaskNodeInService      common.Integer
 	ShowSoftwareInterface  bool
-	CreateResource         string
-	EcmClusterId           string
-	VpcId                  string
-	VSwitchId              string
-	NetType                string
-	UserDefinedEmrEcsRole  string
+	CreateResource         common.String
+	EcmClusterId           common.String
+	VpcId                  common.String
+	VSwitchId              common.String
+	NetType                common.String
+	UserDefinedEmrEcsRole  common.String
 	IoOptimized            bool
-	InstanceGeneration     string
-	ImageId                string
-	SecurityGroupId        string
-	SecurityGroupName      string
+	InstanceGeneration     common.String
+	ImageId                common.String
+	SecurityGroupId        common.String
+	SecurityGroupName      common.String
 	BootstrapFailed        bool
-	Configurations         string
+	Configurations         common.String
 	EcsOrderInfoList       DescribeClusterBasicInfoForAdminEcsOrderInfoList
 	BootstrapActionList    DescribeClusterBasicInfoForAdminBootstrapActionList
 	FailReason             DescribeClusterBasicInfoForAdminFailReason
@@ -73,60 +74,60 @@ type DescribeClusterBasicInfoForAdminClusterInfo struct {
 }
 
 type DescribeClusterBasicInfoForAdminEcsOrderInfo struct {
-	NodeType       string
-	InstanceType   string
-	CpuCore        int
-	MemoryCapacity int
-	DiskType       string
-	DiskCapacity   int
-	DiskCount      int
-	BandWidth      string
+	NodeType       common.String
+	InstanceType   common.String
+	CpuCore        common.Integer
+	MemoryCapacity common.Integer
+	DiskType       common.String
+	DiskCapacity   common.Integer
+	DiskCount      common.Integer
+	BandWidth      common.String
 	Nodes          DescribeClusterBasicInfoForAdminNodeList
 }
 
 type DescribeClusterBasicInfoForAdminNode struct {
-	ZoneId         string
-	InstanceId     string
-	Status         string
-	PubIp          string
-	InnerIp        string
-	ExpiredTime    string
-	EmrExpiredTime string
+	ZoneId         common.String
+	InstanceId     common.String
+	Status         common.String
+	PubIp          common.String
+	InnerIp        common.String
+	ExpiredTime    common.String
+	EmrExpiredTime common.String
 	DiskInfos      DescribeClusterBasicInfoForAdminDiskInfoList
 }
 
 type DescribeClusterBasicInfoForAdminDiskInfo struct {
-	Device   string
-	DiskName string
-	DiskId   string
-	Type     string
-	Size     int
+	Device   common.String
+	DiskName common.String
+	DiskId   common.String
+	Type     common.String
+	Size     common.Integer
 }
 
 type DescribeClusterBasicInfoForAdminBootstrapAction struct {
-	Name string
-	Path string
-	Arg  string
+	Name common.String
+	Path common.String
+	Arg  common.String
 }
 
 type DescribeClusterBasicInfoForAdminFailReason struct {
-	ErrorCode string
-	ErrorMsg  string
-	RequestId string
+	ErrorCode common.String
+	ErrorMsg  common.String
+	RequestId common.String
 }
 
 type DescribeClusterBasicInfoForAdminSoftwareInfo struct {
-	EmrVer      string
-	ClusterType string
+	EmrVer      common.String
+	ClusterType common.String
 	Softwares   DescribeClusterBasicInfoForAdminSoftwareList
 }
 
 type DescribeClusterBasicInfoForAdminSoftware struct {
-	DisplayName string
-	Name        string
+	DisplayName common.String
+	Name        common.String
 	OnlyDisplay bool
-	StartTpe    int
-	Version     string
+	StartTpe    common.Integer
+	Version     common.String
 }
 
 type DescribeClusterBasicInfoForAdminEcsOrderInfoList []DescribeClusterBasicInfoForAdminEcsOrderInfo

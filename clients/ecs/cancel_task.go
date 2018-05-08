@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CancelTaskRequest struct {
@@ -23,5 +24,5 @@ func (req *CancelTaskRequest) Invoke(client *sdk.Client) (resp *CancelTaskRespon
 
 type CancelTaskResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

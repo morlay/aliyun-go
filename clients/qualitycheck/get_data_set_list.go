@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetDataSetListRequest struct {
@@ -22,23 +23,23 @@ func (req *GetDataSetListRequest) Invoke(client *sdk.Client) (resp *GetDataSetLi
 
 type GetDataSetListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
-	Count     int
+	Code      common.String
+	Message   common.String
+	Count     common.Integer
 	Data      GetDataSetListDataSetList
 }
 
 type GetDataSetListDataSet struct {
-	SetId         int64
-	SetName       string
-	SetDomain     string
-	SetRoleArn    string
-	SetBucketName string
-	SetFolderName string
-	ChannelType   int
-	CreateType    int
+	SetId         common.Long
+	SetName       common.String
+	SetDomain     common.String
+	SetRoleArn    common.String
+	SetBucketName common.String
+	SetFolderName common.String
+	ChannelType   common.Integer
+	CreateType    common.Integer
 }
 
 type GetDataSetListDataSetList []GetDataSetListDataSet

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyLifecycleControlRequest struct {
@@ -25,8 +26,8 @@ func (req *ModifyLifecycleControlRequest) Invoke(client *sdk.Client) (resp *Modi
 
 type ModifyLifecycleControlResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 }

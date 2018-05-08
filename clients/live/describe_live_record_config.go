@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveRecordConfigRequest struct {
@@ -29,33 +30,33 @@ func (req *DescribeLiveRecordConfigRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeLiveRecordConfigResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	PageNum           int
-	PageSize          int
-	Order             string
-	TotalNum          int
-	TotalPage         int
+	RequestId         common.String
+	PageNum           common.Integer
+	PageSize          common.Integer
+	Order             common.String
+	TotalNum          common.Integer
+	TotalPage         common.Integer
 	LiveAppRecordList DescribeLiveRecordConfigLiveAppRecordList
 }
 
 type DescribeLiveRecordConfigLiveAppRecord struct {
-	DomainName       string
-	AppName          string
-	StreamName       string
-	OssEndpoint      string
-	OssBucket        string
-	CreateTime       string
-	StartTime        string
-	EndTime          string
-	OnDemond         int
+	DomainName       common.String
+	AppName          common.String
+	StreamName       common.String
+	OssEndpoint      common.String
+	OssBucket        common.String
+	CreateTime       common.String
+	StartTime        common.String
+	EndTime          common.String
+	OnDemond         common.Integer
 	RecordFormatList DescribeLiveRecordConfigRecordFormatList
 }
 
 type DescribeLiveRecordConfigRecordFormat struct {
-	Format               string
-	OssObjectPrefix      string
-	SliceOssObjectPrefix string
-	CycleDuration        int
+	Format               common.String
+	OssObjectPrefix      common.String
+	SliceOssObjectPrefix common.String
+	CycleDuration        common.Integer
 }
 
 type DescribeLiveRecordConfigLiveAppRecordList []DescribeLiveRecordConfigLiveAppRecord

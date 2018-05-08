@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListMediaWorkflowExecutionsRequest struct {
@@ -30,49 +31,49 @@ func (req *ListMediaWorkflowExecutionsRequest) Invoke(client *sdk.Client) (resp 
 
 type ListMediaWorkflowExecutionsResponse struct {
 	responses.BaseResponse
-	RequestId                  string
-	NextPageToken              string
+	RequestId                  common.String
+	NextPageToken              common.String
 	MediaWorkflowExecutionList ListMediaWorkflowExecutionsMediaWorkflowExecutionList
 }
 
 type ListMediaWorkflowExecutionsMediaWorkflowExecution struct {
-	RunId           string
-	MediaWorkflowId string
-	Name            string
-	State           string
-	MediaId         string
-	CreationTime    string
+	RunId           common.String
+	MediaWorkflowId common.String
+	Name            common.String
+	State           common.String
+	MediaId         common.String
+	CreationTime    common.String
 	ActivityList    ListMediaWorkflowExecutionsActivityList
 	Input           ListMediaWorkflowExecutionsInput
 }
 
 type ListMediaWorkflowExecutionsActivity struct {
-	Name             string
-	Type             string
-	JobId            string
-	State            string
-	Code             string
-	Message          string
-	StartTime        string
-	EndTime          string
+	Name             common.String
+	Type             common.String
+	JobId            common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	StartTime        common.String
+	EndTime          common.String
 	MNSMessageResult ListMediaWorkflowExecutionsMNSMessageResult
 }
 
 type ListMediaWorkflowExecutionsMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }
 
 type ListMediaWorkflowExecutionsInput struct {
-	UserData  string
+	UserData  common.String
 	InputFile ListMediaWorkflowExecutionsInputFile
 }
 
 type ListMediaWorkflowExecutionsInputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type ListMediaWorkflowExecutionsMediaWorkflowExecutionList []ListMediaWorkflowExecutionsMediaWorkflowExecution

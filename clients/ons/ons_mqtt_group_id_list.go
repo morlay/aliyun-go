@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttGroupIdListRequest struct {
@@ -24,22 +25,22 @@ func (req *OnsMqttGroupIdListRequest) Invoke(client *sdk.Client) (resp *OnsMqttG
 
 type OnsMqttGroupIdListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsMqttGroupIdListMqttGroupIdDoList
 }
 
 type OnsMqttGroupIdListMqttGroupIdDo struct {
-	Id          int64
-	ChannelId   int
-	OnsRegionId string
-	RegionName  string
-	Owner       string
-	GroupId     string
-	Topic       string
-	Status      int
-	CreateTime  int64
-	UpdateTime  int64
+	Id          common.Long
+	ChannelId   common.Integer
+	OnsRegionId common.String
+	RegionName  common.String
+	Owner       common.String
+	GroupId     common.String
+	Topic       common.String
+	Status      common.Integer
+	CreateTime  common.Long
+	UpdateTime  common.Long
 }
 
 type OnsMqttGroupIdListMqttGroupIdDoList []OnsMqttGroupIdListMqttGroupIdDo

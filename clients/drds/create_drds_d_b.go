@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateDrdsDBRequest struct {
@@ -24,6 +25,6 @@ func (req *CreateDrdsDBRequest) Invoke(client *sdk.Client) (resp *CreateDrdsDBRe
 
 type CreateDrdsDBResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 }

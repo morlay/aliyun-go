@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeReplicaPerformanceRequest struct {
@@ -31,10 +32,10 @@ func (req *DescribeReplicaPerformanceRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeReplicaPerformanceResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	StartTime       string
-	EndTime         string
-	ReplicaId       string
+	RequestId       common.String
+	StartTime       common.String
+	EndTime         common.String
+	ReplicaId       common.String
 	PerformanceKeys DescribeReplicaPerformancePerformanceKeys
 }
 
@@ -43,9 +44,9 @@ type DescribeReplicaPerformancePerformanceKeys struct {
 }
 
 type DescribeReplicaPerformancePerformanceKeyItem struct {
-	Key               string
-	Unit              string
-	ValueFormat       string
+	Key               common.String
+	Unit              common.String
+	ValueFormat       common.String
 	PerformanceValues DescribeReplicaPerformancePerformanceValues
 }
 
@@ -54,8 +55,8 @@ type DescribeReplicaPerformancePerformanceValues struct {
 }
 
 type DescribeReplicaPerformancePerformanceValueItem struct {
-	Value string
-	Date  string
+	Value common.String
+	Date  common.String
 }
 
 type DescribeReplicaPerformancePerformanceKeyItemList []DescribeReplicaPerformancePerformanceKeyItem

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetThumbnailsRequest struct {
@@ -25,19 +26,19 @@ func (req *GetThumbnailsRequest) Invoke(client *sdk.Client) (resp *GetThumbnails
 
 type GetThumbnailsResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Results   GetThumbnailsResultList
 }
 
 type GetThumbnailsResult struct {
-	Code         string
-	Message      string
-	PhotoId      int64
-	PhotoIdStr   string
-	ThumbnailUrl string
+	Code         common.String
+	Message      common.String
+	PhotoId      common.Long
+	PhotoIdStr   common.String
+	ThumbnailUrl common.String
 }
 
 type GetThumbnailsPhotoIdList []int64

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttQueryClientByTopicRequest struct {
@@ -24,12 +25,12 @@ func (req *OnsMqttQueryClientByTopicRequest) Invoke(client *sdk.Client) (resp *O
 
 type OnsMqttQueryClientByTopicResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	HelpUrl         string
+	RequestId       common.String
+	HelpUrl         common.String
 	MqttClientSetDo OnsMqttQueryClientByTopicMqttClientSetDo
 }
 
 type OnsMqttQueryClientByTopicMqttClientSetDo struct {
-	OnlineCount  int64
-	PersistCount int64
+	OnlineCount  common.Long
+	PersistCount common.Long
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeHaVipsRequest struct {
@@ -33,23 +34,23 @@ type DescribeHaVipsFilter struct {
 
 type DescribeHaVipsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	HaVips     DescribeHaVipsHaVipList
 }
 
 type DescribeHaVipsHaVip struct {
-	HaVipId                string
-	RegionId               string
-	VpcId                  string
-	VSwitchId              string
-	IpAddress              string
-	Status                 string
-	MasterInstanceId       string
-	Description            string
-	CreateTime             string
+	HaVipId                common.String
+	RegionId               common.String
+	VpcId                  common.String
+	VSwitchId              common.String
+	IpAddress              common.String
+	Status                 common.String
+	MasterInstanceId       common.String
+	Description            common.String
+	CreateTime             common.String
 	AssociatedInstances    DescribeHaVipsAssociatedInstanceList
 	AssociatedEipAddresses DescribeHaVipsAssociatedEipAddressList
 }
@@ -99,10 +100,10 @@ func (list *DescribeHaVipsHaVipList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeHaVipsAssociatedInstanceList []string
+type DescribeHaVipsAssociatedInstanceList []common.String
 
 func (list *DescribeHaVipsAssociatedInstanceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -114,10 +115,10 @@ func (list *DescribeHaVipsAssociatedInstanceList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type DescribeHaVipsAssociatedEipAddressList []string
+type DescribeHaVipsAssociatedEipAddressList []common.String
 
 func (list *DescribeHaVipsAssociatedEipAddressList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

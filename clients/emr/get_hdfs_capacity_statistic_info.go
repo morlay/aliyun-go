@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetHdfsCapacityStatisticInfoRequest struct {
@@ -25,20 +26,20 @@ func (req *GetHdfsCapacityStatisticInfoRequest) Invoke(client *sdk.Client) (resp
 
 type GetHdfsCapacityStatisticInfoResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	HdfsCapacityList GetHdfsCapacityStatisticInfoClusterStatHdfsCapacityList
 }
 
 type GetHdfsCapacityStatisticInfoClusterStatHdfsCapacity struct {
-	CapacityTotal       int64
-	CapacityTotalGB     int64
-	CapacityUsed        int64
-	CapacityUsedGB      int64
-	CapacityRemaining   int64
-	CapacityRemainingGB int64
-	CapacityUsedNonDfs  int64
-	ClusterBizId        string
-	DateTime            string
+	CapacityTotal       common.Long
+	CapacityTotalGB     common.Long
+	CapacityUsed        common.Long
+	CapacityUsedGB      common.Long
+	CapacityRemaining   common.Long
+	CapacityRemainingGB common.Long
+	CapacityUsedNonDfs  common.Long
+	ClusterBizId        common.String
+	DateTime            common.String
 }
 
 type GetHdfsCapacityStatisticInfoClusterStatHdfsCapacityList []GetHdfsCapacityStatisticInfoClusterStatHdfsCapacity

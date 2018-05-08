@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLoadBalancersRelatedEcsRequest struct {
@@ -28,51 +29,51 @@ func (req *DescribeLoadBalancersRelatedEcsRequest) Invoke(client *sdk.Client) (r
 
 type DescribeLoadBalancersRelatedEcsResponse struct {
 	responses.BaseResponse
-	Message       string
+	Message       common.String
 	Success       bool
-	RequestId     string
+	RequestId     common.String
 	LoadBalancers DescribeLoadBalancersRelatedEcsLoadBalancerList
 }
 
 type DescribeLoadBalancersRelatedEcsLoadBalancer struct {
-	LoadBalancerId           string
-	Count                    int
+	LoadBalancerId           common.String
+	Count                    common.Integer
 	MasterSlaveVServerGroups DescribeLoadBalancersRelatedEcsMasterSlaveVServerGroupList
 	VServerGroups            DescribeLoadBalancersRelatedEcsVServerGroupList
 	BackendServers           DescribeLoadBalancersRelatedEcsBackendServer4List
 }
 
 type DescribeLoadBalancersRelatedEcsMasterSlaveVServerGroup struct {
-	GroupId         string
-	GroupName       string
+	GroupId         common.String
+	GroupName       common.String
 	BackendServers1 DescribeLoadBalancersRelatedEcsBackendServerList
 }
 
 type DescribeLoadBalancersRelatedEcsBackendServer struct {
-	VmName      string
-	Weight      int
-	Port        int
-	NetworkType string
+	VmName      common.String
+	Weight      common.Integer
+	Port        common.Integer
+	NetworkType common.String
 }
 
 type DescribeLoadBalancersRelatedEcsVServerGroup struct {
-	GroupId         string
-	GroupName       string
+	GroupId         common.String
+	GroupName       common.String
 	BackendServers2 DescribeLoadBalancersRelatedEcsBackendServer3List
 }
 
 type DescribeLoadBalancersRelatedEcsBackendServer3 struct {
-	VmName      string
-	Weight      int
-	Port        int
-	NetworkType string
+	VmName      common.String
+	Weight      common.Integer
+	Port        common.Integer
+	NetworkType common.String
 }
 
 type DescribeLoadBalancersRelatedEcsBackendServer4 struct {
-	VmName      string
-	Weight      int
-	Port        int
-	NetworkType string
+	VmName      common.String
+	Weight      common.Integer
+	Port        common.Integer
+	NetworkType common.String
 }
 
 type DescribeLoadBalancersRelatedEcsLoadBalancerList []DescribeLoadBalancersRelatedEcsLoadBalancer

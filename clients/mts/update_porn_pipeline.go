@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdatePornPipelineRequest struct {
@@ -28,19 +29,19 @@ func (req *UpdatePornPipelineRequest) Invoke(client *sdk.Client) (resp *UpdatePo
 
 type UpdatePornPipelineResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Pipeline  UpdatePornPipelinePipeline
 }
 
 type UpdatePornPipelinePipeline struct {
-	Id           string
-	Name         string
-	State        string
-	Priority     int
+	Id           common.String
+	Name         common.String
+	State        common.String
+	Priority     common.Integer
 	NotifyConfig UpdatePornPipelineNotifyConfig
 }
 
 type UpdatePornPipelineNotifyConfig struct {
-	Topic string
-	Queue string
+	Topic common.String
+	Queue common.String
 }

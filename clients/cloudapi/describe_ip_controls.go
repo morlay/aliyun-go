@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeIpControlsRequest struct {
@@ -26,21 +27,21 @@ func (req *DescribeIpControlsRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeIpControlsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalCount     int
-	PageSize       int
-	PageNumber     int
+	RequestId      common.String
+	TotalCount     common.Integer
+	PageSize       common.Integer
+	PageNumber     common.Integer
 	IpControlInfos DescribeIpControlsIpControlInfoList
 }
 
 type DescribeIpControlsIpControlInfo struct {
-	IpControlId   string
-	IpControlName string
-	IpControlType string
-	Description   string
-	CreateTime    string
-	ModifiedTime  string
-	RegionId      string
+	IpControlId   common.String
+	IpControlName common.String
+	IpControlType common.String
+	Description   common.String
+	CreateTime    common.String
+	ModifiedTime  common.String
+	RegionId      common.String
 }
 
 type DescribeIpControlsIpControlInfoList []DescribeIpControlsIpControlInfo

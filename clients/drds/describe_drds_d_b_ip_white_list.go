@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDrdsDBIpWhiteListRequest struct {
@@ -24,7 +25,7 @@ func (req *DescribeDrdsDBIpWhiteListRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDrdsDBIpWhiteListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 	Data      DescribeDrdsDBIpWhiteListData
 }
@@ -33,10 +34,10 @@ type DescribeDrdsDBIpWhiteListData struct {
 	IpWhiteList DescribeDrdsDBIpWhiteListIpWhiteListList
 }
 
-type DescribeDrdsDBIpWhiteListIpWhiteListList []string
+type DescribeDrdsDBIpWhiteListIpWhiteListList []common.String
 
 func (list *DescribeDrdsDBIpWhiteListIpWhiteListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAccessGroupsRequest struct {
@@ -24,19 +25,19 @@ func (req *DescribeAccessGroupsRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeAccessGroupsResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int
-	PageSize     int
-	PageNumber   int
+	RequestId    common.String
+	TotalCount   common.Integer
+	PageSize     common.Integer
+	PageNumber   common.Integer
 	AccessGroups DescribeAccessGroupsAccessGroupList
 }
 
 type DescribeAccessGroupsAccessGroup struct {
-	AccessGroupName  string
-	AccessGroupType  string
-	RuleCount        int
-	MountTargetCount int
-	Description      string
+	AccessGroupName  common.String
+	AccessGroupType  common.String
+	RuleCount        common.Integer
+	MountTargetCount common.Integer
+	Description      common.String
 }
 
 type DescribeAccessGroupsAccessGroupList []DescribeAccessGroupsAccessGroup

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindResRenewalStartTimeRequest struct {
@@ -24,9 +25,9 @@ func (req *FindResRenewalStartTimeRequest) Invoke(client *sdk.Client) (resp *Fin
 
 type FindResRenewalStartTimeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Message   string
+	RequestId common.String
+	Code      common.String
+	Message   common.String
 	Success   bool
-	Data      int64
+	Data      common.Long
 }

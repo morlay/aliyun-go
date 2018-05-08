@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTempInstanceRequest struct {
@@ -26,19 +27,19 @@ func (req *DescribeTempInstanceRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeTempInstanceResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	TempInstances DescribeTempInstanceTempInstanceList
 }
 
 type DescribeTempInstanceTempInstance struct {
-	InstanceId     string
-	TempInstanceId string
-	SnapshotId     string
-	CreateTime     string
-	Domain         string
-	Status         string
-	Memory         int64
-	ExpireTime     string
+	InstanceId     common.String
+	TempInstanceId common.String
+	SnapshotId     common.String
+	CreateTime     common.String
+	Domain         common.String
+	Status         common.String
+	Memory         common.Long
+	ExpireTime     common.String
 }
 
 type DescribeTempInstanceTempInstanceList []DescribeTempInstanceTempInstance

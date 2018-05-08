@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateAccessRuleRequest struct {
@@ -24,6 +25,6 @@ func (req *CreateAccessRuleRequest) Invoke(client *sdk.Client) (resp *CreateAcce
 
 type CreateAccessRuleResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	AccessRuleId string
+	RequestId    common.String
+	AccessRuleId common.String
 }

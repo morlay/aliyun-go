@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeMonitorValuesRequest struct {
@@ -27,25 +28,25 @@ func (req *DescribeMonitorValuesRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeMonitorValuesResponse struct {
 	responses.BaseResponse
-	RequestId                   string
+	RequestId                   common.String
 	GetOcsMonitorValuesResponse DescribeMonitorValuesGetOcsMonitorValuesResponse
 }
 
 type DescribeMonitorValuesGetOcsMonitorValuesResponse struct {
-	Date           string
+	Date           common.String
 	OcsInstanceIds DescribeMonitorValuesOcsMonitorDTOList
 }
 
 type DescribeMonitorValuesOcsMonitorDTO struct {
-	OcsInstanceId string
+	OcsInstanceId common.String
 	MonitorKeys   DescribeMonitorValuesOcsMonitorKeyDTOList
 }
 
 type DescribeMonitorValuesOcsMonitorKeyDTO struct {
-	MonitorKey string
-	Value      string
-	Unit       string
-	Date       string
+	MonitorKey common.String
+	Value      common.String
+	Unit       common.String
+	Date       common.String
 }
 
 type DescribeMonitorValuesOcsMonitorDTOList []DescribeMonitorValuesOcsMonitorDTO

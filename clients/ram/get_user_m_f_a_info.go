@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserMFAInfoRequest struct {
@@ -20,10 +21,10 @@ func (req *GetUserMFAInfoRequest) Invoke(client *sdk.Client) (resp *GetUserMFAIn
 
 type GetUserMFAInfoResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	MFADevice GetUserMFAInfoMFADevice
 }
 
 type GetUserMFAInfoMFADevice struct {
-	SerialNumber string
+	SerialNumber common.String
 }

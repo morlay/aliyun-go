@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListCallDetailRecordsRequest struct {
@@ -32,65 +33,65 @@ func (req *ListCallDetailRecordsRequest) Invoke(client *sdk.Client) (resp *ListC
 
 type ListCallDetailRecordsResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	Success           bool
-	Code              string
-	Message           string
-	HttpStatusCode    int
+	Code              common.String
+	Message           common.String
+	HttpStatusCode    common.Integer
 	CallDetailRecords ListCallDetailRecordsCallDetailRecords
 }
 
 type ListCallDetailRecordsCallDetailRecords struct {
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	List       ListCallDetailRecordsCallDetailRecordList
 }
 
 type ListCallDetailRecordsCallDetailRecord struct {
-	ContactId          string
-	StartTime          int64
-	Duration           int
-	Satisfaction       int
-	ContactType        string
-	ContactDisposition string
-	CallingNumber      string
-	CalledNumber       string
-	AgentNames         string
-	SkillGroupNames    string
-	InstanceId         string
-	ExtraAttr          string
+	ContactId          common.String
+	StartTime          common.Long
+	Duration           common.Integer
+	Satisfaction       common.Integer
+	ContactType        common.String
+	ContactDisposition common.String
+	CallingNumber      common.String
+	CalledNumber       common.String
+	AgentNames         common.String
+	SkillGroupNames    common.String
+	InstanceId         common.String
+	ExtraAttr          common.String
 	Agents             ListCallDetailRecordsCallDetailAgentList
 	Recordings         ListCallDetailRecordsRecordingList
 }
 
 type ListCallDetailRecordsCallDetailAgent struct {
-	ContactId      string
-	AgentId        string
-	AgentName      string
-	SkillGroupName string
-	QueueTime      int
-	RingTime       int
-	StartTime      int64
-	TalkTime       int
-	HoldTime       int
-	WorkTime       int
+	ContactId      common.String
+	AgentId        common.String
+	AgentName      common.String
+	SkillGroupName common.String
+	QueueTime      common.Integer
+	RingTime       common.Integer
+	StartTime      common.Long
+	TalkTime       common.Integer
+	HoldTime       common.Integer
+	WorkTime       common.Integer
 }
 
 type ListCallDetailRecordsRecording struct {
-	ContactId       string
-	ContactType     string
-	AgentId         string
-	AgentName       string
-	CallingNumber   string
-	CalledNumber    string
-	StartTime       int64
-	Duration        int
-	FileName        string
-	FilePath        string
-	FileDescription string
-	Channel         string
-	InstanceId      string
+	ContactId       common.String
+	ContactType     common.String
+	AgentId         common.String
+	AgentName       common.String
+	CallingNumber   common.String
+	CalledNumber    common.String
+	StartTime       common.Long
+	Duration        common.Integer
+	FileName        common.String
+	FilePath        common.String
+	FileDescription common.String
+	Channel         common.String
+	InstanceId      common.String
 }
 
 type ListCallDetailRecordsCallDetailRecordList []ListCallDetailRecordsCallDetailRecord

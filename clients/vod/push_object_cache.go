@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PushObjectCacheRequest struct {
@@ -24,6 +25,6 @@ func (req *PushObjectCacheRequest) Invoke(client *sdk.Client) (resp *PushObjectC
 
 type PushObjectCacheResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PushTaskId string
+	RequestId  common.String
+	PushTaskId common.String
 }

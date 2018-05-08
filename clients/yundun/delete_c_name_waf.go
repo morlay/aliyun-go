@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteCNameWafRequest struct {
@@ -25,15 +26,15 @@ func (req *DeleteCNameWafRequest) Invoke(client *sdk.Client) (resp *DeleteCNameW
 
 type DeleteCNameWafResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	WafInfoList DeleteCNameWafWafInfoList
 }
 
 type DeleteCNameWafWafInfo struct {
-	Id     int
-	Domain string
-	Cname  string
-	Status int
+	Id     common.Integer
+	Domain common.String
+	Cname  common.String
+	Status common.Integer
 }
 
 type DeleteCNameWafWafInfoList []DeleteCNameWafWafInfo

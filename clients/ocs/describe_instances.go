@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstancesRequest struct {
@@ -33,37 +34,37 @@ func (req *DescribeInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeI
 
 type DescribeInstancesResponse struct {
 	responses.BaseResponse
-	RequestId               string
+	RequestId               common.String
 	GetOcsInstancesResponse DescribeInstancesGetOcsInstancesResponse
 }
 
 type DescribeInstancesGetOcsInstancesResponse struct {
-	Total        int
-	PageNo       int
-	PageSize     int
+	Total        common.Integer
+	PageNo       common.Integer
+	PageSize     common.Integer
 	OcsInstances DescribeInstancesOcsInstanceList
 }
 
 type DescribeInstancesOcsInstance struct {
-	OcsInstanceId     string
-	OcsInstanceName   string
-	Capacity          int64
-	Qps               int64
-	Bandwidth         int64
-	Connections       int64
-	ConnectionDomain  string
-	Port              int
-	UserName          string
-	RegionId          string
-	OcsInstanceStatus string
-	GmtCreated        string
-	EndTime           string
-	ChargeType        string
-	IzId              string
-	NetworkType       string
-	VpcId             string
-	VSwitchId         string
-	PrivateIp         string
+	OcsInstanceId     common.String
+	OcsInstanceName   common.String
+	Capacity          common.Long
+	Qps               common.Long
+	Bandwidth         common.Long
+	Connections       common.Long
+	ConnectionDomain  common.String
+	Port              common.Integer
+	UserName          common.String
+	RegionId          common.String
+	OcsInstanceStatus common.String
+	GmtCreated        common.String
+	EndTime           common.String
+	ChargeType        common.String
+	IzId              common.String
+	NetworkType       common.String
+	VpcId             common.String
+	VSwitchId         common.String
+	PrivateIp         common.String
 }
 
 type DescribeInstancesOcsInstanceList []DescribeInstancesOcsInstance

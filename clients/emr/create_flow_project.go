@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateFlowProjectRequest struct {
@@ -22,6 +23,6 @@ func (req *CreateFlowProjectRequest) Invoke(client *sdk.Client) (resp *CreateFlo
 
 type CreateFlowProjectResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Id        string
+	RequestId common.String
+	Id        common.String
 }

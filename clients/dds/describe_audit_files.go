@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAuditFilesRequest struct {
@@ -30,21 +31,21 @@ func (req *DescribeAuditFilesRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeAuditFilesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
-	DBInstanceId     string
+	RequestId        common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
+	DBInstanceId     common.String
 	Items            DescribeAuditFilesLogFileList
 }
 
 type DescribeAuditFilesLogFile struct {
-	FileID         int
-	LogStatus      string
-	LogStartTime   string
-	LogEndTime     string
-	LogDownloadURL string
-	LogSize        int64
+	FileID         common.Integer
+	LogStatus      common.String
+	LogStartTime   common.String
+	LogEndTime     common.String
+	LogDownloadURL common.String
+	LogSize        common.Long
 }
 
 type DescribeAuditFilesLogFileList []DescribeAuditFilesLogFile

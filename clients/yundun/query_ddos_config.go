@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDdosConfigRequest struct {
@@ -21,17 +22,17 @@ func (req *QueryDdosConfigRequest) Invoke(client *sdk.Client) (resp *QueryDdosCo
 
 type QueryDdosConfigResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Bps              int64
-	Pps              int64
-	Qps              int64
-	Sipconn          int64
-	Sipnew           int64
+	RequestId        common.String
+	Bps              common.Long
+	Pps              common.Long
+	Qps              common.Long
+	Sipconn          common.Long
+	Sipnew           common.Long
 	Layer7Config     bool
-	FlowPosition     int
-	QpsPosition      int
-	StrategyPosition int
-	Level            int
-	HoleBps          string
-	ConfigType       string
+	FlowPosition     common.Integer
+	QpsPosition      common.Integer
+	StrategyPosition common.Integer
+	Level            common.Integer
+	HoleBps          common.String
+	ConfigType       common.String
 }

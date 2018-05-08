@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryBatchRegisterDeviceStatusRequest struct {
@@ -23,22 +24,22 @@ func (req *QueryBatchRegisterDeviceStatusRequest) Invoke(client *sdk.Client) (re
 
 type QueryBatchRegisterDeviceStatusResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         QueryBatchRegisterDeviceStatusData
 }
 
 type QueryBatchRegisterDeviceStatusData struct {
-	Status      string
+	Status      common.String
 	ValidList   QueryBatchRegisterDeviceStatusValidListList
 	InvalidList QueryBatchRegisterDeviceStatusInvalidListList
 }
 
-type QueryBatchRegisterDeviceStatusValidListList []string
+type QueryBatchRegisterDeviceStatusValidListList []common.String
 
 func (list *QueryBatchRegisterDeviceStatusValidListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -50,10 +51,10 @@ func (list *QueryBatchRegisterDeviceStatusValidListList) UnmarshalJSON(data []by
 	return nil
 }
 
-type QueryBatchRegisterDeviceStatusInvalidListList []string
+type QueryBatchRegisterDeviceStatusInvalidListList []common.String
 
 func (list *QueryBatchRegisterDeviceStatusInvalidListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

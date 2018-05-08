@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListSoftwaresRequest struct {
@@ -22,24 +23,24 @@ func (req *ListSoftwaresRequest) Invoke(client *sdk.Client) (resp *ListSoftwares
 
 type ListSoftwaresResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Softwares ListSoftwaresSoftwareInfoList
 }
 
 type ListSoftwaresSoftwareInfo struct {
-	EhpcVersion      string
-	OsTag            string
-	SchedulerType    string
-	SchedulerVersion string
-	AccountType      string
-	AccountVersion   string
+	EhpcVersion      common.String
+	OsTag            common.String
+	SchedulerType    common.String
+	SchedulerVersion common.String
+	AccountType      common.String
+	AccountVersion   common.String
 	Applications     ListSoftwaresApplicationInfoList
 }
 
 type ListSoftwaresApplicationInfo struct {
-	Tag      string
-	Name     string
-	Version  string
+	Tag      common.String
+	Name     common.String
+	Version  common.String
 	Required bool
 }
 

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ResetAutoRenewalRequest struct {
@@ -32,7 +33,7 @@ type ResetAutoRenewalEcsResetAutoRenewDo struct {
 
 type ResetAutoRenewalResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type ResetAutoRenewalEcsResetAutoRenewDoList []ResetAutoRenewalEcsResetAutoRenewDo

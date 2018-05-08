@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RegisterMediaDetailScenarioRequest struct {
@@ -26,6 +27,6 @@ func (req *RegisterMediaDetailScenarioRequest) Invoke(client *sdk.Client) (resp 
 
 type RegisterMediaDetailScenarioResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	ScenarioId string
+	RequestId  common.String
+	ScenarioId common.String
 }

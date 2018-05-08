@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type StartCasterSceneRequest struct {
@@ -22,6 +23,6 @@ func (req *StartCasterSceneRequest) Invoke(client *sdk.Client) (resp *StartCaste
 
 type StartCasterSceneResponse struct {
 	responses.BaseResponse
-	RequestId string
-	StreamUrl string
+	RequestId common.String
+	StreamUrl common.String
 }

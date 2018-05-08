@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifySignatureRequest struct {
@@ -23,7 +24,7 @@ func (req *ModifySignatureRequest) Invoke(client *sdk.Client) (resp *ModifySigna
 
 type ModifySignatureResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	SignatureId   string
-	SignatureName string
+	RequestId     common.String
+	SignatureId   common.String
+	SignatureName common.String
 }

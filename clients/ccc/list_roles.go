@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListRolesRequest struct {
@@ -22,19 +23,19 @@ func (req *ListRolesRequest) Invoke(client *sdk.Client) (resp *ListRolesResponse
 
 type ListRolesResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Roles          ListRolesRoleList
 }
 
 type ListRolesRole struct {
-	RoleId          string
-	InstanceId      string
-	RoleName        string
-	RoleDescription string
+	RoleId          common.String
+	InstanceId      common.String
+	RoleName        common.String
+	RoleDescription common.String
 }
 
 type ListRolesRoleList []ListRolesRole

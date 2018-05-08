@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteMyGroupsRequest struct {
@@ -22,24 +23,24 @@ func (req *DeleteMyGroupsRequest) Invoke(client *sdk.Client) (resp *DeleteMyGrou
 
 type DeleteMyGroupsResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Group        DeleteMyGroupsGroup
 }
 
 type DeleteMyGroupsGroup struct {
-	GroupId       int64
-	GroupName     string
-	ServiceId     string
-	BindUrls      string
-	Type          string
+	GroupId       common.Long
+	GroupName     common.String
+	ServiceId     common.String
+	BindUrls      common.String
+	Type          common.String
 	ContactGroups DeleteMyGroupsContactGroupList
 }
 
 type DeleteMyGroupsContactGroup struct {
-	Name string
+	Name common.String
 }
 
 type DeleteMyGroupsContactGroupList []DeleteMyGroupsContactGroup

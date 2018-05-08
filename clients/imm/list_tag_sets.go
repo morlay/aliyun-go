@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListTagSetsRequest struct {
@@ -24,17 +25,17 @@ func (req *ListTagSetsRequest) Invoke(client *sdk.Client) (resp *ListTagSetsResp
 
 type ListTagSetsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextMarker string
+	RequestId  common.String
+	NextMarker common.String
 	Sets       ListTagSetsSetsItemList
 }
 
 type ListTagSetsSetsItem struct {
-	SetId      string
-	Status     string
-	Photos     int64
-	CreateTime string
-	ModifyTime string
+	SetId      common.String
+	Status     common.String
+	Photos     common.Long
+	CreateTime common.String
+	ModifyTime common.String
 }
 
 type ListTagSetsSetsItemList []ListTagSetsSetsItem

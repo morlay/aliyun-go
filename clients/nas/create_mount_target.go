@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateMountTargetRequest struct {
@@ -24,6 +25,6 @@ func (req *CreateMountTargetRequest) Invoke(client *sdk.Client) (resp *CreateMou
 
 type CreateMountTargetResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	MountTargetDomain string
+	RequestId         common.String
+	MountTargetDomain common.String
 }

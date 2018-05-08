@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetInstanceConsoleOutputRequest struct {
@@ -24,8 +25,8 @@ func (req *GetInstanceConsoleOutputRequest) Invoke(client *sdk.Client) (resp *Ge
 
 type GetInstanceConsoleOutputResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	InstanceId     string
-	ConsoleOutput  string
-	LastUpdateTime string
+	RequestId      common.String
+	InstanceId     common.String
+	ConsoleOutput  common.String
+	LastUpdateTime common.String
 }

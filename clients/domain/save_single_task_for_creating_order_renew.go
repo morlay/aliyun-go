@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveSingleTaskForCreatingOrderRenewRequest struct {
@@ -24,6 +25,6 @@ func (req *SaveSingleTaskForCreatingOrderRenewRequest) Invoke(client *sdk.Client
 
 type SaveSingleTaskForCreatingOrderRenewResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }

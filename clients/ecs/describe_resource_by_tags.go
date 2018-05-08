@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeResourceByTagsRequest struct {
@@ -37,17 +38,17 @@ func (req *DescribeResourceByTagsRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeResourceByTagsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageSize   int
-	PageNumber int
-	TotalCount int
+	RequestId  common.String
+	PageSize   common.Integer
+	PageNumber common.Integer
+	TotalCount common.Integer
 	Resources  DescribeResourceByTagsResourceList
 }
 
 type DescribeResourceByTagsResource struct {
-	ResourceId   string
-	ResourceType string
-	RegionId     string
+	ResourceId   common.String
+	ResourceType common.String
+	RegionId     common.String
 }
 
 type DescribeResourceByTagsResourceList []DescribeResourceByTagsResource

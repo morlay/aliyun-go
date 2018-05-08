@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterBasicInfoRequest struct {
@@ -23,45 +24,45 @@ func (req *DescribeClusterBasicInfoRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeClusterBasicInfoResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	ClusterInfo DescribeClusterBasicInfoClusterInfo
 }
 
 type DescribeClusterBasicInfoClusterInfo struct {
-	Id                     string
-	BizId                  string
-	RegionId               string
-	ZoneId                 string
-	Name                   string
-	CreateType             string
-	StartTime              int64
-	StopTime               int64
+	Id                     common.String
+	BizId                  common.String
+	RegionId               common.String
+	ZoneId                 common.String
+	Name                   common.String
+	CreateType             common.String
+	StartTime              common.Long
+	StopTime               common.Long
 	LogEnable              bool
-	LogPath                string
-	Status                 string
+	LogPath                common.String
+	Status                 common.String
 	HighAvailabilityEnable bool
-	ChargeType             string
-	ExpiredTime            int64
-	Period                 int
-	RunningTime            int
-	MasterNodeTotal        int
-	MasterNodeInService    int
-	CoreNodeTotal          int
-	CoreNodeInService      int
-	TaskNodeTotal          int
-	TaskNodeInService      int
+	ChargeType             common.String
+	ExpiredTime            common.Long
+	Period                 common.Integer
+	RunningTime            common.Integer
+	MasterNodeTotal        common.Integer
+	MasterNodeInService    common.Integer
+	CoreNodeTotal          common.Integer
+	CoreNodeInService      common.Integer
+	TaskNodeTotal          common.Integer
+	TaskNodeInService      common.Integer
 	ShowSoftwareInterface  bool
-	VpcId                  string
-	VSwitchId              string
-	NetType                string
-	UserDefinedEmrEcsRole  string
+	VpcId                  common.String
+	VSwitchId              common.String
+	NetType                common.String
+	UserDefinedEmrEcsRole  common.String
 	IoOptimized            bool
-	InstanceGeneration     string
+	InstanceGeneration     common.String
 	BootstrapFailed        bool
-	Configurations         string
-	ImageId                string
-	SecurityGroupId        string
-	SecurityGroupName      string
+	Configurations         common.String
+	ImageId                common.String
+	SecurityGroupId        common.String
+	SecurityGroupName      common.String
 	EasEnable              bool
 	BootstrapActionList    DescribeClusterBasicInfoBootstrapActionList
 	SoftwareInfo           DescribeClusterBasicInfoSoftwareInfo
@@ -69,29 +70,29 @@ type DescribeClusterBasicInfoClusterInfo struct {
 }
 
 type DescribeClusterBasicInfoBootstrapAction struct {
-	Name string
-	Path string
-	Arg  string
+	Name common.String
+	Path common.String
+	Arg  common.String
 }
 
 type DescribeClusterBasicInfoSoftwareInfo struct {
-	EmrVer      string
-	ClusterType string
+	EmrVer      common.String
+	ClusterType common.String
 	Softwares   DescribeClusterBasicInfoSoftwareList
 }
 
 type DescribeClusterBasicInfoSoftware struct {
-	DisplayName string
-	Name        string
+	DisplayName common.String
+	Name        common.String
 	OnlyDisplay bool
-	StartTpe    int
-	Version     string
+	StartTpe    common.Integer
+	Version     common.String
 }
 
 type DescribeClusterBasicInfoFailReason struct {
-	ErrorCode string
-	ErrorMsg  string
-	RequestId string
+	ErrorCode common.String
+	ErrorMsg  common.String
+	RequestId common.String
 }
 
 type DescribeClusterBasicInfoBootstrapActionList []DescribeClusterBasicInfoBootstrapAction

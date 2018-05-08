@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainBpsDataByTimeStampRequest struct {
@@ -27,16 +28,16 @@ func (req *DescribeDomainBpsDataByTimeStampRequest) Invoke(client *sdk.Client) (
 
 type DescribeDomainBpsDataByTimeStampResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	DomainName  string
-	TimeStamp   string
+	RequestId   common.String
+	DomainName  common.String
+	TimeStamp   common.String
 	BpsDataList DescribeDomainBpsDataByTimeStampBpsDataModelList
 }
 
 type DescribeDomainBpsDataByTimeStampBpsDataModel struct {
-	LocationName string
-	IspName      string
-	Bps          int64
+	LocationName common.String
+	IspName      common.String
+	Bps          common.Long
 }
 
 type DescribeDomainBpsDataByTimeStampBpsDataModelList []DescribeDomainBpsDataByTimeStampBpsDataModel

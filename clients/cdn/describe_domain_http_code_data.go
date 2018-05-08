@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainHttpCodeDataRequest struct {
@@ -30,23 +31,23 @@ func (req *DescribeDomainHttpCodeDataRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeDomainHttpCodeDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DomainName   string
-	DataInterval string
-	StartTime    string
-	EndTime      string
+	RequestId    common.String
+	DomainName   common.String
+	DataInterval common.String
+	StartTime    common.String
+	EndTime      common.String
 	HttpCodeData DescribeDomainHttpCodeDataUsageDataList
 }
 
 type DescribeDomainHttpCodeDataUsageData struct {
-	TimeStamp string
+	TimeStamp common.String
 	Value     DescribeDomainHttpCodeDataCodeProportionDataList
 }
 
 type DescribeDomainHttpCodeDataCodeProportionData struct {
-	Code       string
-	Proportion string
-	Count      string
+	Code       common.String
+	Proportion common.String
+	Count      common.String
 }
 
 type DescribeDomainHttpCodeDataUsageDataList []DescribeDomainHttpCodeDataUsageData

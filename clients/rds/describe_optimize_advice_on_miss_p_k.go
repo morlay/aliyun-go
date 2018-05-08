@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOptimizeAdviceOnMissPKRequest struct {
@@ -28,16 +29,16 @@ func (req *DescribeOptimizeAdviceOnMissPKRequest) Invoke(client *sdk.Client) (re
 
 type DescribeOptimizeAdviceOnMissPKResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalRecordsCount int
-	PageNumber        int
-	PageRecordCount   int
+	RequestId         common.String
+	TotalRecordsCount common.Integer
+	PageNumber        common.Integer
+	PageRecordCount   common.Integer
 	Items             DescribeOptimizeAdviceOnMissPKAdviceOnMissPKList
 }
 
 type DescribeOptimizeAdviceOnMissPKAdviceOnMissPK struct {
-	DBName    string
-	TableName string
+	DBName    common.String
+	TableName common.String
 }
 
 type DescribeOptimizeAdviceOnMissPKAdviceOnMissPKList []DescribeOptimizeAdviceOnMissPKAdviceOnMissPK

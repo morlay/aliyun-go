@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetBuildsRequest struct {
@@ -26,16 +27,16 @@ func (req *GetBuildsRequest) Invoke(client *sdk.Client) (resp *GetBuildsResponse
 
 type GetBuildsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Builds    GetBuildsBuildList
 }
 
 type GetBuildsBuild struct {
-	BuildNumber int
-	Duration    int
-	StartTime   int64
-	Log         string
-	BuildEnv    string
+	BuildNumber common.Integer
+	Duration    common.Integer
+	StartTime   common.Long
+	Log         common.String
+	BuildEnv    common.String
 }
 
 type GetBuildsBuildList []GetBuildsBuild

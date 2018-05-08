@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeIpRangesRequest struct {
@@ -29,18 +30,18 @@ func (req *DescribeIpRangesRequest) Invoke(client *sdk.Client) (resp *DescribeIp
 
 type DescribeIpRangesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	RegionId   string
-	ClusterId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	RegionId   common.String
+	ClusterId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	IpRanges   DescribeIpRangesIpRangeList
 }
 
 type DescribeIpRangesIpRange struct {
-	IpAddress string
-	NicType   string
+	IpAddress common.String
+	NicType   common.String
 }
 
 type DescribeIpRangesIpRangeList []DescribeIpRangesIpRange

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveBatchTaskForTransferProhibitionLockRequest struct {
@@ -25,8 +26,8 @@ func (req *SaveBatchTaskForTransferProhibitionLockRequest) Invoke(client *sdk.Cl
 
 type SaveBatchTaskForTransferProhibitionLockResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }
 
 type SaveBatchTaskForTransferProhibitionLockDomainNameList []string

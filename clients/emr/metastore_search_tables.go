@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MetastoreSearchTablesRequest struct {
@@ -24,14 +25,14 @@ func (req *MetastoreSearchTablesRequest) Invoke(client *sdk.Client) (resp *Metas
 
 type MetastoreSearchTablesResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	TableNames MetastoreSearchTablesTableNameList
 }
 
-type MetastoreSearchTablesTableNameList []string
+type MetastoreSearchTablesTableNameList []common.String
 
 func (list *MetastoreSearchTablesTableNameList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

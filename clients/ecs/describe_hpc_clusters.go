@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeHpcClustersRequest struct {
@@ -29,17 +30,17 @@ func (req *DescribeHpcClustersRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeHpcClustersResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageNumber  int
-	PageSize    int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageNumber  common.Integer
+	PageSize    common.Integer
 	HpcClusters DescribeHpcClustersHpcClusterList
 }
 
 type DescribeHpcClustersHpcCluster struct {
-	HpcClusterId string
-	Name         string
-	Description  string
+	HpcClusterId common.String
+	Name         common.String
+	Description  common.String
 }
 
 type DescribeHpcClustersHpcClusterList []DescribeHpcClustersHpcCluster

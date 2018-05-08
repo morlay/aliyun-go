@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVServerGroupRequest struct {
@@ -30,18 +31,18 @@ func (req *CreateVServerGroupRequest) Invoke(client *sdk.Client) (resp *CreateVS
 
 type CreateVServerGroupResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	VServerGroupId string
+	RequestId      common.String
+	VServerGroupId common.String
 	BackendServers CreateVServerGroupBackendServerList
 }
 
 type CreateVServerGroupBackendServer struct {
-	ServerId string
-	Port     int
-	Weight   int
-	Type     string
-	ServerIp string
-	VpcId    string
+	ServerId common.String
+	Port     common.Integer
+	Weight   common.Integer
+	Type     common.String
+	ServerIp common.String
+	VpcId    common.String
 }
 
 type CreateVServerGroupBackendServerList []CreateVServerGroupBackendServer

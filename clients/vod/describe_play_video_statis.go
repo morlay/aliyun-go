@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePlayVideoStatisRequest struct {
@@ -25,17 +26,17 @@ func (req *DescribePlayVideoStatisRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribePlayVideoStatisResponse struct {
 	responses.BaseResponse
-	RequestId              string
+	RequestId              common.String
 	VideoPlayStatisDetails DescribePlayVideoStatisVideoPlayStatisDetailList
 }
 
 type DescribePlayVideoStatisVideoPlayStatisDetail struct {
-	Date         string
-	PlayDuration string
-	VV           string
-	UV           string
-	PlayRange    string
-	Title        string
+	Date         common.String
+	PlayDuration common.String
+	VV           common.String
+	UV           common.String
+	PlayRange    common.String
+	Title        common.String
 }
 
 type DescribePlayVideoStatisVideoPlayStatisDetailList []DescribePlayVideoStatisVideoPlayStatisDetail

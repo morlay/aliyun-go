@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteCasterEpisodeRequest struct {
@@ -22,7 +23,7 @@ func (req *DeleteCasterEpisodeRequest) Invoke(client *sdk.Client) (resp *DeleteC
 
 type DeleteCasterEpisodeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	CasterId  string
-	EpisodeId string
+	RequestId common.String
+	CasterId  common.String
+	EpisodeId common.String
 }

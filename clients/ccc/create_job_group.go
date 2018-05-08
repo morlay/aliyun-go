@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateJobGroupRequest struct {
@@ -27,52 +28,52 @@ func (req *CreateJobGroupRequest) Invoke(client *sdk.Client) (resp *CreateJobGro
 
 type CreateJobGroupResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	JobGroup       CreateJobGroupJobGroup
 }
 
 type CreateJobGroupJobGroup struct {
-	JobGroupId          string
-	JobGroupName        string
-	JobGroupDescription string
-	ScenarioId          string
-	JobFilePath         string
-	CreationTime        int64
+	JobGroupId          common.String
+	JobGroupName        common.String
+	JobGroupDescription common.String
+	ScenarioId          common.String
+	JobFilePath         common.String
+	CreationTime        common.Long
 	CallingNumbers      CreateJobGroupCallingNumberList
 	Strategy            CreateJobGroupStrategy
 }
 
 type CreateJobGroupStrategy struct {
-	StrategyId          string
-	StrategyName        string
-	StrategyDescription string
-	Type                string
-	StartTime           int64
-	EndTime             int64
-	RepeatBy            string
-	MaxAttemptsPerDay   int
-	MinAttemptInterval  int
-	Customized          string
-	RoutingStrategy     string
-	FollowUpStrategy    string
+	StrategyId          common.String
+	StrategyName        common.String
+	StrategyDescription common.String
+	Type                common.String
+	StartTime           common.Long
+	EndTime             common.Long
+	RepeatBy            common.String
+	MaxAttemptsPerDay   common.Integer
+	MinAttemptInterval  common.Integer
+	Customized          common.String
+	RoutingStrategy     common.String
+	FollowUpStrategy    common.String
 	IsTemplate          bool
 	WorkingTime         CreateJobGroupTimeFrameList
 	RepeatDays          CreateJobGroupRepeatDayList
 }
 
 type CreateJobGroupTimeFrame struct {
-	From string
-	To   string
+	From common.String
+	To   common.String
 }
 
-type CreateJobGroupCallingNumberList []string
+type CreateJobGroupCallingNumberList []common.String
 
 func (list *CreateJobGroupCallingNumberList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -99,10 +100,10 @@ func (list *CreateJobGroupTimeFrameList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type CreateJobGroupRepeatDayList []string
+type CreateJobGroupRepeatDayList []common.String
 
 func (list *CreateJobGroupRepeatDayList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

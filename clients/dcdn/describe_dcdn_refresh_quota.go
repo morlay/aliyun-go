@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnRefreshQuotaRequest struct {
@@ -21,13 +22,13 @@ func (req *DescribeDcdnRefreshQuotaRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeDcdnRefreshQuotaResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	UrlQuota      string
-	DirQuota      string
-	UrlRemain     string
-	DirRemain     string
-	PreloadQuota  string
-	BlockQuota    string
-	PreloadRemain string
-	BlockRemain   string
+	RequestId     common.String
+	UrlQuota      common.String
+	DirQuota      common.String
+	UrlRemain     common.String
+	DirRemain     common.String
+	PreloadQuota  common.String
+	BlockQuota    common.String
+	PreloadRemain common.String
+	BlockRemain   common.String
 }

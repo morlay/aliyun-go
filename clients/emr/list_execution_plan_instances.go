@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListExecutionPlanInstancesRequest struct {
@@ -28,26 +29,26 @@ func (req *ListExecutionPlanInstancesRequest) Invoke(client *sdk.Client) (resp *
 
 type ListExecutionPlanInstancesResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	TotalCount             int
-	PageNumber             int
-	PageSize               int
+	RequestId              common.String
+	TotalCount             common.Integer
+	PageNumber             common.Integer
+	PageSize               common.Integer
 	ExecutionPlanInstances ListExecutionPlanInstancesExecutionPlanInstanceList
 }
 
 type ListExecutionPlanInstancesExecutionPlanInstance struct {
-	Id                string
-	ExecutionPlanId   string
-	ExecutionPlanName string
-	StartTime         int64
-	RunTime           int
-	ClusterId         string
-	ClusterName       string
-	ClusterType       string
-	Status            string
+	Id                common.String
+	ExecutionPlanId   common.String
+	ExecutionPlanName common.String
+	StartTime         common.Long
+	RunTime           common.Integer
+	ClusterId         common.String
+	ClusterName       common.String
+	ClusterType       common.String
+	Status            common.String
 	LogEnable         bool
-	LogPath           string
-	WorkflowApp       string
+	LogPath           common.String
+	WorkflowApp       common.String
 }
 
 type ListExecutionPlanInstancesExecutionPlanIdListList []string

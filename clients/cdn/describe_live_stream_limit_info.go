@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamLimitInfoRequest struct {
@@ -24,14 +25,14 @@ func (req *DescribeLiveStreamLimitInfoRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeLiveStreamLimitInfoResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	UserLimitLists DescribeLiveStreamLimitInfoUserLimitModeList
 }
 
 type DescribeLiveStreamLimitInfoUserLimitMode struct {
-	LimitDomain       string
-	LimitNum          string
-	LimitTranscodeNum string
+	LimitDomain       common.String
+	LimitNum          common.String
+	LimitTranscodeNum common.String
 }
 
 type DescribeLiveStreamLimitInfoUserLimitModeList []DescribeLiveStreamLimitInfoUserLimitMode

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFlowNodeInstanceContainerStatusRequest struct {
@@ -26,15 +27,15 @@ func (req *ListFlowNodeInstanceContainerStatusRequest) Invoke(client *sdk.Client
 
 type ListFlowNodeInstanceContainerStatusResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	ContainerStatusList ListFlowNodeInstanceContainerStatusContainerStatusList
 }
 
 type ListFlowNodeInstanceContainerStatusContainerStatus struct {
-	ApplicationId string
-	ContainerId   string
-	HostName      string
-	Status        string
+	ApplicationId common.String
+	ContainerId   common.String
+	HostName      common.String
+	Status        common.String
 }
 
 type ListFlowNodeInstanceContainerStatusContainerStatusList []ListFlowNodeInstanceContainerStatusContainerStatus

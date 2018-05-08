@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeReplicasRequest struct {
@@ -29,23 +30,23 @@ func (req *DescribeReplicasRequest) Invoke(client *sdk.Client) (resp *DescribeRe
 
 type DescribeReplicasResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageNumber       string
-	TotalRecordCount int
-	PageRecordCount  int
+	RequestId        common.String
+	PageNumber       common.String
+	TotalRecordCount common.Integer
+	PageRecordCount  common.Integer
 	Replicas         DescribeReplicasItemsList
 }
 
 type DescribeReplicasItems struct {
-	ReplicaId          string
-	ReplicaDescription string
-	ReplicaStatus      string
+	ReplicaId          common.String
+	ReplicaDescription common.String
+	ReplicaStatus      common.String
 	DBInstances        DescribeReplicasItems1List
 }
 
 type DescribeReplicasItems1 struct {
-	DBInstanceId string
-	Role         string
+	DBInstanceId common.String
+	Role         common.String
 }
 
 type DescribeReplicasItemsList []DescribeReplicasItems

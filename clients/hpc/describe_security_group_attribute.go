@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSecurityGroupAttributeRequest struct {
@@ -27,24 +28,24 @@ type DescribeSecurityGroupAttributeResponse struct {
 }
 
 type DescribeSecurityGroupAttributeRecords struct {
-	RegionId    string
+	RegionId    common.String
 	Permissions DescribeSecurityGroupAttributePermissionList
 }
 
 type DescribeSecurityGroupAttributePermission struct {
-	SourceIp string
+	SourceIp common.String
 	Policy   DescribeSecurityGroupAttributePolicy
 	NicType  DescribeSecurityGroupAttributeNicType
-	Priority string
-	Time     string
+	Priority common.String
+	Time     common.String
 }
 
 type DescribeSecurityGroupAttributePolicy struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeSecurityGroupAttributeNicType struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeSecurityGroupAttributePermissionList []DescribeSecurityGroupAttributePermission

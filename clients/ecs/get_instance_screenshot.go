@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetInstanceScreenshotRequest struct {
@@ -25,7 +26,7 @@ func (req *GetInstanceScreenshotRequest) Invoke(client *sdk.Client) (resp *GetIn
 
 type GetInstanceScreenshotResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	InstanceId string
-	Screenshot string
+	RequestId  common.String
+	InstanceId common.String
+	Screenshot common.String
 }

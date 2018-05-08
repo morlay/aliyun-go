@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateCustomerGatewayRequest struct {
@@ -27,10 +28,10 @@ func (req *CreateCustomerGatewayRequest) Invoke(client *sdk.Client) (resp *Creat
 
 type CreateCustomerGatewayResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	CustomerGatewayId string
-	IpAddress         string
-	Name              string
-	Description       string
-	CreateTime        int64
+	RequestId         common.String
+	CustomerGatewayId common.String
+	IpAddress         common.String
+	Name              common.String
+	Description       common.String
+	CreateTime        common.Long
 }

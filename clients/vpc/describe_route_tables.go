@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRouteTablesRequest struct {
@@ -33,38 +34,38 @@ func (req *DescribeRouteTablesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeRouteTablesResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageNumber  int
-	PageSize    int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageNumber  common.Integer
+	PageSize    common.Integer
 	RouteTables DescribeRouteTablesRouteTableList
 }
 
 type DescribeRouteTablesRouteTable struct {
-	VRouterId      string
-	RouteTableId   string
-	RouteTableType string
-	CreationTime   string
+	VRouterId      common.String
+	RouteTableId   common.String
+	RouteTableType common.String
+	CreationTime   common.String
 	RouteEntrys    DescribeRouteTablesRouteEntryList
 }
 
 type DescribeRouteTablesRouteEntry struct {
-	RouteTableId         string
-	DestinationCidrBlock string
-	Type                 string
-	Status               string
-	InstanceId           string
-	NextHopType          string
-	NextHopRegionId      string
+	RouteTableId         common.String
+	DestinationCidrBlock common.String
+	Type                 common.String
+	Status               common.String
+	InstanceId           common.String
+	NextHopType          common.String
+	NextHopRegionId      common.String
 	NextHops             DescribeRouteTablesNextHopList
 }
 
 type DescribeRouteTablesNextHop struct {
-	NextHopType     string
-	NextHopId       string
-	Enabled         int
-	Weight          int
-	NextHopRegionId string
+	NextHopType     common.String
+	NextHopId       common.String
+	Enabled         common.Integer
+	Weight          common.Integer
+	NextHopRegionId common.String
 }
 
 type DescribeRouteTablesRouteTableList []DescribeRouteTablesRouteTable

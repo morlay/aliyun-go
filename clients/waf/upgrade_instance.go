@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpgradeInstanceRequest struct {
@@ -25,6 +26,6 @@ func (req *UpgradeInstanceRequest) Invoke(client *sdk.Client) (resp *UpgradeInst
 
 type UpgradeInstanceResponse struct {
 	responses.BaseResponse
-	OrderId   string
-	RequestId string
+	OrderId   common.String
+	RequestId common.String
 }

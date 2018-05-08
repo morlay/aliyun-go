@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainBpsDataRequest struct {
@@ -32,38 +33,38 @@ func (req *DescribeDomainBpsDataRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeDomainBpsDataResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	DomainName         string
-	DataInterval       string
-	StartTime          string
-	EndTime            string
-	LocationNameEn     string
-	IspNameEn          string
-	LocationName       string
-	IspName            string
+	RequestId          common.String
+	DomainName         common.String
+	DataInterval       common.String
+	StartTime          common.String
+	EndTime            common.String
+	LocationNameEn     common.String
+	IspNameEn          common.String
+	LocationName       common.String
+	IspName            common.String
 	BpsDataPerInterval DescribeDomainBpsDataDataModuleList
 	SupplyBpsDatas     DescribeDomainBpsDataDataModule1List
 }
 
 type DescribeDomainBpsDataDataModule struct {
-	TimeStamp            string
-	Value                string
-	DomesticValue        string
-	OverseasValue        string
-	DynamicValue         string
-	DynamicDomesticValue string
-	DynamicOverseasValue string
-	StaticValue          string
-	StaticDomesticValue  string
-	StaticOverseasValue  string
-	L2Value              string
-	DomesticL2Value      string
-	OverseasL2Value      string
+	TimeStamp            common.String
+	Value                common.String
+	DomesticValue        common.String
+	OverseasValue        common.String
+	DynamicValue         common.String
+	DynamicDomesticValue common.String
+	DynamicOverseasValue common.String
+	StaticValue          common.String
+	StaticDomesticValue  common.String
+	StaticOverseasValue  common.String
+	L2Value              common.String
+	DomesticL2Value      common.String
+	OverseasL2Value      common.String
 }
 
 type DescribeDomainBpsDataDataModule1 struct {
-	TimeStamp string
-	Value     string
+	TimeStamp common.String
+	Value     common.String
 }
 
 type DescribeDomainBpsDataDataModuleList []DescribeDomainBpsDataDataModule

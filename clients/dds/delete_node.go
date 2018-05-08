@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteNodeRequest struct {
@@ -27,6 +28,6 @@ func (req *DeleteNodeRequest) Invoke(client *sdk.Client) (resp *DeleteNodeRespon
 
 type DeleteNodeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskId    int
+	RequestId common.String
+	TaskId    common.Integer
 }

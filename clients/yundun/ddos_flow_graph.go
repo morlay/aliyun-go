@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DdosFlowGraphRequest struct {
@@ -23,23 +24,23 @@ func (req *DdosFlowGraphRequest) Invoke(client *sdk.Client) (resp *DdosFlowGraph
 
 type DdosFlowGraphResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	NormalFlows DdosFlowGraphNormalFlowList
 	TotalFlows  DdosFlowGraphTotalFlowList
 }
 
 type DdosFlowGraphNormalFlow struct {
-	Time    int64
-	BitRecv int64
-	BitSend int64
-	PktRecv int64
-	PktSend int64
+	Time    common.Long
+	BitRecv common.Long
+	BitSend common.Long
+	PktRecv common.Long
+	PktSend common.Long
 }
 
 type DdosFlowGraphTotalFlow struct {
-	Time    int64
-	BitRecv int64
-	PktRecv int64
+	Time    common.Long
+	BitRecv common.Long
+	PktRecv common.Long
 }
 
 type DdosFlowGraphNormalFlowList []DdosFlowGraphNormalFlow

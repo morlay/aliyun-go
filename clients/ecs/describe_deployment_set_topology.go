@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDeploymentSetTopologyRequest struct {
@@ -30,28 +31,28 @@ func (req *DescribeDeploymentSetTopologyRequest) Invoke(client *sdk.Client) (res
 
 type DescribeDeploymentSetTopologyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Switchs   DescribeDeploymentSetTopology_SwitchList
 	Racks     DescribeDeploymentSetTopologyRackList
 }
 
 type DescribeDeploymentSetTopology_Switch struct {
-	SwitchId string
+	SwitchId common.String
 	Hosts    DescribeDeploymentSetTopologyHostList
 }
 
 type DescribeDeploymentSetTopologyHost struct {
-	HostId      string
+	HostId      common.String
 	InstanceIds DescribeDeploymentSetTopologyInstanceIdList
 }
 
 type DescribeDeploymentSetTopologyRack struct {
-	RackId string
+	RackId common.String
 	Hosts1 DescribeDeploymentSetTopologyHost2List
 }
 
 type DescribeDeploymentSetTopologyHost2 struct {
-	HostId       string
+	HostId       common.String
 	InstanceIds3 DescribeDeploymentSetTopologyInstanceIds3List
 }
 
@@ -100,10 +101,10 @@ func (list *DescribeDeploymentSetTopologyHostList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeDeploymentSetTopologyInstanceIdList []string
+type DescribeDeploymentSetTopologyInstanceIdList []common.String
 
 func (list *DescribeDeploymentSetTopologyInstanceIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -130,10 +131,10 @@ func (list *DescribeDeploymentSetTopologyHost2List) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeDeploymentSetTopologyInstanceIds3List []string
+type DescribeDeploymentSetTopologyInstanceIds3List []common.String
 
 func (list *DescribeDeploymentSetTopologyInstanceIds3List) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

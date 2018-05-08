@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetRuleDetailRequest struct {
@@ -22,10 +23,10 @@ func (req *GetRuleDetailRequest) Invoke(client *sdk.Client) (resp *GetRuleDetail
 
 type GetRuleDetailResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      GetRuleDetailData
 }
 
@@ -35,61 +36,61 @@ type GetRuleDetailData struct {
 }
 
 type GetRuleDetailConditionBasicInfo struct {
-	ConditionInfoCid string
-	OperLambda       string
+	ConditionInfoCid common.String
+	OperLambda       common.String
 	Operators        GetRuleDetailOperatorBasicInfoList
 	CheckRange       GetRuleDetailCheckRange
 }
 
 type GetRuleDetailOperatorBasicInfo struct {
-	Oid      string
-	Type     string
-	OperName string
+	Oid      common.String
+	Type     common.String
+	OperName common.String
 	Param    GetRuleDetailParam
 }
 
 type GetRuleDetailParam struct {
-	Regex         string
-	Phrase        string
-	Interval      int
-	Threshold     float32
+	Regex         common.String
+	Phrase        common.String
+	Interval      common.Integer
+	Threshold     common.Float
 	InSentence    bool
-	Target        int
+	Target        common.Integer
 	FromEnd       bool
 	DifferentRole bool
-	TargetRole    string
+	TargetRole    common.String
 	OperKeyWords  GetRuleDetailOperKeyWordList
 	References    GetRuleDetailReferenceList
 }
 
 type GetRuleDetailCheckRange struct {
-	Role   string
+	Role   common.String
 	Anchor GetRuleDetailAnchor
 	Range  GetRuleDetailRange
 }
 
 type GetRuleDetailAnchor struct {
-	AnchorCid string
-	Location  string
-	HitTime   int
+	AnchorCid common.String
+	Location  common.String
+	HitTime   common.Integer
 }
 
 type GetRuleDetailRange struct {
-	From int
-	To   int
+	From common.Integer
+	To   common.Integer
 }
 
 type GetRuleDetailRuleBasicInfo struct {
-	Rid                string
-	RuleLambda         string
+	Rid                common.String
+	RuleLambda         common.String
 	BusinessCategories GetRuleDetailBusinessCategoryBasicInfoList
 	Triggers           GetRuleDetailTriggerList
 }
 
 type GetRuleDetailBusinessCategoryBasicInfo struct {
-	Bid          int
-	ServiceType  int
-	BusinessName string
+	Bid          common.Integer
+	ServiceType  common.Integer
+	BusinessName common.String
 }
 
 type GetRuleDetailConditionBasicInfoList []GetRuleDetailConditionBasicInfo
@@ -137,10 +138,10 @@ func (list *GetRuleDetailOperatorBasicInfoList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type GetRuleDetailOperKeyWordList []string
+type GetRuleDetailOperKeyWordList []common.String
 
 func (list *GetRuleDetailOperKeyWordList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -152,10 +153,10 @@ func (list *GetRuleDetailOperKeyWordList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetRuleDetailReferenceList []string
+type GetRuleDetailReferenceList []common.String
 
 func (list *GetRuleDetailReferenceList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -182,10 +183,10 @@ func (list *GetRuleDetailBusinessCategoryBasicInfoList) UnmarshalJSON(data []byt
 	return nil
 }
 
-type GetRuleDetailTriggerList []string
+type GetRuleDetailTriggerList []common.String
 
 func (list *GetRuleDetailTriggerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

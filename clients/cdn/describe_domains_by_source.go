@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainsBySourceRequest struct {
@@ -24,23 +25,23 @@ func (req *DescribeDomainsBySourceRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDomainsBySourceResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	Sources     string
+	RequestId   common.String
+	Sources     common.String
 	DomainsList DescribeDomainsBySourceDomainsDataList
 }
 
 type DescribeDomainsBySourceDomainsData struct {
-	Source      string
+	Source      common.String
 	DomainInfos DescribeDomainsBySourceDomainInfoList
 	Domains     DescribeDomainsBySourceDomainList
 }
 
 type DescribeDomainsBySourceDomainInfo struct {
-	DomainName  string
-	DomainCname string
-	CreateTime  string
-	UpdateTime  string
-	Status      string
+	DomainName  common.String
+	DomainCname common.String
+	CreateTime  common.String
+	UpdateTime  common.String
+	Status      common.String
 }
 
 type DescribeDomainsBySourceDomainsDataList []DescribeDomainsBySourceDomainsData
@@ -73,10 +74,10 @@ func (list *DescribeDomainsBySourceDomainInfoList) UnmarshalJSON(data []byte) er
 	return nil
 }
 
-type DescribeDomainsBySourceDomainList []string
+type DescribeDomainsBySourceDomainList []common.String
 
 func (list *DescribeDomainsBySourceDomainList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainTopUrlVisitRequest struct {
@@ -26,9 +27,9 @@ func (req *DescribeDomainTopUrlVisitRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDomainTopUrlVisitResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	DomainName string
-	StartTime  string
+	RequestId  common.String
+	DomainName common.String
+	StartTime  common.String
 	AllUrlList DescribeDomainTopUrlVisitUrlListList
 	Url200List DescribeDomainTopUrlVisitUrlListList
 	Url300List DescribeDomainTopUrlVisitUrlListList
@@ -37,11 +38,11 @@ type DescribeDomainTopUrlVisitResponse struct {
 }
 
 type DescribeDomainTopUrlVisitUrlList struct {
-	UrlDetail       string
-	VisitData       string
-	VisitProportion float32
-	Flow            string
-	FlowProportion  float32
+	UrlDetail       common.String
+	VisitData       common.String
+	VisitProportion common.Float
+	Flow            common.String
+	FlowProportion  common.Float
 }
 
 type DescribeDomainTopUrlVisitUrlListList []DescribeDomainTopUrlVisitUrlList

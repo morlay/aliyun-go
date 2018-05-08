@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiSignaturesRequest struct {
@@ -26,19 +27,19 @@ func (req *DescribeApiSignaturesRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeApiSignaturesResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	TotalCount    int
-	PageSize      int
-	PageNumber    int
+	RequestId     common.String
+	TotalCount    common.Integer
+	PageSize      common.Integer
+	PageNumber    common.Integer
 	ApiSignatures DescribeApiSignaturesApiSignatureItemList
 }
 
 type DescribeApiSignaturesApiSignatureItem struct {
-	ApiId         string
-	ApiName       string
-	SignatureId   string
-	SignatureName string
-	BoundTime     string
+	ApiId         common.String
+	ApiName       common.String
+	SignatureId   common.String
+	SignatureName common.String
+	BoundTime     common.String
 }
 
 type DescribeApiSignaturesApiSignatureItemList []DescribeApiSignaturesApiSignatureItem

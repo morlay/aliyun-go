@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstancesRequest struct {
@@ -27,24 +28,24 @@ func (req *DescribeInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeI
 
 type DescribeInstancesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
+	RequestId  common.String
+	TotalCount common.Integer
 	Instances  DescribeInstancesInstanceList
 }
 
 type DescribeInstancesInstance struct {
-	InstanceId    string
-	RegionId      string
-	ZoneId        string
-	HsmStatus     int
-	HsmOem        string
-	HsmDeviceType string
-	VpcId         string
-	VswitchId     string
-	Ip            string
-	Remark        string
-	ExpiredTime   int64
-	CreateTime    int64
+	InstanceId    common.String
+	RegionId      common.String
+	ZoneId        common.String
+	HsmStatus     common.Integer
+	HsmOem        common.String
+	HsmDeviceType common.String
+	VpcId         common.String
+	VswitchId     common.String
+	Ip            common.String
+	Remark        common.String
+	ExpiredTime   common.Long
+	CreateTime    common.Long
 	WhiteList     DescribeInstancesWhiteListList
 }
 
@@ -63,10 +64,10 @@ func (list *DescribeInstancesInstanceList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeInstancesWhiteListList []string
+type DescribeInstancesWhiteListList []common.String
 
 func (list *DescribeInstancesWhiteListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

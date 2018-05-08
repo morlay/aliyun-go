@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeListenerAccessControlAttributeRequest struct {
@@ -27,7 +28,7 @@ func (req *DescribeListenerAccessControlAttributeRequest) Invoke(client *sdk.Cli
 
 type DescribeListenerAccessControlAttributeResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	AccessControlStatus string
-	SourceItems         string
+	RequestId           common.String
+	AccessControlStatus common.String
+	SourceItems         common.String
 }

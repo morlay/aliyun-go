@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListVideoSummaryPipelineRequest struct {
@@ -28,24 +29,24 @@ func (req *ListVideoSummaryPipelineRequest) Invoke(client *sdk.Client) (resp *Li
 
 type ListVideoSummaryPipelineResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int64
-	PageNumber   int64
-	PageSize     int64
+	RequestId    common.String
+	TotalCount   common.Long
+	PageNumber   common.Long
+	PageSize     common.Long
 	PipelineList ListVideoSummaryPipelinePipelineList
 }
 
 type ListVideoSummaryPipelinePipeline struct {
-	Id           string
-	Name         string
-	State        string
-	Priority     string
+	Id           common.String
+	Name         common.String
+	State        common.String
+	Priority     common.String
 	NotifyConfig ListVideoSummaryPipelineNotifyConfig
 }
 
 type ListVideoSummaryPipelineNotifyConfig struct {
-	Topic     string
-	QueueName string
+	Topic     common.String
+	QueueName common.String
 }
 
 type ListVideoSummaryPipelinePipelineList []ListVideoSummaryPipelinePipeline

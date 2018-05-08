@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainQpsDataRequest struct {
@@ -30,26 +31,26 @@ func (req *DescribeDcdnDomainQpsDataRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDcdnDomainQpsDataResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	DomainName         string
-	StartTime          string
-	EndTime            string
-	DataInterval       string
+	RequestId          common.String
+	DomainName         common.String
+	StartTime          common.String
+	EndTime            common.String
+	DataInterval       common.String
 	QpsDataPerInterval DescribeDcdnDomainQpsDataDataModuleList
 }
 
 type DescribeDcdnDomainQpsDataDataModule struct {
-	TimeStamp       string
-	Qps             float32
-	DynamicHttpQps  float32
-	DynamicHttpsQps float32
-	StaticHttpQps   float32
-	StaticHttpsQps  float32
-	Acc             float32
-	DynamicHttpAcc  float32
-	DynamicHttpsAcc float32
-	StaticHttpAcc   float32
-	StaticHttpsAcc  float32
+	TimeStamp       common.String
+	Qps             common.Float
+	DynamicHttpQps  common.Float
+	DynamicHttpsQps common.Float
+	StaticHttpQps   common.Float
+	StaticHttpsQps  common.Float
+	Acc             common.Float
+	DynamicHttpAcc  common.Float
+	DynamicHttpsAcc common.Float
+	StaticHttpAcc   common.Float
+	StaticHttpsAcc  common.Float
 }
 
 type DescribeDcdnDomainQpsDataDataModuleList []DescribeDcdnDomainQpsDataDataModule

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAllMediaBucketRequest struct {
@@ -25,13 +26,13 @@ func (req *ListAllMediaBucketRequest) Invoke(client *sdk.Client) (resp *ListAllM
 
 type ListAllMediaBucketResponse struct {
 	responses.BaseResponse
-	RequestId       string
+	RequestId       common.String
 	MediaBucketList ListAllMediaBucketMediaBucketList
 }
 
 type ListAllMediaBucketMediaBucket struct {
-	Bucket string
-	Type   string
+	Bucket common.String
+	Type   common.String
 }
 
 type ListAllMediaBucketMediaBucketList []ListAllMediaBucketMediaBucket

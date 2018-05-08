@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateDNSSLBWeightRequest struct {
@@ -23,7 +24,7 @@ func (req *UpdateDNSSLBWeightRequest) Invoke(client *sdk.Client) (resp *UpdateDN
 
 type UpdateDNSSLBWeightResponse struct {
 	responses.BaseResponse
-	RequestId string
-	RecordId  string
-	Weight    int
+	RequestId common.String
+	RecordId  common.String
+	Weight    common.Integer
 }

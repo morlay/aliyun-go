@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiTrafficDataRequest struct {
@@ -25,14 +26,14 @@ func (req *DescribeApiTrafficDataRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeApiTrafficDataResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	CallUploads   DescribeApiTrafficDataMonitorItemList
 	CallDownloads DescribeApiTrafficDataMonitorItemList
 }
 
 type DescribeApiTrafficDataMonitorItem struct {
-	ItemTime  string
-	ItemValue string
+	ItemTime  common.String
+	ItemValue common.String
 }
 
 type DescribeApiTrafficDataMonitorItemList []DescribeApiTrafficDataMonitorItem

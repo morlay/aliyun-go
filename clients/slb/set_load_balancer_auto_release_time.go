@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetLoadBalancerAutoReleaseTimeRequest struct {
@@ -27,5 +28,5 @@ func (req *SetLoadBalancerAutoReleaseTimeRequest) Invoke(client *sdk.Client) (re
 
 type SetLoadBalancerAutoReleaseTimeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnServiceRequest struct {
@@ -23,17 +24,17 @@ func (req *DescribeCdnServiceRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeCdnServiceResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	InstanceId         string
-	InternetChargeType string
-	OpeningTime        string
-	ChangingChargeType string
-	ChangingAffectTime string
+	RequestId          common.String
+	InstanceId         common.String
+	InternetChargeType common.String
+	OpeningTime        common.String
+	ChangingChargeType common.String
+	ChangingAffectTime common.String
 	OperationLocks     DescribeCdnServiceLockReasonList
 }
 
 type DescribeCdnServiceLockReason struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeCdnServiceLockReasonList []DescribeCdnServiceLockReason

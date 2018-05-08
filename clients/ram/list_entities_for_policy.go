@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListEntitiesForPolicyRequest struct {
@@ -23,31 +24,31 @@ func (req *ListEntitiesForPolicyRequest) Invoke(client *sdk.Client) (resp *ListE
 
 type ListEntitiesForPolicyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Groups    ListEntitiesForPolicyGroupList
 	Users     ListEntitiesForPolicyUserList
 	Roles     ListEntitiesForPolicyRoleList
 }
 
 type ListEntitiesForPolicyGroup struct {
-	GroupName  string
-	Comments   string
-	AttachDate string
+	GroupName  common.String
+	Comments   common.String
+	AttachDate common.String
 }
 
 type ListEntitiesForPolicyUser struct {
-	UserId      string
-	UserName    string
-	DisplayName string
-	AttachDate  string
+	UserId      common.String
+	UserName    common.String
+	DisplayName common.String
+	AttachDate  common.String
 }
 
 type ListEntitiesForPolicyRole struct {
-	RoleId      string
-	RoleName    string
-	Arn         string
-	Description string
-	AttachDate  string
+	RoleId      common.String
+	RoleName    common.String
+	Arn         common.String
+	Description common.String
+	AttachDate  common.String
 }
 
 type ListEntitiesForPolicyGroupList []ListEntitiesForPolicyGroup

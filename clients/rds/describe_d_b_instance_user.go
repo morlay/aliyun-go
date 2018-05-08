@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceUserRequest struct {
@@ -24,7 +25,7 @@ func (req *DescribeDBInstanceUserRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeDBInstanceUserResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DBInstanceName string
-	InternalDBFlag string
+	RequestId      common.String
+	DBInstanceName common.String
+	InternalDBFlag common.String
 }

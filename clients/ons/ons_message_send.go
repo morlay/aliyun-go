@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMessageSendRequest struct {
@@ -27,7 +28,7 @@ func (req *OnsMessageSendRequest) Invoke(client *sdk.Client) (resp *OnsMessageSe
 
 type OnsMessageSendResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
-	Data      string
+	RequestId common.String
+	HelpUrl   common.String
+	Data      common.String
 }

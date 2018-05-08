@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRouteTableListRequest struct {
@@ -32,25 +33,25 @@ func (req *DescribeRouteTableListRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeRouteTableListResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	Code            string
-	Message         string
+	RequestId       common.String
+	Code            common.String
+	Message         common.String
 	Success         bool
-	PageSize        int
-	PageNumber      int
-	TotalCount      int
+	PageSize        common.Integer
+	PageNumber      common.Integer
+	TotalCount      common.Integer
 	RouterTableList DescribeRouteTableListRouterTableListTypeList
 }
 
 type DescribeRouteTableListRouterTableListType struct {
-	VpcId          string
-	RouterType     string
-	RouterId       string
-	RouteTableId   string
-	RouteTableName string
-	RouteTableType string
-	Description    string
-	CreationTime   string
+	VpcId          common.String
+	RouterType     common.String
+	RouterId       common.String
+	RouteTableId   common.String
+	RouteTableName common.String
+	RouteTableType common.String
+	Description    common.String
+	CreationTime   common.String
 }
 
 type DescribeRouteTableListRouterTableListTypeList []DescribeRouteTableListRouterTableListType

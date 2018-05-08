@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetPhoneProfileRequest struct {
@@ -23,14 +24,14 @@ func (req *GetPhoneProfileRequest) Invoke(client *sdk.Client) (resp *GetPhonePro
 
 type GetPhoneProfileResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
+	Code      common.Integer
+	Message   common.String
 	Success   bool
-	RequestId string
+	RequestId common.String
 	Data      GetPhoneProfileData
 }
 
 type GetPhoneProfileData struct {
-	Phone string
-	Info  string
+	Phone common.String
+	Info  common.String
 }

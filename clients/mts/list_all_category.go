@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAllCategoryRequest struct {
@@ -25,15 +26,15 @@ func (req *ListAllCategoryRequest) Invoke(client *sdk.Client) (resp *ListAllCate
 
 type ListAllCategoryResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	CategoryList ListAllCategoryCategoryList
 }
 
 type ListAllCategoryCategory struct {
-	CateId   string
-	CateName string
-	ParentId string
-	Level    string
+	CateId   common.String
+	CateName common.String
+	ParentId common.String
+	Level    common.String
 }
 
 type ListAllCategoryCategoryList []ListAllCategoryCategory

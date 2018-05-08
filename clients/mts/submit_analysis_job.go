@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitAnalysisJobRequest struct {
@@ -30,20 +31,20 @@ func (req *SubmitAnalysisJobRequest) Invoke(client *sdk.Client) (resp *SubmitAna
 
 type SubmitAnalysisJobResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	AnalysisJob SubmitAnalysisJobAnalysisJob
 }
 
 type SubmitAnalysisJobAnalysisJob struct {
-	Id               string
-	UserData         string
-	State            string
-	Code             string
-	Message          string
-	Percent          int64
-	CreationTime     string
-	PipelineId       string
-	Priority         string
+	Id               common.String
+	UserData         common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	Percent          common.Long
+	CreationTime     common.String
+	PipelineId       common.String
+	Priority         common.String
 	TemplateList     SubmitAnalysisJobTemplateList
 	InputFile        SubmitAnalysisJobInputFile
 	AnalysisConfig   SubmitAnalysisJobAnalysisConfig
@@ -51,9 +52,9 @@ type SubmitAnalysisJobAnalysisJob struct {
 }
 
 type SubmitAnalysisJobTemplate struct {
-	Id          string
-	Name        string
-	State       string
+	Id          common.String
+	Name        common.String
+	State       common.String
 	Container   SubmitAnalysisJobContainer
 	Video       SubmitAnalysisJobVideo
 	Audio       SubmitAnalysisJobAudio
@@ -62,44 +63,44 @@ type SubmitAnalysisJobTemplate struct {
 }
 
 type SubmitAnalysisJobContainer struct {
-	Format string
+	Format common.String
 }
 
 type SubmitAnalysisJobVideo struct {
-	Codec      string
-	Profile    string
-	Bitrate    string
-	Crf        string
-	Width      string
-	Height     string
-	Fps        string
-	Gop        string
-	Preset     string
-	ScanMode   string
-	Bufsize    string
-	Maxrate    string
-	PixFmt     string
-	Degrain    string
-	Qscale     string
+	Codec      common.String
+	Profile    common.String
+	Bitrate    common.String
+	Crf        common.String
+	Width      common.String
+	Height     common.String
+	Fps        common.String
+	Gop        common.String
+	Preset     common.String
+	ScanMode   common.String
+	Bufsize    common.String
+	Maxrate    common.String
+	PixFmt     common.String
+	Degrain    common.String
+	Qscale     common.String
 	BitrateBnd SubmitAnalysisJobBitrateBnd
 }
 
 type SubmitAnalysisJobBitrateBnd struct {
-	Max string
-	Min string
+	Max common.String
+	Min common.String
 }
 
 type SubmitAnalysisJobAudio struct {
-	Codec      string
-	Profile    string
-	Samplerate string
-	Bitrate    string
-	Channels   string
-	Qscale     string
+	Codec      common.String
+	Profile    common.String
+	Samplerate common.String
+	Bitrate    common.String
+	Channels   common.String
+	Qscale     common.String
 }
 
 type SubmitAnalysisJobTransConfig struct {
-	TransMode string
+	TransMode common.String
 }
 
 type SubmitAnalysisJobMuxConfig struct {
@@ -108,18 +109,18 @@ type SubmitAnalysisJobMuxConfig struct {
 }
 
 type SubmitAnalysisJobSegment struct {
-	Duration string
+	Duration common.String
 }
 
 type SubmitAnalysisJobGif struct {
-	Loop       string
-	FinalDelay string
+	Loop       common.String
+	FinalDelay common.String
 }
 
 type SubmitAnalysisJobInputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type SubmitAnalysisJobAnalysisConfig struct {
@@ -128,27 +129,27 @@ type SubmitAnalysisJobAnalysisConfig struct {
 }
 
 type SubmitAnalysisJobQualityControl struct {
-	RateQuality     string
-	MethodStreaming string
+	RateQuality     common.String
+	MethodStreaming common.String
 }
 
 type SubmitAnalysisJobPropertiesControl struct {
-	Deinterlace string
+	Deinterlace common.String
 	Crop        SubmitAnalysisJobCrop
 }
 
 type SubmitAnalysisJobCrop struct {
-	Mode   string
-	Width  string
-	Height string
-	Top    string
-	Left   string
+	Mode   common.String
+	Width  common.String
+	Height common.String
+	Top    common.String
+	Left   common.String
 }
 
 type SubmitAnalysisJobMNSMessageResult struct {
-	MessageId    string
-	ErrorMessage string
-	ErrorCode    string
+	MessageId    common.String
+	ErrorMessage common.String
+	ErrorCode    common.String
 }
 
 type SubmitAnalysisJobTemplateList []SubmitAnalysisJobTemplate

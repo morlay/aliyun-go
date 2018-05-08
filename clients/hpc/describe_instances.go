@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstancesRequest struct {
@@ -24,38 +25,38 @@ func (req *DescribeInstancesRequest) Invoke(client *sdk.Client) (resp *DescribeI
 
 type DescribeInstancesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Instances DescribeInstancesInstanceList
 }
 
 type DescribeInstancesInstance struct {
-	InstanceId                string
-	RegionId                  string
+	InstanceId                common.String
+	RegionId                  common.String
 	InstanceType              DescribeInstancesInstanceType
 	PackageId                 DescribeInstancesPackageId
 	Status                    DescribeInstancesStatus
-	InnerIpAddress            string
+	InnerIpAddress            common.String
 	JumpserverStatus          DescribeInstancesJumpserverStatus
-	JumpserverInnerIpAddress  string
-	JumpServerPublicIpAddress string
-	CreationTime              string
-	ExpireTime                string
+	JumpserverInnerIpAddress  common.String
+	JumpServerPublicIpAddress common.String
+	CreationTime              common.String
+	ExpireTime                common.String
 }
 
 type DescribeInstancesInstanceType struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeInstancesPackageId struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeInstancesStatus struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeInstancesJumpserverStatus struct {
-	StringValue string
+	StringValue common.String
 }
 
 type DescribeInstancesInstanceList []DescribeInstancesInstance

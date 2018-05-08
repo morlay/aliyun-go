@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MigrateToOtherZoneRequest struct {
@@ -27,5 +28,5 @@ func (req *MigrateToOtherZoneRequest) Invoke(client *sdk.Client) (resp *MigrateT
 
 type MigrateToOtherZoneResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

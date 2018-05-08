@@ -231,16 +231,28 @@ class Schema(val type: String) {
 
         when (this.type) {
             "String" -> {
-                return "string"
+                if (asParameter) {
+                    return "string"
+                }
+                return "common.String"
             }
             "Long" -> {
-                return "int64"
+                if (asParameter) {
+                    return "int64"
+                }
+                return "common.Long"
             }
             "Float" -> {
-                return "float32"
+                if (asParameter) {
+                    return "float32"
+                }
+                return "common.Float"
             }
             "Integer" -> {
-                return "int"
+                if (asParameter) {
+                    return "int"
+                }
+                return "common.Integer"
             }
             "boolean", "Boolean" -> {
                 if (asParameter) {

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetMainDomainNameRequest struct {
@@ -22,8 +23,8 @@ func (req *GetMainDomainNameRequest) Invoke(client *sdk.Client) (resp *GetMainDo
 
 type GetMainDomainNameResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	DomainName  string
-	RR          string
-	DomainLevel int64
+	RequestId   common.String
+	DomainName  common.String
+	RR          common.String
+	DomainLevel common.Long
 }

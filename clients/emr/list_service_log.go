@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListServiceLogRequest struct {
@@ -25,15 +26,15 @@ func (req *ListServiceLogRequest) Invoke(client *sdk.Client) (resp *ListServiceL
 
 type ListServiceLogResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	LogFileList ListServiceLogLogFileList
 }
 
 type ListServiceLogLogFile struct {
-	FileName     string
-	Size         int64
-	HostName     string
-	LastModified int64
+	FileName     common.String
+	Size         common.Long
+	HostName     common.String
+	LastModified common.Long
 }
 
 type ListServiceLogLogFileList []ListServiceLogLogFile

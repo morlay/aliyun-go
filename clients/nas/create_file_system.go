@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateFileSystemRequest struct {
@@ -22,6 +23,6 @@ func (req *CreateFileSystemRequest) Invoke(client *sdk.Client) (resp *CreateFile
 
 type CreateFileSystemResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	FileSystemId string
+	RequestId    common.String
+	FileSystemId common.String
 }

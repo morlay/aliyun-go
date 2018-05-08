@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SearchWaterMarkTemplateRequest struct {
@@ -28,37 +29,37 @@ func (req *SearchWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *Sea
 
 type SearchWaterMarkTemplateResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	TotalCount            int64
-	PageNumber            int64
-	PageSize              int64
+	RequestId             common.String
+	TotalCount            common.Long
+	PageNumber            common.Long
+	PageSize              common.Long
 	WaterMarkTemplateList SearchWaterMarkTemplateWaterMarkTemplateList
 }
 
 type SearchWaterMarkTemplateWaterMarkTemplate struct {
-	Id         string
-	Name       string
-	Width      string
-	Height     string
-	Dx         string
-	Dy         string
-	ReferPos   string
-	Type       string
-	State      string
+	Id         common.String
+	Name       common.String
+	Width      common.String
+	Height     common.String
+	Dx         common.String
+	Dy         common.String
+	ReferPos   common.String
+	Type       common.String
+	State      common.String
 	Timeline   SearchWaterMarkTemplateTimeline
 	RatioRefer SearchWaterMarkTemplateRatioRefer
 }
 
 type SearchWaterMarkTemplateTimeline struct {
-	Start    string
-	Duration string
+	Start    common.String
+	Duration common.String
 }
 
 type SearchWaterMarkTemplateRatioRefer struct {
-	Dx     string
-	Dy     string
-	Width  string
-	Height string
+	Dx     common.String
+	Dy     common.String
+	Width  common.String
+	Height common.String
 }
 
 type SearchWaterMarkTemplateWaterMarkTemplateList []SearchWaterMarkTemplateWaterMarkTemplate

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPushRecordsRequest struct {
@@ -27,22 +28,22 @@ func (req *ListPushRecordsRequest) Invoke(client *sdk.Client) (resp *ListPushRec
 
 type ListPushRecordsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Total            int
-	Page             int
-	PageSize         int
+	RequestId        common.String
+	Total            common.Integer
+	Page             common.Integer
+	PageSize         common.Integer
 	PushMessageInfos ListPushRecordsPushMessageInfoList
 }
 
 type ListPushRecordsPushMessageInfo struct {
-	AppKey     int64
-	AppName    string
-	MessageId  string
-	Type       string
-	DeviceType string
-	PushTime   string
-	Title      string
-	Body       string
+	AppKey     common.Long
+	AppName    common.String
+	MessageId  common.String
+	Type       common.String
+	DeviceType common.String
+	PushTime   common.String
+	Title      common.String
+	Body       common.String
 }
 
 type ListPushRecordsPushMessageInfoList []ListPushRecordsPushMessageInfo

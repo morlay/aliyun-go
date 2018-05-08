@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeResourcesModificationRequest struct {
@@ -30,28 +31,28 @@ func (req *DescribeResourcesModificationRequest) Invoke(client *sdk.Client) (res
 
 type DescribeResourcesModificationResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	AvailableZones DescribeResourcesModificationAvailableZoneList
 }
 
 type DescribeResourcesModificationAvailableZone struct {
-	RegionId           string
-	ZoneId             string
-	Status             string
+	RegionId           common.String
+	ZoneId             common.String
+	Status             common.String
 	AvailableResources DescribeResourcesModificationAvailableResourceList
 }
 
 type DescribeResourcesModificationAvailableResource struct {
-	Type               string
+	Type               common.String
 	SupportedResources DescribeResourcesModificationSupportedResourceList
 }
 
 type DescribeResourcesModificationSupportedResource struct {
-	Value  string
-	Status string
-	Min    int
-	Max    int
-	Unit   string
+	Value  common.String
+	Status common.String
+	Min    common.Integer
+	Max    common.Integer
+	Unit   common.String
 }
 
 type DescribeResourcesModificationAvailableZoneList []DescribeResourcesModificationAvailableZone

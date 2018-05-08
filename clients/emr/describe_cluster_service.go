@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterServiceRequest struct {
@@ -24,16 +25,16 @@ func (req *DescribeClusterServiceRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeClusterServiceResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	ServiceInfo DescribeClusterServiceServiceInfo
 }
 
 type DescribeClusterServiceServiceInfo struct {
-	ServiceName                  string
-	ServiceVersion               string
-	ServiceStatus                string
-	NeedRestartInfo              string
-	NeedRestartNum               int
+	ServiceName                  common.String
+	ServiceVersion               common.String
+	ServiceStatus                common.String
+	NeedRestartInfo              common.String
+	NeedRestartNum               common.Integer
 	ServiceActionList            DescribeClusterServiceServiceActionList
 	ClusterServiceSummaryList    DescribeClusterServiceClusterServiceSummaryList
 	NeedRestartHostIdList        DescribeClusterServiceNeedRestartHostIdListList
@@ -41,20 +42,20 @@ type DescribeClusterServiceServiceInfo struct {
 }
 
 type DescribeClusterServiceServiceAction struct {
-	ServiceName   string
-	ComponentName string
-	ActionName    string
-	Command       string
-	DisplayName   string
+	ServiceName   common.String
+	ComponentName common.String
+	ActionName    common.String
+	Command       common.String
+	DisplayName   common.String
 }
 
 type DescribeClusterServiceClusterServiceSummary struct {
-	Key         string
-	DisplayName string
-	Value       string
-	Status      string
-	Type        string
-	AlertInfo   string
+	Key         common.String
+	DisplayName common.String
+	Value       common.String
+	Status      common.String
+	Type        common.String
+	AlertInfo   common.String
 }
 
 type DescribeClusterServiceServiceActionList []DescribeClusterServiceServiceAction
@@ -87,10 +88,10 @@ func (list *DescribeClusterServiceClusterServiceSummaryList) UnmarshalJSON(data 
 	return nil
 }
 
-type DescribeClusterServiceNeedRestartHostIdListList []string
+type DescribeClusterServiceNeedRestartHostIdListList []common.String
 
 func (list *DescribeClusterServiceNeedRestartHostIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -102,10 +103,10 @@ func (list *DescribeClusterServiceNeedRestartHostIdListList) UnmarshalJSON(data 
 	return nil
 }
 
-type DescribeClusterServiceNeedRestartComponentNameListList []string
+type DescribeClusterServiceNeedRestartComponentNameListList []common.String
 
 func (list *DescribeClusterServiceNeedRestartComponentNameListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

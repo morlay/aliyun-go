@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListRecordingsByContactIdRequest struct {
@@ -23,28 +24,28 @@ func (req *ListRecordingsByContactIdRequest) Invoke(client *sdk.Client) (resp *L
 
 type ListRecordingsByContactIdResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Recordings     ListRecordingsByContactIdRecordingList
 }
 
 type ListRecordingsByContactIdRecording struct {
-	ContactId       string
-	ContactType     string
-	AgentId         string
-	AgentName       string
-	CallingNumber   string
-	CalledNumber    string
-	StartTime       int64
-	Duration        int
-	FileName        string
-	FilePath        string
-	FileDescription string
-	Channel         string
-	InstanceId      string
+	ContactId       common.String
+	ContactType     common.String
+	AgentId         common.String
+	AgentName       common.String
+	CallingNumber   common.String
+	CalledNumber    common.String
+	StartTime       common.Long
+	Duration        common.Integer
+	FileName        common.String
+	FilePath        common.String
+	FileDescription common.String
+	Channel         common.String
+	InstanceId      common.String
 }
 
 type ListRecordingsByContactIdRecordingList []ListRecordingsByContactIdRecording

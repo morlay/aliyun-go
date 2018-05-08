@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ExportImageRequest struct {
@@ -27,7 +28,7 @@ func (req *ExportImageRequest) Invoke(client *sdk.Client) (resp *ExportImageResp
 
 type ExportImageResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskId    string
-	RegionId  string
+	RequestId common.String
+	TaskId    common.String
+	RegionId  common.String
 }

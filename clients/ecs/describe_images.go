@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeImagesRequest struct {
@@ -57,52 +58,52 @@ type DescribeImagesFilter struct {
 
 type DescribeImagesResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	RegionId   string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	RegionId   common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Images     DescribeImagesImageList
 }
 
 type DescribeImagesImage struct {
-	Progress             string
-	ImageId              string
-	ImageName            string
-	ImageVersion         string
-	Description          string
-	Size                 int
-	ImageOwnerAlias      string
+	Progress             common.String
+	ImageId              common.String
+	ImageName            common.String
+	ImageVersion         common.String
+	Description          common.String
+	Size                 common.Integer
+	ImageOwnerAlias      common.String
 	IsSupportIoOptimized bool
 	IsSupportCloudinit   bool
-	OSName               string
-	Architecture         string
-	Status               string
-	ProductCode          string
+	OSName               common.String
+	Architecture         common.String
+	Status               common.String
+	ProductCode          common.String
 	IsSubscribed         bool
-	CreationTime         string
-	IsSelfShared         string
-	OSType               string
-	Platform             string
-	Usage                string
+	CreationTime         common.String
+	IsSelfShared         common.String
+	OSType               common.String
+	Platform             common.String
+	Usage                common.String
 	IsCopied             bool
 	DiskDeviceMappings   DescribeImagesDiskDeviceMappingList
 	Tags                 DescribeImagesTagList
 }
 
 type DescribeImagesDiskDeviceMapping struct {
-	SnapshotId      string
-	Size            string
-	Device          string
-	Type            string
-	Format          string
-	ImportOSSBucket string
-	ImportOSSObject string
+	SnapshotId      common.String
+	Size            common.String
+	Device          common.String
+	Type            common.String
+	Format          common.String
+	ImportOSSBucket common.String
+	ImportOSSObject common.String
 }
 
 type DescribeImagesTag struct {
-	TagKey   string
-	TagValue string
+	TagKey   common.String
+	TagValue common.String
 }
 
 type DescribeImagesFilterList []DescribeImagesFilter

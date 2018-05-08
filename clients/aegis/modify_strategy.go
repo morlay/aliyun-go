@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyStrategyRequest struct {
@@ -26,13 +27,13 @@ func (req *ModifyStrategyRequest) Invoke(client *sdk.Client) (resp *ModifyStrate
 
 type ModifyStrategyResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	TotalCount     int
-	HttpStatusCode int
+	TotalCount     common.Integer
+	HttpStatusCode common.Integer
 	Result         ModifyStrategyResult
 }
 
 type ModifyStrategyResult struct {
-	StrategyId int
+	StrategyId common.Integer
 }

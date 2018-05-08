@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetDdosConfigOptionsRequest struct {
@@ -21,7 +22,7 @@ func (req *GetDdosConfigOptionsRequest) Invoke(client *sdk.Client) (resp *GetDdo
 
 type GetDdosConfigOptionsResponse struct {
 	responses.BaseResponse
-	RequestId                  string
+	RequestId                  common.String
 	RequestThresholdOptions1   GetDdosConfigOptionsRequestThresholdOptionList
 	RequestThresholdOptions2   GetDdosConfigOptionsRequestThresholdOptionList
 	ConnectionThresholdOptions GetDdosConfigOptionsConnectionThresholdOptionList
@@ -30,13 +31,13 @@ type GetDdosConfigOptionsResponse struct {
 }
 
 type GetDdosConfigOptionsRequestThresholdOption struct {
-	Bps int64
-	Pps int64
+	Bps common.Long
+	Pps common.Long
 }
 
 type GetDdosConfigOptionsConnectionThresholdOption struct {
-	Sipconn int64
-	Sipnew  int64
+	Sipconn common.Long
+	Sipnew  common.Long
 }
 
 type GetDdosConfigOptionsRequestThresholdOptionList []GetDdosConfigOptionsRequestThresholdOption
@@ -69,10 +70,10 @@ func (list *GetDdosConfigOptionsConnectionThresholdOptionList) UnmarshalJSON(dat
 	return nil
 }
 
-type GetDdosConfigOptionsQpsOptions1List []string
+type GetDdosConfigOptionsQpsOptions1List []common.String
 
 func (list *GetDdosConfigOptionsQpsOptions1List) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -84,10 +85,10 @@ func (list *GetDdosConfigOptionsQpsOptions1List) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type GetDdosConfigOptionsQpsOptions2List []string
+type GetDdosConfigOptionsQpsOptions2List []common.String
 
 func (list *GetDdosConfigOptionsQpsOptions2List) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

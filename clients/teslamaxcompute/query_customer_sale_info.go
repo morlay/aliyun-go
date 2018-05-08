@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryCustomerSaleInfoRequest struct {
@@ -22,32 +23,32 @@ func (req *QueryCustomerSaleInfoRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryCustomerSaleInfoResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      QueryCustomerSaleInfoData
 }
 
 type QueryCustomerSaleInfoData struct {
-	LastUpdate string
+	LastUpdate common.String
 	Clusters   QueryCustomerSaleInfoClusterList
 }
 
 type QueryCustomerSaleInfoCluster struct {
-	Cluster     string
-	Region      string
-	MachineRoom string
+	Cluster     common.String
+	Region      common.String
+	MachineRoom common.String
 	SaleInfos   QueryCustomerSaleInfoSaleInfoList
 }
 
 type QueryCustomerSaleInfoSaleInfo struct {
-	SaleMode    string
-	Uid         string
-	Mem         int64
-	Cpu         int64
-	BizCategory string
-	Owner       string
-	QueryDate   string
+	SaleMode    common.String
+	Uid         common.String
+	Mem         common.Long
+	Cpu         common.Long
+	BizCategory common.String
+	Owner       common.String
+	QueryDate   common.String
 }
 
 type QueryCustomerSaleInfoClusterList []QueryCustomerSaleInfoCluster

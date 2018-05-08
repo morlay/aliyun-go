@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTagJobListRequest struct {
@@ -26,49 +27,49 @@ func (req *QueryTagJobListRequest) Invoke(client *sdk.Client) (resp *QueryTagJob
 
 type QueryTagJobListResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	TagJobList  QueryTagJobListTagJobList
 	NonExistIds QueryTagJobListNonExistIdList
 }
 
 type QueryTagJobListTagJob struct {
-	Id             string
-	UserData       string
-	PipelineId     string
-	State          string
-	Code           string
-	Message        string
-	CreationTime   string
+	Id             common.String
+	UserData       common.String
+	PipelineId     common.String
+	State          common.String
+	Code           common.String
+	Message        common.String
+	CreationTime   common.String
 	Input          QueryTagJobListInput
 	VideoTagResult QueryTagJobListVideoTagResult
 }
 
 type QueryTagJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryTagJobListVideoTagResult struct {
-	Details      string
+	Details      common.String
 	TagAnResults QueryTagJobListTagAnResultList
 	TagFrResults QueryTagJobListTagFrResultList
 }
 
 type QueryTagJobListTagAnResult struct {
-	Label string
-	Score string
+	Label common.String
+	Score common.String
 }
 
 type QueryTagJobListTagFrResult struct {
-	Time     string
+	Time     common.String
 	TagFaces QueryTagJobListTagFaceList
 }
 
 type QueryTagJobListTagFace struct {
-	Name   string
-	Score  string
-	Target string
+	Name   common.String
+	Score  common.String
+	Target common.String
 }
 
 type QueryTagJobListTagJobList []QueryTagJobListTagJob
@@ -86,10 +87,10 @@ func (list *QueryTagJobListTagJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryTagJobListNonExistIdList []string
+type QueryTagJobListNonExistIdList []common.String
 
 func (list *QueryTagJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

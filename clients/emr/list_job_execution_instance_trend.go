@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListJobExecutionInstanceTrendRequest struct {
@@ -22,14 +23,14 @@ func (req *ListJobExecutionInstanceTrendRequest) Invoke(client *sdk.Client) (res
 
 type ListJobExecutionInstanceTrendResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Trends    ListJobExecutionInstanceTrendTrendList
 }
 
 type ListJobExecutionInstanceTrendTrend struct {
-	Day    string
-	Count  int
-	Status string
+	Day    common.String
+	Count  common.Integer
+	Status common.String
 }
 
 type ListJobExecutionInstanceTrendTrendList []ListJobExecutionInstanceTrendTrend

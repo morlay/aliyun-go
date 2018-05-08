@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateCredentialsRequest struct {
@@ -21,9 +22,9 @@ func (req *CreateCredentialsRequest) Invoke(client *sdk.Client) (resp *CreateCre
 
 type CreateCredentialsResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      CreateCredentialsData
 }
 
@@ -32,11 +33,11 @@ type CreateCredentialsData struct {
 }
 
 type CreateCredentialsCredentials struct {
-	Id                int64
+	Id                common.Long
 	CurrentCredential CreateCredentialsCurrentCredential
 }
 
 type CreateCredentialsCurrentCredential struct {
-	SecretKey string
-	AccessKey string
+	SecretKey common.String
+	AccessKey common.String
 }

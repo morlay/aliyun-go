@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SummaryRequest struct {
@@ -21,9 +22,9 @@ func (req *SummaryRequest) Invoke(client *sdk.Client) (resp *SummaryResponse, er
 
 type SummaryResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	Status            int64
-	AbnormalHostCount int64
+	RequestId         common.String
+	Status            common.Long
+	AbnormalHostCount common.Long
 	Ddos              SummaryDdos
 	BruteForce        SummaryBruteForce
 	Webshell          SummaryWebshell
@@ -33,31 +34,31 @@ type SummaryResponse struct {
 }
 
 type SummaryDdos struct {
-	Count     int64
-	HostCount int64
+	Count     common.Long
+	HostCount common.Long
 }
 
 type SummaryBruteForce struct {
-	Count     int64
-	HostCount int64
+	Count     common.Long
+	HostCount common.Long
 }
 
 type SummaryWebshell struct {
-	Count     int64
-	HostCount int64
+	Count     common.Long
+	HostCount common.Long
 }
 
 type SummaryRemoteLogin struct {
-	Count     int64
-	HostCount int64
+	Count     common.Long
+	HostCount common.Long
 }
 
 type SummaryWebAttack struct {
-	Count     int64
-	HostCount int64
+	Count     common.Long
+	HostCount common.Long
 }
 
 type SummaryWebLeak struct {
-	Count     int64
-	HostCount int64
+	Count     common.Long
+	HostCount common.Long
 }

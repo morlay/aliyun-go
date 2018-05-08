@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListEmrVersionsForAdminRequest struct {
@@ -24,20 +25,20 @@ func (req *ListEmrVersionsForAdminRequest) Invoke(client *sdk.Client) (resp *Lis
 
 type ListEmrVersionsForAdminResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	PageNumber              int
-	PageSize                int
-	TotalCount              int
+	RequestId               common.String
+	PageNumber              common.Integer
+	PageSize                common.Integer
+	TotalCount              common.Integer
 	MainVersionKeyValueList ListEmrVersionsForAdminMainVersionKeyValueList
 }
 
 type ListEmrVersionsForAdminMainVersionKeyValue struct {
-	Id                   int
-	Key                  string
-	Value                string
-	Status               int
-	UtcCreateTimestamp   int64
-	UtcModifiedTimestamp int64
+	Id                   common.Integer
+	Key                  common.String
+	Value                common.String
+	Status               common.Integer
+	UtcCreateTimestamp   common.Long
+	UtcModifiedTimestamp common.Long
 }
 
 type ListEmrVersionsForAdminMainVersionKeyValueList []ListEmrVersionsForAdminMainVersionKeyValue

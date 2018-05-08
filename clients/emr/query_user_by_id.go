@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryUserByIdRequest struct {
@@ -20,18 +21,18 @@ func (req *QueryUserByIdRequest) Invoke(client *sdk.Client) (resp *QueryUserById
 
 type QueryUserByIdResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	User      QueryUserByIdUser
 }
 
 type QueryUserByIdUser struct {
-	Id              string
-	AliyunId        string
-	AliyunOmtId     string
-	UserId          string
-	Email           string
-	Status          string
-	DefaultSecGroup string
-	RegionId        string
-	ChannelId       string
+	Id              common.String
+	AliyunId        common.String
+	AliyunOmtId     common.String
+	UserId          common.String
+	Email           common.String
+	Status          common.String
+	DefaultSecGroup common.String
+	RegionId        common.String
+	ChannelId       common.String
 }

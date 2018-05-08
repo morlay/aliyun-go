@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPornJobListRequest struct {
@@ -26,62 +27,62 @@ func (req *QueryPornJobListRequest) Invoke(client *sdk.Client) (resp *QueryPornJ
 
 type QueryPornJobListResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	PornJobList QueryPornJobListPornJobList
 	NonExistIds QueryPornJobListNonExistIdList
 }
 
 type QueryPornJobListPornJob struct {
-	Id               string
-	UserData         string
-	PipelineId       string
-	State            string
-	Code             string
-	Message          string
-	CreationTime     string
+	Id               common.String
+	UserData         common.String
+	PipelineId       common.String
+	State            common.String
+	Code             common.String
+	Message          common.String
+	CreationTime     common.String
 	Input            QueryPornJobListInput
 	PornConfig       QueryPornJobListPornConfig
 	CensorPornResult QueryPornJobListCensorPornResult
 }
 
 type QueryPornJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryPornJobListPornConfig struct {
-	Interval   string
-	BizType    string
+	Interval   common.String
+	BizType    common.String
 	OutputFile QueryPornJobListOutputFile
 }
 
 type QueryPornJobListOutputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryPornJobListCensorPornResult struct {
-	Label           string
-	Suggestion      string
-	MaxScore        string
-	AverageScore    string
+	Label           common.String
+	Suggestion      common.String
+	MaxScore        common.String
+	AverageScore    common.String
 	PornCounterList QueryPornJobListCounterList
 	PornTopList     QueryPornJobListTopList
 }
 
 type QueryPornJobListCounter struct {
-	Count int
-	Label string
+	Count common.Integer
+	Label common.String
 }
 
 type QueryPornJobListTop struct {
-	Label     string
-	Score     string
-	Timestamp string
-	Index     string
-	Object    string
+	Label     common.String
+	Score     common.String
+	Timestamp common.String
+	Index     common.String
+	Object    common.String
 }
 
 type QueryPornJobListPornJobList []QueryPornJobListPornJob
@@ -99,10 +100,10 @@ func (list *QueryPornJobListPornJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryPornJobListNonExistIdList []string
+type QueryPornJobListNonExistIdList []common.String
 
 func (list *QueryPornJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

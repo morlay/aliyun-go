@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAppSecurityRequest struct {
@@ -20,9 +21,9 @@ func (req *DescribeAppSecurityRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeAppSecurityResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	AppKey       string
-	AppSecret    string
-	CreatedTime  string
-	ModifiedTime string
+	RequestId    common.String
+	AppKey       common.String
+	AppSecret    common.String
+	CreatedTime  common.String
+	ModifiedTime common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListCustomImagesRequest struct {
@@ -23,23 +24,23 @@ func (req *ListCustomImagesRequest) Invoke(client *sdk.Client) (resp *ListCustom
 
 type ListCustomImagesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Images    ListCustomImagesImageInfoList
 }
 
 type ListCustomImagesImageInfo struct {
-	ImageId         string
-	ImageName       string
-	ImageOwnerAlias string
-	Description     string
+	ImageId         common.String
+	ImageName       common.String
+	ImageOwnerAlias common.String
+	Description     common.String
 	BaseOsTag       ListCustomImagesBaseOsTag
 }
 
 type ListCustomImagesBaseOsTag struct {
-	OsTag        string
-	Platform     string
-	Version      string
-	Architecture string
+	OsTag        common.String
+	Platform     common.String
+	Version      common.String
+	Architecture common.String
 }
 
 type ListCustomImagesImageInfoList []ListCustomImagesImageInfo

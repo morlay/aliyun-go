@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetIpProfileRequest struct {
@@ -29,14 +30,14 @@ func (req *GetIpProfileRequest) Invoke(client *sdk.Client) (resp *GetIpProfileRe
 
 type GetIpProfileResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
+	Code      common.Integer
+	Message   common.String
 	Success   bool
-	RequestId string
+	RequestId common.String
 	Data      GetIpProfileData
 }
 
 type GetIpProfileData struct {
-	Ip   string
-	Info string
+	Ip   common.String
+	Info common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCapacityHistoryRequest struct {
@@ -28,18 +29,18 @@ func (req *DescribeCapacityHistoryRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeCapacityHistoryResponse struct {
 	responses.BaseResponse
-	TotalCount           int
-	PageNumber           int
-	PageSize             int
+	TotalCount           common.Integer
+	PageNumber           common.Integer
+	PageSize             common.Integer
 	CapacityHistoryItems DescribeCapacityHistoryCapacityHistoryModelList
 }
 
 type DescribeCapacityHistoryCapacityHistoryModel struct {
-	ScalingGroupId      string
-	TotalCapacity       int
-	AttachedCapacity    int
-	AutoCreatedCapacity int
-	Timestamp           string
+	ScalingGroupId      common.String
+	TotalCapacity       common.Integer
+	AttachedCapacity    common.Integer
+	AutoCreatedCapacity common.Integer
+	Timestamp           common.String
 }
 
 type DescribeCapacityHistoryCapacityHistoryModelList []DescribeCapacityHistoryCapacityHistoryModel

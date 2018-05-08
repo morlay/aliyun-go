@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCastersRequest struct {
@@ -29,22 +30,22 @@ func (req *DescribeCastersRequest) Invoke(client *sdk.Client) (resp *DescribeCas
 
 type DescribeCastersResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	Total      int
+	RequestId  common.String
+	Total      common.Integer
 	CasterList DescribeCastersCasterList
 }
 
 type DescribeCastersCaster struct {
-	Status         int
-	NormType       int
-	CasterId       string
-	CasterName     string
-	CreateTime     string
-	StartTime      string
-	PurchaseTime   string
-	ExpireTime     string
-	ChargeType     string
-	CasterTemplate string
+	Status         common.Integer
+	NormType       common.Integer
+	CasterId       common.String
+	CasterName     common.String
+	CreateTime     common.String
+	StartTime      common.String
+	PurchaseTime   common.String
+	ExpireTime     common.String
+	ChargeType     common.String
+	CasterTemplate common.String
 }
 
 type DescribeCastersCasterList []DescribeCastersCaster

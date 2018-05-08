@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCustomerGatewaysRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeCustomerGatewaysRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeCustomerGatewaysResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalCount       int
-	PageNumber       int
-	PageSize         int
+	RequestId        common.String
+	TotalCount       common.Integer
+	PageNumber       common.Integer
+	PageSize         common.Integer
 	CustomerGateways DescribeCustomerGatewaysCustomerGatewayList
 }
 
 type DescribeCustomerGatewaysCustomerGateway struct {
-	CustomerGatewayId string
-	Name              string
-	IpAddress         string
-	Description       string
-	CreateTime        int64
+	CustomerGatewayId common.String
+	Name              common.String
+	IpAddress         common.String
+	Description       common.String
+	CreateTime        common.Long
 }
 
 type DescribeCustomerGatewaysCustomerGatewayList []DescribeCustomerGatewaysCustomerGateway

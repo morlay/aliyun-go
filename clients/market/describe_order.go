@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOrderRequest struct {
@@ -22,32 +23,32 @@ func (req *DescribeOrderRequest) Invoke(client *sdk.Client) (resp *DescribeOrder
 
 type DescribeOrderResponse struct {
 	responses.BaseResponse
-	OrderId             int64
-	AliUid              int64
-	SupplierCompanyName string
-	ProductCode         string
-	ProductSkuCode      string
-	ProductName         string
-	PeriodType          string
-	Quantity            int
-	AccountQuantity     int64
-	OrderType           string
-	OrderStatus         string
-	PayStatus           string
-	PaidOn              int64
-	CreatedOn           int64
-	OriginalPrice       float32
-	TotalPrice          float32
-	PaymentPrice        float32
-	CouponPrice         float32
+	OrderId             common.Long
+	AliUid              common.Long
+	SupplierCompanyName common.String
+	ProductCode         common.String
+	ProductSkuCode      common.String
+	ProductName         common.String
+	PeriodType          common.String
+	Quantity            common.Integer
+	AccountQuantity     common.Long
+	OrderType           common.String
+	OrderStatus         common.String
+	PayStatus           common.String
+	PaidOn              common.Long
+	CreatedOn           common.Long
+	OriginalPrice       common.Float
+	TotalPrice          common.Float
+	PaymentPrice        common.Float
+	CouponPrice         common.Float
 	SupplierTelephones  DescribeOrderSupplierTelephoneList
 	InstanceIds         DescribeOrderInstanceIdList
 }
 
-type DescribeOrderSupplierTelephoneList []string
+type DescribeOrderSupplierTelephoneList []common.String
 
 func (list *DescribeOrderSupplierTelephoneList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -59,10 +60,10 @@ func (list *DescribeOrderSupplierTelephoneList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type DescribeOrderInstanceIdList []string
+type DescribeOrderInstanceIdList []common.String
 
 func (list *DescribeOrderInstanceIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeEventDetailRequest struct {
@@ -23,18 +24,18 @@ func (req *DescribeEventDetailRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeEventDetailResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	ResourceId    string
-	EventType     string
-	EventCategory string
-	Status        string
-	SupportModify string
-	PlanTime      string
-	ExpireTime    string
-	EventId       string
-	StartTime     string
-	EndTime       string
-	EffectTime    string
-	LimitTime     string
-	Mark          string
+	RequestId     common.String
+	ResourceId    common.String
+	EventType     common.String
+	EventCategory common.String
+	Status        common.String
+	SupportModify common.String
+	PlanTime      common.String
+	ExpireTime    common.String
+	EventId       common.String
+	StartTime     common.String
+	EndTime       common.String
+	EffectTime    common.String
+	LimitTime     common.String
+	Mark          common.String
 }

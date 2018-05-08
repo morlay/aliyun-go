@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ImportDataFromDatabaseRequest struct {
@@ -31,6 +32,6 @@ func (req *ImportDataFromDatabaseRequest) Invoke(client *sdk.Client) (resp *Impo
 
 type ImportDataFromDatabaseResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ImportId  int
+	RequestId common.String
+	ImportId  common.Integer
 }

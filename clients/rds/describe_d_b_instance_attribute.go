@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceAttributeRequest struct {
@@ -27,72 +28,72 @@ func (req *DescribeDBInstanceAttributeRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeDBInstanceAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeDBInstanceAttributeDBInstanceAttributeList
 }
 
 type DescribeDBInstanceAttributeDBInstanceAttribute struct {
-	DBInstanceDiskUsed                string
-	GuardDBInstanceName               string
+	DBInstanceDiskUsed                common.String
+	GuardDBInstanceName               common.String
 	CanTempUpgrade                    bool
-	TempUpgradeTimeStart              string
-	TempUpgradeTimeEnd                string
-	TempUpgradeRecoveryTime           string
-	TempUpgradeRecoveryClass          string
-	TempUpgradeRecoveryCpu            int
-	TempUpgradeRecoveryMemory         int
-	TempUpgradeRecoveryMaxIOPS        string
-	TempUpgradeRecoveryMaxConnections string
-	InsId                             int
-	DBInstanceId                      string
-	PayType                           string
-	DBInstanceClassType               string
-	DBInstanceType                    string
-	RegionId                          string
-	ConnectionString                  string
-	Port                              string
-	Engine                            string
-	EngineVersion                     string
-	DBInstanceClass                   string
-	DBInstanceMemory                  int64
-	DBInstanceStorage                 int
-	VpcCloudInstanceId                string
-	DBInstanceNetType                 string
-	DBInstanceStatus                  string
-	DBInstanceDescription             string
-	LockMode                          string
-	LockReason                        string
-	ReadDelayTime                     string
-	DBMaxQuantity                     int
-	AccountMaxQuantity                int
-	CreationTime                      string
-	ExpireTime                        string
-	MaintainTime                      string
-	AvailabilityValue                 string
-	MaxIOPS                           int
-	MaxConnections                    int
-	MasterInstanceId                  string
-	DBInstanceCPU                     string
-	IncrementSourceDBInstanceId       string
-	GuardDBInstanceId                 string
-	ReplicateId                       string
-	TempDBInstanceId                  string
-	SecurityIPList                    string
-	ZoneId                            string
-	InstanceNetworkType               string
-	AdvancedFeatures                  string
-	Category                          string
-	AccountType                       string
-	SupportUpgradeAccountType         string
-	VpcId                             string
-	VSwitchId                         string
-	ConnectionMode                    string
-	ResourceGroupId                   string
+	TempUpgradeTimeStart              common.String
+	TempUpgradeTimeEnd                common.String
+	TempUpgradeRecoveryTime           common.String
+	TempUpgradeRecoveryClass          common.String
+	TempUpgradeRecoveryCpu            common.Integer
+	TempUpgradeRecoveryMemory         common.Integer
+	TempUpgradeRecoveryMaxIOPS        common.String
+	TempUpgradeRecoveryMaxConnections common.String
+	InsId                             common.Integer
+	DBInstanceId                      common.String
+	PayType                           common.String
+	DBInstanceClassType               common.String
+	DBInstanceType                    common.String
+	RegionId                          common.String
+	ConnectionString                  common.String
+	Port                              common.String
+	Engine                            common.String
+	EngineVersion                     common.String
+	DBInstanceClass                   common.String
+	DBInstanceMemory                  common.Long
+	DBInstanceStorage                 common.Integer
+	VpcCloudInstanceId                common.String
+	DBInstanceNetType                 common.String
+	DBInstanceStatus                  common.String
+	DBInstanceDescription             common.String
+	LockMode                          common.String
+	LockReason                        common.String
+	ReadDelayTime                     common.String
+	DBMaxQuantity                     common.Integer
+	AccountMaxQuantity                common.Integer
+	CreationTime                      common.String
+	ExpireTime                        common.String
+	MaintainTime                      common.String
+	AvailabilityValue                 common.String
+	MaxIOPS                           common.Integer
+	MaxConnections                    common.Integer
+	MasterInstanceId                  common.String
+	DBInstanceCPU                     common.String
+	IncrementSourceDBInstanceId       common.String
+	GuardDBInstanceId                 common.String
+	ReplicateId                       common.String
+	TempDBInstanceId                  common.String
+	SecurityIPList                    common.String
+	ZoneId                            common.String
+	InstanceNetworkType               common.String
+	AdvancedFeatures                  common.String
+	Category                          common.String
+	AccountType                       common.String
+	SupportUpgradeAccountType         common.String
+	VpcId                             common.String
+	VSwitchId                         common.String
+	ConnectionMode                    common.String
+	ResourceGroupId                   common.String
 	ReadOnlyDBInstanceIds             DescribeDBInstanceAttributeReadOnlyDBInstanceIdList
 }
 
 type DescribeDBInstanceAttributeReadOnlyDBInstanceId struct {
-	DBInstanceId string
+	DBInstanceId common.String
 }
 
 type DescribeDBInstanceAttributeDBInstanceAttributeList []DescribeDBInstanceAttributeDBInstanceAttribute

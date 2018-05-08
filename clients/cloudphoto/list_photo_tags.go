@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPhotoTagsRequest struct {
@@ -25,19 +26,19 @@ func (req *ListPhotoTagsRequest) Invoke(client *sdk.Client) (resp *ListPhotoTags
 
 type ListPhotoTagsResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Tags      ListPhotoTagsTagList
 }
 
 type ListPhotoTagsTag struct {
-	Id        int64
-	IdStr     string
+	Id        common.Long
+	IdStr     common.String
 	IsSubTag  bool
-	Name      string
-	ParentTag string
+	Name      common.String
+	ParentTag common.String
 }
 
 type ListPhotoTagsTagList []ListPhotoTagsTag

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckDomainRequest struct {
@@ -20,8 +21,8 @@ func (req *CheckDomainRequest) Invoke(client *sdk.Client) (resp *CheckDomainResp
 
 type CheckDomainResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	DomainName string
-	Avail      string
-	Premium    string
+	RequestId  common.String
+	DomainName common.String
+	Avail      common.String
+	Premium    common.String
 }

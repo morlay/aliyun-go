@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetFaceSetDetailRequest struct {
@@ -25,27 +26,27 @@ func (req *GetFaceSetDetailRequest) Invoke(client *sdk.Client) (resp *GetFaceSet
 
 type GetFaceSetDetailResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	SetId       string
-	NextMarker  string
+	RequestId   common.String
+	SetId       common.String
+	NextMarker  common.String
 	FaceDetails GetFaceSetDetailFaceDetailsItemList
 }
 
 type GetFaceSetDetailFaceDetailsItem struct {
-	FaceId        string
-	SrcUri        string
-	PhotoId       string
-	GroupId       string
-	UnGroupReason string
+	FaceId        common.String
+	SrcUri        common.String
+	PhotoId       common.String
+	GroupId       common.String
+	UnGroupReason common.String
 	FaceRectangle GetFaceSetDetailFaceRectangle
 	FaceAttribute GetFaceSetDetailFaceAttribute
 }
 
 type GetFaceSetDetailFaceRectangle struct {
-	Top    int
-	Left   int
-	Width  int
-	Height int
+	Top    common.Integer
+	Left   common.Integer
+	Width  common.Integer
+	Height common.Integer
 }
 
 type GetFaceSetDetailFaceAttribute struct {
@@ -58,17 +59,17 @@ type GetFaceSetDetailFaceAttribute struct {
 }
 
 type GetFaceSetDetailGender struct {
-	Value string
+	Value common.String
 }
 
 type GetFaceSetDetailAge struct {
-	Value string
+	Value common.String
 }
 
 type GetFaceSetDetailHeadpose struct {
-	Pitch_angle float32
-	Roll_angle  float32
-	Yaw_angle   float32
+	Pitch_angle common.Float
+	Roll_angle  common.Float
+	Yaw_angle   common.Float
 }
 
 type GetFaceSetDetailEyestatus struct {
@@ -77,21 +78,21 @@ type GetFaceSetDetailEyestatus struct {
 }
 
 type GetFaceSetDetailLeft_eye_status struct {
-	Normal_glass_eye_open  float32
-	No_glass_eye_close     float32
-	Occlusion              float32
-	No_glass_eye_open      float32
-	Normal_glass_eye_close float32
-	Dark_glasses           float32
+	Normal_glass_eye_open  common.Float
+	No_glass_eye_close     common.Float
+	Occlusion              common.Float
+	No_glass_eye_open      common.Float
+	Normal_glass_eye_close common.Float
+	Dark_glasses           common.Float
 }
 
 type GetFaceSetDetailRight_eye_status struct {
-	Normal_glass_eye_open  float32
-	No_glass_eye_close     float32
-	Occlusion              float32
-	No_glass_eye_open      float32
-	Normal_glass_eye_close float32
-	Dark_glasses           float32
+	Normal_glass_eye_open  common.Float
+	No_glass_eye_close     common.Float
+	Occlusion              common.Float
+	No_glass_eye_open      common.Float
+	Normal_glass_eye_close common.Float
+	Dark_glasses           common.Float
 }
 
 type GetFaceSetDetailBlur struct {
@@ -99,13 +100,13 @@ type GetFaceSetDetailBlur struct {
 }
 
 type GetFaceSetDetailBlurness struct {
-	Value     float32
-	Threshold float32
+	Value     common.Float
+	Threshold common.Float
 }
 
 type GetFaceSetDetailFacequality struct {
-	Value     float32
-	Threshold float32
+	Value     common.Float
+	Threshold common.Float
 }
 
 type GetFaceSetDetailFaceDetailsItemList []GetFaceSetDetailFaceDetailsItem

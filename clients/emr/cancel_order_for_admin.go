@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CancelOrderForAdminRequest struct {
@@ -22,6 +23,6 @@ func (req *CancelOrderForAdminRequest) Invoke(client *sdk.Client) (resp *CancelO
 
 type CancelOrderForAdminResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ClusterId string
+	RequestId common.String
+	ClusterId common.String
 }

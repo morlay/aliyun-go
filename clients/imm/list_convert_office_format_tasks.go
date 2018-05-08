@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListConvertOfficeFormatTasksRequest struct {
@@ -24,25 +25,25 @@ func (req *ListConvertOfficeFormatTasksRequest) Invoke(client *sdk.Client) (resp
 
 type ListConvertOfficeFormatTasksResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextMarker string
+	RequestId  common.String
+	NextMarker common.String
 	Tasks      ListConvertOfficeFormatTasksTasksItemList
 }
 
 type ListConvertOfficeFormatTasksTasksItem struct {
-	TaskId          string
-	Status          string
-	Percent         int
-	PageCount       int
-	SrcUri          string
-	TgtType         string
-	TgtUri          string
-	ImageSpec       string
-	NotifyTopicName string
-	NotifyEndpoint  string
-	ExternalID      string
-	CreateTime      string
-	FinishTime      string
+	TaskId          common.String
+	Status          common.String
+	Percent         common.Integer
+	PageCount       common.Integer
+	SrcUri          common.String
+	TgtType         common.String
+	TgtUri          common.String
+	ImageSpec       common.String
+	NotifyTopicName common.String
+	NotifyEndpoint  common.String
+	ExternalID      common.String
+	CreateTime      common.String
+	FinishTime      common.String
 }
 
 type ListConvertOfficeFormatTasksTasksItemList []ListConvertOfficeFormatTasksTasksItem

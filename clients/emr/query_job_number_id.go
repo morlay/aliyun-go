@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryJobNumberIdRequest struct {
@@ -21,6 +22,6 @@ func (req *QueryJobNumberIdRequest) Invoke(client *sdk.Client) (resp *QueryJobNu
 
 type QueryJobNumberIdResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	JobNumberId string
+	RequestId   common.String
+	JobNumberId common.String
 }

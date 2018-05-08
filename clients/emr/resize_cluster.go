@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ResizeClusterRequest struct {
@@ -27,8 +28,8 @@ func (req *ResizeClusterRequest) Invoke(client *sdk.Client) (resp *ResizeCluster
 
 type ResizeClusterResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	ClusterId   string
-	EmrOrderId  string
-	CoreOrderId string
+	RequestId   common.String
+	ClusterId   common.String
+	EmrOrderId  common.String
+	CoreOrderId common.String
 }

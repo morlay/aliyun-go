@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetPackageRequest struct {
@@ -24,6 +25,6 @@ func (req *GetPackageRequest) Invoke(client *sdk.Client) (resp *GetPackageRespon
 
 type GetPackageResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	CertPackage string
+	RequestId   common.String
+	CertPackage common.String
 }

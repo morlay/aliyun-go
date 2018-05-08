@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListSkillGroupsRequest struct {
@@ -22,35 +23,35 @@ func (req *ListSkillGroupsRequest) Invoke(client *sdk.Client) (resp *ListSkillGr
 
 type ListSkillGroupsResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	SkillGroups    ListSkillGroupsSkillGroupList
 }
 
 type ListSkillGroupsSkillGroup struct {
-	SkillGroupId          string
-	InstanceId            string
-	SkillGroupName        string
-	AccSkillGroupName     string
-	AccQueueName          string
-	SkillGroupDescription string
-	UserCount             int
+	SkillGroupId          common.String
+	InstanceId            common.String
+	SkillGroupName        common.String
+	AccSkillGroupName     common.String
+	AccQueueName          common.String
+	SkillGroupDescription common.String
+	UserCount             common.Integer
 	OutboundPhoneNumbers  ListSkillGroupsPhoneNumberList
 }
 
 type ListSkillGroupsPhoneNumber struct {
-	PhoneNumberId          string
-	InstanceId             string
-	Number                 string
-	PhoneNumberDescription string
+	PhoneNumberId          common.String
+	InstanceId             common.String
+	Number                 common.String
+	PhoneNumberDescription common.String
 	TestOnly               bool
-	RemainingTime          int
+	RemainingTime          common.Integer
 	AllowOutbound          bool
-	Usage                  string
-	Trunks                 int
+	Usage                  common.String
+	Trunks                 common.Integer
 }
 
 type ListSkillGroupsSkillGroupList []ListSkillGroupsSkillGroup

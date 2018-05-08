@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AllocateEipAddressRequest struct {
@@ -33,9 +34,9 @@ func (req *AllocateEipAddressRequest) Invoke(client *sdk.Client) (resp *Allocate
 
 type AllocateEipAddressResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	AllocationId    string
-	EipAddress      string
-	OrderId         int64
-	ResourceGroupId string
+	RequestId       common.String
+	AllocationId    common.String
+	EipAddress      common.String
+	OrderId         common.Long
+	ResourceGroupId common.String
 }

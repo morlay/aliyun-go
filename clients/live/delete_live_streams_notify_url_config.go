@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteLiveStreamsNotifyUrlConfigRequest struct {
@@ -22,5 +23,5 @@ func (req *DeleteLiveStreamsNotifyUrlConfigRequest) Invoke(client *sdk.Client) (
 
 type DeleteLiveStreamsNotifyUrlConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

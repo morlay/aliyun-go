@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainHttpsDataRequest struct {
@@ -31,55 +32,55 @@ func (req *DescribeDomainHttpsDataRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDomainHttpsDataResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	DomainNames          string
-	DataInterval         string
+	RequestId            common.String
+	DomainNames          common.String
+	DataInterval         common.String
 	HttpsStatisticsInfos DescribeDomainHttpsDataHttpsStatisticsInfoList
 }
 
 type DescribeDomainHttpsDataHttpsStatisticsInfo struct {
-	Time               string
-	L1HttpsBps         float32
-	L1HttpsInnerBps    float32
-	L1HttpsOutBps      float32
-	L1HttpsQps         int64
-	L1HttpsInnerQps    int64
-	L1HttpsOutQps      int64
-	L1HttpsTtraf       int64
-	HttpsSrcBps        int64
-	HttpsSrcTraf       int64
-	L1HttpsInnerTraf   int64
-	L1HttpsOutTraf     int64
-	HttpsByteHitRate   float32
-	HttpsReqHitRate    float32
-	L1HttpsHitRate     float32
-	L1HttpsInner_acc   float32
-	L1HttpsOut_acc     float32
-	L1HttpsTacc        float32
-	L1DyHttpsBps       float32
-	L1DyHttpsInnerBps  float32
-	L1DyHttpsOutBps    float32
-	L1StHttpsBps       float32
-	L1StHttpsInnerBps  float32
-	L1StHttpsOutBps    float32
-	L1DyHttpsTraf      float32
-	L1DyHttpsInnerTraf float32
-	L1DyHttpsOutTraf   float32
-	L1StHttpsTraf      float32
-	L1StHttpsInnerTraf float32
-	L1StHttpsOutTraf   float32
-	L1DyHttpsQps       float32
-	L1DyHttpsInnerQps  float32
-	L1DyHttpsOutQps    float32
-	L1StHttpsQps       float32
-	L1StHttpsInnerQps  float32
-	L1StHttpsOutQps    float32
-	L1DyHttpsAcc       float32
-	L1DyHttpsInnerAcc  float32
-	L1DyHttpsOutAcc    float32
-	L1StHttpsAcc       float32
-	L1StHttpsInnerAcc  float32
-	L1StHttpsOutAcc    float32
+	Time               common.String
+	L1HttpsBps         common.Float
+	L1HttpsInnerBps    common.Float
+	L1HttpsOutBps      common.Float
+	L1HttpsQps         common.Long
+	L1HttpsInnerQps    common.Long
+	L1HttpsOutQps      common.Long
+	L1HttpsTtraf       common.Long
+	HttpsSrcBps        common.Long
+	HttpsSrcTraf       common.Long
+	L1HttpsInnerTraf   common.Long
+	L1HttpsOutTraf     common.Long
+	HttpsByteHitRate   common.Float
+	HttpsReqHitRate    common.Float
+	L1HttpsHitRate     common.Float
+	L1HttpsInner_acc   common.Float
+	L1HttpsOut_acc     common.Float
+	L1HttpsTacc        common.Float
+	L1DyHttpsBps       common.Float
+	L1DyHttpsInnerBps  common.Float
+	L1DyHttpsOutBps    common.Float
+	L1StHttpsBps       common.Float
+	L1StHttpsInnerBps  common.Float
+	L1StHttpsOutBps    common.Float
+	L1DyHttpsTraf      common.Float
+	L1DyHttpsInnerTraf common.Float
+	L1DyHttpsOutTraf   common.Float
+	L1StHttpsTraf      common.Float
+	L1StHttpsInnerTraf common.Float
+	L1StHttpsOutTraf   common.Float
+	L1DyHttpsQps       common.Float
+	L1DyHttpsInnerQps  common.Float
+	L1DyHttpsOutQps    common.Float
+	L1StHttpsQps       common.Float
+	L1StHttpsInnerQps  common.Float
+	L1StHttpsOutQps    common.Float
+	L1DyHttpsAcc       common.Float
+	L1DyHttpsInnerAcc  common.Float
+	L1DyHttpsOutAcc    common.Float
+	L1StHttpsAcc       common.Float
+	L1StHttpsInnerAcc  common.Float
+	L1StHttpsOutAcc    common.Float
 }
 
 type DescribeDomainHttpsDataHttpsStatisticsInfoList []DescribeDomainHttpsDataHttpsStatisticsInfo

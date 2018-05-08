@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBackupTasksRequest struct {
@@ -31,16 +32,16 @@ func (req *DescribeBackupTasksRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeBackupTasksResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeBackupTasksBackupJobList
 }
 
 type DescribeBackupTasksBackupJob struct {
-	BackupProgressStatus string
-	JobMode              string
-	Process              string
-	TaskAction           string
-	BackupjobId          string
+	BackupProgressStatus common.String
+	JobMode              common.String
+	Process              common.String
+	TaskAction           common.String
+	BackupjobId          common.String
 }
 
 type DescribeBackupTasksBackupJobList []DescribeBackupTasksBackupJob

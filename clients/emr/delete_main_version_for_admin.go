@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteMainVersionForAdminRequest struct {
@@ -21,5 +22,5 @@ func (req *DeleteMainVersionForAdminRequest) Invoke(client *sdk.Client) (resp *D
 
 type DeleteMainVersionForAdminResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

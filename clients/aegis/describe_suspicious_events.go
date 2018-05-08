@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSuspiciousEventsRequest struct {
@@ -23,18 +24,18 @@ func (req *DescribeSuspiciousEventsRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeSuspiciousEventsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageSize         int
-	TotalCount       int
-	CurrentPage      int
-	HttpStatusCode   int
+	RequestId        common.String
+	PageSize         common.Integer
+	TotalCount       common.Integer
+	CurrentPage      common.Integer
+	HttpStatusCode   common.Integer
 	SuspiciousEvents DescribeSuspiciousEventsSuspiciousEventList
 }
 
-type DescribeSuspiciousEventsSuspiciousEventList []string
+type DescribeSuspiciousEventsSuspiciousEventList []common.String
 
 func (list *DescribeSuspiciousEventsSuspiciousEventList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

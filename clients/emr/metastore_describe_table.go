@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MetastoreDescribeTableRequest struct {
@@ -24,37 +25,37 @@ func (req *MetastoreDescribeTableRequest) Invoke(client *sdk.Client) (resp *Meta
 
 type MetastoreDescribeTableResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	CreateTime            int
-	LastAccessTime        int
-	LocationUri           string
-	InputFormat           string
-	OutputFormat          string
+	RequestId             common.String
+	CreateTime            common.Integer
+	LastAccessTime        common.Integer
+	LocationUri           common.String
+	InputFormat           common.String
+	OutputFormat          common.String
 	Compressed            bool
-	SerializationLib      string
-	TableName             string
-	DbName                string
-	Owner                 string
-	TableType             string
+	SerializationLib      common.String
+	TableName             common.String
+	DbName                common.String
+	Owner                 common.String
+	TableType             common.String
 	Columns               MetastoreDescribeTableColumnList
 	SerdeParameters       MetastoreDescribeTableSerdeParameterList
 	StorageDescParameters MetastoreDescribeTableStorageDescParameterList
 }
 
 type MetastoreDescribeTableColumn struct {
-	Name    string
-	Type    string
-	Comment string
+	Name    common.String
+	Type    common.String
+	Comment common.String
 }
 
 type MetastoreDescribeTableSerdeParameter struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type MetastoreDescribeTableStorageDescParameter struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type MetastoreDescribeTableColumnList []MetastoreDescribeTableColumn

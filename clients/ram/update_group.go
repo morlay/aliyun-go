@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateGroupRequest struct {
@@ -22,13 +23,13 @@ func (req *UpdateGroupRequest) Invoke(client *sdk.Client) (resp *UpdateGroupResp
 
 type UpdateGroupResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Group     UpdateGroupGroup
 }
 
 type UpdateGroupGroup struct {
-	GroupName  string
-	Comments   string
-	CreateDate string
-	UpdateDate string
+	GroupName  common.String
+	Comments   common.String
+	CreateDate common.String
+	UpdateDate common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EipNotifyPaidRequest struct {
@@ -26,9 +27,9 @@ func (req *EipNotifyPaidRequest) Invoke(client *sdk.Client) (resp *EipNotifyPaid
 
 type EipNotifyPaidResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Data      string
-	Code      string
-	Message   string
+	RequestId common.String
+	Data      common.String
+	Code      common.String
+	Message   common.String
 	Success   bool
 }

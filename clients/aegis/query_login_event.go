@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryLoginEventRequest struct {
@@ -26,10 +27,10 @@ func (req *QueryLoginEventRequest) Invoke(client *sdk.Client) (resp *QueryLoginE
 
 type QueryLoginEventResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
+	RequestId common.String
+	Code      common.String
 	Success   bool
-	Message   string
+	Message   common.String
 	Data      QueryLoginEventData
 }
 
@@ -39,28 +40,28 @@ type QueryLoginEventData struct {
 }
 
 type QueryLoginEventEntity struct {
-	Uuid          string
-	LoginTime     string
-	LoginType     int
-	LoginTypeName string
-	BuyVersion    string
-	LoginSourceIp string
-	GroupId       int
-	InstanceName  string
-	InstanceId    string
-	Ip            string
-	Region        string
-	Status        int
-	StatusName    string
-	Location      string
-	UserName      string
+	Uuid          common.String
+	LoginTime     common.String
+	LoginType     common.Integer
+	LoginTypeName common.String
+	BuyVersion    common.String
+	LoginSourceIp common.String
+	GroupId       common.Integer
+	InstanceName  common.String
+	InstanceId    common.String
+	Ip            common.String
+	Region        common.String
+	Status        common.Integer
+	StatusName    common.String
+	Location      common.String
+	UserName      common.String
 }
 
 type QueryLoginEventPageInfo struct {
-	CurrentPage int
-	PageSize    int
-	TotalCount  int
-	Count       int
+	CurrentPage common.Integer
+	PageSize    common.Integer
+	TotalCount  common.Integer
+	Count       common.Integer
 }
 
 type QueryLoginEventEntityList []QueryLoginEventEntity

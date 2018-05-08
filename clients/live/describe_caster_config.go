@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCasterConfigRequest struct {
@@ -23,42 +24,42 @@ func (req *DescribeCasterConfigRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeCasterConfigResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	CasterId         string
-	CasterName       string
-	DomainName       string
-	Delay            float32
-	UrgentMaterialId string
-	SideOutputUrl    string
-	CallbackUrl      string
-	ProgramName      string
-	ProgramEffect    int
+	RequestId        common.String
+	CasterId         common.String
+	CasterName       common.String
+	DomainName       common.String
+	Delay            common.Float
+	UrgentMaterialId common.String
+	SideOutputUrl    common.String
+	CallbackUrl      common.String
+	ProgramName      common.String
+	ProgramEffect    common.Integer
 	TranscodeConfig  DescribeCasterConfigTranscodeConfig
 	RecordConfig     DescribeCasterConfigRecordConfig
 }
 
 type DescribeCasterConfigTranscodeConfig struct {
-	CasterTemplate  string
+	CasterTemplate  common.String
 	LiveTemplateIds DescribeCasterConfigLiveTemplateIdList
 }
 
 type DescribeCasterConfigRecordConfig struct {
-	OssEndpoint  string
-	OssBucket    string
+	OssEndpoint  common.String
+	OssBucket    common.String
 	RecordFormat DescribeCasterConfigRecordFormatItemList
 }
 
 type DescribeCasterConfigRecordFormatItem struct {
-	Format               string
-	OssObjectPrefix      string
-	SliceOssObjectPrefix string
-	CycleDuration        int
+	Format               common.String
+	OssObjectPrefix      common.String
+	SliceOssObjectPrefix common.String
+	CycleDuration        common.Integer
 }
 
-type DescribeCasterConfigLiveTemplateIdList []string
+type DescribeCasterConfigLiveTemplateIdList []common.String
 
 func (list *DescribeCasterConfigLiveTemplateIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

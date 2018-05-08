@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CancelKeyDeletionRequest struct {
@@ -21,5 +22,5 @@ func (req *CancelKeyDeletionRequest) Invoke(client *sdk.Client) (resp *CancelKey
 
 type CancelKeyDeletionResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

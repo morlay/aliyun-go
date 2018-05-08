@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PreloadDcdnObjectCachesRequest struct {
@@ -22,6 +23,6 @@ func (req *PreloadDcdnObjectCachesRequest) Invoke(client *sdk.Client) (resp *Pre
 
 type PreloadDcdnObjectCachesResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	PreloadTaskId string
+	RequestId     common.String
+	PreloadTaskId common.String
 }

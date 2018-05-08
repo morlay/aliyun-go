@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveDomainTrafficDataRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeLiveDomainTrafficDataRequest) Invoke(client *sdk.Client) (res
 
 type DescribeLiveDomainTrafficDataResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	DomainName             string
-	StartTime              string
-	EndTime                string
-	DataInterval           string
+	RequestId              common.String
+	DomainName             common.String
+	StartTime              common.String
+	EndTime                common.String
+	DataInterval           common.String
 	TrafficDataPerInterval DescribeLiveDomainTrafficDataDataModuleList
 }
 
 type DescribeLiveDomainTrafficDataDataModule struct {
-	TimeStamp         string
-	TrafficValue      string
-	HttpTrafficValue  string
-	HttpsTrafficValue string
+	TimeStamp         common.String
+	TrafficValue      common.String
+	HttpTrafficValue  common.String
+	HttpsTrafficValue common.String
 }
 
 type DescribeLiveDomainTrafficDataDataModuleList []DescribeLiveDomainTrafficDataDataModule

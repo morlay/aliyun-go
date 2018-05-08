@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAutoSnapshotPolicyRequest struct {
@@ -23,24 +24,24 @@ func (req *DescribeAutoSnapshotPolicyRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeAutoSnapshotPolicyResponse struct {
 	responses.BaseResponse
-	RequestId                  string
-	AutoSnapshotOccupation     int
+	RequestId                  common.String
+	AutoSnapshotOccupation     common.Integer
 	AutoSnapshotPolicy         DescribeAutoSnapshotPolicyAutoSnapshotPolicy
 	AutoSnapshotExcutionStatus DescribeAutoSnapshotPolicyAutoSnapshotExcutionStatus
 }
 
 type DescribeAutoSnapshotPolicyAutoSnapshotPolicy struct {
-	SystemDiskPolicyEnabled           string
-	SystemDiskPolicyTimePeriod        string
-	SystemDiskPolicyRetentionDays     string
-	SystemDiskPolicyRetentionLastWeek string
-	DataDiskPolicyEnabled             string
-	DataDiskPolicyTimePeriod          string
-	DataDiskPolicyRetentionDays       string
-	DataDiskPolicyRetentionLastWeek   string
+	SystemDiskPolicyEnabled           common.String
+	SystemDiskPolicyTimePeriod        common.String
+	SystemDiskPolicyRetentionDays     common.String
+	SystemDiskPolicyRetentionLastWeek common.String
+	DataDiskPolicyEnabled             common.String
+	DataDiskPolicyTimePeriod          common.String
+	DataDiskPolicyRetentionDays       common.String
+	DataDiskPolicyRetentionLastWeek   common.String
 }
 
 type DescribeAutoSnapshotPolicyAutoSnapshotExcutionStatus struct {
-	SystemDiskExcutionStatus string
-	DataDiskExcutionStatus   string
+	SystemDiskExcutionStatus common.String
+	DataDiskExcutionStatus   common.String
 }

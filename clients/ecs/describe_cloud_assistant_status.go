@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCloudAssistantStatusRequest struct {
@@ -26,13 +27,13 @@ func (req *DescribeCloudAssistantStatusRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeCloudAssistantStatusResponse struct {
 	responses.BaseResponse
-	RequestId                       string
+	RequestId                       common.String
 	InstanceCloudAssistantStatusSet DescribeCloudAssistantStatusInstanceCloudAssistantStatusList
 }
 
 type DescribeCloudAssistantStatusInstanceCloudAssistantStatus struct {
-	InstanceId           string
-	CloudAssistantStatus string
+	InstanceId           common.String
+	CloudAssistantStatus common.String
 }
 
 type DescribeCloudAssistantStatusInstanceIdList []string

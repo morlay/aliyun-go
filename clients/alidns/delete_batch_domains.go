@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteBatchDomainsRequest struct {
@@ -22,6 +23,6 @@ func (req *DeleteBatchDomainsRequest) Invoke(client *sdk.Client) (resp *DeleteBa
 
 type DeleteBatchDomainsResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TraceId   string
+	RequestId common.String
+	TraceId   common.String
 }

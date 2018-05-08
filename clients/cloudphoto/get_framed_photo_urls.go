@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetFramedPhotoUrlsRequest struct {
@@ -25,19 +26,19 @@ func (req *GetFramedPhotoUrlsRequest) Invoke(client *sdk.Client) (resp *GetFrame
 
 type GetFramedPhotoUrlsResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Results   GetFramedPhotoUrlsResultList
 }
 
 type GetFramedPhotoUrlsResult struct {
-	Code           string
-	Message        string
-	PhotoId        int64
-	PhotoIdStr     string
-	FramedPhotoUrl string
+	Code           common.String
+	Message        common.String
+	PhotoId        common.Long
+	PhotoIdStr     common.String
+	FramedPhotoUrl common.String
 }
 
 type GetFramedPhotoUrlsPhotoIdList []int64

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddWaterMarkTemplateRequest struct {
@@ -25,32 +26,32 @@ func (req *AddWaterMarkTemplateRequest) Invoke(client *sdk.Client) (resp *AddWat
 
 type AddWaterMarkTemplateResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	WaterMarkTemplate AddWaterMarkTemplateWaterMarkTemplate
 }
 
 type AddWaterMarkTemplateWaterMarkTemplate struct {
-	Id         string
-	Name       string
-	Width      string
-	Height     string
-	Dx         string
-	Dy         string
-	ReferPos   string
-	Type       string
-	State      string
+	Id         common.String
+	Name       common.String
+	Width      common.String
+	Height     common.String
+	Dx         common.String
+	Dy         common.String
+	ReferPos   common.String
+	Type       common.String
+	State      common.String
 	Timeline   AddWaterMarkTemplateTimeline
 	RatioRefer AddWaterMarkTemplateRatioRefer
 }
 
 type AddWaterMarkTemplateTimeline struct {
-	Start    string
-	Duration string
+	Start    common.String
+	Duration common.String
 }
 
 type AddWaterMarkTemplateRatioRefer struct {
-	Dx     string
-	Dy     string
-	Width  string
-	Height string
+	Dx     common.String
+	Dy     common.String
+	Width  common.String
+	Height common.String
 }

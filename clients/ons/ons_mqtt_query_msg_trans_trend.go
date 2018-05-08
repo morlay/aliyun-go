@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttQueryMsgTransTrendRequest struct {
@@ -32,21 +33,21 @@ func (req *OnsMqttQueryMsgTransTrendRequest) Invoke(client *sdk.Client) (resp *O
 
 type OnsMqttQueryMsgTransTrendResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsMqttQueryMsgTransTrendData
 }
 
 type OnsMqttQueryMsgTransTrendData struct {
-	Title   string
-	XUnit   string
-	YUnit   string
+	Title   common.String
+	XUnit   common.String
+	YUnit   common.String
 	Records OnsMqttQueryMsgTransTrendStatsDataDoList
 }
 
 type OnsMqttQueryMsgTransTrendStatsDataDo struct {
-	X int64
-	Y float32
+	X common.Long
+	Y common.Float
 }
 
 type OnsMqttQueryMsgTransTrendStatsDataDoList []OnsMqttQueryMsgTransTrendStatsDataDo

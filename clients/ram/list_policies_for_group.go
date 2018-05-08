@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPoliciesForGroupRequest struct {
@@ -22,16 +23,16 @@ func (req *ListPoliciesForGroupRequest) Invoke(client *sdk.Client) (resp *ListPo
 
 type ListPoliciesForGroupResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Policies  ListPoliciesForGroupPolicyList
 }
 
 type ListPoliciesForGroupPolicy struct {
-	PolicyName     string
-	PolicyType     string
-	Description    string
-	DefaultVersion string
-	AttachDate     string
+	PolicyName     common.String
+	PolicyType     common.String
+	Description    common.String
+	DefaultVersion common.String
+	AttachDate     common.String
 }
 
 type ListPoliciesForGroupPolicyList []ListPoliciesForGroupPolicy

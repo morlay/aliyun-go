@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetThreatAnalyseListRequest struct {
@@ -23,53 +24,53 @@ func (req *GetThreatAnalyseListRequest) Invoke(client *sdk.Client) (resp *GetThr
 
 type GetThreatAnalyseListResponse struct {
 	responses.BaseResponse
-	Code    string
-	Message string
+	Code    common.String
+	Message common.String
 	Success bool
 	Data    GetThreatAnalyseListData
 }
 
 type GetThreatAnalyseListData struct {
-	Total int64
+	Total common.Long
 	Items GetThreatAnalyseListItemList
 }
 
 type GetThreatAnalyseListItem struct {
-	Id                 int64
-	Level              string
-	Uuid               string
-	Product            string
-	VmIp               string
-	Url                string
-	Method             string
-	SourceIp           string
-	SourceUuid         string
-	SourceDomain       string
-	SourcePort         int
-	SourceLocal        string
-	DstIp              string
-	DstUuid            string
-	DstDomain          string
-	DstPort            int
-	DstLocal           string
-	AttackCount        int64
-	ThreatRate         string
-	AttackStartTime    int64
-	AttackEndTime      int64
-	AttackCategory     int
-	AttackCategoryName string
-	AttackType         string
-	AttackTypeName     string
-	AttackStatus       int
-	AttackSource       string
+	Id                 common.Long
+	Level              common.String
+	Uuid               common.String
+	Product            common.String
+	VmIp               common.String
+	Url                common.String
+	Method             common.String
+	SourceIp           common.String
+	SourceUuid         common.String
+	SourceDomain       common.String
+	SourcePort         common.Integer
+	SourceLocal        common.String
+	DstIp              common.String
+	DstUuid            common.String
+	DstDomain          common.String
+	DstPort            common.Integer
+	DstLocal           common.String
+	AttackCount        common.Long
+	ThreatRate         common.String
+	AttackStartTime    common.Long
+	AttackEndTime      common.Long
+	AttackCategory     common.Integer
+	AttackCategoryName common.String
+	AttackType         common.String
+	AttackTypeName     common.String
+	AttackStatus       common.Integer
+	AttackSource       common.String
 	Details            GetThreatAnalyseListDetailList
 }
 
 type GetThreatAnalyseListDetail struct {
-	Value    string
-	Type     int
-	Label    string
-	LinkText string
+	Value    common.String
+	Type     common.Integer
+	Label    common.String
+	LinkText common.String
 }
 
 type GetThreatAnalyseListItemList []GetThreatAnalyseListItem

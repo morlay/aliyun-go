@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddTerrorismPipelineRequest struct {
@@ -26,19 +27,19 @@ func (req *AddTerrorismPipelineRequest) Invoke(client *sdk.Client) (resp *AddTer
 
 type AddTerrorismPipelineResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Pipeline  AddTerrorismPipelinePipeline
 }
 
 type AddTerrorismPipelinePipeline struct {
-	Id           string
-	Name         string
-	Priority     int
-	State        string
+	Id           common.String
+	Name         common.String
+	Priority     common.Integer
+	State        common.String
 	NotifyConfig AddTerrorismPipelineNotifyConfig
 }
 
 type AddTerrorismPipelineNotifyConfig struct {
-	Topic string
-	Queue string
+	Topic common.String
+	Queue common.String
 }

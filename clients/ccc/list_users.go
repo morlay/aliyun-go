@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListUsersRequest struct {
@@ -24,25 +25,25 @@ func (req *ListUsersRequest) Invoke(client *sdk.Client) (resp *ListUsersResponse
 
 type ListUsersResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	Users          ListUsersUsers
 }
 
 type ListUsersUsers struct {
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	List       ListUsersUserList
 }
 
 type ListUsersUser struct {
-	UserId      string
-	RamId       string
-	InstanceId  string
+	UserId      common.String
+	RamId       common.String
+	InstanceId  common.String
 	Primary     bool
 	Roles       ListUsersRoleList
 	SkillLevels ListUsersSkillLevelList
@@ -50,31 +51,31 @@ type ListUsersUser struct {
 }
 
 type ListUsersRole struct {
-	RoleId          string
-	InstanceId      string
-	RoleName        string
-	RoleDescription string
+	RoleId          common.String
+	InstanceId      common.String
+	RoleName        common.String
+	RoleDescription common.String
 }
 
 type ListUsersSkillLevel struct {
-	SkillLevelId string
-	Level        int
+	SkillLevelId common.String
+	Level        common.Integer
 	Skill        ListUsersSkill
 }
 
 type ListUsersSkill struct {
-	SkillGroupId          string
-	InstanceId            string
-	SkillGroupName        string
-	SkillGroupDescription string
+	SkillGroupId          common.String
+	InstanceId            common.String
+	SkillGroupName        common.String
+	SkillGroupDescription common.String
 }
 
 type ListUsersDetail struct {
-	LoginName   string
-	DisplayName string
-	Phone       string
-	Email       string
-	Department  string
+	LoginName   common.String
+	DisplayName common.String
+	Phone       common.String
+	Email       common.String
+	Department  common.String
 }
 
 type ListUsersUserList []ListUsersUser

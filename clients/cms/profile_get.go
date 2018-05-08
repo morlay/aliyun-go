@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ProfileGetRequest struct {
@@ -20,12 +21,12 @@ func (req *ProfileGetRequest) Invoke(client *sdk.Client) (resp *ProfileGetRespon
 
 type ProfileGetResponse struct {
 	responses.BaseResponse
-	ErrorCode                int
-	ErrorMessage             string
+	ErrorCode                common.Integer
+	ErrorMessage             common.String
 	Success                  bool
-	RequestId                string
-	UserId                   int64
+	RequestId                common.String
+	UserId                   common.Long
 	AutoInstall              bool
 	EnableInstallAgentNewECS bool
-	EnableActiveAlert        string
+	EnableActiveAlert        common.String
 }

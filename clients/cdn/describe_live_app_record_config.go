@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveAppRecordConfigRequest struct {
@@ -23,15 +24,15 @@ func (req *DescribeLiveAppRecordConfigRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeLiveAppRecordConfigResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	LiveAppRecord DescribeLiveAppRecordConfigLiveAppRecord
 }
 
 type DescribeLiveAppRecordConfigLiveAppRecord struct {
-	DomainName      string
-	AppName         string
-	OssEndpoint     string
-	OssBucket       string
-	OssObjectPrefix string
-	CreateTime      string
+	DomainName      common.String
+	AppName         common.String
+	OssEndpoint     common.String
+	OssBucket       common.String
+	OssObjectPrefix common.String
+	CreateTime      common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RemoveBoxCodeRequest struct {
@@ -25,15 +26,15 @@ func (req *RemoveBoxCodeRequest) Invoke(client *sdk.Client) (resp *RemoveBoxCode
 
 type RemoveBoxCodeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	ErrorList RemoveBoxCodeErrorMessageList
 }
 
 type RemoveBoxCodeErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type RemoveBoxCodeErrorMessageList []RemoveBoxCodeErrorMessage

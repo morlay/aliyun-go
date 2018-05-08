@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateHaVipRequest struct {
@@ -27,6 +28,6 @@ func (req *CreateHaVipRequest) Invoke(client *sdk.Client) (resp *CreateHaVipResp
 
 type CreateHaVipResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HaVipId   string
+	RequestId common.String
+	HaVipId   common.String
 }

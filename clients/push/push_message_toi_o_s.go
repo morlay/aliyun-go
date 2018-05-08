@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PushMessageToiOSRequest struct {
@@ -25,6 +26,6 @@ func (req *PushMessageToiOSRequest) Invoke(client *sdk.Client) (resp *PushMessag
 
 type PushMessageToiOSResponse struct {
 	responses.BaseResponse
-	RequestId string
-	MessageId string
+	RequestId common.String
+	MessageId common.String
 }

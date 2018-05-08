@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOssDownloadsRequest struct {
@@ -26,20 +27,20 @@ func (req *DescribeOssDownloadsRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeOssDownloadsResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	DBInstanceId  string
-	MigrateTaskId string
+	RequestId     common.String
+	DBInstanceId  common.String
+	MigrateTaskId common.String
 	Items         DescribeOssDownloadsOssDownloadList
 }
 
 type DescribeOssDownloadsOssDownload struct {
-	FileName    string
-	CreateTime  string
-	BackupMode  string
-	FileSize    string
-	Status      string
-	IsAvailable string
-	Description string
+	FileName    common.String
+	CreateTime  common.String
+	BackupMode  common.String
+	FileSize    common.String
+	Status      common.String
+	IsAvailable common.String
+	Description common.String
 }
 
 type DescribeOssDownloadsOssDownloadList []DescribeOssDownloadsOssDownload

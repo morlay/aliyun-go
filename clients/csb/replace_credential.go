@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ReplaceCredentialRequest struct {
@@ -20,9 +21,9 @@ func (req *ReplaceCredentialRequest) Invoke(client *sdk.Client) (resp *ReplaceCr
 
 type ReplaceCredentialResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      ReplaceCredentialData
 }
 
@@ -31,20 +32,20 @@ type ReplaceCredentialData struct {
 }
 
 type ReplaceCredentialCredentials struct {
-	GmtCreate         int64
-	Id                int64
-	Name              string
-	UserId            string
+	GmtCreate         common.Long
+	Id                common.Long
+	Name              common.String
+	UserId            common.String
 	CurrentCredential ReplaceCredentialCurrentCredential
 	NewCredential     ReplaceCredentialNewCredential
 }
 
 type ReplaceCredentialCurrentCredential struct {
-	AccessKey string
-	SecretKey string
+	AccessKey common.String
+	SecretKey common.String
 }
 
 type ReplaceCredentialNewCredential struct {
-	AccessKey string
-	SecretKey string
+	AccessKey common.String
+	SecretKey common.String
 }

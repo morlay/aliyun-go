@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListProjectsRequest struct {
@@ -23,29 +24,29 @@ func (req *ListProjectsRequest) Invoke(client *sdk.Client) (resp *ListProjectsRe
 
 type ListProjectsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextMarker string
+	RequestId  common.String
+	NextMarker common.String
 	Projects   ListProjectsProjectsItemList
 }
 
 type ListProjectsProjectsItem struct {
-	Project     string
-	Endpoint    string
-	ServiceRole string
-	CreateTime  string
-	ModifyTime  string
+	Project     common.String
+	Endpoint    common.String
+	ServiceRole common.String
+	CreateTime  common.String
+	ModifyTime  common.String
 	Engines     ListProjectsEnginesItemList
 	Indexers    ListProjectsIndexersItemList
 }
 
 type ListProjectsEnginesItem struct {
-	Name   string
-	JobTtl int64
+	Name   common.String
+	JobTtl common.Long
 }
 
 type ListProjectsIndexersItem struct {
-	Name   string
-	Status string
+	Name   common.String
+	Status common.String
 }
 
 type ListProjectsProjectsItemList []ListProjectsProjectsItem

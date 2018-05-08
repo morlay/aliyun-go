@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetListenerAccessControlStatusRequest struct {
@@ -28,5 +29,5 @@ func (req *SetListenerAccessControlStatusRequest) Invoke(client *sdk.Client) (re
 
 type SetListenerAccessControlStatusResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

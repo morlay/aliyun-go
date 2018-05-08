@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListRequiredServiceForAdminRequest struct {
@@ -24,14 +25,14 @@ func (req *ListRequiredServiceForAdminRequest) Invoke(client *sdk.Client) (resp 
 
 type ListRequiredServiceForAdminResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	NeedOtherService bool
 	ServiceList      ListRequiredServiceForAdminServiceList
 }
 
 type ListRequiredServiceForAdminService struct {
-	ServiceName        string
-	ServiceDisplayName string
+	ServiceName        common.String
+	ServiceDisplayName common.String
 }
 
 type ListRequiredServiceForAdminServiceList []ListRequiredServiceForAdminService

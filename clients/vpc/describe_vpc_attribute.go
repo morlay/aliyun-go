@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpcAttributeRequest struct {
@@ -27,18 +28,18 @@ func (req *DescribeVpcAttributeRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeVpcAttributeResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	VpcId              string
-	RegionId           string
-	Status             string
-	VpcName            string
-	CreationTime       string
-	CidrBlock          string
-	VRouterId          string
-	Description        string
+	RequestId          common.String
+	VpcId              common.String
+	RegionId           common.String
+	Status             common.String
+	VpcName            common.String
+	CreationTime       common.String
+	CidrBlock          common.String
+	VRouterId          common.String
+	Description        common.String
 	IsDefault          bool
 	ClassicLinkEnabled bool
-	ResourceGroupId    string
+	ResourceGroupId    common.String
 	AssociatedCens     DescribeVpcAttributeAssociatedCenList
 	CloudResources     DescribeVpcAttributeCloudResourceSetTypeList
 	VSwitchIds         DescribeVpcAttributeVSwitchIdList
@@ -46,14 +47,14 @@ type DescribeVpcAttributeResponse struct {
 }
 
 type DescribeVpcAttributeAssociatedCen struct {
-	CenId      string
-	CenOwnerId int64
-	CenStatus  string
+	CenId      common.String
+	CenOwnerId common.Long
+	CenStatus  common.String
 }
 
 type DescribeVpcAttributeCloudResourceSetType struct {
-	ResourceType  string
-	ResourceCount int
+	ResourceType  common.String
+	ResourceCount common.Integer
 }
 
 type DescribeVpcAttributeAssociatedCenList []DescribeVpcAttributeAssociatedCen
@@ -86,10 +87,10 @@ func (list *DescribeVpcAttributeCloudResourceSetTypeList) UnmarshalJSON(data []b
 	return nil
 }
 
-type DescribeVpcAttributeVSwitchIdList []string
+type DescribeVpcAttributeVSwitchIdList []common.String
 
 func (list *DescribeVpcAttributeVSwitchIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -101,10 +102,10 @@ func (list *DescribeVpcAttributeVSwitchIdList) UnmarshalJSON(data []byte) error 
 	return nil
 }
 
-type DescribeVpcAttributeUserCidrList []string
+type DescribeVpcAttributeUserCidrList []common.String
 
 func (list *DescribeVpcAttributeUserCidrList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

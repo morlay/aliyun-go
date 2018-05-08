@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterOperationRequest struct {
@@ -27,21 +28,21 @@ func (req *ListClusterOperationRequest) Invoke(client *sdk.Client) (resp *ListCl
 
 type ListClusterOperationResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	TotalCount           int
-	PageNumber           int
-	PageSize             int
+	RequestId            common.String
+	TotalCount           common.Integer
+	PageNumber           common.Integer
+	PageSize             common.Integer
 	ClusterOperationList ListClusterOperationClusterOperationList
 }
 
 type ListClusterOperationClusterOperation struct {
-	OperationId   string
-	OperationName string
-	StartTime     string
-	Duration      string
-	Status        string
-	Percentage    string
-	Comment       string
+	OperationId   common.String
+	OperationName common.String
+	StartTime     common.String
+	Duration      common.String
+	Status        common.String
+	Percentage    common.String
+	Comment       common.String
 }
 
 type ListClusterOperationClusterOperationList []ListClusterOperationClusterOperation

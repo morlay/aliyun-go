@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstancesRequest struct {
@@ -28,34 +29,34 @@ func (req *DescribeDBInstancesRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeDBInstancesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageNumber       int
-	TotalRecordCount int
-	PageRecordCount  int
+	RequestId        common.String
+	PageNumber       common.Integer
+	TotalRecordCount common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeDBInstancesDBInstanceList
 }
 
 type DescribeDBInstancesDBInstance struct {
-	DBInstanceId          string
-	DBInstanceDescription string
-	PayType               string
-	DBInstanceType        string
-	DBInstanceClass       string
-	InstanceNetworkType   string
-	RegionId              string
-	ZoneId                string
-	DBClusterId           string
-	ExpireTime            string
-	DBInstanceStatus      string
-	Engine                string
-	DBType                string
-	DBVersion             string
-	DBInstanceType1       string
-	LockMode              string
-	LockReason            string
-	CreateTime            string
-	VpcId                 string
-	VSwitchId             string
+	DBInstanceId          common.String
+	DBInstanceDescription common.String
+	PayType               common.String
+	DBInstanceType        common.String
+	DBInstanceClass       common.String
+	InstanceNetworkType   common.String
+	RegionId              common.String
+	ZoneId                common.String
+	DBClusterId           common.String
+	ExpireTime            common.String
+	DBInstanceStatus      common.String
+	Engine                common.String
+	DBType                common.String
+	DBVersion             common.String
+	DBInstanceType1       common.String
+	LockMode              common.String
+	LockReason            common.String
+	CreateTime            common.String
+	VpcId                 common.String
+	VSwitchId             common.String
 }
 
 type DescribeDBInstancesDBInstanceList []DescribeDBInstancesDBInstance

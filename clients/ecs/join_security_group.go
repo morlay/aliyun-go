@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type JoinSecurityGroupRequest struct {
@@ -25,5 +26,5 @@ func (req *JoinSecurityGroupRequest) Invoke(client *sdk.Client) (resp *JoinSecur
 
 type JoinSecurityGroupResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

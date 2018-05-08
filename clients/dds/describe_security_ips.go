@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSecurityIpsRequest struct {
@@ -27,15 +28,15 @@ func (req *DescribeSecurityIpsRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeSecurityIpsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	SecurityIps      string
+	RequestId        common.String
+	SecurityIps      common.String
 	SecurityIpGroups DescribeSecurityIpsSecurityIpGroupList
 }
 
 type DescribeSecurityIpsSecurityIpGroup struct {
-	SecurityIpGroupName      string
-	SecurityIpGroupAttribute string
-	SecurityIpList           string
+	SecurityIpGroupName      common.String
+	SecurityIpGroupAttribute common.String
+	SecurityIpList           common.String
 }
 
 type DescribeSecurityIpsSecurityIpGroupList []DescribeSecurityIpsSecurityIpGroup

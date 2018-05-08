@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryMediaListByURLRequest struct {
@@ -29,26 +30,26 @@ func (req *QueryMediaListByURLRequest) Invoke(client *sdk.Client) (resp *QueryMe
 
 type QueryMediaListByURLResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	MediaList        QueryMediaListByURLMediaList
 	NonExistFileURLs QueryMediaListByURLNonExistFileURLList
 }
 
 type QueryMediaListByURLMedia struct {
-	MediaId      string
-	Title        string
-	Description  string
-	CoverURL     string
-	CateId       int64
-	Duration     string
-	Format       string
-	Size         string
-	Bitrate      string
-	Width        string
-	Height       string
-	Fps          string
-	PublishState string
-	CreationTime string
+	MediaId      common.String
+	Title        common.String
+	Description  common.String
+	CoverURL     common.String
+	CateId       common.Long
+	Duration     common.String
+	Format       common.String
+	Size         common.String
+	Bitrate      common.String
+	Width        common.String
+	Height       common.String
+	Fps          common.String
+	PublishState common.String
+	CreationTime common.String
 	PlayList     QueryMediaListByURLPlayList
 	SnapshotList QueryMediaListByURLSnapshotList
 	Tags         QueryMediaListByURLTagList
@@ -58,42 +59,42 @@ type QueryMediaListByURLMedia struct {
 }
 
 type QueryMediaListByURLPlay struct {
-	ActivityName      string
-	MediaWorkflowId   string
-	MediaWorkflowName string
-	Duration          string
-	Format            string
-	Size              string
-	Bitrate           string
-	Width             string
-	Height            string
-	Fps               string
-	Encryption        string
+	ActivityName      common.String
+	MediaWorkflowId   common.String
+	MediaWorkflowName common.String
+	Duration          common.String
+	Format            common.String
+	Size              common.String
+	Bitrate           common.String
+	Width             common.String
+	Height            common.String
+	Fps               common.String
+	Encryption        common.String
 	File1             QueryMediaListByURLFile1
 }
 
 type QueryMediaListByURLFile1 struct {
-	URL   string
-	State string
+	URL   common.String
+	State common.String
 }
 
 type QueryMediaListByURLSnapshot struct {
-	Type              string
-	MediaWorkflowId   string
-	MediaWorkflowName string
-	ActivityName      string
-	Count             string
+	Type              common.String
+	MediaWorkflowId   common.String
+	MediaWorkflowName common.String
+	ActivityName      common.String
+	Count             common.String
 	File2             QueryMediaListByURLFile2
 }
 
 type QueryMediaListByURLFile2 struct {
-	URL   string
-	State string
+	URL   common.String
+	State common.String
 }
 
 type QueryMediaListByURLFile struct {
-	URL   string
-	State string
+	URL   common.String
+	State common.String
 }
 
 type QueryMediaListByURLMediaInfo struct {
@@ -108,71 +109,71 @@ type QueryMediaListByURLStreams struct {
 }
 
 type QueryMediaListByURLVideoStream struct {
-	Index          string
-	CodecName      string
-	CodecLongName  string
-	Profile        string
-	CodecTimeBase  string
-	CodecTagString string
-	CodecTag       string
-	Width          string
-	Height         string
-	HasBFrames     string
-	Sar            string
-	Dar            string
-	PixFmt         string
-	Level          string
-	Fps            string
-	AvgFPS         string
-	Timebase       string
-	StartTime      string
-	Duration       string
-	Bitrate        string
-	NumFrames      string
-	Lang           string
-	Rotate         string
+	Index          common.String
+	CodecName      common.String
+	CodecLongName  common.String
+	Profile        common.String
+	CodecTimeBase  common.String
+	CodecTagString common.String
+	CodecTag       common.String
+	Width          common.String
+	Height         common.String
+	HasBFrames     common.String
+	Sar            common.String
+	Dar            common.String
+	PixFmt         common.String
+	Level          common.String
+	Fps            common.String
+	AvgFPS         common.String
+	Timebase       common.String
+	StartTime      common.String
+	Duration       common.String
+	Bitrate        common.String
+	NumFrames      common.String
+	Lang           common.String
+	Rotate         common.String
 	NetworkCost    QueryMediaListByURLNetworkCost
 }
 
 type QueryMediaListByURLNetworkCost struct {
-	PreloadTime   string
-	CostBandwidth string
-	AvgBitrate    string
+	PreloadTime   common.String
+	CostBandwidth common.String
+	AvgBitrate    common.String
 }
 
 type QueryMediaListByURLAudioStream struct {
-	Index          string
-	CodecName      string
-	CodecTimeBase  string
-	CodecLongName  string
-	CodecTagString string
-	CodecTag       string
-	SampleFmt      string
-	Samplerate     string
-	Channels       string
-	ChannelLayout  string
-	Timebase       string
-	StartTime      string
-	Duration       string
-	Bitrate        string
-	NumFrames      string
-	Lang           string
+	Index          common.String
+	CodecName      common.String
+	CodecTimeBase  common.String
+	CodecLongName  common.String
+	CodecTagString common.String
+	CodecTag       common.String
+	SampleFmt      common.String
+	Samplerate     common.String
+	Channels       common.String
+	ChannelLayout  common.String
+	Timebase       common.String
+	StartTime      common.String
+	Duration       common.String
+	Bitrate        common.String
+	NumFrames      common.String
+	Lang           common.String
 }
 
 type QueryMediaListByURLSubtitleStream struct {
-	Index string
-	Lang  string
+	Index common.String
+	Lang  common.String
 }
 
 type QueryMediaListByURLFormat struct {
-	NumStreams     string
-	NumPrograms    string
-	FormatName     string
-	FormatLongName string
-	StartTime      string
-	Duration       string
-	Size           string
-	Bitrate        string
+	NumStreams     common.String
+	NumPrograms    common.String
+	FormatName     common.String
+	FormatLongName common.String
+	StartTime      common.String
+	Duration       common.String
+	Size           common.String
+	Bitrate        common.String
 }
 
 type QueryMediaListByURLMediaList []QueryMediaListByURLMedia
@@ -190,10 +191,10 @@ func (list *QueryMediaListByURLMediaList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryMediaListByURLNonExistFileURLList []string
+type QueryMediaListByURLNonExistFileURLList []common.String
 
 func (list *QueryMediaListByURLNonExistFileURLList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -235,10 +236,10 @@ func (list *QueryMediaListByURLSnapshotList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryMediaListByURLTagList []string
+type QueryMediaListByURLTagList []common.String
 
 func (list *QueryMediaListByURLTagList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -250,10 +251,10 @@ func (list *QueryMediaListByURLTagList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryMediaListByURLRunIdListList []string
+type QueryMediaListByURLRunIdListList []common.String
 
 func (list *QueryMediaListByURLRunIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteApgroupConfigRequest struct {
@@ -20,10 +21,10 @@ func (req *DeleteApgroupConfigRequest) Invoke(client *sdk.Client) (resp *DeleteA
 
 type DeleteApgroupConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Message   string
-	Data      string
-	ErrorCode int
-	ErrorMsg  string
+	Message   common.String
+	Data      common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 }

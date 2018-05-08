@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstancesFullStatusRequest struct {
@@ -37,46 +38,46 @@ func (req *DescribeInstancesFullStatusRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeInstancesFullStatusResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	TotalCount            int
-	PageNumber            int
-	PageSize              int
+	RequestId             common.String
+	TotalCount            common.Integer
+	PageNumber            common.Integer
+	PageSize              common.Integer
 	InstanceFullStatusSet DescribeInstancesFullStatusInstanceFullStatusTypeList
 }
 
 type DescribeInstancesFullStatusInstanceFullStatusType struct {
-	InstanceId              string
+	InstanceId              common.String
 	ScheduledSystemEventSet DescribeInstancesFullStatusScheduledSystemEventTypeList
 	Status                  DescribeInstancesFullStatusStatus
 	HealthStatus            DescribeInstancesFullStatusHealthStatus
 }
 
 type DescribeInstancesFullStatusScheduledSystemEventType struct {
-	EventId          string
-	EventPublishTime string
-	NotBefore        string
+	EventId          common.String
+	EventPublishTime common.String
+	NotBefore        common.String
 	EventCycleStatus DescribeInstancesFullStatusEventCycleStatus
 	EventType        DescribeInstancesFullStatusEventType
 }
 
 type DescribeInstancesFullStatusEventCycleStatus struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeInstancesFullStatusEventType struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeInstancesFullStatusStatus struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeInstancesFullStatusHealthStatus struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeInstancesFullStatusEventIdList []string

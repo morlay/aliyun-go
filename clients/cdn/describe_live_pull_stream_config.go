@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLivePullStreamConfigRequest struct {
@@ -24,16 +25,16 @@ func (req *DescribeLivePullStreamConfigRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeLivePullStreamConfigResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	LiveAppRecordList DescribeLivePullStreamConfigLiveAppRecordList
 }
 
 type DescribeLivePullStreamConfigLiveAppRecord struct {
-	DomainName string
-	StreamName string
-	SourceUrl  string
-	StartTime  string
-	EndTime    string
+	DomainName common.String
+	StreamName common.String
+	SourceUrl  common.String
+	StartTime  common.String
+	EndTime    common.String
 }
 
 type DescribeLivePullStreamConfigLiveAppRecordList []DescribeLivePullStreamConfigLiveAppRecord

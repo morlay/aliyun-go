@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterServiceQuickLinkForAdminRequest struct {
@@ -24,15 +25,15 @@ func (req *ListClusterServiceQuickLinkForAdminRequest) Invoke(client *sdk.Client
 
 type ListClusterServiceQuickLinkForAdminResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	QuickLinkList ListClusterServiceQuickLinkForAdminQuickLinkList
 }
 
 type ListClusterServiceQuickLinkForAdminQuickLink struct {
-	ServiceName        string
-	ServiceDisplayName string
-	QuickLinkAddress   string
-	Protocol           string
+	ServiceName        common.String
+	ServiceDisplayName common.String
+	QuickLinkAddress   common.String
+	Protocol           common.String
 }
 
 type ListClusterServiceQuickLinkForAdminQuickLinkList []ListClusterServiceQuickLinkForAdminQuickLink

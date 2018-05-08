@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RefreshCdnDomainConfigsCacheRequest struct {
@@ -26,15 +27,15 @@ func (req *RefreshCdnDomainConfigsCacheRequest) Invoke(client *sdk.Client) (resp
 
 type RefreshCdnDomainConfigsCacheResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	SucessDomains RefreshCdnDomainConfigsCacheSucessDomainList
 	FailedDomains RefreshCdnDomainConfigsCacheFailedDomainList
 }
 
-type RefreshCdnDomainConfigsCacheSucessDomainList []string
+type RefreshCdnDomainConfigsCacheSucessDomainList []common.String
 
 func (list *RefreshCdnDomainConfigsCacheSucessDomainList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -46,10 +47,10 @@ func (list *RefreshCdnDomainConfigsCacheSucessDomainList) UnmarshalJSON(data []b
 	return nil
 }
 
-type RefreshCdnDomainConfigsCacheFailedDomainList []string
+type RefreshCdnDomainConfigsCacheFailedDomainList []common.String
 
 func (list *RefreshCdnDomainConfigsCacheFailedDomainList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

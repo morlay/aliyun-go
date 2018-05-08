@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVpnConnectionRequest struct {
@@ -32,8 +33,8 @@ func (req *CreateVpnConnectionRequest) Invoke(client *sdk.Client) (resp *CreateV
 
 type CreateVpnConnectionResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	VpnConnectionId string
-	Name            string
-	CreateTime      int64
+	RequestId       common.String
+	VpnConnectionId common.String
+	Name            common.String
+	CreateTime      common.Long
 }

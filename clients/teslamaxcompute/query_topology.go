@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTopologyRequest struct {
@@ -21,32 +22,32 @@ func (req *QueryTopologyRequest) Invoke(client *sdk.Client) (resp *QueryTopology
 
 type QueryTopologyResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Result    QueryTopologyResultItemList
 }
 
 type QueryTopologyResultItem struct {
-	LastUpdate string
+	LastUpdate common.String
 	Regions    QueryTopologyRegionItemList
 }
 
 type QueryTopologyRegionItem struct {
-	Region       string
-	RegionEnName string
-	RegionCnName string
+	Region       common.String
+	RegionEnName common.String
+	RegionCnName common.String
 	Clusters     QueryTopologyClusterItemList
 }
 
 type QueryTopologyClusterItem struct {
-	Cluster      string
-	ProductLine  string
-	ProductClass string
-	NetCode      string
-	Business     string
-	MachineRoom  string
-	NetArch      string
+	Cluster      common.String
+	ProductLine  common.String
+	ProductClass common.String
+	NetCode      common.String
+	Business     common.String
+	MachineRoom  common.String
+	NetArch      common.String
 }
 
 type QueryTopologyResultItemList []QueryTopologyResultItem

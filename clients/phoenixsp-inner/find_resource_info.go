@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindResourceInfoRequest struct {
@@ -26,35 +27,35 @@ func (req *FindResourceInfoRequest) Invoke(client *sdk.Client) (resp *FindResour
 
 type FindResourceInfoResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Count     int
+	RequestId common.String
+	Code      common.String
+	Count     common.Integer
 	Datas     FindResourceInfoDataList
 }
 
 type FindResourceInfoData struct {
-	Aliuid              int64
-	BuyerId             int64
-	InstanceId          string
-	Region              string
-	ResourceType        string
-	ChargeType          string
-	EndTime             int64
-	ReleaseTime         int64
-	ExtraEndTime        int64
-	ResCreateTime       int64
-	BillingTag          string
-	CommodityCode       string
-	ResourceStatus      string
-	ResourceSubStatus   string
-	ExpectedReleaseTime int64
-	Bid                 string
+	Aliuid              common.Long
+	BuyerId             common.Long
+	InstanceId          common.String
+	Region              common.String
+	ResourceType        common.String
+	ChargeType          common.String
+	EndTime             common.Long
+	ReleaseTime         common.Long
+	ExtraEndTime        common.Long
+	ResCreateTime       common.Long
+	BillingTag          common.String
+	CommodityCode       common.String
+	ResourceStatus      common.String
+	ResourceSubStatus   common.String
+	ExpectedReleaseTime common.Long
+	Bid                 common.String
 	AutoRenewal         bool
-	RenewalStatus       string
-	RenewalDuration     int
-	RenewalCycUnit      int
-	SaleCycle           string
-	MarketType          string
+	RenewalStatus       common.String
+	RenewalDuration     common.Integer
+	RenewalCycUnit      common.Integer
+	SaleCycle           common.String
+	MarketType          common.String
 }
 
 type FindResourceInfoDataList []FindResourceInfoData

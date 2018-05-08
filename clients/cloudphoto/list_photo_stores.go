@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPhotoStoresRequest struct {
@@ -21,30 +22,30 @@ func (req *ListPhotoStoresRequest) Invoke(client *sdk.Client) (resp *ListPhotoSt
 
 type ListPhotoStoresResponse struct {
 	responses.BaseResponse
-	Code        string
-	Message     string
-	RequestId   string
-	Action      string
+	Code        common.String
+	Message     common.String
+	RequestId   common.String
+	Action      common.String
 	PhotoStores ListPhotoStoresPhotoStoreList
 }
 
 type ListPhotoStoresPhotoStore struct {
-	Id               int64
-	IdStr            string
-	Name             string
-	Remark           string
+	Id               common.Long
+	IdStr            common.String
+	Name             common.String
+	Remark           common.String
 	AutoCleanEnabled bool
-	AutoCleanDays    int
-	DefaultQuota     int64
-	Ctime            int64
-	Mtime            int64
+	AutoCleanDays    common.Integer
+	DefaultQuota     common.Long
+	Ctime            common.Long
+	Mtime            common.Long
 	Buckets          ListPhotoStoresBucketList
 }
 
 type ListPhotoStoresBucket struct {
-	Name   string
-	Region string
-	State  string
+	Name   common.String
+	Region common.String
+	State  common.String
 }
 
 type ListPhotoStoresPhotoStoreList []ListPhotoStoresPhotoStore

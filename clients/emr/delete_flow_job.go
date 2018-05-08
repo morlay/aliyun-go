@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteFlowJobRequest struct {
@@ -22,6 +23,6 @@ func (req *DeleteFlowJobRequest) Invoke(client *sdk.Client) (resp *DeleteFlowJob
 
 type DeleteFlowJobResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      bool
 }

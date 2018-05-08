@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceSSLRequest struct {
@@ -24,9 +25,9 @@ func (req *DescribeDBInstanceSSLRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeDBInstanceSSLResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	ConnectionString    string
-	SSLExpireTime       string
-	RequireUpdate       string
-	RequireUpdateReason string
+	RequestId           common.String
+	ConnectionString    common.String
+	SSLExpireTime       common.String
+	RequireUpdate       common.String
+	RequireUpdateReason common.String
 }

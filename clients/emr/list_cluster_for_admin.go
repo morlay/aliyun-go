@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterForAdminRequest struct {
@@ -34,52 +35,52 @@ func (req *ListClusterForAdminRequest) Invoke(client *sdk.Client) (resp *ListClu
 
 type ListClusterForAdminResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
-	PageNumber  int
-	PageSize    int
+	RequestId   common.String
+	TotalCount  common.Integer
+	PageNumber  common.Integer
+	PageSize    common.Integer
 	ClusterList ListClusterForAdminClusterList
 }
 
 type ListClusterForAdminCluster struct {
-	Id                     string
-	Name                   string
-	BizId                  string
-	LusterType             string
-	CreateTime             int64
-	RunningTime            int64
-	Status                 string
-	PayType                string
-	RegionId               string
+	Id                     common.String
+	Name                   common.String
+	BizId                  common.String
+	LusterType             common.String
+	CreateTime             common.Long
+	RunningTime            common.Long
+	Status                 common.String
+	PayType                common.String
+	RegionId               common.String
 	EasEnable              bool
-	DepositType            string
+	DepositType            common.String
 	UseLocalMetadb         bool
 	HighAvailabilityEnable bool
-	NodeCount              int
-	ExpiredTime            int64
-	NetType                string
+	NodeCount              common.Integer
+	ExpiredTime            common.Long
+	NetType                common.String
 	HasUncompletedOrder    bool
-	OrderList              string
-	CreateResource         string
-	UserId                 string
-	EcmClusterId           string
-	EmrVersion             string
-	VpcId                  string
-	VSwitchId              string
+	OrderList              common.String
+	CreateResource         common.String
+	UserId                 common.String
+	EcmClusterId           common.String
+	EmrVersion             common.String
+	VpcId                  common.String
+	VSwitchId              common.String
 	OrderTaskInfo          ListClusterForAdminOrderTaskInfo
 	FailReason             ListClusterForAdminFailReason
 }
 
 type ListClusterForAdminOrderTaskInfo struct {
-	TargetCount  int
-	CurrentCount int
-	OrderIdList  string
+	TargetCount  common.Integer
+	CurrentCount common.Integer
+	OrderIdList  common.String
 }
 
 type ListClusterForAdminFailReason struct {
-	ErrorCode string
-	ErrorMsg  string
-	RequestId string
+	ErrorCode common.String
+	ErrorMsg  common.String
+	RequestId common.String
 }
 
 type ListClusterForAdminStatusListList []string

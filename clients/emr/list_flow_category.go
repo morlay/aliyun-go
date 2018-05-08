@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFlowCategoryRequest struct {
@@ -27,24 +28,24 @@ func (req *ListFlowCategoryRequest) Invoke(client *sdk.Client) (resp *ListFlowCa
 
 type ListFlowCategoryResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int
-	PageSize   int
-	Total      int
+	RequestId  common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	Total      common.Integer
 	Categories ListFlowCategoryCategoryList
 }
 
 type ListFlowCategoryCategory struct {
-	Id           string
-	GmtCreate    int64
-	GmtModified  int64
-	Name         string
-	ParentId     string
-	Type         string
-	CategoryType string
-	ObjectType   string
-	ObjectId     string
-	ProjectId    string
+	Id           common.String
+	GmtCreate    common.Long
+	GmtModified  common.Long
+	Name         common.String
+	ParentId     common.String
+	Type         common.String
+	CategoryType common.String
+	ObjectType   common.String
+	ObjectId     common.String
+	ProjectId    common.String
 }
 
 type ListFlowCategoryCategoryList []ListFlowCategoryCategory

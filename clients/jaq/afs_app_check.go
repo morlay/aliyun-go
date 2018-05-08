@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AfsAppCheckRequest struct {
@@ -21,11 +22,11 @@ func (req *AfsAppCheckRequest) Invoke(client *sdk.Client) (resp *AfsAppCheckResp
 
 type AfsAppCheckResponse struct {
 	responses.BaseResponse
-	ErrorCode int
-	ErrorMsg  string
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Data      AfsAppCheckData
 }
 
 type AfsAppCheckData struct {
-	SecondCheckResult int
+	SecondCheckResult common.Integer
 }

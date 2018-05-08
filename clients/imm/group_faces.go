@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GroupFacesRequest struct {
@@ -24,16 +25,16 @@ func (req *GroupFacesRequest) Invoke(client *sdk.Client) (resp *GroupFacesRespon
 
 type GroupFacesResponse struct {
 	responses.BaseResponse
-	RequestId string
-	SetId     string
-	HasMore   int
+	RequestId common.String
+	SetId     common.String
+	HasMore   common.Integer
 	Groups    GroupFacesGroupsItemList
 }
 
 type GroupFacesGroupsItem struct {
-	FaceId        string
-	GroupId       string
-	UnGroupReason string
+	FaceId        common.String
+	GroupId       common.String
+	UnGroupReason common.String
 }
 
 type GroupFacesGroupsItemList []GroupFacesGroupsItem

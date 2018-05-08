@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryCensorJobListRequest struct {
@@ -26,19 +27,19 @@ func (req *QueryCensorJobListRequest) Invoke(client *sdk.Client) (resp *QueryCen
 
 type QueryCensorJobListResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	CensorJobList QueryCensorJobListCensorJobList
 	NonExistIds   QueryCensorJobListNonExistIdList
 }
 
 type QueryCensorJobListCensorJob struct {
-	Id                    string
-	UserData              string
-	PipelineId            string
-	State                 string
-	Code                  string
-	Message               string
-	CreationTime          string
+	Id                    common.String
+	UserData              common.String
+	PipelineId            common.String
+	State                 common.String
+	Code                  common.String
+	Message               common.String
+	CreationTime          common.String
 	Input                 QueryCensorJobListInput
 	CensorConfig          QueryCensorJobListCensorConfig
 	CensorPornResult      QueryCensorJobListCensorPornResult
@@ -46,65 +47,65 @@ type QueryCensorJobListCensorJob struct {
 }
 
 type QueryCensorJobListInput struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryCensorJobListCensorConfig struct {
-	Interval   string
-	BizType    string
+	Interval   common.String
+	BizType    common.String
 	OutputFile QueryCensorJobListOutputFile
 }
 
 type QueryCensorJobListOutputFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type QueryCensorJobListCensorPornResult struct {
-	Label           string
-	Suggestion      string
-	MaxScore        string
-	AverageScore    string
+	Label           common.String
+	Suggestion      common.String
+	MaxScore        common.String
+	AverageScore    common.String
 	PornCounterList QueryCensorJobListCounterList
 	PornTopList     QueryCensorJobListTopList
 }
 
 type QueryCensorJobListCounter struct {
-	Count int
-	Label string
+	Count common.Integer
+	Label common.String
 }
 
 type QueryCensorJobListTop struct {
-	Label     string
-	Score     string
-	Timestamp string
-	Index     string
-	Object    string
+	Label     common.String
+	Score     common.String
+	Timestamp common.String
+	Index     common.String
+	Object    common.String
 }
 
 type QueryCensorJobListCensorTerrorismResult struct {
-	Label                string
-	Suggestion           string
-	MaxScore             string
-	AverageScore         string
+	Label                common.String
+	Suggestion           common.String
+	MaxScore             common.String
+	AverageScore         common.String
 	TerrorismCounterList QueryCensorJobListCounter1List
 	TerrorismTopList     QueryCensorJobListTop2List
 }
 
 type QueryCensorJobListCounter1 struct {
-	Count int
-	Label string
+	Count common.Integer
+	Label common.String
 }
 
 type QueryCensorJobListTop2 struct {
-	Label     string
-	Score     string
-	Timestamp string
-	Index     string
-	Object    string
+	Label     common.String
+	Score     common.String
+	Timestamp common.String
+	Index     common.String
+	Object    common.String
 }
 
 type QueryCensorJobListCensorJobList []QueryCensorJobListCensorJob
@@ -122,10 +123,10 @@ func (list *QueryCensorJobListCensorJobList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryCensorJobListNonExistIdList []string
+type QueryCensorJobListNonExistIdList []common.String
 
 func (list *QueryCensorJobListNonExistIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

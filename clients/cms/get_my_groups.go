@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetMyGroupsRequest struct {
@@ -27,24 +28,24 @@ func (req *GetMyGroupsRequest) Invoke(client *sdk.Client) (resp *GetMyGroupsResp
 
 type GetMyGroupsResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Group        GetMyGroupsGroup
 }
 
 type GetMyGroupsGroup struct {
-	GroupId       int64
-	GroupName     string
-	ServiceId     int64
-	BindUrl       string
-	Type          string
+	GroupId       common.Long
+	GroupName     common.String
+	ServiceId     common.Long
+	BindUrl       common.String
+	Type          common.String
 	ContactGroups GetMyGroupsContactGroupList
 }
 
 type GetMyGroupsContactGroup struct {
-	Name string
+	Name common.String
 }
 
 type GetMyGroupsContactGroupList []GetMyGroupsContactGroup

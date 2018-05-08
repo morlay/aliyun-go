@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAbnormalDBInstancesRequest struct {
@@ -41,26 +42,26 @@ func (req *DescribeAbnormalDBInstancesRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeAbnormalDBInstancesResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeAbnormalDBInstancesInstanceResultList
 }
 
 type DescribeAbnormalDBInstancesInstanceResult struct {
-	DBInstanceDescription string
-	DBInstanceId          string
+	DBInstanceDescription common.String
+	DBInstanceId          common.String
 	AbnormalItems         DescribeAbnormalDBInstancesAbnormalItemList
 }
 
 type DescribeAbnormalDBInstancesAbnormalItem struct {
-	CheckTime      string
-	CheckItem      string
-	AbnormalReason string
-	AbnormalValue  string
-	AbnormalDetail string
-	AdviceKey      string
+	CheckTime      common.String
+	CheckItem      common.String
+	AbnormalReason common.String
+	AbnormalValue  common.String
+	AbnormalDetail common.String
+	AdviceKey      common.String
 	AdviseValue    DescribeAbnormalDBInstancesAdviseValueList
 }
 
@@ -94,10 +95,10 @@ func (list *DescribeAbnormalDBInstancesAbnormalItemList) UnmarshalJSON(data []by
 	return nil
 }
 
-type DescribeAbnormalDBInstancesAdviseValueList []string
+type DescribeAbnormalDBInstancesAdviseValueList []common.String
 
 func (list *DescribeAbnormalDBInstancesAdviseValueList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

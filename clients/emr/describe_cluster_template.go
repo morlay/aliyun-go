@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterTemplateRequest struct {
@@ -23,23 +24,23 @@ func (req *DescribeClusterTemplateRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeClusterTemplateResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	TemplateInfo DescribeClusterTemplateTemplateInfo
 }
 
 type DescribeClusterTemplateTemplateInfo struct {
-	Id                     string
-	TemplateName           string
+	Id                     common.String
+	TemplateName           common.String
 	LogEnable              bool
-	LogPath                string
-	UserId                 string
-	UserDefinedEmrEcsRole  string
-	MasterNodeTotal        int
-	VpcId                  string
-	VSwitchId              string
-	NetType                string
+	LogPath                common.String
+	UserId                 common.String
+	UserDefinedEmrEcsRole  common.String
+	MasterNodeTotal        common.Integer
+	VpcId                  common.String
+	VSwitchId              common.String
+	NetType                common.String
 	IoOptimized            bool
-	InstanceGeneration     string
+	InstanceGeneration     common.String
 	HighAvailabilityEnable bool
 	EasEnable              bool
 	BootstrapActionList    DescribeClusterTemplateBootstrapActionList
@@ -47,22 +48,22 @@ type DescribeClusterTemplateTemplateInfo struct {
 }
 
 type DescribeClusterTemplateBootstrapAction struct {
-	Name string
-	Path string
-	Arg  string
+	Name common.String
+	Path common.String
+	Arg  common.String
 }
 
 type DescribeClusterTemplateHostGroup struct {
-	HostGroupId   string
-	HostGroupName string
-	HostGroupType string
-	ChargeType    string
-	Period        string
-	NodeCount     int
-	InstanceType  string
-	DiskType      string
-	DiskCapacity  int
-	DiskCount     int
+	HostGroupId   common.String
+	HostGroupName common.String
+	HostGroupType common.String
+	ChargeType    common.String
+	Period        common.String
+	NodeCount     common.Integer
+	InstanceType  common.String
+	DiskType      common.String
+	DiskCapacity  common.Integer
+	DiskCount     common.Integer
 }
 
 type DescribeClusterTemplateBootstrapActionList []DescribeClusterTemplateBootstrapAction

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPriceForModifyConfigRequest struct {
@@ -30,26 +31,26 @@ type QueryPriceForModifyConfigModifyConfigSpec struct {
 
 type QueryPriceForModifyConfigResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	EcsId      string
+	RequestId  common.String
+	EcsId      common.String
 	EmrPriceDO QueryPriceForModifyConfigEmrPriceDO
 	EcsPriceDO QueryPriceForModifyConfigEcsPriceDO
 }
 
 type QueryPriceForModifyConfigEmrPriceDO struct {
-	OriginalPrice string
-	DiscountPrice string
-	TradePrice    string
-	TaxPrice      string
-	Currency      string
+	OriginalPrice common.String
+	DiscountPrice common.String
+	TradePrice    common.String
+	TaxPrice      common.String
+	Currency      common.String
 }
 
 type QueryPriceForModifyConfigEcsPriceDO struct {
-	OriginalPrice string
-	DiscountPrice string
-	TradePrice    string
-	TaxPrice      string
-	Currency      string
+	OriginalPrice common.String
+	DiscountPrice common.String
+	TradePrice    common.String
+	TaxPrice      common.String
+	Currency      common.String
 }
 
 type QueryPriceForModifyConfigModifyConfigSpecList []QueryPriceForModifyConfigModifyConfigSpec

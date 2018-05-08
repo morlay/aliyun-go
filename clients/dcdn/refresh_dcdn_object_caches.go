@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RefreshDcdnObjectCachesRequest struct {
@@ -23,6 +24,6 @@ func (req *RefreshDcdnObjectCachesRequest) Invoke(client *sdk.Client) (resp *Ref
 
 type RefreshDcdnObjectCachesResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	RefreshTaskId string
+	RequestId     common.String
+	RefreshTaskId common.String
 }

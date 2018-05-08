@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainBpsDataRequest struct {
@@ -30,21 +31,21 @@ func (req *DescribeDcdnDomainBpsDataRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDcdnDomainBpsDataResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	DomainName         string
-	StartTime          string
-	EndTime            string
-	DataInterval       string
+	RequestId          common.String
+	DomainName         common.String
+	StartTime          common.String
+	EndTime            common.String
+	DataInterval       common.String
 	BpsDataPerInterval DescribeDcdnDomainBpsDataDataModuleList
 }
 
 type DescribeDcdnDomainBpsDataDataModule struct {
-	TimeStamp       string
-	Bps             float32
-	DynamicHttpBps  float32
-	DynamicHttpsBps float32
-	StaticHttpBps   float32
-	StaticHttpsBps  float32
+	TimeStamp       common.String
+	Bps             common.Float
+	DynamicHttpBps  common.Float
+	DynamicHttpsBps common.Float
+	StaticHttpBps   common.Float
+	StaticHttpsBps  common.Float
 }
 
 type DescribeDcdnDomainBpsDataDataModuleList []DescribeDcdnDomainBpsDataDataModule

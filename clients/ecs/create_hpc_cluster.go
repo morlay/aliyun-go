@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateHpcClusterRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateHpcClusterRequest) Invoke(client *sdk.Client) (resp *CreateHpcC
 
 type CreateHpcClusterResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	HpcClusterId string
+	RequestId    common.String
+	HpcClusterId common.String
 }

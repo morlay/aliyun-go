@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCustomLogConfigRequest struct {
@@ -23,8 +24,8 @@ func (req *DescribeCustomLogConfigRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeCustomLogConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Remark    string
-	Sample    string
-	Tag       string
+	RequestId common.String
+	Remark    common.String
+	Sample    common.String
+	Tag       common.String
 }

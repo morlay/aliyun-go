@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamSnapshotInfoRequest struct {
@@ -29,16 +30,16 @@ func (req *DescribeLiveStreamSnapshotInfoRequest) Invoke(client *sdk.Client) (re
 
 type DescribeLiveStreamSnapshotInfoResponse struct {
 	responses.BaseResponse
-	RequestId                  string
-	NextStartTime              string
+	RequestId                  common.String
+	NextStartTime              common.String
 	LiveStreamSnapshotInfoList DescribeLiveStreamSnapshotInfoLiveStreamSnapshotInfoList
 }
 
 type DescribeLiveStreamSnapshotInfoLiveStreamSnapshotInfo struct {
-	OssEndpoint string
-	OssBucket   string
-	OssObject   string
-	CreateTime  string
+	OssEndpoint common.String
+	OssBucket   common.String
+	OssObject   common.String
+	CreateTime  common.String
 }
 
 type DescribeLiveStreamSnapshotInfoLiveStreamSnapshotInfoList []DescribeLiveStreamSnapshotInfoLiveStreamSnapshotInfo

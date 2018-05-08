@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOneMinuteDataRequest struct {
@@ -24,7 +25,7 @@ func (req *DescribeOneMinuteDataRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeOneMinuteDataResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Bps       string
-	Qps       string
+	RequestId common.String
+	Bps       common.String
+	Qps       common.String
 }

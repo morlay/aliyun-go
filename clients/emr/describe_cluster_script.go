@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterScriptRequest struct {
@@ -23,16 +24,16 @@ func (req *DescribeClusterScriptRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeClusterScriptResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	ScriptNodeInstances DescribeClusterScriptScriptNodeInstanceList
 }
 
 type DescribeClusterScriptScriptNodeInstance struct {
-	NodeId    string
-	NodeIp    string
-	StartTime int64
-	EndTime   int64
-	Status    string
+	NodeId    common.String
+	NodeIp    common.String
+	StartTime common.Long
+	EndTime   common.Long
+	Status    common.String
 }
 
 type DescribeClusterScriptScriptNodeInstanceList []DescribeClusterScriptScriptNodeInstance

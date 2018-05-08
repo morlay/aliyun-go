@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ExitStandbyRequest struct {
@@ -25,7 +26,7 @@ func (req *ExitStandbyRequest) Invoke(client *sdk.Client) (resp *ExitStandbyResp
 
 type ExitStandbyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type ExitStandbyInstanceIdList []string

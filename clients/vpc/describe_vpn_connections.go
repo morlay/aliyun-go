@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeVpnConnectionsRequest struct {
@@ -30,44 +31,44 @@ func (req *DescribeVpnConnectionsRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeVpnConnectionsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalCount     int
-	PageNumber     int
-	PageSize       int
+	RequestId      common.String
+	TotalCount     common.Integer
+	PageNumber     common.Integer
+	PageSize       common.Integer
 	VpnConnections DescribeVpnConnectionsVpnConnectionList
 }
 
 type DescribeVpnConnectionsVpnConnection struct {
-	VpnConnectionId   string
-	CustomerGatewayId string
-	VpnGatewayId      string
-	Name              string
-	LocalSubnet       string
-	RemoteSubnet      string
-	CreateTime        int64
+	VpnConnectionId   common.String
+	CustomerGatewayId common.String
+	VpnGatewayId      common.String
+	Name              common.String
+	LocalSubnet       common.String
+	RemoteSubnet      common.String
+	CreateTime        common.Long
 	EffectImmediately bool
-	Status            string
+	Status            common.String
 	IkeConfig         DescribeVpnConnectionsIkeConfig
 	IpsecConfig       DescribeVpnConnectionsIpsecConfig
 }
 
 type DescribeVpnConnectionsIkeConfig struct {
-	Psk         string
-	IkeVersion  string
-	IkeMode     string
-	IkeEncAlg   string
-	IkeAuthAlg  string
-	IkePfs      string
-	IkeLifetime int64
-	LocalId     string
-	RemoteId    string
+	Psk         common.String
+	IkeVersion  common.String
+	IkeMode     common.String
+	IkeEncAlg   common.String
+	IkeAuthAlg  common.String
+	IkePfs      common.String
+	IkeLifetime common.Long
+	LocalId     common.String
+	RemoteId    common.String
 }
 
 type DescribeVpnConnectionsIpsecConfig struct {
-	IpsecEncAlg   string
-	IpsecAuthAlg  string
-	IpsecPfs      string
-	IpsecLifetime int64
+	IpsecEncAlg   common.String
+	IpsecAuthAlg  common.String
+	IpsecPfs      common.String
+	IpsecLifetime common.Long
 }
 
 type DescribeVpnConnectionsVpnConnectionList []DescribeVpnConnectionsVpnConnection

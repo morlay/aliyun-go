@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSQLReportsRequest struct {
@@ -30,28 +31,28 @@ func (req *DescribeSQLReportsRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeSQLReportsResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeSQLReportsItemList
 }
 
 type DescribeSQLReportsItem struct {
-	ReportTime       string
+	ReportTime       common.String
 	LatencyTopNItems DescribeSQLReportsLatencyTopNItemList
 	QPSTopNItems     DescribeSQLReportsQPSTopNItemList
 }
 
 type DescribeSQLReportsLatencyTopNItem struct {
-	SQLText         string
-	AvgLatency      int64
-	SQLExecuteTimes int64
+	SQLText         common.String
+	AvgLatency      common.Long
+	SQLExecuteTimes common.Long
 }
 
 type DescribeSQLReportsQPSTopNItem struct {
-	SQLText         string
-	SQLExecuteTimes int64
+	SQLText         common.String
+	SQLExecuteTimes common.Long
 }
 
 type DescribeSQLReportsItemList []DescribeSQLReportsItem

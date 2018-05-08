@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttQueryClientByClientIdRequest struct {
@@ -25,23 +26,23 @@ func (req *OnsMqttQueryClientByClientIdRequest) Invoke(client *sdk.Client) (resp
 
 type OnsMqttQueryClientByClientIdResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	HelpUrl          string
+	RequestId        common.String
+	HelpUrl          common.String
 	MqttClientInfoDo OnsMqttQueryClientByClientIdMqttClientInfoDo
 }
 
 type OnsMqttQueryClientByClientIdMqttClientInfoDo struct {
 	Online          bool
-	ClientId        string
-	SocketChannel   string
-	LastTouch       int64
+	ClientId        common.String
+	SocketChannel   common.String
+	LastTouch       common.Long
 	SubScriptonData OnsMqttQueryClientByClientIdSubscriptionDoList
 }
 
 type OnsMqttQueryClientByClientIdSubscriptionDo struct {
-	ParentTopic string
-	SubTopic    string
-	Qos         int
+	ParentTopic common.String
+	SubTopic    common.String
+	Qos         common.Integer
 }
 
 type OnsMqttQueryClientByClientIdSubscriptionDoList []OnsMqttQueryClientByClientIdSubscriptionDo

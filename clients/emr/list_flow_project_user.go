@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFlowProjectUserRequest struct {
@@ -25,19 +26,19 @@ func (req *ListFlowProjectUserRequest) Invoke(client *sdk.Client) (resp *ListFlo
 
 type ListFlowProjectUserResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int
-	PageSize   int
-	Total      int
+	RequestId  common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	Total      common.Integer
 	Users      ListFlowProjectUserUserList
 }
 
 type ListFlowProjectUserUser struct {
-	GmtCreate   int64
-	GmtModified int64
-	ProjectId   string
-	OwnerId     string
-	UserName    string
+	GmtCreate   common.Long
+	GmtModified common.Long
+	ProjectId   common.String
+	OwnerId     common.String
+	UserName    common.String
 }
 
 type ListFlowProjectUserUserList []ListFlowProjectUserUser

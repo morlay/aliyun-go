@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserDataRequest struct {
@@ -29,10 +30,10 @@ func (req *GetUserDataRequest) Invoke(client *sdk.Client) (resp *GetUserDataResp
 
 type GetUserDataResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	ProductName string
-	DataType    string
-	NextToken   string
+	RequestId   common.String
+	ProductName common.String
+	DataType    common.String
+	NextToken   common.String
 	DataList    GetUserDataDataList
 }
 
@@ -41,8 +42,8 @@ type GetUserDataData struct {
 }
 
 type GetUserDataDataItem struct {
-	Name  string
-	Value string
+	Name  common.String
+	Value common.String
 }
 
 type GetUserDataDataList []GetUserDataData

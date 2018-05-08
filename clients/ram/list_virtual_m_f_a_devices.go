@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListVirtualMFADevicesRequest struct {
@@ -21,20 +22,20 @@ func (req *ListVirtualMFADevicesRequest) Invoke(client *sdk.Client) (resp *ListV
 
 type ListVirtualMFADevicesResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	VirtualMFADevices ListVirtualMFADevicesVirtualMFADeviceList
 }
 
 type ListVirtualMFADevicesVirtualMFADevice struct {
-	SerialNumber string
-	ActivateDate string
+	SerialNumber common.String
+	ActivateDate common.String
 	User         ListVirtualMFADevicesUser
 }
 
 type ListVirtualMFADevicesUser struct {
-	UserId      string
-	UserName    string
-	DisplayName string
+	UserId      common.String
+	UserName    common.String
+	DisplayName common.String
 }
 
 type ListVirtualMFADevicesVirtualMFADeviceList []ListVirtualMFADevicesVirtualMFADevice

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRdsListRequest struct {
@@ -23,30 +24,30 @@ func (req *DescribeRdsListRequest) Invoke(client *sdk.Client) (resp *DescribeRds
 
 type DescribeRdsListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 	Data      DescribeRdsListRdsInstanceList
 }
 
 type DescribeRdsListRdsInstance struct {
-	InstanceId       int
-	InstanceName     string
-	ConnectUrl       string
-	Port             int
-	InstanceStatus   string
-	DbType           string
-	ReadWeight       int
+	InstanceId       common.Integer
+	InstanceName     common.String
+	ConnectUrl       common.String
+	Port             common.Integer
+	InstanceStatus   common.String
+	DbType           common.String
+	ReadWeight       common.Integer
 	ReadOnlyChildren DescribeRdsListChildList
 }
 
 type DescribeRdsListChild struct {
-	InstanceId     string
-	InstanceName   string
-	ConnectUrl     string
-	Port           int
-	InstanceStatus string
-	DbType         string
-	ReadWeight     int
+	InstanceId     common.String
+	InstanceName   common.String
+	ConnectUrl     common.String
+	Port           common.Integer
+	InstanceStatus common.String
+	DbType         common.String
+	ReadWeight     common.Integer
 }
 
 type DescribeRdsListRdsInstanceList []DescribeRdsListRdsInstance

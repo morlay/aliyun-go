@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetJobRunningTimeStatisticInfoRequest struct {
@@ -27,23 +28,23 @@ func (req *GetJobRunningTimeStatisticInfoRequest) Invoke(client *sdk.Client) (re
 
 type GetJobRunningTimeStatisticInfoResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	Total           int
-	PageNumber      int
-	PageSize        int
+	RequestId       common.String
+	Total           common.Integer
+	PageNumber      common.Integer
+	PageSize        common.Integer
 	RunningTimeList GetJobRunningTimeStatisticInfoClusterStatJobRunningTimeList
 }
 
 type GetJobRunningTimeStatisticInfoClusterStatJobRunningTime struct {
-	ApplicationId string
-	JobId         string
-	StartTime     int64
-	FinishTime    int64
-	Name          string
-	Queue         string
-	User          string
-	State         string
-	RunningTime   int64
+	ApplicationId common.String
+	JobId         common.String
+	StartTime     common.Long
+	FinishTime    common.Long
+	Name          common.String
+	Queue         common.String
+	User          common.String
+	State         common.String
+	RunningTime   common.Long
 }
 
 type GetJobRunningTimeStatisticInfoClusterStatJobRunningTimeList []GetJobRunningTimeStatisticInfoClusterStatJobRunningTime

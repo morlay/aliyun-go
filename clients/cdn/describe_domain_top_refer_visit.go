@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainTopReferVisitRequest struct {
@@ -26,18 +27,18 @@ func (req *DescribeDomainTopReferVisitRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeDomainTopReferVisitResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DomainName   string
-	StartTime    string
+	RequestId    common.String
+	DomainName   common.String
+	StartTime    common.String
 	TopReferList DescribeDomainTopReferVisitReferListList
 }
 
 type DescribeDomainTopReferVisitReferList struct {
-	ReferDetail     string
-	VisitData       string
-	VisitProportion float32
-	Flow            string
-	FlowProportion  float32
+	ReferDetail     common.String
+	VisitData       common.String
+	VisitProportion common.Float
+	Flow            common.String
+	FlowProportion  common.Float
 }
 
 type DescribeDomainTopReferVisitReferListList []DescribeDomainTopReferVisitReferList

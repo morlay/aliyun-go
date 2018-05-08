@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeISPAreaCityRequest struct {
@@ -19,9 +20,9 @@ func (req *DescribeISPAreaCityRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeISPAreaCityResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	Success   string
-	RequestId string
-	Data      string
+	Code      common.String
+	Message   common.String
+	Success   common.String
+	RequestId common.String
+	Data      common.String
 }

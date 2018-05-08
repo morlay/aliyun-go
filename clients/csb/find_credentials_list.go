@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindCredentialsListRequest struct {
@@ -24,36 +25,36 @@ func (req *FindCredentialsListRequest) Invoke(client *sdk.Client) (resp *FindCre
 
 type FindCredentialsListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindCredentialsListData
 }
 
 type FindCredentialsListData struct {
-	CurrentPage    int
-	PageNumber     int
+	CurrentPage    common.Integer
+	PageNumber     common.Integer
 	CredentialList FindCredentialsListCredentialList
 }
 
 type FindCredentialsListCredential struct {
-	GmtCreate         int64
-	Id                int64
-	Name              string
-	OwnerAttr         string
-	UserId            string
+	GmtCreate         common.Long
+	Id                common.Long
+	Name              common.String
+	OwnerAttr         common.String
+	UserId            common.String
 	CurrentCredential FindCredentialsListCurrentCredential
 	NewCredential     FindCredentialsListNewCredential
 }
 
 type FindCredentialsListCurrentCredential struct {
-	AccessKey string
-	SecretKey string
+	AccessKey common.String
+	SecretKey common.String
 }
 
 type FindCredentialsListNewCredential struct {
-	AccessKey string
-	SecretKey string
+	AccessKey common.String
+	SecretKey common.String
 }
 
 type FindCredentialsListCredentialList []FindCredentialsListCredential

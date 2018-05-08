@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCouponDetailRequest struct {
@@ -22,29 +23,29 @@ func (req *DescribeCouponDetailRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeCouponDetailResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	CouponTemplateId int64
-	TotalAmount      string
-	BalanceAmount    string
-	FrozenAmount     string
-	ExpiredAmount    string
-	DeliveryTime     string
-	ExpiredTime      string
-	CouponNumber     string
-	Status           string
-	Description      string
-	CreationTime     string
-	ModificationTime string
-	PriceLimit       string
-	Application      string
+	RequestId        common.String
+	CouponTemplateId common.Long
+	TotalAmount      common.String
+	BalanceAmount    common.String
+	FrozenAmount     common.String
+	ExpiredAmount    common.String
+	DeliveryTime     common.String
+	ExpiredTime      common.String
+	CouponNumber     common.String
+	Status           common.String
+	Description      common.String
+	CreationTime     common.String
+	ModificationTime common.String
+	PriceLimit       common.String
+	Application      common.String
 	ProductCodes     DescribeCouponDetailProductCodeList
 	TradeTypes       DescribeCouponDetailTradeTypeList
 }
 
-type DescribeCouponDetailProductCodeList []string
+type DescribeCouponDetailProductCodeList []common.String
 
 func (list *DescribeCouponDetailProductCodeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -56,10 +57,10 @@ func (list *DescribeCouponDetailProductCodeList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type DescribeCouponDetailTradeTypeList []string
+type DescribeCouponDetailTradeTypeList []common.String
 
 func (list *DescribeCouponDetailTradeTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyVpnConnectionAttributeRequest struct {
@@ -31,35 +32,35 @@ func (req *ModifyVpnConnectionAttributeRequest) Invoke(client *sdk.Client) (resp
 
 type ModifyVpnConnectionAttributeResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	VpnConnectionId   string
-	CustomerGatewayId string
-	VpnGatewayId      string
-	Name              string
-	Description       string
-	LocalSubnet       string
-	RemoteSubnet      string
-	CreateTime        int64
+	RequestId         common.String
+	VpnConnectionId   common.String
+	CustomerGatewayId common.String
+	VpnGatewayId      common.String
+	Name              common.String
+	Description       common.String
+	LocalSubnet       common.String
+	RemoteSubnet      common.String
+	CreateTime        common.Long
 	EffectImmediately bool
 	IkeConfig         ModifyVpnConnectionAttributeIkeConfig
 	IpsecConfig       ModifyVpnConnectionAttributeIpsecConfig
 }
 
 type ModifyVpnConnectionAttributeIkeConfig struct {
-	Psk         string
-	IkeVersion  string
-	IkeMode     string
-	IkeEncAlg   string
-	IkeAuthAlg  string
-	IkePfs      string
-	IkeLifetime int64
-	LocalId     string
-	RemoteId    string
+	Psk         common.String
+	IkeVersion  common.String
+	IkeMode     common.String
+	IkeEncAlg   common.String
+	IkeAuthAlg  common.String
+	IkePfs      common.String
+	IkeLifetime common.Long
+	LocalId     common.String
+	RemoteId    common.String
 }
 
 type ModifyVpnConnectionAttributeIpsecConfig struct {
-	IpsecEncAlg   string
-	IpsecAuthAlg  string
-	IpsecPfs      string
-	IpsecLifetime int64
+	IpsecEncAlg   common.String
+	IpsecAuthAlg  common.String
+	IpsecPfs      common.String
+	IpsecLifetime common.Long
 }

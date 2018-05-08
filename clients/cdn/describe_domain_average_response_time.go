@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainAverageResponseTimeRequest struct {
@@ -28,17 +29,17 @@ func (req *DescribeDomainAverageResponseTimeRequest) Invoke(client *sdk.Client) 
 
 type DescribeDomainAverageResponseTimeResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DomainName       string
-	DataInterval     string
-	StartTime        string
-	EndTime          string
+	RequestId        common.String
+	DomainName       common.String
+	DataInterval     common.String
+	StartTime        common.String
+	EndTime          common.String
 	AvgRTPerInterval DescribeDomainAverageResponseTimeDataModuleList
 }
 
 type DescribeDomainAverageResponseTimeDataModule struct {
-	TimeStamp string
-	Value     string
+	TimeStamp common.String
+	Value     common.String
 }
 
 type DescribeDomainAverageResponseTimeDataModuleList []DescribeDomainAverageResponseTimeDataModule

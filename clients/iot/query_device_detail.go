@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDeviceDetailRequest struct {
@@ -22,24 +23,24 @@ func (req *QueryDeviceDetailRequest) Invoke(client *sdk.Client) (resp *QueryDevi
 
 type QueryDeviceDetailResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorMessage string
+	ErrorMessage common.String
 	Data         QueryDeviceDetailData
 }
 
 type QueryDeviceDetailData struct {
-	IotId           string
-	ProductKey      string
-	ProductName     string
-	DeviceName      string
-	DeviceSecret    string
-	FirmwareVersion string
-	GmtCreate       string
-	GmtActive       string
-	GmtOnline       string
-	Status          string
-	IpAddress       string
-	NodeType        int
-	Region          string
+	IotId           common.String
+	ProductKey      common.String
+	ProductName     common.String
+	DeviceName      common.String
+	DeviceSecret    common.String
+	FirmwareVersion common.String
+	GmtCreate       common.String
+	GmtActive       common.String
+	GmtOnline       common.String
+	Status          common.String
+	IpAddress       common.String
+	NodeType        common.Integer
+	Region          common.String
 }

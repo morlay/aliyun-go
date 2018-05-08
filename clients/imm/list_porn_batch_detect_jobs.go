@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListPornBatchDetectJobsRequest struct {
@@ -24,22 +25,22 @@ func (req *ListPornBatchDetectJobsRequest) Invoke(client *sdk.Client) (resp *Lis
 
 type ListPornBatchDetectJobsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	NextMarker string
+	RequestId  common.String
+	NextMarker common.String
 	Jobs       ListPornBatchDetectJobsJobsItemList
 }
 
 type ListPornBatchDetectJobsJobsItem struct {
-	JobId           string
-	SrcUri          string
-	Status          string
-	TgtUri          string
-	NotifyTopicName int
-	NotifyEndpoint  string
-	ExternalID      string
-	CreateTime      string
-	FinishTime      string
-	Percent         int
+	JobId           common.String
+	SrcUri          common.String
+	Status          common.String
+	TgtUri          common.String
+	NotifyTopicName common.Integer
+	NotifyEndpoint  common.String
+	ExternalID      common.String
+	CreateTime      common.String
+	FinishTime      common.String
+	Percent         common.Integer
 }
 
 type ListPornBatchDetectJobsJobsItemList []ListPornBatchDetectJobsJobsItem

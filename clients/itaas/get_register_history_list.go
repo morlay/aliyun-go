@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetRegisterHistoryListRequest struct {
@@ -24,28 +25,28 @@ func (req *GetRegisterHistoryListRequest) Invoke(client *sdk.Client) (resp *GetR
 
 type GetRegisterHistoryListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ErrorCode int
-	ErrorMsg  string
+	RequestId common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 	Success   bool
 	Data      GetRegisterHistoryListRegisterHistoryInfoList
 	ErrorList GetRegisterHistoryListErrorMessageList
 }
 
 type GetRegisterHistoryListRegisterHistoryInfo struct {
-	CreateTimeL  int64
-	DrIp         string
-	DrMac        string
-	DrName       string
-	Eventinfo    string
-	Eventtype    int
-	EventtypeTxt string
-	Memo         string
-	Screencode   string
+	CreateTimeL  common.Long
+	DrIp         common.String
+	DrMac        common.String
+	DrName       common.String
+	Eventinfo    common.String
+	Eventtype    common.Integer
+	EventtypeTxt common.String
+	Memo         common.String
+	Screencode   common.String
 }
 
 type GetRegisterHistoryListErrorMessage struct {
-	ErrorMessage string
+	ErrorMessage common.String
 }
 
 type GetRegisterHistoryListRegisterHistoryInfoList []GetRegisterHistoryListRegisterHistoryInfo

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeNetworkQuotasRequest struct {
@@ -24,8 +25,8 @@ func (req *DescribeNetworkQuotasRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeNetworkQuotasResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Product   string
-	RegionId  string
-	Quota     string
+	RequestId common.String
+	Product   common.String
+	RegionId  common.String
+	Quota     common.String
 }

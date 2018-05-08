@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeGlobalAccelerationInstancesRequest struct {
@@ -34,47 +35,47 @@ func (req *DescribeGlobalAccelerationInstancesRequest) Invoke(client *sdk.Client
 
 type DescribeGlobalAccelerationInstancesResponse struct {
 	responses.BaseResponse
-	RequestId                   string
-	TotalCount                  int
-	PageNumber                  int
-	PageSize                    int
+	RequestId                   common.String
+	TotalCount                  common.Integer
+	PageNumber                  common.Integer
+	PageSize                    common.Integer
 	GlobalAccelerationInstances DescribeGlobalAccelerationInstancesGlobalAccelerationInstanceList
 }
 
 type DescribeGlobalAccelerationInstancesGlobalAccelerationInstance struct {
-	RegionId                     string
-	GlobalAccelerationInstanceId string
-	IpAddress                    string
-	Status                       string
-	Bandwidth                    string
-	InternetChargeType           string
-	ChargeType                   string
-	BandwidthType                string
-	AccelerationLocation         string
-	ServiceLocation              string
-	Name                         string
-	Description                  string
-	ExpiredTime                  string
-	CreationTime                 string
+	RegionId                     common.String
+	GlobalAccelerationInstanceId common.String
+	IpAddress                    common.String
+	Status                       common.String
+	Bandwidth                    common.String
+	InternetChargeType           common.String
+	ChargeType                   common.String
+	BandwidthType                common.String
+	AccelerationLocation         common.String
+	ServiceLocation              common.String
+	Name                         common.String
+	Description                  common.String
+	ExpiredTime                  common.String
+	CreationTime                 common.String
 	OperationLocks               DescribeGlobalAccelerationInstancesLockReasonList
 	BackendServers               DescribeGlobalAccelerationInstancesBackendServerList
 	PublicIpAddresses            DescribeGlobalAccelerationInstancesPublicIpAddressList
 }
 
 type DescribeGlobalAccelerationInstancesLockReason struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeGlobalAccelerationInstancesBackendServer struct {
-	RegionId        string
-	ServerId        string
-	ServerIpAddress string
-	ServerType      string
+	RegionId        common.String
+	ServerId        common.String
+	ServerIpAddress common.String
+	ServerType      common.String
 }
 
 type DescribeGlobalAccelerationInstancesPublicIpAddress struct {
-	AllocationId string
-	IpAddress    string
+	AllocationId common.String
+	IpAddress    common.String
 }
 
 type DescribeGlobalAccelerationInstancesGlobalAccelerationInstanceList []DescribeGlobalAccelerationInstancesGlobalAccelerationInstance

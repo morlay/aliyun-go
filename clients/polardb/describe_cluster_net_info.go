@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterNetInfoRequest struct {
@@ -25,18 +26,18 @@ func (req *DescribeClusterNetInfoRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeClusterNetInfoResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	DBClusterNetworkType string
+	RequestId            common.String
+	DBClusterNetworkType common.String
 	DBInstanceNetInfos   DescribeClusterNetInfoDBInstanceNetInfoList
 }
 
 type DescribeClusterNetInfoDBInstanceNetInfo struct {
-	ConnectionString string
-	IPAddress        string
-	IPType           string
-	Port             string
-	VPCId            string
-	VSwitchId        string
+	ConnectionString common.String
+	IPAddress        common.String
+	IPType           common.String
+	Port             common.String
+	VPCId            common.String
+	VSwitchId        common.String
 }
 
 type DescribeClusterNetInfoDBInstanceNetInfoList []DescribeClusterNetInfoDBInstanceNetInfo

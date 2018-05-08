@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCasterScenesRequest struct {
@@ -24,26 +25,26 @@ func (req *DescribeCasterScenesRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeCasterScenesResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Total     int
+	RequestId common.String
+	Total     common.Integer
 	SceneList DescribeCasterScenesSceneList
 }
 
 type DescribeCasterScenesScene struct {
-	SceneId      string
-	SceneName    string
-	OutputType   string
-	LayoutId     string
-	StreamUrl    string
-	Status       int
+	SceneId      common.String
+	SceneName    common.String
+	OutputType   common.String
+	LayoutId     common.String
+	StreamUrl    common.String
+	Status       common.Integer
 	StreamInfos  DescribeCasterScenesStreamInfoList
 	ComponentIds DescribeCasterScenesComponentIdList
 }
 
 type DescribeCasterScenesStreamInfo struct {
-	TranscodeConfig string
-	VideoFormat     string
-	OutputStreamUrl string
+	TranscodeConfig common.String
+	VideoFormat     common.String
+	OutputStreamUrl common.String
 }
 
 type DescribeCasterScenesSceneList []DescribeCasterScenesScene
@@ -76,10 +77,10 @@ func (list *DescribeCasterScenesStreamInfoList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type DescribeCasterScenesComponentIdList []string
+type DescribeCasterScenesComponentIdList []common.String
 
 func (list *DescribeCasterScenesComponentIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

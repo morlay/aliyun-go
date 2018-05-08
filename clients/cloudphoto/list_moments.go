@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListMomentsRequest struct {
@@ -27,24 +28,24 @@ func (req *ListMomentsRequest) Invoke(client *sdk.Client) (resp *ListMomentsResp
 
 type ListMomentsResponse struct {
 	responses.BaseResponse
-	Code       string
-	Message    string
-	NextCursor string
-	TotalCount int
-	RequestId  string
-	Action     string
+	Code       common.String
+	Message    common.String
+	NextCursor common.String
+	TotalCount common.Integer
+	RequestId  common.String
+	Action     common.String
 	Moments    ListMomentsMomentList
 }
 
 type ListMomentsMoment struct {
-	Id           int64
-	IdStr        string
-	LocationName string
-	PhotosCount  int
-	State        string
-	TakenAt      int64
-	Ctime        int64
-	Mtime        int64
+	Id           common.Long
+	IdStr        common.String
+	LocationName common.String
+	PhotosCount  common.Integer
+	State        common.String
+	TakenAt      common.Long
+	Ctime        common.Long
+	Mtime        common.Long
 }
 
 type ListMomentsMomentList []ListMomentsMoment

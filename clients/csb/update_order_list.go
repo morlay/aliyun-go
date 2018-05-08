@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateOrderListRequest struct {
@@ -20,12 +21,12 @@ func (req *UpdateOrderListRequest) Invoke(client *sdk.Client) (resp *UpdateOrder
 
 type UpdateOrderListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      UpdateOrderListData
 }
 
 type UpdateOrderListData struct {
-	UpdateCount int
+	UpdateCount common.Integer
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type KillFlowRequest struct {
@@ -22,6 +23,6 @@ func (req *KillFlowRequest) Invoke(client *sdk.Client) (resp *KillFlowResponse, 
 
 type KillFlowResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      bool
 }

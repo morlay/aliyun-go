@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckDiskEnableAutoSnapshotValidationRequest struct {
@@ -24,7 +25,7 @@ func (req *CheckDiskEnableAutoSnapshotValidationRequest) Invoke(client *sdk.Clie
 
 type CheckDiskEnableAutoSnapshotValidationResponse struct {
 	responses.BaseResponse
-	RequestId              string
-	IsPermitted            string
-	AutoSnapshotOccupation int
+	RequestId              common.String
+	IsPermitted            common.String
+	AutoSnapshotOccupation common.Integer
 }

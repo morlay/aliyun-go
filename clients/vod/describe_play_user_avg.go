@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePlayUserAvgRequest struct {
@@ -24,14 +25,14 @@ func (req *DescribePlayUserAvgRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribePlayUserAvgResponse struct {
 	responses.BaseResponse
-	RequestId          string
+	RequestId          common.String
 	UserPlayStatisAvgs DescribePlayUserAvgUserPlayStatisAvgList
 }
 
 type DescribePlayUserAvgUserPlayStatisAvg struct {
-	Date            string
-	AvgPlayDuration string
-	AvgPlayCount    string
+	Date            common.String
+	AvgPlayDuration common.String
+	AvgPlayCount    common.String
 }
 
 type DescribePlayUserAvgUserPlayStatisAvgList []DescribePlayUserAvgUserPlayStatisAvg

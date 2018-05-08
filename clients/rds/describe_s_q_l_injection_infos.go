@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSQLInjectionInfosRequest struct {
@@ -30,22 +31,22 @@ func (req *DescribeSQLInjectionInfosRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeSQLInjectionInfosResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Engine           string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	Engine           common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeSQLInjectionInfosSQLInjectionInfoList
 }
 
 type DescribeSQLInjectionInfosSQLInjectionInfo struct {
-	DBName         string
-	SQLText        string
-	LatencyTime    string
-	HostAddress    string
-	ExecuteTime    string
-	AccountName    string
-	EffectRowCount string
+	DBName         common.String
+	SQLText        common.String
+	LatencyTime    common.String
+	HostAddress    common.String
+	ExecuteTime    common.String
+	AccountName    common.String
+	EffectRowCount common.String
 }
 
 type DescribeSQLInjectionInfosSQLInjectionInfoList []DescribeSQLInjectionInfosSQLInjectionInfo

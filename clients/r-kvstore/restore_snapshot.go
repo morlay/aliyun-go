@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RestoreSnapshotRequest struct {
@@ -25,5 +26,5 @@ func (req *RestoreSnapshotRequest) Invoke(client *sdk.Client) (resp *RestoreSnap
 
 type RestoreSnapshotResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

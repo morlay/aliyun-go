@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFlowJobHistoryRequest struct {
@@ -26,40 +27,40 @@ func (req *ListFlowJobHistoryRequest) Invoke(client *sdk.Client) (resp *ListFlow
 
 type ListFlowJobHistoryResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	PageNumber    int
-	PageSize      int
-	Total         int
+	RequestId     common.String
+	PageNumber    common.Integer
+	PageSize      common.Integer
+	Total         common.Integer
 	NodeInstances ListFlowJobHistoryNodeInstanceList
 }
 
 type ListFlowJobHistoryNodeInstance struct {
-	Id             string
-	GmtCreate      int64
-	GmtModified    int64
-	Type           string
-	Status         string
-	JobId          string
-	JobName        string
-	JobType        string
-	JobParams      string
-	FailAct        string
-	MaxRetry       int
-	RetryInterval  int64
-	NodeName       string
-	ClusterId      string
-	HostName       string
-	ProjectId      string
-	StartTime      int64
-	EndTime        int64
+	Id             common.String
+	GmtCreate      common.Long
+	GmtModified    common.Long
+	Type           common.String
+	Status         common.String
+	JobId          common.String
+	JobName        common.String
+	JobType        common.String
+	JobParams      common.String
+	FailAct        common.String
+	MaxRetry       common.Integer
+	RetryInterval  common.Long
+	NodeName       common.String
+	ClusterId      common.String
+	HostName       common.String
+	ProjectId      common.String
+	StartTime      common.Long
+	EndTime        common.Long
 	Pending        bool
-	Retries        int
-	ExternalId     string
-	ExternalStatus string
-	ExternalInfo   string
-	ParamConf      string
-	EnvConf        string
-	RunConf        string
+	Retries        common.Integer
+	ExternalId     common.String
+	ExternalStatus common.String
+	ExternalInfo   common.String
+	ParamConf      common.String
+	EnvConf        common.String
+	RunConf        common.String
 }
 
 type ListFlowJobHistoryNodeInstanceList []ListFlowJobHistoryNodeInstance

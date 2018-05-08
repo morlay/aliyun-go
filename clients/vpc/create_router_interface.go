@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateRouterInterfaceRequest struct {
@@ -43,7 +44,7 @@ func (req *CreateRouterInterfaceRequest) Invoke(client *sdk.Client) (resp *Creat
 
 type CreateRouterInterfaceResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	RouterInterfaceId string
-	OrderId           int64
+	RequestId         common.String
+	RouterInterfaceId common.String
+	OrderId           common.Long
 }

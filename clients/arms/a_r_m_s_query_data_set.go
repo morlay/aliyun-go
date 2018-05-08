@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ARMSQueryDataSetRequest struct {
@@ -53,7 +54,7 @@ type ARMSQueryDataSetDimensions struct {
 
 type ARMSQueryDataSetResponse struct {
 	responses.BaseResponse
-	Data string
+	Data common.String
 }
 
 type ARMSQueryDataSetOptionalDimsList []ARMSQueryDataSetOptionalDims

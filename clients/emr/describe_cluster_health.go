@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterHealthRequest struct {
@@ -23,26 +24,26 @@ func (req *DescribeClusterHealthRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeClusterHealthResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	ClusterId             int64
+	RequestId             common.String
+	ClusterId             common.Long
 	ServiceHealthInfoList DescribeClusterHealthServiceHealthInfoList
 	HealthResult          DescribeClusterHealthHealthResult
 }
 
 type DescribeClusterHealthServiceHealthInfo struct {
-	Key           string
-	PassNumber    int
-	ErrorNumber   int
-	WarningNumber int
-	UnKnownNumber int
+	Key           common.String
+	PassNumber    common.Integer
+	ErrorNumber   common.Integer
+	WarningNumber common.Integer
+	UnKnownNumber common.Integer
 }
 
 type DescribeClusterHealthHealthResult struct {
-	Key           string
-	PassNumber    int
-	ErrorNumber   int
-	WarningNumber int
-	UnKnownNumber int
+	Key           common.String
+	PassNumber    common.Integer
+	ErrorNumber   common.Integer
+	WarningNumber common.Integer
+	UnKnownNumber common.Integer
 }
 
 type DescribeClusterHealthServiceHealthInfoList []DescribeClusterHealthServiceHealthInfo

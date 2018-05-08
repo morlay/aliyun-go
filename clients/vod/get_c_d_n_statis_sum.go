@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetCDNStatisSumRequest struct {
@@ -28,20 +29,20 @@ func (req *GetCDNStatisSumRequest) Invoke(client *sdk.Client) (resp *GetCDNStati
 
 type GetCDNStatisSumResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	SumFlowDataValue int64
-	MaxBpsDataValue  int64
+	RequestId        common.String
+	SumFlowDataValue common.Long
+	MaxBpsDataValue  common.Long
 	CDNStatisList    GetCDNStatisSumCDNMetricList
 }
 
 type GetCDNStatisSumCDNMetric struct {
-	StatTime              string
-	FlowDataDomesticValue int64
-	FlowDataOverseasValue int64
-	FlowDataValue         int64
-	BpsDataDomesticValue  int64
-	BpsDataOverseasValue  int64
-	BpsDataValue          int64
+	StatTime              common.String
+	FlowDataDomesticValue common.Long
+	FlowDataOverseasValue common.Long
+	FlowDataValue         common.Long
+	BpsDataDomesticValue  common.Long
+	BpsDataOverseasValue  common.Long
+	BpsDataValue          common.Long
 }
 
 type GetCDNStatisSumCDNMetricList []GetCDNStatisSumCDNMetric

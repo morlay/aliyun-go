@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListBriefApConfigRequest struct {
@@ -27,10 +28,10 @@ func (req *ListBriefApConfigRequest) Invoke(client *sdk.Client) (resp *ListBrief
 
 type ListBriefApConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Message   string
-	Data      string
-	ErrorCode int
-	ErrorMsg  string
+	Message   common.String
+	Data      common.String
+	ErrorCode common.Integer
+	ErrorMsg  common.String
 }

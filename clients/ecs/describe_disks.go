@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDisksRequest struct {
@@ -62,63 +63,63 @@ func (req *DescribeDisksRequest) Invoke(client *sdk.Client) (resp *DescribeDisks
 
 type DescribeDisksResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Disks      DescribeDisksDiskList
 }
 
 type DescribeDisksDisk struct {
-	DiskId                        string
-	RegionId                      string
-	ZoneId                        string
-	DiskName                      string
-	Description                   string
-	Type                          string
-	Category                      string
-	Size                          int
-	ImageId                       string
-	SourceSnapshotId              string
-	AutoSnapshotPolicyId          string
-	ProductCode                   string
+	DiskId                        common.String
+	RegionId                      common.String
+	ZoneId                        common.String
+	DiskName                      common.String
+	Description                   common.String
+	Type                          common.String
+	Category                      common.String
+	Size                          common.Integer
+	ImageId                       common.String
+	SourceSnapshotId              common.String
+	AutoSnapshotPolicyId          common.String
+	ProductCode                   common.String
 	Portable                      bool
-	Status                        string
-	InstanceId                    string
-	Device                        string
+	Status                        common.String
+	InstanceId                    common.String
+	Device                        common.String
 	DeleteWithInstance            bool
 	DeleteAutoSnapshot            bool
 	EnableAutoSnapshot            bool
 	EnableAutomatedSnapshotPolicy bool
-	CreationTime                  string
-	AttachedTime                  string
-	DetachedTime                  string
-	DiskChargeType                string
-	ExpiredTime                   string
-	ResourceGroupId               string
+	CreationTime                  common.String
+	AttachedTime                  common.String
+	DetachedTime                  common.String
+	DiskChargeType                common.String
+	ExpiredTime                   common.String
+	ResourceGroupId               common.String
 	Encrypted                     bool
-	MountInstanceNum              int
-	IOPS                          int
-	IOPSRead                      int
-	IOPSWrite                     int
+	MountInstanceNum              common.Integer
+	IOPS                          common.Integer
+	IOPSRead                      common.Integer
+	IOPSWrite                     common.Integer
 	OperationLocks                DescribeDisksOperationLockList
 	MountInstances                DescribeDisksMountInstanceList
 	Tags                          DescribeDisksTagList
 }
 
 type DescribeDisksOperationLock struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeDisksMountInstance struct {
-	InstanceId   string
-	Device       string
-	AttachedTime string
+	InstanceId   common.String
+	Device       common.String
+	AttachedTime common.String
 }
 
 type DescribeDisksTag struct {
-	TagKey   string
-	TagValue string
+	TagKey   common.String
+	TagValue common.String
 }
 
 type DescribeDisksAdditionalAttributesList []string

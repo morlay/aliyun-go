@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVSwitchRequest struct {
@@ -29,6 +30,6 @@ func (req *CreateVSwitchRequest) Invoke(client *sdk.Client) (resp *CreateVSwitch
 
 type CreateVSwitchResponse struct {
 	responses.BaseResponse
-	RequestId string
-	VSwitchId string
+	RequestId common.String
+	VSwitchId common.String
 }

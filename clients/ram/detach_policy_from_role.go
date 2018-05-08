@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DetachPolicyFromRoleRequest struct {
@@ -22,5 +23,5 @@ func (req *DetachPolicyFromRoleRequest) Invoke(client *sdk.Client) (resp *Detach
 
 type DetachPolicyFromRoleResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

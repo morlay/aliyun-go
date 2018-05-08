@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateShardingDBInstanceRequest struct {
@@ -58,9 +59,9 @@ type CreateShardingDBInstanceMongos struct {
 
 type CreateShardingDBInstanceResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	OrderId      string
-	DBInstanceId string
+	RequestId    common.String
+	OrderId      common.String
+	DBInstanceId common.String
 }
 
 type CreateShardingDBInstanceReplicaSetList []CreateShardingDBInstanceReplicaSet

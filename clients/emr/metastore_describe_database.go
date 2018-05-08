@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type MetastoreDescribeDatabaseRequest struct {
@@ -23,16 +24,16 @@ func (req *MetastoreDescribeDatabaseRequest) Invoke(client *sdk.Client) (resp *M
 
 type MetastoreDescribeDatabaseResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	DbName      string
-	Description string
-	LocationUri string
+	RequestId   common.String
+	DbName      common.String
+	Description common.String
+	LocationUri common.String
 	Parameters  MetastoreDescribeDatabaseParameterList
 }
 
 type MetastoreDescribeDatabaseParameter struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type MetastoreDescribeDatabaseParameterList []MetastoreDescribeDatabaseParameter

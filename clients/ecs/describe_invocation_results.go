@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInvocationResultsRequest struct {
@@ -31,25 +32,25 @@ func (req *DescribeInvocationResultsRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeInvocationResultsResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	Invocation DescribeInvocationResultsInvocation
 }
 
 type DescribeInvocationResultsInvocation struct {
-	PageSize          int64
-	PageNumber        int64
-	TotalCount        int64
+	PageSize          common.Long
+	PageNumber        common.Long
+	TotalCount        common.Long
 	InvocationResults DescribeInvocationResultsInvocationResultList
 }
 
 type DescribeInvocationResultsInvocationResult struct {
-	CommandId          string
-	InvokeId           string
-	InstanceId         string
-	FinishedTime       string
-	Output             string
-	InvokeRecordStatus string
-	ExitCode           int64
+	CommandId          common.String
+	InvokeId           common.String
+	InstanceId         common.String
+	FinishedTime       common.String
+	Output             common.String
+	InvokeRecordStatus common.String
+	ExitCode           common.Long
 }
 
 type DescribeInvocationResultsInvocationResultList []DescribeInvocationResultsInvocationResult

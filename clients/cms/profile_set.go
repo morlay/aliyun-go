@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ProfileSetRequest struct {
@@ -23,8 +24,8 @@ func (req *ProfileSetRequest) Invoke(client *sdk.Client) (resp *ProfileSetRespon
 
 type ProfileSetResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Success      bool
-	RequestId    string
+	RequestId    common.String
 }

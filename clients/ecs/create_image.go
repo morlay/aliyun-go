@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateImageRequest struct {
@@ -51,8 +52,8 @@ type CreateImageDiskDeviceMapping struct {
 
 type CreateImageResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ImageId   string
+	RequestId common.String
+	ImageId   common.String
 }
 
 type CreateImageDiskDeviceMappingList []CreateImageDiskDeviceMapping

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeleteClusterScriptRequest struct {
@@ -21,5 +22,5 @@ func (req *DeleteClusterScriptRequest) Invoke(client *sdk.Client) (resp *DeleteC
 
 type DeleteClusterScriptResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateAlarmRequest struct {
@@ -34,7 +35,7 @@ func (req *UpdateAlarmRequest) Invoke(client *sdk.Client) (resp *UpdateAlarmResp
 type UpdateAlarmResponse struct {
 	responses.BaseResponse
 	Success   bool
-	Code      string
-	Message   string
-	RequestId string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
 }

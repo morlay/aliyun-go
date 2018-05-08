@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryRegistrantProfilesRequest struct {
@@ -28,33 +29,33 @@ func (req *QueryRegistrantProfilesRequest) Invoke(client *sdk.Client) (resp *Que
 
 type QueryRegistrantProfilesResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	TotalItemNum       int
-	CurrentPageNum     int
-	TotalPageNum       int
-	PageSize           int
+	RequestId          common.String
+	TotalItemNum       common.Integer
+	CurrentPageNum     common.Integer
+	TotalPageNum       common.Integer
+	PageSize           common.Integer
 	PrePage            bool
 	NextPage           bool
 	RegistrantProfiles QueryRegistrantProfilesRegistrantProfileList
 }
 
 type QueryRegistrantProfilesRegistrantProfile struct {
-	RegistrantProfileId      int64
-	CreateTime               string
-	UpdateTime               string
+	RegistrantProfileId      common.Long
+	CreateTime               common.String
+	UpdateTime               common.String
 	DefaultRegistrantProfile bool
-	RegistrantName           string
-	RegistrantOrganization   string
-	Country                  string
-	Province                 string
-	City                     string
-	Address                  string
-	Email                    string
-	PostalCode               string
-	TelArea                  string
-	Telephone                string
-	TelExt                   string
-	EmailVerificationStatus  int
+	RegistrantName           common.String
+	RegistrantOrganization   common.String
+	Country                  common.String
+	Province                 common.String
+	City                     common.String
+	Address                  common.String
+	Email                    common.String
+	PostalCode               common.String
+	TelArea                  common.String
+	Telephone                common.String
+	TelExt                   common.String
+	EmailVerificationStatus  common.Integer
 }
 
 type QueryRegistrantProfilesRegistrantProfileList []QueryRegistrantProfilesRegistrantProfile

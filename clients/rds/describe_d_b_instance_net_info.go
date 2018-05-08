@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceNetInfoRequest struct {
@@ -29,37 +30,37 @@ func (req *DescribeDBInstanceNetInfoRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDBInstanceNetInfoResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	InstanceNetworkType string
+	RequestId           common.String
+	InstanceNetworkType common.String
 	DBInstanceNetInfos  DescribeDBInstanceNetInfoDBInstanceNetInfoList
 }
 
 type DescribeDBInstanceNetInfoDBInstanceNetInfo struct {
-	Upgradeable          string
-	ExpiredTime          string
-	ConnectionString     string
-	IPAddress            string
-	IPType               string
-	Port                 string
-	VPCId                string
-	VSwitchId            string
-	ConnectionStringType string
-	MaxDelayTime         string
-	DistributionType     string
+	Upgradeable          common.String
+	ExpiredTime          common.String
+	ConnectionString     common.String
+	IPAddress            common.String
+	IPType               common.String
+	Port                 common.String
+	VPCId                common.String
+	VSwitchId            common.String
+	ConnectionStringType common.String
+	MaxDelayTime         common.String
+	DistributionType     common.String
 	SecurityIPGroups     DescribeDBInstanceNetInfoSecurityIPGroupList
 	DBInstanceWeights    DescribeDBInstanceNetInfoDBInstanceWeightList
 }
 
 type DescribeDBInstanceNetInfoSecurityIPGroup struct {
-	SecurityIPGroupName string
-	SecurityIPs         string
+	SecurityIPGroupName common.String
+	SecurityIPs         common.String
 }
 
 type DescribeDBInstanceNetInfoDBInstanceWeight struct {
-	DBInstanceId   string
-	DBInstanceType string
-	Availability   string
-	Weight         string
+	DBInstanceId   common.String
+	DBInstanceType common.String
+	Availability   common.String
+	Weight         common.String
 }
 
 type DescribeDBInstanceNetInfoDBInstanceNetInfoList []DescribeDBInstanceNetInfoDBInstanceNetInfo

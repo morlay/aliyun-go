@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAuthorizedAppsRequest struct {
@@ -26,21 +27,21 @@ func (req *DescribeAuthorizedAppsRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeAuthorizedAppsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalCount     int
-	PageSize       int
-	PageNumber     int
+	RequestId      common.String
+	TotalCount     common.Integer
+	PageSize       common.Integer
+	PageNumber     common.Integer
 	AuthorizedApps DescribeAuthorizedAppsAuthorizedAppList
 }
 
 type DescribeAuthorizedAppsAuthorizedApp struct {
-	StageName           string
-	AppId               int64
-	AppName             string
-	Operator            string
-	AuthorizationSource string
-	Description         string
-	AuthorizedTime      string
+	StageName           common.String
+	AppId               common.Long
+	AppName             common.String
+	Operator            common.String
+	AuthorizationSource common.String
+	Description         common.String
+	AuthorizedTime      common.String
 }
 
 type DescribeAuthorizedAppsAuthorizedAppList []DescribeAuthorizedAppsAuthorizedApp

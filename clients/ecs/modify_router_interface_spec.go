@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyRouterInterfaceSpecRequest struct {
@@ -27,6 +28,6 @@ func (req *ModifyRouterInterfaceSpecRequest) Invoke(client *sdk.Client) (resp *M
 
 type ModifyRouterInterfaceSpecResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Spec      string
+	RequestId common.String
+	Spec      common.String
 }

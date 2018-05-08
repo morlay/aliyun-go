@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceIPArrayListRequest struct {
@@ -27,15 +28,15 @@ func (req *DescribeDBInstanceIPArrayListRequest) Invoke(client *sdk.Client) (res
 
 type DescribeDBInstanceIPArrayListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeDBInstanceIPArrayListDBInstanceIPArrayList
 }
 
 type DescribeDBInstanceIPArrayListDBInstanceIPArray struct {
-	DBInstanceIPArrayName      string
-	DBInstanceIPArrayAttribute string
-	SecurityIPList             string
-	WhitelistNetworkType       string
+	DBInstanceIPArrayName      common.String
+	DBInstanceIPArrayAttribute common.String
+	SecurityIPList             common.String
+	WhitelistNetworkType       common.String
 }
 
 type DescribeDBInstanceIPArrayListDBInstanceIPArrayList []DescribeDBInstanceIPArrayListDBInstanceIPArray

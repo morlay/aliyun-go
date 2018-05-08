@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTrafficControlsByApiRequest struct {
@@ -24,14 +25,14 @@ func (req *DescribeTrafficControlsByApiRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeTrafficControlsByApiResponse struct {
 	responses.BaseResponse
-	RequestId           string
+	RequestId           common.String
 	TrafficControlItems DescribeTrafficControlsByApiTrafficControlItemList
 }
 
 type DescribeTrafficControlsByApiTrafficControlItem struct {
-	TrafficControlItemId   string
-	TrafficControlItemName string
-	BoundTime              string
+	TrafficControlItemId   common.String
+	TrafficControlItemName common.String
+	BoundTime              common.String
 }
 
 type DescribeTrafficControlsByApiTrafficControlItemList []DescribeTrafficControlsByApiTrafficControlItem

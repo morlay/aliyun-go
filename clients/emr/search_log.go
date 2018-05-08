@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SearchLogRequest struct {
@@ -31,17 +32,17 @@ func (req *SearchLogRequest) Invoke(client *sdk.Client) (resp *SearchLogResponse
 
 type SearchLogResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Completed      bool
 	SlsLogItemList SearchLogSlsLogItemList
 }
 
 type SearchLogSlsLogItem struct {
-	Timestamp int
-	SourceIp  string
-	HostName  string
-	Path      string
-	Content   string
+	Timestamp common.Integer
+	SourceIp  common.String
+	HostName  common.String
+	Path      common.String
+	Content   common.String
 }
 
 type SearchLogSlsLogItemList []SearchLogSlsLogItem

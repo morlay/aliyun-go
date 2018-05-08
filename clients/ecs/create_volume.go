@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateVolumeRequest struct {
@@ -41,6 +42,6 @@ func (req *CreateVolumeRequest) Invoke(client *sdk.Client) (resp *CreateVolumeRe
 
 type CreateVolumeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	VolumeId  string
+	RequestId common.String
+	VolumeId  common.String
 }

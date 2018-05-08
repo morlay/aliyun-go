@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeTagsRequest struct {
@@ -29,13 +30,13 @@ func (req *DescribeTagsRequest) Invoke(client *sdk.Client) (resp *DescribeTagsRe
 
 type DescribeTagsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeTagsTagInfosList
 }
 
 type DescribeTagsTagInfos struct {
-	TagKey        string
-	TagValue      string
+	TagKey        common.String
+	TagValue      common.String
 	DBInstanceIds DescribeTagsDBInstanceIdList
 }
 
@@ -54,10 +55,10 @@ func (list *DescribeTagsTagInfosList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeTagsDBInstanceIdList []string
+type DescribeTagsDBInstanceIdList []common.String
 
 func (list *DescribeTagsDBInstanceIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

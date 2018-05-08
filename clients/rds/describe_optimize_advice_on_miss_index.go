@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOptimizeAdviceOnMissIndexRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeOptimizeAdviceOnMissIndexRequest) Invoke(client *sdk.Client) 
 
 type DescribeOptimizeAdviceOnMissIndexResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	DBInstanceId      string
-	TotalRecordsCount int
-	PageNumber        int
-	PageRecordCount   int
+	RequestId         common.String
+	DBInstanceId      common.String
+	TotalRecordsCount common.Integer
+	PageNumber        common.Integer
+	PageRecordCount   common.Integer
 	Items             DescribeOptimizeAdviceOnMissIndexAdviceOnMissIndexList
 }
 
 type DescribeOptimizeAdviceOnMissIndexAdviceOnMissIndex struct {
-	DBName      string
-	TableName   string
-	QueryColumn string
-	SQLText     string
+	DBName      common.String
+	TableName   common.String
+	QueryColumn common.String
+	SQLText     common.String
 }
 
 type DescribeOptimizeAdviceOnMissIndexAdviceOnMissIndexList []DescribeOptimizeAdviceOnMissIndexAdviceOnMissIndex

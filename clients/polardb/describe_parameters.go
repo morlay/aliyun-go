@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeParametersRequest struct {
@@ -26,18 +27,18 @@ func (req *DescribeParametersRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeParametersResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	Engine            string
-	DBType            string
-	DBVersion         string
+	RequestId         common.String
+	Engine            common.String
+	DBType            common.String
+	DBVersion         common.String
 	ConfigParameters  DescribeParametersDBInstanceParameterList
 	RunningParameters DescribeParametersDBInstanceParameterList
 }
 
 type DescribeParametersDBInstanceParameter struct {
-	ParameterName        string
-	ParameterValue       string
-	ParameterDescription string
+	ParameterName        common.String
+	ParameterValue       common.String
+	ParameterDescription common.String
 }
 
 type DescribeParametersDBInstanceParameterList []DescribeParametersDBInstanceParameter

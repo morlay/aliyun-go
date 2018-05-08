@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDcdnDomainCnameRequest struct {
@@ -23,14 +24,14 @@ func (req *DescribeDcdnDomainCnameRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDcdnDomainCnameResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	CnameDatas DescribeDcdnDomainCnameDataList
 }
 
 type DescribeDcdnDomainCnameData struct {
-	Domain string
-	Cname  string
-	Status int
+	Domain common.String
+	Cname  common.String
+	Status common.Integer
 }
 
 type DescribeDcdnDomainCnameDataList []DescribeDcdnDomainCnameData

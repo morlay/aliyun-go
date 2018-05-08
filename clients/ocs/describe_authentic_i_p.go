@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAuthenticIPRequest struct {
@@ -24,10 +25,10 @@ func (req *DescribeAuthenticIPRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeAuthenticIPResponse struct {
 	responses.BaseResponse
-	RequestId              string
+	RequestId              common.String
 	GetAuthenticIpResponse DescribeAuthenticIPGetAuthenticIpResponse
 }
 
 type DescribeAuthenticIPGetAuthenticIpResponse struct {
-	AuthenticIPs string
+	AuthenticIPs common.String
 }

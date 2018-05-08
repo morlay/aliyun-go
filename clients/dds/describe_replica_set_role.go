@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeReplicaSetRoleRequest struct {
@@ -27,17 +28,17 @@ func (req *DescribeReplicaSetRoleRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeReplicaSetRoleResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DBInstanceId string
+	RequestId    common.String
+	DBInstanceId common.String
 	ReplicaSets  DescribeReplicaSetRoleReplicaSetList
 }
 
 type DescribeReplicaSetRoleReplicaSet struct {
-	ReplicaSetRole   string
-	ConnectionDomain string
-	ConnectionPort   string
-	ExpiredTime      string
-	NetworkType      string
+	ReplicaSetRole   common.String
+	ConnectionDomain common.String
+	ConnectionPort   common.String
+	ExpiredTime      common.String
+	NetworkType      common.String
 }
 
 type DescribeReplicaSetRoleReplicaSetList []DescribeReplicaSetRoleReplicaSet

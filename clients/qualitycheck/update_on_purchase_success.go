@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpdateOnPurchaseSuccessRequest struct {
@@ -20,9 +21,9 @@ func (req *UpdateOnPurchaseSuccessRequest) Invoke(client *sdk.Client) (resp *Upd
 
 type UpdateOnPurchaseSuccessResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Data      string
+	RequestId common.String
+	Data      common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 }

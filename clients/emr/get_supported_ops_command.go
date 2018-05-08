@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetSupportedOpsCommandRequest struct {
@@ -22,21 +23,21 @@ func (req *GetSupportedOpsCommandRequest) Invoke(client *sdk.Client) (resp *GetS
 
 type GetSupportedOpsCommandResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	List      GetSupportedOpsCommandOpsCommandCategoryList
 }
 
 type GetSupportedOpsCommandOpsCommandCategory struct {
-	Category    string
+	Category    common.String
 	CommandList GetSupportedOpsCommandOpsCommandInfoList
 }
 
 type GetSupportedOpsCommandOpsCommandInfo struct {
-	Id          string
-	Name        string
-	Discription string
-	TargetType  string
-	Params      string
+	Id          common.String
+	Name        common.String
+	Discription common.String
+	TargetType  common.String
+	Params      common.String
 }
 
 type GetSupportedOpsCommandOpsCommandCategoryList []GetSupportedOpsCommandOpsCommandCategory

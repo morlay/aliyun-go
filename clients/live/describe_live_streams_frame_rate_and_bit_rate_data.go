@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamsFrameRateAndBitRateDataRequest struct {
@@ -28,16 +29,16 @@ func (req *DescribeLiveStreamsFrameRateAndBitRateDataRequest) Invoke(client *sdk
 
 type DescribeLiveStreamsFrameRateAndBitRateDataResponse struct {
 	responses.BaseResponse
-	RequestId                string
+	RequestId                common.String
 	FrameRateAndBitRateInfos DescribeLiveStreamsFrameRateAndBitRateDataFrameRateAndBitRateInfoList
 }
 
 type DescribeLiveStreamsFrameRateAndBitRateDataFrameRateAndBitRateInfo struct {
-	StreamUrl      string
-	VideoFrameRate float32
-	AudioFrameRate float32
-	BitRate        float32
-	Time           string
+	StreamUrl      common.String
+	VideoFrameRate common.Float
+	AudioFrameRate common.Float
+	BitRate        common.Float
+	Time           common.String
 }
 
 type DescribeLiveStreamsFrameRateAndBitRateDataFrameRateAndBitRateInfoList []DescribeLiveStreamsFrameRateAndBitRateDataFrameRateAndBitRateInfo

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiErrorDataRequest struct {
@@ -25,14 +26,14 @@ func (req *DescribeApiErrorDataRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeApiErrorDataResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	ClientErrors DescribeApiErrorDataMonitorItemList
 	ServerErrors DescribeApiErrorDataMonitorItemList
 }
 
 type DescribeApiErrorDataMonitorItem struct {
-	ItemTime  string
-	ItemValue string
+	ItemTime  common.String
+	ItemValue common.String
 }
 
 type DescribeApiErrorDataMonitorItemList []DescribeApiErrorDataMonitorItem

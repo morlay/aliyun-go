@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeIntranetAttributeKbRequest struct {
@@ -24,10 +25,10 @@ func (req *DescribeIntranetAttributeKbRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeIntranetAttributeKbResponse struct {
 	responses.BaseResponse
-	RequestId               string
-	InstanceId              string
-	VlanId                  string
-	IntranetIpAddress       string
-	IntranetMaxBandwidthIn  int
-	IntranetMaxBandwidthOut int
+	RequestId               common.String
+	InstanceId              common.String
+	VlanId                  common.String
+	IntranetIpAddress       common.String
+	IntranetMaxBandwidthIn  common.Integer
+	IntranetMaxBandwidthOut common.Integer
 }

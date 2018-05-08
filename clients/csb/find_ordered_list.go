@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindOrderedListRequest struct {
@@ -29,74 +30,74 @@ func (req *FindOrderedListRequest) Invoke(client *sdk.Client) (resp *FindOrdered
 
 type FindOrderedListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindOrderedListData
 }
 
 type FindOrderedListData struct {
-	CurrentPage int
-	PageNumber  int
+	CurrentPage common.Integer
+	PageNumber  common.Integer
 	OrderList   FindOrderedListOrderList
 }
 
 type FindOrderedListOrder struct {
-	Alias                 string
-	ProjectName           string
-	ServiceName           string
-	ServiceVersion        string
-	OrderStatus           int
-	AliveOrderCount       int
-	GmtCreate             int64
-	MaxRT                 int
-	MinRT                 int
-	ServiceId             string
-	ServiceStatus         int
+	Alias                 common.String
+	ProjectName           common.String
+	ServiceName           common.String
+	ServiceVersion        common.String
+	OrderStatus           common.Integer
+	AliveOrderCount       common.Integer
+	GmtCreate             common.Long
+	MaxRT                 common.Integer
+	MinRT                 common.Integer
+	ServiceId             common.String
+	ServiceStatus         common.Integer
 	ErrorTypeCatagoryList FindOrderedListErrorTypeCatagoryList
 	Orders                FindOrderedListOrder1List
 	Total                 FindOrderedListTotal
 }
 
 type FindOrderedListErrorTypeCatagory struct {
-	Name     string
-	Total    int64
-	ErrorNum int64
+	Name     common.String
+	Total    common.Long
+	ErrorNum common.Long
 }
 
 type FindOrderedListOrder1 struct {
-	Alias           string
-	ApproveComments string
-	CsbId           int64
-	GmtCreate       int64
-	GmtModified     int64
-	GroupName       string
-	Id              int64
-	ProjectName     string
-	ServiceId       int64
-	ServiceName     string
-	ServiceStatus   int
-	ServiceVersion  string
-	StatisticName   string
-	Status          int
-	UserId          string
+	Alias           common.String
+	ApproveComments common.String
+	CsbId           common.Long
+	GmtCreate       common.Long
+	GmtModified     common.Long
+	GroupName       common.String
+	Id              common.Long
+	ProjectName     common.String
+	ServiceId       common.Long
+	ServiceName     common.String
+	ServiceStatus   common.Integer
+	ServiceVersion  common.String
+	StatisticName   common.String
+	Status          common.Integer
+	UserId          common.String
 	SlaInfo         FindOrderedListSlaInfo
 	Total2          FindOrderedListTotal2
 }
 
 type FindOrderedListSlaInfo struct {
-	Qph string
-	Qps string
+	Qph common.String
+	Qps common.String
 }
 
 type FindOrderedListTotal2 struct {
-	ErrorNum int
-	Total    int
+	ErrorNum common.Integer
+	Total    common.Integer
 }
 
 type FindOrderedListTotal struct {
-	ErrorNum int
-	Total    int
+	ErrorNum common.Integer
+	Total    common.Integer
 }
 
 type FindOrderedListOrderList []FindOrderedListOrder

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterRequest struct {
@@ -22,42 +23,42 @@ func (req *DescribeClusterRequest) Invoke(client *sdk.Client) (resp *DescribeClu
 
 type DescribeClusterResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	ClusterInfo DescribeClusterClusterInfo
 }
 
 type DescribeClusterClusterInfo struct {
-	Id               string
-	RegionId         string
-	Name             string
-	Description      string
-	Status           string
-	OsTag            string
-	AccountType      string
-	SchedulerType    string
-	CreateTime       string
-	SecurityGroupId  string
-	VSwitchId        string
-	VolumeType       string
-	VolumeId         string
-	VolumeProtocol   string
-	VolumeMountpoint string
-	RemoteDirectory  string
+	Id               common.String
+	RegionId         common.String
+	Name             common.String
+	Description      common.String
+	Status           common.String
+	OsTag            common.String
+	AccountType      common.String
+	SchedulerType    common.String
+	CreateTime       common.String
+	SecurityGroupId  common.String
+	VSwitchId        common.String
+	VolumeType       common.String
+	VolumeId         common.String
+	VolumeProtocol   common.String
+	VolumeMountpoint common.String
+	RemoteDirectory  common.String
 	HaEnable         bool
-	EcsChargeType    string
-	KeyPairName      string
-	SccClusterId     string
-	ClientVersion    string
-	ImageOwnerAlias  string
-	ImageId          string
+	EcsChargeType    common.String
+	KeyPairName      common.String
+	SccClusterId     common.String
+	ClientVersion    common.String
+	ImageOwnerAlias  common.String
+	ImageId          common.String
 	ApplicationInfo  DescribeClusterApplicationInfoItemList
 	EcsInfo          DescribeClusterEcsInfo
 }
 
 type DescribeClusterApplicationInfoItem struct {
-	Tag     string
-	Name    string
-	Version string
+	Tag     common.String
+	Name    common.String
+	Version common.String
 }
 
 type DescribeClusterEcsInfo struct {
@@ -67,18 +68,18 @@ type DescribeClusterEcsInfo struct {
 }
 
 type DescribeClusterManager struct {
-	Count        int
-	InstanceType string
+	Count        common.Integer
+	InstanceType common.String
 }
 
 type DescribeClusterCompute struct {
-	Count        int
-	InstanceType string
+	Count        common.Integer
+	InstanceType common.String
 }
 
 type DescribeClusterLogin struct {
-	Count        int
-	InstanceType string
+	Count        common.Integer
+	InstanceType common.String
 }
 
 type DescribeClusterApplicationInfoItemList []DescribeClusterApplicationInfoItem

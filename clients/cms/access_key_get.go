@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AccessKeyGetRequest struct {
@@ -20,11 +21,11 @@ func (req *AccessKeyGetRequest) Invoke(client *sdk.Client) (resp *AccessKeyGetRe
 
 type AccessKeyGetResponse struct {
 	responses.BaseResponse
-	ErrorCode    int
-	ErrorMessage string
+	ErrorCode    common.Integer
+	ErrorMessage common.String
 	Success      bool
-	RequestId    string
-	UserId       int64
-	AccessKey    string
-	SecretKey    string
+	RequestId    common.String
+	UserId       common.Long
+	AccessKey    common.String
+	SecretKey    common.String
 }

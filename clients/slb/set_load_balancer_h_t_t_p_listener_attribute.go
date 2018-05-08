@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetLoadBalancerHTTPListenerAttributeRequest struct {
@@ -56,5 +57,5 @@ func (req *SetLoadBalancerHTTPListenerAttributeRequest) Invoke(client *sdk.Clien
 
 type SetLoadBalancerHTTPListenerAttributeResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

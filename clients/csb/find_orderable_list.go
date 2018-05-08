@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindOrderableListRequest struct {
@@ -26,39 +27,39 @@ func (req *FindOrderableListRequest) Invoke(client *sdk.Client) (resp *FindOrder
 
 type FindOrderableListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindOrderableListData
 }
 
 type FindOrderableListData struct {
-	CurrentPage int
-	PageNumber  int
+	CurrentPage common.Integer
+	PageNumber  common.Integer
 	ServiceList FindOrderableListServiceList
 }
 
 type FindOrderableListService struct {
-	Alias          string
+	Alias          common.String
 	AllVisiable    bool
-	ApproveUserId  string
-	CasTargets     string
-	CreateTime     int64
-	CsbId          int64
-	Id             int64
-	InterfaceName  string
-	ModifiedTime   int64
-	OwnerId        string
-	PrincipalName  string
-	ProjectId      string
-	ProjectName    string
-	Scope          string
-	ServiceName    string
-	ServiceVersion string
+	ApproveUserId  common.String
+	CasTargets     common.String
+	CreateTime     common.Long
+	CsbId          common.Long
+	Id             common.Long
+	InterfaceName  common.String
+	ModifiedTime   common.Long
+	OwnerId        common.String
+	PrincipalName  common.String
+	ProjectId      common.String
+	ProjectName    common.String
+	Scope          common.String
+	ServiceName    common.String
+	ServiceVersion common.String
 	SkipAuth       bool
-	StatisticName  string
-	Status         int
-	UserId         string
+	StatisticName  common.String
+	Status         common.Integer
+	UserId         common.String
 }
 
 type FindOrderableListServiceList []FindOrderableListService

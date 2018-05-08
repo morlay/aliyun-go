@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RegisterMediaDetailPersonRequest struct {
@@ -28,37 +29,37 @@ func (req *RegisterMediaDetailPersonRequest) Invoke(client *sdk.Client) (resp *R
 
 type RegisterMediaDetailPersonResponse struct {
 	responses.BaseResponse
-	RequestId            string
+	RequestId            common.String
 	RegisteredPersonages RegisterMediaDetailPersonRegisteredPersonageList
 	FailedImages         RegisterMediaDetailPersonFailedImageList
 }
 
 type RegisterMediaDetailPersonRegisteredPersonage struct {
-	PersonName string
-	FaceId     string
-	Target     string
-	Quality    string
-	Gender     string
-	ImageId    string
+	PersonName common.String
+	FaceId     common.String
+	Target     common.String
+	Quality    common.String
+	Gender     common.String
+	ImageId    common.String
 	ImageFile  RegisterMediaDetailPersonImageFile
 }
 
 type RegisterMediaDetailPersonImageFile struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type RegisterMediaDetailPersonFailedImage struct {
-	Code       string
-	Success    string
+	Code       common.String
+	Success    common.String
 	ImageFile1 RegisterMediaDetailPersonImageFile1
 }
 
 type RegisterMediaDetailPersonImageFile1 struct {
-	Bucket   string
-	Location string
-	Object   string
+	Bucket   common.String
+	Location common.String
+	Object   common.String
 }
 
 type RegisterMediaDetailPersonRegisteredPersonageList []RegisterMediaDetailPersonRegisteredPersonage

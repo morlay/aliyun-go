@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterServiceConfigHistoryRequest struct {
@@ -25,30 +26,30 @@ func (req *DescribeClusterServiceConfigHistoryRequest) Invoke(client *sdk.Client
 
 type DescribeClusterServiceConfigHistoryResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Config    DescribeClusterServiceConfigHistoryConfig
 }
 
 type DescribeClusterServiceConfigHistoryConfig struct {
-	ServiceName     string
-	ConfigVersion   string
+	ServiceName     common.String
+	ConfigVersion   common.String
 	Applied         bool
-	CreateTime      string
-	Author          string
-	Comment         string
+	CreateTime      common.String
+	Author          common.String
+	Comment         common.String
 	ConfigValueList DescribeClusterServiceConfigHistoryConfigValueList
 }
 
 type DescribeClusterServiceConfigHistoryConfigValue struct {
-	ConfigName          string
+	ConfigName          common.String
 	ConfigItemValueList DescribeClusterServiceConfigHistoryConfigItemValueList
 }
 
 type DescribeClusterServiceConfigHistoryConfigItemValue struct {
-	ItemName   string
-	Value      string
-	OldValue   string
-	ChangeType string
+	ItemName   common.String
+	Value      common.String
+	OldValue   common.String
+	ChangeType common.String
 }
 
 type DescribeClusterServiceConfigHistoryConfigValueList []DescribeClusterServiceConfigHistoryConfigValue

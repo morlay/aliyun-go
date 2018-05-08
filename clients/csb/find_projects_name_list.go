@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindProjectsNameListRequest struct {
@@ -23,9 +24,9 @@ func (req *FindProjectsNameListRequest) Invoke(client *sdk.Client) (resp *FindPr
 
 type FindProjectsNameListResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      FindProjectsNameListData
 }
 
@@ -33,10 +34,10 @@ type FindProjectsNameListData struct {
 	ProjectNameList FindProjectsNameListProjectNameListList
 }
 
-type FindProjectsNameListProjectNameListList []string
+type FindProjectsNameListProjectNameListList []common.String
 
 func (list *FindProjectsNameListProjectNameListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

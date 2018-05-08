@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserInputStatisticInfoRequest struct {
@@ -25,13 +26,13 @@ func (req *GetUserInputStatisticInfoRequest) Invoke(client *sdk.Client) (resp *G
 
 type GetUserInputStatisticInfoResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	UserInputList GetUserInputStatisticInfoClusterStatUserInputList
 }
 
 type GetUserInputStatisticInfoClusterStatUserInput struct {
-	User       string
-	BytesInput int64
+	User       common.String
+	BytesInput common.Long
 }
 
 type GetUserInputStatisticInfoClusterStatUserInputList []GetUserInputStatisticInfoClusterStatUserInput

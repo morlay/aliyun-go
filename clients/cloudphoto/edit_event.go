@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EditEventRequest struct {
@@ -31,28 +32,28 @@ func (req *EditEventRequest) Invoke(client *sdk.Client) (resp *EditEventResponse
 
 type EditEventResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Event     EditEventEvent
 }
 
 type EditEventEvent struct {
-	Id               int64
-	IdStr            string
-	Title            string
-	BannerPhotoId    string
-	Identity         string
-	SplashPhotoId    string
-	State            string
-	WeixinTitle      string
-	WatermarkPhotoId string
-	StartAt          int64
-	EndAt            int64
-	Ctime            int64
-	Mtime            int64
-	ViewsCount       int64
-	LibraryId        string
-	IdStr1           string
+	Id               common.Long
+	IdStr            common.String
+	Title            common.String
+	BannerPhotoId    common.String
+	Identity         common.String
+	SplashPhotoId    common.String
+	State            common.String
+	WeixinTitle      common.String
+	WatermarkPhotoId common.String
+	StartAt          common.Long
+	EndAt            common.Long
+	Ctime            common.Long
+	Mtime            common.Long
+	ViewsCount       common.Long
+	LibraryId        common.String
+	IdStr1           common.String
 }

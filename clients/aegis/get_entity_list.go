@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetEntityListRequest struct {
@@ -27,10 +28,10 @@ func (req *GetEntityListRequest) Invoke(client *sdk.Client) (resp *GetEntityList
 
 type GetEntityListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
+	RequestId common.String
+	Code      common.String
 	Success   bool
-	Message   string
+	Message   common.String
 	Data      GetEntityListData
 }
 
@@ -40,24 +41,24 @@ type GetEntityListData struct {
 }
 
 type GetEntityListEntity struct {
-	Uuid         string
-	GroupId      int64
-	Ip           string
-	InstanceName string
-	InstanceId   string
-	Region       string
-	Os           string
-	Flag         string
-	BuyVersion   string
+	Uuid         common.String
+	GroupId      common.Long
+	Ip           common.String
+	InstanceName common.String
+	InstanceId   common.String
+	Region       common.String
+	Os           common.String
+	Flag         common.String
+	BuyVersion   common.String
 	AegisOnline  bool
-	AegisVersion string
+	AegisVersion common.String
 }
 
 type GetEntityListPageInfo struct {
-	CurrentPage int
-	PageSize    int
-	TotalCount  int
-	Count       int
+	CurrentPage common.Integer
+	PageSize    common.Integer
+	TotalCount  common.Integer
+	Count       common.Integer
 }
 
 type GetEntityListEntityList []GetEntityListEntity

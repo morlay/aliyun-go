@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeMigrateTasksForSQLServerRequest struct {
@@ -29,26 +30,26 @@ func (req *DescribeMigrateTasksForSQLServerRequest) Invoke(client *sdk.Client) (
 
 type DescribeMigrateTasksForSQLServerResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DBInstanceID     string
-	DBInstanceName   string
-	StartTime        string
-	EndTime          string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	DBInstanceID     common.String
+	DBInstanceName   common.String
+	StartTime        common.String
+	EndTime          common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeMigrateTasksForSQLServerMigrateTaskList
 }
 
 type DescribeMigrateTasksForSQLServerMigrateTask struct {
-	DBName        string
-	MigrateIaskId string
-	CreateTime    string
-	EndTime       string
-	TaskType      string
-	Status        string
-	IsDBReplaced  string
-	Desc          string
+	DBName        common.String
+	MigrateIaskId common.String
+	CreateTime    common.String
+	EndTime       common.String
+	TaskType      common.String
+	Status        common.String
+	IsDBReplaced  common.String
+	Desc          common.String
 }
 
 type DescribeMigrateTasksForSQLServerMigrateTaskList []DescribeMigrateTasksForSQLServerMigrateTask

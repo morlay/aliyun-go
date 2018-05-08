@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainPathDataRequest struct {
@@ -30,21 +31,21 @@ func (req *DescribeDomainPathDataRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeDomainPathDataResponse struct {
 	responses.BaseResponse
-	DomainName          string
-	StartTime           string
-	EndTime             string
-	PageSize            int
-	PageNumber          int
-	DataInterval        string
-	TotalCount          int
+	DomainName          common.String
+	StartTime           common.String
+	EndTime             common.String
+	PageSize            common.Integer
+	PageNumber          common.Integer
+	DataInterval        common.String
+	TotalCount          common.Integer
 	PathDataPerInterval DescribeDomainPathDataUsageDataList
 }
 
 type DescribeDomainPathDataUsageData struct {
-	Traffic int
-	Acc     int
-	Path    string
-	Time    string
+	Traffic common.Integer
+	Acc     common.Integer
+	Path    common.String
+	Time    common.String
 }
 
 type DescribeDomainPathDataUsageDataList []DescribeDomainPathDataUsageData

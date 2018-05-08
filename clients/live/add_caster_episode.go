@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCasterEpisodeRequest struct {
@@ -30,8 +31,8 @@ func (req *AddCasterEpisodeRequest) Invoke(client *sdk.Client) (resp *AddCasterE
 
 type AddCasterEpisodeResponse struct {
 	responses.BaseResponse
-	RequestId string
-	EpisodeId string
+	RequestId common.String
+	EpisodeId common.String
 }
 
 type AddCasterEpisodeComponentIdList []string

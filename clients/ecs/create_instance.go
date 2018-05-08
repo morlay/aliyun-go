@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateInstanceRequest struct {
@@ -88,8 +89,8 @@ type CreateInstanceDataDisk struct {
 
 type CreateInstanceResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	InstanceId string
+	RequestId  common.String
+	InstanceId common.String
 }
 
 type CreateInstanceDataDiskList []CreateInstanceDataDisk

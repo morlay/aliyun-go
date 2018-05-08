@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateGroupRequest struct {
@@ -21,12 +22,12 @@ func (req *CreateGroupRequest) Invoke(client *sdk.Client) (resp *CreateGroupResp
 
 type CreateGroupResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Group     CreateGroupGroup
 }
 
 type CreateGroupGroup struct {
-	GroupName  string
-	Comments   string
-	CreateDate string
+	GroupName  common.String
+	Comments   common.String
+	CreateDate common.String
 }

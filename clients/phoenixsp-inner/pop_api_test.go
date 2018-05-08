@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PopApiTestRequest struct {
@@ -21,9 +22,9 @@ func (req *PopApiTestRequest) Invoke(client *sdk.Client) (resp *PopApiTestRespon
 
 type PopApiTestResponse struct {
 	responses.BaseResponse
-	Code      string
-	Data      string
-	RequestId string
+	Code      common.String
+	Data      common.String
+	RequestId common.String
 	Success   bool
-	Message   string
+	Message   common.String
 }

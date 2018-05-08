@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRecycleBinRequest struct {
@@ -29,23 +30,23 @@ func (req *DescribeRecycleBinRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeRecycleBinResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	TotalCount       int
+	RequestId        common.String
+	TotalCount       common.Integer
 	RecycleBinModels DescribeRecycleBinRecycleBinModelList
 }
 
 type DescribeRecycleBinRecycleBinModel struct {
-	ResourceId        string
-	RegionId          string
-	ResourceType      string
-	CreationTime      string
-	Status            string
+	ResourceId        common.String
+	RegionId          common.String
+	ResourceType      common.String
+	CreationTime      common.String
+	Status            common.String
 	RelationResources DescribeRecycleBinRelationResourceList
 }
 
 type DescribeRecycleBinRelationResource struct {
-	RelationResourceId   string
-	RelationResourceType string
+	RelationResourceId   common.String
+	RelationResourceType common.String
 }
 
 type DescribeRecycleBinRecycleBinModelList []DescribeRecycleBinRecycleBinModel

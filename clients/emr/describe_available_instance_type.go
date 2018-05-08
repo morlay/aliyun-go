@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAvailableInstanceTypeRequest struct {
@@ -23,17 +24,17 @@ func (req *DescribeAvailableInstanceTypeRequest) Invoke(client *sdk.Client) (res
 
 type DescribeAvailableInstanceTypeResponse struct {
 	responses.BaseResponse
-	RequestId                    string
+	RequestId                    common.String
 	EmrSupportedInstanceTypeList DescribeAvailableInstanceTypeEmrSupportInstanceTypeList
 }
 
 type DescribeAvailableInstanceTypeEmrSupportInstanceType struct {
-	ClusterType             string
+	ClusterType             common.String
 	NodeTypeSupportInfoList DescribeAvailableInstanceTypeClusterNodeTypeSupportInfoList
 }
 
 type DescribeAvailableInstanceTypeClusterNodeTypeSupportInfo struct {
-	ClusterNodeType         string
+	ClusterNodeType         common.String
 	SupportInstanceTypeList DescribeAvailableInstanceTypeSupportInstanceTypeListList
 }
 
@@ -67,10 +68,10 @@ func (list *DescribeAvailableInstanceTypeClusterNodeTypeSupportInfoList) Unmarsh
 	return nil
 }
 
-type DescribeAvailableInstanceTypeSupportInstanceTypeListList []string
+type DescribeAvailableInstanceTypeSupportInstanceTypeListList []common.String
 
 func (list *DescribeAvailableInstanceTypeSupportInstanceTypeListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

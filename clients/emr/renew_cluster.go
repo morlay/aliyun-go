@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RenewClusterRequest struct {
@@ -30,9 +31,9 @@ type RenewClusterRenewEcsDo struct {
 
 type RenewClusterResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	EcsOrderIdList string
-	EmrOrderIdList string
+	RequestId      common.String
+	EcsOrderIdList common.String
+	EmrOrderIdList common.String
 }
 
 type RenewClusterRenewEcsDoList []RenewClusterRenewEcsDo

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListCurrentClientVersionRequest struct {
@@ -19,6 +20,6 @@ func (req *ListCurrentClientVersionRequest) Invoke(client *sdk.Client) (resp *Li
 
 type ListCurrentClientVersionResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	ClientVersion string
+	RequestId     common.String
+	ClientVersion common.String
 }

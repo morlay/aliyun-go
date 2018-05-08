@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifySecurityGroupConfigurationRequest struct {
@@ -26,15 +27,15 @@ func (req *ModifySecurityGroupConfigurationRequest) Invoke(client *sdk.Client) (
 
 type ModifySecurityGroupConfigurationResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DBInstanceName string
+	RequestId      common.String
+	DBInstanceName common.String
 	Items          ModifySecurityGroupConfigurationEcsSecurityGroupRelationList
 }
 
 type ModifySecurityGroupConfigurationEcsSecurityGroupRelation struct {
-	RegionId        string
-	SecurityGroupId string
-	NetworkType     string
+	RegionId        common.String
+	SecurityGroupId common.String
+	NetworkType     common.String
 }
 
 type ModifySecurityGroupConfigurationEcsSecurityGroupRelationList []ModifySecurityGroupConfigurationEcsSecurityGroupRelation

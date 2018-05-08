@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type WebshellLogRequest struct {
@@ -26,18 +27,18 @@ func (req *WebshellLogRequest) Invoke(client *sdk.Client) (resp *WebshellLogResp
 
 type WebshellLogResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PageNumber int
-	PageSize   int
-	TotalCount int
+	RequestId  common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
 	LogList    WebshellLogWebshellLogList
 }
 
 type WebshellLogWebshellLog struct {
-	Id     string
-	Path   string
-	Status int
-	Time   string
+	Id     common.String
+	Path   common.String
+	Status common.Integer
+	Time   common.String
 }
 
 type WebshellLogWebshellLogList []WebshellLogWebshellLog

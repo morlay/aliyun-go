@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindContacterTestRequest struct {
@@ -21,17 +22,17 @@ func (req *FindContacterTestRequest) Invoke(client *sdk.Client) (resp *FindConta
 type FindContacterTestResponse struct {
 	responses.BaseResponse
 	Success       bool
-	ResultCode    string
-	ResultMessage string
+	ResultCode    common.String
+	ResultMessage common.String
 	Data          FindContacterTestData
 }
 
 type FindContacterTestData struct {
-	ContacterId       int64
-	KpId              int64
-	CustomerId        int64
-	ContacterName     string
-	ContacterEmail    string
-	ContacterMobile   string
-	ContacterPosition string
+	ContacterId       common.Long
+	KpId              common.Long
+	CustomerId        common.Long
+	ContacterName     common.String
+	ContacterEmail    common.String
+	ContacterMobile   common.String
+	ContacterPosition common.String
 }

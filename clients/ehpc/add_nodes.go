@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddNodesRequest struct {
@@ -27,14 +28,14 @@ func (req *AddNodesRequest) Invoke(client *sdk.Client) (resp *AddNodesResponse, 
 
 type AddNodesResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	InstanceIds AddNodesInstanceIdList
 }
 
-type AddNodesInstanceIdList []string
+type AddNodesInstanceIdList []common.String
 
 func (list *AddNodesInstanceIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

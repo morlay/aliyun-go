@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyVpnGatewayAttributeRequest struct {
@@ -27,17 +28,17 @@ func (req *ModifyVpnGatewayAttributeRequest) Invoke(client *sdk.Client) (resp *M
 
 type ModifyVpnGatewayAttributeResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	VpnGatewayId   string
-	VpcId          string
-	VSwitchId      string
-	InternetIp     string
-	IntranetIp     string
-	CreateTime     int64
-	EndTime        int64
-	Spec           string
-	Name           string
-	Description    string
-	Status         string
-	BusinessStatus string
+	RequestId      common.String
+	VpnGatewayId   common.String
+	VpcId          common.String
+	VSwitchId      common.String
+	InternetIp     common.String
+	IntranetIp     common.String
+	CreateTime     common.Long
+	EndTime        common.Long
+	Spec           common.String
+	Name           common.String
+	Description    common.String
+	Status         common.String
+	BusinessStatus common.String
 }

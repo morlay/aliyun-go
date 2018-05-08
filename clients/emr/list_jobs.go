@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListJobsRequest struct {
@@ -27,21 +28,21 @@ func (req *ListJobsRequest) Invoke(client *sdk.Client) (resp *ListJobsResponse, 
 
 type ListJobsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Jobs       ListJobsJobInfoList
 }
 
 type ListJobsJobInfo struct {
-	Id            string
-	Name          string
-	Type          string
-	RunParameter  string
-	FailAct       string
-	MaxRetry      int
-	RetryInterval int
+	Id            common.String
+	Name          common.String
+	Type          common.String
+	RunParameter  common.String
+	FailAct       common.String
+	MaxRetry      common.Integer
+	RetryInterval common.Integer
 }
 
 type ListJobsJobInfoList []ListJobsJobInfo

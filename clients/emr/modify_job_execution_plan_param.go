@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyJobExecutionPlanParamRequest struct {
@@ -23,8 +24,8 @@ func (req *ModifyJobExecutionPlanParamRequest) Invoke(client *sdk.Client) (resp 
 
 type ModifyJobExecutionPlanParamResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Success   string
-	ErrCode   string
-	ErrMsg    string
+	RequestId common.String
+	Success   common.String
+	ErrCode   common.String
+	ErrMsg    common.String
 }

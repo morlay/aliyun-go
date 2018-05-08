@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyRouteTableAttributesRequest struct {
@@ -30,8 +31,8 @@ func (req *ModifyRouteTableAttributesRequest) Invoke(client *sdk.Client) (resp *
 
 type ModifyRouteTableAttributesResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Message   string
+	RequestId common.String
+	Code      common.String
+	Message   common.String
 	Success   bool
 }

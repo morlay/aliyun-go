@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type FindBillingInfoByUserInPeriodRequest struct {
@@ -29,29 +30,29 @@ func (req *FindBillingInfoByUserInPeriodRequest) Invoke(client *sdk.Client) (res
 
 type FindBillingInfoByUserInPeriodResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Count     int
+	RequestId common.String
+	Code      common.String
+	Count     common.Integer
 	Datas     FindBillingInfoByUserInPeriodDataList
 }
 
 type FindBillingInfoByUserInPeriodData struct {
-	AliUID           int64
-	ResourceType     string
-	ResourceStatus   string
-	InstanceId       string
-	BillingTag       string
-	ChargeType       string
-	ResourceSource   string
-	CommodityCode    string
-	PropertyDetail   string
-	Operation        string
-	CommandStartTime int64
-	ActualStartTime  int64
-	ExpectStartTime  int64
-	CommandEndTime   int64
-	ActualEndTime    int64
-	ExpectEndTime    int64
+	AliUID           common.Long
+	ResourceType     common.String
+	ResourceStatus   common.String
+	InstanceId       common.String
+	BillingTag       common.String
+	ChargeType       common.String
+	ResourceSource   common.String
+	CommodityCode    common.String
+	PropertyDetail   common.String
+	Operation        common.String
+	CommandStartTime common.Long
+	ActualStartTime  common.Long
+	ExpectStartTime  common.Long
+	CommandEndTime   common.Long
+	ActualEndTime    common.Long
+	ExpectEndTime    common.Long
 }
 
 type FindBillingInfoByUserInPeriodDataList []FindBillingInfoByUserInPeriodData

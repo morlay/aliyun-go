@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateReadOnlyDBInstanceRequest struct {
@@ -36,9 +37,9 @@ func (req *CreateReadOnlyDBInstanceRequest) Invoke(client *sdk.Client) (resp *Cr
 
 type CreateReadOnlyDBInstanceResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	DBInstanceId     string
-	OrderId          string
-	ConnectionString string
-	Port             string
+	RequestId        common.String
+	DBInstanceId     common.String
+	OrderId          common.String
+	ConnectionString common.String
+	Port             common.String
 }

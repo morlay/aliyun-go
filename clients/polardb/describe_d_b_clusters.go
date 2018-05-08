@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBClustersRequest struct {
@@ -28,29 +29,29 @@ func (req *DescribeDBClustersRequest) Invoke(client *sdk.Client) (resp *Describe
 
 type DescribeDBClustersResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	PageNumber       int
-	TotalRecordCount int
-	PageRecordCount  int
+	RequestId        common.String
+	PageNumber       common.Integer
+	TotalRecordCount common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeDBClustersDBClusterList
 }
 
 type DescribeDBClustersDBCluster struct {
-	DBClusterId          string
-	DBClusterDescription string
-	PayType              string
-	DBClusterNetworkType string
-	RegionId             string
-	ExpireTime           string
-	DBClusterStatus      string
-	Engine               string
-	DBType               string
-	DBVersion            string
-	LockMode             string
-	LockReason           string
-	CreateTime           string
-	VpcId                string
-	VSwitchId            string
+	DBClusterId          common.String
+	DBClusterDescription common.String
+	PayType              common.String
+	DBClusterNetworkType common.String
+	RegionId             common.String
+	ExpireTime           common.String
+	DBClusterStatus      common.String
+	Engine               common.String
+	DBType               common.String
+	DBVersion            common.String
+	LockMode             common.String
+	LockReason           common.String
+	CreateTime           common.String
+	VpcId                common.String
+	VSwitchId            common.String
 }
 
 type DescribeDBClustersDBClusterList []DescribeDBClustersDBCluster

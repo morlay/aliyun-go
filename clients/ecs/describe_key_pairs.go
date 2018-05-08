@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeKeyPairsRequest struct {
@@ -28,16 +29,16 @@ func (req *DescribeKeyPairsRequest) Invoke(client *sdk.Client) (resp *DescribeKe
 
 type DescribeKeyPairsResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	KeyPairs   DescribeKeyPairsKeyPairList
 }
 
 type DescribeKeyPairsKeyPair struct {
-	KeyPairName        string
-	KeyPairFingerPrint string
+	KeyPairName        common.String
+	KeyPairFingerPrint common.String
 }
 
 type DescribeKeyPairsKeyPairList []DescribeKeyPairsKeyPair

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeZonesRequest struct {
@@ -28,13 +29,13 @@ func (req *DescribeZonesRequest) Invoke(client *sdk.Client) (resp *DescribeZones
 
 type DescribeZonesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Zones     DescribeZonesZoneList
 }
 
 type DescribeZonesZone struct {
-	ZoneId                      string
-	LocalName                   string
+	ZoneId                      common.String
+	LocalName                   common.String
 	AvailableResources          DescribeZonesResourcesInfoList
 	AvailableResourceCreation   DescribeZonesAvailableResourceCreationList
 	AvailableDiskCategories     DescribeZonesAvailableDiskCategoryList
@@ -84,10 +85,10 @@ func (list *DescribeZonesResourcesInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeZonesAvailableResourceCreationList []string
+type DescribeZonesAvailableResourceCreationList []common.String
 
 func (list *DescribeZonesAvailableResourceCreationList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -99,10 +100,10 @@ func (list *DescribeZonesAvailableResourceCreationList) UnmarshalJSON(data []byt
 	return nil
 }
 
-type DescribeZonesAvailableDiskCategoryList []string
+type DescribeZonesAvailableDiskCategoryList []common.String
 
 func (list *DescribeZonesAvailableDiskCategoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -114,10 +115,10 @@ func (list *DescribeZonesAvailableDiskCategoryList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeZonesAvailableInstanceTypeList []string
+type DescribeZonesAvailableInstanceTypeList []common.String
 
 func (list *DescribeZonesAvailableInstanceTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -129,10 +130,10 @@ func (list *DescribeZonesAvailableInstanceTypeList) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-type DescribeZonesAvailableVolumeCategoryList []string
+type DescribeZonesAvailableVolumeCategoryList []common.String
 
 func (list *DescribeZonesAvailableVolumeCategoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -144,10 +145,10 @@ func (list *DescribeZonesAvailableVolumeCategoryList) UnmarshalJSON(data []byte)
 	return nil
 }
 
-type DescribeZonesAvailableDedicatedHostTypeList []string
+type DescribeZonesAvailableDedicatedHostTypeList []common.String
 
 func (list *DescribeZonesAvailableDedicatedHostTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -159,10 +160,10 @@ func (list *DescribeZonesAvailableDedicatedHostTypeList) UnmarshalJSON(data []by
 	return nil
 }
 
-type DescribeZonesDedicatedHostGenerationList []string
+type DescribeZonesDedicatedHostGenerationList []common.String
 
 func (list *DescribeZonesDedicatedHostGenerationList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -174,10 +175,10 @@ func (list *DescribeZonesDedicatedHostGenerationList) UnmarshalJSON(data []byte)
 	return nil
 }
 
-type DescribeZonesSystemDiskCategoryList []string
+type DescribeZonesSystemDiskCategoryList []common.String
 
 func (list *DescribeZonesSystemDiskCategoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -189,10 +190,10 @@ func (list *DescribeZonesSystemDiskCategoryList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type DescribeZonesDataDiskCategoryList []string
+type DescribeZonesDataDiskCategoryList []common.String
 
 func (list *DescribeZonesDataDiskCategoryList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -204,10 +205,10 @@ func (list *DescribeZonesDataDiskCategoryList) UnmarshalJSON(data []byte) error 
 	return nil
 }
 
-type DescribeZonesNetworkTypeList []string
+type DescribeZonesNetworkTypeList []common.String
 
 func (list *DescribeZonesNetworkTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -219,10 +220,10 @@ func (list *DescribeZonesNetworkTypeList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeZonesInstanceTypeList []string
+type DescribeZonesInstanceTypeList []common.String
 
 func (list *DescribeZonesInstanceTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -234,10 +235,10 @@ func (list *DescribeZonesInstanceTypeList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeZonesInstanceTypeFamilyList []string
+type DescribeZonesInstanceTypeFamilyList []common.String
 
 func (list *DescribeZonesInstanceTypeFamilyList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -249,10 +250,10 @@ func (list *DescribeZonesInstanceTypeFamilyList) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-type DescribeZonesInstanceGenerationList []string
+type DescribeZonesInstanceGenerationList []common.String
 
 func (list *DescribeZonesInstanceGenerationList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

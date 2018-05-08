@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeNqasRequest struct {
@@ -30,19 +31,19 @@ func (req *DescribeNqasRequest) Invoke(client *sdk.Client) (resp *DescribeNqasRe
 
 type DescribeNqasResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Nqas       DescribeNqasNqaList
 }
 
 type DescribeNqasNqa struct {
-	NqaId         string
-	RegionId      string
-	Status        string
-	RouterId      string
-	DestinationIp string
+	NqaId         common.String
+	RegionId      common.String
+	Status        common.String
+	RouterId      common.String
+	DestinationIp common.String
 }
 
 type DescribeNqasNqaList []DescribeNqasNqa

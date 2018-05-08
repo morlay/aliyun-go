@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDisksFullStatusRequest struct {
@@ -34,39 +35,39 @@ func (req *DescribeDisksFullStatusRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDisksFullStatusResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalCount        int
-	PageNumber        int
-	PageSize          int
+	RequestId         common.String
+	TotalCount        common.Integer
+	PageNumber        common.Integer
+	PageSize          common.Integer
 	DiskFullStatusSet DescribeDisksFullStatusDiskFullStatusTypeList
 }
 
 type DescribeDisksFullStatusDiskFullStatusType struct {
-	DiskId       string
+	DiskId       common.String
 	DiskEventSet DescribeDisksFullStatusDiskEventTypeList
 	Status       DescribeDisksFullStatusStatus
 	HealthStatus DescribeDisksFullStatusHealthStatus
 }
 
 type DescribeDisksFullStatusDiskEventType struct {
-	EventId   string
-	EventTime string
+	EventId   common.String
+	EventTime common.String
 	EventType DescribeDisksFullStatusEventType
 }
 
 type DescribeDisksFullStatusEventType struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeDisksFullStatusStatus struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeDisksFullStatusHealthStatus struct {
-	Code int
-	Name string
+	Code common.Integer
+	Name common.String
 }
 
 type DescribeDisksFullStatusEventIdList []string

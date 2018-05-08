@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDnsProductAttributesRequest struct {
@@ -22,17 +23,17 @@ func (req *DescribeDnsProductAttributesRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeDnsProductAttributesResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TtlMinValue string
-	TtlMaxValue string
+	RequestId   common.String
+	TtlMinValue common.String
+	TtlMaxValue common.String
 	RecordLines DescribeDnsProductAttributesRecordLineList
 	RecordTypes DescribeDnsProductAttributesRecordTypeList
 }
 
 type DescribeDnsProductAttributesRecordLine struct {
-	LineCode   string
-	FatherCode string
-	LineName   string
+	LineCode   common.String
+	FatherCode common.String
+	LineName   common.String
 }
 
 type DescribeDnsProductAttributesRecordLineList []DescribeDnsProductAttributesRecordLine
@@ -50,10 +51,10 @@ func (list *DescribeDnsProductAttributesRecordLineList) UnmarshalJSON(data []byt
 	return nil
 }
 
-type DescribeDnsProductAttributesRecordTypeList []string
+type DescribeDnsProductAttributesRecordTypeList []common.String
 
 func (list *DescribeDnsProductAttributesRecordTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

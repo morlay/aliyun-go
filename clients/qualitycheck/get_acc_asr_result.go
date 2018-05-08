@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetAccAsrResultRequest struct {
@@ -22,21 +23,21 @@ func (req *GetAccAsrResultRequest) Invoke(client *sdk.Client) (resp *GetAccAsrRe
 
 type GetAccAsrResultResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
-	Count     int
+	Code      common.String
+	Message   common.String
+	Count     common.Integer
 	Data      GetAccAsrResultAccAsrSentenceResultList
 }
 
 type GetAccAsrResultAccAsrSentenceResult struct {
-	RecordId         string
-	Status           string
-	StatusCode       string
-	ErrorMessage     string
-	Duration         int64
-	InteractiveCount int
+	RecordId         common.String
+	Status           common.String
+	StatusCode       common.String
+	ErrorMessage     common.String
+	Duration         common.Long
+	InteractiveCount common.Integer
 	Results          GetAccAsrResultSentenceResultList
 	ServiceEvStat    GetAccAsrResultServiceEvStat
 	ClientEvStat     GetAccAsrResultClientEvStat
@@ -45,44 +46,44 @@ type GetAccAsrResultAccAsrSentenceResult struct {
 }
 
 type GetAccAsrResultSentenceResult struct {
-	BeginTime       int64
-	EndTime         int64
-	ChannelId       int
-	Text            string
-	EmotionValue    int
-	SilenceDuration int
-	SpeechRate      int
-	SpeakerId       string
-	AgentId         string
-	ChannelKey      string
+	BeginTime       common.Long
+	EndTime         common.Long
+	ChannelId       common.Integer
+	Text            common.String
+	EmotionValue    common.Integer
+	SilenceDuration common.Integer
+	SpeechRate      common.Integer
+	SpeakerId       common.String
+	AgentId         common.String
+	ChannelKey      common.String
 }
 
 type GetAccAsrResultServiceEvStat struct {
-	Srole            int
-	SmaxEmotionValue float32
-	SminEmotionValue float32
-	SavgEmotionValue float32
+	Srole            common.Integer
+	SmaxEmotionValue common.Float
+	SminEmotionValue common.Float
+	SavgEmotionValue common.Float
 }
 
 type GetAccAsrResultClientEvStat struct {
-	Crole            int
-	CmaxEmotionValue float32
-	CminEmotionValue float32
-	CavgEmotionValue float32
+	Crole            common.Integer
+	CmaxEmotionValue common.Float
+	CminEmotionValue common.Float
+	CavgEmotionValue common.Float
 }
 
 type GetAccAsrResultServiceSrStat struct {
-	Srole          int
-	SmaxSpeechRate float32
-	SminSpeechRate float32
-	SavgSpeechRate float32
+	Srole          common.Integer
+	SmaxSpeechRate common.Float
+	SminSpeechRate common.Float
+	SavgSpeechRate common.Float
 }
 
 type GetAccAsrResultClientSrStat struct {
-	Crole          int
-	CmaxSpeechRate float32
-	CminSpeechRate float32
-	CavgSpeechRate float32
+	Crole          common.Integer
+	CmaxSpeechRate common.Float
+	CminSpeechRate common.Float
+	CavgSpeechRate common.Float
 }
 
 type GetAccAsrResultAccAsrSentenceResultList []GetAccAsrResultAccAsrSentenceResult

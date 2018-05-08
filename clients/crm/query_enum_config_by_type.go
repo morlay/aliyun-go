@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryEnumConfigByTypeRequest struct {
@@ -23,14 +24,14 @@ func (req *QueryEnumConfigByTypeRequest) Invoke(client *sdk.Client) (resp *Query
 type QueryEnumConfigByTypeResponse struct {
 	responses.BaseResponse
 	Success       bool
-	ResultCode    string
-	ResultMessage string
+	ResultCode    common.String
+	ResultMessage common.String
 	Data          QueryEnumConfigByTypeBizCategoryList
 }
 
 type QueryEnumConfigByTypeBizCategory struct {
-	EnumName  string
-	EnumValue string
+	EnumName  common.String
+	EnumValue common.String
 }
 
 type QueryEnumConfigByTypeBizCategoryList []QueryEnumConfigByTypeBizCategory

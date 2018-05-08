@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CompareFacesRequest struct {
@@ -24,14 +25,14 @@ func (req *CompareFacesRequest) Invoke(client *sdk.Client) (resp *CompareFacesRe
 
 type CompareFacesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      CompareFacesData
 }
 
 type CompareFacesData struct {
-	SimilarityScore      float32
-	ConfidenceThresholds string
+	SimilarityScore      common.Float
+	ConfidenceThresholds common.String
 }

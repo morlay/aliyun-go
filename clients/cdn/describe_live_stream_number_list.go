@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamNumberListRequest struct {
@@ -27,14 +28,14 @@ func (req *DescribeLiveStreamNumberListRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeLiveStreamNumberListResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	DomainName        string
+	RequestId         common.String
+	DomainName        common.String
 	StreamNumberInfos DescribeLiveStreamNumberListStreamNumberInfoList
 }
 
 type DescribeLiveStreamNumberListStreamNumberInfo struct {
-	Number int
-	Time   string
+	Number common.Integer
+	Time   common.String
 }
 
 type DescribeLiveStreamNumberListStreamNumberInfoList []DescribeLiveStreamNumberListStreamNumberInfo

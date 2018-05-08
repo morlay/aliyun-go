@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeFlowProjectClusterSettingRequest struct {
@@ -24,22 +25,22 @@ func (req *DescribeFlowProjectClusterSettingRequest) Invoke(client *sdk.Client) 
 
 type DescribeFlowProjectClusterSettingResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	GmtCreate    int64
-	GmtModified  int64
-	ProjectId    string
-	ClusterId    string
-	DefaultUser  string
-	DefaultQueue string
+	RequestId    common.String
+	GmtCreate    common.Long
+	GmtModified  common.Long
+	ProjectId    common.String
+	ClusterId    common.String
+	DefaultUser  common.String
+	DefaultQueue common.String
 	UserList     DescribeFlowProjectClusterSettingUserListList
 	QueueList    DescribeFlowProjectClusterSettingQueueListList
 	HostList     DescribeFlowProjectClusterSettingHostListList
 }
 
-type DescribeFlowProjectClusterSettingUserListList []string
+type DescribeFlowProjectClusterSettingUserListList []common.String
 
 func (list *DescribeFlowProjectClusterSettingUserListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -51,10 +52,10 @@ func (list *DescribeFlowProjectClusterSettingUserListList) UnmarshalJSON(data []
 	return nil
 }
 
-type DescribeFlowProjectClusterSettingQueueListList []string
+type DescribeFlowProjectClusterSettingQueueListList []common.String
 
 func (list *DescribeFlowProjectClusterSettingQueueListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -66,10 +67,10 @@ func (list *DescribeFlowProjectClusterSettingQueueListList) UnmarshalJSON(data [
 	return nil
 }
 
-type DescribeFlowProjectClusterSettingHostListList []string
+type DescribeFlowProjectClusterSettingHostListList []common.String
 
 func (list *DescribeFlowProjectClusterSettingHostListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBClusterIPArrayListRequest struct {
@@ -26,14 +27,14 @@ func (req *DescribeDBClusterIPArrayListRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeDBClusterIPArrayListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeDBClusterIPArrayListDBClusterIPArrayList
 }
 
 type DescribeDBClusterIPArrayListDBClusterIPArray struct {
-	DBClusterIPArrayName      string
-	DBClusterIPArrayAttribute string
-	SecurityIPList            string
+	DBClusterIPArrayName      common.String
+	DBClusterIPArrayAttribute common.String
+	SecurityIPList            common.String
 }
 
 type DescribeDBClusterIPArrayListDBClusterIPArrayList []DescribeDBClusterIPArrayListDBClusterIPArray

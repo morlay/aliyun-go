@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetTagSetRequest struct {
@@ -21,10 +22,10 @@ func (req *GetTagSetRequest) Invoke(client *sdk.Client) (resp *GetTagSetResponse
 
 type GetTagSetResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	SetId      string
-	Status     string
-	CreateTime string
-	ModifyTime string
-	Photos     int64
+	RequestId  common.String
+	SetId      common.String
+	Status     common.String
+	CreateTime common.String
+	ModifyTime common.String
+	Photos     common.Long
 }

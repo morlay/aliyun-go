@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SubmitMaterialsRequest struct {
@@ -29,10 +30,10 @@ type SubmitMaterialsMaterial struct {
 
 type SubmitMaterialsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      SubmitMaterialsData
 }
 
@@ -41,9 +42,9 @@ type SubmitMaterialsData struct {
 }
 
 type SubmitMaterialsVerifyStatus struct {
-	StatusCode      int
-	TrustedScore    float32
-	SimilarityScore float32
+	StatusCode      common.Integer
+	TrustedScore    common.Float
+	SimilarityScore common.Float
 }
 
 type SubmitMaterialsMaterialList []SubmitMaterialsMaterial

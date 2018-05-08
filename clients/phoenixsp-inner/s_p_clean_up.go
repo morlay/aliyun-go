@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SPCleanUpRequest struct {
@@ -20,8 +21,8 @@ func (req *SPCleanUpRequest) Invoke(client *sdk.Client) (resp *SPCleanUpResponse
 
 type SPCleanUpResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
-	Message   string
+	RequestId common.String
+	Code      common.String
+	Message   common.String
 	Success   bool
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCenBandwidthPackagesRequest struct {
@@ -34,25 +35,25 @@ type DescribeCenBandwidthPackagesFilter struct {
 
 type DescribeCenBandwidthPackagesResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	TotalCount           int
-	PageNumber           int
-	PageSize             int
+	RequestId            common.String
+	TotalCount           common.Integer
+	PageNumber           common.Integer
+	PageSize             common.Integer
 	CenBandwidthPackages DescribeCenBandwidthPackagesCenBandwidthPackageList
 }
 
 type DescribeCenBandwidthPackagesCenBandwidthPackage struct {
-	CenBandwidthPackageId      string
-	Name                       string
-	Description                string
-	Bandwidth                  int64
-	BandwidthPackageChargeType string
-	GeographicRegionAId        string
-	GeographicRegionBId        string
-	BusinessStatus             string
-	CreationTime               string
-	ExpiredTime                string
-	Status                     string
+	CenBandwidthPackageId      common.String
+	Name                       common.String
+	Description                common.String
+	Bandwidth                  common.Long
+	BandwidthPackageChargeType common.String
+	GeographicRegionAId        common.String
+	GeographicRegionBId        common.String
+	BusinessStatus             common.String
+	CreationTime               common.String
+	ExpiredTime                common.String
+	Status                     common.String
 	CenIds                     DescribeCenBandwidthPackagesCenIdList
 }
 
@@ -101,10 +102,10 @@ func (list *DescribeCenBandwidthPackagesCenBandwidthPackageList) UnmarshalJSON(d
 	return nil
 }
 
-type DescribeCenBandwidthPackagesCenIdList []string
+type DescribeCenBandwidthPackagesCenIdList []common.String
 
 func (list *DescribeCenBandwidthPackagesCenIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

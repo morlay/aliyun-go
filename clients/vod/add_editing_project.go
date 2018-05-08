@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddEditingProjectRequest struct {
@@ -27,15 +28,15 @@ func (req *AddEditingProjectRequest) Invoke(client *sdk.Client) (resp *AddEditin
 
 type AddEditingProjectResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Project   AddEditingProjectProject
 }
 
 type AddEditingProjectProject struct {
-	ProjectId    string
-	CreationTime string
-	ModifiedTime string
-	Status       string
-	Description  string
-	Title        string
+	ProjectId    common.String
+	CreationTime common.String
+	ModifiedTime common.String
+	Status       common.String
+	Description  common.String
+	Title        common.String
 }

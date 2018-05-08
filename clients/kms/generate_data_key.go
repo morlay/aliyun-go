@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GenerateDataKeyRequest struct {
@@ -24,8 +25,8 @@ func (req *GenerateDataKeyRequest) Invoke(client *sdk.Client) (resp *GenerateDat
 
 type GenerateDataKeyResponse struct {
 	responses.BaseResponse
-	CiphertextBlob string
-	KeyId          string
-	Plaintext      string
-	RequestId      string
+	CiphertextBlob common.String
+	KeyId          common.String
+	Plaintext      common.String
+	RequestId      common.String
 }

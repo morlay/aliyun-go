@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PreCheckBeforeImportDataRequest struct {
@@ -31,6 +32,6 @@ func (req *PreCheckBeforeImportDataRequest) Invoke(client *sdk.Client) (resp *Pr
 
 type PreCheckBeforeImportDataResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PreCheckId string
+	RequestId  common.String
+	PreCheckId common.String
 }

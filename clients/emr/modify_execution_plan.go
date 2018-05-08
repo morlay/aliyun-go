@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyExecutionPlanRequest struct {
@@ -72,7 +73,7 @@ type ModifyExecutionPlanEcsOrder struct {
 
 type ModifyExecutionPlanResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type ModifyExecutionPlanJobIdListList []string

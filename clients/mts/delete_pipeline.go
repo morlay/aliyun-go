@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DeletePipelineRequest struct {
@@ -24,6 +25,6 @@ func (req *DeletePipelineRequest) Invoke(client *sdk.Client) (resp *DeletePipeli
 
 type DeletePipelineResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	PipelineId string
+	RequestId  common.String
+	PipelineId common.String
 }

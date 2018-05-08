@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceVncUrlRequest struct {
@@ -24,6 +25,6 @@ func (req *DescribeInstanceVncUrlRequest) Invoke(client *sdk.Client) (resp *Desc
 
 type DescribeInstanceVncUrlResponse struct {
 	responses.BaseResponse
-	RequestId string
-	VncUrl    string
+	RequestId common.String
+	VncUrl    common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateUserRequest struct {
@@ -24,16 +25,16 @@ func (req *CreateUserRequest) Invoke(client *sdk.Client) (resp *CreateUserRespon
 
 type CreateUserResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	User      CreateUserUser
 }
 
 type CreateUserUser struct {
-	UserId      string
-	UserName    string
-	DisplayName string
-	MobilePhone string
-	Email       string
-	Comments    string
-	CreateDate  string
+	UserId      common.String
+	UserName    common.String
+	DisplayName common.String
+	MobilePhone common.String
+	Email       common.String
+	Comments    common.String
+	CreateDate  common.String
 }

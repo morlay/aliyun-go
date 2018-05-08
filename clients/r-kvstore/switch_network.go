@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SwitchNetworkRequest struct {
@@ -30,6 +31,6 @@ func (req *SwitchNetworkRequest) Invoke(client *sdk.Client) (resp *SwitchNetwork
 
 type SwitchNetworkResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskId    string
+	RequestId common.String
+	TaskId    common.String
 }

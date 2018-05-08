@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RequestServiceOfCloudDBARequest struct {
@@ -22,7 +23,7 @@ func (req *RequestServiceOfCloudDBARequest) Invoke(client *sdk.Client) (resp *Re
 
 type RequestServiceOfCloudDBAResponse struct {
 	responses.BaseResponse
-	RequestId string
-	ListData  string
-	AttrData  string
+	RequestId common.String
+	ListData  common.String
+	AttrData  common.String
 }

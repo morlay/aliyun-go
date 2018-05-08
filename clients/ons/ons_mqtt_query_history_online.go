@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsMqttQueryHistoryOnlineRequest struct {
@@ -27,21 +28,21 @@ func (req *OnsMqttQueryHistoryOnlineRequest) Invoke(client *sdk.Client) (resp *O
 
 type OnsMqttQueryHistoryOnlineResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsMqttQueryHistoryOnlineData
 }
 
 type OnsMqttQueryHistoryOnlineData struct {
-	Title   string
-	XUnit   string
-	YUnit   string
+	Title   common.String
+	XUnit   common.String
+	YUnit   common.String
 	Records OnsMqttQueryHistoryOnlineStatsDataDoList
 }
 
 type OnsMqttQueryHistoryOnlineStatsDataDo struct {
-	X int64
-	Y float32
+	X common.Long
+	Y common.Float
 }
 
 type OnsMqttQueryHistoryOnlineStatsDataDoList []OnsMqttQueryHistoryOnlineStatsDataDo

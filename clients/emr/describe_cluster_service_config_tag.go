@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterServiceConfigTagRequest struct {
@@ -25,19 +26,19 @@ func (req *DescribeClusterServiceConfigTagRequest) Invoke(client *sdk.Client) (r
 
 type DescribeClusterServiceConfigTagResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	ConfigTagList DescribeClusterServiceConfigTagConfigTagList
 }
 
 type DescribeClusterServiceConfigTagConfigTag struct {
-	Tag       string
-	TagDesc   string
+	Tag       common.String
+	TagDesc   common.String
 	ValueList DescribeClusterServiceConfigTagValueList
 }
 
 type DescribeClusterServiceConfigTagValue struct {
-	Value     string
-	ValueDesc string
+	Value     common.String
+	ValueDesc common.String
 }
 
 type DescribeClusterServiceConfigTagConfigTagList []DescribeClusterServiceConfigTagConfigTag

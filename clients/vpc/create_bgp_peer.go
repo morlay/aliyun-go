@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateBgpPeerRequest struct {
@@ -26,6 +27,6 @@ func (req *CreateBgpPeerRequest) Invoke(client *sdk.Client) (resp *CreateBgpPeer
 
 type CreateBgpPeerResponse struct {
 	responses.BaseResponse
-	RequestId string
-	BgpPeerId string
+	RequestId common.String
+	BgpPeerId common.String
 }

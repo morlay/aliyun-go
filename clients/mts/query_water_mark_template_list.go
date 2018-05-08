@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryWaterMarkTemplateListRequest struct {
@@ -26,35 +27,35 @@ func (req *QueryWaterMarkTemplateListRequest) Invoke(client *sdk.Client) (resp *
 
 type QueryWaterMarkTemplateListResponse struct {
 	responses.BaseResponse
-	RequestId             string
+	RequestId             common.String
 	WaterMarkTemplateList QueryWaterMarkTemplateListWaterMarkTemplateList
 	NonExistWids          QueryWaterMarkTemplateListNonExistWidList
 }
 
 type QueryWaterMarkTemplateListWaterMarkTemplate struct {
-	Id         string
-	Name       string
-	Width      string
-	Height     string
-	Dx         string
-	Dy         string
-	ReferPos   string
-	Type       string
-	State      string
+	Id         common.String
+	Name       common.String
+	Width      common.String
+	Height     common.String
+	Dx         common.String
+	Dy         common.String
+	ReferPos   common.String
+	Type       common.String
+	State      common.String
 	Timeline   QueryWaterMarkTemplateListTimeline
 	RatioRefer QueryWaterMarkTemplateListRatioRefer
 }
 
 type QueryWaterMarkTemplateListTimeline struct {
-	Start    string
-	Duration string
+	Start    common.String
+	Duration common.String
 }
 
 type QueryWaterMarkTemplateListRatioRefer struct {
-	Dx     string
-	Dy     string
-	Width  string
-	Height string
+	Dx     common.String
+	Dy     common.String
+	Width  common.String
+	Height common.String
 }
 
 type QueryWaterMarkTemplateListWaterMarkTemplateList []QueryWaterMarkTemplateListWaterMarkTemplate
@@ -72,10 +73,10 @@ func (list *QueryWaterMarkTemplateListWaterMarkTemplateList) UnmarshalJSON(data 
 	return nil
 }
 
-type QueryWaterMarkTemplateListNonExistWidList []string
+type QueryWaterMarkTemplateListNonExistWidList []common.String
 
 func (list *QueryWaterMarkTemplateListNonExistWidList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

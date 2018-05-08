@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryChangeLogListRequest struct {
@@ -28,11 +29,11 @@ func (req *QueryChangeLogListRequest) Invoke(client *sdk.Client) (resp *QueryCha
 
 type QueryChangeLogListResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalItemNum   int
-	CurrentPageNum int
-	TotalPageNum   int
-	PageSize       int
+	RequestId      common.String
+	TotalItemNum   common.Integer
+	CurrentPageNum common.Integer
+	TotalPageNum   common.Integer
+	PageSize       common.Integer
 	PrePage        bool
 	NextPage       bool
 	ResultLimit    bool
@@ -40,12 +41,12 @@ type QueryChangeLogListResponse struct {
 }
 
 type QueryChangeLogListChangeLog struct {
-	DomainName         string
-	Result             string
-	Operation          string
-	OperationIPAddress string
-	Details            string
-	Time               string
+	DomainName         common.String
+	Result             common.String
+	Operation          common.String
+	OperationIPAddress common.String
+	Details            common.String
+	Time               common.String
 }
 
 type QueryChangeLogListChangeLogList []QueryChangeLogListChangeLog

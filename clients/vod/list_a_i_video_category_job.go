@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAIVideoCategoryJobRequest struct {
@@ -26,19 +27,19 @@ func (req *ListAIVideoCategoryJobRequest) Invoke(client *sdk.Client) (resp *List
 
 type ListAIVideoCategoryJobResponse struct {
 	responses.BaseResponse
-	RequestId                     string
+	RequestId                     common.String
 	AIVideoCategoryJobList        ListAIVideoCategoryJobAIVideoCategoryJobList
 	NonExistAIVideoCategoryJobIds ListAIVideoCategoryJobNonExistAIVideoCategoryJobIdList
 }
 
 type ListAIVideoCategoryJobAIVideoCategoryJob struct {
-	JobId        string
-	MediaId      string
-	Status       string
-	Code         string
-	Message      string
-	CreationTime string
-	Data         string
+	JobId        common.String
+	MediaId      common.String
+	Status       common.String
+	Code         common.String
+	Message      common.String
+	CreationTime common.String
+	Data         common.String
 }
 
 type ListAIVideoCategoryJobAIVideoCategoryJobList []ListAIVideoCategoryJobAIVideoCategoryJob
@@ -56,10 +57,10 @@ func (list *ListAIVideoCategoryJobAIVideoCategoryJobList) UnmarshalJSON(data []b
 	return nil
 }
 
-type ListAIVideoCategoryJobNonExistAIVideoCategoryJobIdList []string
+type ListAIVideoCategoryJobNonExistAIVideoCategoryJobIdList []common.String
 
 func (list *ListAIVideoCategoryJobNonExistAIVideoCategoryJobIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

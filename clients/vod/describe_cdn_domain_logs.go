@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnDomainLogsRequest struct {
@@ -31,24 +32,24 @@ func (req *DescribeCdnDomainLogsRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeCdnDomainLogsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	PageNo         int64
-	PageSize       int64
-	Total          int64
+	RequestId      common.String
+	PageNo         common.Long
+	PageSize       common.Long
+	Total          common.Long
 	DomainLogModel DescribeCdnDomainLogsDomainLogModel
 }
 
 type DescribeCdnDomainLogsDomainLogModel struct {
-	DomainName       string
+	DomainName       common.String
 	DomainLogDetails DescribeCdnDomainLogsDomainLogDetailList
 }
 
 type DescribeCdnDomainLogsDomainLogDetail struct {
-	LogPath   string
-	StartTime string
-	EndTime   string
-	LogSize   int64
-	LogName   string
+	LogPath   common.String
+	StartTime common.String
+	EndTime   common.String
+	LogSize   common.Long
+	LogName   common.String
 }
 
 type DescribeCdnDomainLogsDomainLogDetailList []DescribeCdnDomainLogsDomainLogDetail

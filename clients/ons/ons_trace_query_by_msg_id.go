@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsTraceQueryByMsgIdRequest struct {
@@ -26,7 +27,7 @@ func (req *OnsTraceQueryByMsgIdRequest) Invoke(client *sdk.Client) (resp *OnsTra
 
 type OnsTraceQueryByMsgIdResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
-	QueryId   string
+	RequestId common.String
+	HelpUrl   common.String
+	QueryId   common.String
 }

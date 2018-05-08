@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateDrdsInstanceRequest struct {
@@ -30,20 +31,20 @@ func (req *CreateDrdsInstanceRequest) Invoke(client *sdk.Client) (resp *CreateDr
 
 type CreateDrdsInstanceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
 	Data      CreateDrdsInstanceData
 }
 
 type CreateDrdsInstanceData struct {
-	OrderId            int64
+	OrderId            common.Long
 	DrdsInstanceIdList CreateDrdsInstanceDrdsInstanceIdListList
 }
 
-type CreateDrdsInstanceDrdsInstanceIdListList []string
+type CreateDrdsInstanceDrdsInstanceIdListList []common.String
 
 func (list *CreateDrdsInstanceDrdsInstanceIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

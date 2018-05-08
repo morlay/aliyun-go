@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstancesAsCsvRequest struct {
@@ -25,52 +26,52 @@ func (req *DescribeDBInstancesAsCsvRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeDBInstancesAsCsvResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeDBInstancesAsCsvDBInstanceAttributeList
 }
 
 type DescribeDBInstancesAsCsvDBInstanceAttribute struct {
-	DBInstanceId                string
-	PayType                     string
-	DBInstanceClassType         string
-	DBInstanceType              string
-	RegionId                    string
-	ConnectionString            string
-	Port                        string
-	Engine                      string
-	EngineVersion               string
-	DBInstanceClass             string
-	DBInstanceMemory            int64
-	DBInstanceStorage           int
-	DBInstanceNetType           string
-	DBInstanceStatus            string
-	DBInstanceDescription       string
-	LockMode                    string
-	LockReason                  string
-	ReadDelayTime               string
-	DBMaxQuantity               int
-	AccountMaxQuantity          int
-	CreationTime                string
-	ExpireTime                  string
-	MaintainTime                string
-	AvailabilityValue           string
-	MaxIOPS                     int
-	MaxConnections              int
-	MasterInstanceId            string
-	DBInstanceCPU               string
-	IncrementSourceDBInstanceId string
-	GuardDBInstanceId           string
-	TempDBInstanceId            string
-	SecurityIPList              string
-	ZoneId                      string
-	InstanceNetworkType         string
-	Category                    string
-	AccountType                 string
-	SupportUpgradeAccountType   string
-	VpcId                       string
-	VSwitchId                   string
-	ConnectionMode              string
-	Tags                        string
+	DBInstanceId                common.String
+	PayType                     common.String
+	DBInstanceClassType         common.String
+	DBInstanceType              common.String
+	RegionId                    common.String
+	ConnectionString            common.String
+	Port                        common.String
+	Engine                      common.String
+	EngineVersion               common.String
+	DBInstanceClass             common.String
+	DBInstanceMemory            common.Long
+	DBInstanceStorage           common.Integer
+	DBInstanceNetType           common.String
+	DBInstanceStatus            common.String
+	DBInstanceDescription       common.String
+	LockMode                    common.String
+	LockReason                  common.String
+	ReadDelayTime               common.String
+	DBMaxQuantity               common.Integer
+	AccountMaxQuantity          common.Integer
+	CreationTime                common.String
+	ExpireTime                  common.String
+	MaintainTime                common.String
+	AvailabilityValue           common.String
+	MaxIOPS                     common.Integer
+	MaxConnections              common.Integer
+	MasterInstanceId            common.String
+	DBInstanceCPU               common.String
+	IncrementSourceDBInstanceId common.String
+	GuardDBInstanceId           common.String
+	TempDBInstanceId            common.String
+	SecurityIPList              common.String
+	ZoneId                      common.String
+	InstanceNetworkType         common.String
+	Category                    common.String
+	AccountType                 common.String
+	SupportUpgradeAccountType   common.String
+	VpcId                       common.String
+	VSwitchId                   common.String
+	ConnectionMode              common.String
+	Tags                        common.String
 }
 
 type DescribeDBInstancesAsCsvDBInstanceAttributeList []DescribeDBInstancesAsCsvDBInstanceAttribute

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeProductRequest struct {
@@ -24,78 +25,78 @@ func (req *DescribeProductRequest) Invoke(client *sdk.Client) (resp *DescribePro
 
 type DescribeProductResponse struct {
 	responses.BaseResponse
-	Code             string
-	Name             string
-	Type             string
-	PicUrl           string
-	Description      string
-	ShortDescription string
-	UseCount         int64
-	Score            float32
-	Status           string
-	AuditStatus      string
-	AuditFailMsg     string
-	AuditTime        int64
-	GmtCreated       int64
-	GmtModified      int64
+	Code             common.String
+	Name             common.String
+	Type             common.String
+	PicUrl           common.String
+	Description      common.String
+	ShortDescription common.String
+	UseCount         common.Long
+	Score            common.Float
+	Status           common.String
+	AuditStatus      common.String
+	AuditFailMsg     common.String
+	AuditTime        common.Long
+	GmtCreated       common.Long
+	GmtModified      common.Long
 	ProductSkus      DescribeProductProductSkuList
 	ProductExtras    DescribeProductProductExtraList
 	ShopInfo         DescribeProductShopInfo
 }
 
 type DescribeProductProductSku struct {
-	Name         string
-	Code         string
-	ChargeType   string
-	Constraints  string
+	Name         common.String
+	Code         common.String
+	ChargeType   common.String
+	Constraints  common.String
 	Hidden       bool
 	OrderPeriods DescribeProductOrderPeriodList
 	Modules      DescribeProductModuleList
 }
 
 type DescribeProductOrderPeriod struct {
-	Name       string
-	PeriodType string
+	Name       common.String
+	PeriodType common.String
 }
 
 type DescribeProductModule struct {
-	Id         string
-	Name       string
-	Code       string
+	Id         common.String
+	Name       common.String
+	Code       common.String
 	Properties DescribeProductPropertyList
 }
 
 type DescribeProductProperty struct {
-	Name           string
-	Key            string
+	Name           common.String
+	Key            common.String
 	PropertyValues DescribeProductPropertyValueList
 }
 
 type DescribeProductPropertyValue struct {
-	Value       string
-	DisplayName string
-	Type        string
+	Value       common.String
+	DisplayName common.String
+	Type        common.String
 }
 
 type DescribeProductProductExtra struct {
-	Key    string
-	Values string
-	Label  string
-	Order  int
-	Type   string
+	Key    common.String
+	Values common.String
+	Label  common.String
+	Order  common.Integer
+	Type   common.String
 }
 
 type DescribeProductShopInfo struct {
-	Id         int64
-	Name       string
-	Emails     string
+	Id         common.Long
+	Name       common.String
+	Emails     common.String
 	WangWangs  DescribeProductWangWangList
 	Telephones DescribeProductTelephoneList
 }
 
 type DescribeProductWangWang struct {
-	UserName string
-	Remark   string
+	UserName common.String
+	Remark   common.String
 }
 
 type DescribeProductProductSkuList []DescribeProductProductSku
@@ -203,10 +204,10 @@ func (list *DescribeProductWangWangList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type DescribeProductTelephoneList []string
+type DescribeProductTelephoneList []common.String
 
 func (list *DescribeProductTelephoneList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

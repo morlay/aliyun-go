@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryPushListRequest struct {
@@ -27,22 +28,22 @@ func (req *QueryPushListRequest) Invoke(client *sdk.Client) (resp *QueryPushList
 
 type QueryPushListResponse struct {
 	responses.BaseResponse
-	RequestId        string
+	RequestId        common.String
 	HasNext          bool
-	Page             int
-	PageSize         int
+	Page             common.Integer
+	PageSize         common.Integer
 	PushMessageInfos QueryPushListPushMessageInfoList
 }
 
 type QueryPushListPushMessageInfo struct {
-	AppKey     int64
-	AppName    string
-	MessageId  string
-	Type       string
-	DeviceType string
-	PushTime   string
-	Title      string
-	Body       string
+	AppKey     common.Long
+	AppName    common.String
+	MessageId  common.String
+	Type       common.String
+	DeviceType common.String
+	PushTime   common.String
+	Title      common.String
+	Body       common.String
 }
 
 type QueryPushListPushMessageInfoList []QueryPushListPushMessageInfo

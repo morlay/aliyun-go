@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeNotificationTypesRequest struct {
@@ -23,14 +24,14 @@ func (req *DescribeNotificationTypesRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeNotificationTypesResponse struct {
 	responses.BaseResponse
-	RequestId         string
+	RequestId         common.String
 	NotificationTypes DescribeNotificationTypesNotificationTypeList
 }
 
-type DescribeNotificationTypesNotificationTypeList []string
+type DescribeNotificationTypesNotificationTypeList []common.String
 
 func (list *DescribeNotificationTypesNotificationTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

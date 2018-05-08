@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DdosLogRequest struct {
@@ -26,27 +27,27 @@ func (req *DdosLogRequest) Invoke(client *sdk.Client) (resp *DdosLogResponse, er
 
 type DdosLogResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	AttackStatus int
-	StartTime    string
-	EndTime      string
-	PageNumber   int
-	PageSize     int
-	TotalCount   int
+	RequestId    common.String
+	AttackStatus common.Integer
+	StartTime    common.String
+	EndTime      common.String
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	TotalCount   common.Integer
 	LogList      DdosLogDdosLogList
 }
 
 type DdosLogDdosLog struct {
-	StartTime    string
-	EndTime      string
-	Reason       string
-	Status       int
-	Bps          int64
-	Pps          int64
-	Qps          int64
-	AttackType   string
-	AttackIpList string
-	Type         int
+	StartTime    common.String
+	EndTime      common.String
+	Reason       common.String
+	Status       common.Integer
+	Bps          common.Long
+	Pps          common.Long
+	Qps          common.Long
+	AttackType   common.String
+	AttackIpList common.String
+	Type         common.Integer
 }
 
 type DdosLogDdosLogList []DdosLogDdosLog

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDomainListRequest struct {
@@ -35,34 +36,34 @@ func (req *QueryDomainListRequest) Invoke(client *sdk.Client) (resp *QueryDomain
 
 type QueryDomainListResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalItemNum   int
-	CurrentPageNum int
-	TotalPageNum   int
-	PageSize       int
+	RequestId      common.String
+	TotalItemNum   common.Integer
+	CurrentPageNum common.Integer
+	TotalPageNum   common.Integer
+	PageSize       common.Integer
 	PrePage        bool
 	NextPage       bool
 	Data           QueryDomainListDomainList
 }
 
 type QueryDomainListDomain struct {
-	DomainName             string
-	InstanceId             string
-	ExpirationDate         string
-	RegistrationDate       string
-	DomainType             string
-	DomainStatus           string
-	ProductId              string
-	ExpirationDateLong     int64
-	RegistrationDateLong   int64
+	DomainName             common.String
+	InstanceId             common.String
+	ExpirationDate         common.String
+	RegistrationDate       common.String
+	DomainType             common.String
+	DomainStatus           common.String
+	ProductId              common.String
+	ExpirationDateLong     common.Long
+	RegistrationDateLong   common.Long
 	Premium                bool
-	DomainAuditStatus      string
-	ExpirationDateStatus   string
-	RegistrantType         string
-	DomainGroupId          string
-	Remark                 string
-	DomainGroupName        string
-	ExpirationCurrDateDiff int
+	DomainAuditStatus      common.String
+	ExpirationDateStatus   common.String
+	RegistrantType         common.String
+	DomainGroupId          common.String
+	Remark                 common.String
+	DomainGroupName        common.String
+	ExpirationCurrDateDiff common.Integer
 }
 
 type QueryDomainListDomainList []QueryDomainListDomain

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeAccessPointsRequest struct {
@@ -35,22 +36,22 @@ type DescribeAccessPointsFilter struct {
 
 type DescribeAccessPointsResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	PageNumber     int
-	PageSize       int
-	TotalCount     int
+	RequestId      common.String
+	PageNumber     common.Integer
+	PageSize       common.Integer
+	TotalCount     common.Integer
 	AccessPointSet DescribeAccessPointsAccessPointTypeList
 }
 
 type DescribeAccessPointsAccessPointType struct {
-	AccessPointId    string
-	Status           string
-	Type             string
-	AttachedRegionNo string
-	Location         string
-	HostOperator     string
-	Name             string
-	Description      string
+	AccessPointId    common.String
+	Status           common.String
+	Type             common.String
+	AttachedRegionNo common.String
+	Location         common.String
+	HostOperator     common.String
+	Name             common.String
+	Description      common.String
 }
 
 type DescribeAccessPointsFilterList []DescribeAccessPointsFilter

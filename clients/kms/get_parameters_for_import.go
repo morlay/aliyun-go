@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetParametersForImportRequest struct {
@@ -23,9 +24,9 @@ func (req *GetParametersForImportRequest) Invoke(client *sdk.Client) (resp *GetP
 
 type GetParametersForImportResponse struct {
 	responses.BaseResponse
-	KeyId           string
-	RequestId       string
-	ImportToken     string
-	PublicKey       string
-	TokenExpireTime string
+	KeyId           common.String
+	RequestId       common.String
+	ImportToken     common.String
+	PublicKey       common.String
+	TokenExpireTime common.String
 }

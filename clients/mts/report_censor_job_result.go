@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ReportCensorJobResultRequest struct {
@@ -26,6 +27,6 @@ func (req *ReportCensorJobResultRequest) Invoke(client *sdk.Client) (resp *Repor
 
 type ReportCensorJobResultResponse struct {
 	responses.BaseResponse
-	RequestId string
-	JobId     string
+	RequestId common.String
+	JobId     common.String
 }

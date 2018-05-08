@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateMigrateTaskForSQLServerRequest struct {
@@ -27,11 +28,11 @@ func (req *CreateMigrateTaskForSQLServerRequest) Invoke(client *sdk.Client) (res
 
 type CreateMigrateTaskForSQLServerResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DBInstanceId   string
-	DBInstanceName string
-	TaskId         string
-	DBName         string
-	MigrateIaskId  string
-	TaskType       string
+	RequestId      common.String
+	DBInstanceId   common.String
+	DBInstanceName common.String
+	TaskId         common.String
+	DBName         common.String
+	MigrateIaskId  common.String
+	TaskType       common.String
 }

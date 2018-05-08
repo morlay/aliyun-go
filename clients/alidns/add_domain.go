@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddDomainRequest struct {
@@ -25,19 +26,19 @@ func (req *AddDomainRequest) Invoke(client *sdk.Client) (resp *AddDomainResponse
 
 type AddDomainResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	DomainId   string
-	DomainName string
-	PunyCode   string
-	GroupId    string
-	GroupName  string
+	RequestId  common.String
+	DomainId   common.String
+	DomainName common.String
+	PunyCode   common.String
+	GroupId    common.String
+	GroupName  common.String
 	DnsServers AddDomainDnsServerList
 }
 
-type AddDomainDnsServerList []string
+type AddDomainDnsServerList []common.String
 
 func (list *AddDomainDnsServerList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

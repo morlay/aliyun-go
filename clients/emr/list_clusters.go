@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClustersRequest struct {
@@ -29,40 +30,40 @@ func (req *ListClustersRequest) Invoke(client *sdk.Client) (resp *ListClustersRe
 
 type ListClustersResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	TotalCount int
-	PageNumber int
-	PageSize   int
+	RequestId  common.String
+	TotalCount common.Integer
+	PageNumber common.Integer
+	PageSize   common.Integer
 	Clusters   ListClustersClusterInfoList
 }
 
 type ListClustersClusterInfo struct {
-	Id                  string
-	Name                string
-	Type                string
-	CreateTime          int64
-	RunningTime         int
-	Status              string
-	ChargeType          string
-	ExpiredTime         int64
-	Period              int
+	Id                  common.String
+	Name                common.String
+	Type                common.String
+	CreateTime          common.Long
+	RunningTime         common.Integer
+	Status              common.String
+	ChargeType          common.String
+	ExpiredTime         common.Long
+	Period              common.Integer
 	HasUncompletedOrder bool
-	OrderList           string
-	CreateResource      string
+	OrderList           common.String
+	CreateResource      common.String
 	OrderTaskInfo       ListClustersOrderTaskInfo
 	FailReason          ListClustersFailReason
 }
 
 type ListClustersOrderTaskInfo struct {
-	TargetCount  int
-	CurrentCount int
-	OrderIdList  string
+	TargetCount  common.Integer
+	CurrentCount common.Integer
+	OrderIdList  common.String
 }
 
 type ListClustersFailReason struct {
-	ErrorCode string
-	ErrorMsg  string
-	RequestId string
+	ErrorCode common.String
+	ErrorMsg  common.String
+	RequestId common.String
 }
 
 type ListClustersStatusListList []string

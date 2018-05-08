@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateSnapshotRequest struct {
@@ -25,7 +26,7 @@ func (req *CreateSnapshotRequest) Invoke(client *sdk.Client) (resp *CreateSnapsh
 
 type CreateSnapshotResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	SnapshotId string
-	Status     string
+	RequestId  common.String
+	SnapshotId common.String
+	Status     common.String
 }

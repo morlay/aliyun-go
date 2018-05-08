@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type EnterStandbyRequest struct {
@@ -25,7 +26,7 @@ func (req *EnterStandbyRequest) Invoke(client *sdk.Client) (resp *EnterStandbyRe
 
 type EnterStandbyResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }
 
 type EnterStandbyInstanceIdList []string

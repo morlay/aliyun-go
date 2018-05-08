@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePriceRequest struct {
@@ -45,7 +46,7 @@ func (req *DescribePriceRequest) Invoke(client *sdk.Client) (resp *DescribePrice
 
 type DescribePriceResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	PriceInfo DescribePricePriceInfo
 }
 
@@ -55,15 +56,15 @@ type DescribePricePriceInfo struct {
 }
 
 type DescribePriceRule struct {
-	RuleId      int64
-	Description string
+	RuleId      common.Long
+	Description common.String
 }
 
 type DescribePricePrice struct {
-	OriginalPrice float32
-	DiscountPrice float32
-	TradePrice    float32
-	Currency      string
+	OriginalPrice common.Float
+	DiscountPrice common.Float
+	TradePrice    common.Float
+	Currency      common.String
 }
 
 type DescribePriceRuleList []DescribePriceRule

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AcknowledgeTaskResultRequest struct {
@@ -24,8 +25,8 @@ func (req *AcknowledgeTaskResultRequest) Invoke(client *sdk.Client) (resp *Ackno
 
 type AcknowledgeTaskResultResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Result    int
+	RequestId common.String
+	Result    common.Integer
 }
 
 type AcknowledgeTaskResultTaskDetailNoList []string

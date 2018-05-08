@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeScalingConfigurationsRequest struct {
@@ -48,37 +49,37 @@ func (req *DescribeScalingConfigurationsRequest) Invoke(client *sdk.Client) (res
 
 type DescribeScalingConfigurationsResponse struct {
 	responses.BaseResponse
-	TotalCount            int
-	PageNumber            int
-	PageSize              int
-	RequestId             string
+	TotalCount            common.Integer
+	PageNumber            common.Integer
+	PageSize              common.Integer
+	RequestId             common.String
 	ScalingConfigurations DescribeScalingConfigurationsScalingConfigurationList
 }
 
 type DescribeScalingConfigurationsScalingConfiguration struct {
-	ScalingConfigurationId      string
-	ScalingConfigurationName    string
-	ScalingGroupId              string
-	InstanceName                string
-	ImageId                     string
-	InstanceType                string
-	InstanceGeneration          string
-	SecurityGroupId             string
-	IoOptimized                 string
-	InternetChargeType          string
-	InternetMaxBandwidthIn      int
-	InternetMaxBandwidthOut     int
-	SystemDiskCategory          string
-	SystemDiskSize              int
-	LifecycleState              string
-	CreationTime                string
-	LoadBalancerWeight          int
-	UserData                    string
-	KeyPairName                 string
-	RamRoleName                 string
-	DeploymentSetId             string
-	SecurityEnhancementStrategy string
-	SpotStrategy                string
+	ScalingConfigurationId      common.String
+	ScalingConfigurationName    common.String
+	ScalingGroupId              common.String
+	InstanceName                common.String
+	ImageId                     common.String
+	InstanceType                common.String
+	InstanceGeneration          common.String
+	SecurityGroupId             common.String
+	IoOptimized                 common.String
+	InternetChargeType          common.String
+	InternetMaxBandwidthIn      common.Integer
+	InternetMaxBandwidthOut     common.Integer
+	SystemDiskCategory          common.String
+	SystemDiskSize              common.Integer
+	LifecycleState              common.String
+	CreationTime                common.String
+	LoadBalancerWeight          common.Integer
+	UserData                    common.String
+	KeyPairName                 common.String
+	RamRoleName                 common.String
+	DeploymentSetId             common.String
+	SecurityEnhancementStrategy common.String
+	SpotStrategy                common.String
 	DataDisks                   DescribeScalingConfigurationsDataDiskList
 	Tags                        DescribeScalingConfigurationsTagList
 	SpotPriceLimit              DescribeScalingConfigurationsSpotPriceModelList
@@ -86,20 +87,20 @@ type DescribeScalingConfigurationsScalingConfiguration struct {
 }
 
 type DescribeScalingConfigurationsDataDisk struct {
-	Size       int
-	Category   string
-	SnapshotId string
-	Device     string
+	Size       common.Integer
+	Category   common.String
+	SnapshotId common.String
+	Device     common.String
 }
 
 type DescribeScalingConfigurationsTag struct {
-	Key   string
-	Value string
+	Key   common.String
+	Value common.String
 }
 
 type DescribeScalingConfigurationsSpotPriceModel struct {
-	InstanceType string
-	PriceLimit   float32
+	InstanceType common.String
+	PriceLimit   common.Float
 }
 
 type DescribeScalingConfigurationsScalingConfigurationList []DescribeScalingConfigurationsScalingConfiguration
@@ -162,10 +163,10 @@ func (list *DescribeScalingConfigurationsSpotPriceModelList) UnmarshalJSON(data 
 	return nil
 }
 
-type DescribeScalingConfigurationsInstanceTypeList []string
+type DescribeScalingConfigurationsInstanceTypeList []common.String
 
 func (list *DescribeScalingConfigurationsInstanceTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

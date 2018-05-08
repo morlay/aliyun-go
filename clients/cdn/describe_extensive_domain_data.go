@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeExtensiveDomainDataRequest struct {
@@ -28,22 +29,22 @@ func (req *DescribeExtensiveDomainDataRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeExtensiveDomainDataResponse struct {
 	responses.BaseResponse
-	RequestId       string
-	ExtensiveDomain string
-	DataInterval    string
-	StartTime       string
-	EndTime         string
-	PageNumber      string
-	TotalCount      string
-	PageSize        string
+	RequestId       common.String
+	ExtensiveDomain common.String
+	DataInterval    common.String
+	StartTime       common.String
+	EndTime         common.String
+	PageNumber      common.String
+	TotalCount      common.String
+	PageSize        common.String
 	DataPerInterval DescribeExtensiveDomainDataUsageDataList
 }
 
 type DescribeExtensiveDomainDataUsageData struct {
-	ExactDomain string
-	TimeStamp   string
-	Acc         string
-	Flow        string
+	ExactDomain common.String
+	TimeStamp   common.String
+	Acc         common.String
+	Flow        common.String
 }
 
 type DescribeExtensiveDomainDataUsageDataList []DescribeExtensiveDomainDataUsageData

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCaptchaRiskRequest struct {
@@ -23,9 +24,9 @@ func (req *DescribeCaptchaRiskRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeCaptchaRiskResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	BizCode        string
-	NumOfThisMonth int
-	NumOfLastMonth int
-	RiskLevel      string
+	RequestId      common.String
+	BizCode        common.String
+	NumOfThisMonth common.Integer
+	NumOfLastMonth common.Integer
+	RiskLevel      common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterServiceConfigRequest struct {
@@ -27,67 +28,67 @@ func (req *ListClusterServiceConfigRequest) Invoke(client *sdk.Client) (resp *Li
 
 type ListClusterServiceConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Configs   ListClusterServiceConfigConfigList
 }
 
 type ListClusterServiceConfigConfig struct {
-	ServiceName      string
-	ConfigVersion    string
-	Applied          string
-	CreateTime       string
-	Author           string
-	Comment          string
+	ServiceName      common.String
+	ConfigVersion    common.String
+	Applied          common.String
+	CreateTime       common.String
+	Author           common.String
+	Comment          common.String
 	ConfigValueList  ListClusterServiceConfigConfigValueList
 	PropertyInfoList ListClusterServiceConfigPropertyInfoList
 }
 
 type ListClusterServiceConfigConfigValue struct {
-	ConfigName          string
+	ConfigName          common.String
 	AllowCustom         bool
 	ConfigItemValueList ListClusterServiceConfigConfigItemValueList
 }
 
 type ListClusterServiceConfigConfigItemValue struct {
-	ItemName    string
-	Value       string
+	ItemName    common.String
+	Value       common.String
 	IsCustom    bool
-	Description string
+	Description common.String
 }
 
 type ListClusterServiceConfigPropertyInfo struct {
-	Name                    string
-	Value                   string
-	Description             string
-	FileName                string
-	DisplayName             string
-	ServiceName             string
-	Component               string
+	Name                    common.String
+	Value                   common.String
+	Description             common.String
+	FileName                common.String
+	DisplayName             common.String
+	ServiceName             common.String
+	Component               common.String
 	PropertyTypes           ListClusterServiceConfigPropertyTypeList
 	PropertyValueAttributes ListClusterServiceConfigPropertyValueAttributes
 	EffectWay               ListClusterServiceConfigEffectWay
 }
 
 type ListClusterServiceConfigPropertyValueAttributes struct {
-	Type          string
-	Maximum       string
-	Mimimum       string
-	Unit          string
+	Type          common.String
+	Maximum       common.String
+	Mimimum       common.String
+	Unit          common.String
 	ReadOnly      bool
 	Hidden        bool
-	IncrememtStep string
+	IncrememtStep common.String
 	Entries       ListClusterServiceConfigValueEntryInfoList
 }
 
 type ListClusterServiceConfigValueEntryInfo struct {
-	Value       string
-	Label       string
-	Description string
+	Value       common.String
+	Label       common.String
+	Description common.String
 }
 
 type ListClusterServiceConfigEffectWay struct {
-	EffectType        string
-	InvokeServiceName string
+	EffectType        common.String
+	InvokeServiceName common.String
 }
 
 type ListClusterServiceConfigConfigList []ListClusterServiceConfigConfig
@@ -150,10 +151,10 @@ func (list *ListClusterServiceConfigConfigItemValueList) UnmarshalJSON(data []by
 	return nil
 }
 
-type ListClusterServiceConfigPropertyTypeList []string
+type ListClusterServiceConfigPropertyTypeList []common.String
 
 func (list *ListClusterServiceConfigPropertyTypeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

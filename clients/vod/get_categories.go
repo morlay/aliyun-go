@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetCategoriesRequest struct {
@@ -27,17 +28,17 @@ func (req *GetCategoriesRequest) Invoke(client *sdk.Client) (resp *GetCategories
 
 type GetCategoriesResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	SubTotal      int64
+	RequestId     common.String
+	SubTotal      common.Long
 	SubCategories GetCategoriesCategoryList
 	Category      GetCategoriesCategory
 }
 
 type GetCategoriesCategory struct {
-	CateId   int64
-	CateName string
-	Level    int64
-	ParentId int64
+	CateId   common.Long
+	CateName common.String
+	Level    common.Long
+	ParentId common.Long
 }
 
 type GetCategoriesCategoryList []GetCategoriesCategory

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ActivateMediaWorkflowRequest struct {
@@ -24,14 +25,14 @@ func (req *ActivateMediaWorkflowRequest) Invoke(client *sdk.Client) (resp *Activ
 
 type ActivateMediaWorkflowResponse struct {
 	responses.BaseResponse
-	RequestId     string
+	RequestId     common.String
 	MediaWorkflow ActivateMediaWorkflowMediaWorkflow
 }
 
 type ActivateMediaWorkflowMediaWorkflow struct {
-	MediaWorkflowId string
-	Name            string
-	Topology        string
-	State           string
-	CreationTime    string
+	MediaWorkflowId common.String
+	Name            common.String
+	Topology        common.String
+	State           common.String
+	CreationTime    common.String
 }

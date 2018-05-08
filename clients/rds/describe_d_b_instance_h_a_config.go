@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceHAConfigRequest struct {
@@ -26,21 +27,21 @@ func (req *DescribeDBInstanceHAConfigRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeDBInstanceHAConfigResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	DBInstanceId      string
-	SyncMode          string
-	HAMode            string
+	RequestId         common.String
+	DBInstanceId      common.String
+	SyncMode          common.String
+	HAMode            common.String
 	HostInstanceInfos DescribeDBInstanceHAConfigNodeInfoList
 }
 
 type DescribeDBInstanceHAConfigNodeInfo struct {
-	NodeId       string
-	RegionId     string
-	LogSyncTime  string
-	DataSyncTime string
-	NodeType     string
-	ZoneId       string
-	SyncStatus   string
+	NodeId       common.String
+	RegionId     common.String
+	LogSyncTime  common.String
+	DataSyncTime common.String
+	NodeType     common.String
+	ZoneId       common.String
+	SyncStatus   common.String
 }
 
 type DescribeDBInstanceHAConfigNodeInfoList []DescribeDBInstanceHAConfigNodeInfo

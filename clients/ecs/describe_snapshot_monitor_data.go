@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSnapshotMonitorDataRequest struct {
@@ -28,13 +29,13 @@ func (req *DescribeSnapshotMonitorDataRequest) Invoke(client *sdk.Client) (resp 
 
 type DescribeSnapshotMonitorDataResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	MonitorData DescribeSnapshotMonitorDataDataPointList
 }
 
 type DescribeSnapshotMonitorDataDataPoint struct {
-	TimeStamp string
-	Size      int64
+	TimeStamp common.String
+	Size      common.Long
 }
 
 type DescribeSnapshotMonitorDataDataPointList []DescribeSnapshotMonitorDataDataPoint

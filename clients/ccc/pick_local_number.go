@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PickLocalNumberRequest struct {
@@ -24,10 +25,10 @@ func (req *PickLocalNumberRequest) Invoke(client *sdk.Client) (resp *PickLocalNu
 
 type PickLocalNumberResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Success   bool
-	Code      string
-	Message   string
+	Code      common.String
+	Message   common.String
 	Data      PickLocalNumberData
 }
 
@@ -37,15 +38,15 @@ type PickLocalNumberData struct {
 }
 
 type PickLocalNumberCallee struct {
-	Number   string
-	Province string
-	City     string
+	Number   common.String
+	Province common.String
+	City     common.String
 }
 
 type PickLocalNumberCaller struct {
-	Number   string
-	Province string
-	City     string
+	Number   common.String
+	Province common.String
+	City     common.String
 }
 
 type PickLocalNumberCandidateNumberList []string

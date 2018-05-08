@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCenInterRegionBandwidthLimitsRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeCenInterRegionBandwidthLimitsRequest) Invoke(client *sdk.Clie
 
 type DescribeCenInterRegionBandwidthLimitsResponse struct {
 	responses.BaseResponse
-	RequestId                     string
-	TotalCount                    int
-	PageNumber                    int
-	PageSize                      int
+	RequestId                     common.String
+	TotalCount                    common.Integer
+	PageNumber                    common.Integer
+	PageSize                      common.Integer
 	CenInterRegionBandwidthLimits DescribeCenInterRegionBandwidthLimitsCenInterRegionBandwidthLimitList
 }
 
 type DescribeCenInterRegionBandwidthLimitsCenInterRegionBandwidthLimit struct {
-	CenId            string
-	LocalRegionId    string
-	OppositeRegionId string
-	BandwidthLimit   int64
-	Status           string
+	CenId            common.String
+	LocalRegionId    common.String
+	OppositeRegionId common.String
+	BandwidthLimit   common.Long
+	Status           common.String
 }
 
 type DescribeCenInterRegionBandwidthLimitsCenInterRegionBandwidthLimitList []DescribeCenInterRegionBandwidthLimitsCenInterRegionBandwidthLimit

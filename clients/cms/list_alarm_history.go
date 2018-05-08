@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAlarmHistoryRequest struct {
@@ -28,27 +29,27 @@ func (req *ListAlarmHistoryRequest) Invoke(client *sdk.Client) (resp *ListAlarmH
 type ListAlarmHistoryResponse struct {
 	responses.BaseResponse
 	Success          bool
-	Code             string
-	Message          string
-	Cursor           string
-	RequestId        string
+	Code             common.String
+	Message          common.String
+	Cursor           common.String
+	RequestId        common.String
 	AlarmHistoryList ListAlarmHistoryAlarmHistoryList
 }
 
 type ListAlarmHistoryAlarmHistory struct {
-	Id              string
-	Name            string
-	Namespace       string
-	MetricName      string
-	Dimension       string
-	EvaluationCount int
-	Value           string
-	AlarmTime       int64
-	LastTime        int64
-	State           string
-	Status          int
-	ContactGroups   string
-	InstanceName    string
+	Id              common.String
+	Name            common.String
+	Namespace       common.String
+	MetricName      common.String
+	Dimension       common.String
+	EvaluationCount common.Integer
+	Value           common.String
+	AlarmTime       common.Long
+	LastTime        common.Long
+	State           common.String
+	Status          common.Integer
+	ContactGroups   common.String
+	InstanceName    common.String
 }
 
 type ListAlarmHistoryAlarmHistoryList []ListAlarmHistoryAlarmHistory

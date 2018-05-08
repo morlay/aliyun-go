@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCatalogsRequest struct {
@@ -21,21 +22,21 @@ func (req *DescribeCatalogsRequest) Invoke(client *sdk.Client) (resp *DescribeCa
 
 type DescribeCatalogsResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	TotalCount        int
-	PageSize          int
-	PageNumber        int
+	RequestId         common.String
+	TotalCount        common.Integer
+	PageSize          common.Integer
+	PageNumber        common.Integer
 	CatalogAttributes DescribeCatalogsCatalogAttributeList
 }
 
 type DescribeCatalogsCatalogAttribute struct {
-	CatalogId    string
-	CatalogName  string
-	Description  string
-	ParentId     string
-	CreatedTime  string
-	ModifiedTime string
-	RegionId     string
+	CatalogId    common.String
+	CatalogName  common.String
+	Description  common.String
+	ParentId     common.String
+	CreatedTime  common.String
+	ModifiedTime common.String
+	RegionId     common.String
 }
 
 type DescribeCatalogsCatalogAttributeList []DescribeCatalogsCatalogAttribute

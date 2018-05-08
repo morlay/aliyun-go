@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type LogineventLogRequest struct {
@@ -26,21 +27,21 @@ func (req *LogineventLogRequest) Invoke(client *sdk.Client) (resp *LogineventLog
 
 type LogineventLogResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	StartTime  string
-	EndTime    string
-	PageNumber int
-	PageSize   int
-	TotalCount int
+	RequestId  common.String
+	StartTime  common.String
+	EndTime    common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
 	LogList    LogineventLogLoginEventLogList
 }
 
 type LogineventLogLoginEventLog struct {
-	BlockTimes int
-	SourceIp   string
-	Status     int
-	Time       string
-	Location   string
+	BlockTimes common.Integer
+	SourceIp   common.String
+	Status     common.Integer
+	Time       common.String
+	Location   common.String
 }
 
 type LogineventLogLoginEventLogList []LogineventLogLoginEventLog

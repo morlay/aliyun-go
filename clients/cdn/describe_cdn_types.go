@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCdnTypesRequest struct {
@@ -24,13 +25,13 @@ func (req *DescribeCdnTypesRequest) Invoke(client *sdk.Client) (resp *DescribeCd
 
 type DescribeCdnTypesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	CdnTypes  DescribeCdnTypesCdnTypeList
 }
 
 type DescribeCdnTypesCdnType struct {
-	Type string
-	Desc string
+	Type common.String
+	Desc common.String
 }
 
 type DescribeCdnTypesCdnTypeList []DescribeCdnTypesCdnType

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeInstanceRamRoleRequest struct {
@@ -28,15 +29,15 @@ func (req *DescribeInstanceRamRoleRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeInstanceRamRoleResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	RegionId            string
-	TotalCount          int
+	RequestId           common.String
+	RegionId            common.String
+	TotalCount          common.Integer
 	InstanceRamRoleSets DescribeInstanceRamRoleInstanceRamRoleSetList
 }
 
 type DescribeInstanceRamRoleInstanceRamRoleSet struct {
-	InstanceId  string
-	RamRoleName string
+	InstanceId  common.String
+	RamRoleName common.String
 }
 
 type DescribeInstanceRamRoleInstanceRamRoleSetList []DescribeInstanceRamRoleInstanceRamRoleSet

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListMyGroupInstancesRequest struct {
@@ -26,22 +27,22 @@ func (req *ListMyGroupInstancesRequest) Invoke(client *sdk.Client) (resp *ListMy
 
 type ListMyGroupInstancesResponse struct {
 	responses.BaseResponse
-	RequestId    string
+	RequestId    common.String
 	Success      bool
-	ErrorCode    int
-	ErrorMessage string
-	PageNumber   int
-	PageSize     int
-	Total        int
+	ErrorCode    common.Integer
+	ErrorMessage common.String
+	PageNumber   common.Integer
+	PageSize     common.Integer
+	Total        common.Integer
 	Resources    ListMyGroupInstancesResourceList
 }
 
 type ListMyGroupInstancesResource struct {
-	Id         int64
-	AliUid     int64
-	RegionId   string
-	InstanceId string
-	Category   string
+	Id         common.Long
+	AliUid     common.Long
+	RegionId   common.String
+	InstanceId common.String
+	Category   common.String
 }
 
 type ListMyGroupInstancesResourceList []ListMyGroupInstancesResource

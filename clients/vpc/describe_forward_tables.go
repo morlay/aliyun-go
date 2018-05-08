@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeForwardTablesRequest struct {
@@ -28,29 +29,29 @@ func (req *DescribeForwardTablesRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeForwardTablesResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	TotalCount    int
-	PageNumber    int
-	PageSize      int
+	RequestId     common.String
+	TotalCount    common.Integer
+	PageNumber    common.Integer
+	PageSize      common.Integer
 	ForwardTables DescribeForwardTablesForwardTableList
 }
 
 type DescribeForwardTablesForwardTable struct {
-	NatGatewayId   string
-	ForwardTableId string
-	CreationTime   string
+	NatGatewayId   common.String
+	ForwardTableId common.String
+	CreationTime   common.String
 	ForwardEntrys  DescribeForwardTablesForwardEntryList
 }
 
 type DescribeForwardTablesForwardEntry struct {
-	ForwardTableId string
-	ForwardEntryId string
-	ExternalIp     string
-	ExternalPort   string
-	IpProtocol     string
-	InternalIp     string
-	InternalPort   string
-	Status         string
+	ForwardTableId common.String
+	ForwardEntryId common.String
+	ExternalIp     common.String
+	ExternalPort   common.String
+	IpProtocol     common.String
+	InternalIp     common.String
+	InternalPort   common.String
+	Status         common.String
 }
 
 type DescribeForwardTablesForwardTableList []DescribeForwardTablesForwardTable

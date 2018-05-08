@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type UpgradeDBInstanceEngineVersionRequest struct {
@@ -27,6 +28,6 @@ func (req *UpgradeDBInstanceEngineVersionRequest) Invoke(client *sdk.Client) (re
 
 type UpgradeDBInstanceEngineVersionResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskId    string
+	RequestId common.String
+	TaskId    common.String
 }

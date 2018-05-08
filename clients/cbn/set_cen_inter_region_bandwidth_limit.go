@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SetCenInterRegionBandwidthLimitRequest struct {
@@ -27,5 +28,5 @@ func (req *SetCenInterRegionBandwidthLimitRequest) Invoke(client *sdk.Client) (r
 
 type SetCenInterRegionBandwidthLimitResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

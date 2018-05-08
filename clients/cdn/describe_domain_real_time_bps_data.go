@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainRealTimeBpsDataRequest struct {
@@ -27,13 +28,13 @@ func (req *DescribeDomainRealTimeBpsDataRequest) Invoke(client *sdk.Client) (res
 
 type DescribeDomainRealTimeBpsDataResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      DescribeDomainRealTimeBpsDataBpsModelList
 }
 
 type DescribeDomainRealTimeBpsDataBpsModel struct {
-	Bps       float32
-	TimeStamp string
+	Bps       common.Float
+	TimeStamp common.String
 }
 
 type DescribeDomainRealTimeBpsDataBpsModelList []DescribeDomainRealTimeBpsDataBpsModel

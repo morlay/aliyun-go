@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetUserRequest struct {
@@ -23,49 +24,49 @@ func (req *GetUserRequest) Invoke(client *sdk.Client) (resp *GetUserResponse, er
 
 type GetUserResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	Code           string
-	Message        string
-	HttpStatusCode int
+	Code           common.String
+	Message        common.String
+	HttpStatusCode common.Integer
 	User           GetUserUser
 }
 
 type GetUserUser struct {
-	UserId      string
-	RamId       string
-	InstanceId  string
+	UserId      common.String
+	RamId       common.String
+	InstanceId  common.String
 	Roles       GetUserRoleList
 	SkillLevels GetUserSkillLevelList
 	Detail      GetUserDetail
 }
 
 type GetUserRole struct {
-	RoleId          string
-	InstanceId      string
-	RoleName        string
-	RoleDescription string
+	RoleId          common.String
+	InstanceId      common.String
+	RoleName        common.String
+	RoleDescription common.String
 }
 
 type GetUserSkillLevel struct {
-	SkillLevelId string
-	Level        int
+	SkillLevelId common.String
+	Level        common.Integer
 	Skill        GetUserSkill
 }
 
 type GetUserSkill struct {
-	SkillGroupId          string
-	InstanceId            string
-	SkillGroupName        string
-	SkillGroupDescription string
+	SkillGroupId          common.String
+	InstanceId            common.String
+	SkillGroupName        common.String
+	SkillGroupDescription common.String
 }
 
 type GetUserDetail struct {
-	LoginName   string
-	DisplayName string
-	Phone       string
-	Email       string
-	Department  string
+	LoginName   common.String
+	DisplayName common.String
+	Phone       common.String
+	Email       common.String
+	Department  common.String
 }
 
 type GetUserRoleList []GetUserRole

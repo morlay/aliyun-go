@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryLogKeyRequest struct {
@@ -26,6 +27,6 @@ func (req *QueryLogKeyRequest) Invoke(client *sdk.Client) (resp *QueryLogKeyResp
 
 type QueryLogKeyResponse struct {
 	responses.BaseResponse
-	RequestId string
-	LogKey    string
+	RequestId common.String
+	LogKey    common.String
 }

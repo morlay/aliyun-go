@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyDBClusterConnectionStringRequest struct {
@@ -26,11 +27,11 @@ func (req *ModifyDBClusterConnectionStringRequest) Invoke(client *sdk.Client) (r
 
 type ModifyDBClusterConnectionStringResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	DBClusterId         string
-	OldConnectionString string
-	OldPort             string
-	NewConnectionString string
-	NewPort             string
-	IPType              string
+	RequestId           common.String
+	DBClusterId         common.String
+	OldConnectionString common.String
+	OldPort             common.String
+	NewConnectionString common.String
+	NewPort             common.String
+	IPType              common.String
 }

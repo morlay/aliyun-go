@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeClusterServiceForAdminRequest struct {
@@ -24,16 +25,16 @@ func (req *DescribeClusterServiceForAdminRequest) Invoke(client *sdk.Client) (re
 
 type DescribeClusterServiceForAdminResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	ServiceInfo DescribeClusterServiceForAdminServiceInfo
 }
 
 type DescribeClusterServiceForAdminServiceInfo struct {
-	ServiceName                  string
-	ServiceVersion               string
-	ServiceStatus                string
-	NeedRestartInfo              string
-	NeedRestartNum               int
+	ServiceName                  common.String
+	ServiceVersion               common.String
+	ServiceStatus                common.String
+	NeedRestartInfo              common.String
+	NeedRestartNum               common.Integer
 	ServiceActionList            DescribeClusterServiceForAdminServiceActionList
 	ClusterServiceSummaryList    DescribeClusterServiceForAdminClusterServiceSummaryList
 	NeedRestartHostIdList        DescribeClusterServiceForAdminNeedRestartHostIdListList
@@ -41,20 +42,20 @@ type DescribeClusterServiceForAdminServiceInfo struct {
 }
 
 type DescribeClusterServiceForAdminServiceAction struct {
-	ServiceName   string
-	ComponentName string
-	ActionName    string
-	Command       string
-	DisplayName   string
+	ServiceName   common.String
+	ComponentName common.String
+	ActionName    common.String
+	Command       common.String
+	DisplayName   common.String
 }
 
 type DescribeClusterServiceForAdminClusterServiceSummary struct {
-	Key         string
-	DisplayName string
-	Value       string
-	Status      string
-	Type        string
-	AlertInfo   string
+	Key         common.String
+	DisplayName common.String
+	Value       common.String
+	Status      common.String
+	Type        common.String
+	AlertInfo   common.String
 }
 
 type DescribeClusterServiceForAdminServiceActionList []DescribeClusterServiceForAdminServiceAction
@@ -87,10 +88,10 @@ func (list *DescribeClusterServiceForAdminClusterServiceSummaryList) UnmarshalJS
 	return nil
 }
 
-type DescribeClusterServiceForAdminNeedRestartHostIdListList []string
+type DescribeClusterServiceForAdminNeedRestartHostIdListList []common.String
 
 func (list *DescribeClusterServiceForAdminNeedRestartHostIdListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -102,10 +103,10 @@ func (list *DescribeClusterServiceForAdminNeedRestartHostIdListList) UnmarshalJS
 	return nil
 }
 
-type DescribeClusterServiceForAdminNeedRestartComponentNameListList []string
+type DescribeClusterServiceForAdminNeedRestartComponentNameListList []common.String
 
 func (list *DescribeClusterServiceForAdminNeedRestartComponentNameListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

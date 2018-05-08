@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddIpControlPolicyItemRequest struct {
@@ -22,6 +23,6 @@ func (req *AddIpControlPolicyItemRequest) Invoke(client *sdk.Client) (resp *AddI
 
 type AddIpControlPolicyItemResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	PolicyItemId string
+	RequestId    common.String
+	PolicyItemId common.String
 }

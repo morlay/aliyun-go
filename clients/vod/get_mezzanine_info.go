@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetMezzanineInfoRequest struct {
@@ -25,21 +26,21 @@ func (req *GetMezzanineInfoRequest) Invoke(client *sdk.Client) (resp *GetMezzani
 
 type GetMezzanineInfoResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Mezzanine GetMezzanineInfoMezzanine
 }
 
 type GetMezzanineInfoMezzanine struct {
-	VideoId      string
-	Bitrate      string
-	CreationTime string
-	Duration     string
-	Fps          string
-	Height       int64
-	Width        int64
-	Size         int64
-	Status       string
-	FileURL      string
-	FileName     string
-	CRC64        string
+	VideoId      common.String
+	Bitrate      common.String
+	CreationTime common.String
+	Duration     common.String
+	Fps          common.String
+	Height       common.Long
+	Width        common.Long
+	Size         common.Long
+	Status       common.String
+	FileURL      common.String
+	FileName     common.String
+	CRC64        common.String
 }

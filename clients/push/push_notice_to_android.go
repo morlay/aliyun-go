@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type PushNoticeToAndroidRequest struct {
@@ -26,6 +27,6 @@ func (req *PushNoticeToAndroidRequest) Invoke(client *sdk.Client) (resp *PushNot
 
 type PushNoticeToAndroidResponse struct {
 	responses.BaseResponse
-	RequestId string
-	MessageId string
+	RequestId common.String
+	MessageId common.String
 }

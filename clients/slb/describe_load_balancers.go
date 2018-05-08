@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLoadBalancersRequest struct {
@@ -43,31 +44,31 @@ func (req *DescribeLoadBalancersRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeLoadBalancersResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	PageNumber    int
-	PageSize      int
-	TotalCount    int
+	RequestId     common.String
+	PageNumber    common.Integer
+	PageSize      common.Integer
+	TotalCount    common.Integer
 	LoadBalancers DescribeLoadBalancersLoadBalancerList
 }
 
 type DescribeLoadBalancersLoadBalancer struct {
-	LoadBalancerId     string
-	LoadBalancerName   string
-	LoadBalancerStatus string
-	Address            string
-	AddressType        string
-	RegionId           string
-	RegionIdAlias      string
-	VSwitchId          string
-	VpcId              string
-	NetworkType        string
-	MasterZoneId       string
-	SlaveZoneId        string
-	InternetChargeType string
-	CreateTime         string
-	CreateTimeStamp    int64
-	PayType            string
-	ResourceGroupId    string
+	LoadBalancerId     common.String
+	LoadBalancerName   common.String
+	LoadBalancerStatus common.String
+	Address            common.String
+	AddressType        common.String
+	RegionId           common.String
+	RegionIdAlias      common.String
+	VSwitchId          common.String
+	VpcId              common.String
+	NetworkType        common.String
+	MasterZoneId       common.String
+	SlaveZoneId        common.String
+	InternetChargeType common.String
+	CreateTime         common.String
+	CreateTimeStamp    common.Long
+	PayType            common.String
+	ResourceGroupId    common.String
 }
 
 type DescribeLoadBalancersLoadBalancerList []DescribeLoadBalancersLoadBalancer

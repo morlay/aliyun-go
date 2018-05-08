@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryMarketImagesRequest struct {
@@ -22,32 +23,32 @@ func (req *QueryMarketImagesRequest) Invoke(client *sdk.Client) (resp *QueryMark
 
 type QueryMarketImagesResponse struct {
 	responses.BaseResponse
-	PageNumber int
-	PageSize   int
-	TotalCount int
-	RequestId  string
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
+	RequestId  common.String
 	Result     QueryMarketImagesImageProductList
 }
 
 type QueryMarketImagesImageProduct struct {
-	ImageProductCode string
-	ProductName      string
-	CategoryName     string
-	SupplierName     string
-	BaseSystem       string
-	OsKind           string
-	OsBit            int
-	PictureUrl       string
-	SmallPicUrl      string
-	ShortDescription string
-	AgreementUrl     string
-	DetailUrl        string
-	BuyUrl           string
-	StoreUrl         string
-	Score            float32
-	UserCount        int64
+	ImageProductCode common.String
+	ProductName      common.String
+	CategoryName     common.String
+	SupplierName     common.String
+	BaseSystem       common.String
+	OsKind           common.String
+	OsBit            common.Integer
+	PictureUrl       common.String
+	SmallPicUrl      common.String
+	ShortDescription common.String
+	AgreementUrl     common.String
+	DetailUrl        common.String
+	BuyUrl           common.String
+	StoreUrl         common.String
+	Score            common.Float
+	UserCount        common.Long
 	SupportIO        bool
-	CreatedOn        int64
+	CreatedOn        common.Long
 	Images           QueryMarketImagesImageList
 	SkuCodes         QueryMarketImagesSkuCodeList
 	Quota            QueryMarketImagesQuota
@@ -55,30 +56,30 @@ type QueryMarketImagesImageProduct struct {
 }
 
 type QueryMarketImagesImage struct {
-	Version            string
-	VersionDescription string
-	ImageId            string
-	ImageSize          int
-	Region             string
+	Version            common.String
+	VersionDescription common.String
+	ImageId            common.String
+	ImageSize          common.Integer
+	Region             common.String
 	IsDefault          bool
 	SupportIO          bool
 	DiskDeviceMappings QueryMarketImagesDiskDeviceMappingList
 }
 
 type QueryMarketImagesDiskDeviceMapping struct {
-	DiskType        string
-	Format          string
-	SnapshotId      string
-	Size            int
-	Device          string
-	ImportOSSBucket string
-	ImportOSSObject string
+	DiskType        common.String
+	Format          common.String
+	SnapshotId      common.String
+	Size            common.Integer
+	Device          common.String
+	ImportOSSBucket common.String
+	ImportOSSObject common.String
 }
 
 type QueryMarketImagesQuota struct {
-	TotalQuota  int64
-	UsingQuota  int64
-	UnusedQuota int64
+	TotalQuota  common.Long
+	UsingQuota  common.Long
+	UnusedQuota common.Long
 }
 
 type QueryMarketImagesPriceInfo struct {
@@ -87,18 +88,18 @@ type QueryMarketImagesPriceInfo struct {
 }
 
 type QueryMarketImagesRule struct {
-	RuleId int64
-	Title  string
-	Name   string
+	RuleId common.Long
+	Title  common.String
+	Name   common.String
 }
 
 type QueryMarketImagesOrder struct {
-	OriginalPrice float32
-	DiscountPrice float32
-	TradePrice    float32
-	Currency      string
-	Period        int
-	PriceUnit     string
+	OriginalPrice common.Float
+	DiscountPrice common.Float
+	TradePrice    common.Float
+	Currency      common.String
+	Period        common.Integer
+	PriceUnit     common.String
 	RuleIdSet     QueryMarketImagesRuleIdSetList
 }
 
@@ -132,10 +133,10 @@ func (list *QueryMarketImagesImageList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryMarketImagesSkuCodeList []string
+type QueryMarketImagesSkuCodeList []common.String
 
 func (list *QueryMarketImagesSkuCodeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -177,10 +178,10 @@ func (list *QueryMarketImagesRuleList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type QueryMarketImagesRuleIdSetList []string
+type QueryMarketImagesRuleIdSetList []common.String
 
 func (list *QueryMarketImagesRuleIdSetList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

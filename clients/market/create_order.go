@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateOrderRequest struct {
@@ -25,5 +26,5 @@ func (req *CreateOrderRequest) Invoke(client *sdk.Client) (resp *CreateOrderResp
 
 type CreateOrderResponse struct {
 	responses.BaseResponse
-	OrderId string
+	OrderId common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryMarketCategoriesRequest struct {
@@ -21,24 +22,24 @@ func (req *QueryMarketCategoriesRequest) Invoke(client *sdk.Client) (resp *Query
 
 type QueryMarketCategoriesResponse struct {
 	responses.BaseResponse
-	PageNumber int
-	PageSize   int
-	TotalCount int
-	RequestId  string
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
+	RequestId  common.String
 	Categories QueryMarketCategoriesCategoryList
 }
 
 type QueryMarketCategoriesCategory struct {
-	Id              int64
-	CategoryCode    string
-	CategoryName    string
+	Id              common.Long
+	CategoryCode    common.String
+	CategoryName    common.String
 	ChildCategories QueryMarketCategoriesChildCategoryList
 }
 
 type QueryMarketCategoriesChildCategory struct {
-	Id           int64
-	CategoryCode string
-	CategoryName string
+	Id           common.Long
+	CategoryCode common.String
+	CategoryName common.String
 }
 
 type QueryMarketCategoriesCategoryList []QueryMarketCategoriesCategory

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeEipAddressesRequest struct {
@@ -39,39 +40,39 @@ func (req *DescribeEipAddressesRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeEipAddressesResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	TotalCount   int
-	PageNumber   int
-	PageSize     int
+	RequestId    common.String
+	TotalCount   common.Integer
+	PageNumber   common.Integer
+	PageSize     common.Integer
 	EipAddresses DescribeEipAddressesEipAddressList
 }
 
 type DescribeEipAddressesEipAddress struct {
-	RegionId             string
-	IpAddress            string
-	AllocationId         string
-	Status               string
-	InstanceId           string
-	Bandwidth            string
-	EipBandwidth         string
-	InternetChargeType   string
-	AllocationTime       string
-	InstanceType         string
-	InstanceRegionId     string
-	ChargeType           string
-	ExpiredTime          string
-	Name                 string
-	ISP                  string
-	Descritpion          string
-	BandwidthPackageId   string
-	BandwidthPackageType string
-	ResourceGroupId      string
+	RegionId             common.String
+	IpAddress            common.String
+	AllocationId         common.String
+	Status               common.String
+	InstanceId           common.String
+	Bandwidth            common.String
+	EipBandwidth         common.String
+	InternetChargeType   common.String
+	AllocationTime       common.String
+	InstanceType         common.String
+	InstanceRegionId     common.String
+	ChargeType           common.String
+	ExpiredTime          common.String
+	Name                 common.String
+	ISP                  common.String
+	Descritpion          common.String
+	BandwidthPackageId   common.String
+	BandwidthPackageType common.String
+	ResourceGroupId      common.String
 	OperationLocks       DescribeEipAddressesLockReasonList
 	AvailableRegions     DescribeEipAddressesAvailableRegionList
 }
 
 type DescribeEipAddressesLockReason struct {
-	LockReason string
+	LockReason common.String
 }
 
 type DescribeEipAddressesEipAddressList []DescribeEipAddressesEipAddress
@@ -104,10 +105,10 @@ func (list *DescribeEipAddressesLockReasonList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type DescribeEipAddressesAvailableRegionList []string
+type DescribeEipAddressesAvailableRegionList []common.String
 
 func (list *DescribeEipAddressesAvailableRegionList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

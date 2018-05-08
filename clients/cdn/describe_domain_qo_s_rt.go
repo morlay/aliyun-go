@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainQoSRtRequest struct {
@@ -28,17 +29,17 @@ func (req *DescribeDomainQoSRtRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeDomainQoSRtResponse struct {
 	responses.BaseResponse
-	DomainName string
-	StartTime  string
-	EndTime    string
-	Ip         string
+	DomainName common.String
+	StartTime  common.String
+	EndTime    common.String
+	Ip         common.String
 	Content    DescribeDomainQoSRtDataList
 }
 
 type DescribeDomainQoSRtData struct {
-	More5s string
-	Time   string
-	More3s string
+	More5s common.String
+	Time   common.String
+	More3s common.String
 }
 
 type DescribeDomainQoSRtDataList []DescribeDomainQoSRtData

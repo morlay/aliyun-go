@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeExecutionPlanRequest struct {
@@ -23,83 +24,83 @@ func (req *DescribeExecutionPlanRequest) Invoke(client *sdk.Client) (resp *Descr
 
 type DescribeExecutionPlanResponse struct {
 	responses.BaseResponse
-	RequestId             string
-	Id                    string
-	Name                  string
-	Status                string
-	Strategy              string
-	TimeInterval          int
-	StartTime             int64
-	TimeUnit              string
-	DayOfWeek             string
-	DayOfMonth            string
+	RequestId             common.String
+	Id                    common.String
+	Name                  common.String
+	Status                common.String
+	Strategy              common.String
+	TimeInterval          common.Integer
+	StartTime             common.Long
+	TimeUnit              common.String
+	DayOfWeek             common.String
+	DayOfMonth            common.String
 	CreateClusterOnDemand bool
-	ClusterId             string
-	ClusterName           string
-	WorkflowApp           string
-	ExecutionPlanVersion  int64
+	ClusterId             common.String
+	ClusterName           common.String
+	WorkflowApp           common.String
+	ExecutionPlanVersion  common.Long
 	JobInfoList           DescribeExecutionPlanJobInfoList
 	ClusterInfo           DescribeExecutionPlanClusterInfo
 }
 
 type DescribeExecutionPlanJobInfo struct {
-	Id           string
-	Name         string
-	Type         string
-	RunParameter string
-	FailAct      string
+	Id           common.String
+	Name         common.String
+	Type         common.String
+	RunParameter common.String
+	FailAct      common.String
 }
 
 type DescribeExecutionPlanClusterInfo struct {
-	Name                   string
-	ZoneId                 string
+	Name                   common.String
+	ZoneId                 common.String
 	LogEnable              bool
-	LogPath                string
-	SecurityGroupId        string
-	EmrVer                 string
-	ClusterType            string
+	LogPath                common.String
+	SecurityGroupId        common.String
+	EmrVer                 common.String
+	ClusterType            common.String
 	HighAvailabilityEnable bool
-	VpcId                  string
-	VSwitchId              string
-	NetType                string
+	VpcId                  common.String
+	VSwitchId              common.String
+	NetType                common.String
 	IoOptimized            bool
-	InstanceGeneration     string
-	Configurations         string
+	InstanceGeneration     common.String
+	Configurations         common.String
 	EasEnable              bool
-	UserDefinedEmrEcsRole  string
+	UserDefinedEmrEcsRole  common.String
 	EcsOrders              DescribeExecutionPlanEcsOrderInfoList
 	BootstrapActionList    DescribeExecutionPlanBootstrapActionList
 	SoftwareInfo           DescribeExecutionPlanSoftwareInfo
 }
 
 type DescribeExecutionPlanEcsOrderInfo struct {
-	Index        int
-	NodeCount    int
-	InstanceType string
-	DiskType     string
-	DiskCapacity int
-	NodeType     string
-	DiskCount    int
+	Index        common.Integer
+	NodeCount    common.Integer
+	InstanceType common.String
+	DiskType     common.String
+	DiskCapacity common.Integer
+	NodeType     common.String
+	DiskCount    common.Integer
 }
 
 type DescribeExecutionPlanBootstrapAction struct {
-	Name string
-	Path string
-	Arg  string
+	Name common.String
+	Path common.String
+	Arg  common.String
 }
 
 type DescribeExecutionPlanSoftwareInfo struct {
-	EmrVer      string
-	ClusterType string
+	EmrVer      common.String
+	ClusterType common.String
 	Softwares   DescribeExecutionPlanSoftwareList
 }
 
 type DescribeExecutionPlanSoftware struct {
-	DisplayName string
-	Name        string
+	DisplayName common.String
+	Name        common.String
 	OnlyDisplay bool
-	StartTpe    int
-	Version     string
+	StartTpe    common.Integer
+	Version     common.String
 	Optional    bool
 }
 

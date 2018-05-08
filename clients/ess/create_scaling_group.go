@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateScalingGroupRequest struct {
@@ -35,8 +36,8 @@ func (req *CreateScalingGroupRequest) Invoke(client *sdk.Client) (resp *CreateSc
 
 type CreateScalingGroupResponse struct {
 	responses.BaseResponse
-	ScalingGroupId string
-	RequestId      string
+	ScalingGroupId common.String
+	RequestId      common.String
 }
 
 type CreateScalingGroupVSwitchIdList []string

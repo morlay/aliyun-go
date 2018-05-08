@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetProductDefineRequest struct {
@@ -23,19 +24,19 @@ func (req *GetProductDefineRequest) Invoke(client *sdk.Client) (resp *GetProduct
 
 type GetProductDefineResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	ProductName string
-	DataType    string
+	RequestId   common.String
+	ProductName common.String
+	DataType    common.String
 	ProductList GetProductDefineProductList
 }
 
 type GetProductDefineProduct struct {
-	ProductName string
+	ProductName common.String
 	TypeList    GetProductDefineTypeList
 }
 
 type GetProductDefineType struct {
-	DataType string
+	DataType common.String
 	Fields   GetProductDefineFieldList
 }
 
@@ -69,10 +70,10 @@ func (list *GetProductDefineTypeList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetProductDefineFieldList []string
+type GetProductDefineFieldList []common.String
 
 func (list *GetProductDefineFieldList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

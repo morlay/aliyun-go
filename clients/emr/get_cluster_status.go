@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetClusterStatusRequest struct {
@@ -25,14 +26,14 @@ func (req *GetClusterStatusRequest) Invoke(client *sdk.Client) (resp *GetCluster
 
 type GetClusterStatusResponse struct {
 	responses.BaseResponse
-	RequestId  string
+	RequestId  common.String
 	StatusList GetClusterStatusStatusList
 }
 
 type GetClusterStatusStatus struct {
-	Name      string
-	Legend    string
-	Unit      string
+	Name      common.String
+	Legend    common.String
+	Unit      common.String
 	Series    GetClusterStatusSeriesInfoList
 	LineNames GetClusterStatusLineNameList
 	Times     GetClusterStatusTimeList
@@ -43,7 +44,7 @@ type GetClusterStatusSeriesInfo struct {
 }
 
 type GetClusterStatusSeriesItem struct {
-	SeriesValue float32
+	SeriesValue common.Float
 }
 
 type GetClusterStatusStatusList []GetClusterStatusStatus
@@ -76,10 +77,10 @@ func (list *GetClusterStatusSeriesInfoList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetClusterStatusLineNameList []string
+type GetClusterStatusLineNameList []common.String
 
 func (list *GetClusterStatusLineNameList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -91,10 +92,10 @@ func (list *GetClusterStatusLineNameList) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-type GetClusterStatusTimeList []string
+type GetClusterStatusTimeList []common.String
 
 func (list *GetClusterStatusTimeList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

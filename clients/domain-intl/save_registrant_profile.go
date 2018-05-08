@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveRegistrantProfileRequest struct {
@@ -34,6 +35,6 @@ func (req *SaveRegistrantProfileRequest) Invoke(client *sdk.Client) (resp *SaveR
 
 type SaveRegistrantProfileResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	RegistrantProfileId int64
+	RequestId           common.String
+	RegistrantProfileId common.Long
 }

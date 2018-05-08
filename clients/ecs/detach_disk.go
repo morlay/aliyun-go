@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DetachDiskRequest struct {
@@ -25,5 +26,5 @@ func (req *DetachDiskRequest) Invoke(client *sdk.Client) (resp *DetachDiskRespon
 
 type DetachDiskResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetInstanceRequest struct {
@@ -20,9 +21,9 @@ func (req *GetInstanceRequest) Invoke(client *sdk.Client) (resp *GetInstanceResp
 
 type GetInstanceResponse struct {
 	responses.BaseResponse
-	Code      int
-	Message   string
-	RequestId string
+	Code      common.Integer
+	Message   common.String
+	RequestId common.String
 	Data      GetInstanceData
 }
 
@@ -31,39 +32,39 @@ type GetInstanceData struct {
 }
 
 type GetInstanceInstance struct {
-	ApprLevel            int
-	ApprUser1            string
-	ApprUser2            string
-	BrokerVpcId          string
-	BrokerVpcName        string
-	ClientVpcId          string
-	ClientVpcName        string
-	ClusterMembers       int
-	CredentialGroup      int64
-	CsbAccountId         string
-	CsbId                int64
-	DbStatus             int
-	Description          string
-	FrontStatus          string
-	GmtCreate            int64
-	GmtModified          int64
-	Id                   int64
-	InstanceCategory     int
-	InstanceType         int
-	IpList               string
+	ApprLevel            common.Integer
+	ApprUser1            common.String
+	ApprUser2            common.String
+	BrokerVpcId          common.String
+	BrokerVpcName        common.String
+	ClientVpcId          common.String
+	ClientVpcName        common.String
+	ClusterMembers       common.Integer
+	CredentialGroup      common.Long
+	CsbAccountId         common.String
+	CsbId                common.Long
+	DbStatus             common.Integer
+	Description          common.String
+	FrontStatus          common.String
+	GmtCreate            common.Long
+	GmtModified          common.Long
+	Id                   common.Long
+	InstanceCategory     common.Integer
+	InstanceType         common.Integer
+	IpList               common.String
 	IsImported           bool
 	IsPublic             bool
-	Name                 string
-	OwnerId              string
-	SentinelCtlStr       string
-	SentinelCtrl         int64
-	SentinelGridInterval int
-	SentinelQps          int64
-	Status               string
-	StatusCode           int
-	TenantId             string
+	Name                 common.String
+	OwnerId              common.String
+	SentinelCtlStr       common.String
+	SentinelCtrl         common.Long
+	SentinelGridInterval common.Integer
+	SentinelQps          common.Long
+	Status               common.String
+	StatusCode           common.Integer
+	TenantId             common.String
 	Testable             bool
-	UserId               string
+	UserId               common.String
 	Visible              bool
-	VpcName              string
+	VpcName              common.String
 }

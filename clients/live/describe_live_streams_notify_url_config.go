@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeLiveStreamsNotifyUrlConfigRequest struct {
@@ -22,11 +23,11 @@ func (req *DescribeLiveStreamsNotifyUrlConfigRequest) Invoke(client *sdk.Client)
 
 type DescribeLiveStreamsNotifyUrlConfigResponse struct {
 	responses.BaseResponse
-	RequestId               string
+	RequestId               common.String
 	LiveStreamsNotifyConfig DescribeLiveStreamsNotifyUrlConfigLiveStreamsNotifyConfig
 }
 
 type DescribeLiveStreamsNotifyUrlConfigLiveStreamsNotifyConfig struct {
-	DomainName string
-	NotifyUrl  string
+	DomainName common.String
+	NotifyUrl  common.String
 }

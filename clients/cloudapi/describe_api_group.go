@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeApiGroupRequest struct {
@@ -22,36 +23,36 @@ func (req *DescribeApiGroupRequest) Invoke(client *sdk.Client) (resp *DescribeAp
 
 type DescribeApiGroupResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	GroupId       string
-	GroupName     string
-	SubDomain     string
-	Description   string
-	CreatedTime   string
-	ModifiedTime  string
-	RegionId      string
-	Status        string
-	BillingStatus string
-	IllegalStatus string
-	TrafficLimit  int
+	RequestId     common.String
+	GroupId       common.String
+	GroupName     common.String
+	SubDomain     common.String
+	Description   common.String
+	CreatedTime   common.String
+	ModifiedTime  common.String
+	RegionId      common.String
+	Status        common.String
+	BillingStatus common.String
+	IllegalStatus common.String
+	TrafficLimit  common.Integer
 	CustomDomains DescribeApiGroupDomainItemList
 	StageItems    DescribeApiGroupStageInfoList
 }
 
 type DescribeApiGroupDomainItem struct {
-	DomainName          string
-	CertificateId       string
-	CertificateName     string
-	DomainCNAMEStatus   string
-	DomainBindingStatus string
-	DomainLegalStatus   string
-	DomainRemark        string
+	DomainName          common.String
+	CertificateId       common.String
+	CertificateName     common.String
+	DomainCNAMEStatus   common.String
+	DomainBindingStatus common.String
+	DomainLegalStatus   common.String
+	DomainRemark        common.String
 }
 
 type DescribeApiGroupStageInfo struct {
-	StageId     string
-	StageName   string
-	Description string
+	StageId     common.String
+	StageName   common.String
+	Description common.String
 }
 
 type DescribeApiGroupDomainItemList []DescribeApiGroupDomainItem

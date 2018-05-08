@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTaskRequest struct {
@@ -24,7 +25,7 @@ func (req *QueryTaskRequest) Invoke(client *sdk.Client) (resp *QueryTaskResponse
 
 type QueryTaskResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Action    string
-	Progress  int
+	RequestId common.String
+	Action    common.String
+	Progress  common.Integer
 }

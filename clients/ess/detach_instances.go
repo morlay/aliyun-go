@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DetachInstancesRequest struct {
@@ -44,6 +45,6 @@ func (req *DetachInstancesRequest) Invoke(client *sdk.Client) (resp *DetachInsta
 
 type DetachInstancesResponse struct {
 	responses.BaseResponse
-	ScalingActivityId string
-	RequestId         string
+	ScalingActivityId common.String
+	RequestId         common.String
 }

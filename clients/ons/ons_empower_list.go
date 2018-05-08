@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsEmpowerListRequest struct {
@@ -26,15 +27,15 @@ func (req *OnsEmpowerListRequest) Invoke(client *sdk.Client) (resp *OnsEmpowerLi
 
 type OnsEmpowerListResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsEmpowerListAuthOwnerInfoDoList
 }
 
 type OnsEmpowerListAuthOwnerInfoDo struct {
-	Topic    string
-	Owner    int64
-	Relation int
+	Topic    common.String
+	Owner    common.Long
+	Relation common.Integer
 }
 
 type OnsEmpowerListAuthOwnerInfoDoList []OnsEmpowerListAuthOwnerInfoDo

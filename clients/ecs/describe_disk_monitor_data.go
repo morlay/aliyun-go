@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDiskMonitorDataRequest struct {
@@ -29,22 +30,22 @@ func (req *DescribeDiskMonitorDataRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribeDiskMonitorDataResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	TotalCount  int
+	RequestId   common.String
+	TotalCount  common.Integer
 	MonitorData DescribeDiskMonitorDataDiskMonitorDataList
 }
 
 type DescribeDiskMonitorDataDiskMonitorData struct {
-	DiskId       string
-	IOPSRead     int
-	IOPSWrite    int
-	IOPSTotal    int
-	BPSRead      int
-	BPSWrite     int
-	BPSTotal     int
-	LatencyRead  int
-	LatencyWrite int
-	TimeStamp    string
+	DiskId       common.String
+	IOPSRead     common.Integer
+	IOPSWrite    common.Integer
+	IOPSTotal    common.Integer
+	BPSRead      common.Integer
+	BPSWrite     common.Integer
+	BPSTotal     common.Integer
+	LatencyRead  common.Integer
+	LatencyWrite common.Integer
+	TimeStamp    common.String
 }
 
 type DescribeDiskMonitorDataDiskMonitorDataList []DescribeDiskMonitorDataDiskMonitorData

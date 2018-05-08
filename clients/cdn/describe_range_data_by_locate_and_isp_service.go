@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRangeDataByLocateAndIspServiceRequest struct {
@@ -26,6 +27,6 @@ func (req *DescribeRangeDataByLocateAndIspServiceRequest) Invoke(client *sdk.Cli
 
 type DescribeRangeDataByLocateAndIspServiceResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	JsonResult string
+	RequestId  common.String
+	JsonResult common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDomainPvDataRequest struct {
@@ -26,17 +27,17 @@ func (req *DescribeDomainPvDataRequest) Invoke(client *sdk.Client) (resp *Descri
 
 type DescribeDomainPvDataResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	DomainName     string
-	DataInterval   string
-	StartTime      string
-	EndTime        string
+	RequestId      common.String
+	DomainName     common.String
+	DataInterval   common.String
+	StartTime      common.String
+	EndTime        common.String
 	PvDataInterval DescribeDomainPvDataUsageDataList
 }
 
 type DescribeDomainPvDataUsageData struct {
-	TimeStamp string
-	Value     string
+	TimeStamp common.String
+	Value     common.String
 }
 
 type DescribeDomainPvDataUsageDataList []DescribeDomainPvDataUsageData

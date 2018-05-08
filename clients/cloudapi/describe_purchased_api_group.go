@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePurchasedApiGroupRequest struct {
@@ -22,18 +23,18 @@ func (req *DescribePurchasedApiGroupRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribePurchasedApiGroupResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	GroupId       string
-	GroupName     string
-	Description   string
-	PurchasedTime string
-	RegionId      string
-	Status        string
+	RequestId     common.String
+	GroupId       common.String
+	GroupName     common.String
+	Description   common.String
+	PurchasedTime common.String
+	RegionId      common.String
+	Status        common.String
 	Domains       DescribePurchasedApiGroupDomainItemList
 }
 
 type DescribePurchasedApiGroupDomainItem struct {
-	DomainName string
+	DomainName common.String
 }
 
 type DescribePurchasedApiGroupDomainItemList []DescribePurchasedApiGroupDomainItem

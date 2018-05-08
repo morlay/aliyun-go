@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddLiveRecordVodConfigRequest struct {
@@ -27,5 +28,5 @@ func (req *AddLiveRecordVodConfigRequest) Invoke(client *sdk.Client) (resp *AddL
 
 type AddLiveRecordVodConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 }

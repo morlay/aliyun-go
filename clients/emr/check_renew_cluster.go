@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CheckRenewClusterRequest struct {
@@ -23,21 +24,21 @@ func (req *CheckRenewClusterRequest) Invoke(client *sdk.Client) (resp *CheckRene
 
 type CheckRenewClusterResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	ClusterId      string
+	RequestId      common.String
+	ClusterId      common.String
 	RenewEcsDOList CheckRenewClusterRenewEcsDOList
 }
 
 type CheckRenewClusterRenewEcsDO struct {
-	EcsId                string
-	EcsExpiredTime       string
-	EmrExpiredTime       string
-	EcsAutoRenew         string
-	EmrAutoRenew         string
-	EcsAutoRenewDuration int
-	EmrAutoRenewDuration int
-	HostGroupId          string
-	HostGroupType        string
+	EcsId                common.String
+	EcsExpiredTime       common.String
+	EmrExpiredTime       common.String
+	EcsAutoRenew         common.String
+	EmrAutoRenew         common.String
+	EcsAutoRenewDuration common.Integer
+	EmrAutoRenewDuration common.Integer
+	HostGroupId          common.String
+	HostGroupType        common.String
 }
 
 type CheckRenewClusterRenewEcsDOList []CheckRenewClusterRenewEcsDO

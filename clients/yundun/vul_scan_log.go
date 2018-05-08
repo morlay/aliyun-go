@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type VulScanLogRequest struct {
@@ -26,22 +27,22 @@ func (req *VulScanLogRequest) Invoke(client *sdk.Client) (resp *VulScanLogRespon
 
 type VulScanLogResponse struct {
 	responses.BaseResponse
-	RequestId  string
-	StartTime  string
-	EndTime    string
-	PageNumber int
-	PageSize   int
-	TotalCount int
+	RequestId  common.String
+	StartTime  common.String
+	EndTime    common.String
+	PageNumber common.Integer
+	PageSize   common.Integer
+	TotalCount common.Integer
 	LogList    VulScanLogVulScanLogList
 }
 
 type VulScanLogVulScanLog struct {
-	Id           int
-	Type         string
-	Url          string
-	HelpAddress  string
-	VulParameter string
-	Status       int
+	Id           common.Integer
+	Type         common.String
+	Url          common.String
+	HelpAddress  common.String
+	VulParameter common.String
+	Status       common.Integer
 }
 
 type VulScanLogVulScanLogList []VulScanLogVulScanLog

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListClusterServiceRequest struct {
@@ -25,35 +26,35 @@ func (req *ListClusterServiceRequest) Invoke(client *sdk.Client) (resp *ListClus
 
 type ListClusterServiceResponse struct {
 	responses.BaseResponse
-	RequestId          string
-	TotalCount         int
-	PageNumber         int
-	PageSize           int
+	RequestId          common.String
+	TotalCount         common.Integer
+	PageNumber         common.Integer
+	PageSize           common.Integer
 	ClusterServiceList ListClusterServiceClusterServiceList
 }
 
 type ListClusterServiceClusterService struct {
-	ServiceName        string
-	ServiceDisplayName string
-	ServiceVersion     string
+	ServiceName        common.String
+	ServiceDisplayName common.String
+	ServiceVersion     common.String
 	InstallStatus      bool
 	ClientType         bool
-	ServiceStatus      string
-	HealthStatus       string
-	NeedRestartInfo    string
-	NotStartInfo       string
-	AbnormalNum        int
-	StoppedNum         int
-	NeedRestartNum     int
+	ServiceStatus      common.String
+	HealthStatus       common.String
+	NeedRestartInfo    common.String
+	NotStartInfo       common.String
+	AbnormalNum        common.Integer
+	StoppedNum         common.Integer
+	NeedRestartNum     common.Integer
 	ServiceActionList  ListClusterServiceServiceActionList
 }
 
 type ListClusterServiceServiceAction struct {
-	ServiceName   string
-	ComponentName string
-	ActionName    string
-	Command       string
-	DisplayName   string
+	ServiceName   common.String
+	ComponentName common.String
+	ActionName    common.String
+	Command       common.String
+	DisplayName   common.String
 }
 
 type ListClusterServiceClusterServiceList []ListClusterServiceClusterService

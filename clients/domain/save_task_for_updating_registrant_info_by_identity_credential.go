@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveTaskForUpdatingRegistrantInfoByIdentityCredentialRequest struct {
@@ -45,8 +46,8 @@ func (req *SaveTaskForUpdatingRegistrantInfoByIdentityCredentialRequest) Invoke(
 
 type SaveTaskForUpdatingRegistrantInfoByIdentityCredentialResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }
 
 type SaveTaskForUpdatingRegistrantInfoByIdentityCredentialDomainNameList []string

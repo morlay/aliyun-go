@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeOptimizeAdviceOnStorageRequest struct {
@@ -28,19 +29,19 @@ func (req *DescribeOptimizeAdviceOnStorageRequest) Invoke(client *sdk.Client) (r
 
 type DescribeOptimizeAdviceOnStorageResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	DBInstanceId      string
-	TotalRecordsCount int
-	PageNumber        int
-	PageRecordCount   int
+	RequestId         common.String
+	DBInstanceId      common.String
+	TotalRecordsCount common.Integer
+	PageNumber        common.Integer
+	PageRecordCount   common.Integer
 	Items             DescribeOptimizeAdviceOnStorageAdviceOnStorageList
 }
 
 type DescribeOptimizeAdviceOnStorageAdviceOnStorage struct {
-	DBName        string
-	TableName     string
-	CurrentEngine string
-	AdviseEngine  string
+	DBName        common.String
+	TableName     common.String
+	CurrentEngine common.String
+	AdviseEngine  common.String
 }
 
 type DescribeOptimizeAdviceOnStorageAdviceOnStorageList []DescribeOptimizeAdviceOnStorageAdviceOnStorage

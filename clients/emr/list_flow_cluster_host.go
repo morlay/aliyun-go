@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListFlowClusterHostRequest struct {
@@ -24,23 +25,23 @@ func (req *ListFlowClusterHostRequest) Invoke(client *sdk.Client) (resp *ListFlo
 
 type ListFlowClusterHostResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	HostList  ListFlowClusterHostHostList
 }
 
 type ListFlowClusterHostHost struct {
-	HostId         string
-	HostName       string
-	PublicIp       string
-	PrivateIp      string
-	Role           string
-	InstanceType   string
-	Cpu            int
-	Memory         int
-	Status         string
-	Type           string
-	HostInstanceId string
-	SerialNumber   string
+	HostId         common.String
+	HostName       common.String
+	PublicIp       common.String
+	PrivateIp      common.String
+	Role           common.String
+	InstanceType   common.String
+	Cpu            common.Integer
+	Memory         common.Integer
+	Status         common.String
+	Type           common.String
+	HostInstanceId common.String
+	SerialNumber   common.String
 }
 
 type ListFlowClusterHostHostList []ListFlowClusterHostHost

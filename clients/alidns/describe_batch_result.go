@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeBatchResultRequest struct {
@@ -24,17 +25,17 @@ func (req *DescribeBatchResultRequest) Invoke(client *sdk.Client) (resp *Describ
 
 type DescribeBatchResultResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	TraceId       string
-	Status        int64
-	BatchCount    int64
-	SuccessNumber int64
+	RequestId     common.String
+	TraceId       common.String
+	Status        common.Long
+	BatchCount    common.Long
+	SuccessNumber common.Long
 	FailResults   DescribeBatchResultFailResultList
 }
 
 type DescribeBatchResultFailResult struct {
-	BatchIndex string
-	ErrorCode  string
+	BatchIndex common.String
+	ErrorCode  common.String
 }
 
 type DescribeBatchResultFailResultList []DescribeBatchResultFailResult

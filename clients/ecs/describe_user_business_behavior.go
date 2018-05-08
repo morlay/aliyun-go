@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeUserBusinessBehaviorRequest struct {
@@ -24,6 +25,6 @@ func (req *DescribeUserBusinessBehaviorRequest) Invoke(client *sdk.Client) (resp
 
 type DescribeUserBusinessBehaviorResponse struct {
 	responses.BaseResponse
-	RequestId   string
-	StatusValue string
+	RequestId   common.String
+	StatusValue common.String
 }

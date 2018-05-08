@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListAlbumPhotosRequest struct {
@@ -28,20 +29,20 @@ func (req *ListAlbumPhotosRequest) Invoke(client *sdk.Client) (resp *ListAlbumPh
 
 type ListAlbumPhotosResponse struct {
 	responses.BaseResponse
-	Code       string
-	Message    string
-	NextCursor string
-	TotalCount int
-	RequestId  string
-	Action     string
+	Code       common.String
+	Message    common.String
+	NextCursor common.String
+	TotalCount common.Integer
+	RequestId  common.String
+	Action     common.String
 	Results    ListAlbumPhotosResultList
 }
 
 type ListAlbumPhotosResult struct {
-	PhotoId    int64
-	PhotoIdStr string
-	Mtime      int64
-	State      string
+	PhotoId    common.Long
+	PhotoIdStr common.String
+	Mtime      common.Long
+	State      common.String
 }
 
 type ListAlbumPhotosResultList []ListAlbumPhotosResult

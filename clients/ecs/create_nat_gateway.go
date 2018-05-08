@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type CreateNatGatewayRequest struct {
@@ -36,8 +37,8 @@ type CreateNatGatewayBandwidthPackage struct {
 
 type CreateNatGatewayResponse struct {
 	responses.BaseResponse
-	RequestId           string
-	NatGatewayId        string
+	RequestId           common.String
+	NatGatewayId        common.String
 	ForwardTableIds     CreateNatGatewayForwardTableIdList
 	BandwidthPackageIds CreateNatGatewayBandwidthPackageIdList
 }
@@ -57,10 +58,10 @@ func (list *CreateNatGatewayBandwidthPackageList) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-type CreateNatGatewayForwardTableIdList []string
+type CreateNatGatewayForwardTableIdList []common.String
 
 func (list *CreateNatGatewayForwardTableIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err
@@ -72,10 +73,10 @@ func (list *CreateNatGatewayForwardTableIdList) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-type CreateNatGatewayBandwidthPackageIdList []string
+type CreateNatGatewayBandwidthPackageIdList []common.String
 
 func (list *CreateNatGatewayBandwidthPackageIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

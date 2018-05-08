@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type SaveBatchTaskForDomainNameProxyServiceRequest struct {
@@ -25,8 +26,8 @@ func (req *SaveBatchTaskForDomainNameProxyServiceRequest) Invoke(client *sdk.Cli
 
 type SaveBatchTaskForDomainNameProxyServiceResponse struct {
 	responses.BaseResponse
-	RequestId string
-	TaskNo    string
+	RequestId common.String
+	TaskNo    common.String
 }
 
 type SaveBatchTaskForDomainNameProxyServiceDomainNameList []string

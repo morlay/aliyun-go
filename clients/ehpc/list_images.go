@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListImagesRequest struct {
@@ -21,15 +22,15 @@ func (req *ListImagesRequest) Invoke(client *sdk.Client) (resp *ListImagesRespon
 
 type ListImagesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	OsTags    ListImagesOsInfoList
 }
 
 type ListImagesOsInfo struct {
-	OsTag        string
-	Platform     string
-	Version      string
-	Architecture string
+	OsTag        common.String
+	Platform     common.String
+	Version      common.String
+	Architecture common.String
 }
 
 type ListImagesOsInfoList []ListImagesOsInfo

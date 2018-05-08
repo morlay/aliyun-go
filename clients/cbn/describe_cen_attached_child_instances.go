@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCenAttachedChildInstancesRequest struct {
@@ -28,20 +29,20 @@ func (req *DescribeCenAttachedChildInstancesRequest) Invoke(client *sdk.Client) 
 
 type DescribeCenAttachedChildInstancesResponse struct {
 	responses.BaseResponse
-	RequestId      string
-	TotalCount     int
-	PageNumber     int
-	PageSize       int
+	RequestId      common.String
+	TotalCount     common.Integer
+	PageNumber     common.Integer
+	PageSize       common.Integer
 	ChildInstances DescribeCenAttachedChildInstancesChildInstanceList
 }
 
 type DescribeCenAttachedChildInstancesChildInstance struct {
-	CenId                 string
-	ChildInstanceId       string
-	ChildInstanceType     string
-	ChildInstanceRegionId string
-	ChildInstanceOwnerId  int64
-	Status                string
+	CenId                 common.String
+	ChildInstanceId       common.String
+	ChildInstanceType     common.String
+	ChildInstanceRegionId common.String
+	ChildInstanceOwnerId  common.Long
+	Status                common.String
 }
 
 type DescribeCenAttachedChildInstancesChildInstanceList []DescribeCenAttachedChildInstancesChildInstance

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type AddCasterLayoutRequest struct {
@@ -41,8 +42,8 @@ type AddCasterLayoutVideoLayer struct {
 
 type AddCasterLayoutResponse struct {
 	responses.BaseResponse
-	RequestId string
-	LayoutId  string
+	RequestId common.String
+	LayoutId  common.String
 }
 
 type AddCasterLayoutBlendListList []string

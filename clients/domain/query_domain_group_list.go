@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryDomainGroupListRequest struct {
@@ -25,17 +26,17 @@ func (req *QueryDomainGroupListRequest) Invoke(client *sdk.Client) (resp *QueryD
 
 type QueryDomainGroupListResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Data      QueryDomainGroupListDomainGroupList
 }
 
 type QueryDomainGroupListDomainGroup struct {
-	DomainGroupId     string
-	DomainGroupName   string
-	TotalNumber       int
-	CreationDate      string
-	ModificationDate  string
-	DomainGroupStatus string
+	DomainGroupId     common.String
+	DomainGroupName   common.String
+	TotalNumber       common.Integer
+	CreationDate      common.String
+	ModificationDate  common.String
+	DomainGroupStatus common.String
 	BeingDeleted      bool
 }
 

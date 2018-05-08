@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeRegionsRequest struct {
@@ -21,21 +22,21 @@ func (req *DescribeRegionsRequest) Invoke(client *sdk.Client) (resp *DescribeReg
 
 type DescribeRegionsResponse struct {
 	responses.BaseResponse
-	RequestId   string
+	RequestId   common.String
 	Success     bool
 	DrdsRegions DescribeRegionsDrdsRegionList
 }
 
 type DescribeRegionsDrdsRegion struct {
-	RegionId           string
-	RegionName         string
-	ZoneId             string
-	ZoneName           string
+	RegionId           common.String
+	RegionName         common.String
+	ZoneId             common.String
+	ZoneName           common.String
 	InstanceSeriesList DescribeRegionsInstanceSeriesList
 }
 
 type DescribeRegionsInstanceSeries struct {
-	SeriesName string
+	SeriesName common.String
 	SpecList   DescribeRegionsSpecListList
 }
 
@@ -69,10 +70,10 @@ func (list *DescribeRegionsInstanceSeriesList) UnmarshalJSON(data []byte) error 
 	return nil
 }
 
-type DescribeRegionsSpecListList []string
+type DescribeRegionsSpecListList []common.String
 
 func (list *DescribeRegionsSpecListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryAlarmRulesRequest struct {
@@ -23,24 +24,24 @@ func (req *QueryAlarmRulesRequest) Invoke(client *sdk.Client) (resp *QueryAlarmR
 
 type QueryAlarmRulesResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	AlarmList QueryAlarmRulesAlarmList
 }
 
 type QueryAlarmRulesAlarm struct {
-	Name               string
-	MetricName         string
-	Period             int
-	Threshold          string
-	EvaluationCount    int
-	StartTime          int
-	EndTime            int
-	SilenceTime        int
-	NotifyType         int
+	Name               common.String
+	MetricName         common.String
+	Period             common.Integer
+	Threshold          common.String
+	EvaluationCount    common.Integer
+	StartTime          common.Integer
+	EndTime            common.Integer
+	SilenceTime        common.Integer
+	NotifyType         common.Integer
 	Enable             bool
-	State              string
-	ComparisonOperator string
-	ContactGroups      string
+	State              common.String
+	ComparisonOperator common.String
+	ContactGroups      common.String
 }
 
 type QueryAlarmRulesAlarmList []QueryAlarmRulesAlarm

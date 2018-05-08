@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSecurityGroupAttributeRequest struct {
@@ -28,33 +29,33 @@ func (req *DescribeSecurityGroupAttributeRequest) Invoke(client *sdk.Client) (re
 
 type DescribeSecurityGroupAttributeResponse struct {
 	responses.BaseResponse
-	RequestId         string
-	RegionId          string
-	SecurityGroupId   string
-	Description       string
-	SecurityGroupName string
-	VpcId             string
-	InnerAccessPolicy string
+	RequestId         common.String
+	RegionId          common.String
+	SecurityGroupId   common.String
+	Description       common.String
+	SecurityGroupName common.String
+	VpcId             common.String
+	InnerAccessPolicy common.String
 	Permissions       DescribeSecurityGroupAttributePermissionList
 }
 
 type DescribeSecurityGroupAttributePermission struct {
-	IpProtocol              string
-	PortRange               string
-	SourceGroupId           string
-	SourceGroupName         string
-	SourceCidrIp            string
-	Policy                  string
-	NicType                 string
-	SourceGroupOwnerAccount string
-	DestGroupId             string
-	DestGroupName           string
-	DestCidrIp              string
-	DestGroupOwnerAccount   string
-	Priority                string
-	Direction               string
-	Description             string
-	CreateTime              string
+	IpProtocol              common.String
+	PortRange               common.String
+	SourceGroupId           common.String
+	SourceGroupName         common.String
+	SourceCidrIp            common.String
+	Policy                  common.String
+	NicType                 common.String
+	SourceGroupOwnerAccount common.String
+	DestGroupId             common.String
+	DestGroupName           common.String
+	DestCidrIp              common.String
+	DestGroupOwnerAccount   common.String
+	Priority                common.String
+	Direction               common.String
+	Description             common.String
+	CreateTime              common.String
 }
 
 type DescribeSecurityGroupAttributePermissionList []DescribeSecurityGroupAttributePermission

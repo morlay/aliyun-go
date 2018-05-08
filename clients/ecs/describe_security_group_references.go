@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSecurityGroupReferencesRequest struct {
@@ -26,18 +27,18 @@ func (req *DescribeSecurityGroupReferencesRequest) Invoke(client *sdk.Client) (r
 
 type DescribeSecurityGroupReferencesResponse struct {
 	responses.BaseResponse
-	RequestId               string
+	RequestId               common.String
 	SecurityGroupReferences DescribeSecurityGroupReferencesSecurityGroupReferenceList
 }
 
 type DescribeSecurityGroupReferencesSecurityGroupReference struct {
-	SecurityGroupId           string
+	SecurityGroupId           common.String
 	ReferencingSecurityGroups DescribeSecurityGroupReferencesReferencingSecurityGroupList
 }
 
 type DescribeSecurityGroupReferencesReferencingSecurityGroup struct {
-	AliUid          string
-	SecurityGroupId string
+	AliUid          common.String
+	SecurityGroupId common.String
 }
 
 type DescribeSecurityGroupReferencesSecurityGroupIdList []string

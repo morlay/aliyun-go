@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type RegisterPhotoRequest struct {
@@ -32,28 +33,28 @@ func (req *RegisterPhotoRequest) Invoke(client *sdk.Client) (resp *RegisterPhoto
 
 type RegisterPhotoResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Photo     RegisterPhotoPhoto
 }
 
 type RegisterPhotoPhoto struct {
-	Id              int64
-	IdStr           string
-	Title           string
-	Location        string
-	FileId          string
-	State           string
-	Md5             string
+	Id              common.Long
+	IdStr           common.String
+	Title           common.String
+	Location        common.String
+	FileId          common.String
+	State           common.String
+	Md5             common.String
 	IsVideo         bool
-	Size            int64
-	Remark          string
-	Width           int64
-	Height          int64
-	Ctime           int64
-	Mtime           int64
-	TakenAt         int64
-	ShareExpireTime int64
+	Size            common.Long
+	Remark          common.String
+	Width           common.Long
+	Height          common.Long
+	Ctime           common.Long
+	Mtime           common.Long
+	TakenAt         common.Long
+	ShareExpireTime common.Long
 }

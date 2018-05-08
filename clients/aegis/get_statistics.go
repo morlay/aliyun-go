@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetStatisticsRequest struct {
@@ -21,16 +22,16 @@ func (req *GetStatisticsRequest) Invoke(client *sdk.Client) (resp *GetStatistics
 
 type GetStatisticsResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Code      string
+	RequestId common.String
+	Code      common.String
 	Success   bool
-	Message   string
+	Message   common.String
 	Data      GetStatisticsData
 }
 
 type GetStatisticsData struct {
-	Account int
-	Health  int
-	Patch   int
-	Trojan  int
+	Account common.Integer
+	Health  common.Integer
+	Patch   common.Integer
+	Trojan  common.Integer
 }

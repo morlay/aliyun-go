@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeReplicaInitializeProgressRequest struct {
@@ -27,16 +28,16 @@ func (req *DescribeReplicaInitializeProgressRequest) Invoke(client *sdk.Client) 
 
 type DescribeReplicaInitializeProgressResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	Items     DescribeReplicaInitializeProgressItemsItemList
 }
 
 type DescribeReplicaInitializeProgressItemsItem struct {
-	ReplicaId   string
-	Status      string
-	Progress    string
-	FinishTime  string
-	CurrentStep string
+	ReplicaId   common.String
+	Status      common.String
+	Progress    common.String
+	FinishTime  common.String
+	CurrentStep common.String
 }
 
 type DescribeReplicaInitializeProgressItemsItemList []DescribeReplicaInitializeProgressItemsItem

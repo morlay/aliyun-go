@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryTagsRequest struct {
@@ -24,12 +25,12 @@ func (req *QueryTagsRequest) Invoke(client *sdk.Client) (resp *QueryTagsResponse
 
 type QueryTagsResponse struct {
 	responses.BaseResponse
-	RequestId string
+	RequestId common.String
 	TagInfos  QueryTagsTagInfoList
 }
 
 type QueryTagsTagInfo struct {
-	TagName string
+	TagName common.String
 }
 
 type QueryTagsTagInfoList []QueryTagsTagInfo

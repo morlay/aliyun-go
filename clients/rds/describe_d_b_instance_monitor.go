@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeDBInstanceMonitorRequest struct {
@@ -25,6 +26,6 @@ func (req *DescribeDBInstanceMonitorRequest) Invoke(client *sdk.Client) (resp *D
 
 type DescribeDBInstanceMonitorResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Period    string
+	RequestId common.String
+	Period    common.String
 }

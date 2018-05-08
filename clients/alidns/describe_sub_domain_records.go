@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeSubDomainRecordsRequest struct {
@@ -27,25 +28,25 @@ func (req *DescribeSubDomainRecordsRequest) Invoke(client *sdk.Client) (resp *De
 
 type DescribeSubDomainRecordsResponse struct {
 	responses.BaseResponse
-	RequestId     string
-	TotalCount    int64
-	PageNumber    int64
-	PageSize      int64
+	RequestId     common.String
+	TotalCount    common.Long
+	PageNumber    common.Long
+	PageSize      common.Long
 	DomainRecords DescribeSubDomainRecordsRecordList
 }
 
 type DescribeSubDomainRecordsRecord struct {
-	DomainName string
-	RecordId   string
-	RR         string
-	Type       string
-	Value      string
-	TTL        int64
-	Priority   int64
-	Line       string
-	Status     string
+	DomainName common.String
+	RecordId   common.String
+	RR         common.String
+	Type       common.String
+	Value      common.String
+	TTL        common.Long
+	Priority   common.Long
+	Line       common.String
+	Status     common.String
 	Locked     bool
-	Weight     int
+	Weight     common.Integer
 }
 
 type DescribeSubDomainRecordsRecordList []DescribeSubDomainRecordsRecord

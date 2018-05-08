@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeModifyParameterLogRequest struct {
@@ -30,22 +31,22 @@ func (req *DescribeModifyParameterLogRequest) Invoke(client *sdk.Client) (resp *
 
 type DescribeModifyParameterLogResponse struct {
 	responses.BaseResponse
-	RequestId        string
-	Engine           string
-	DBInstanceId     string
-	EngineVersion    string
-	TotalRecordCount int
-	PageNumber       int
-	PageRecordCount  int
+	RequestId        common.String
+	Engine           common.String
+	DBInstanceId     common.String
+	EngineVersion    common.String
+	TotalRecordCount common.Integer
+	PageNumber       common.Integer
+	PageRecordCount  common.Integer
 	Items            DescribeModifyParameterLogParameterChangeLogList
 }
 
 type DescribeModifyParameterLogParameterChangeLog struct {
-	ModifyTime        string
-	OldParameterValue string
-	NewParameterValue string
-	ParameterName     string
-	Status            string
+	ModifyTime        common.String
+	OldParameterValue common.String
+	NewParameterValue common.String
+	ParameterName     common.String
+	Status            common.String
 }
 
 type DescribeModifyParameterLogParameterChangeLogList []DescribeModifyParameterLogParameterChangeLog

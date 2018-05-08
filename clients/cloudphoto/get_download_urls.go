@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type GetDownloadUrlsRequest struct {
@@ -24,19 +25,19 @@ func (req *GetDownloadUrlsRequest) Invoke(client *sdk.Client) (resp *GetDownload
 
 type GetDownloadUrlsResponse struct {
 	responses.BaseResponse
-	Code      string
-	Message   string
-	RequestId string
-	Action    string
+	Code      common.String
+	Message   common.String
+	RequestId common.String
+	Action    common.String
 	Results   GetDownloadUrlsResultList
 }
 
 type GetDownloadUrlsResult struct {
-	Code        string
-	Message     string
-	PhotoId     int64
-	PhotoIdStr  string
-	DownloadUrl string
+	Code        common.String
+	Message     common.String
+	PhotoId     common.Long
+	PhotoIdStr  common.String
+	DownloadUrl common.String
 }
 
 type GetDownloadUrlsPhotoIdList []int64

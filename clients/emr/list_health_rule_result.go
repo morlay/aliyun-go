@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ListHealthRuleResultRequest struct {
@@ -29,25 +30,25 @@ func (req *ListHealthRuleResultRequest) Invoke(client *sdk.Client) (resp *ListHe
 
 type ListHealthRuleResultResponse struct {
 	responses.BaseResponse
-	RequestId            string
-	Total                int
-	PageNumber           int
-	PageSize             int
+	RequestId            common.String
+	Total                common.Integer
+	PageNumber           common.Integer
+	PageSize             common.Integer
 	HealthRuleResultList ListHealthRuleResultHealthRuleResultList
 }
 
 type ListHealthRuleResultHealthRuleResult struct {
-	Id              int64
-	ClusterId       int64
-	RuleId          int64
-	RuleName        string
-	RuleTitle       string
-	RuleStatus      string
-	RuleDescription string
-	Service         string
-	Component       string
-	Pass            string
-	HostNames       string
+	Id              common.Long
+	ClusterId       common.Long
+	RuleId          common.Long
+	RuleName        common.String
+	RuleTitle       common.String
+	RuleStatus      common.String
+	RuleDescription common.String
+	Service         common.String
+	Component       common.String
+	Pass            common.String
+	HostNames       common.String
 }
 
 type ListHealthRuleResultHealthRuleResultList []ListHealthRuleResultHealthRuleResult

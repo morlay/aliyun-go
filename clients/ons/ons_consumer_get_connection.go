@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type OnsConsumerGetConnectionRequest struct {
@@ -25,8 +26,8 @@ func (req *OnsConsumerGetConnectionRequest) Invoke(client *sdk.Client) (resp *On
 
 type OnsConsumerGetConnectionResponse struct {
 	responses.BaseResponse
-	RequestId string
-	HelpUrl   string
+	RequestId common.String
+	HelpUrl   common.String
 	Data      OnsConsumerGetConnectionData
 }
 
@@ -35,10 +36,10 @@ type OnsConsumerGetConnectionData struct {
 }
 
 type OnsConsumerGetConnectionConnectionDo struct {
-	ClientId   string
-	ClientAddr string
-	Language   string
-	Version    string
+	ClientId   common.String
+	ClientAddr common.String
+	Language   common.String
+	Version    common.String
 }
 
 type OnsConsumerGetConnectionConnectionDoList []OnsConsumerGetConnectionConnectionDo

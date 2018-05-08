@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyInstanceNetworkSpecRequest struct {
@@ -32,6 +33,6 @@ func (req *ModifyInstanceNetworkSpecRequest) Invoke(client *sdk.Client) (resp *M
 
 type ModifyInstanceNetworkSpecResponse struct {
 	responses.BaseResponse
-	RequestId string
-	OrderId   string
+	RequestId common.String
+	OrderId   common.String
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribeCatalogRequest struct {
@@ -22,21 +23,21 @@ func (req *DescribeCatalogRequest) Invoke(client *sdk.Client) (resp *DescribeCat
 
 type DescribeCatalogResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	CatalogId    string
-	CatalogName  string
-	Description  string
-	ParentId     string
-	CreatedTime  string
-	ModifiedTime string
-	RegionId     string
+	RequestId    common.String
+	CatalogId    common.String
+	CatalogName  common.String
+	Description  common.String
+	ParentId     common.String
+	CreatedTime  common.String
+	ModifiedTime common.String
+	RegionId     common.String
 	ApiIds       DescribeCatalogApiIdList
 }
 
-type DescribeCatalogApiIdList []string
+type DescribeCatalogApiIdList []common.String
 
 func (list *DescribeCatalogApiIdList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]string)
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

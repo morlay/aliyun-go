@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type QueryAuthConfigRequest struct {
@@ -23,7 +24,7 @@ func (req *QueryAuthConfigRequest) Invoke(client *sdk.Client) (resp *QueryAuthCo
 
 type QueryAuthConfigResponse struct {
 	responses.BaseResponse
-	RequestId string
-	Key1      string
-	Key2      string
+	RequestId common.String
+	Key1      common.String
+	Key2      common.String
 }

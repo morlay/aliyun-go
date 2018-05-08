@@ -6,6 +6,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type DescribePreCheckResultsRequest struct {
@@ -28,16 +29,16 @@ func (req *DescribePreCheckResultsRequest) Invoke(client *sdk.Client) (resp *Des
 
 type DescribePreCheckResultsResponse struct {
 	responses.BaseResponse
-	RequestId    string
-	DBInstanceId string
+	RequestId    common.String
+	DBInstanceId common.String
 	Items        DescribePreCheckResultsPreCheckResultList
 }
 
 type DescribePreCheckResultsPreCheckResult struct {
-	PreCheckName   string
-	PreCheckResult string
-	FailReasion    string
-	RepairMethod   string
+	PreCheckName   common.String
+	PreCheckResult common.String
+	FailReasion    common.String
+	RepairMethod   common.String
 }
 
 type DescribePreCheckResultsPreCheckResultList []DescribePreCheckResultsPreCheckResult

@@ -4,6 +4,7 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
+	"github.com/morlay/aliyun-go/common"
 )
 
 type ModifyBatchIgnoreVulRequest struct {
@@ -23,7 +24,7 @@ func (req *ModifyBatchIgnoreVulRequest) Invoke(client *sdk.Client) (resp *Modify
 
 type ModifyBatchIgnoreVulResponse struct {
 	responses.BaseResponse
-	RequestId      string
+	RequestId      common.String
 	Success        bool
-	HttpStatusCode int
+	HttpStatusCode common.Integer
 }
