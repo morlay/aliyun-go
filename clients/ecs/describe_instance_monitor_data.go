@@ -34,21 +34,23 @@ type DescribeInstanceMonitorDataResponse struct {
 }
 
 type DescribeInstanceMonitorDataInstanceMonitorData struct {
-	InstanceId        string
-	CPU               int
-	IntranetRX        int
-	IntranetTX        int
-	IntranetBandwidth int
-	InternetRX        int
-	InternetTX        int
-	InternetBandwidth int
-	IOPSRead          int
-	IOPSWrite         int
-	BPSRead           int
-	BPSWrite          int
-	CPUCreditUsage    float32
-	CPUCreditBalance  float32
-	TimeStamp         string
+	InstanceId                   string
+	CPU                          int
+	IntranetRX                   int
+	IntranetTX                   int
+	IntranetBandwidth            int
+	InternetRX                   int
+	InternetTX                   int
+	InternetBandwidth            int
+	IOPSRead                     int
+	IOPSWrite                    int
+	BPSRead                      int
+	BPSWrite                     int
+	CPUCreditUsage               float32
+	CPUCreditBalance             float32
+	CPUAdvanceCreditBalance      float32
+	CPUNotpaidSurplusCreditUsage float32
+	TimeStamp                    string
 }
 
 type DescribeInstanceMonitorDataInstanceMonitorDataList []DescribeInstanceMonitorDataInstanceMonitorData

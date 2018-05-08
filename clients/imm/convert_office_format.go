@@ -9,11 +9,19 @@ import (
 type ConvertOfficeFormatRequest struct {
 	requests.RpcRequest
 	ImageSpec       string `position:"Query" name:"ImageSpec"`
-	TgtType         string `position:"Query" name:"TgtType"`
+	SrcType         string `position:"Query" name:"SrcType"`
 	NotifyTopicName string `position:"Query" name:"NotifyTopicName"`
-	NotifyEndpoint  string `position:"Query" name:"NotifyEndpoint"`
+	ModelId         string `position:"Query" name:"ModelId"`
 	Project         string `position:"Query" name:"Project"`
 	ExternalID      string `position:"Query" name:"ExternalID"`
+	MaxSheetRow     int64  `position:"Query" name:"MaxSheetRow"`
+	MaxSheetCount   int64  `position:"Query" name:"MaxSheetCount"`
+	EndPage         int64  `position:"Query" name:"EndPage"`
+	SheetOnePage    string `position:"Query" name:"SheetOnePage"`
+	StartPage       int64  `position:"Query" name:"StartPage"`
+	MaxSheetCol     int64  `position:"Query" name:"MaxSheetCol"`
+	TgtType         string `position:"Query" name:"TgtType"`
+	NotifyEndpoint  string `position:"Query" name:"NotifyEndpoint"`
 	SrcUri          string `position:"Query" name:"SrcUri"`
 	TgtUri          string `position:"Query" name:"TgtUri"`
 }

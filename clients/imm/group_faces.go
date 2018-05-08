@@ -27,19 +27,19 @@ type GroupFacesResponse struct {
 	RequestId string
 	SetId     string
 	HasMore   int
-	Groups    GroupFacesGroupsList
+	Groups    GroupFacesGroupsItemList
 }
 
-type GroupFacesGroups struct {
+type GroupFacesGroupsItem struct {
 	FaceId        string
 	GroupId       string
 	UnGroupReason string
 }
 
-type GroupFacesGroupsList []GroupFacesGroups
+type GroupFacesGroupsItemList []GroupFacesGroupsItem
 
-func (list *GroupFacesGroupsList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]GroupFacesGroups)
+func (list *GroupFacesGroupsItemList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]GroupFacesGroupsItem)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

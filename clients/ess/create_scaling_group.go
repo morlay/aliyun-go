@@ -10,6 +10,7 @@ import (
 
 type CreateScalingGroupRequest struct {
 	requests.RpcRequest
+	MultiAZPolicy        string                           `position:"Query" name:"MultiAZPolicy"`
 	DBInstanceIds        string                           `position:"Query" name:"DBInstanceIds"`
 	LoadBalancerIds      string                           `position:"Query" name:"LoadBalancerIds"`
 	ResourceOwnerAccount string                           `position:"Query" name:"ResourceOwnerAccount"`

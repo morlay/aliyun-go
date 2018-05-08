@@ -82,6 +82,7 @@ type DescribeScalingGroupsScalingGroup struct {
 	ScalingGroupName             string
 	ActiveCapacity               int
 	StandbyCapacity              int
+	ProtectedCapacity            int
 	ActiveScalingConfigurationId string
 	ScalingGroupId               string
 	RegionId                     string
@@ -92,6 +93,7 @@ type DescribeScalingGroupsScalingGroup struct {
 	ModificationTime             string
 	VpcId                        string
 	VSwitchId                    string
+	MultiAZPolicy                string
 	VSwitchIds                   DescribeScalingGroupsVSwitchIdList
 	RemovalPolicies              DescribeScalingGroupsRemovalPolicyList
 	DBInstanceIds                DescribeScalingGroupsDBInstanceIdList

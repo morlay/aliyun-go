@@ -10,14 +10,15 @@ import (
 
 type NodeListRequest struct {
 	requests.RpcRequest
-	HostName      string `position:"Query" name:"HostName"`
-	InstanceIds   string `position:"Query" name:"InstanceIds"`
-	PageSize      int    `position:"Query" name:"PageSize"`
-	KeyWord       string `position:"Query" name:"KeyWord"`
-	UserId        int64  `position:"Query" name:"UserId"`
-	PageNumber    int    `position:"Query" name:"PageNumber"`
-	SerialNumbers string `position:"Query" name:"SerialNumbers"`
-	Status        string `position:"Query" name:"Status"`
+	HostName         string `position:"Query" name:"HostName"`
+	InstanceIds      string `position:"Query" name:"InstanceIds"`
+	InstanceRegionId string `position:"Query" name:"InstanceRegionId"`
+	PageSize         int    `position:"Query" name:"PageSize"`
+	KeyWord          string `position:"Query" name:"KeyWord"`
+	UserId           int64  `position:"Query" name:"UserId"`
+	PageNumber       int    `position:"Query" name:"PageNumber"`
+	SerialNumbers    string `position:"Query" name:"SerialNumbers"`
+	Status           string `position:"Query" name:"Status"`
 }
 
 func (req *NodeListRequest) Invoke(client *sdk.Client) (resp *NodeListResponse, err error) {
