@@ -21,6 +21,7 @@ type GetPlayInfoRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	Rand                 string `position:"Query" name:"Rand"`
 	ReAuthInfo           string `position:"Query" name:"ReAuthInfo"`
+	OutputType           string `position:"Query" name:"OutputType"`
 	Definition           string `position:"Query" name:"Definition"`
 	AuthTimeout          int64  `position:"Query" name:"AuthTimeout"`
 	AuthInfo             string `position:"Query" name:"AuthInfo"`
@@ -41,21 +42,22 @@ type GetPlayInfoResponse struct {
 }
 
 type GetPlayInfoPlayInfo struct {
-	Width      common.Long
-	Height     common.Long
-	Size       common.Long
-	PlayURL    common.String
-	Bitrate    common.String
-	Definition common.String
-	Duration   common.String
-	Format     common.String
-	Fps        common.String
-	Encrypt    common.Long
-	Plaintext  common.String
-	Complexity common.String
-	StreamType common.String
-	Rand       common.String
-	JobId      common.String
+	Width            common.Long
+	Height           common.Long
+	Size             common.Long
+	PlayURL          common.String
+	Bitrate          common.String
+	Definition       common.String
+	Duration         common.String
+	Format           common.String
+	Fps              common.String
+	Encrypt          common.Long
+	Plaintext        common.String
+	Complexity       common.String
+	StreamType       common.String
+	Rand             common.String
+	JobId            common.String
+	PreprocessStatus common.String
 }
 
 type GetPlayInfoVideoBase struct {

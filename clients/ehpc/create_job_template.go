@@ -22,7 +22,7 @@ type CreateJobTemplateRequest struct {
 }
 
 func (req *CreateJobTemplateRequest) Invoke(client *sdk.Client) (resp *CreateJobTemplateResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "CreateJobTemplate", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "CreateJobTemplate", "ehs", "")
 	resp = &CreateJobTemplateResponse{}
 	err = client.DoAction(req, resp)
 	return

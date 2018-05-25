@@ -16,7 +16,7 @@ type ModifyUserPasswordsRequest struct {
 }
 
 func (req *ModifyUserPasswordsRequest) Invoke(client *sdk.Client) (resp *ModifyUserPasswordsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ModifyUserPasswords", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ModifyUserPasswords", "ehs", "")
 	resp = &ModifyUserPasswordsResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -69,6 +69,8 @@ type DescribeProductModule struct {
 type DescribeProductProperty struct {
 	Name           common.String
 	Key            common.String
+	ShowType       common.String
+	DisplayUnit    common.String
 	PropertyValues DescribeProductPropertyValueList
 }
 
@@ -76,6 +78,10 @@ type DescribeProductPropertyValue struct {
 	Value       common.String
 	DisplayName common.String
 	Type        common.String
+	Min         common.String
+	Max         common.String
+	Step        common.String
+	Remark      common.String
 }
 
 type DescribeProductProductExtra struct {

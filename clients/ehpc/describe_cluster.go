@@ -15,7 +15,7 @@ type DescribeClusterRequest struct {
 }
 
 func (req *DescribeClusterRequest) Invoke(client *sdk.Client) (resp *DescribeClusterResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "DescribeCluster", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "DescribeCluster", "ehs", "")
 	resp = &DescribeClusterResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -44,6 +44,7 @@ type DescribeClusterClusterInfo struct {
 	VolumeProtocol   common.String
 	VolumeMountpoint common.String
 	RemoteDirectory  common.String
+	DeployMode       common.String
 	HaEnable         bool
 	EcsChargeType    common.String
 	KeyPairName      common.String
@@ -51,11 +52,11 @@ type DescribeClusterClusterInfo struct {
 	ClientVersion    common.String
 	ImageOwnerAlias  common.String
 	ImageId          common.String
-	ApplicationInfo  DescribeClusterApplicationInfoItemList
+	Applications     DescribeClusterApplicationInfoList
 	EcsInfo          DescribeClusterEcsInfo
 }
 
-type DescribeClusterApplicationInfoItem struct {
+type DescribeClusterApplicationInfo struct {
 	Tag     common.String
 	Name    common.String
 	Version common.String
@@ -82,10 +83,10 @@ type DescribeClusterLogin struct {
 	InstanceType common.String
 }
 
-type DescribeClusterApplicationInfoItemList []DescribeClusterApplicationInfoItem
+type DescribeClusterApplicationInfoList []DescribeClusterApplicationInfo
 
-func (list *DescribeClusterApplicationInfoItemList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]DescribeClusterApplicationInfoItem)
+func (list *DescribeClusterApplicationInfoList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeClusterApplicationInfo)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

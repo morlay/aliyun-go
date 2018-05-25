@@ -14,7 +14,7 @@ type StopJobsRequest struct {
 }
 
 func (req *StopJobsRequest) Invoke(client *sdk.Client) (resp *StopJobsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "StopJobs", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "StopJobs", "ehs", "")
 	resp = &StopJobsResponse{}
 	err = client.DoAction(req, resp)
 	return

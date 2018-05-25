@@ -15,11 +15,12 @@ type ListJobsRequest struct {
 	PageSize   int    `position:"Query" name:"PageSize"`
 	ClusterId  string `position:"Query" name:"ClusterId"`
 	State      string `position:"Query" name:"State"`
+	Rerunable  string `position:"Query" name:"Rerunable"`
 	PageNumber int    `position:"Query" name:"PageNumber"`
 }
 
 func (req *ListJobsRequest) Invoke(client *sdk.Client) (resp *ListJobsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListJobs", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListJobs", "ehs", "")
 	resp = &ListJobsResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -45,6 +46,7 @@ type ListJobsJobInfo struct {
 	LastModifyTime common.String
 	Stdout         common.String
 	Stderr         common.String
+	ShellPath      common.String
 	Comment        common.String
 	ArrayRequest   common.String
 	Resources      ListJobsResources

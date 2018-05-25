@@ -14,7 +14,7 @@ type ListImagesRequest struct {
 }
 
 func (req *ListImagesRequest) Invoke(client *sdk.Client) (resp *ListImagesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListImages", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListImages", "ehs", "")
 	resp = &ListImagesResponse{}
 	err = client.DoAction(req, resp)
 	return

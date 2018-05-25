@@ -36,6 +36,7 @@ type DescribeOssDownloadsResponse struct {
 type DescribeOssDownloadsOssDownload struct {
 	FileName    common.String
 	CreateTime  common.String
+	EndTime     common.String
 	BackupMode  common.String
 	FileSize    common.String
 	Status      common.String

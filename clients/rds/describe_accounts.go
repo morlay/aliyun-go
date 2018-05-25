@@ -15,8 +15,10 @@ type DescribeAccountsRequest struct {
 	AccountName          string `position:"Query" name:"AccountName"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	PageSize             int    `position:"Query" name:"PageSize"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
 func (req *DescribeAccountsRequest) Invoke(client *sdk.Client) (resp *DescribeAccountsResponse, err error) {
@@ -38,12 +40,14 @@ type DescribeAccountsDBInstanceAccount struct {
 	AccountStatus      common.String
 	AccountType        common.String
 	AccountDescription common.String
+	PrivExceeded       common.String
 	DatabasePrivileges DescribeAccountsDatabasePrivilegeList
 }
 
 type DescribeAccountsDatabasePrivilege struct {
-	DBName           common.String
-	AccountPrivilege common.String
+	DBName                 common.String
+	AccountPrivilege       common.String
+	AccountPrivilegeDetail common.String
 }
 
 type DescribeAccountsDBInstanceAccountList []DescribeAccountsDBInstanceAccount

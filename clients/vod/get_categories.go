@@ -31,10 +31,17 @@ type GetCategoriesResponse struct {
 	RequestId     common.String
 	SubTotal      common.Long
 	SubCategories GetCategoriesCategoryList
-	Category      GetCategoriesCategory
+	Category1     GetCategoriesCategory1
 }
 
 type GetCategoriesCategory struct {
+	CateId   common.Long
+	CateName common.String
+	Level    common.Long
+	ParentId common.Long
+}
+
+type GetCategoriesCategory1 struct {
 	CateId   common.Long
 	CateName common.String
 	Level    common.Long

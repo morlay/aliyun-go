@@ -10,13 +10,16 @@ import (
 type CreateMigrateTaskRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId      int64  `position:"Query" name:"ResourceOwnerId"`
-	DBName               string `position:"Query" name:"DBName"`
+	MigrateTaskId        string `position:"Query" name:"MigrateTaskId"`
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	IsOnlineDB           string `position:"Query" name:"IsOnlineDB"`
+	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	OssObjectPositions   string `position:"Query" name:"OssObjectPositions"`
+	OSSUrls              string `position:"Query" name:"OSSUrls"`
+	DBName               string `position:"Query" name:"DBName"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 	BackupMode           string `position:"Query" name:"BackupMode"`
-	OwnerId              int64  `position:"Query" name:"OwnerId"`
-	OSSUrls              string `position:"Query" name:"OSSUrls"`
+	CheckDBMode          string `position:"Query" name:"CheckDBMode"`
 }
 
 func (req *CreateMigrateTaskRequest) Invoke(client *sdk.Client) (resp *CreateMigrateTaskResponse, err error) {
@@ -32,6 +35,6 @@ type CreateMigrateTaskResponse struct {
 	DBInstanceId  common.String
 	TaskId        common.String
 	DBName        common.String
-	MigrateIaskId common.String
+	MigrateTaskId common.String
 	BackupMode    common.String
 }

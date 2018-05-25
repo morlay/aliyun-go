@@ -79,6 +79,7 @@ type ListLiveRecordVideoVideo struct {
 	Description     common.String
 	CustomerId      common.Long
 	CreateTime      common.String
+	CreationTime    common.String
 	ModifyTime      common.String
 	CoverURL        common.String
 	CateId          common.Integer

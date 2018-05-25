@@ -11,11 +11,12 @@ type GetMaterialsRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Biz             string `position:"Query" name:"Biz"`
+	SourceIp        string `position:"Query" name:"SourceIp"`
 	TicketId        string `position:"Query" name:"TicketId"`
 }
 
 func (req *GetMaterialsRequest) Invoke(client *sdk.Client) (resp *GetMaterialsResponse, err error) {
-	req.InitWithApiInfo("Cloudauth", "2017-11-17", "GetMaterials", "cloudauth", "")
+	req.InitWithApiInfo("Cloudauth", "2018-05-04", "GetMaterials", "cloudauth", "")
 	resp = &GetMaterialsResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -34,10 +35,12 @@ type GetMaterialsData struct {
 	Name                 common.String
 	IdentificationNumber common.String
 	IdCardType           common.String
+	IdCardStartDate      common.String
 	IdCardExpiry         common.String
 	Address              common.String
 	Sex                  common.String
 	IdCardFrontPic       common.String
 	IdCardBackPic        common.String
 	FacePic              common.String
+	EthnicGroup          common.String
 }

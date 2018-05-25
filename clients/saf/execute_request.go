@@ -14,7 +14,7 @@ type ExecuteRequestRequest struct {
 }
 
 func (req *ExecuteRequestRequest) Invoke(client *sdk.Client) (resp *ExecuteRequestResponse, err error) {
-	req.InitWithApiInfo("saf", "2017-03-31", "ExecuteRequest", "saf", "")
+	req.InitWithApiInfo("saf", "2017-03-31", "ExecuteRequest", "", "")
 	resp = &ExecuteRequestResponse{}
 	err = client.DoAction(req, resp)
 	return

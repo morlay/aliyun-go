@@ -12,12 +12,13 @@ import (
 type SubmitMaterialsRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64                        `position:"Query" name:"ResourceOwnerId"`
+	SourceIp        string                       `position:"Query" name:"SourceIp"`
 	Materials       *SubmitMaterialsMaterialList `position:"Query" type:"Repeated" name:"Material"`
 	VerifyToken     string                       `position:"Query" name:"VerifyToken"`
 }
 
 func (req *SubmitMaterialsRequest) Invoke(client *sdk.Client) (resp *SubmitMaterialsResponse, err error) {
-	req.InitWithApiInfo("Cloudauth", "2017-11-17", "SubmitMaterials", "cloudauth", "")
+	req.InitWithApiInfo("Cloudauth", "2018-05-04", "SubmitMaterials", "cloudauth", "")
 	resp = &SubmitMaterialsResponse{}
 	err = client.DoAction(req, resp)
 	return

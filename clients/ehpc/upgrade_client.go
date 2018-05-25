@@ -14,7 +14,7 @@ type UpgradeClientRequest struct {
 }
 
 func (req *UpgradeClientRequest) Invoke(client *sdk.Client) (resp *UpgradeClientResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "UpgradeClient", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "UpgradeClient", "ehs", "")
 	resp = &UpgradeClientResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -16,7 +16,7 @@ type DeleteUsersRequest struct {
 }
 
 func (req *DeleteUsersRequest) Invoke(client *sdk.Client) (resp *DeleteUsersResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "DeleteUsers", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "DeleteUsers", "ehs", "")
 	resp = &DeleteUsersResponse{}
 	err = client.DoAction(req, resp)
 	return

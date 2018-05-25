@@ -62,6 +62,10 @@ type GetQuotaInstanceInstance struct {
 	SkynetId        common.String
 	QuotaName       common.String
 	QuotaId         common.Integer
+	User            common.String
+	IsRealOwner     common.String
+	ProjectOwner    common.String
+	CollectTime     common.String
 }
 
 type GetQuotaInstanceInstanceList []GetQuotaInstanceInstance

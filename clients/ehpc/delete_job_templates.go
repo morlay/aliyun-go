@@ -13,7 +13,7 @@ type DeleteJobTemplatesRequest struct {
 }
 
 func (req *DeleteJobTemplatesRequest) Invoke(client *sdk.Client) (resp *DeleteJobTemplatesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "DeleteJobTemplates", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "DeleteJobTemplates", "ehs", "")
 	resp = &DeleteJobTemplatesResponse{}
 	err = client.DoAction(req, resp)
 	return

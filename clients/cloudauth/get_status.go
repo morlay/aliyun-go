@@ -11,11 +11,12 @@ type GetStatusRequest struct {
 	requests.RpcRequest
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Biz             string `position:"Query" name:"Biz"`
+	SourceIp        string `position:"Query" name:"SourceIp"`
 	TicketId        string `position:"Query" name:"TicketId"`
 }
 
 func (req *GetStatusRequest) Invoke(client *sdk.Client) (resp *GetStatusResponse, err error) {
-	req.InitWithApiInfo("Cloudauth", "2017-11-17", "GetStatus", "cloudauth", "")
+	req.InitWithApiInfo("Cloudauth", "2018-05-04", "GetStatus", "cloudauth", "")
 	resp = &GetStatusResponse{}
 	err = client.DoAction(req, resp)
 	return

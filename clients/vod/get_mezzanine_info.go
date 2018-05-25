@@ -31,16 +31,17 @@ type GetMezzanineInfoResponse struct {
 }
 
 type GetMezzanineInfoMezzanine struct {
-	VideoId      common.String
-	Bitrate      common.String
-	CreationTime common.String
-	Duration     common.String
-	Fps          common.String
-	Height       common.Long
-	Width        common.Long
-	Size         common.Long
-	Status       common.String
-	FileURL      common.String
-	FileName     common.String
-	CRC64        common.String
+	VideoId          common.String
+	Bitrate          common.String
+	CreationTime     common.String
+	Duration         common.String
+	Fps              common.String
+	Height           common.Long
+	Width            common.Long
+	Size             common.Long
+	Status           common.String
+	FileURL          common.String
+	FileName         common.String
+	CRC64            common.String
+	PreprocessStatus common.String
 }

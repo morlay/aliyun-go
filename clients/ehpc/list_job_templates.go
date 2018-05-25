@@ -17,7 +17,7 @@ type ListJobTemplatesRequest struct {
 }
 
 func (req *ListJobTemplatesRequest) Invoke(client *sdk.Client) (resp *ListJobTemplatesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListJobTemplates", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListJobTemplates", "ehs", "")
 	resp = &ListJobTemplatesResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -38,7 +38,7 @@ type ListJobTemplatesJobTemplates struct {
 	CommandLine        common.String
 	RunasUser          common.String
 	Priority           common.Integer
-	_package           common.String
+	PackagePath        common.String
 	StdoutRedirectPath common.String
 	StderrRedirectPath common.String
 	ReRunable          bool

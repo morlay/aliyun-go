@@ -14,7 +14,7 @@ type RerunJobsRequest struct {
 }
 
 func (req *RerunJobsRequest) Invoke(client *sdk.Client) (resp *RerunJobsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "RerunJobs", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "RerunJobs", "ehs", "")
 	resp = &RerunJobsResponse{}
 	err = client.DoAction(req, resp)
 	return

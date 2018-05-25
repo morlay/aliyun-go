@@ -18,7 +18,7 @@ type ListNodesNoPagingRequest struct {
 }
 
 func (req *ListNodesNoPagingRequest) Invoke(client *sdk.Client) (resp *ListNodesNoPagingResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListNodesNoPaging", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListNodesNoPaging", "ehs", "")
 	resp = &ListNodesNoPagingResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -38,7 +38,6 @@ type ListNodesNoPagingNodeInfo struct {
 	RegionId        common.String
 	Status          common.String
 	CreatedByEhpc   bool
-	Role            common.String
 	AddTime         common.String
 	Expired         bool
 	ExpiredTime     common.String
@@ -46,6 +45,7 @@ type ListNodesNoPagingNodeInfo struct {
 	LockReason      common.String
 	ImageOwnerAlias common.String
 	ImageId         common.String
+	Roles           ListNodesNoPagingRoleList
 	TotalResources  ListNodesNoPagingTotalResources
 	UsedResources   ListNodesNoPagingUsedResources
 }
@@ -66,6 +66,21 @@ type ListNodesNoPagingNodeInfoList []ListNodesNoPagingNodeInfo
 
 func (list *ListNodesNoPagingNodeInfoList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]ListNodesNoPagingNodeInfo)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type ListNodesNoPagingRoleList []common.String
+
+func (list *ListNodesNoPagingRoleList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

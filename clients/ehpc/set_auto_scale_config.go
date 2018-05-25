@@ -23,7 +23,7 @@ type SetAutoScaleConfigRequest struct {
 }
 
 func (req *SetAutoScaleConfigRequest) Invoke(client *sdk.Client) (resp *SetAutoScaleConfigResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "SetAutoScaleConfig", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "SetAutoScaleConfig", "ehs", "")
 	resp = &SetAutoScaleConfigResponse{}
 	err = client.DoAction(req, resp)
 	return

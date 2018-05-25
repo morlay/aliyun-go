@@ -17,7 +17,7 @@ type DeleteNodesRequest struct {
 }
 
 func (req *DeleteNodesRequest) Invoke(client *sdk.Client) (resp *DeleteNodesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "DeleteNodes", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "DeleteNodes", "ehs", "")
 	resp = &DeleteNodesResponse{}
 	err = client.DoAction(req, resp)
 	return

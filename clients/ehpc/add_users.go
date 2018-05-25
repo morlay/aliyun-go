@@ -17,7 +17,7 @@ type AddUsersRequest struct {
 }
 
 func (req *AddUsersRequest) Invoke(client *sdk.Client) (resp *AddUsersResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "AddUsers", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "AddUsers", "ehs", "")
 	resp = &AddUsersResponse{}
 	err = client.DoAction(req, resp)
 	return

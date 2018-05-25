@@ -14,7 +14,7 @@ type ListRegionsRequest struct {
 }
 
 func (req *ListRegionsRequest) Invoke(client *sdk.Client) (resp *ListRegionsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListRegions", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListRegions", "ehs", "")
 	resp = &ListRegionsResponse{}
 	err = client.DoAction(req, resp)
 	return

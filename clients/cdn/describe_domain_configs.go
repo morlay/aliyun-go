@@ -85,6 +85,7 @@ type DescribeDomainConfigsHttpHeaderConfig struct {
 
 type DescribeDomainConfigsDynamicConfig struct {
 	ConfigId            common.String
+	Enable              common.String
 	DynamicOrigin       common.String
 	StaticType          common.String
 	StaticUri           common.String

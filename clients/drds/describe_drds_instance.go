@@ -29,17 +29,18 @@ type DescribeDrdsInstanceResponse struct {
 }
 
 type DescribeDrdsInstanceData struct {
-	DrdsInstanceId common.String
-	Type           common.String
-	RegionId       common.String
-	ZoneId         common.String
-	Description    common.String
-	NetworkType    common.String
-	Status         common.String
-	CreateTime     common.Long
-	Version        common.Long
-	Specification  common.String
-	Vips           DescribeDrdsInstanceVipList
+	DrdsInstanceId     common.String
+	Type               common.String
+	RegionId           common.String
+	ZoneId             common.String
+	Description        common.String
+	NetworkType        common.String
+	Status             common.String
+	CreateTime         common.Long
+	Version            common.Long
+	Specification      common.String
+	VpcCloudInstanceId common.String
+	Vips               DescribeDrdsInstanceVipList
 }
 
 type DescribeDrdsInstanceVip struct {

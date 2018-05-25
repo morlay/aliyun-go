@@ -33,20 +33,21 @@ type GetVideoInfoResponse struct {
 }
 
 type GetVideoInfoVideo struct {
-	VideoId      common.String
-	Title        common.String
-	Tags         common.String
-	Status       common.String
-	Size         common.Long
-	Duration     common.Float
-	Description  common.String
-	CreateTime   common.String
-	CreationTime common.String
-	ModifyTime   common.String
-	CoverURL     common.String
-	CateId       common.Long
-	CateName     common.String
-	Snapshots    GetVideoInfoSnapshotList
+	VideoId          common.String
+	Title            common.String
+	Tags             common.String
+	Status           common.String
+	Size             common.Long
+	Duration         common.Float
+	Description      common.String
+	CreateTime       common.String
+	CreationTime     common.String
+	ModifyTime       common.String
+	CoverURL         common.String
+	CateId           common.Long
+	CateName         common.String
+	PreprocessStatus common.String
+	Snapshots        GetVideoInfoSnapshotList
 }
 
 type GetVideoInfoSnapshotList []common.String

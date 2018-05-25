@@ -11,13 +11,14 @@ type CompareFacesRequest struct {
 	requests.RpcRequest
 	SourceImageType  string `position:"Query" name:"SourceImageType"`
 	ResourceOwnerId  int64  `position:"Query" name:"ResourceOwnerId"`
+	SourceIp         string `position:"Query" name:"SourceIp"`
 	TargetImageType  string `position:"Query" name:"TargetImageType"`
 	SourceImageValue string `position:"Query" name:"SourceImageValue"`
 	TargetImageValue string `position:"Query" name:"TargetImageValue"`
 }
 
 func (req *CompareFacesRequest) Invoke(client *sdk.Client) (resp *CompareFacesResponse, err error) {
-	req.InitWithApiInfo("Cloudauth", "2017-11-17", "CompareFaces", "cloudauth", "")
+	req.InitWithApiInfo("Cloudauth", "2018-05-04", "CompareFaces", "cloudauth", "")
 	resp = &CompareFacesResponse{}
 	err = client.DoAction(req, resp)
 	return

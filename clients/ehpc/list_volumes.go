@@ -16,7 +16,7 @@ type ListVolumesRequest struct {
 }
 
 func (req *ListVolumesRequest) Invoke(client *sdk.Client) (resp *ListVolumesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListVolumes", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListVolumes", "ehs", "")
 	resp = &ListVolumesResponse{}
 	err = client.DoAction(req, resp)
 	return

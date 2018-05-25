@@ -12,7 +12,7 @@ type ListCurrentClientVersionRequest struct {
 }
 
 func (req *ListCurrentClientVersionRequest) Invoke(client *sdk.Client) (resp *ListCurrentClientVersionResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListCurrentClientVersion", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListCurrentClientVersion", "ehs", "")
 	resp = &ListCurrentClientVersionResponse{}
 	err = client.DoAction(req, resp)
 	return

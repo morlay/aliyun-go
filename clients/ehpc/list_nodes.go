@@ -19,7 +19,7 @@ type ListNodesRequest struct {
 }
 
 func (req *ListNodesRequest) Invoke(client *sdk.Client) (resp *ListNodesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListNodes", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListNodes", "ehs", "")
 	resp = &ListNodesResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -39,7 +39,6 @@ type ListNodesNodeInfo struct {
 	RegionId        common.String
 	Status          common.String
 	CreatedByEhpc   bool
-	Role            common.String
 	AddTime         common.String
 	Expired         bool
 	ExpiredTime     common.String
@@ -47,6 +46,7 @@ type ListNodesNodeInfo struct {
 	LockReason      common.String
 	ImageOwnerAlias common.String
 	ImageId         common.String
+	Roles           ListNodesRoleList
 	TotalResources  ListNodesTotalResources
 	UsedResources   ListNodesUsedResources
 }
@@ -67,6 +67,21 @@ type ListNodesNodeInfoList []ListNodesNodeInfo
 
 func (list *ListNodesNodeInfoList) UnmarshalJSON(data []byte) error {
 	m := make(map[string][]ListNodesNodeInfo)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
+}
+
+type ListNodesRoleList []common.String
+
+func (list *ListNodesRoleList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]common.String)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

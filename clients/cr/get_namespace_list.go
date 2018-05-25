@@ -8,6 +8,8 @@ import (
 
 type GetNamespaceListRequest struct {
 	requests.RoaRequest
+	Authorize string `position:"Query" name:"Authorize"`
+	Status    string `position:"Query" name:"Status"`
 }
 
 func (req *GetNamespaceListRequest) Invoke(client *sdk.Client) (resp *GetNamespaceListResponse, err error) {

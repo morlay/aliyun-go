@@ -1,6 +1,8 @@
 package market
 
 import (
+	"encoding/json"
+
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/responses"
@@ -26,5 +28,22 @@ func (req *CreateOrderRequest) Invoke(client *sdk.Client) (resp *CreateOrderResp
 
 type CreateOrderResponse struct {
 	responses.BaseResponse
-	OrderId common.String
+	RequestId   common.String
+	OrderId     common.String
+	InstanceIds CreateOrderInstanceIdList
+}
+
+type CreateOrderInstanceIdList []common.String
+
+func (list *CreateOrderInstanceIdList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]common.String)
+	err := json.Unmarshal(data, &m)
+	if err != nil {
+		return err
+	}
+	for _, v := range m {
+		*list = v
+		break
+	}
+	return nil
 }

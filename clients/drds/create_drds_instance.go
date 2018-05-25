@@ -11,14 +11,15 @@ import (
 
 type CreateDrdsInstanceRequest struct {
 	requests.RpcRequest
-	VswitchId      string `position:"Query" name:"VswitchId"`
 	Quantity       int    `position:"Query" name:"Quantity"`
-	InstanceSeries string `position:"Query" name:"InstanceSeries"`
-	VpcId          string `position:"Query" name:"VpcId"`
 	Description    string `position:"Query" name:"Description"`
-	ZoneId         string `position:"Query" name:"ZoneId"`
 	Specification  string `position:"Query" name:"Specification"`
 	Type           string `position:"Query" name:"Type"`
+	VswitchId      string `position:"Query" name:"VswitchId"`
+	IsHa           string `position:"Query" name:"IsHa"`
+	InstanceSeries string `position:"Query" name:"InstanceSeries"`
+	VpcId          string `position:"Query" name:"VpcId"`
+	ZoneId         string `position:"Query" name:"ZoneId"`
 	PayType        string `position:"Query" name:"PayType"`
 }
 

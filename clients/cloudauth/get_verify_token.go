@@ -12,12 +12,13 @@ type GetVerifyTokenRequest struct {
 	UserData        string `position:"Query" name:"UserData"`
 	ResourceOwnerId int64  `position:"Query" name:"ResourceOwnerId"`
 	Biz             string `position:"Query" name:"Biz"`
+	SourceIp        string `position:"Query" name:"SourceIp"`
 	Binding         string `position:"Query" name:"Binding"`
 	TicketId        string `position:"Query" name:"TicketId"`
 }
 
 func (req *GetVerifyTokenRequest) Invoke(client *sdk.Client) (resp *GetVerifyTokenResponse, err error) {
-	req.InitWithApiInfo("Cloudauth", "2017-11-17", "GetVerifyToken", "cloudauth", "")
+	req.InitWithApiInfo("Cloudauth", "2018-05-04", "GetVerifyToken", "cloudauth", "")
 	resp = &GetVerifyTokenResponse{}
 	err = client.DoAction(req, resp)
 	return

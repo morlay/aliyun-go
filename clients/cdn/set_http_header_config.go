@@ -11,6 +11,7 @@ type SetHttpHeaderConfigRequest struct {
 	requests.RpcRequest
 	HeaderValue   string `position:"Query" name:"HeaderValue"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
+	ConfigId      int64  `position:"Query" name:"ConfigId"`
 	DomainName    string `position:"Query" name:"DomainName"`
 	HeaderKey     string `position:"Query" name:"HeaderKey"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`

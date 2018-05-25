@@ -9,8 +9,9 @@ import (
 type GetRepoListByNamespaceRequest struct {
 	requests.RoaRequest
 	RepoNamespace string `position:"Path" name:"RepoNamespace"`
-	Page          int    `position:"Query" name:"Page"`
 	PageSize      int    `position:"Query" name:"PageSize"`
+	Page          int    `position:"Query" name:"Page"`
+	Status        string `position:"Query" name:"Status"`
 }
 
 func (req *GetRepoListByNamespaceRequest) Invoke(client *sdk.Client) (resp *GetRepoListByNamespaceResponse, err error) {

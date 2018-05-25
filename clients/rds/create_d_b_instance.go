@@ -18,6 +18,8 @@ type CreateDBInstanceRequest struct {
 	ResourceGroupId       string `position:"Query" name:"ResourceGroupId"`
 	Engine                string `position:"Query" name:"Engine"`
 	DBInstanceDescription string `position:"Query" name:"DBInstanceDescription"`
+	DBInstanceStorageType string `position:"Query" name:"DBInstanceStorageType"`
+	BusinessInfo          string `position:"Query" name:"BusinessInfo"`
 	DBInstanceNetType     string `position:"Query" name:"DBInstanceNetType"`
 	Period                string `position:"Query" name:"Period"`
 	ResourceOwnerAccount  string `position:"Query" name:"ResourceOwnerAccount"`

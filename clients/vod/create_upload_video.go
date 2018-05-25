@@ -18,6 +18,7 @@ type CreateUploadVideoRequest struct {
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
 	Title                string `position:"Query" name:"Title"`
 	Tags                 string `position:"Query" name:"Tags"`
+	StorageLocation      string `position:"Query" name:"StorageLocation"`
 	CoverURL             string `position:"Query" name:"CoverURL"`
 	UserData             string `position:"Query" name:"UserData"`
 	FileName             string `position:"Query" name:"FileName"`

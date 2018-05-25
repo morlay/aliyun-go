@@ -16,7 +16,7 @@ type ModifyUserGroupsRequest struct {
 }
 
 func (req *ModifyUserGroupsRequest) Invoke(client *sdk.Client) (resp *ModifyUserGroupsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ModifyUserGroups", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ModifyUserGroups", "ehs", "")
 	resp = &ModifyUserGroupsResponse{}
 	err = client.DoAction(req, resp)
 	return

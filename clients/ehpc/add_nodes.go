@@ -11,16 +11,21 @@ import (
 
 type AddNodesRequest struct {
 	requests.RpcRequest
+	AutoRenewPeriod       int    `position:"Query" name:"AutoRenewPeriod"`
+	Period                int    `position:"Query" name:"Period"`
 	ImageId               string `position:"Query" name:"ImageId"`
 	Count                 int    `position:"Query" name:"Count"`
 	ClusterId             string `position:"Query" name:"ClusterId"`
 	ComputeSpotStrategy   string `position:"Query" name:"ComputeSpotStrategy"`
-	ComputeSpotPriceLimit string `position:"Query" name:"ComputeSpotPriceLimit"`
 	ImageOwnerAlias       string `position:"Query" name:"ImageOwnerAlias"`
+	PeriodUnit            string `position:"Query" name:"PeriodUnit"`
+	AutoRenew             string `position:"Query" name:"AutoRenew"`
+	EcsChargeType         string `position:"Query" name:"EcsChargeType"`
+	ComputeSpotPriceLimit string `position:"Query" name:"ComputeSpotPriceLimit"`
 }
 
 func (req *AddNodesRequest) Invoke(client *sdk.Client) (resp *AddNodesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "AddNodes", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "AddNodes", "ehs", "")
 	resp = &AddNodesResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -11,11 +11,13 @@ import (
 
 type ListPreferredEcsTypesRequest struct {
 	requests.RpcRequest
-	ZoneId string `position:"Query" name:"ZoneId"`
+	SpotStrategy       string `position:"Query" name:"SpotStrategy"`
+	ZoneId             string `position:"Query" name:"ZoneId"`
+	InstanceChargeType string `position:"Query" name:"InstanceChargeType"`
 }
 
 func (req *ListPreferredEcsTypesRequest) Invoke(client *sdk.Client) (resp *ListPreferredEcsTypesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListPreferredEcsTypes", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListPreferredEcsTypes", "ehs", "")
 	resp = &ListPreferredEcsTypesResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -23,8 +25,9 @@ func (req *ListPreferredEcsTypesRequest) Invoke(client *sdk.Client) (resp *ListP
 
 type ListPreferredEcsTypesResponse struct {
 	responses.BaseResponse
-	RequestId common.String
-	Series    ListPreferredEcsTypesSeriesInfoList
+	RequestId           common.String
+	SupportSpotInstance bool
+	Series              ListPreferredEcsTypesSeriesInfoList
 }
 
 type ListPreferredEcsTypesSeriesInfo struct {

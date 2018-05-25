@@ -81,10 +81,12 @@ type DescribeDBInstanceAttributeDBInstanceAttribute struct {
 	SecurityIPList                    common.String
 	ZoneId                            common.String
 	InstanceNetworkType               common.String
+	DBInstanceStorageType             common.String
 	AdvancedFeatures                  common.String
 	Category                          common.String
 	AccountType                       common.String
 	SupportUpgradeAccountType         common.String
+	SupportCreateSuperAccount         common.String
 	VpcId                             common.String
 	VSwitchId                         common.String
 	ConnectionMode                    common.String

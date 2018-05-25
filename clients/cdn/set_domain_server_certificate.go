@@ -13,6 +13,7 @@ type SetDomainServerCertificateRequest struct {
 	ServerCertificateStatus string `position:"Query" name:"ServerCertificateStatus"`
 	ServerCertificate       string `position:"Query" name:"ServerCertificate"`
 	SecurityToken           string `position:"Query" name:"SecurityToken"`
+	CertType                string `position:"Query" name:"CertType"`
 	CertName                string `position:"Query" name:"CertName"`
 	DomainName              string `position:"Query" name:"DomainName"`
 	OwnerId                 int64  `position:"Query" name:"OwnerId"`

@@ -11,10 +11,13 @@ import (
 
 type DescribeLiveStreamsOnlineListRequest struct {
 	requests.RpcRequest
+	StreamType    string `position:"Query" name:"StreamType"`
 	AppName       string `position:"Query" name:"AppName"`
 	SecurityToken string `position:"Query" name:"SecurityToken"`
 	DomainName    string `position:"Query" name:"DomainName"`
+	PageSize      int    `position:"Query" name:"PageSize"`
 	OwnerId       int64  `position:"Query" name:"OwnerId"`
+	PageNum       int    `position:"Query" name:"PageNum"`
 }
 
 func (req *DescribeLiveStreamsOnlineListRequest) Invoke(client *sdk.Client) (resp *DescribeLiveStreamsOnlineListResponse, err error) {
@@ -27,6 +30,10 @@ func (req *DescribeLiveStreamsOnlineListRequest) Invoke(client *sdk.Client) (res
 type DescribeLiveStreamsOnlineListResponse struct {
 	responses.BaseResponse
 	RequestId  common.String
+	PageNum    common.Integer
+	PageSize   common.Integer
+	TotalNum   common.Integer
+	TotalPage  common.Integer
 	OnlineInfo DescribeLiveStreamsOnlineListLiveStreamOnlineInfoList
 }
 

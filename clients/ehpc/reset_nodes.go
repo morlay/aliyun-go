@@ -16,7 +16,7 @@ type ResetNodesRequest struct {
 }
 
 func (req *ResetNodesRequest) Invoke(client *sdk.Client) (resp *ResetNodesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ResetNodes", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ResetNodes", "ehs", "")
 	resp = &ResetNodesResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -36,8 +36,14 @@ type DescribeRegionsDrdsRegion struct {
 }
 
 type DescribeRegionsInstanceSeries struct {
+	SeriesId   common.String
 	SeriesName common.String
-	SpecList   DescribeRegionsSpecListList
+	SpecList   DescribeRegionsSpecList
+}
+
+type DescribeRegionsSpec struct {
+	SpecId   common.String
+	SpecName common.String
 }
 
 type DescribeRegionsDrdsRegionList []DescribeRegionsDrdsRegion
@@ -70,10 +76,10 @@ func (list *DescribeRegionsInstanceSeriesList) UnmarshalJSON(data []byte) error 
 	return nil
 }
 
-type DescribeRegionsSpecListList []common.String
+type DescribeRegionsSpecList []DescribeRegionsSpec
 
-func (list *DescribeRegionsSpecListList) UnmarshalJSON(data []byte) error {
-	m := make(map[string][]common.String)
+func (list *DescribeRegionsSpecList) UnmarshalJSON(data []byte) error {
+	m := make(map[string][]DescribeRegionsSpec)
 	err := json.Unmarshal(data, &m)
 	if err != nil {
 		return err

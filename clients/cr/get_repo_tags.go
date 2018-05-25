@@ -10,8 +10,8 @@ type GetRepoTagsRequest struct {
 	requests.RoaRequest
 	RepoNamespace string `position:"Path" name:"RepoNamespace"`
 	RepoName      string `position:"Path" name:"RepoName"`
-	Page          int    `position:"Query" name:"Page"`
 	PageSize      int    `position:"Query" name:"PageSize"`
+	Page          int    `position:"Query" name:"Page"`
 }
 
 func (req *GetRepoTagsRequest) Invoke(client *sdk.Client) (resp *GetRepoTagsResponse, err error) {

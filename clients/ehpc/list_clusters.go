@@ -16,7 +16,7 @@ type ListClustersRequest struct {
 }
 
 func (req *ListClustersRequest) Invoke(client *sdk.Client) (resp *ListClustersResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListClusters", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListClusters", "ehs", "")
 	resp = &ListClustersResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -41,6 +41,7 @@ type ListClustersClusterInfoSimple struct {
 	OsTag           common.String
 	AccountType     common.String
 	SchedulerType   common.String
+	DeployMode      common.String
 	Count           common.Integer
 	InstanceType    common.String
 	LoginNodes      common.String
@@ -54,14 +55,18 @@ type ListClustersClusterInfoSimple struct {
 }
 
 type ListClustersManagers struct {
-	Toatal         common.Integer
+	Total          common.Integer
 	NormalCount    common.Integer
+	OperatingCount common.Integer
+	StoppedCount   common.Integer
 	ExceptionCount common.Integer
 }
 
 type ListClustersComputes struct {
-	Toatal         common.Integer
+	Total          common.Integer
 	NormalCount    common.Integer
+	OperatingCount common.Integer
+	StoppedCount   common.Integer
 	ExceptionCount common.Integer
 }
 

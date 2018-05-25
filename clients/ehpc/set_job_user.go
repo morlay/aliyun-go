@@ -15,7 +15,7 @@ type SetJobUserRequest struct {
 }
 
 func (req *SetJobUserRequest) Invoke(client *sdk.Client) (resp *SetJobUserResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "SetJobUser", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "SetJobUser", "ehs", "")
 	resp = &SetJobUserResponse{}
 	err = client.DoAction(req, resp)
 	return

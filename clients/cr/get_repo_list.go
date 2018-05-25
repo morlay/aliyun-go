@@ -8,8 +8,9 @@ import (
 
 type GetRepoListRequest struct {
 	requests.RoaRequest
-	Page     int `position:"Query" name:"Page"`
-	PageSize int `position:"Query" name:"PageSize"`
+	PageSize int    `position:"Query" name:"PageSize"`
+	Page     int    `position:"Query" name:"Page"`
+	Status   string `position:"Query" name:"Status"`
 }
 
 func (req *GetRepoListRequest) Invoke(client *sdk.Client) (resp *GetRepoListResponse, err error) {

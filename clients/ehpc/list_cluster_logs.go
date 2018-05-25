@@ -17,7 +17,7 @@ type ListClusterLogsRequest struct {
 }
 
 func (req *ListClusterLogsRequest) Invoke(client *sdk.Client) (resp *ListClusterLogsResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListClusterLogs", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListClusterLogs", "ehs", "")
 	resp = &ListClusterLogsResponse{}
 	err = client.DoAction(req, resp)
 	return

@@ -14,7 +14,7 @@ type DeleteClusterRequest struct {
 }
 
 func (req *DeleteClusterRequest) Invoke(client *sdk.Client) (resp *DeleteClusterResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "DeleteCluster", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "DeleteCluster", "ehs", "")
 	resp = &DeleteClusterResponse{}
 	err = client.DoAction(req, resp)
 	return

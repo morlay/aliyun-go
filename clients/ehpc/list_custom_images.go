@@ -16,7 +16,7 @@ type ListCustomImagesRequest struct {
 }
 
 func (req *ListCustomImagesRequest) Invoke(client *sdk.Client) (resp *ListCustomImagesResponse, err error) {
-	req.InitWithApiInfo("EHPC", "2017-07-14", "ListCustomImages", "ehs", "")
+	req.InitWithApiInfo("EHPC", "2018-04-12", "ListCustomImages", "ehs", "")
 	resp = &ListCustomImagesResponse{}
 	err = client.DoAction(req, resp)
 	return
@@ -29,11 +29,17 @@ type ListCustomImagesResponse struct {
 }
 
 type ListCustomImagesImageInfo struct {
-	ImageId         common.String
-	ImageName       common.String
-	ImageOwnerAlias common.String
-	Description     common.String
-	BaseOsTag       ListCustomImagesBaseOsTag
+	Uid               common.String
+	ImageId           common.String
+	ImageName         common.String
+	ImageOwnerAlias   common.String
+	Description       common.String
+	Status            common.String
+	ProductCode       common.String
+	SkuCode           common.String
+	PricingCycle      common.String
+	PostInstallScript common.String
+	BaseOsTag         ListCustomImagesBaseOsTag
 }
 
 type ListCustomImagesBaseOsTag struct {

@@ -11,8 +11,10 @@ import (
 
 type GetInstancesStatusCountRequest struct {
 	requests.RpcRequest
-	Cluster string `position:"Query" name:"Cluster"`
-	Region  string `position:"Query" name:"Region"`
+	Cluster   string `position:"Query" name:"Cluster"`
+	QuotaId   string `position:"Query" name:"QuotaId"`
+	Region    string `position:"Query" name:"Region"`
+	QuotaName string `position:"Query" name:"QuotaName"`
 }
 
 func (req *GetInstancesStatusCountRequest) Invoke(client *sdk.Client) (resp *GetInstancesStatusCountResponse, err error) {

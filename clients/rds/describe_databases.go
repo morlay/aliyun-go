@@ -16,8 +16,10 @@ type DescribeDatabasesRequest struct {
 	ResourceOwnerAccount string `position:"Query" name:"ResourceOwnerAccount"`
 	DBStatus             string `position:"Query" name:"DBStatus"`
 	OwnerAccount         string `position:"Query" name:"OwnerAccount"`
+	PageSize             int    `position:"Query" name:"PageSize"`
 	DBInstanceId         string `position:"Query" name:"DBInstanceId"`
 	OwnerId              int64  `position:"Query" name:"OwnerId"`
+	PageNumber           int    `position:"Query" name:"PageNumber"`
 }
 
 func (req *DescribeDatabasesRequest) Invoke(client *sdk.Client) (resp *DescribeDatabasesResponse, err error) {
@@ -44,8 +46,9 @@ type DescribeDatabasesDatabase struct {
 }
 
 type DescribeDatabasesAccountPrivilegeInfo struct {
-	Account          common.String
-	AccountPrivilege common.String
+	Account                common.String
+	AccountPrivilege       common.String
+	AccountPrivilegeDetail common.String
 }
 
 type DescribeDatabasesDatabaseList []DescribeDatabasesDatabase
